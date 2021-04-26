@@ -1,10 +1,13 @@
+# Dotfiles
+
 dotfiles for my local setup,
 
 To install on your system ,just run setup.sh on your local linux machine. It will create symbolic links for all the configuration files to their appropriate locations. 
 
 
-| status bar   | polybar      |
+|          | program  |
 |--------------|--------------|
+| status bar   | polybar      |
 | email client | neomutt      |
 | rss reader   | newsboat     |
 | file manager | ranger       |
