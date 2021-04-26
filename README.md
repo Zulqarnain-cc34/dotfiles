@@ -67,6 +67,7 @@ Setup with
 - Sidebar   `~/.mutt/sidebar`  Sidebar theme .
 - muttrc    `~/.mutt/.muttrc`  All files are sourced in .muttrc as `source ./settings`
 
+Mutt themes are forked from [mutt-solarized-theme](https://github.com/altercation/mutt-colors-solarized) and [neon-mutt-theme](https://github.com/h3xx/mutt-colors-neonwolf) 
 
 ### Transmission
 
