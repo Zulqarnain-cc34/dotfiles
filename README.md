@@ -65,10 +65,10 @@ Setup with
 - Aliases   `~/.mutt/aliases`  All the aliases are stored in aliases file. 
 - Colors    `~/.mutt/colors`   Color theme for neomutt.
 - Settings  `~/.mutt/settings` Main config and personalized settings.
-- Sidebar   `~/.mutt/sidebar`  Sidebar theme .
-- muttrc    `~/.mutt/.muttrc`  All files are sourced in .muttrc as `source ./settings`
+- Sidebar   `~/.mutt/sidebar`  Sidebar theme.
+- muttrc    `~/.mutt/.muttrc`  All files are sourced in .muttrc as `source ./settings` and  `source ./aliases` etc.
 
-Mutt themes are forked from [mutt-solarized-theme](https://github.com/altercation/mutt-colors-solarized) and [neon-mutt-theme](https://github.com/h3xx/mutt-colors-neonwolf) 
+Mutt themes are forked from [mutt-solarized-theme](https://github.com/altercation/mutt-colors-solarized) and [neon-mutt-theme](https://github.com/h3xx/mutt-colors-neonwolf)
 
 ### Transmission
 

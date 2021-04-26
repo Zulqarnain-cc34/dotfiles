@@ -27,6 +27,7 @@
 [ ! -d $HOME/.local/share/sddm ] && ln -s $PWD/sddm $HOME/.local/share/sddm
 [ ! -d $HOME/.local/share/themes ] && ln -s $PWD/themes $HOME/.local/share/themes
 [ ! -d $HOME/.config/mpv ] && ln -s $PWD/mpv $HOME/.config/mpv
+[ ! -d $HOME/.mutt ] && ln -s $PWD/.mutt $HOME/.mutt
 
 ##################################
 ## _____  ___  _      _____  ____
