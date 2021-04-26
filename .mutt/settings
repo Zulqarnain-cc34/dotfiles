@@ -1,0 +1,241 @@
+##########################################
+#____       _   _   _                    #
+#/ ___|  ___| |_| |_(_)_ __   __ _ ___   #
+#\___ \ / _ \ __| __| | '_ \ / _` / __|  #
+# ___) |  __/ |_| |_| | | | | (_| \__ \  #
+#|____/ \___|\__|\__|_|_| |_|\__, |___/  # |___/       #
+##########################################
+
+
+# Folder settings
+set alias_file=~/.mutt/aliases        # Where to store aliases
+set signature=~/.mutt/Mail/.signature            # Silly signature
+set mailcap_path= ~/.mutt/mailcap       # entries for filetypes
+
+set ssl_starttls=yes
+set imap_check_subscribed=yes
+set imap_list_subscribed=yes
+set timeout=15
+set mail_check=90
+set imap_keepalive=180
+unset imap_passive
+set imap_idle
+set editor = "nvim"
+set auto_tag = yes 
+#
+# The header weed list
+#
+ignore delivered-to
+ignore content- errors-to in-reply-to mime-version
+ignore lines precedence status
+ignore nntp-posting-host path old-return-path received references
+ignore priority >received >>received
+ignore resent- return-path xref path
+ignore x400 importance sensitivity autoforward original-encoded-information
+ignore x- thread-
+ignore DomainKey-Signature mail-followup-to
+
+ignore list- comments posted-to approved-by
+
+unignore x-spam-level x-url x-mailer list-id x-no-spam x-archived-at
+unignore x-diagnostic
+
+#
+# Various settings
+#
+
+unset allow_8bit                        # Produce correct MIME
+unset bounce_delivered                  # Don't include Delivered-to with bounces
+set   send_charset="us-ascii:iso-8859-1:iso-8859-15:iso-8859-2:utf-8"
+set   delete=yes                        # Don't ask me whether or not I meant to delete messages
+set   display_filter="tr '\240\204\223\226' ' \"\"-'" # fix some funny characters
+set   edit_headers                      # I want to edit the headers.
+set   noenvelope_from                   # set messages' envelope-from header.
+set   fcc_clear                         # Store local copies of messages in the clear.
+set   followup_to                       # Create Mail-Followup-To headers.
+set   forward_decode                    # Decode messages when forwarding.
+set   forward_decrypt                   # Decrypt messages when forwarding.
+set   nohelp                            # No help line.
+set   include=yes                       # Always include a copy when replying.
+set   mbox=+mbox                        # The (unused) mbox file.
+set   mime_forward_rest=ask-no          # Ask me whether or not to create a MIME-encapsulated forward
+set   move=no                           # Don't use mbox
+set   pager_stop                        # Don't fall through to the next message in the pager
+set   pager_index_lines=0               # The pager index is ugly.
+set   pgp_show_unusable="no"            # Don't display unusable keys.
+set   pgp_sort_keys="keyid"             # Sort keys by key ID
+set   pgp_timeout=3600                  # Forget the PGP passphrase after an hour.
+set   pipe_decode                       # Decode messages I pipe to commands, typically to patch(1).
+set   print=ask-no                      # Don't waste paper
+set   print_command="enscript -2Gr -Email"      # Two columns, landscape, fancy header.
+set   print_split=yes                   # Invoke enscript once per message
+set   quit=yes                          # Don't ask me whether or not I want to quit.
+set   quote_regex="^ *[a-zA-Z]*[>|][>:|]*"     # Recognize quotes in the pager.
+set   read_inc=50                       # Progress indicator when reading folders.
+set   recall=ask-no                     # When I say "compose", ask me whether I want to continue
+                                        # composing a postponed message.
+set   record="+Drafts/now"             # Put copies of most outgoing messages to ~/Mail/archive/now
+set   reply_to=ask-yes                  # Ask me whether I want to honor users' reply-to headers.
+set   reverse_alias                     # Use aliases to display real names on the index.
+set   save_name                         # Save copies by name.  Together with $record and $save_name,
+                                        # this means that when a folder exists, copies of outgoing
+                                        # messages are written to ~/Mail/<name>, otherwise they go to
+                                        # ~/Mail/archive/now
+set   sig_dashes                        # Add dashes above my signature
+set   smart_wrap                        # Try to be smart when wrapping around lines in the pager
+set   sort=threads                      # sort by threads,
+set   sort_aux=date                     # then by date
+unset strict_threads                    # don't be strict about threads
+set   tilde                             # Indicate empty lines in the pager.
+set   to_chars=" +TCF "                 # Don't tag list mail in the index
+unset use_domain                        # Don't append a domain to addresses.
+set   write_inc=50                      # Progress indicator when writing folders.
+set   query_command="lbdb2q.pl %s"              # Use the Little Brother's Database with the external
+set   sendmail_wait=-1                  # Don't put sendmail into the background.
+set   encode_from                       # "From " in the beginning of a line triggers quoted-printable
+set   nowait_key                        # Return immediately from external programs
+set   header                            # Include the message header when replying.
+set   ignore_list_reply_to              # Ignore Reply-To headers pointing to mailing lists.
+set   norfc2047_parameters              # Sometimes, I get mails which use a bogus encoding for
+                                        # MIME parameters.  Setting this shouldn't harm.
+                                        # (OK, she doesn't use Notes any more, so I can unset this. ;-)
+set   text_flowed                     # Generate text/plain; format=flowed
+unset use_ipv6                                # Don't try to use IPv6 - it doesn't work here.
+set   keep_flagged                      # don't move flagged messages to mbox
+set   hide_missing=yes                  # Don't show how many messages are missing in a thread structure
+
+
+# set status_on_top                    # Status bar on top of index
+set beep_new             # bell on new mails
+set pipe_decode          # strip headers and eval mimes when piping
+set thorough_search      # strip headers and eval mimes before searching
+set reply_regexp = "^(([Rr][Ee]?(\[[0-9]+\])?: *)?(\[[^]]+\] *)?)*"
+set quote_regexp = "^( {0,4}[>|:#%]| {0,4}[a-z0-9]+[>|]+)+"
+set send_charset = "utf-8:iso-8859-1:us-ascii"
+set charset = "utf-8"
+set arrow_cursor = "no" # Change `color indicator` depending 
+set status_format="-%r-+(%v) %f [Msgs:%?M?%M/?%m%?n? New:%n?%?o? Old:%o?%?d? Del:%d?%?F? Flag:%F?%?t? Tag:%t?%?p? Post:%p?%?b? Inc:%b?%?l? %l?]----%>-(%P)---"
+set compose_format="--+(%v) Compose  [Approx. msg size: %l   Atts: %a]%>-"
+set pager_format="-%Z- %C/%m: %.20n %> %s"
+#
+# Main settings
+#
+set sleep_time = 0		# Pause 0 seconds for informational messages
+set markers = no		# Disables the `+` displayed at line wraps
+set mark_old = no		# Unread mail stay unread until read
+set mime_forward = yes		# attachments are forwarded with mail
+set wait_key = no		# mutt won't ask "press key to continue"
+set fast_reply			# skip to compose when replying
+set fcc_attach			# save attachments with the body
+set forward_format = "Fwd: %s"	# format of subject when forwarding
+set forward_quote		# include message in forwards
+#set reverse_name		# reply as whomever it was to
+set include			# include message in replies
+set mail_check=60 # to avoid lags using IMAP with some email providers (yahoo for example)
+auto_view text/html		# automatically show html (mailcap uses lynx)
+unset sig_dashes                     # no dashes before sig
+unset mime_forward                   # forward attachments as part of body
+unset help                           # No help bar at the top of index
+set wrap=-4                             # Leave a margin in the pager
+
+# sort/threading
+set sort     = threads
+set sort_aux = reverse-last-date-received
+set sort_re
+
+
+# use tab to switch between accounts, inspired by
+#  http://msmtp.sourceforge.net/doc/msmtp.html#Using-msmtp-with-Mutt
+macro generic \Cx| "<enter-command>source"
+macro generic \Cx& "<enter-command>macro index \\t \"\\Cx"
+macro index <tab> "\Cx0"    # default change to account 1, this will be redefined once pressed
+macro generic \Cx0 "\Cx| ~/.mutt/accounts/upmc\"\n\Cx&1\"<enter><change-folder>!<enter>"
+macro generic \Cx1 "\Cx| ~/.mutt/accounts/ovh\"\n\Cx&0\"<enter><change-folder>!<enter>"
+
+
+# ------------------------------------------------
+# --- index / forward / message / pager format ---
+# ------------------------------------------------
+# %a address of the author
+# %A reply-to address (if present; otherwise: address of author)
+# %b filename of the original message folder (think mailBox)
+# %B the list to which the letter was sent, or else the folder name
+#    (%b).
+# %c number of characters (bytes) in the message
+# %C current message number
+# %d date and time of the message in the format specified by
+#    ``date_format'' converted to sender's time zone
+# %D date and time of the message in the format specified by
+#    ``date_format'' converted to the local time zone
+# %e current message number in thread
+# %E number of messages in current thread
+# %f entire From: line (address + real name)
+# %F author name, or recipient name if the message is from you
+# %H spam attribute(s) of this message
+# %i message-id of the current message
+# %l number of lines in the message (does not work with maildir, mh,
+#    and possibly IMAP folders)
+# %L If an address in the To or CC header field matches an address
+#    defined by the users ``subscribe'' command, this displays "To
+#    <list-name>", otherwise the same as %F.
+# %m total number of message in the mailbox
+# %M number of hidden messages if the thread is collapsed.
+# %N message score
+# %n author's real name (or address if missing)
+# %O (_O_riginal save folder) Where mutt would formerly have stashed
+#    the message: list name or recipient name if no list
+# %s subject of the message
+# %S status of the message (N/D/d/!/r/*)
+# %t `to:' field (recipients)
+# %T the appropriate character from the $to_chars string
+# %u user (login) name of the author
+# %v first name of the author, or the recipient if the message is
+#    from you
+# %X number of attachments (please see the ``attachments'' section
+#    for possible speed effects)
+# %y `x-label:' field, if present
+# %Y `x-label' field, if present, and (1) not at part of a thread
+#    tree, (2) at the top of a thread, or (3) `x-label' is different
+#    from preceding message's `x-label'.
+# %Z message status flags
+# %{fmt} the date and time of the message is converted to sender's time
+#        zone, and ``fmt'' is expanded by the library function
+#        ``strftime''; a leading bang disables locales
+# %[fmt] the date and time of the message is converted to the local time
+#        zone, and ``fmt'' is expanded by the library function
+#        ``strftime''; a leading bang disables locales
+# %(fmt) the local date and time when the message was received. ``fmt''
+#        is expanded by the library function ``strftime''; a leading
+#        bang disables locales
+# %<fmt> the current local time. ``fmt'' is expanded by the library
+#        function ``strftime''; a leading bang disables locales.
+# %>X right justify the rest of the string and pad with character "X"
+# %|X pad to the end of the line with character "X"
+
+#set index_format="%Z %3C %{%b %d} %-19.19L (%5c) %s"
+#set index_format="%4C %Z %{%b %d} %-15.15n (%4l) %s"
+#set index_format="%Z %3C %{%b %d} %-17.17n (%4l) %s"
+#set index_format="%Z %3C %{%b %d} %-17.17n (%5c) %s"
+#set index_format="%Z %3C %{%b %d} %-17.17n - %s"
+#set index_format="%3C %Z %[!%m.%d.%y] %-19.19n - %?M?(%3M)&%02e/%02E? %s%> %?y?[%Y]?"
+# set index_format="%3C %Z %[!%m.%d.%y] %-19.19n - %?X?%X& ? %?M?*%M*&%02e/%02E? %s%> %?y?[%Y]?"
+set index_format="%3C %Z %[!%m.%d.%y] %-19.19n %?X?(%1X)& ? %?M?(%02M)& ? %s%> %?y?[%Y]?"
+set index_format="%Z %3C %{%b %d} %-17.17n (%5c) %s"
+set index_format="%3C %Z %{%b %d} %-19.19n (%5c) %?X?(%1X)& ? %?M?(%02M)& ? %s%> %?y?[%Y]?"
+
+
+# macro index L "<enter-command>unset wait_key<enter><shell-escape>read -p 'mu query: ' x; echo \$x >~/.mu/search_term<enter><limit>~i \"\`mu find -f i \$(cat ~/.mu/search_term) | head -n 600 | perl -le '@a=<>;chomp@a;s/\^id:// for@a;$,=\"|\";print@a'\`\"<enter>" "show only messages matching a notmuch pattern"
+macro index L "<enter-command>unset wait_key<enter><shell-escape>read -p 'mu query: ' x; echo \$x >~/.mu/search_term<enter><shell-escape>mu find --format=links --linksdir=~/.mail/search/ --clearlinks \$(cat ~/.mu/search_term)<enter><enter-command>set wait_key<enter>" "show only messages matching a notmuch pattern"
+
+macro index \cl "<enter-command>unset wait_key<enter><shell-escape>mu find --format=links --linksdir=~/testmail/ --clearlinks \$(cat ~/.mu/search_term)<enter><enter-command>set wait_key<enter>" "mu find results"
+
+macro index <F8> \
+    "<enter-command>unset wait_key<enter><shell-escape>~/bin/mutt-notmuch --prompt search<enter><change-folder-readonly>~/.cache/mutt_results<enter>" \
+    "search mail (using notmuch)"
+macro index <F9> \
+    "<enter-command>unset wait_key<enter><pipe-message>~/bin/mutt-notmuch thread<enter><change-folder-readonly>~/.cache/mutt_results<enter><enter-command>set wait_key<enter>" \
+    "search and reconstruct owning thread (using notmuch)"
+
+macro index,pager \cu "<pipe-message> urlscan<Enter>" "call urlscan to extract URLs out of a message"
+macro attach,compose \cu "<pipe-entry> urlscan<Enter>" "call urlscan to extract URLs out of a message"
+
