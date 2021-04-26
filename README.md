@@ -21,11 +21,14 @@ Dotfiles for my local setup,
 
 To install on your system ,just run setup.sh on your local linux machine. It will create symbolic links for all the configuration files to their appropriate locations.
 
-- Run command
+- git clone the repo
+- Run command to make symbolic links 
     ```
         chmod +x setup.sh
         bash setup.sh
     ```
+- Run `bash uninstall.sh`, will remove all the config files.
+
 
 
 Polybar:
