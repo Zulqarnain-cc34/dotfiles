@@ -57,9 +57,15 @@ Configuration has features
 
 - Vim like key bindings
 - integrated with `urlportal.sh` script to open url appropriately according to their extension.
-
+- feeds update on cronjob every x minutes in time.
 
 ### NeoMutt
+Setup with 
+- Aliases   `~/.mutt/aliases`  All the aliases are stored in aliases file. 
+- Colors    `~/.mutt/colors`   Color theme for neomutt.
+- Settings  `~/.mutt/settings` Main config and personalized settings.
+- Sidebar   `~/.mutt/sidebar`  Sidebar theme .
+- muttrc    `~/.mutt/.muttrc`  All files are sourced in .muttrc as `source ./settings`
 
 
 ### Transmission
