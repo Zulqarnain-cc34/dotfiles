@@ -1,0 +1,4 @@
+ #!/usr/bin/bash
+
+# rofi script to open music audio files using mpv in my default Music directory $MUSIC
+ls $MUSIC | rofi -dmenu | xargs mpv
