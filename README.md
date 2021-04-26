@@ -42,6 +42,8 @@ To install on your system ,just run setup.sh on your local linux machine. It wil
 - [Transmission](#transmission)
 
 ### Polybar
+Custom tweaks on [Adapta-theme-polybar](https://github.com/matoruru/polybar-adapta-theme) and some modules from [polybar-scripts](https://github.com/polybar/polybar-scripts)
+
 ![alt text](https://github.com/Zulqarnain-cc34/dotfiles/blob/main/polybar/polybar.png?raw=true) 
 
 [(Back to top)](#top)
