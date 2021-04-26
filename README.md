@@ -48,7 +48,7 @@ Custom tweaks on [Adapta-theme-polybar](https://github.com/matoruru/polybar-adap
 
 
 ### Rofi
-using rofi as a custom launcher,ssh launcher and search engine. Lots of more scripts to integrate rofi with [twitch](https://github.com/indeedwatson/rofi-twitch), [youtube](https://github.com/pystardust/ytfzf), [surfraw](https://github.com/gotbletu/dotfiles_v2/tree/master/normal_user/rofi/.config/rofi/launchers) ,[wifi-menu](https://github.com/zbaylin/rofi-wifi-menu) and [others](https://github.com/gotbletu/dotfiles_v2/tree/master/normal_user/rofi/.config/rofi/launchers). Using rofi bangs script to manage all in one menu. Themes have been used from [rofi-themes](https://github.com/davatorium/rofi-themes.git) and [rofi-collection](https://github.com/Murzchnvok/rofi-collection) .
+using rofi as a custom launcher,ssh launcher and search engine. Lots of more scripts to integrate rofi with [twitch](https://github.com/indeedwatson/rofi-twitch), [youtube](https://github.com/pystardust/ytfzf), [surfraw](https://github.com/gotbletu/dotfiles_v2/tree/master/normal_user/rofi/.config/rofi/launchers) ,[wifi-menu](https://github.com/zbaylin/rofi-wifi-menu) ,[rofi-spotlight](https://github.com/manilarome/rofi-spotlight) and [others](https://github.com/gotbletu/dotfiles_v2/tree/master/normal_user/rofi/.config/rofi/launchers). Using rofi bangs script to manage all in one menu. Themes have been used from [rofi-themes](https://github.com/davatorium/rofi-themes.git) and [rofi-collection](https://github.com/Murzchnvok/rofi-collection) .
 
 ### Newsboat
 
