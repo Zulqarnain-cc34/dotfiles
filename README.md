@@ -40,6 +40,7 @@ To install on your system ,just run setup.sh on your local linux machine. It wil
 - [Neomutt](#neomutt)
 - [Newsboat](#newsboat)
 - [Transmission](#transmission)
+- [Miscellaneous](#miscellaneous)
 
 ### Polybar
 Custom tweaks on [Adapta-theme-polybar](https://github.com/matoruru/polybar-adapta-theme) and some modules from [polybar-scripts](https://github.com/polybar/polybar-scripts)
@@ -71,7 +72,12 @@ Mutt themes are forked from [mutt-solarized-theme](https://github.com/altercatio
 
 ### Transmission
 
+### Miscellaneous
 
+- Starship Prompt configured with `starship.toml` file.
+- Themes for desktop in themes folder (I am using xfce4). 
+- `.Xmodmap` for unbinding and binding keys on a system level.
+- `twitch notifer.cfg` to format output for [twitch-notifier](https://github.com/GiedriusS/TwitchNotifier) package.
 
 
 [(Back to top)](#top)
