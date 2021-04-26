@@ -1,6 +1,6 @@
 # Dotfiles
 
-Zulqarnain--c34 [(Zulqarnain-cc34)](www.github.com/Zulqarnain-cc34) 
+Zulqarnain-c34 [(Zulqarnain-cc34)](www.github.com/Zulqarnain-cc34) 
 
 
 Dotfiles for my local setup,
@@ -34,10 +34,14 @@ To install on your system ,just run setup.sh on your local linux machine. It wil
 
 ## Modules
 
+- [Polybar](#polybar)
+- [Ranger](#ranger)
+- [Rofi](#rofi)
+- [Neomutt](#neomutt)
+- [Newsboat](#newsboat)
+- [Transmission](#transmission)
 
-
-
-Polybar:
+### Polybar
 ![alt text](https://github.com/Zulqarnain-cc34/dotfiles/blob/main/polybar/polybar.png?raw=true) 
 
 [(Back to top)](#top)
