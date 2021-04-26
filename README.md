@@ -21,6 +21,13 @@ Dotfiles for my local setup,
 
 To install on your system ,just run setup.sh on your local linux machine. It will create symbolic links for all the configuration files to their appropriate locations.
 
+- Run command
+    """
+        chmod +x setup.sh
+        bash setup.sh
+
+    """
+
 
 Polybar:
 ![alt text](https://github.com/Zulqarnain-cc34/dotfiles/blob/main/polybar/polybar.png?raw=true) 
