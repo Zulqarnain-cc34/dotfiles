@@ -44,6 +44,22 @@ To install on your system ,just run setup.sh on your local linux machine. It wil
 ### Polybar
 Custom tweaks on [Adapta-theme-polybar](https://github.com/matoruru/polybar-adapta-theme) and some modules from [polybar-scripts](https://github.com/polybar/polybar-scripts)
 
+### Ranger
+
+
+### Rofi
+using rofi as a custom launcher,ssh launcher and search engine. Lots of more scripts to integrate rofi with [twitch](https://github.com/indeedwatson/rofi-twitch), [youtube](https://github.com/pystardust/ytfzf), [surfraw](https://github.com/gotbletu/dotfiles_v2/tree/master/normal_user/rofi/.config/rofi/launchers) and [wifi-menu](https://github.com/zbaylin/rofi-wifi-menu).
+
+### Newsboat
+
+
+### NeoMutt
+
+
+### Transmission
+
+
+
 ![alt text](https://github.com/Zulqarnain-cc34/dotfiles/blob/main/polybar/polybar.png?raw=true) 
 
 [(Back to top)](#top)
