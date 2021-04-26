@@ -1,0 +1,7 @@
+# Display Sidebar
+set sidebar_width=20
+set sidebar_visible=true
+set sidebar_short_path = yes
+set sidebar_next_new_wrap = yes
+set mail_check_stats
+set sidebar_format = '%D%?F? [%F]?%* %?N?%N/? %?S?%S?'
