@@ -1,0 +1,126 @@
+# Starship command prompt configuration file. Colour choice and over-use of emoji
+# is to help blend in with Ubuntu MATE default theme, Ambiant-Mate.
+
+
+# disable starship from forcing a new line to be taken. Solved the empty line 
+# at start of terminal
+add_newline = false
+
+[line_break]
+disabled = false
+
+# Replace the "❯" symbol in the prompt with "➟"
+[character]      # The name of the module we are configuring is "character"
+vicmd_symbol = "[V](bold green) "
+use_symbol_for_status = true
+symbol = "  ➟"     # The "symbol" segment is being set to "➜"
+success_symbol = "[❯](bold green)"
+error_symbol = "[✖](bold red)"
+style_success = "bold #00A652"
+style_failure = "bold #df382c"
+
+
+[package]
+disabled=true
+
+# Hide the username. The username will only show in certain scenarios
+[username]
+disabled = true
+
+# shows the hostname on new lines
+[hostname]
+ssh_only = true
+format =  "$symbol on [$hostname]($style) "
+symbol = "💻️ "    
+trim_at = ".companyname.com"
+disabled = false
+style = "bold italic #FFD131"
+
+[python]
+symbol = "👾 "
+pyenv_version_name = true
+python_binary = "python3"
+detect_extensions = []
+
+[nim]
+style = "yellow"
+symbol = "🎣 "
+
+[dotnet]
+format = "[$symbol($version )(🎯 $tfm )]($style)"
+symbol = ".NET "
+heuristic=true
+detect_files = ["global.json", "project.json", "Directory.Build.props", "Directory.Build.targets", "Packages.props"]
+style = "bold blue"
+
+[java]
+symbol = "🌟 "
+
+[kubernetes]
+format = 'on [⛵ $context \($namespace\)](dimmed green) '
+disabled = false
+[kubernetes.context_aliases]
+"dev.local.cluster.k8s" = "dev"
+
+[nodejs]
+format = "via [🤖 $version](bold green) "
+
+[ruby]
+symbol = "🔺 "
+format = "via [⚙️ $version](red bold)"
+
+[battery]
+full_symbol = "🔋"
+charging_symbol = "⚡️ "
+discharging_symbol = " 💀"
+
+[[battery.display]]
+threshold = 10
+style = "bold red"
+
+[[battery.display]]  # "bold yellow" style when capacity is between 10% and 30%
+threshold = 30
+style = "bold yellow"
+discharging_symbol = "💦"
+
+[docker_context]
+format="via [$symbol$context]($style) "
+synbol="🐋 "
+
+[deno]
+format = "via [$symbol($version )]($style)"
+symbol = "🦕 "
+
+[dart]
+format= "via [$symbol($version )]($style)"
+symbol = "🎯 "
+
+[conda]
+format = "[$symbol$environment](dimmed Yellow) "
+symbol="🅒 "
+ignore-base=true
+
+[cmd_duration]
+min_time = 4
+show_milliseconds = false
+disabled = false
+format = "⏲️ took [$duration]($style)"
+style = "bold italic #FFD23F"
+
+[git_status]
+conflicted = "🏳"
+ahead = "🏎💨"
+behind = "😰"
+diverged = "😵"
+untracked = "🤷‍"
+stashed = "📦"
+modified = "📝"
+staged = '[++\($count\)](green)'
+renamed = "👅"
+deleted = "🗑"
+[time]
+disabled = false
+format = '🕙[\[ $time \]]($style) '
+time_format = "%T"
+utc_time_offset = "-5"
+time_range = "10:00:00-14:00:00"

@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# A script for displaying newsboat notifications via libnotify
+
+NBINFO=$1
+ notify-send "Newsboat - Feeds updated" "$NBINFO" --icon=internet-news-reader
+

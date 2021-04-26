@@ -1,0 +1,367 @@
+set previewer ~/.config/lf/preview
+# Basic Settings
+set preview true
+set drawbox true
+set ignorecase true
+
+#set filesep "\n"  # default already
+
+
+# Custom Functions
+cmd open ${{
+    case $(file --mime-type "$f" -bL) in
+        text/html) $BROWSERCLI "$f" ;;
+        text/*|application/json) $EDITOR "$f";;
+        image/*) feh "$f" &> /dev/null &;;
+        video/*|image/*/application/pdf) xdg-open "$f" &> /dev/null &;;
+        *) xdg-open "$f" &> /dev/null & ;;
+    esac
+}}
+
+# Trash cli bindings
+cmd trash ${{
+  files=$(printf "$fx" | tr '\n' ';')
+  while [ "$files" ]; do
+    # extract the substring from start of string up to delimiter.
+    # this is the first "element" of the string.
+    file=${files%%;*}
+
+    trash-put "$(basename "$file")"
+    # if there's only one element left, set `files` to an empty string.
+    # this causes us to exit this `while` loop.
+    # else, we delete the first "element" of the string from files, and move onto the next.
+    if [ "$files" = "$file" ]; then
+      files=''
+    else
+      files="${files#*;}"
+    fi
+  done
+}}
+
+cmd folder_size !{{
+    du --max-depth=1 -h --apparent-size
+}}
+
+
+cmd folder_size !{{
+    du --max-depth=1 -h --apparent-size | sort -rh
+}}
+
+cmd copy_desk_down ${{
+    cp $fx /home/wasif/LAN/Users/ziaul/Downloads/
+    }}
+
+cmd copy_down ${{
+    cp $fx /home/wasif/Downloads/
+    }}
+cmd copy_image_png ${{
+    xclip -sel clip -t image/png $f
+    }}
+cmd copy_image_jpg ${{
+    xclip -sel clip -t image/jpg $f
+    }}
+cmd copy_text ${{
+    xclip -sel clip -t text/plain $f
+    }}
+cmd send_to_phone ${{
+    kdeconnect-cli -d 4b3c7f6f758726fc --share $fx
+    }}
+
+#cmd yank-dirname $dirname -- "$f" | head -c-1 | xclip -i -selection clipboard
+#cmd yank-path $printf '%s' "$fx" | xclip -i -selection clipboard
+#cmd yank-basename $basename -a -- $fx | head -c-1 | xclip -i -selection clipboard
+#cmd yank-basename-without-extension &basename -a -- $fx | rev | cut -d. -f2- | rev | head -c-1 | xclip -i -selection clipboard
+
+cmd yank_path ${{
+    echo "$f" | xclip -i -sel clip
+}}
+
+cmd yank_dir ${{
+    echo "${f%/*}" | xclip -i -sel clip
+}}
+
+
+cmd yank_name ${{
+    basename "$f"| xclip -i -sel clip
+}}
+
+
+cmd yank_name_without_extension ${{
+    basename "${f%.*}"| xclip -i -sel clip
+}}
+
+cmd mkdir %mkdir "$@"
+
+cmd mkfile %{{
+  touch "$@"
+}}
+
+
+cmd mount_kdeconnect ${{
+    qdbus org.kde.kdeconnect /modules/kdeconnect/devices/4b3c7f6f758726fc/sftp mountAndWait
+}}
+
+cmd mount_iso %iso_mount_unmount.sh "$f"
+
+cmd mount_Gdrive ${{
+    rclone mount --vfs-cache-mode=writes --dir-cache-time=72h Gdrive:/ ~/Public/Gdrive &
+    lf -remote 'send reload'
+}}
+}}
+
+cmd mount_Nust_Onedrive ${{
+    rclone mount --vfs-cache-mode=writes --dir-cache-time=72h Nust_Onedrive:/ ~/Public/Nust_Onedrive &
+    lf -remote 'send reload'
+}}
+cmd chmod %{{
+  printf "Mode Bits: "
+  read ans
+  for file in ${fx// /'>'}
+  do
+    chmod $ans "${file//'>'/ }"
+  done
+
+  lf -remote 'send reload'
+}}
+
+
+
+cmd setwallpaper %cp "$f" ~/.config/wall.png && xwallpaper --stretch "$f"
+
+cmd fzf_jump ${{
+  res="$(find . -maxdepth 3 | fzf --reverse --header='Jump to location')"
+  if [ -f "$res" ]; then
+    cmd="select"
+  elif [ -d "$res" ]; then
+    cmd="cd"
+  fi
+  lf -remote "send $id $cmd \"$res\""
+}}
+
+
+cmd fzf_locate ${{
+  res="$(locate home media | fzf -e -i --reverse --header='Jump to location')"
+  if [ -f "$res" ]; then
+    cmd="select"
+  elif [ -d "$res" ]; then
+    cmd="cd"
+  fi
+  lf -remote "send $id $cmd \"$res\""
+}}
+
+
+cmd set_mozillas_new_tab_back %{{
+    cp "$f" ~/.mozilla/firefox/oduj1f5k.default-release/chrome/newtab_background.jpg && cp "$f" ~/.mozilla/firefox/static-oduj1f5k.default-release/chrome/newtab_background.jpg
+}}
+
+cmd show_info_exif ${{exiftool "$f" | less}}
+cmd vimdiff_files ${{nvim -d $fx}}
+cmd mpv_dvd %{{mpv dvd:// --dvd-device="$f" &>/dev/null &}}
+
+# Archive bindings
+cmd unarchive ${{
+  if [ -f "$f" ] ; then
+    case "$f" in
+      *.tar.bz2)   tar xjf "$f"   ;;
+      *.tar.gz)    tar xzf "$f"   ;;
+      *.bz2)       bunzip2 "$f"   ;;
+      *.rar)       unrar x "$f"   ;;
+      *.gz)        gunzip "$f"    ;;
+      *.tar)       tar xf "$f"    ;;
+      *.tbz2)      tar xjf "$f"   ;;
+      *.tgz)       tar xzf "$f"   ;;
+      *.zip)       unzip "$f"     ;;
+      *.Z)         uncompress "$f";;
+      *.7z)        7z x "$f"      ;;
+      *.deb)       ar x "$f"      ;;
+      *.tar.xz)    tar xf "$f"    ;;
+      *.tar.zst)   unzstd "$f"    ;;      
+      *)           echo "'$f' cannot be extracted" ;;
+    esac
+  else
+    echo "'"$f"' is not a valid file"
+  fi
+}}
+
+cmd zip %zip -r "$f" "$f"
+cmd tar %tar cvf "$f.tar" "$f"
+cmd targz %tar cvzf "$f.tar.gz" "$f"
+cmd tarbz2 %tar cjvf "$f.tar.bz2" "$f"
+
+cmd clear_trash %trash-empty
+
+cmd restore_trash ${{
+  trash-restore
+}}
+
+cmd open_with %{{
+    "$@" $fx
+}}
+
+cmd send_mail ${{
+    $EDITOR /tmp/mail
+    printf "To:"
+    read to
+    printf "Subject:"
+    read subject
+    if [[ -z "$fs" ]];then
+        neomutt -s "$subject" -- $to </tmp/mail
+    else
+        neomutt -a $fs -s "$subject" -- $to </tmp/mail
+    fi
+}}
+
+cmd image2pdf_and_upload2onedrive ${{
+    printf "Quality:"
+    read quality
+    printf "Rotate Angle:"
+    read rotate
+    printf "File Name:"
+    read filename
+    gm convert -size 810x1080 -rotate $rotate $fx -resize 810x1080 -extent 810x1080 -background white -compose Copy -gravity center -quality $quality "/tmp/${filename}.pdf"
+    rclone sync "/tmp/${filename}.pdf" Nust_Onedrive:/
+}}
+
+
+cmd image2pdf ${{
+    printf "Quality:"
+    read quality
+    printf "Rotate Angle:"
+    read rotate
+    printf "File Name:"
+    read filename
+    gm convert -size 810x1080 -rotate $rotate $fx -resize 810x1080 -extent 810x1080 -background white -compose Copy -gravity center -quality $quality "${filename}.pdf"
+}}
+
+cmd stripspace ${{
+    new_name="$(echo $f | tr ' ' -)"
+    mv "$f" $new_name
+}}
+
+cmd image_directory ${{
+    sxiv ./* &> /dev/null &
+}}
+cmd share $curl -F"file=@$fx" https://0x0.st | xclip -selection clip
+
+
+# Unmap the default binding
+map r
+# Rename the file with a completely different name
+map rc push :rename<space>
+# Edit the current filename
+map ra rename
+#map ra ${{
+#	# get 'basename' of the selection
+#	filename="${f##*/}"
+#	# quote it so we won't deal with quotes in the lf -remote command
+#	filename="$(printf '%q' "$filename")"
+#	filename="${filename// /<space>}"
+#	lf -remote "send $id push :rename<space>$filename"
+#}}
+# Edit filename before the extension
+map re ${{
+	# get 'basename' of the selection
+	filename="${f##*/}"
+	# quote it so we won't deal with quotes in the lf -remote command
+	filename="$(printf '%q' "$filename")"
+	filename="${filename// /<space>}"
+	lf -remote "send $id push :rename<space>$filename<a-b><c-b>"
+}}
+
+map ri ${{
+	# get 'basename' of the selection
+	filename="${f##*/}"
+	# quote it so we won't deal with quotes in the lf -remote command
+	filename="$(printf '%q' "$filename")"
+	filename="${filename// /<space>}"
+	lf -remote "send $id push :rename<space>$filename<c-a><a-f><right>"
+}}
+
+
+
+map d
+map dt trash
+map dd cut
+map dD delete
+map du folder_size
+map <delete> trash
+
+
+map y
+map yy copy
+map yLu copy_desk_down
+map yLd copy_down
+map yip copy_image_png
+map yij copy_image_jpg
+map yit copy_text
+map yik send_to_phone
+map yp yank_path
+map yd yank_dir
+map yn yank_name
+map y. yank_name_without_extension
+
+
+map m
+map md push :mkdir<space>
+map mf push :mkfile<space>
+map mk mount_kdeconnect
+map mi mount_iso
+map mg mount_Gdrive
+map mo mount_Nust_Onedrive
+
+map c
+map ch chmod
+map cr stripspace
+map cd push :cd<space>
+
+map u
+map uv unselect
+map uy clear
+
+map bg setwallpaper
+map bt set_mozillas_new_tab_back
+
+
+map e
+map ef fzf_jump
+map el fzf_locate
+map ed mpv_dvd
+map ec vimdiff_files
+map ei show_info_exif
+map ee $$EDITOR "$f"
+#map es $sudo $EDITOR "$f"
+map em send_mail
+map eg image2pdf
+map ep image_directory
+map es share
+
+
+map az zip
+map at tar
+map ag targz
+map ab targz
+map au unarchive
+
+
+map tr restore_trash
+map tc clear_trash
+map tg cd ~/.local/share/Trash/
+
+
+map sa :{{ set sortby atime;set reverse!; }}
+map sc :{{ set sortby ctime;set reverse!; }}
+map se :{{ set sortby ext;set reverse!; }}
+map sn :{{ set sortby natural;set reverse!; }}
+map ss :{{ set sortby size;set reverse!; }}
+map st :{{ set sortby time;set reverse!; }}
+
+map zA set info atime
+map zc set info ctime
+
+map o push :open_with<space>
+map . set hidden!
+
+#random
+map "'"
+map '"'
+map f
