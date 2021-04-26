@@ -19,6 +19,7 @@ Dotfiles for my local setup,
  ## Table of Contents
 
  - [Installation](#installation)
+ - [Screenshots](#screenshots)
 
 ## Installation
 
