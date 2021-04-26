@@ -25,8 +25,7 @@ To install on your system ,just run setup.sh on your local linux machine. It wil
     ```
         chmod +x setup.sh
         bash setup.sh
-
-     ```
+    ```
 
 
 Polybar:
