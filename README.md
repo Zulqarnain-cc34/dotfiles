@@ -44,6 +44,8 @@ To install on your system ,just run setup.sh on your local linux machine. It wil
 ### Polybar
 Custom tweaks on [Adapta-theme-polybar](https://github.com/matoruru/polybar-adapta-theme) and some modules from [polybar-scripts](https://github.com/polybar/polybar-scripts)
 
+![alt text](https://github.com/Zulqarnain-cc34/dotfiles/blob/main/polybar/polybar.png?raw=true) 
+
 ### Ranger
 
 
@@ -51,6 +53,10 @@ Custom tweaks on [Adapta-theme-polybar](https://github.com/matoruru/polybar-adap
 using rofi as a custom launcher,ssh launcher and search engine. Lots of more scripts to integrate rofi with [twitch](https://github.com/indeedwatson/rofi-twitch), [youtube](https://github.com/pystardust/ytfzf), [surfraw](https://github.com/gotbletu/dotfiles_v2/tree/master/normal_user/rofi/.config/rofi/launchers) ,[wifi-menu](https://github.com/zbaylin/rofi-wifi-menu) ,[rofi-spotlight](https://github.com/manilarome/rofi-spotlight) and [others](https://github.com/gotbletu/dotfiles_v2/tree/master/normal_user/rofi/.config/rofi/launchers). Using rofi bangs script to manage all in one menu. Themes have been used from [rofi-themes](https://github.com/davatorium/rofi-themes.git) and [rofi-collection](https://github.com/Murzchnvok/rofi-collection) .
 
 ### Newsboat
+Configuration has features
+
+- Vim like key bindings
+- integrated with `urlportal.sh` script to open url appropriately according to their extension.
 
 
 ### NeoMutt
@@ -60,7 +66,6 @@ using rofi as a custom launcher,ssh launcher and search engine. Lots of more scr
 
 
 
-![alt text](https://github.com/Zulqarnain-cc34/dotfiles/blob/main/polybar/polybar.png?raw=true) 
 
 [(Back to top)](#top)
 
