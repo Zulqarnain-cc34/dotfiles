@@ -42,7 +42,7 @@ To install on your system ,just run setup.sh on your local linux machine. It wil
 - [Transmission](#transmission)
 
 ### Polybar
-![alt text](https://github.com/Zulqarnain-cc34/dotfiles/tree/main/polybar/polybar.png?raw=true) 
+![alt text](https://github.com/Zulqarnain-cc34/dotfiles/blob/main/polybar/polybar.png?raw=true) 
 
 [(Back to top)](#top)
 
