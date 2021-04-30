@@ -12,12 +12,12 @@ disabled = false
 # Replace the "❯" symbol in the prompt with "➟"
 [character]      # The name of the module we are configuring is "character"
 vicmd_symbol = "[V](bold green) "
-use_symbol_for_status = true
-symbol = "  ➟"     # The "symbol" segment is being set to "➜"
+#use_symbol_for_status = true
+#symbol = "  ➟"     # The "symbol" segment is being set to "➜"
 success_symbol = "[❯](bold green)"
 error_symbol = "[✖](bold red)"
-style_success = "bold #00A652"
-style_failure = "bold #df382c"
+#style_success = "bold #00A652"
+#style_failure = "bold #df382c"
 
 
 [package]
@@ -31,7 +31,7 @@ disabled = true
 [hostname]
 ssh_only = true
 format =  "$symbol on [$hostname]($style) "
-symbol = "💻️ "    
+#symbol = "💻️ "    
 trim_at = ".companyname.com"
 disabled = false
 style = "bold italic #FFD131"
@@ -85,7 +85,7 @@ discharging_symbol = "💦"
 
 [docker_context]
 format="via [$symbol$context]($style) "
-synbol="🐋 "
+symbol="🐋 "
 
 [deno]
 format = "via [$symbol($version )]($style)"

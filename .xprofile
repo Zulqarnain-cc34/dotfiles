@@ -1,0 +1,4 @@
+polybar -r main --config=$HOME/.config/polybar/config.ini &
+xmodmap ~/.Xmodmap
+picom &
+dunst &
