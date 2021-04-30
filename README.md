@@ -9,6 +9,7 @@ Dotfiles for my local setup,
 | functionality | program      |
 |---------------|--------------|
 | status bar    | polybar      |
+| terminal      | alacritty    |
 | email client  | neomutt      |
 | rss reader    | newsboat     |
 | file manager  | ranger       |
