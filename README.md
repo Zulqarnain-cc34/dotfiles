@@ -43,6 +43,7 @@ To install on your system ,just run setup.sh on your local linux machine. It wil
 
 ## Modules
 
+- [Alacritty](#alacritty)
 - [Polybar](#polybar)
 - [Ranger](#ranger)
 - [Rofi](#rofi)
@@ -50,6 +51,12 @@ To install on your system ,just run setup.sh on your local linux machine. It wil
 - [Newsboat](#newsboat)
 - [Transmission](#transmission)
 - [Miscellaneous](#miscellaneous)
+
+
+### Alacritty
+<p align="center">
+   <img src="./alacritty/alacritty.png" width="350" title="Alacritty"> 
+</p>
 
 ### Polybar
 Custom tweaks on [Adapta-theme-polybar](https://github.com/matoruru/polybar-adapta-theme) and some modules from [polybar-scripts](https://github.com/polybar/polybar-scripts)
