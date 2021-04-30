@@ -28,6 +28,8 @@
 [ ! -d $HOME/.local/share/themes ] && ln -s $PWD/themes $HOME/.local/share/themes
 [ ! -d $HOME/.config/mpv ] && ln -s $PWD/mpv $HOME/.config/mpv
 [ ! -d $HOME/.mutt ] && ln -s $PWD/.mutt $HOME/.mutt
+[ ! -d $HOME/.config/dunst ] && ln -s $PWD/dunst $HOME/.config/dunst
+[ ! -d $HOME/.config/alacritty ] && ln -s $PWD/alacritty $HOME/.config/alacritty
 
 ##################################
 ## _____  ___  _      _____  ____
@@ -50,14 +52,5 @@
 [ ! -f $HOME/.vimrc ] && ln -s $PWD/.vimrc $HOME/.vimrc
 [ ! -f $HOME/.profile ] && ln -s $PWD/.profile $HOME/.profile
 [ ! -f $HOME/.inputrc ] && ln -s $PWD/.inputrc $HOME/.inputrc
-
-
-
-
-
-
-
-
-
-
-
+[ ! -f $HOME/.config/picom.conf ] && ln -s $PWD/picom.conf $HOME/.config/picom.conf
+[ ! -f $HOME/.xprofile ] && ln -s $PWD/.xprofile $HOME/.xprofile

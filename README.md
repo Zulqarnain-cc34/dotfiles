@@ -18,8 +18,15 @@ Dotfiles for my local setup,
 
  ## Table of Contents
 
+
+ - [Requirements](#requirements)
  - [Installation](#installation)
  - [Screenshots](#screenshots)
+
+## Requirements
+
+
+
 
 ## Installation
 

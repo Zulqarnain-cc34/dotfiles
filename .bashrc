@@ -31,7 +31,8 @@ fi
 source /usr/share/autojump/autojump.bash
 xrdb -merge $HOME/.Xresources &
 
-source $HOME/.AliasandFunct/aliases
+source $HOME/.aliases/aliases
+source $HOME/.aliases/functions
 #echo -e "$($HOME/Downloads/archlogo.txt)"
 
 # >>> conda initialize >>>
