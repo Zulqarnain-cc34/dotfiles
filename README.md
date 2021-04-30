@@ -55,7 +55,7 @@ To install on your system ,just run setup.sh on your local linux machine. It wil
 
 ### Alacritty
 <p align="center">
-   <img src="./alacritty/alacritty.png" width="350" title="Alacritty"> 
+   <img src="./alacritty/alacritty.png"  title="Alacritty"> 
 </p>
 
 ### Polybar
