@@ -7,11 +7,11 @@
 # License:    MIT
 # References:
 #   https://github.com/alacritty/alacritty
-window:
-  padding:
-    x: 4
-    y: 4
-  title: Terminal
+window: 
+  padding: 
+    x: 4 
+    y: 4 
+    title: Terminal
   class:
     instance: Alacritty
     general: Alacritty
@@ -31,7 +31,7 @@ font:
   bold_italic:
     family: Ubuntu Mono
     style: Bold Italic
-  size: 11
+  size: 12
 
 draw_bold_text_with_bright_colors: true
 
