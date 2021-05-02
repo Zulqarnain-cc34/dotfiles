@@ -9,6 +9,7 @@ Dotfiles for my local setup,
 | functionality | program      |
 |---------------|--------------|
 | status bar    | polybar      |
+| editor	    | neovim       |
 | terminal      | alacritty    |
 | email client  | neomutt      |
 | rss reader    | newsboat     |
@@ -45,6 +46,7 @@ To install on your system ,just run setup.sh on your local linux machine. It wil
 
 - [Alacritty](#alacritty)
 - [Polybar](#polybar)
+- [Neovim](#neovim)
 - [Ranger](#ranger)
 - [Rofi](#rofi)
 - [Neomutt](#neomutt)
@@ -55,13 +57,18 @@ To install on your system ,just run setup.sh on your local linux machine. It wil
 
 ### Alacritty
 <p align="center">
-   <img src="./alacritty/alacritty.png"  title="Alacritty"> 
+   <img src="./screenshots/alacritty.png"  title="alacritty"> 
 </p>
 
 ### Polybar
 Custom tweaks on [Adapta-theme-polybar](https://github.com/matoruru/polybar-adapta-theme) and some modules from [polybar-scripts](https://github.com/polybar/polybar-scripts)
 
-![alt text](https://github.com/Zulqarnain-cc34/dotfiles/blob/main/polybar/polybar.png?raw=true) 
+![alt text](https://github.com/Zulqarnain-cc34/dotfiles/blob/main/screenshots/polybar.png?raw=true) 
+
+### Neovim
+<p align="center">
+   <img src="./screenshots/neovim.png"  title="neovim"> 
+</p>
 
 ### Ranger
 
