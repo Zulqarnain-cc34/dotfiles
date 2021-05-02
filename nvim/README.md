@@ -41,4 +41,20 @@
 
 ### Editing
 ### Custom
+
+```
+	;		Command line
+	<Capslock> 	Binded to Esc
+	m		Leader key
+```
+
 ### Modules
+
+- NerdTree
+```
+	<leader>n	NerdTreeFocus
+	<C-t>		Toggle NerdTree
+	<C-n>		NerdTree
+	<C-p>		NerdTreeFind
+
+```
