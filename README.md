@@ -99,6 +99,7 @@ Custom tweaks on [Adapta-theme-polybar](https://github.com/matoruru/polybar-adap
 - Beautiful dashboard via [dashboard-nvim](https://github.com/glepnir/dashboard-nvim).
 - Source code linting and fixing using [Ale](https://github.com/dense-analysis/ale).
 - Semantic highlighting for Python via [Semshi](https://github.com/numirias/semshi).
+- Shorcuts and keybindings in [KeyBindins](https://github.com/Zulqarnain-cc34/dotfiles/tree/main/nvim/README.md)
 
 ### Ranger
 
