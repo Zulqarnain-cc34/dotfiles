@@ -101,7 +101,7 @@ symbol="🅒 "
 ignore-base=true
 
 [cmd_duration]
-min_time = 4
+min_time = 10
 show_milliseconds = false
 disabled = false
 format = "⏲️ took [$duration]($style)"
