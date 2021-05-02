@@ -20,10 +20,18 @@ Dotfiles for my local setup,
 
  ## Table of Contents
 
-
- - [Requirements](#requirements)
- - [Installation](#installation)
- - [Screenshots](#screenshots)
+* [Requirements](#requirements)
+* [Installation](#installation)
+* [Modules](#modules)
+	* [Alacritty](#alacritty)
+	* [Polybar](#polybar)
+	* [Neovim](#neovim)
+	* [Ranger](#ranger)
+	* [Rofi](#rofi)
+	* [Newsboat](#newsboat)
+	* [NeoMutt](#neomutt)
+	* [Transmission](#transmission)
+	* [Miscellaneous](#miscellaneous)
 
 ## Requirements
 

@@ -8,10 +8,11 @@ filetype plugin on
 "Some Common Config Settings" set nowrap        " don't wrap lines
 set tabstop=4     " a tab is four spaces
 set backspace=indent,eol,start
+set encoding=UTF-8
 " allow backspacing over everything in insert mode
 set autoindent    " always set autoindenting on
 set copyindent    " copy the previous indentation on autoindenting
- 
+
 set shiftwidth=4  " number of spaces to use for autoindenting
 set shiftround    " use multiple of shiftwidth when indenting with '<' and '>'
 set showmatch     " set show matching parenthesis
@@ -29,6 +30,12 @@ set title                " change the terminal's title
 set visualbell           " don't beep
 set noerrorbells         " don't beep
 set nobackup
+" Some servers have issues with backup files.
+set nowritebackup
+" Bigger messages display. command line height
+set cmdheight=1
+" Faster diagnostic messages (defaults 4000)
+set updatetime=200
 
 " Enable mouse support
 set mouse=a

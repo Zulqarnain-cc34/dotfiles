@@ -1,1 +1,5 @@
-require("plugged/nvim_colorizer.lua")
+require'nvim-treesitter.configs'.setup {
+  rainbow = {
+    enable = true
+  }
+}
