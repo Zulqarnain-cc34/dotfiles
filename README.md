@@ -49,6 +49,7 @@ To install on your system ,just run setup.sh on your local linux machine. It wil
         bash setup.sh
     ```
 - Run `bash uninstall.sh`, will remove all the config files.
+uninstall script will come soon
 
 ## Modules
 
@@ -67,6 +68,12 @@ To install on your system ,just run setup.sh on your local linux machine. It wil
 <p align="center">
    <img src="./screenshots/alacritty.png"  title="alacritty">
 </p>
+
+#### Features
+
+- Custom shell prompt with [Startship](https://github.com/starship/starship).
+- Multiple Alacritty themes via [alacritty-themes](https://github.com/eendroroy/alacritty-theme) (i am using Argonaut).
+- Background blur and transparency using [picom](https://github.com/yshui/picom).
 
 ### Polybar
 Custom tweaks on [Adapta-theme-polybar](https://github.com/matoruru/polybar-adapta-theme) and some modules from [polybar-scripts](https://github.com/polybar/polybar-scripts)

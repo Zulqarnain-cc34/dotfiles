@@ -7,10 +7,10 @@
 # License:    MIT
 # References:
 #   https://github.com/alacritty/alacritty
-window: 
-  padding: 
-    x: 4 
-    y: 4 
+window:
+  padding:
+    x: 4
+    y: 4
     title: Terminal
   class:
     instance: Alacritty
