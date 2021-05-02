@@ -30,6 +30,7 @@
 [ ! -d $HOME/.mutt ] && ln -s $PWD/.mutt $HOME/.mutt
 [ ! -d $HOME/.config/dunst ] && ln -s $PWD/dunst $HOME/.config/dunst
 [ ! -d $HOME/.config/alacritty ] && ln -s $PWD/alacritty $HOME/.config/alacritty
+[ ! -d $HOME/.config/nvim ] && ln -s $PWD/nvim $HOME/.config/nvim
 
 ##################################
 ## _____  ___  _      _____  ____
