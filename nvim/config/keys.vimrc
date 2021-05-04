@@ -9,10 +9,12 @@ nnoremap <silent> <C-s> :Files<CR>
 nnoremap <silent> <Leader>f :Rg<CR>
 "nnoremap <silent> <Leader>/ :BLines<CR>
 nnoremap <silent> <Leader>' :Marks<CR>
-nnoremap <silent> <Leader>g :Commits<CR>
+nnoremap <silent> <Leader>gg :Commits<CR>
 nnoremap <silent> <Leader>H :Helptags<CR>
 nnoremap <silent> <Leader>h :History<CR>
 
+" List the snippets for the specific ifle
+nnoremap <silent> <Leader>sp :CocList snippets<CR>
 "Remappng : to ; since more convienient"
 nnoremap ; :
 
@@ -59,3 +61,21 @@ nnoremap <leader>n :NERDTreeFocus<CR>
 nnoremap <C-n> :NERDTree<CR>
 nnoremap <C-t> :NERDTreeToggle<CR>
 nnoremap <C-p> :NERDTreeFind<CR>
+
+
+" fugitive git bindings
+nnoremap <leader>ga :Git add %:p<CR><CR>
+nnoremap <leader>gs :Gstatus<CR>
+nnoremap <leader>gc :Gcommit -v -q<CR>
+nnoremap <leader>gt :Gcommit -v -q %:p<CR>
+nnoremap <leader>gd :Gdiff<CR>
+nnoremap <leader>ge :Gedit<CR>
+nnoremap <leader>gr :Gread<CR>
+nnoremap <leader>gw :Gwrite<CR><CR>
+nnoremap <leader>gl :silent! Glog<CR>:bot copen<CR>
+nnoremap <leader>gp :Ggrep<Space>
+nnoremap <leader>gm :Gmove<Space>
+nnoremap <leader>gb :Git branch<Space>
+nnoremap <leader>go :Git checkout<Space>
+nnoremap <leader>gps :Dispatch! git push<CR>
+nnoremap <leader>gpl :Dispatch! git pull<CR>

@@ -3,6 +3,5 @@
   "coc.preferences.snippets.enable": true,
   "coc.preferences.extensionUpdateCheck": "never",
   "suggest.disableMenu": true,
-  "suggest.snippetIndicator": "",
-  "coc.preferences.colorSupport":true 
+  "coc.preferences.colorSupport":true
 }
