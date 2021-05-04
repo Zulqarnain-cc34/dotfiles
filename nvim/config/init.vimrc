@@ -15,6 +15,8 @@ Plug 'airblade/vim-gitgutter'
 Plug 'jiangmiao/auto-pairs'
 Plug 'glepnir/dashboard-nvim'
 Plug 'mzlogin/vim-markdown-toc'
+Plug 'codota/tabnine-vim'
+
 " Track the engine.
 Plug 'SirVer/ultisnips'
 " Snippets are separated from the engine. Add this if you want them:
