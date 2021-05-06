@@ -1,5 +1,8 @@
 let mapleader = "m"
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                              fzf keyBindings                               "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
 
@@ -13,27 +16,72 @@ nnoremap <silent> <Leader>gg :Commits<CR>
 nnoremap <silent> <Leader>H :Helptags<CR>
 nnoremap <silent> <Leader>h :History<CR>
 
-" List the snippets for the specific ifle
-nnoremap <silent> <Leader>sp :CocList snippets<CR>
-"Remappng : to ; since more convienient"
-nnoremap ; :
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                   Coc KeyBindings                                    "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-"A Trick to  for when you forgot to sudo before editing a file that requires
-"root privileges "
-cmap w!! w !sudo tee % >/dev/null
+" Mappings for CoCList
+" List the snippets for the specific file
+nnoremap <silent> <Leader>ns :CocList snippets<CR>
+" Show all diagnostics.
+nnoremap <silent><nowait> <leader>na  :<C-u>CocList diagnostics<cr>
+" Manage extensions.
+nnoremap <silent><nowait> <leader>ne  :<C-u>CocList extensions<cr>
+" Show commands.
+nnoremap <silent><nowait> <leader>nc  :<C-u>CocList commands<cr>
+" Find symbol of current document.
+nnoremap <silent><nowait> <leader>no  :<C-u>CocList outline<cr>
+" Search workspace symbols.
+nnoremap <silent><nowait> <leader>ny  :<C-u>CocList -I symbols<cr>
+" Do default action for next item
+nnoremap <silent><nowait> <leader>nj  :<C-u>CocNext<CR>
+" Do default action for previous it	em.
+nnoremap <silent><nowait> <leader>nk  :<C-u>CocPrev<CR>
+" Resume latest coc list.
+nnoremap <silent><nowait> <leader>np  :<C-u>CocListResume<CR>
 
-"Forcing myself to stop usng arrow keys and page up down keys"
-map <up> <nop>
-map <down> <nop>
-map <left> <nop>
-map <right> <nop>
-map <PageUp> <nop>
-map <PageDown> <nop>
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
 
-"Mappings for WhichKey
-nnoremap <silent> <leader> :WhichKey 'm'<CR>
-" By default timeoutlen is 1000 ms
-set timeoutlen=500
+" Use <c-space> to trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
+
+" Use K to show documentation in preview window.
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  elseif (coc#rpc#ready())
+    call CocActionAsync('doHover')
+  else
+    execute '!' . &keywordprg . " " . expand('<cword>')
+  endif
+endfunction
+
+" <TAB> - trigger completion, pum navigate, snippet expand and jump like VSCode
+inoremap <silent><expr> <TAB>
+  \ pumvisible() ? "\<C-n>" :
+  \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+  \ <SID>check_back_space() ? "\<TAB>" :
+  \ coc#refresh()
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+
+" <CR> - select the first completion item and confirm the completion when no item has been selected
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                             Semshi KeyBindings                             "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Mappings for Semshi Sytax highlighter for python
 nmap <silent> <leader>rr :Semshi rename<CR>
@@ -47,22 +95,19 @@ nmap <silent> <leader>gp :Semshi goto parameterUnused first<CR>
 nmap <silent> <leader>ee :Semshi error<CR>
 nmap <silent> <leader>ge :Semshi goto error<CR>
 
-" Make <tab> used for trigger completion, completion confirm, snippet expand and jump like VSCode.
-
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? coc#_select_confirm() :
-      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                   Nerd Tree KeyBindings                                    "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Nerd Tree Key bindings
 
-nnoremap <leader>n :NERDTreeFocus<CR>
+"nnoremap <leader>n :NERDTreeFocus<CR>
 nnoremap <C-n> :NERDTree<CR>
 nnoremap <C-t> :NERDTreeToggle<CR>
 nnoremap <C-p> :NERDTreeFind<CR>
 
-
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                            Fugitive KeyBindings                            "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " fugitive git bindings
 nnoremap <leader>ga :Git add %:p<CR><CR>
 nnoremap <leader>gs :Gstatus<CR>
@@ -79,3 +124,47 @@ nnoremap <leader>gb :Git branch<Space>
 nnoremap <leader>go :Git checkout<Space>
 nnoremap <leader>gps :Dispatch! git push<CR>
 nnoremap <leader>gpl :Dispatch! git pull<CR>
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                   fzf gitignore
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+noremap <LEADER>gi :FzfGitignore<CR>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                   General Keybindings                                    "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Mapping to Move between Tabs"
+"
+noremap<C-j> :tabp<CR>
+noremap<C-k> :tabn<CR>
+noremap<C-h> :tabr<CR>
+noremap<C-l> :tabl<CR>
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                               Miscellenious                                "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"Remappng : to ; since more convienient"
+nnoremap ; :
+
+"A Trick to  for when you forgot to sudo before editing a file that requires
+"root privileges "
+cmap w!! w !sudo tee % >/dev/null
+
+"Forcing myself to stop usng arrow keys and page up down keys"
+map <up> <nop>
+map <down> <nop>
+map <left> <nop>
+map <right> <nop>
+map <PageUp> <nop>
+map <PageDown> <nop>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                   Which Key Plugin                                    "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"Mappings for WhichKey
+nnoremap <silent> <leader> :WhichKey 'm'<CR>
+" By default timeoutlen is 1000 ms
+set timeoutlen=500

@@ -15,12 +15,12 @@ Plug 'airblade/vim-gitgutter'
 Plug 'jiangmiao/auto-pairs'
 Plug 'glepnir/dashboard-nvim'
 Plug 'mzlogin/vim-markdown-toc'
-Plug 'codota/tabnine-vim'
 
 " Track the engine.
 Plug 'SirVer/ultisnips'
 " Snippets are separated from the engine. Add this if you want them:
 Plug 'honza/vim-snippets'
+
 Plug 'dense-analysis/ale'
 " Syntax highlighting for python
 Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
@@ -28,11 +28,9 @@ Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " On-demand lazy load
 Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
-
 " Icons for Nerd tree
 Plug 'ryanoasis/vim-devicons'
 Plug 'Xuyuanp/nerdtree-git-plugin'
-
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 
 " Deoplete AutoComplete Engine
@@ -46,3 +44,5 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': 
 "endif
 
 call plug#end()
+
+
