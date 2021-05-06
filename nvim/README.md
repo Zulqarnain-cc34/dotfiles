@@ -3,6 +3,9 @@
 * [Introduction](#introduction)
 * [General](#general)
 * [Search](#search)
+* [Buffers](#buffers)
+* [Windows](#windows)
+* [Tabs](#tabs)
 * [Navigation](#navigation)
 * [Editing](#editing)
 * [Custom](#custom)
@@ -28,6 +31,9 @@
 ```
 
 
+### Buffers
+### Windows
+### Tabs
 ### Navigation
 
 ```
@@ -58,3 +64,4 @@
 	<C-p>		NerdTreeFind
 
 ```
+
