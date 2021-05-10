@@ -1,6 +1,6 @@
 
-#                          _                 _                _     
-#  _ __   _____      _____| |__   ___   __ _| |_   _   _ _ __| |___ 
+#                          _                 _                _
+#  _ __   _____      _____| |__   ___   __ _| |_   _   _ _ __| |___
 # | '_ \ / _ \ \ /\ / / __| '_ \ / _ \ / _` | __| | | | | '__| / __|
 # | | | |  __/\ V  V /\__ \ |_) | (_) | (_| | |_  | |_| | |  | \__ \
 # |_| |_|\___| \_/\_/ |___/_.__/ \___/ \__,_|\__|  \__,_|_|  |_|___/
@@ -34,6 +34,12 @@
 # "query:All Unread Articles (31-60 days old):unread = \"yes\" and age between 31:60"
 # "query:All Unread Articles (61-90 days old):unread = \"yes\" and age between 61:90"
 
+----------------------------
+------ Miscellaneous--------
+----------------------------
+http://localhost:1200/au/news "~University"
+
+
 -----------------------------
 ----------Sports-------------
 -----------------------------
@@ -46,10 +52,10 @@ https://www.hltv.org/rss/news "~Sports: Csgo" "Sports"
 -----------------------------
 
 https://www.reddit.com/r/artificial/.rss "AI: Artifical Intelligence" "AI"
-https://www.aitrends.com/feed/ "~AI: Aitrends" "AI" 
-https://theaisummer.com/feed.xml "~AI: TheAiSummer" "AI" 
-https://chatbotslife.com/feed "~AI: Chatbotslife" "AI" 
-https://machinelearningmastery.com/feed/ "~AI: MLMastery" "AI" 
+https://www.aitrends.com/feed/ "~AI: Aitrends" "AI"
+https://theaisummer.com/feed.xml "~AI: TheAiSummer" "AI"
+https://chatbotslife.com/feed "~AI: Chatbotslife" "AI"
+https://machinelearningmastery.com/feed/ "~AI: MLMastery" "AI"
 https://www.reddit.com/r/reinforcementlearning/.rss?format=xml "~AI: Reinforcment Learning" "Ai"
 https://becominghuman.ai/feed  "~AI: Becoming Human" "Ai"
 https://blog.paralleldots.com/feed "~AI: ParallelDots" "Ai"
@@ -61,9 +67,9 @@ https://nanonets.com/blog/rss/ "~AI: Nanonets" "AI"
 ---------Programming---------
 -----------------------------
 
-https://www.sitepoint.com/feed/ "~Programming: javascript" "Programming" 
+https://www.sitepoint.com/feed/ "~Programming: javascript" "Programming"
 https://www.reddit.com/r/webdev/.rss "Reddit"
-https://www.reddit.com/r/reactjs/.rss?format=xml "Reddit" 
+https://www.reddit.com/r/reactjs/.rss?format=xml "Reddit"
 
 -------------------------
 -------YOUTUBE-----------
@@ -82,14 +88,12 @@ https://www.youtube.com/feeds/videos.xml?channel_id=UCbfYPyITQ-7l4upoX8nvctg "~Y
 -----------------------------
 
 https://www.linuxjournal.com/node/feed "~Linux-SubReddit: linuxjournal" "Linux-Subreddit"
-https://www.archlinux.org/feeds/news "~Linux-Subreddit: archlinux-official" "Linux-Subreddit" 
-https://www.reddit.com/r/w3m/.rss "~Linux-Subreddit: W3m" "Linux-subreddit"  
-https://www.reddit.com/r/linux/.rss "~Linux-Subreddit: linux" "Linux-subreddit"  
-https://www.reddit.com/r/commandline/.rss "~Linux-Subreddit: commandline" "Linux-subreddit"  
-https://www.reddit.com/r/unixporn/.rss "~Linux-Subreddit: unixporn" "Linux-subreddit"  
-https://www.reddit.com/r/UsabilityPorn/.rss "~Linux-Subreddit: UsabilityPorn" "Linux-subreddit"  
-https://www.reddit.com/r/linux_devices/.rss "~Linux-Subreddit: linux-devices" "Linux-subreddit"
-https://www.reddit.com/r/UnixProTips/.rss "~Linux-Subreddit: UnixProTips" "Linux-subreddit"
+https://www.archlinux.org/feeds/news "~Linux-Subreddit: archlinux-official" "Linux-Subreddit"
+https://www.reddit.com/r/w3m/.rss "~Linux-Subreddit: W3m" "Linux-subreddit"
+https://www.reddit.com/r/linux/.rss "~Linux-Subreddit: linux" "Linux-subreddit"
+https://www.reddit.com/r/commandline/.rss "~Linux-Subreddit: commandline" "Linux-subreddit"
+https://www.reddit.com/r/unixporn/.rss "~Linux-Subreddit: unixporn" "Linux-subreddit"
+https://www.reddit.com/r/UsabilityPorn/.rss "~Linux-Subreddit: UsabilityPorn" "Linux-subreddit"
 https://www.reddit.com/r/zsh/.rss "~Linux-Subreddit: zsh" "Linux-subreddit"
 https://www.reddit.com/r/neovim/.rss "~Linux-Subreddit: neovim" "Linux-subreddit"
 https://www.reddit.com/r/tmux/.rss "~Linux-Subreddit: tmux" "Linux-subreddit"

@@ -161,6 +161,45 @@ map <right> <nop>
 map <PageUp> <nop>
 map <PageDown> <nop>
 
+" Map <Space> to / (search) and Ctrl-<Space> to ? (backwards search)
+map <space> /
+map <C-space> ?
+
+" Disable highlight when <leader><cr> is pressed
+map <silent> <leader><cr> :noh<cr>
+
+autocmd FileType python nnoremap <F9> :!python %
+autocmd FileType cpp    nnoremap <F9> :!g++ %
+
+nnoremap <leader>m :Ranger<CR>
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                   Rainbow Parenthesis Settings                                    "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Activation based on file type
+augroup rainbow_lisp
+  autocmd!
+  autocmd FileType lisp,clojure,scheme,javascript,python RainbowParentheses
+augroup END
+
+" Activate
+nnoremap <leader>ra :RainbowParentheses<CR>
+
+" Deactivate
+nnoremap <leader>rd :RainbowParentheses!<CR>
+
+" Toggle
+nnoremap <leader>rt :RainbowParentheses!!<CR>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                   Glyph Palette                                    "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+augroup my-glyph-palette
+  autocmd! *
+  autocmd FileType startify,typescript,python,javascript call glyph_palette#apply()
+augroup END
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                   Which Key Plugin                                    "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

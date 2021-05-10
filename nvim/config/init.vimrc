@@ -2,9 +2,10 @@ call plug#begin('~/.config/nvim/plugged')
 
 Plug 'joshdick/onedark.vim'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
 Plug 'preservim/nerdtree'
 Plug 'KeitaNakamura/neodark.vim'
-Plug 'frazrepo/vim-rainbow'
+"Plug 'frazrepo/vim-rainbow'
 Plug 'ghifarit53/tokyonight-vim'
 Plug 'preservim/nerdcommenter'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -15,7 +16,6 @@ Plug 'airblade/vim-gitgutter'
 Plug 'jiangmiao/auto-pairs'
 Plug 'glepnir/dashboard-nvim'
 Plug 'mzlogin/vim-markdown-toc'
-
 " Track the engine.
 Plug 'SirVer/ultisnips'
 " Snippets are separated from the engine. Add this if you want them:
@@ -29,9 +29,15 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " On-demand lazy load
 Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
 " Icons for Nerd tree
-Plug 'ryanoasis/vim-devicons'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+Plug 'cjrh/vim-conda'
+
+Plug 'ryanoasis/vim-devicons'
+Plug 'junegunn/rainbow_parentheses.vim'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'lambdalisue/glyph-palette.vim'
+Plug 'francoiscabrol/ranger.vim'
 
 " Deoplete AutoComplete Engine
 "Plug 'zchee/deoplete-jedi'
@@ -44,5 +50,3 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': 
 "endif
 
 call plug#end()
-
-
