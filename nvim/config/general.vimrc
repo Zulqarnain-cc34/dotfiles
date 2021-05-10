@@ -41,7 +41,7 @@ set mouse=a       " Enable mouse support
 set list
 set listchars=tab:>.,trail:.,extends:#,nbsp:.
 set pastetoggle=<F2>
-
+set path+=**
 " Configures the autocompletion menu in the command line
 set wildmenu
 set wildmode=longest:full,full

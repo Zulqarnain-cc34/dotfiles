@@ -20,6 +20,9 @@ colorscheme tokyonight
 "Use ALE as completion sources for all code.
 "call deoplete#custom#option('sources', {'_': ['ale']})
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                   ALE
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 let g:ale_linters = {'python':["flake8","pylint"],'bash':["bashale"]} " ['flake8','bandit','pydocstyle','mypy','pylint']
 let g:ale_fixers = {
@@ -43,3 +46,27 @@ let g:UltiSnipsJumpBackwardTrigger = '<S-TAB>'
 let g:coc_snippet_next = '<TAB>'
 " Binding Shift Tab to next snippet
 let g:coc_snippet_prev = '<S-TAB>'
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                   Rainbow Parenthesis Settings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:rainbow#max_level = 16
+let g:rainbow#pairs = [['(', ')'], ['[', ']'],['{','}']]
+" List of colors that you do not want. ANSI code or #RRGGBB
+let g:rainbow#blacklist = [233, 234]
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                   Dev Icons Colors                                    "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:devicons_colors = {
+			\'normal': ['', '', '', '', ''],
+			\'emphasize': ['', '', '', '', '', '', '', '', '', '', ''],
+			\'yellow': ['', '', ''],
+			\'orange': ['', '', '', 'λ', '', ''],
+			\'red': ['', '', '', '', '', '', '', '', ''],
+			\'magenta': [''],
+			\'violet': ['', '', '', ''],
+			\'blue': ['', '', '', '', '', '', '', '', '', '', '', '', ''],
+			\'cyan': ['', '', '', ''],
+			\'green': ['', '', '', '']
+		\}

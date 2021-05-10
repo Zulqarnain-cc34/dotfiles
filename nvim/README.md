@@ -64,4 +64,9 @@
 	<C-p>		NerdTreeFind
 
 ```
+- Vim Surround
+```
+	cs"' 		Change quotes from " to '
+	ds" 		To remove the delimiters entirely,
+```
 
