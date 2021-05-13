@@ -18,7 +18,6 @@
 [ ! -d $HOME/.config/surfraw ] && ln -s $PWD/surfraw $HOME/.config/surfraw
 [ ! -d $HOME/.config/ytfzf ] && ln -s $PWD/ytfzf $HOME/.config/ytfzf
 [ ! -d $HOME/.w3m ] && ln -s $PWD/.w3m $HOME/.w3m
-[ ! -d $HOME/.vim_runtime ] && ln -s $PWD/.vim_runtime $HOME/.vim_runtime
 [ ! -d $HOME/.config/ranger ] && ln -s $PWD/ranger $HOME/.config/ranger
 [ ! -d $HOME/.config/rofi-twitch ] && ln -s $PWD/rofi-twitch $HOME/.config/rofi-twitch
 [ ! -d $HOME/.config/mutt ] && ln -s $PWD/mutt $HOME/.config/mutt
@@ -31,6 +30,7 @@
 [ ! -d $HOME/.config/dunst ] && ln -s $PWD/dunst $HOME/.config/dunst
 [ ! -d $HOME/.config/alacritty ] && ln -s $PWD/alacritty $HOME/.config/alacritty
 [ ! -d $HOME/.config/nvim ] && ln -s $PWD/nvim $HOME/.config/nvim
+[ ! -d $HOME/.config/zsh ] && ln -s $PWD/zsh $HOME/.config/zsh
 
 ##################################
 ## _____  ___  _      _____  ____
@@ -50,8 +50,8 @@
 [ ! -f $HOME/.Xresources ] && ln -s $PWD/.Xresources $HOME/.Xresources
 [ ! -f $HOME/.tmux.conf ] && ln -s $PWD/.tmux.conf $HOME/.tmux.conf
 [ ! -f $HOME/.Xmodmap ] && ln -s $PWD/.Xmodmap $HOME/.Xmodmap
-[ ! -f $HOME/.vimrc ] && ln -s $PWD/.vimrc $HOME/.vimrc
 [ ! -f $HOME/.profile ] && ln -s $PWD/.profile $HOME/.profile
 [ ! -f $HOME/.inputrc ] && ln -s $PWD/.inputrc $HOME/.inputrc
 [ ! -f $HOME/.config/picom.conf ] && ln -s $PWD/picom.conf $HOME/.config/picom.conf
 [ ! -f $HOME/.xprofile ] && ln -s $PWD/.xprofile $HOME/.xprofile
+[ ! -f $HOME/.zprofile ] && ln -s $PWD/.zprofile $HOME/.zprofile

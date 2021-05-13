@@ -5,6 +5,8 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'preservim/nerdtree'
 Plug 'KeitaNakamura/neodark.vim'
+Plug 'rhysd/git-messenger.vim'
+
 "Plug 'frazrepo/vim-rainbow'
 Plug 'ghifarit53/tokyonight-vim'
 Plug 'preservim/nerdcommenter'
@@ -38,6 +40,9 @@ Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'lambdalisue/glyph-palette.vim'
 Plug 'francoiscabrol/ranger.vim'
+Plug 'vimwiki/vimwiki'
+" If you are using Vim-Plug
+Plug 'shaunsingh/moonlight.nvim'
 
 " Deoplete AutoComplete Engine
 "Plug 'zchee/deoplete-jedi'
