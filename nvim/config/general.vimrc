@@ -26,7 +26,7 @@ set incsearch     " show search matches as you type
 set history=1000  " remember more commands and search history
 set lazyredraw    " Don't redraw while executing macros (good performance config)
 set magic         " For regular expressions turn magic on
-set mat=2         " How many tenths of a second to blink when matching brackets
+"set mat=1         " How many tenths of a second to blink when matching brackets
 set undolevels=1000      " use many muchos levels of undo
 set wildignore=*.swp,*.bak,*.pyc,*.class
 set title         " change the terminal's title
@@ -50,7 +50,7 @@ set wildmode=longest:full,full
 " hitting the end of next or previous line
 set whichwrap=<,>,h,l
 set undofile " Maintain undo history between sessions
-set undodir=$HOME/.config/nvim/undodir/
+set undodir=$HOME/.config/nvim/tempdir/undodir
 
 " Enable syntax highlighting
 syntax enable

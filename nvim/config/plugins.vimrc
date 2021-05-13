@@ -55,13 +55,12 @@ let g:rainbow#pairs = [['(', ')'], ['[', ']'],['{','}']]
 " List of colors that you do not want. ANSI code or #RRGGBB
 let g:rainbow#blacklist = [233, 234]
 
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                   WikiList                                    "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Using Markdown Sytax in favor of wikilist Syntax
-let g:vimwiki_list = [{'path': '~/vimwiki/',
+let g:vimwiki_list = [{'path': '~/.config/nvim/tempdir/vimwiki/',
                       \ 'syntax': 'markdown', 'ext': '.md'}]
 
 
