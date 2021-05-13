@@ -4,7 +4,7 @@ let g:tokyonight_style = 'night' " available: night, storm
 let g:tokyonight_enable_italic = 1
 
 colorscheme tokyonight
-"Staring nvim deoplete autocomplete engine on startup
+"Staring nvim deople autocomplete engine on startup
 "let g:deoplete#enable_at_startup = 1
 "let g:deoplete#enable_ignore_case = 1
 
@@ -54,6 +54,16 @@ let g:rainbow#max_level = 16
 let g:rainbow#pairs = [['(', ')'], ['[', ']'],['{','}']]
 " List of colors that you do not want. ANSI code or #RRGGBB
 let g:rainbow#blacklist = [233, 234]
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                   WikiList                                    "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Using Markdown Sytax in favor of wikilist Syntax
+let g:vimwiki_list = [{'path': '~/vimwiki/',
+                      \ 'syntax': 'markdown', 'ext': '.md'}]
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                   Dev Icons Colors                                    "

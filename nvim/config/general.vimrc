@@ -49,6 +49,8 @@ set wildmode=longest:full,full
 " Allows the h and l key to move to next and previous line after
 " hitting the end of next or previous line
 set whichwrap=<,>,h,l
+set undofile " Maintain undo history between sessions
+set undodir=$HOME/.config/nvim/undodir/
 
 " Enable syntax highlighting
 syntax enable
