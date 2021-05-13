@@ -40,6 +40,9 @@ nnoremap <silent><nowait> <leader>nk  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <leader>np  :<C-u>CocListResume<CR>
 
+
+nnoremap <silent><nowait> <leader>nl :CocOpenLog <CR>
+
 " GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
@@ -125,12 +128,6 @@ nnoremap <leader>go :Git checkout<Space>
 nnoremap <leader>gps :Dispatch! git push<CR>
 nnoremap <leader>gpl :Dispatch! git pull<CR>
 
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"                                   fzf gitignore
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-noremap <LEADER>gi :FzfGitignore<CR>
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                   General Keybindings                                    "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -170,6 +167,7 @@ map <silent> <leader><cr> :noh<cr>
 
 autocmd FileType python nnoremap <F9> :!python %
 autocmd FileType cpp    nnoremap <F9> :!g++ %
+autocmd FileType javascript nnoremap <F9> :!node %
 
 nnoremap <leader>m :Ranger<CR>
 
@@ -191,6 +189,7 @@ nnoremap <leader>rd :RainbowParentheses!<CR>
 
 " Toggle
 nnoremap <leader>rt :RainbowParentheses!!<CR>
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                   Glyph Palette                                    "

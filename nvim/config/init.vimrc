@@ -22,7 +22,6 @@ Plug 'mzlogin/vim-markdown-toc'
 Plug 'SirVer/ultisnips'
 " Snippets are separated from the engine. Add this if you want them:
 Plug 'honza/vim-snippets'
-
 Plug 'dense-analysis/ale'
 " Syntax highlighting for python
 Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
@@ -43,6 +42,7 @@ Plug 'francoiscabrol/ranger.vim'
 Plug 'vimwiki/vimwiki'
 " If you are using Vim-Plug
 Plug 'shaunsingh/moonlight.nvim'
+Plug 'junegunn/vim-peekaboo'
 
 " Deoplete AutoComplete Engine
 "Plug 'zchee/deoplete-jedi'
@@ -53,5 +53,4 @@ Plug 'shaunsingh/moonlight.nvim'
 "  Plug 'roxma/nvim-yarp'
 "  Plug 'roxma/vim-hug-neovim-rpc'
 "endif
-
 call plug#end()
