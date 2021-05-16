@@ -35,6 +35,7 @@ xrdb -merge $HOME/.Xresources &
 source $HOME/.aliases/aliases
 source $HOME/.aliases/functions
 #echo -e "$($HOME/Downloads/archlogo.txt)"
+source /usr/share/fzf/key-bindings.bash
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!

@@ -43,6 +43,7 @@ Plug 'vimwiki/vimwiki'
 " If you are using Vim-Plug
 Plug 'shaunsingh/moonlight.nvim'
 Plug 'junegunn/vim-peekaboo'
+Plug 'preservim/tagbar'
 
 " Deoplete AutoComplete Engine
 "Plug 'zchee/deoplete-jedi'
