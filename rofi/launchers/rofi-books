@@ -1,0 +1,5 @@
+#!/bin/bash
+
+
+books=$(ls -d $BOOKDIR/* | rofi -dmenu )
+echo ${books}

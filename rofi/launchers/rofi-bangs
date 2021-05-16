@@ -14,24 +14,19 @@ declare -A COMMANDS
 #                                           |___/      #
 ########################################################
 
-# launch programs
-
+# edit/add new bookmarks
+# COMMANDS["editbookmarks"]="$EDITORGUI $HOME/.config/surfraw/bookmarks"
+# LABELS["editbookmarks"]=""
+# All applications
 COMMANDS["apps"]="rofi -show drun -show -modi drun"
 LABELS["apps"]=""
 
-# chromium web browser history
-
-#COMMANDS["chromium-history"]="$HOME/.config/rofi/launchers/rofi-chromium-history"
-#LABELS["chromium-history"]=""
-
-# firefox web browser history
-
+# firefox bookmarks
 COMMANDS["firefox-bookmarks"]="$HOME/.config/rofi/launchers/rofi-firefox-bookmarks"
 LABELS["firefox-bookmarks"]=""
 
-#Command running through rofi
-#COMMANDS["command"]="$HOME/.config/rofi/launchers/rofi-command"
-#LABELS["command"]=""
+COMMANDS["aliases"]="$HOME/.config/rofi/launchers/rofi-aliases"
+LABELS["aliases"]=""
 
 # Music running through rofi
 COMMANDS["music"]="$HOME/.config/rofi/launchers/rofi-audio"
@@ -40,19 +35,11 @@ LABELS["music"]=""
 COMMANDS["bookmarks"]="$HOME/.config/rofi/launchers/rofi-surfraw-bookmarks"
 LABELS["bookmarks"]=""
 
-# edit/add new bookmarks
-# COMMANDS["editbookmarks"]="$EDITORGUI $HOME/.config/surfraw/bookmarks"
-# LABELS["editbookmarks"]=""
-
-# search directories and web search 
+# Watch Youtube Videos
 COMMANDS["Youtube"]='/usr/bin/ytfzf -D'
 LABELS["Youtube"]=""
 
-# View Calendar 
-COMMANDS["Calendar"]='rofi -modi "Calendar":"$HOME/.config/rofi/launchers/rofi-calendar" -show "Calendar"'
-LABELS["Calendar"]=""
-
-# GLobal Searcg in folder 
+# GLobal Search in folder
 COMMANDS["Global"]='rofi -modi "Global Search":"$HOME/.config/rofi/launchers/rofi-spotlight" -show "Global Search"'
 LABELS["Global"]=""
 
@@ -64,21 +51,17 @@ LABELS["locate"]=""
 COMMANDS["twitch"]="$HOME/.config/rofi/launchers/rofi-twitch"
 LABELS["twitch"]=""
 
-# Watch your best twitch Streamers
+# Watch All wifis in the area
 COMMANDS["wifi"]="$HOME/.config/rofi/launchers/rofi-twitch"
 LABELS["wifi"]=""
 
-# text snippet
+# text snippets
 COMMANDS["snippet"]="$HOME/.config/rofi/launchers/rofi-snippet"
 LABELS["snippet"]=""
 
 # text snippet for multisnippet (aka a block of text)
 COMMANDS["multisnippet"]="$HOME/.config/rofi/launchers/rofi-multisnippet"
-ABELS["multisnippet"]=""
-
-# edit/add new multisnippet
-# COMMANDS["editmultisnippet"]="xdg-open $HOME/.multisnippet"
-# LABELS["editmultisnippet"]=""
+LABELS["multisnippet"]=""
 
 # open custom web searches
 COMMANDS["websearch"]="$HOME/.config/rofi/launchers/rofi-surfraw-websearch"
@@ -116,7 +99,7 @@ function print_menu()
 ##
 function start()
 {
-    # print_menu | rofi -dmenu -p "?=>" 
+    # print_menu | rofi -dmenu -p "?=>"
     print_menu | sort | rofi -dmenu -mesg ">>> launch your collection of rofi scripts" -i -p "rofi-bangs: "
 
 }
@@ -147,6 +130,6 @@ then
     eval ${COMMANDS[$choice]}
 else
  eval  $choice | rofi
- # prefer my above so I can use this same script to also launch apps like geany or leafpad etc (DK) 
+ # prefer my above so I can use this same script to also launch apps like geany or leafpad etc (DK)
  #   echo "Unknown command: ${choice}" | rofi -dmenu -p "error"
 fi

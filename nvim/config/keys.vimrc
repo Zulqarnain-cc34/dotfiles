@@ -168,9 +168,10 @@ map <silent> <leader><cr> :noh<cr>
 autocmd FileType python nnoremap <F9> :!python %
 autocmd FileType cpp    nnoremap <F9> :!g++ %
 autocmd FileType javascript nnoremap <F9> :!node %
+autocmd FileType sh   nnoremap <F9> :!bash %
 
 nnoremap <leader>m :Ranger<CR>
-
+nmap <F8> :TagbarToggle<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                   Rainbow Parenthesis Settings                                    "
