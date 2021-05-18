@@ -24,7 +24,7 @@ cmd("filetype plugin indent on")
 
 -- ============== Basic   ==========================
 
-o.termguicolors = true  -- Allows coloring support and themes colors
+o.termguicolors = false-- Allows coloring support and themes colors
 o.compatible = false    -- ompromising compatibilty
 o.fileencoding= "utf-8" -- The encoding written to file
 o.undolevels = 1000     -- use many muchos levels of undo

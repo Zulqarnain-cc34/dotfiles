@@ -6,9 +6,23 @@
 --                |___/
 --===================================
 
-local cmd=vim.cmd
-local g=vim.g
+local cmd = vim.cmd
+local g = vim.g
 
-cmd('colorscheme tokyonight')
+-- ================ Theme ========================
+
+g.tokyonight_style = 'storm' -- available: night, storm
+g.tokyonight_enable_italic = 1
+
+cmd("colorscheme tokyonight")
+
+--=====================================================================
+--                              WikiList
+--=====================================================================
+
+-- Using Markdown Sytax in favor of wikilist Syntax
 
 
+--=====================================================================
+--                          Dev Icons Colors
+-- =====================================================================
