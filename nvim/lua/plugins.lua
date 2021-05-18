@@ -1,3 +1,13 @@
+--===================================
+-- ____  _             _
+--|  _ \| |_   _  __ _(_)_ __  ___
+--| |_) | | | | |/ _` | | '_ \/ __|
+--|  __/| | |_| | (_| | | | | \__ \
+--|_|   |_|\__,_|\__, |_|_| |_|___/
+--               |___/
+--===================================
+
+
 vim.cmd 'packadd paq-nvim'         -- Load package
 local paq = require'paq-nvim'.paq  -- Import module and bind `paq` function
 
@@ -5,13 +15,17 @@ paq {'savq/paq-nvim', opt=true}     -- Let Paq manage itself
 
 -- =================== Themes ===================
 
-paq  'ghifarit53/tokyonight-vim'
-paq  'neovim/nvim-lspconfig'
-paq  'nvim-lua/completion-nvim'
-paq  'nvim-lua/diagnostic-nvim'
+--paq  'ghifarit53/tokyonight-vim'
 --paq  'joshdick/onedark.vim'
 --paq  'shaunsingh/moonlight.nvim'
---paq  'tiagovla/tokyodark.nvim'
+paq  'tiagovla/tokyodark.nvim'
+
+-- ================== LSP =====================
+
+paq  'neovim/nvim-lspconfig'
+--paq  'nvim-lua/completion-nvim'
+--paq  'nvim-lua/diagnostic-nvim'
+paq  'hrsh7th/nvim-compe'
 
 -- =================== Git =====================
 
@@ -22,7 +36,7 @@ paq  'airblade/vim-gitgutter'
 
 -- =================== Others =================
 
---paq  'windwp/nvim-autopairs'
+paq  'windwp/nvim-autopairs'
 paq  'tpope/vim-surround'
 paq  'preservim/nerdtree'
 paq  'preservim/nerdcommenter'
@@ -36,15 +50,14 @@ paq  'mzlogin/vim-markdown-toc'
 
 -- Track the engine.
 paq  'SirVer/ultisnips'
---paq 'norcalli/nvim-colorizer'
+paq 'norcalli/nvim-colorizer.lua'
 
 -- Snippets are separated from the engine. Add this if you want them:
 paq  'honza/vim-snippets'
-paq  'dense-analysis/ale'
+--paq  'dense-analysis/ale'
 -- Syntax highlighting for python
 --paq  'numirias/semshi'
--- Use release branch (recommend)
---paq  'neoclide/coc.nvim'
+
 -- On-demand lazy load
 paq  'liuchengxu/vim-which-key'
 -- Icons for Nerd tree
@@ -58,3 +71,10 @@ paq  'francoiscabrol/ranger.vim'
 paq  'vimwiki/vimwiki'
 -- If you are using Vim-paq
 paq  'preservim/tagbar'
+
+
+--==================== Setup ==========================
+
+require('nvim-autopairs').setup()
+require('colorizer').setup()
+require('neo-compe')
