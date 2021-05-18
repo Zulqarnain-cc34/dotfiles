@@ -34,14 +34,15 @@ set visualbell    " don't beep
 set noerrorbells  " don't beep
 set nobackup      " Some servers have issues with backup files.
 set nowritebackup
-set cmdheight=2     " Bigger messages display. command line height
+set cmdheight=2   " Bigger messages display. command line height
 set updatetime=200  " Faster diagnostic messages (defaults 4000)
-set shortmess+=   " Don't pass messages to |ins-completion-menu|
+set shortmess+=c   " Don't pass messages to |ins-completion-menu|
 set mouse=a       " Enable mouse support
 set list
 set listchars=tab:>.,trail:.,extends:#,nbsp:.
 set pastetoggle=<F2>
 set path+=**
+
 " Configures the autocompletion menu in the command line
 set wildmenu
 set wildmode=longest:full,full

@@ -9,7 +9,7 @@ Dotfiles for my local setup,
 | functionality | program      |
 |---------------|--------------|
 | status bar    | polybar      |
-| editor	    | neovim       |
+| editor        | neovim       |
 | terminal      | alacritty    |
 | email client  | neomutt      |
 | rss reader    | newsboat     |
@@ -89,6 +89,7 @@ Custom tweaks on [Adapta-theme-polybar](https://github.com/matoruru/polybar-adap
 
 #### Features
 
+- Ide like Configuration written in lua.
 - Code autocompletion with [Coc.nvim](https://github.com/neoclide/coc.nvim) and [Snippets](https://github.com/neoclide/coc-snippets).
 - Fast Directory traversal with [Nerdtree](https://github.com/preservim/nerdtree).
 - Git integration with [fugitive](https://github.com/tpope/vim-fugitive) and [GitGutter](https://github.com/airblade/vim-gitgutter).
@@ -99,7 +100,9 @@ Custom tweaks on [Adapta-theme-polybar](https://github.com/matoruru/polybar-adap
 - Beautiful dashboard via [dashboard-nvim](https://github.com/glepnir/dashboard-nvim).
 - Source code linting and fixing using [Ale](https://github.com/dense-analysis/ale).
 - Semantic highlighting for Python via [Semshi](https://github.com/numirias/semshi).
-- Shorcuts and keybindings in [KeyBindings](https://github.com/Zulqarnain-cc34/dotfiles/tree/main/nvim/README.md)
+- IDE features like lsp signatures and Jumping to definations.
+- Vim Diary to note TODOs etc [vim-diary](https://github.com/vimwiki/vimwiki).
+- Shorcuts and keybindings in [KeyBindings](https://github.com/Zulqarnain-cc34/dotfiles/tree/main/nvim/README.md).
 
 ### Ranger
 
@@ -133,6 +136,7 @@ Mutt themes are forked from [mutt-solarized-theme](https://github.com/altercatio
 - `.Xmodmap` for unbinding and binding keys on a system level.
 - `twitch notifer.cfg` to format output for [twitch-notifier](https://github.com/GiedriusS/TwitchNotifier) package.
 - Coc settings configured in `nvim/coc-settings.json`.
+- [urlportal.sh]() script to open files depending upon their extensions.
 
 Currently Under work
 
