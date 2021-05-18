@@ -6,6 +6,9 @@ paq {'savq/paq-nvim', opt=true}     -- Let Paq manage itself
 -- =================== Themes ===================
 
 paq  'ghifarit53/tokyonight-vim'
+paq  'neovim/nvim-lspconfig'
+paq  'nvim-lua/completion-nvim'
+paq  'nvim-lua/diagnostic-nvim'
 --paq  'joshdick/onedark.vim'
 --paq  'shaunsingh/moonlight.nvim'
 --paq  'tiagovla/tokyodark.nvim'
@@ -17,8 +20,9 @@ paq  'rhysd/git-messenger.vim'
 paq  'Xuyuanp/nerdtree-git-plugin'
 paq  'airblade/vim-gitgutter'
 
--- =================== Others ==================
+-- =================== Others =================
 
+--paq  'windwp/nvim-autopairs'
 paq  'tpope/vim-surround'
 paq  'preservim/nerdtree'
 paq  'preservim/nerdcommenter'
@@ -26,21 +30,21 @@ paq  'junegunn/fzf'
 paq  'junegunn/fzf.vim'
 paq  'vim-utils/vim-man'
 paq  'mg979/vim-visual-multi'
-paq  'jiangmiao/auto-pairs'
+--paq  'jiangmiao/auto-pairs'
 paq  'glepnir/dashboard-nvim'
 paq  'mzlogin/vim-markdown-toc'
 
 -- Track the engine.
 paq  'SirVer/ultisnips'
-paq 'norcalli/nvim-colorizer'
+--paq 'norcalli/nvim-colorizer'
 
 -- Snippets are separated from the engine. Add this if you want them:
 paq  'honza/vim-snippets'
 paq  'dense-analysis/ale'
 -- Syntax highlighting for python
-paq  'numirias/semshi'
+--paq  'numirias/semshi'
 -- Use release branch (recommend)
-paq  'neoclide/coc.nvim'
+--paq  'neoclide/coc.nvim'
 -- On-demand lazy load
 paq  'liuchengxu/vim-which-key'
 -- Icons for Nerd tree
