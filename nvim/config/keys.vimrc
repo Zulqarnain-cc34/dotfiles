@@ -15,6 +15,11 @@ nnoremap <silent> <Leader>gg :Commits<CR>
 nnoremap <silent> <Leader>H :Helptags<CR>
 nnoremap <silent> <Leader>h :History<CR>
 
+inoremap <silent><expr> <C-Space> compe#complete()
+inoremap <silent><expr> <CR>      compe#confirm('<CR>')
+inoremap <silent><expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                   Coc KeyBindings                                    "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -87,8 +92,8 @@ nnoremap <silent> <Leader>h :History<CR>
 
 " Mappings for Semshi Sytax highlighter for python
 nmap <silent> <leader>rr :Semshi rename<CR>
-nmap <silent> <Tab> :Semshi goto name next<CR>
-nmap <silent> <S-Tab> :Semshi goto name prev<CR>
+"nmap <silent> <Tab> :Semshi goto name next<CR>
+"nmap <silent> <S-Tab> :Semshi goto name prev<CR>
 nmap <silent> <leader>C :Semshi goto class prev<CR>
 nmap <silent> <leader>F :Semshi goto function next<CR>
 nmap <silent> <leader>p :Semshi goto function prev<CR>
@@ -103,9 +108,9 @@ nmap <silent> <leader>ge :Semshi goto error<CR>
 " Nerd Tree Key bindings
 
 "nnoremap <leader>n :NERDTreeFocus<CR>
-nnoremap <C-n> :NERDTree<CR>
-nnoremap <C-t> :NERDTreeToggle<CR>
-nnoremap <C-p> :NERDTreeFind<CR>
+nnoremap <leader>n :NERDTree<CR>
+"nnoremap <C-t> :NERDTreeToggle<CR>
+"nnoremap <C-p> :NERDTreeFind<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                            Fugitive KeyBindings                            "
@@ -205,4 +210,5 @@ augroup END
 "Mappings for WhichKey
 nnoremap <silent> <leader> :WhichKey 'm'<CR>
 " By default timeoutlen is 1000 ms
+
 set timeoutlen=500
