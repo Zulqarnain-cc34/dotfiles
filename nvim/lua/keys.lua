@@ -1,5 +1,11 @@
 local g = vim.g
 
+local function remap(mode, lhs, rhs, opts)
+    local options = {noremap = true}
+    if opts then options = vim.tbl_extend('force', options, opts) end
+    vim.api.nvim_set_keymap(mode, lhs, rhs, options)
+end
+
 local map = function(type, key, value, mode, opts)
     mode = mode or 'g' -- Default global mapping
     opts = opts or {noremap = true, silent = true}
@@ -14,7 +20,7 @@ end
 
 g.mapleader = "m"
 
--- ============== Lsp Server KeyBindings ====================
+-- ============== Lsp Server KeyBindings ===================
 
 -- Mappings for Lsp
 -- List the Info for current file specific language servers
@@ -33,11 +39,9 @@ map('n', '<leader>lD', '<cmd>lua vim.lsp.buf.declaration()<CR>', 'b')
 -- Goto Definations of functions
 map('n', '<leader>ld', '<cmd>lua vim.lsp.buf.definition()<CR>', 'b')
 -- Show function doc on hover
-map('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', 'b')
+map('n', 'K', '<cmd>:Lspsaga hover_doc<CR>', 'b')
 -- Show and goto refrences of functions
-map('n', '<leader>lr', '<cmd>lua vim.lsp.buf.references()<CR>', 'b')
--- Shows the function signature
-map('n', '<leader>ls', '<cmd>lua vim.lsp.buf.signature_help()<CR>', 'b')
+map('n', '<leader>ls', '<cmd>:Lspsaga signature_help<CR>', 'b')
 -- Shows function implementation
 map('n', '<leader>li', '<cmd>lua vim.lsp.buf.implementation()<CR>', 'b')
 -- Goto type defination
@@ -58,3 +62,7 @@ map('n', '<leader>le', '<cmd>lua vim.lsp.buf.rename()<CR>', 'b')
 map('n', '<leader>lc', '<cmd>lua vim.lsp.buf.incoming_calls()<CR>', 'b')
 -- Shows Outgoing
 map('n', '<leader>lo', '<cmd>lua vim.lsp.buf.outgoing_calls()<CR>', 'b')
+
+remap('i', '<C-Space>', "<cmd>compe#complete", {expr = true, silent = true})
+
+remap('i', '<CR>', "<cmd>compe#confirm('CR')", {expr = true, silent = true})

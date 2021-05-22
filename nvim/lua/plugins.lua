@@ -7,7 +7,6 @@
 --               |___/
 --===================================
 
-
 vim.cmd 'packadd paq-nvim'         -- Load package
 local paq = require'paq-nvim'.paq  -- Import module and bind `paq` function
 
@@ -23,9 +22,9 @@ paq  'tiagovla/tokyodark.nvim'
 -- ================== LSP =====================
 
 paq  'neovim/nvim-lspconfig'
---paq  'nvim-lua/completion-nvim'
---paq  'nvim-lua/diagnostic-nvim'
 paq  'hrsh7th/nvim-compe'
+paq  'glepnir/lspsaga.nvim'
+paq  'nvim-treesitter/nvim-treesitter'
 
 -- =================== Git =====================
 
@@ -42,9 +41,9 @@ paq  'preservim/nerdtree'
 paq  'preservim/nerdcommenter'
 paq  'junegunn/fzf'
 paq  'junegunn/fzf.vim'
+paq  'ojroques/nvim-lspfuzzy'
 paq  'vim-utils/vim-man'
 paq  'mg979/vim-visual-multi'
---paq  'jiangmiao/auto-pairs'
 paq  'glepnir/dashboard-nvim'
 paq  'mzlogin/vim-markdown-toc'
 
@@ -75,6 +74,4 @@ paq  'preservim/tagbar'
 
 --==================== Setup ==========================
 
-require('nvim-autopairs').setup()
-require('colorizer').setup()
-require('neo-compe')
+--require('Plugins/custom-plugins')

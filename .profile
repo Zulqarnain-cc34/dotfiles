@@ -10,6 +10,7 @@ unset MANPATH  # delete if you already modified MANPATH elsewhere in your config
 export MANPATH="$NPM_PACKAGES/share/man:$(manpath)"
 export RTV_BROWSER=~/.scripts/urlportal.sh
 
+export PATH=$PATH:\/snap/bin/
 export QT_QPA_PLATFORMTHEME="qt5ct"
 export WGETRC="$HOME/.config/wget/wgetrc"
 export MUSIC="$HOME/Videos/Audios/*"
