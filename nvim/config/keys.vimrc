@@ -2,23 +2,48 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                              fzf keyBindings                               "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nmap <silent> <leader>ev :e $MYVIMRC<CR>
-nmap <silent> <leader>sv :so $MYVIMRC<CR>
+"nmap <silent> <leader>ev :e $MYVIMRC<CR>
+"nma <silent> <leader>sv :so $MYVIMRC<CR>
 
 " FZF Plugins keymappings
-nnoremap <silent> <Leader>b :Buffers<CR>
-nnoremap <silent> <C-s> :Files<CR>
-nnoremap <silent> <Leader>f :Rg<CR>
-"nnoremap <silent> <Leader>/ :BLines<CR>
-nnoremap <silent> <Leader>' :Marks<CR>
-nnoremap <silent> <Leader>gg :Commits<CR>
-nnoremap <silent> <Leader>H :Helptags<CR>
-nnoremap <silent> <Leader>h :History<CR>
+"nnoremap <silent> <Leader>b :Buffers<CR>
+"nnoremap <silent> <C-s> :Files<CR>
+"nnoremap <silent> <Leader>f :Rg<CR>
+""nnoremap <silent> <Leader>/ :BLines<CR>
+"nnoremap <silent> <Leader>' :Marks<CR>
+"nnoremap <silent> <Leader>gg :Commits<CR>
+"nnoremap <silent> <Leader>H :Helptags<CR>
+"nnoremap <silent> <Leader>h :History<CR>
 
-inoremap <silent><expr> <C-Space> compe#complete()
-inoremap <silent><expr> <CR>      compe#confirm('<CR>')
+
+"nnoremap <C-s> <cmd>lua require('telescope.builtin').find_files()<cr>
+"nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
+"nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
+"nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
+"nnoremap <leader>fm <cmd>lua require('telescope.builtin').marks()<cr>
+"nnoremap <leader>fl <cmd>lua require('telescope.builtin').oldfiles()<cr>
+"nnoremap <leader>fa <cmd>lua require('telescope.builtin').man_pages()<cr>
+
+
 inoremap <silent><expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>
+
+
+
+" Errors in Red
+hi LspDiagnosticsVirtualTextError guifg=Red ctermfg=Red
+" Warnings in Yellow
+hi LspDiagnosticsVirtualTextWarning guifg=Yellow ctermfg=Yellow
+" Info and Hints in White
+hi LspDiagnosticsVirtualTextInformation guifg=White ctermfg=White
+hi LspDiagnosticsVirtualTextHint guifg=White ctermfg=White
+
+" Underline the offending code
+hi LspDiagnosticsUnderlineError guifg=NONE ctermfg=NONE cterm=underline gui=underline
+hi LspDiagnosticsUnderlineWarning guifg=NONE ctermfg=NONE cterm=underline gui=underline
+hi LspDiagnosticsUnderlineInformation guifg=NONE ctermfg=NONE cterm=underline gui=underline
+hi LspDiagnosticsUnderlineHint guifg=NONE ctermfg=NONE cterm=underline gui=underline
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                   Coc KeyBindings                                    "
@@ -90,17 +115,17 @@ inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 "                             Semshi KeyBindings                             "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Mappings for Semshi Sytax highlighter for python
-nmap <silent> <leader>rr :Semshi rename<CR>
-"nmap <silent> <Tab> :Semshi goto name next<CR>
-"nmap <silent> <S-Tab> :Semshi goto name prev<CR>
-nmap <silent> <leader>C :Semshi goto class prev<CR>
-nmap <silent> <leader>F :Semshi goto function next<CR>
-nmap <silent> <leader>p :Semshi goto function prev<CR>
-nmap <silent> <leader>gu :Semshi goto unresolved first<CR>
-nmap <silent> <leader>gp :Semshi goto parameterUnused first<CR>
-nmap <silent> <leader>ee :Semshi error<CR>
-nmap <silent> <leader>ge :Semshi goto error<CR>
+"" Mappings for Semshi Sytax highlighter for python
+"nmap <silent> <leader>rr :Semshi rename<CR>
+""nmap <silent> <Tab> :Semshi goto name next<CR>
+""nmap <silent> <S-Tab> :Semshi goto name prev<CR>
+"nmap <silent> <leader>C :Semshi goto class prev<CR>
+"nmap <silent> <leader>F :Semshi goto function next<CR>
+"nmap <silent> <leader>p :Semshi goto function prev<CR>
+"nmap <silent> <leader>gu :Semshi goto unresolved first<CR>
+"nmap <silent> <leader>gp :Semshi goto parameterUnused first<CR>
+"nmap <silent> <leader>ee :Semshi error<CR>
+"nmap <silent> <leader>ge :Semshi goto error<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                   Nerd Tree KeyBindings                                    "
@@ -175,25 +200,24 @@ autocmd FileType javascript nnoremap <F9> :!node %
 autocmd FileType sh   nnoremap <F9> :!bash %
 
 nnoremap <leader>m :Ranger<CR>
-nmap <F8> :TagbarToggle<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                   Rainbow Parenthesis Settings                                    "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Activation based on file type
-augroup rainbow_lisp
-  autocmd!
-  autocmd FileType lisp,clojure,scheme,javascript,python RainbowParentheses
-augroup END
+"augroup rainbow_lisp
+  "autocmd!
+  "autocmd FileType lisp,clojure,scheme,javascript,python RainbowParentheses
+"augroup END
 
-" Activate
-nnoremap <leader>ra :RainbowParentheses<CR>
+"" Activate
+"nnoremap <leader>ra :RainbowParentheses<CR>
 
-" Deactivate
-nnoremap <leader>rd :RainbowParentheses!<CR>
+"" Deactivate
+"nnoremap <leader>rd :RainbowParentheses!<CR>
 
-" Toggle
-nnoremap <leader>rt :RainbowParentheses!!<CR>
+"" Toggle
+"nnoremap <leader>rt :RainbowParentheses!!<CR>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -201,7 +225,7 @@ nnoremap <leader>rt :RainbowParentheses!!<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 augroup my-glyph-palette
   autocmd! *
-  autocmd FileType startify,typescript,python,javascript call glyph_palette#apply()
+  autocmd FileType startify,lua,typescript,python,javascript call glyph_palette#apply()
 augroup END
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
