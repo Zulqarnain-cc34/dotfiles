@@ -37,6 +37,7 @@
 ----------------------------
 ------ Miscellaneous--------
 ----------------------------
+
 http://localhost:1200/au/news "~University"
 
 
@@ -63,13 +64,13 @@ https://medium.com/feed/towards-data-science/tagged/data-science "~AI:Towards Da
 https://www.reddit.com/r/datascience/.rss "~AI: Datascience" "AI"
 https://nanonets.com/blog/rss/ "~AI: Nanonets" "AI"
 
------------------------------
----------Programming---------
------------------------------
+#-----------------------------
+#---------Programming---------
+#-----------------------------
 
-https://www.sitepoint.com/feed/ "~Programming: javascript" "Programming"
-https://www.reddit.com/r/webdev/.rss "Reddit"
-https://www.reddit.com/r/reactjs/.rss?format=xml "Reddit"
+#https://www.sitepoint.com/feed/ "~Programming: javascript" "Programming"
+#https://www.reddit.com/r/webdev/.rss "Reddit"
+#https://www.reddit.com/r/reactjs/.rss?format=xml "Reddit"
 
 -------------------------
 -------YOUTUBE-----------

@@ -24,17 +24,17 @@ error_symbol = "[✖](bold red)"
 disabled=true
 
 # Hide the username. The username will only show in certain scenarios
-[username]
-disabled = true
+#[username]
+#disabled = true
 
 # shows the hostname on new lines
-[hostname]
-ssh_only = true
-format =  "$symbol on [$hostname]($style) "
-#symbol = "💻️ "    
-trim_at = ".companyname.com"
-disabled = false
-style = "bold italic #FFD131"
+#[hostname]
+#ssh_only = true
+#format =  "$symbol on [$hostname]($style) "
+##symbol = "💻️ "    
+#trim_at = ".companyname.com"
+#disabled = false
+#style = "bold italic #FFD131"
 
 [python]
 symbol = "👾 "
@@ -46,28 +46,28 @@ detect_extensions = []
 style = "yellow"
 symbol = "🎣 "
 
-[dotnet]
-format = "[$symbol($version )(🎯 $tfm )]($style)"
-symbol = ".NET "
-heuristic=true
-detect_files = ["global.json", "project.json", "Directory.Build.props", "Directory.Build.targets", "Packages.props"]
-style = "bold blue"
+#[dotnet]
+#format = "[$symbol($version )(🎯 $tfm )]($style)"
+#symbol = ".NET "
+#heuristic=true
+#detect_files = ["global.json", "project.json", "Directory.Build.props", "Directory.Build.targets", "Packages.props"]
+#style = "bold blue"
 
 [java]
 symbol = "🌟 "
 
-[kubernetes]
-format = 'on [⛵ $context \($namespace\)](dimmed green) '
-disabled = false
-[kubernetes.context_aliases]
-"dev.local.cluster.k8s" = "dev"
+#[kubernetes]
+#format = 'on [⛵ $context \($namespace\)](dimmed green) '
+#disabled = false
+#[kubernetes.context_aliases]
+#"dev.local.cluster.k8s" = "dev"
 
 [nodejs]
 format = "via [🤖 $version](bold green) "
 
-[ruby]
-symbol = "🔺 "
-format = "via [⚙️ $version](red bold)"
+#[ruby]
+#symbol = "🔺 "
+#format = "via [⚙️ $version](red bold)"
 
 [battery]
 full_symbol = "🔋"
@@ -87,13 +87,13 @@ discharging_symbol = "💦"
 format="via [$symbol$context]($style) "
 symbol="🐋 "
 
-[deno]
-format = "via [$symbol($version )]($style)"
-symbol = "🦕 "
+#[deno]
+#format = "via [$symbol($version )]($style)"
+#symbol = "🦕 "
 
-[dart]
-format= "via [$symbol($version )]($style)"
-symbol = "🎯 "
+#[dart]
+#format= "via [$symbol($version )]($style)"
+#symbol = "🎯 "
 
 [conda]
 format = "[$symbol$environment](dimmed Yellow) "
@@ -118,6 +118,7 @@ modified = "📝"
 staged = '[++\($count\)](green)'
 renamed = "👅"
 deleted = "🗑"
+
 [time]
 disabled = false
 format = '🕙[\[ $time \]]($style) '

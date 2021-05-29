@@ -102,3 +102,10 @@ map("n", "<leader>fr", "<cmd>:Telescope registers<cr>", {noremap = true})
 map("n", "<leader>gg", "<cmd>:Telescope git_commits<cr>", {noremap = true})
 map("n", "<leader>Gs", "<cmd>:Telescope git_status<cr>", {noremap = true})
 
+------------------------------------------------------------------------
+--                           Todo comments                            --
+------------------------------------------------------------------------
+
+map("n", "<leader>tT", "<cmd>:TodoTelescope <cr>", {noremap = true})
+map("n", "<leader>tq", "<cmd>:TodoQuickFix<cr>", {noremap = true})
+map("n", "<leader>tt", "<cmd>:TodoTrouble<cr>", {noremap = true})
