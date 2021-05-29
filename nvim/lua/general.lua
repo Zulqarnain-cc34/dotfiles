@@ -7,9 +7,8 @@
 --                                                                |___/
 --
 -- =========================================================================
-
 -- ================== Aliases ========================
---local g = vim.g
+-- local g = vim.g
 local o = vim.o
 local b = vim.bo
 local w = vim.wo
@@ -23,14 +22,14 @@ cmd("filetype plugin indent on")
 
 -- ============== Basic   ==========================
 
-o.termguicolors = true-- Allows coloring support and themes colors
+o.termguicolors = true -- Allows coloring support and themes colors
 o.compatible = false -- ompromising compatibilty
 o.fileencoding = "utf-8" -- The encoding written to file
 o.undolevels = 1000 -- use many muchos levels of undo
 o.title = true -- change the terminal's title
 o.visualbell = true -- don't beep
 o.backup = false -- Some servers shave issues with backups
-o.cmdheight = 2 -- Bigger messages display. command line height
+o.cmdheight = 1 -- Bigger messages display. command line height
 o.updatetime = 200 -- Faster diagnostic messages (defaults 4000)
 o.mouse = 'a' -- Enable mouse support
 o.wildignore = '*.swp,*.bak,*.pyc,*.class'

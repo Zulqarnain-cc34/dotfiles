@@ -10,13 +10,12 @@ vim.cmd 'packadd paq-nvim' -- Load package
 local paq = require'paq-nvim'.paq -- Import module and bind `paq` function
 
 paq {'savq/paq-nvim', opt = true} -- Let Paq manage itself
-
 -- =================== Themes ===================
-
 -- paq  'ghifarit53/tokyonight-vim'
 -- paq  'joshdick/onedark.vim'
 -- paq  'shaunsingh/moonlight.nvim'
 paq 'tiagovla/tokyodark.nvim'
+paq 'navarasu/onedark.nvim'
 
 -- ================== LSP and Treesitter =====================
 
@@ -25,7 +24,6 @@ paq 'hrsh7th/nvim-compe'
 paq 'glepnir/lspsaga.nvim'
 paq 'nvim-treesitter/nvim-treesitter'
 paq 'onsails/lspkind-nvim'
-paq 'p00f/nvim-ts-rainbow'
 paq 'nvim-lua/lsp-status.nvim'
 paq 'ray-x/lsp_signature.nvim'
 paq 'folke/trouble.nvim'
@@ -56,6 +54,7 @@ paq 'nvim-telescope/telescope.nvim'
 paq 'honza/vim-snippets'
 paq 'SirVer/ultisnips'
 paq 'hrsh7th/vim-vsnip'
+paq 'sophacles/vim-processing'
 -- paq 'cstrap/python-snippets'
 -- paq 'ylcnfrht/vscode-python-snippet-pack'
 
@@ -63,6 +62,11 @@ paq 'hrsh7th/vim-vsnip'
 --                            Miscellenious                           --
 ------------------------------------------------------------------------
 
+paq 'npxbr/glow.nvim'
+paq 'p00f/nvim-ts-rainbow'
+paq 'hoob3rt/lualine'
+paq 'nvim-lua/plenary.nvim'
+paq 'folke/todo-comments.nvim'
 paq 'glepnir/dashboard-nvim'
 paq 'mzlogin/vim-markdown-toc'
 paq 'preservim/nerdcommenter'

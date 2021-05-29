@@ -3,8 +3,7 @@
 SDIR="$HOME/.config/polybar/forest/scripts"
 
 # Launch Rofi
-MENU="$(rofi -no-config -no-lazy-grab -sep "|" -dmenu -i -p '' \
--theme $SDIR/rofi/styles.rasi \
+MENU="$(rofi -no-lazy-grab -sep "|" -dmenu -i -p '' \
 <<< " Default| Nord| Gruvbox| Dark| Cherry|")"
             case "$MENU" in
 				*Default) "$SDIR"/styles.sh --default ;;

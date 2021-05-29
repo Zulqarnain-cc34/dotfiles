@@ -361,7 +361,12 @@ map zc set info ctime
 map o push :open_with<space>
 map . set hidden!
 
-#random
-map "'"
-map '"'
-map f
+# Auto jump integration with lf
+cmd aj %lf -remote "send $id cd '$(autojump $1)'"
+map a push :aj<space>
+
+##random
+#map "'"
+#map '"'
+#map f
+
