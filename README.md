@@ -3,10 +3,10 @@
 Zulqarnain-c34 [(Zulqarnain-cc34)](www.github.com/Zulqarnain-cc34)
 
 
-Dotfiles for my local setup,
+Dotfiles for my local Arch setup,
 
 
-| functionality | program      |
+| Functionality | Program      |
 |---------------|--------------|
 | status bar    | polybar      |
 | editor        | neovim       |
@@ -17,6 +17,7 @@ Dotfiles for my local setup,
 | launcher      | rofi         |
 | torrent       | transmission |
 | video player  | mpv          |
+| compositer    | picom        |
 
  ## Table of Contents
 
@@ -76,32 +77,39 @@ uninstall script will come soon
 - Background blur and transparency using [picom](https://github.com/yshui/picom).
 
 ### Polybar
-Custom tweaks on [Adapta-theme-polybar](https://github.com/matoruru/polybar-adapta-theme) and some modules from [polybar-scripts](https://github.com/polybar/polybar-scripts)
+Custom tweaks on [forest-theme](https://github.com/adi1090x/polybar-themes) and some modules from [polybar-scripts](https://github.com/polybar/polybar-scripts)
 
 <p align="center">
    <img src="./screenshots/polybar.png"  title="polybar">
 </p>
 
 ### Neovim
+
+#### ScreenShots
 <p align="center">
    <img src="./screenshots/neovim.png"  title="neovim">
+   <img src="./screenshots/neovim-1.png"  title="neovim">
+   <img src="./screenshots/neovim-2.png"  title="neovim">
 </p>
 
 #### Features
 
-- Ide like Configuration written in lua.
-- Code autocompletion with [Coc.nvim](https://github.com/neoclide/coc.nvim) and [Snippets](https://github.com/neoclide/coc-snippets).
+- IDE like Configuration written in Lua.
+- [nvim-compe](https://github.com/hrsh7th/nvim-compe) for Code Autocompletion.
 - Fast Directory traversal with [Nerdtree](https://github.com/preservim/nerdtree).
 - Git integration with [fugitive](https://github.com/tpope/vim-fugitive) and [GitGutter](https://github.com/airblade/vim-gitgutter).
-- Faster code commenting with [NerdCommentor](https://github.com/preservim/nerdcommenter).
 - Colorful theme from [nvim-tokyonight](https://github.com/ghifarit53/tokyonight-vim).
-- Fuzzy searcher and finder [fzf.vim](https://github.com/junegunn/fzf.vim).
+- Fuzzy searcher and finder [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim).
 - Keybinding Prompt with [whichkey](https://github.com/liuchengxu/vim-which-key).
 - Beautiful dashboard via [dashboard-nvim](https://github.com/glepnir/dashboard-nvim).
-- Source code linting and fixing using [Ale](https://github.com/dense-analysis/ale).
-- Semantic highlighting for Python via [Semshi](https://github.com/numirias/semshi).
-- IDE features like lsp signatures and Jumping to definations.
-- Vim Diary to note TODOs etc [vim-diary](https://github.com/vimwiki/vimwiki).
+- Source code linting and fixing using [nvim-compe](https://github.com/hrsh8th/nvim-compe) and [efm](https://github.com/mattn/efm-langserver).
+- Code Semantic and Structure highlighting using [Treesitter](https://github.com/nvim-treesitter/nvim-treesitter).
+- [NerdCommentor](https://github.com/preservim/nerdcommenter) for Faster Code Commenting.
+- IDE features like lsp signatures, Jump to definations with [lsp-config](https://github.com/neovim/nvim-lspconfig).
+- View function signatures with [lsp-signature.nvim](https://github.com/ray-x/lsp_signature.nvim) 
+- Highly Performatant UI for built-in-lsp [Lspsaga](https://github.com/glepnir/lspsaga.nvim).
+- Fast Status bar with [Lualine](https://github.com/hoob3rt/lualine.nvim).
+- Vim Diary to note TODOs [vim-wiki](https://github.com/vimwiki/vimwiki).
 - Shorcuts and keybindings in [KeyBindings](https://github.com/Zulqarnain-cc34/dotfiles/tree/main/nvim/README.md).
 
 ### Ranger
@@ -125,9 +133,11 @@ Setup with
 - Sidebar   `~/.mutt/sidebar`  Sidebar theme.
 - muttrc    `~/.mutt/.muttrc`  All files are sourced in .muttrc as `source ./settings` and  `source ./aliases` etc.
 
+
 Mutt themes are forked from [mutt-solarized-theme](https://github.com/altercation/mutt-colors-solarized) and [neon-mutt-theme](https://github.com/h3xx/mutt-colors-neonwolf)
 
 ### Transmission
+
 
 ### Miscellaneous
 
