@@ -8,7 +8,7 @@ require("lspconfig").clangd.setup {
     },
     on_attach = lsp_status.on_attach,
     capabilities = lsp_status.capabilities,
-    default_config = {	
+    default_config = {
         cmd = {
             "clangd", "--background-index", "--pch-storage=memory",
             "--clang-tidy", "--suggest-missing-includes"
