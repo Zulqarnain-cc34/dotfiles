@@ -202,8 +202,7 @@
 # "msg_urgency" and you can override the "timeout", "urgency", "foreground",
 # "background", "new_icon" and "format".
 # Shell-like globbing will get expanded.
-
-
+#
 # SCRIPTING
 # You can specify a script that gets run when the rule matches by
 # setting the "script" option.
@@ -216,13 +215,93 @@
 # NOTE: It might be helpful to run dunst -print in a terminal in order
 # to find fitting options for rules.
 
-[newsboat]
-    summary = *Feeds*
-    background = "#A8EB41"
-    foreground = "#FFFFFF"
+#[espeak]
+#    summary = "*"
+#    script = dunst_espeak.sh
 
-vim: ft=cfg
+#[script-test]
+#    summary = "*script*"
+#    script = dunst_test.sh
+
+#[ignore]
+#    # This notification will not be displayed
+#    summary = "foobar"
+#    format = ""
+
+#[signed_on]
+#    appname = Pidgin
+#    summary = "*signed on*"
+#    urgency = low
+#
+#[signed_off]
+#    appname = Pidgin
+#    summary = *signed off*
+#    urgency = low
+#
+#[says]
+#    appname = Pidgin
+#    summary = *says*
+#    urgency = critical
+#
+#[twitter]
+#    appname = Pidgin
+#    summary = *twitter.com*
+#    urgency = normal
+#
+#[Claws Mail]
+#    appname = claws-mail
+#    category = email.arrived
+#    urgency = normal
+#    background = "#2F899E"
+#    foreground = "#FFA247"
+#
+#[mute.sh]
+#     appname = mute
+#     category = mute.sound
+#     script = mute.sh
+#
+#[JDownloader]
+#    appname = JDownloader
+#    category = JD
+#    background = "#FFA247"
+#    foreground = "#FFFFFF"
+#
+#[newsbeuter]
+#    summary = *Feeds*
+#    background = "#A8EB41"
+#    foreground = "#FFFFFF"
+#
+[irc]
+        appname = weechat
+        timeout = 0
+        background = "#0033bb"
+        foreground = "#dddddd"
+#
+[weechat hl]
+     appname = weechat
+     category = weechat.HL
+     background = "#FF5C47"
+     foreground = "#FFFFFF"
+#
+[weechat pn]
+     appname = weechat
+     category = weechat.PM
+     background = "#D53B84"
+     foreground = "#FFFFFF"
+#
+#[CMUS]
+#    appname = CMUS
+#    category = cmus
+#    background = "#6C4AB7"
+#    foreground = "#FFE756"
+#
+#
+#     background = "#30AB70"
+#     foreground = "#F67245"
+#
+# vim: ft=cfg
 
 [speech]
 summary = "*"
 script = dunst-notify-speech.sh
+ 
