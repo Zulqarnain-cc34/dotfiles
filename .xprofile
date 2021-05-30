@@ -1,4 +1,4 @@
-polybar -r main --config=$HOME/.config/polybar/forest/config.ini &
+polybar -r main --config=$HOME/.config/polybar/config.ini &
 xmodmap ~/.Xmodmap
 picom &
 dunst &
