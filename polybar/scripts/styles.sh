@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 # Color files
-PFILE="$HOME/.config/polybar/forest/colors.ini"
-RFILE="$HOME/.config/polybar/forest/scripts/rofi/colors.rasi"
+PFILE="$HOME/.config/polybar/colors.ini"
+RFILE="$HOME/.config/polybar/scripts/rofi/colors.rasi"
 
 # Change colors
 change_color() {
