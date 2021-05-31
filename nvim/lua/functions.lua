@@ -3,16 +3,18 @@ local t = function(str)
 end
 
 local check_back_space = function()
-    init_options = {clangdFileStatus = true},
+    local col = vim.fn.col('.') - 1
+    if col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') then
+        return true
     else
         return false
     end
 end
-            "clangd", "--background-index", "--pch-storage=memory", "--clang-tidy",
-            "--suggest-missing-includes"
+
 -- Use (s-)tab to:
-        filetypes = {"c", "cpp", "objc", "objcpp"}
+--- move to prev/next item in completion menuone
 --- jump to prev/next snippet's placeholder
+--
 _G.tab_complete = function()
     if vim.fn.pumvisible() == 1 then
         return t "<C-n>"
@@ -24,6 +26,8 @@ _G.tab_complete = function()
         return vim.fn['compe#complete']()
     end
 end
+
+
 _G.s_tab_complete = function()
     if vim.fn.pumvisible() == 1 then
         return t "<C-p>"

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-SDIR="$HOME/.config/polybar/forest/scripts"
+SDIR="$HOME/.config/polybar/scripts"
 
 # Launch Rofi
 MENU="$(rofi -no-lazy-grab -sep "|" -dmenu -i -p '' \
