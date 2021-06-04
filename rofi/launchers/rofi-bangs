@@ -39,6 +39,9 @@ LABELS["bookmarks"]=""
 COMMANDS["Youtube"]='/usr/bin/ytfzf -D'
 LABELS["Youtube"]=""
 
+COMMANDS["Books"]="$HOME/.config/rofi/launchers/rofi-books"
+LABELS["Books"]=""
+
 # GLobal Search in folder
 COMMANDS["Global"]='rofi -modi "Global Search":"$HOME/.config/rofi/launchers/rofi-spotlight" -show "Global Search"'
 LABELS["Global"]=""

@@ -9,6 +9,9 @@ require('lsp/C-ls')
 require('lsp/efm')
 -- require('lsp/tsserver-ls')
 require('lsp/graphql-ls')
+require('lsp/html')
+require('lsp/yaml')
+require('lsp/docker')
 
 ------------------------------------------------------------------------
 --                              Plugins                               --
