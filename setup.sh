@@ -31,6 +31,7 @@
 [ ! -d $HOME/.config/alacritty ] && ln -s $PWD/alacritty $HOME/.config/alacritty
 [ ! -d $HOME/.config/nvim ] && ln -s $PWD/nvim $HOME/.config/nvim
 [ ! -d $HOME/.config/zsh ] && ln -s $PWD/zsh $HOME/.config/zsh
+[ ! -d $HOME/.config/conky ] && ln -s $PWD/conky $HOME/.config/conky
 
 ##################################
 ## _____  ___  _      _____  ____

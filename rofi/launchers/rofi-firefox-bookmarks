@@ -1,5 +1,5 @@
 #/usr/bin/bash
 
 # Rofi script to first get the bookmarks title and then pass it again to the same script as input and open in default browser $BROWSER
-firefox_bookmarks.sh | rofi -dmenu | xargs firefox_bookmarks.sh 
+firefox_bookmarks.sh | rofi -kb-row-select "Tab" -kb-row-tab "Control+space" -dmenu -p "rofi-firefox-bookmarks" | xargs firefox_bookmarks.sh 
 

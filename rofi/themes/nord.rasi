@@ -69,7 +69,7 @@ mainbox {
 prompt {
   background-color: @polar-2;
   enabled: true;
-  font: "FontAwesome 12";
+  font: "UbuntuMono 12";
   padding: 12 0 0 12;
   text-color: @frost-1;
 }
