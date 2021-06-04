@@ -6,18 +6,19 @@ Zulqarnain-c34 [(Zulqarnain-cc34)](www.github.com/Zulqarnain-cc34)
 Dotfiles for my local Arch setup,
 
 
-| Functionality | Program      |
-|---------------|--------------|
-| status bar    | polybar      |
-| editor        | neovim       |
-| terminal      | alacritty    |
-| email client  | neomutt      |
-| rss reader    | newsboat     |
-| file manager  | ranger       |
-| launcher      | rofi         |
-| torrent       | transmission |
-| video player  | mpv          |
-| compositer    | picom        |
+| Functionality  | Program      |
+|----------------|--------------|
+| status bar     | polybar      |
+| editor         | neovim       |
+| terminal       | alacritty    |
+| email client   | neomutt      |
+| rss reader     | newsboat     |
+| file manager   | ranger       |
+| launcher       | rofi         |
+| torrent        | transmission |
+| video player   | mpv          |
+| compositer     | picom        |
+| System Moniter | Conky        |
 
  ## Table of Contents
 
@@ -147,6 +148,7 @@ Mutt themes are forked from [mutt-solarized-theme](https://github.com/altercatio
 - `twitch notifer.cfg` to format output for [twitch-notifier](https://github.com/GiedriusS/TwitchNotifier) package.
 - Coc settings configured in `nvim/coc-settings.json`.
 - [urlportal.sh]() script to open files depending upon their extensions.
+- A light weight System Moniter with [Conky theme](https://github.com/juliojsb/jotack).
 
 Currently Under work
 

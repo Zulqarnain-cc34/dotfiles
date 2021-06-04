@@ -15,6 +15,9 @@ local g = vim.g
 g.tokyonight_style = 'storm' -- available: night, storm
 g.tokyonight_enable_italic = 1
 g.onedark_style = 'deep'
+-- Auto starts Markdown buffer
+g.mkdp_auto_start = 1
+
 
 cmd("colorscheme tokyodark")
 
@@ -28,3 +31,4 @@ g.vimwiki_list = {{path = '~/.config/nvim/tempdir/vimwiki/', syntax = 'markdown'
 ------------------------------------------------------------------------
 --                          Dev Icons Colors                          --
 ------------------------------------------------------------------------
+--
