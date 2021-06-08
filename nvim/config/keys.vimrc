@@ -25,24 +25,21 @@ nma <silent> <leader>sv :so $MYVIMRC<CR>
 "nnoremap <leader>fa <cmd>lua require('telescope.builtin').man_pages()<cr>
 
 
-inoremap <silent><expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>
-
 
 
 " Errors in Red
-hi LspDiagnosticsVirtualTextError guifg=Red ctermfg=Red
-" Warnings in Yellow
-hi LspDiagnosticsVirtualTextWarning guifg=Yellow ctermfg=Yellow
-" Info and Hints in White
-hi LspDiagnosticsVirtualTextInformation guifg=White ctermfg=White
-hi LspDiagnosticsVirtualTextHint guifg=White ctermfg=White
+"hi LspDiagnosticsVirtualTextError guifg=Red ctermfg=Red
+"" Warnings in Yellow
+"hi LspDiagnosticsVirtualTextWarning guifg=Yellow ctermfg=Yellow
+"" Info and Hints in White
+"hi LspDiagnosticsVirtualTextInformation guifg=White ctermfg=White
+"hi LspDiagnosticsVirtualTextHint guifg=White ctermfg=White
 
-" Underline the offending code
-hi LspDiagnosticsUnderlineError guifg=NONE ctermfg=NONE cterm=underline gui=underline
-hi LspDiagnosticsUnderlineWarning guifg=NONE ctermfg=NONE cterm=underline gui=underline
-hi LspDiagnosticsUnderlineInformation guifg=NONE ctermfg=NONE cterm=underline gui=underline
-hi LspDiagnosticsUnderlineHint guifg=NONE ctermfg=NONE cterm=underline gui=underline
+"" Underline the offending code
+"hi LspDiagnosticsUnderlineError guifg=NONE ctermfg=NONE cterm=underline gui=underline
+"hi LspDiagnosticsUnderlineWarning guifg=NONE ctermfg=NONE cterm=underline gui=underline
+"hi LspDiagnosticsUnderlineInformation guifg=NONE ctermfg=NONE cterm=underline gui=underline
+"hi LspDiagnosticsUnderlineHint guifg=NONE ctermfg=NONE cterm=underline gui=underline
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -194,12 +191,8 @@ map <C-space> ?
 " Disable highlight when <leader><cr> is pressed
 map <silent> <leader><cr> :noh<cr>
 
-autocmd FileType python nnoremap <F9> :!python %
-autocmd FileType cpp    nnoremap <F9> :!g++ %
-autocmd FileType javascript nnoremap <F9> :!node %
-autocmd FileType sh   nnoremap <F9> :!bash %
 
-nnoremap <leader>m :Ranger<CR>
+	
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                   Rainbow Parenthesis Settings                                    "
@@ -223,10 +216,6 @@ nnoremap <leader>m :Ranger<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                   Glyph Palette                                    "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-augroup my-glyph-palette
-  autocmd! *
-  autocmd FileType startify,lua,typescript,python,javascript call glyph_palette#apply()
-augroup END
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                   Which Key Plugin                                    "
@@ -240,3 +229,10 @@ set timeoutlen=500
 
 " Return to last edit position when opening files (You want this!)
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                   Highlight Groups for AutoComplete menu                   "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"hi Pmenu ctermfg=NONE ctermbg=236 cterm=NONE guifg=#FFD400 guibg=#1C1C1C gui=NONE
+"hi PmenuSel ctermfg=NONE ctermbg=24 cterm=NONE guifg=NONE guibg=#204a87 gui=NONE

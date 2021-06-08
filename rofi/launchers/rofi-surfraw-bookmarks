@@ -23,4 +23,4 @@
 
 # surfraw -browser=$BROWSER "$(cat ~/.config/surfraw/bookmarks | sed '/^$/d' | sed '/^#/d' | sed '/^\//d' | sort -n | rofi -dmenu -mesg ">>> Edit to add new bookmarks at ~/.config/surfraw/bookmarks" -i -p "rofi-surfraw-bookmarks:")"
 
-surfraw -browser=$BROWSER "$(grep '^[[:alnum:]]' ~/.config/surfraw/bookmarks | sort -n | rofi -threads 0 -width 100 -dmenu -mesg ">>> Edit to add new bookmarks at ~/.config/surfraw/bookmarks" -i -p "rofi-surfraw-bookmarks > ")"
+surfraw -browser="$BROWSER" "$(grep '^[[:alnum:]]' ~/.config/surfraw/bookmarks | sort -n | rofi -threads 0 -width 100 -dmenu -mesg ">>> Edit to add new bookmarks at ~/.config/surfraw/bookmarks" -i -p "rofi-surfraw-bookmarks > ")"

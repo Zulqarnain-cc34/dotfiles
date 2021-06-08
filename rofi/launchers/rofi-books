@@ -7,24 +7,26 @@ function rofi-options() {
 }
 
 function check_dir() {
-    if [[ $1 ]]; then 
-	cd $1;selection=$(ls -a | rofi-options)
-	if [[ -d $selection ]]; then
-	    check_dir $selection
-	elif [[ -f $selection ]];then 
-	    nohup xdg-open $selection > /dev/null 2>&1
-	else
-	    return > /dev/null 2>&1
-	fi
+    if [[ $1 ]]; then
+        cd "$1" || exit
+        selection=$(ls -a | rofi-options)
+        if [[ -d $selection ]]; then
+            check_dir "$selection"
+        elif [[ -f $selection ]]; then
+            nohup xdg-open "$selection" >/dev/null 2>&1
+        else
+            return >/dev/null 2>&1
+        fi
     fi
 }
 
-cd $BOOKDIR;selection=$(ls -a | rofi -no-lazy-grab -kb-row-select "Tab" -kb-row-tab "Control+space" -dmenu -i -p "Books")
-i=$((i+1))
+cd "$BOOKDIR" || exit
+selection=$(ls -a | rofi -no-lazy-grab -kb-row-select "Tab" -kb-row-tab "Control+space" -dmenu -i -p "Books")
+i=$((i + 1))
 if [[ -d $selection ]]; then
-    check_dir $selection
-elif [[ -f $selection ]];then 
-    nohup xdg-open $selection > /dev/null 2>&1
+    check_dir "$selection"
+elif [[ -f $selection ]]; then
+    nohup xdg-open "$selection" >/dev/null 2>&1
 else
-    return > /dev/null 2>&1
+    return >/dev/null 2>&1
 fi

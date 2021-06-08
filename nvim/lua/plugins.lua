@@ -11,11 +11,14 @@ local paq = require'paq-nvim'.paq -- Import module and bind `paq` function
 
 paq {'savq/paq-nvim', opt = true} -- Let Paq manage itself
 -- =================== Themes ===================
--- paq  'ghifarit53/tokyonight-vim'
+
+paq 'ghifarit53/tokyonight-vim'
 -- paq  'joshdick/onedark.vim'
 -- paq  'shaunsingh/moonlight.nvim'
-paq 'tiagovla/tokyodark.nvim'
-paq 'navarasu/onedark.nvim'
+-- paq 'tiagovla/tokyodark.nvim'
+--paq 'navarasu/onedark.nvim'
+paq "monsonjeremy/onedark.nvim"
+
 
 -- ================== LSP and Treesitter =====================
 
@@ -27,6 +30,7 @@ paq 'onsails/lspkind-nvim'
 paq 'nvim-lua/lsp-status.nvim'
 paq 'ray-x/lsp_signature.nvim'
 paq 'folke/trouble.nvim'
+paq 'folke/lsp-colors.nvim'
 
 -- =================== Git =====================
 
@@ -52,17 +56,18 @@ paq 'nvim-telescope/telescope.nvim'
 ------------------------------------------------------------------------
 
 paq 'honza/vim-snippets'
-paq 'SirVer/ultisnips'
+--
+--paq 'SirVer/ultisnips'
 paq 'hrsh7th/vim-vsnip'
 paq 'sophacles/vim-processing'
--- paq 'cstrap/python-snippets'
+ --paq 'cstrap/python-snippets'
 -- paq 'ylcnfrht/vscode-python-snippet-pack'
 
 ------------------------------------------------------------------------
 --                            Miscellenious                           --
 ------------------------------------------------------------------------
 
-paq 'npxbr/glow.nvim'
+--paq 'npxbr/glow.nvim'
 paq 'p00f/nvim-ts-rainbow'
 paq 'hoob3rt/lualine.nvim'
 paq 'nvim-lua/plenary.nvim'
@@ -76,14 +81,16 @@ paq 'akinsho/nvim-bufferline.lua'
 paq 'kyazdani42/nvim-web-devicons'
 paq 'norcalli/nvim-colorizer.lua'
 paq 'liuchengxu/vim-which-key'
---paq 'iamcco/markdown-preview.nvim'
-paq "davidgranstrom/nvim-markdown-preview"
+paq 'iamcco/markdown-preview.nvim'
 paq 'cjrh/vim-conda'
 paq 'tiagofumo/vim-nerdtree-syntax-highlight'
 paq 'lambdalisue/glyph-palette.vim'
-paq 'vimwiki/vimwiki'
+paq 'kkoomen/vim-doge'
+--paq 'vimwiki/vimwiki'
+--paq 'matbme/JABS.nvim'
 
 ------------------------------------------------------------------------
 --                                Lua                                 --
 ------------------------------------------------------------------------
 paq 'folke/lua-dev.nvim'
+

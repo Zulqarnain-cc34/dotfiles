@@ -5,6 +5,7 @@ set termguicolors
 filetype plugin indent on
 filetype plugin on
 
+
 "Some Common Config Settings"
 set wrap        " don't wrap lines
 set tabstop=4     " a tab is four spaces

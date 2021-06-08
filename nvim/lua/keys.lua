@@ -6,16 +6,6 @@ local function map(mode, lhs, rhs, opts)
     vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
--- local map = function(type, key, value, mode, opts)
--- mode = mode or 'g' -- Default global mapping
--- opts = opts or {noremap = true, silent = true}
--- if mode == 'g' then
--- vim.api.nvim_set_keymap(type, key, value, opts);
--- elseif mode == 'b' then
--- vim.api.nvim_buf_set_keymap(0, type, key, value, opts);
--- end
--- end
-
 -- ============== Leader Key =========================
 
 g.mapleader = "m"
@@ -49,9 +39,9 @@ map('n', '<leader>ly', '<cmd>lua vim.lsp.buf.type_definition()<CR>', options)
 -- Format Code according to file specific formatter
 map('n', '<leader>lf', '<cmd>lua vim.lsp.buf.formatting()<CR>', options)
 -- Shows the variable and function symbols
-map('n', '<leader>ds', '<cmd>:Telescope lsp_document_symbols<CR>', options)
+map('n', '<leader>ds', '<cmd>:Trouble lsp_document_diagnostics<CR>', options)
 -- Shows thw workspace Symbolj
-map('n', '<leader>ws', '<cmd>:Telescope lsp_workspace_diagnostics<CR>', options)
+map('n', '<leader>ws', '<cmd>:Trouble lsp_workspace_diagnostics<CR>', options)
 -- Make a code action based on diagnostics
 map('n', '<leader>la', '<cmd>:Lspsaga code_action<CR>', options)
 -- Shows the Diagnostics of a line
@@ -62,6 +52,12 @@ map('n', '<leader>le', '<cmd>:Lspsaga rename<CR>', options)
 map('n', '<leader>lc', '<cmd>lua vim.lsp.buf.incoming_calls()<CR>', options)
 -- Shows Outgoing
 map('n', '<leader>lo', '<cmd>lua vim.lsp.buf.outgoing_calls()<CR>', options)
+-- Shows Outgoing
+map('n', '<leader>lx', '<cmd>lua vim.lsp.buf.definition()()<CR>', options)
+-- Shows Outgoing
+map('n', '<leader>lr', '<cmd>Trouble lsp_references<cr>', options)
+-- Shows Outgoing
+map('n', '<leader>lq', '<cmd>Trouble quickfix<cr>', options)
 
 ------------------------------------------------------------------------
 --                            Neovim Compe                            --
@@ -69,7 +65,12 @@ map('n', '<leader>lo', '<cmd>lua vim.lsp.buf.outgoing_calls()<CR>', options)
 
 map('i', '<C-Space>', [[compe#complete()]], {expr = true, silent = true})
 map('i', '<CR>', [[compe#confirm('<CR>')]], {expr = true, silent = true})
-map('i', '<c-e>', [[compe#close('<C-e>')]], {expr = true, silent = true})
+map('i', '<c-e>', [[compe#close('<C-e>')]], {noremap= true, silent = true})
+
+map('i', '<Tab>', 'pumvisible() ? "\\<C-n>" : "\\<Tab>"', {expr=true,noremap= true, silent = true})
+map('i', '<S-Tab>', 'pumvisible() ? "\\<C-p>" : "\\<Tab>"' , {expr=true,noremap= true })
+
+
 map('n', '<A-d>', '<cmd>:Lspsaga open_floaterm<CR>', options)
 
 -- remap('t', '<A-d>', "<C-\><C-n>:Lspsaga close_floaterm<CR>", options)
@@ -98,7 +99,6 @@ map("n", "<leader>fl", "<cmd>:Telescope old_files<cr>", {noremap = true})
 map("n", "<leader>fc", "<cmd>:Telescope command_history<cr>", {noremap = true})
 map("n", "<leader>fa", "<cmd>:Telescope man_pages<cr>", {noremap = true})
 map("n", "<leader>fr", "<cmd>:Telescope registers<cr>", {noremap = true})
--- checkout gitcommit on enter
 map("n", "<leader>gg", "<cmd>:Telescope git_commits<cr>", {noremap = true})
 map("n", "<leader>Gs", "<cmd>:Telescope git_status<cr>", {noremap = true})
 
@@ -109,3 +109,27 @@ map("n", "<leader>Gs", "<cmd>:Telescope git_status<cr>", {noremap = true})
 map("n", "<leader>tT", "<cmd>:TodoTelescope <cr>", {noremap = true})
 map("n", "<leader>tq", "<cmd>:TodoQuickFix<cr>", {noremap = true})
 map("n", "<leader>tt", "<cmd>:TodoTrouble<cr>", {noremap = true})
+
+------------------------------------------------------------------------
+--                              JABS--
+------------------------------------------------------------------------
+
+map("n", "<leader>j", "<cmd>:JABSOpen<cr>", {noremap = true})
+
+------------------------------------------------------------------------
+--                             BUfferline                             --
+------------------------------------------------------------------------
+
+
+map("n", "bj", "<cmd>:BufferLineCycleNext<cr>", {noremap = true, silent = true})
+map("n", "bk", "<cmd>:BufferLineCyclePrev<cr>", {noremap = true, silent = true})
+map("n", "<leader>bn", "<cmd>:BufferLineMoveNext<cr>", {noremap = true, silent = true})
+map("n", "<leader>bp", "<cmd>:BufferLineMovePrev<cr>", {noremap = true, silent = true})
+map("n", "be", "<cmd>:BufferLineSortByExtension<cr>", {noremap = true, silent = true})
+map("n", "bd", "<cmd>:BufferLineSortByDirectory<cr>", {noremap = true, silent = true})
+
+------------------------------------------------------------------------
+--                           Miscellenious                            --
+------------------------------------------------------------------------
+--
+--
