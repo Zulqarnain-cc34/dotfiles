@@ -1,17 +1,20 @@
 ------------------------------------------------------------------------
 --                                LSP                                 --
 ------------------------------------------------------------------------
-require('lsp/python-ls')
-require('lsp/lua-ls')
-require('lsp/bash-ls')
-require('lsp/Cmake-ls')
-require('lsp/C-ls')
-require('lsp/efm')
--- require('lsp/tsserver-ls')
-require('lsp/graphql-ls')
+require('lsp/python')
+require('lsp/lua')
+require('lsp/bash')
+require('lsp/Cmake')
+require('lsp/C')
+require('lsp/tsserver')
+require('lsp/graphql')
 require('lsp/html')
 require('lsp/yaml')
 require('lsp/docker')
+require('lsp/json')
+require('lsp/efm')
+require('lsp/vim')
+require('lsp/css')
 
 ------------------------------------------------------------------------
 --                              Plugins                               --
@@ -33,3 +36,5 @@ require('plugins/nvim-web-devicons')
 require('plugins/lsp-diagnostics')
 require('plugins/todocomments')
 require('plugins/lualine')
+require('plugins/telescope')
+require('plugins/lspcolors')

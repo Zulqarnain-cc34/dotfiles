@@ -21,6 +21,9 @@ declare -A COMMANDS
 COMMANDS["apps"]="rofi -show drun -show -modi drun"
 LABELS["apps"]=""
 
+COMMANDS["keys"]="rofi -show keys"
+LABELS["keys"]=""
+
 # firefox bookmarks
 COMMANDS["firefox-bookmarks"]="$HOME/.config/rofi/launchers/rofi-firefox-bookmarks"
 LABELS["firefox-bookmarks"]=""
@@ -87,26 +90,22 @@ LABELS["theme"]=""
 # Generate menu
 ##
 
-function print_menu()
-{
-    for key in ${!LABELS[@]}
-    do
-  echo "$key    ${LABELS}"
-     #   echo "$key    ${LABELS[$key]}"
-     # my top version just shows the first field in labels row, not two words side by side
+function print_menu() {
+    for key in "${!LABELS[@]}"; do
+        echo "$key    ${LABELS[0]}"
+        #   echo "$key    ${LABELS[$key]}"
+        # my top version just shows the first field in labels row, not two words side by side
     done
 }
 
 ##
 # Show rofi.
 ##
-function start()
-{
+function start() {
     # print_menu | rofi -dmenu -p "?=>"
     print_menu | sort | rofi -dmenu -mesg ">>> launch your collection of rofi scripts" -i -p "rofi-bangs: "
 
 }
-
 
 # Run it
 value="$(start)"
@@ -115,24 +114,22 @@ value="$(start)"
 # grab upto first space.
 choice=${value%%\ *}
 # graph remainder, minus space.
-input=${value:$((${#choice}+1))}
+input=${value:$((${#choice} + 1))}
 
 ##
 # Cancelled? bail out
 ##
-if test -z ${choice}
-then
+if test -z "${choice}"; then
     exit
 fi
 
 # check if choice exists
-if test ${COMMANDS[$choice]+isset}
-then
+if test ${COMMANDS[$choice]+isset}; then
     # Execute the choice
     eval echo "Executing: ${COMMANDS[$choice]}"
     eval ${COMMANDS[$choice]}
 else
- eval  $choice | rofi
- # prefer my above so I can use this same script to also launch apps like geany or leafpad etc (DK)
- #   echo "Unknown command: ${choice}" | rofi -dmenu -p "error"
+    eval "$choice" | rofi
+    # prefer my above so I can use this same script to also launch apps like geany or leafpad etc (DK)
+    #   echo "Unknown command: ${choice}" | rofi -dmenu -p "error"
 fi

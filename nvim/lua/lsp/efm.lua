@@ -8,33 +8,49 @@ local on_attach = function(client)
 end
 
 local eslint = require "efm/eslint"
--- local prettier = require "efm/prettier"
 local isort = require "efm/isort"
 local flake8 = require "efm/flake"
 local luafmt = require "efm/luafmt"
+local shfmt = require "efm/shfmt"
+local vint = require "efm/vint"
+local prettier = require "efm/prettier"
+local markdownlint = require "efm/markdownlint"
+-- local markdownPandocFormat = require "efm/pandoc"
+local markdownPandocFormat = {
+    formatCommand = 'pandoc -f markdown -t gfm -sp --tab-stop=2',
+    formatStdin = true
+}
+-- local shellcheck = require "efm/shellcheck"
 
 require"lspconfig".efm.setup {
     on_attach = on_attach,
     init_options = {documentFormatting = true},
     rootdir = vim.loop.cwd,
     filetypes = {
-        "lua", "python", "html", "css", "javascript", "json", "javascriptreact", "javascript.jsx",
-        "typescript", "typescript.tsx", "typescriptreact"
+        "lua", "python", "sh", "html", "css", "javascript", "json", "javascriptreact", "markdown",
+        "pandoc", "scss", "yaml", "javascript.jsx", "typescript", "typescript.tsx",
+        "typescriptreact", "vim"
     },
     settings = {
         rootMarkers = {".git/"},
         languages = {
+            sh = {shfmt},
+            vim = {vint},
             lua = {luafmt},
+            markdown = {markdownPandocFormat, markdownlint},
             python = {flake8, isort},
-            -- html = {prettier.prettifyhtml()},
-            -- css = {prettier.prettifycss()},
-            -- json = {prettier.prettifyjson()},
-            javascript = {eslint},
-            javascriptreact = {eslint},
-            ["javascript.jsx"] = {eslint},
-            typescript = {eslint},
-            ["typescript.tsx"] = {eslint},
-            typescriptreact = {eslint}
+            javascript = {prettier, eslint},
+            javascriptreact = {prettier, eslint},
+            ["javascript.jsx"] = {prettier, eslint},
+            typescript = {prettier, eslint},
+            ["typescript.tsx"] = {prettier, eslint},
+            typescriptreact = {prettier, eslint},
+            pandoc = {markdownlint},
+            -- html = {formatCommand="prettier ${--tab-width:tabWidth} ${--single-quote:singleQuote} --parser html",formatStdin=true},
+            css = {prettier},
+            scss = {prettier},
+            yaml = {prettier},
+            json = {prettier, eslint}
         }
     }
 }

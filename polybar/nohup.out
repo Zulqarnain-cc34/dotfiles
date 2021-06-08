@@ -1,0 +1,1 @@
+polybar|error: Disabling module "brightness" (reason: The file '/sys/class/backlight/amdgpu_bl0/brightness' does not exist)

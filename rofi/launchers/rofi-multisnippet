@@ -20,14 +20,12 @@
 dir=~/.multisnippet
 
 # merge filename and tags into single line
-results=$(for FILE in $dir/*
-do
-  getname=$(basename $FILE)
-  gettags=$(head -n 1 $FILE)
-  echo -e "$getname \t $gettags"
+results=$(for FILE in "$dir"/*; do
+    getname=$(basename "$FILE")
+    gettags=$(head -n 1 "$FILE")
+    echo -e "$getname \t $gettags"
 done)
 
 # copy content into clipboard without tags
 filename=$(echo "$(echo "$results" | rofi -dmenu -mesg ">>> Add new multisnippet at dir ~/.multisnippet/" -i -p "multisnippet:")" | cut -d' ' -f 1)
-sed 1d $dir/$filename | xclip -selection clipboard
-
+sed 1d "$dir/$filename" | xclip -selection clipboard

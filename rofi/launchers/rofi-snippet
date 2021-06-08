@@ -21,7 +21,7 @@
 ### References      : Rofi Playlist https://www.youtube.com/playlist?list=PLqv94xWU9zZ0LVP1SEFQsLEYjZC_SUB3m
 ### Notes           : You can add new snippet. $EDITOR ~/.snippetrc
 
-selected="$(cat $HOME/.snippetrc | sed '/^$/d' | sort -n | rofi -width 100 -dmenu -mesg ">>> Edit to add new snippet at ~/.snippetrc" -i -p "snippet:")"
+selected="$(cat "$HOME"/.snippetrc | sed '/^$/d' | sort -n | rofi -width 100 -dmenu -mesg ">>> Edit to add new snippet at ~/.snippetrc" -i -p "snippet:")"
 
 # remove tags, leading and trailing spaces, also no newline
 echo "$selected" | sed -e s/\;\;\.\*\$// | sed 's/^[ \t]*//;s/[ \t]*$//' | tr -d '\n' | xclip -selection clipboard

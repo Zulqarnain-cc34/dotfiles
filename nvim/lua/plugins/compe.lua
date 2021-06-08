@@ -49,6 +49,7 @@ require'compe'.setup {
         nvim_lua = true,
         ultisnips = true,
         treesitter = true,
-        vsnip = true
+        vsnip = true,
+
     }
 }
