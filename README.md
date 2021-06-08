@@ -23,15 +23,6 @@ Dotfiles for my local Arch setup,
 - [Requirements](#requirements)
 - [Installation](#installation)
 - [Modules](#modules)
-- [Alacritty](#alacritty)
-- [Polybar](#polybar)
-- [Neovim](#neovim)
-- [Ranger](#ranger)
-- [Rofi](#rofi)
-- [Newsboat](#newsboat)
-- [NeoMutt](#neomutt)
-- [Transmission](#transmission)
-- [Miscellaneous](#miscellaneous)
 
 ### Requirements
 
@@ -49,6 +40,7 @@ to their appropriate locations.
 
 ### Modules
 
+- [Desktop](#desktop)
 - [Alacritty](#alacritty)
 - [Polybar](#polybar)
 - [Neovim](#neovim)
@@ -59,19 +51,23 @@ to their appropriate locations.
 - [Transmission](#transmission)
 - [Miscellaneous](#miscellaneous)
 
+#### Desktop
+
+<p align="center">
+<img src="./screenshots/desktop-2.png"  title="alacritty">
+</p>
+
 #### Alacritty
 
 <p align="center">
 <img src="./screenshots/alacritty.png"  title="alacritty">
 </p>
 
-#### Custom-Features
-
 - Custom shell prompt with
   [Startship](https://github.com/starship/starship).
 - Multiple Alacritty themes via
   [alacritty-themes](https://github.com/eendroroy/alacritty-theme) (i am
-  using Argonaut).
+  using Argonaut theme).
 - Background blur and transparency using
   [picom](https://github.com/yshui/picom).
 
@@ -98,7 +94,8 @@ modules from
 
 #### Features
 
-- IDE like Configuration written in Lua.
+- IDE like Configuration with native
+  [lsp](https://github.com/neovim/nvim-lspconfig).
 - [nvim-compe](https://github.com/hrsh7th/nvim-compe) for Code
   Autocompletion.
 - Fast Directory traversal with
@@ -120,8 +117,6 @@ modules from
   [Treesitter](https://github.com/nvim-treesitter/nvim-treesitter).
 - [NerdCommentor](https://github.com/preservim/nerdcommenter) for Faster
   Code Commenting.
-- IDE features like lsp signatures, Jump to definations with
-  [lsp-config](https://github.com/neovim/nvim-lspconfig).
 - View function signatures with
   [lsp-signature.nvim](https://github.com/ray-x/lsp_signature.nvim)
 - Highly Performatant UI for built-in-lsp
@@ -132,10 +127,12 @@ modules from
   [vim-wiki](https://github.com/vimwiki/vimwiki).
 - Shorcuts and keybindings in
   [KeyBindings](https://github.com/Zulqarnain-cc34/dotfiles/tree/main/nvim/README.md).
+- Snazzy bufferline with
+  [nvim-bufferline](https://github.com/akinsho/nvim-bufferline.lua).
 
-## Ranger
+#### Ranger
 
-### Rofi
+#### Rofi
 
 using rofi as a custom launcher,ssh launcher and search engine. Lots of
 more scripts to integrate rofi with
@@ -149,7 +146,7 @@ Using rofi bangs script to manage all in one menu. Themes have been used
 from [rofi-themes](https://github.com/davatorium/rofi-themes.git) and
 [rofi-collection](https://github.com/Murzchnvok/rofi-collection) .
 
-### Newsboat
+#### Newsboat
 
 Configuration has features
 
@@ -158,7 +155,7 @@ Configuration has features
   according to their extension.
 - feeds update on cronjob every x minutes in time.
 
-### NeoMutt
+#### NeoMutt
 
 Setup with - Aliases `~/.mutt/aliases` All the aliases are stored in
 aliases file. - Colors `~/.mutt/colors` Color theme for neomutt. -
@@ -171,9 +168,9 @@ Mutt themes are forked from
 [mutt-solarized-theme](https://github.com/altercation/mutt-colors-solarized)
 and [neon-mutt-theme](https://github.com/h3xx/mutt-colors-neonwolf)
 
-### Transmission
+#### Transmission
 
-### Miscellaneous
+#### Miscellaneous
 
 - Starship Prompt configured with `starship.toml` file.
 - Themes for desktop in themes folder (I am using xfce4).
