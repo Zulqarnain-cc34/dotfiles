@@ -1,3 +1,5 @@
+require("dpg/python")
+
 ------------------------------------------------------------------------
 --                                LSP                                 --
 ------------------------------------------------------------------------
@@ -37,4 +39,4 @@ require('plugins/lsp-diagnostics')
 require('plugins/todocomments')
 require('plugins/lualine')
 require('plugins/telescope')
-require('plugins/lspcolors')
+require('plugins/nvim-dap')

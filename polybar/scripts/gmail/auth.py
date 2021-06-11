@@ -1,9 +1,10 @@
 #!/usr/bin/env python
 
 from pathlib import Path
+
+from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
 from google_auth_oauthlib.flow import InstalledAppFlow
-from google.auth.transport.requests import Request
 
 SCOPE = 'https://www.googleapis.com/auth/gmail.labels'
 DIR = Path(__file__).resolve().parent
@@ -15,10 +16,13 @@ if Path(CREDENTIALS_PATH).is_file():
     if creds.expired and creds.refresh_token:
         creds.refresh(Request())
     else:
-        print('Credentials looks ok, try to remove credentials.json if something doesn\'t work')
+        print(
+            'Credentials looks ok, try to remove credentials.json if something doesn\'t work'
+        )
         exit()
 else:
-    flow = InstalledAppFlow.from_client_secrets_file(CLIENT_SECRETS_PATH, scopes=[SCOPE])
+    flow = InstalledAppFlow.from_client_secrets_file(CLIENT_SECRETS_PATH,
+                                                     scopes=[SCOPE])
     creds = flow.run_console()
 
 # Save credentials

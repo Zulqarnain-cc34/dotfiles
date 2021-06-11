@@ -44,8 +44,6 @@ map('n', '<leader>ds', '<cmd>:Trouble lsp_document_diagnostics<CR>', options)
 map('n', '<leader>ws', '<cmd>:Trouble lsp_workspace_diagnostics<CR>', options)
 -- Make a code action based on diagnostics
 map('n', '<leader>la', '<cmd>:Lspsaga code_action<CR>', options)
--- Shows the Diagnostics of a line
-map('n', '<leader>ll', '<cmd>lua vim.lsp.util.show_line_diagnostics()<CR>', options)
 -- Bulk rename
 map('n', '<leader>le', '<cmd>:Lspsaga rename<CR>', options)
 -- Shows Incoming
@@ -58,18 +56,29 @@ map('n', '<leader>lx', '<cmd>lua vim.lsp.buf.definition()()<CR>', options)
 map('n', '<leader>lr', '<cmd>Trouble lsp_references<cr>', options)
 -- Shows Outgoing
 map('n', '<leader>lq', '<cmd>Trouble quickfix<cr>', options)
+-- Shows the next diagnostic of a line
+map('n', '<leader>ll', '<cmd>:Lspsaga show_line_diagnostics<CR>', options)
+-- Shows the Diagnostics of a line
+map('n', '<leader>ln', '<cmd>:Lspsaga diagnostic_jump_next<CR>', options)
+-- Shows the Diagnostics of a line
+map('n', '<leader>lp', '<cmd>:Lspsaga diagnostic_jump_prev<CR>', options)
 
+map('n', '<leader>lb', '<cmd>:Lspsaga show_cursor_diagnostics<CR>', options)
+
+map('n', '<C-f>', '<cmd>:lua require("lspsaga.action").smart_scroll_with_saga(1)<CR>', options)
+
+map('n', '<C-b>', '<cmd>:lua require("lspsaga.action").smart_scroll_with_saga(-1)<CR>', options)
 ------------------------------------------------------------------------
 --                            Neovim Compe                            --
 ------------------------------------------------------------------------
 
 map('i', '<C-Space>', [[compe#complete()]], {expr = true, silent = true})
 map('i', '<CR>', [[compe#confirm('<CR>')]], {expr = true, silent = true})
-map('i', '<c-e>', [[compe#close('<C-e>')]], {noremap= true, silent = true})
+map('i', '<c-e>', [[compe#close('<C-e>')]], {noremap = true, silent = true})
 
-map('i', '<Tab>', 'pumvisible() ? "\\<C-n>" : "\\<Tab>"', {expr=true,noremap= true, silent = true})
-map('i', '<S-Tab>', 'pumvisible() ? "\\<C-p>" : "\\<Tab>"' , {expr=true,noremap= true })
-
+map('i', '<Tab>', 'pumvisible() ? "\\<C-n>" : "\\<Tab>"',
+    {expr = true, noremap = true, silent = true})
+map('i', '<S-Tab>', 'pumvisible() ? "\\<C-p>" : "\\<Tab>"', {expr = true, noremap = true})
 
 map('n', '<A-d>', '<cmd>:Lspsaga open_floaterm<CR>', options)
 
@@ -120,7 +129,6 @@ map("n", "<leader>j", "<cmd>:JABSOpen<cr>", {noremap = true})
 --                             BUfferline                             --
 ------------------------------------------------------------------------
 
-
 map("n", "bj", "<cmd>:BufferLineCycleNext<cr>", {noremap = true, silent = true})
 map("n", "bk", "<cmd>:BufferLineCyclePrev<cr>", {noremap = true, silent = true})
 map("n", "<leader>bn", "<cmd>:BufferLineMoveNext<cr>", {noremap = true, silent = true})
@@ -131,5 +139,21 @@ map("n", "bd", "<cmd>:BufferLineSortByDirectory<cr>", {noremap = true, silent = 
 ------------------------------------------------------------------------
 --                           Miscellenious                            --
 ------------------------------------------------------------------------
---
---
+
+map("n", "<F5>", "<cmd>:lua require 'dap'.continue()<cr>", {noremap = true, silent = true})
+map("n", "<F10>", "<cmd>:lua require 'dap'.step_over()<cr>", {noremap = true, silent = true})
+map("n", "<F11>", "<cmd>:lua require 'dap'.step_into()()<cr>", {noremap = true, silent = true})
+map("n", "<F12>", "<cmd>:lua require 'dap'.step_out()()<cr>", {noremap = true, silent = true})
+map("n", "<leader>bb", "<cmd>:lua require 'dap'.toggle_breakpoint()<cr>",
+    {noremap = true, silent = true})
+map("n", "<leader>B", ":lua require'dap'.repl.open()<CR>", {noremap = true, silent = true})
+map("n", "<leader>lp", ":lua require 'dap'.run_last()<cr>", {noremap = true, silent = true})
+map("n", "<leader>dr",
+    "<cmd>:lua require 'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<cr>",
+    {noremap = true, silent = true})
+
+-- map("n", "<leader>dl",
+-- map("n", "<leader>dl",
+-- "<cmd>:lua require 'dap'.set_breakpoint(nil,nil,vim.fn.input('Log point message: '))<cr>",
+-- map("v", "<leader>rs", "<cmd>:lua require 'dap-python'.debug_selection()<cr>",
+-- {noremap = true, silent = true})

@@ -1,11 +1,12 @@
 #!/usr/bin/env python
 
-import time
 import argparse
 import subprocess
+import time
 from pathlib import Path
-from googleapiclient import discovery, errors
+
 from google.oauth2.credentials import Credentials
+from googleapiclient import discovery, errors
 from httplib2 import ServerNotFoundError
 
 parser = argparse.ArgumentParser()
@@ -22,6 +23,7 @@ unread_prefix = '%{F' + args.color + '}' + args.prefix + ' %{F-}'
 error_prefix = '%{F' + args.color + '}\uf06a %{F-}'
 count_was = 0
 
+
 def print_count(count, is_odd=False):
     tilde = '~' if is_odd else ''
     output = ''
@@ -31,15 +33,22 @@ def print_count(count, is_odd=False):
         output = (args.prefix + ' ' + tilde).strip()
     print(output, flush=True)
 
+
 def update_count(count_was):
-    creds = Credentials.from_authorized_user_file(CREDENTIALS_PATH)
-    gmail = discovery.build('gmail', 'v1', credentials=creds)
-    labels = gmail.users().labels().get(userId='me', id=args.label).execute()
-    count = labels['messagesUnread']
-    print_count(count)
-    if not args.nosound and count_was < count and count > 0:
-        subprocess.run(['canberra-gtk-play', '-i', 'message'])
-    return count
+    try:
+        creds = Credentials.from_authorized_user_file(CREDENTIALS_PATH)
+        gmail = discovery.build('gmail', 'v1', credentials=creds)
+        labels = gmail.users().labels().get(userId='me',
+                                            id=args.label).execute()
+
+        count = labels['messagesUnread']
+        print_count(count)
+        if not args.nosound and count_was < count and count > 0:
+            subprocess.run(['canberra-gtk-play', '-i', 'message'])
+        return count
+    except Exception:
+        print("No Internet")
+
 
 print_count(0, True)
 

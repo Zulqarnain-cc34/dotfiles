@@ -5,12 +5,12 @@ vim.api.nvim_command([[
     autocmd FileType sh   nnoremap <F9> :!bash %
 ]])
 
---vim.api.nvim_command([[
-    --au BufWritePost ~/.config/nvim/*.{vim,lua} so $MYVIMRC
---]])
---vim.api.nvim_command([[
-    --augroup my-glyph-palette
-    --autocmd! *
-    --autocmd filetype startify,lua,typescript,python,javascript call glyph_palette#apply()
-    --augroup end
---]])
+-- vim.api.nvim_command([[
+-- au BufWritePost ~/.config/nvim/*.{vim,lua} so $MYVIMRC
+-- ]])
+-- vim.api.nvim_command([[
+-- augroup my-glyph-palette
+-- autocmd! *
+-- autocmd filetype startify,lua,typescript,python,javascript call glyph_palette#apply()
+-- augroup end
+-- ]])
