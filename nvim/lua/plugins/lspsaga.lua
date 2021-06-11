@@ -3,4 +3,9 @@ require('lspsaga').init_lsp_saga {
     warn_sign = "",
     hint_sign = "",
     infor_sign = ""
+--,
+    --error_sign = "",
+    --warn_sign = "",
+    --hint_sign = "",
+    --infor_sign = " "
 }

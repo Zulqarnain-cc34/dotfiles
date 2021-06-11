@@ -6,3 +6,8 @@ vim.notify = function(msg, log_level, _opts)
         vim.api.nvim_echo({{msg}}, true, {})
     end
 end
+
+function vim.g.LspSignatureHint()
+    return vim.api.nvim_command("call vim.lsp.buf.code_action")
+end
+
