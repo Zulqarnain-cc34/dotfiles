@@ -12,7 +12,9 @@ local paq = require'paq-nvim'.paq -- Import module and bind `paq` function
 paq {'savq/paq-nvim', opt = true} -- Let Paq manage itself
 -- =================== Themes ===================
 
-paq 'ghifarit53/tokyonight-vim'
+paq 'folke/tokyonight.nvim'
+-- paq 'ghifarit53/tokyonight-vim'
+
 -- paq  'joshdick/onedark.vim'
 -- paq  'shaunsingh/moonlight.nvim'
 -- paq 'tiagovla/tokyodark.nvim'
@@ -39,7 +41,8 @@ paq 'airblade/vim-gitgutter'
 
 -- =================== File Traversing =================
 
-paq 'preservim/nerdtree'
+-- paq 'preservim/nerdtree'
+paq 'kyazdani42/nvim-tree.lua'
 -- paq 'junegunn/fzf'
 -- paq 'junegunn/fzf.vim'
 paq 'nvim-lua/popup.nvim'
@@ -53,9 +56,6 @@ paq 'nvim-telescope/telescope.nvim'
 --                              Snippets                               --
 ------------------------------------------------------------------------
 
-paq 'honza/vim-snippets'
---paq 'SirVer/ultisnips'
--- paq 'SirVer/ultisnips'
 paq 'hrsh7th/vim-vsnip'
 paq 'sophacles/vim-processing'
 paq 'rafamadriz/friendly-snippets'
@@ -86,11 +86,12 @@ paq 'cjrh/vim-conda'
 paq 'tiagofumo/vim-nerdtree-syntax-highlight'
 paq 'lambdalisue/glyph-palette.vim'
 paq 'kkoomen/vim-doge'
+paq 'JMcKiern/vim-shoot'
 -- paq 'vimwiki/vimwiki'
 -- paq 'matbme/JABS.nvim'
-
 paq 'mfussenegger/nvim-dap'
 paq 'mfussenegger/nvim-dap-python'
+
 ------------------------------------------------------------------------
 --                                Lua                                 --
 ------------------------------------------------------------------------

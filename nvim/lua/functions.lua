@@ -7,7 +7,7 @@ vim.notify = function(msg, log_level, _opts)
     end
 end
 
-function vim.g.LspSignatureHint()
-    return vim.api.nvim_command("call vim.lsp.buf.code_action")
-end
+--function g.LspSignatureHint()
+    --return vim.api.nvim_command("call vim.lsp.buf.code_action")
+--end
 

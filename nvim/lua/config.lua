@@ -4,7 +4,7 @@ require("dpg/python")
 --                                LSP                                 --
 ------------------------------------------------------------------------
 require('lsp/python')
-require('lsp/lua')
+require('lsp/sumenko_lua')
 require('lsp/bash')
 require('lsp/Cmake')
 require('lsp/C')
@@ -24,6 +24,7 @@ require('lsp/css')
 
 require('plugins/bufferline')
 require('plugins/autopairs')
+require('plugins/nvimtree')
 require('plugins/nvim-treesitter')
 require('plugins/colorizer')
 require('plugins/lspsaga')

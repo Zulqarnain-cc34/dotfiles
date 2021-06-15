@@ -15,10 +15,11 @@ local g = vim.g
 g.tokyonight_style = 'storm' -- available: night, storm
 g.tokyonight_enable_italic = 1
 -- g.onedark_style = 'deep'
-g.tokyonight_sidebars = {"qf", "vista_kind", "terminal", "packer"}
+g.tokyonight_sidebars = {"qf", "vista_kind", "terminal", "pack"}
 -- g.mkdp_auto_start = 1
--- Change the "hint" color to the "orange" color, and make the "error" color bright red
+---- Change the "hint" color to the "orange" color, and make the "error" color bright red
 g.tokyonight_colors = {hint = "orange", error = "#ff0000"}
+
 g.doge_doc_standard_python = 'numpy'
 g.doge_mapping = "<Leader>q"
 

@@ -98,7 +98,6 @@ symbol="🐋 "
 [conda]
 format = "[$symbol$environment](dimmed Yellow) "
 symbol="🅒 "
-ignore-base=true
 
 [cmd_duration]
 min_time = 10

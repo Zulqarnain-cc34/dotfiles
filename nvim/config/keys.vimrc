@@ -130,7 +130,7 @@ nma <silent> <leader>sv :so $MYVIMRC<CR>
 " Nerd Tree Key bindings
 
 "nnoremap <leader>n :NERDTreeFocus<CR>
-nnoremap <leader>n :NERDTree<CR>
+"nnoremap <leader>n :NERDTree<CR>
 "nnoremap <C-t> :NERDTreeToggle<CR>
 "nnoremap <C-p> :NERDTreeFind<CR>
 
@@ -239,3 +239,4 @@ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g
 "hi PmenuSel ctermfg=NONE ctermbg=24 cterm=NONE guifg=NONE guibg=#204a87
 "gui=NONE
 "
+:command! -nargs=* Tmuxnew :! tmux new-window -n "<args>" && tmux send-keys "<args>" 'Enter'
