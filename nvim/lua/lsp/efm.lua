@@ -15,12 +15,17 @@ local shfmt = require "efm/shfmt"
 local vint = require "efm/vint"
 local prettier = require "efm/prettier"
 local markdownlint = require "efm/markdownlint"
+
 -- local markdownPandocFormat = require "efm/pandoc"
 local markdownPandocFormat = {
     formatCommand = 'pandoc -f markdown -t gfm -sp --tab-stop=2',
     formatStdin = true
 }
--- local shellcheck = require "efm/shellcheck"
+
+local shellcheck = {
+    LintCommand = 'shellcheck -f gcc -x',
+    lintFormats = {'%f:%l:%c: %trror: %m', '%f:%l:%c: %tarning: %m', '%f:%l:%c: %tote: %m'}
+}
 
 require"lspconfig".efm.setup {
     on_attach = on_attach,
@@ -34,7 +39,7 @@ require"lspconfig".efm.setup {
     settings = {
         rootMarkers = {".git/"},
         languages = {
-            sh = {shfmt},
+            sh = {shfmt, shellcheck},
             vim = {vint},
             lua = {luafmt},
             markdown = {markdownPandocFormat, markdownlint},

@@ -157,3 +157,16 @@ map("n", "<leader>dr",
 -- "<cmd>:lua require 'dap'.set_breakpoint(nil,nil,vim.fn.input('Log point message: '))<cr>",
 -- map("v", "<leader>rs", "<cmd>:lua require 'dap-python'.debug_selection()<cr>",
 -- {noremap = true, silent = true})
+
+
+------------------------------------------------------------------------
+--                           Nvim Tree--
+------------------------------------------------------------------------
+
+
+map("n", "<C-n>", "<cmd>:NvimTreeToggle<CR>", {noremap = true, silent = true})
+map("n", "<leader>nr", "<cmd>:NvimTreeRefresh<CR>", {noremap = true, silent = true})
+map("n", "<leader>nf", "<cmd>:NvimTreeFindFile<CR>", {noremap = true, silent = true})
+
+
+

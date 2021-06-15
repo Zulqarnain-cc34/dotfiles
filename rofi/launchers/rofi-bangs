@@ -18,6 +18,9 @@ declare -A COMMANDS
 # COMMANDS["editbookmarks"]="$EDITORGUI $HOME/.config/surfraw/bookmarks"
 # LABELS["editbookmarks"]=""
 # All applications
+COMMANDS["exec"]="rofi -show run -show -modi run"
+LABELS["exec"]=""
+
 COMMANDS["apps"]="rofi -show drun -show -modi drun"
 LABELS["apps"]=""
 

@@ -9,6 +9,7 @@ export NODE_PATH="$NPM_PACKAGES/lib/node_modules:$NODE_PATH"
 unset MANPATH # delete if you already modified MANPATH elsewhere in your configuration
 export MANPATH="$NPM_PACKAGES/share/man:$(manpath)"
 export RTV_BROWSER=~/.scripts/urlportal.sh
+export TERM="kitty"
 
 export QT_QPA_PLATFORMTHEME="qt5ct"
 export WGETRC="$HOME/.config/wget/wgetrc"
