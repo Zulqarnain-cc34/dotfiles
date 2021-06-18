@@ -30,7 +30,7 @@ cmd("colorscheme tokyonight")
 ------------------------------------------------------------------------
 
 -- Using Markdown Sytax in favor of wikilist Syntax
-g.vimwiki_list = {{path = '~/.config/nvim/tempdir/vimwiki/', syntax = 'markdown', ext = '.md'}}
+--g.vimwiki_list = {{path = '~/.config/nvim/tempdir/vimwiki/', syntax = 'markdown', ext = '.md'}}
 
 ------------------------------------------------------------------------
 --                          Dev Icons Colors                          --

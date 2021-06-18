@@ -1,4 +1,3 @@
-
 #.Bashrc
 
 #############################################################################
@@ -10,18 +9,14 @@
 ##                                                                         ##
 #############################################################################
 
-if [[ $TERM == 'linux' ]]
-then
+if [[ $TERM == 'linux' ]]; then
     PS1="\[\033[1;37m\][\[\033[01;33m\]\u\[\033[1;31m\]@\[\033[01;34m\]\h \[\033[1;32m\]\W\[\033[1;37m\]]\[\033[1;33m\]\$\[\033[1;37m\] "
-elif [[ $TERM == 'rxvt-unicode-256color' ]]
-then
+elif [[ $TERM == 'rxvt-unicode-256color' ]]; then
     PS1="\[\033[1;37m\][\[\033[01;33m\]\u\[\033[1;31m\]@\[\033[01;34m\]\h \[\033[1;32m\]\W\[\033[1;37m\]]\[\033[1;33m\]\$\[\033[1;36m\] "
     neofetch
-elif [[ $TERM == 'screen-256color' ]]
-then
+elif [[ $TERM == 'screen-256color' ]]; then
     PS1="\[\033[1;37m\][\[\033[01;33m\]\u\[\033[1;31m\]@\[\033[01;34m\]\h \[\033[1;32m\]\W\[\033[1;37m\]]\[\033[1;33m\]\$\[\033[1;36m\] "
-elif [[ $TERM == 'alacritty' ]]
-then
+elif [[ $TERM == 'alacritty' ]]; then
     PS1="\[\033[1;37m\][\[\033[01;33m\]\u\[\033[1;31m\]@\[\033[01;34m\]\h \[\033[1;32m\]\W\[\033[1;37m\]]\[\033[1;33m\]\$\[\033[1;37m\] "
     neofetch
 else
@@ -30,16 +25,17 @@ fi
 
 #Sourcing all files in .config/shellconfig/*
 source /usr/share/autojump/autojump.bash
-xrdb -merge $HOME/.Xresources &
+xrdb -merge "$HOME"/.Xresources &
 
-source $HOME/.aliases/aliases
-source $HOME/.aliases/functions
+source "$HOME"/.aliases/aliases
+source "$HOME"/.aliases/functions
+
 #echo -e "$($HOME/Downloads/archlogo.txt)"
 source /usr/share/fzf/key-bindings.bash
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$("$HOME/Softwares/anaconda3/bin/conda" "shell.bash" "hook" 2> /dev/null)"
+__conda_setup="$("$HOME/Softwares/anaconda3/bin/conda" "shell.bash" "hook" 2>/dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else

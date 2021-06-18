@@ -179,7 +179,7 @@ and [neon-mutt-theme](https://github.com/h3xx/mutt-colors-neonwolf)
   [twitch-notifier](https://github.com/GiedriusS/TwitchNotifier)
   package.
 - Coc settings configured in `nvim/coc-settings.json`.
-- [urlportal.sh]() script to open files depending upon their extensions.
+- urlportal.sh script to open files depending upon their extensions.
 - A light weight System Moniter with [Conky
   theme](https://github.com/juliojsb/jotack).
 

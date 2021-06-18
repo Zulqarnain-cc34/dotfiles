@@ -51,7 +51,7 @@ map('n', '<leader>lc', '<cmd>lua vim.lsp.buf.incoming_calls()<CR>', options)
 -- Shows Outgoing
 map('n', '<leader>lo', '<cmd>lua vim.lsp.buf.outgoing_calls()<CR>', options)
 -- Shows Outgoing
-map('n', '<leader>lx', '<cmd>lua vim.lsp.buf.definition()()<CR>', options)
+map('n', '<leader>lx', '<cmd>lua vim.lsp.buf.definition()<CR>', options)
 -- Shows Outgoing
 map('n', '<leader>lr', '<cmd>Trouble lsp_references<cr>', options)
 -- Shows Outgoing
@@ -68,6 +68,7 @@ map('n', '<leader>lb', '<cmd>:Lspsaga show_cursor_diagnostics<CR>', options)
 map('n', '<C-f>', '<cmd>:lua require("lspsaga.action").smart_scroll_with_saga(1)<CR>', options)
 
 map('n', '<C-b>', '<cmd>:lua require("lspsaga.action").smart_scroll_with_saga(-1)<CR>', options)
+
 ------------------------------------------------------------------------
 --                            Neovim Compe                            --
 ------------------------------------------------------------------------
