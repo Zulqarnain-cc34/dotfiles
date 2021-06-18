@@ -34,11 +34,11 @@
 # "query:All Unread Articles (31-60 days old):unread = \"yes\" and age between 31:60"
 # "query:All Unread Articles (61-90 days old):unread = \"yes\" and age between 61:90"
 
-----------------------------
------- Miscellaneous--------
-----------------------------
+#----------------------------
+#------ Miscellaneous--------
+#----------------------------
 
-http://localhost:1200/au/news "~University"
+#http://localhost:1200/au/news "~University"
 
 
 -----------------------------
@@ -103,5 +103,5 @@ https://www.reddit.com/r/vim_magic/.rss "~Linux-Subreddit: vim_magic" "Linux-sub
 https://www.reddit.com/r/vim/.rss "~Linux-Subreddit: vim" "Linux-subreddit"
 https://www.reddit.com/r/linuxprojects/.rss "~Linux-Subreddit: linuxprojects" "Linux-subreddit"
 https://www.reddit.com/r/ScriptSwap/.rss "~Linux-Subreddit: ScriptSwap" "Linux-subreddit"
-https://www.reddit.com/r/opensource/.rss "~Linux-Subreddit: openosurce" "Linux-subreddit"
+https://www.reddit.com/r/opensource/.rss "~Linux-Subreddit: opensource" "Linux-subreddit"
 https://www.reddit.com/r/coolgithubprojects/.rss "~Linux-Subreddit: coolgithubprojects" "Linux-subreddit"

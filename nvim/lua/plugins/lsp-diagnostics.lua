@@ -5,6 +5,5 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] =
         virtual_text = {spacing = 4, prefix = "◈ "}
     })
 
-
 --virtual_text = {spacing = 4, prefix = '雷'}
 --virtual_text = {spacing = 4, prefix = '◾'}
