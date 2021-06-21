@@ -46,7 +46,7 @@ o.magic = true -- For regular expressions turn magic on
 
 o.conceallevel = 0 -- So that I can see `` in markdown files
 o.shiftround = true -- use multiple of shiftwidth when indenting with '<' and '>'
-o.whichwrap = '<,>,h,l' -- Allows moving between lines by hitting the end and start
+--o.whichwrap = '<,>,h,l' -- Allows moving between lines by hitting the end and start
 b.undofile = true -- Maintain undo history between sessions
 o.undodir = '/home/precision/.config/nvim/tempdir/undodir'
 o.shortmess = o.shortmess .. "c" -- Don't pass messages to |ins-completion-menu|.

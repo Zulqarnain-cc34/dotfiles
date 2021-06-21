@@ -13,7 +13,7 @@ paq {'savq/paq-nvim', opt = true} -- Let Paq manage itself
 -- =================== Themes ===================
 
 paq 'folke/tokyonight.nvim'
--- paq 'ghifarit53/tokyonight-vim'
+ --paq 'ghifarit53/tokyonight-vim'
 
 -- paq  'joshdick/onedark.vim'
 -- paq  'shaunsingh/moonlight.nvim'

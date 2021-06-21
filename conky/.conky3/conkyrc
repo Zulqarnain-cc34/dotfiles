@@ -1,0 +1,72 @@
+# Conky Settings
+background yes
+update_interval 1
+
+cpu_avg_samples 2
+net_avg_samples 2
+
+override_utf8_locale yes
+
+double_buffer yes
+no_buffers yes
+
+text_buffer_size 2048
+
+temperature_unit fahrenheit
+
+#Window Specification
+own_window yes
+own_window_type dock
+own_window_transparent yes
+own_window_argb_visual yes
+own_window_hints undecorate,sticky,skip_taskbar,skip_pager,below
+
+border_inner_margin 0
+border_outer_margin 0
+
+# Adjust Resolution according to your screen
+minimum_size 1366 768
+maximum_width 1366
+
+alignment tr
+gap_x 10
+gap_y 55
+
+#Graphics Settings #
+draw_shades no
+draw_outline no
+draw_borders no
+draw_graph_borders no
+
+#Text settings #
+use_xft yes
+xftfont monofur dreams:size=8
+xftalpha 0.5
+
+uppercase no
+temperature_unit celsius
+
+default_color FFFFFF
+
+#Lua Load #
+lua_load ~/.lua/scripts/haunted.lua
+lua_draw_hook_pre clock_rings
+
+## Adjust the values offset as per your requirements
+TEXT
+${offset 130}${voffset 170}${font monofur bold:pixelsize=20}Harshit Yadav ${offset -140}${voffset 20}${color fa6973}${font monofur:pixelsize=20}Ubuntu 13.04 
+
+${offset 660}${voffset -40}${color fa6973}${font monofur:pixelsize=200}${time %H:%M}${font monofur}${offset -480}${voffset 30}${color EAEAEA}${font monofur:pixelsize=90}${time %a},${time %d} ${color EAEAEA}${font monofur:pixelsize=90}${time  %b}${offset -400}${voffset 30}${font monofur:pixelsize=10}${color FFA300}HD ${offset 9}$color${fs_free /} / ${fs_size /}${offset 30}${color FFA300}RAM ${offset 9}$color$mem / $memmax${offset 30}${color FFA300}CPU ${offset 9}$color${cpu cpu0}%
+${image ~/.conky/rev-eng.png}
+${offset 250}${voffset -80}${color ffffff}${font monofur:size=11:style=Bold}${exec whoami}@${nodename}
+${offset 250}${color ffffff}Linux ${kernel}
+${offset 250}${color ffffff}Uptime :${uptime}${color ffffff}
+${offset 900}${voffset 100}${font monofur:size=9:style=Bold}root : ${font monofur:size=9}${fs_used /}/${fs_size /}
+${offset 900}${voffset}${font monofur:size=9:style=Bold}home: ${font monofur:size=9}${fs_used /home}/${fs_size /home}
+${offset 900}${voffset}${color ffffff}${font monofur:size=9:style=Bold}swap: ${font monofur:size=8} ${swap} / ${swapfree}
+${offset 420}${voffset}${color ffffff}${font monofur:size=11}${top name 5} ${top mem 5}
+
+${offset 600}${voffset -120}${color ffffff}${font monofur:size=9}${color fa6973}IP Address : ${color ffffff} ${addr eth0}
+${offset 600}${color ffffff}${font monofur:size=9}${color fa6973}Down : ${color ffffff}${downspeed eth0} k/s 
+${offset 600}${color fa6973}Up: ${color ffffff}${upspeed eth0} k/s
+${offset 20}${voffset -80}${font monofur:pixelsize=25}${color 4eafec}To do list:${offset 20}${voffset}${font monofur:pixelsize=15}${color ffffff}${tail ~/todo 5}

@@ -64,9 +64,15 @@ https://medium.com/feed/towards-data-science/tagged/data-science "~AI:Towards Da
 https://www.reddit.com/r/datascience/.rss "~AI: Datascience" "AI"
 https://nanonets.com/blog/rss/ "~AI: Nanonets" "AI"
 
-#-----------------------------
-#---------Programming---------
-#-----------------------------
+-----------------------------
+---------programming---------
+-----------------------------
+
+https://yasoob.me/index.xml "Programming: Python" "Programming" 
+https://planetpython.org/rss20.xml "Programming: Python" "Programming"
+https://thecrazyprogrammer.com/feed "Programming: General" "Programming"
+https://css-tricks.com/feed/ "Programming: ccs" "Programming"
+https://medium.com/feed/better-programming "Programming: General" "Programming"
 
 #https://www.sitepoint.com/feed/ "~Programming: javascript" "Programming"
 #https://www.reddit.com/r/webdev/.rss "Reddit"
