@@ -20,7 +20,7 @@ g.tokyonight_sidebars = {"qf", "vista_kind", "terminal", "pack"}
 ---- Change the "hint" color to the "orange" color, and make the "error" color bright red
 g.tokyonight_colors = {hint = "orange", error = "#ff0000"}
 
-g.doge_doc_standard_python = 'numpy'
+g.doge_doc_standard_python = 'sphinx'
 g.doge_mapping = "<Leader>q"
 
 cmd("colorscheme tokyonight")
@@ -30,7 +30,7 @@ cmd("colorscheme tokyonight")
 ------------------------------------------------------------------------
 
 -- Using Markdown Sytax in favor of wikilist Syntax
---g.vimwiki_list = {{path = '~/.config/nvim/tempdir/vimwiki/', syntax = 'markdown', ext = '.md'}}
+-- g.vimwiki_list = {{path = '~/.config/nvim/tempdir/vimwiki/', syntax = 'markdown', ext = '.md'}}
 
 ------------------------------------------------------------------------
 --                          Dev Icons Colors                          --
