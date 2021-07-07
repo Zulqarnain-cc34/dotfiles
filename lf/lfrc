@@ -126,7 +126,7 @@ cmd chmod %{{
 
 
 
-cmd setwallpaper %cp "$f" ~/.config/wall.png && xwallpaper --stretch "$f"
+cmd setwallpaper xfconf-query --channel xfce4-desktop --property /backdrop/screen0/monitorLVDS-1/workspace0/last-image --set "%s"
 
 cmd fzf_jump ${{
   res="$(find . -maxdepth 3 | fzf --reverse --header='Jump to location')"
@@ -318,10 +318,6 @@ map u
 map uv unselect
 map uy clear
 
-map bg setwallpaper
-map bt set_mozillas_new_tab_back
-
-
 map e
 map ef fzf_jump
 map el fzf_locate
@@ -347,19 +343,19 @@ map tr restore_trash
 map tc clear_trash
 map tg cd ~/.local/share/Trash/
 
-
 map sa :{{ set sortby atime;set reverse!; }}
 map sc :{{ set sortby ctime;set reverse!; }}
 map se :{{ set sortby ext;set reverse!; }}
 map sn :{{ set sortby natural;set reverse!; }}
 map ss :{{ set sortby size;set reverse!; }}
 map st :{{ set sortby time;set reverse!; }}
+map sg :setwallpaper
+map st :set_mozillas_new_tab_back
 
 map zA set info atime
 map zc set info ctime
 
 map o push :open_with<space>
-map . set hidden!
 
 # Auto jump integration with lf
 cmd aj %lf -remote "send $id cd '$(autojump $1)'"

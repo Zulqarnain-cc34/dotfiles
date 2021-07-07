@@ -114,3 +114,4 @@ pacman -Qu --dbpath "$CHECKUPDATES_DB" 2> /dev/null | grep -v '\[.*\]'
 
 exit 0
 
+# vim: set noet:

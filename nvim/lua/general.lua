@@ -23,7 +23,6 @@ cmd("filetype plugin indent on")
 -- ============== Basic   ==========================
 
 o.termguicolors = true -- Allows coloring support and themes colors
-o.compatible = false -- ompromising compatibilty
 o.fileencoding = "utf-8" -- The encoding written to file
 o.undolevels = 1000 -- use many muchos levels of undo
 o.title = true -- change the terminal's title
@@ -35,7 +34,8 @@ o.mouse = 'a' -- Enable mouse support
 o.wildignore = '*.swp,*.bak,*.pyc,*.class'
 o.backspace = 'indent,eol,start' -- allow back spacing over everything in insert mode
 w.wrap = true -- wrap lines
-w.list = true
+w.linebreak = true -- Makes sure a word is not broken when wrapping
+-- w.list = true
 w.number = true -- Setting up number line
 w.relativenumber = true -- Setting relative number line
 w.listchars = 'tab:>.,trail:.,extends:#,nbsp:.'
@@ -45,8 +45,9 @@ o.lazyredraw = true -- Don't redraw while executing macros (good performance con
 o.magic = true -- For regular expressions turn magic on
 
 o.conceallevel = 0 -- So that I can see `` in markdown files
+
 o.shiftround = true -- use multiple of shiftwidth when indenting with '<' and '>'
---o.whichwrap = '<,>,h,l' -- Allows moving between lines by hitting the end and start
+-- o.whichwrap = '<,>,h,l' -- Allows moving between lines by hitting the end and start
 b.undofile = true -- Maintain undo history between sessions
 o.undodir = '/home/precision/.config/nvim/tempdir/undodir'
 o.shortmess = o.shortmess .. "c" -- Don't pass messages to |ins-completion-menu|.
@@ -61,16 +62,19 @@ o.ignorecase = true -- Ignorecase when searching
 o.incsearch = true -- start searching on each keystroke
 o.smartcase = true -- ignore case when lowercase, match case when capital case is used
 o.hlsearch = true -- highlight the search results
+-- o.spell= true -- highlight the search results
+-- o.spelllang= "en_us"-- highlight the search results
 -- o.mat = 1              -- How many tenths of a second to blink when matching brackets
 
 -- =============== Completion ========================
 
 o.wildmenu = true
 o.wildmode = 'longest:full,full'
-
+	
 -- ================= Indentation ================= --
 
 b.autoindent = true -- copy the previous indentation on autoindenting
 b.smartindent = true -- always set autoindenting on
-b.shiftwidth = 2 -- number of spaces to use for autoindenting
+b.shiftwidth = 4 -- number of spaces to use for autoindenting
 o.smarttab = true -- insert tabs on the start of a line according to shiftwidth, not tabstop
+o.tabstop = 4 -- insert tabs on the start of a line according to shiftwidth, not tabstop
