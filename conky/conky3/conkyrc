@@ -43,7 +43,7 @@ text_buffer_size 2048
 
 #imlib_cache_size 0
 
-default_color b7b7b7
+default_color ffffff 
 
 
 
@@ -101,7 +101,7 @@ border_outer_margin 0
 draw_shades no
 draw_outline no
 draw_borders no
-draw_graph_borders no 
+draw_graph_borders yes 
 
 
 
@@ -311,7 +311,7 @@ lua_draw_hook_pre clock_rings
 # stuff after 'TEXT' will be formatted on screen
 TEXT
 # Clock and header
- ${offset 700}${color EAEAEA}${font GE Inspira:pixelsize=120}${time %H:%M}${font}${voffset -84}${voffset 10}${color FFA300}${font GE Inspira:pixelsize=42}${time %d} ${voffset -15}${color EAEAEA}${font GE Inspira:pixelsize=22}${time  %B} ${time %Y}${font}${voffset 124}${font GE Inspira:pixelsize=58}${offset -547}${time %A}${font}
+ ${offset 700}${color EAEAEA}${font GE Inspira:pixelsize=120}${time %H:%M}${font}${voffset -84}${voffset 10}${color FFA300}${font GE Inspira:pixelsize=42}${time %d} ${voffset -10}${color EAEAEA}${font GE Inspira:pixelsize=22}${time  %B} ${time %Y}${font}${voffset 124}${font GE Inspira:pixelsize=58}${offset -547}${time %A}${font}
 ${offset 720}${voffset -100}${font Ubuntu:pixelsize=10}${color FFA300}HD ${offset 9}$color${fs_free /} / ${fs_size /}${offset 30}${color FFA300}RAM ${offset 9}$color$mem / $memmax${offset 30}${color FFA300}CPU ${offset 9}$color${cpu cpu0}%
 ${voffset 10}${offset 295}${color 2c2c2c}${hr 4}
 ${image ~/.config/conky/conky3/background.png}
@@ -336,11 +336,11 @@ ${offset 715}${voffset 0}$color${font Santana:size=8}TCP Connections : ${tcp_por
 ${offset 715}${voffset 0}${font Santana:size=8}${color f4732d}Down : ${offset 9}$color${downspeed wlp3s0}/s ${offset 8}${color ebff46}Up : ${offset 9}$color${upspeed wlp3s0} /s
 ${offset 715}${voffset 0}${color 6f6f6f}${font Santana:size=8}Interface wlp3s0 Usage :
 ${offset 715}${voffset -2}$color${font Santana:size=8}${color 2c2c2c}${downspeedgraph wlp3s0 32,200 b7b7b7 f4732d}
-${offset 715}${voffset -5}${color 2c2c2c}${upspeedgraph wlp3s0 32,200 b7b7b7 ebff46}
+${offset 715}${voffset -5}${color 2c2c2c}${upspeedgraph eth0 32,200 b7b7b7 ebff46}
 # Positioning eset for static text examples below
 ${voffset -158}
 # Static text example: Logo
-${offset 120}${color EAEAEA}${font Ubuntu:pixelsize=20}${color f4732d}Ubuntu$color 12.10
+${offset 120}${color EAEAEA}${font Ubuntu:pixelsize=20}${color f4732d}Arch Linux$color 5.12.8 
 # Static text example: Multi-line
 #${offset 120}$font${color 6f6f6f}random text can go here
 #${offset 120}and here...

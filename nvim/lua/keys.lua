@@ -33,7 +33,7 @@ map('n', 'K', '<cmd>:Lspsaga hover_doc<CR>', options)
 -- Show and goto refrences of functions
 map('n', '<leader>ls', '<cmd>:Lspsaga signature_help<CR>', options)
 -- Shows function implementation
-map('n', '<leader>li', '<cmd>lua vim.lsp.buf.implementation()<CR>', options)
+map('n', '<leader>li','<cmd>lua vim.lsp.buf.implementation()<CR>', options)
 -- Goto type defination
 map('n', '<leader>ly', '<cmd>lua vim.lsp.buf.type_definition()<CR>', options)
 -- Format Code according to file specific formatter
@@ -157,17 +157,29 @@ map("n", "<leader>dr",
 -- map("n", "<leader>dl",
 -- "<cmd>:lua require 'dap'.set_breakpoint(nil,nil,vim.fn.input('Log point message: '))<cr>",
 -- map("v", "<leader>rs", "<cmd>:lua require 'dap-python'.debug_selection()<cr>",
--- {noremap = true, silent = true})
 
 
 ------------------------------------------------------------------------
 --                           Nvim Tree--
 ------------------------------------------------------------------------
 
-
 map("n", "<C-n>", "<cmd>:NvimTreeToggle<CR>", {noremap = true, silent = true})
 map("n", "<leader>nr", "<cmd>:NvimTreeRefresh<CR>", {noremap = true, silent = true})
-map("n", "<leader>nf", "<cmd>:NvimTreeFindFile<CR>", {noremap = true, silent = true})
 
 
+-----------------------------------------------------------------------
+--                           Macros
+------------------------------------------------------------------------
+-- map("i", "<Space>", '<C-o>1z=<C-o>e<C-o>A<Space>', {noremap = true, silent = true})
+map("n", "<leader>q,", 'i"<ESC>ewwi"<ESC>', {noremap = true, silent = true})
 
+-----------------------------------------------------------------------
+--                          C++ Switching h and cpp files
+------------------------------------------------------------------------
+
+map("n", "<A-o>", ':FSHere', {noremap = true, silent = true})
+-- Extra hotkeys to open header/source in the split
+map("n", "<leader>oh", ':FSSplitLeft<CR>', {noremap = true, silent = true})
+map("n", "<leader>oj", ':FSSplitBelow<CR>', {noremap = true, silent = true})
+map("n", "<leader>ok", ':FSSplitAbove<CR>', {noremap = true, silent = true})
+map("n", "<leader>ol", ':FSSplitRight<CR>', {noremap = true, silent = true})

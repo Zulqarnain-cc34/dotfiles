@@ -13,13 +13,16 @@ paq {'savq/paq-nvim', opt = true} -- Let Paq manage itself
 -- =================== Themes ===================
 
 paq 'folke/tokyonight.nvim'
- --paq 'ghifarit53/tokyonight-vim'
-
+-- paq 'ghifarit53/tokyonight-vim'
+paq "ray-x/aurora"
+paq "nekonako/xresources-nvim"
+paq "tanvirtin/monokai.nvim"
+paq "dracula/vim"
 -- paq  'joshdick/onedark.vim'
--- paq  'shaunsingh/moonlight.nvim'
+paq 'shaunsingh/moonlight.nvim'
 -- paq 'tiagovla/tokyodark.nvim'
--- paq 'navarasu/onedark.nvim'
-paq "monsonjeremy/onedark.nvim"
+paq 'navarasu/onedark.nvim'
+-- paq "monsonjeremy/onedark.nvim"
 
 -- ================== LSP and Treesitter =====================
 
@@ -56,6 +59,7 @@ paq 'nvim-telescope/telescope.nvim'
 --                              Snippets                               --
 ------------------------------------------------------------------------
 
+-- paq 'SirVer/ultisnips'
 paq 'hrsh7th/vim-vsnip'
 paq 'sophacles/vim-processing'
 paq 'rafamadriz/friendly-snippets'
@@ -86,11 +90,19 @@ paq 'cjrh/vim-conda'
 paq 'tiagofumo/vim-nerdtree-syntax-highlight'
 paq 'lambdalisue/glyph-palette.vim'
 paq 'kkoomen/vim-doge'
-paq 'JMcKiern/vim-shoot'
+paq 'lukas-reineke/indent-blankline.nvim'
+-- paq 'JMcKiern/vim-shoot'
 -- paq 'vimwiki/vimwiki'
 -- paq 'matbme/JABS.nvim'
 paq 'mfussenegger/nvim-dap'
 paq 'mfussenegger/nvim-dap-python'
+
+------------------------------------------------------------------------
+--                                C++
+------------------------------------------------------------------------
+
+paq "derekwyatt/vim-fswitch"
+paq 'AckslD/nvim-anywise-reg.lua'
 
 ------------------------------------------------------------------------
 --                                Lua                                 --

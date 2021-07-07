@@ -3,7 +3,8 @@
 "                              fzf keyBindings                               "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
-nma <silent> <leader>sv :so $MYVIMRC<CR>
+nmap <silent> <leader>sv :so $MYVIMRC<CR>
+
 
 " FZF Plugins keymappings
 "nnoremap <silent> <Leader>b :Buffers<CR>

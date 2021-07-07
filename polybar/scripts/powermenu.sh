@@ -8,7 +8,7 @@
 dir="~/.config/polybar/scripts/rofi"
 uptime=$(uptime -p | sed -e 's/up //g')
 
-rofi_command="rofi " 
+rofi_command="rofi -theme $dir/powermenu.rasi"
 
 # Options
 shutdown=" Shutdown"
@@ -28,7 +28,7 @@ confirm_exit() {
 
 # Message
 msg() {
-	rofi -e "Available Options  -  yes / y / no / n"
+	rofi -theme "$dir/message.rasi" -e "Available Options  -  yes / y / no / n"
 }
 
 # Variable passed to rofi

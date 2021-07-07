@@ -20,7 +20,7 @@ g.tokyonight_sidebars = {"qf", "vista_kind", "terminal", "pack"}
 ---- Change the "hint" color to the "orange" color, and make the "error" color bright red
 g.tokyonight_colors = {hint = "orange", error = "#ff0000"}
 
-g.doge_doc_standard_python = 'sphinx'
+g.doge_doc_standard_python = 'numpy'
 g.doge_mapping = "<Leader>q"
 
 cmd("colorscheme tokyonight")
@@ -35,4 +35,4 @@ cmd("colorscheme tokyonight")
 ------------------------------------------------------------------------
 --                          Dev Icons Colors                          --
 ------------------------------------------------------------------------
---
+

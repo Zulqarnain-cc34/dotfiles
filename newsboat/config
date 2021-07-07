@@ -74,13 +74,38 @@ bind-key c toggle-show-read-feeds
 #bind-key left open
 bind-key l open
 bind-key LEFT quit
-#bind-key RIGHT open
+bind-key RIGHT open
+
+#---------------------------------------------------------
+#                        Theme
+#---------------------------------------------------------
+
+color background          color236   default
+color listnormal          color248   default
+color listnormal_unread   color6     default
+color listfocus           color236   color12
+color listfocus_unread    color15    color12
+color info                color248   color236
+color article             color248   default
+
+# highlights
+highlight article "^(Feed|Link):.*$" color6 default bold
+highlight article "^(Title|Date|Author):.*$" color6 default bold
+highlight article "https?://[^ ]+" color10 default underline
+highlight article "\\[[0-9]+\\]" color10 default bold
+highlight article "\\[image\\ [0-9]+\\]" color10 default bold
+highlight feedlist "^─.*$" color6 color236 bold
+
+
+#---------------------------------------------------------
+#                        Unused
+#---------------------------------------------------------
 
 # More readable color settings (Nord)
-color listfocus             white   black   bold
-color listnormal_unread     yellow  black
-color listfocus_unread      yellow  black   bold
-color info                  black   yellow  bold
+#color listfocus             white   black   bold
+#color listnormal_unread     yellow  black
+#color listfocus_unread      yellow  black   bold
+#color info                  black   yellow  bold
 
 # highlights
 #highlight article "^(Title):.*$" blue default
@@ -99,15 +124,21 @@ color info                  black   yellow  bold
 #highlight article "\\[embedded flash: [0-9][0-9]*\\]" color66 default bold
 
 
-highlight all "---.*---" yellow
-highlight feedlist ".*(0/0))" black
-highlight article "(^Feed:.*|^Title:.*|^Author:.*)" cyan default bold
-highlight article "(^Link:.*|^Date:.*)" default default
-highlight article "https?://[^ ]+" green default
-highlight article "^(Title):.*$" blue default
-highlight article "\\[[0-9][0-9]*\\]" magenta default bold
-highlight article "\\[image\\ [0-9]+\\]" green default bold
-highlight article "\\[embedded flash: [0-9][0-9]*\\]" green default bold
-highlight article ":.*\\(link\\)$" cyan default
-highlight article ":.*\\(image\\)$" blue default
-highlight article ":.*\\(embedded flash\\)$" magenta default
+#highlight all "---.*---" yellow
+#highlight feedlist ".*(0/0))" black
+#highlight article "(^Feed:.*|^Title:.*|^Author:.*)" cyan default bold
+#highlight article "(^Link:.*|^Date:.*)" default default
+#highlight article "https?://[^ ]+" green default
+#highlight article "^(Title):.*$" blue default
+#highlight article "\\[[0-9][0-9]*\\]" magenta default bold
+#highlight article "\\[image\\ [0-9]+\\]" green default bold
+#highlight article "\\[embedded flash: [0-9][0-9]*\\]" green default bold
+#highlight article ":.*\\(link\\)$" cyan default
+#highlight article ":.*\\(image\\)$" blue default
+#highlight article ":.*\\(embedded flash\\)$" magenta default
+
+#Yellow blueish  
+#color info default default reverse
+#color listnormal_unread yellow default
+#color listfocus blue default reverse bold
+#color listfocus_unread blue default reverse bold
