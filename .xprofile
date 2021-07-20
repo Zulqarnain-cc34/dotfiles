@@ -1,4 +1,5 @@
 polybar -r main --config=$HOME/.config/polybar/config.ini &
 xmodmap /home/precision/.Xmodmap
+conky -q -c ~/.config/conky/conky1/conkyrc1 &
 picom &
 dunst &

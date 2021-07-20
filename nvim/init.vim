@@ -11,7 +11,6 @@
 " Nvim config file
 "source $HOME/.config/nvim/config/init.vimrc
 
-
 lua require("init")
 
 source $HOME/.config/nvim/config/keys.vimrc

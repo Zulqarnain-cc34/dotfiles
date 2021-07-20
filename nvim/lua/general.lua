@@ -7,6 +7,7 @@
 --                                                                |___/
 --
 -- =========================================================================
+
 -- ================== Aliases ========================
 -- local g = vim.g
 local o = vim.o
@@ -55,6 +56,7 @@ o.expandtab = true -- Converts tabs to spaces
 o.ttyfast = true -- fast scrolling
 o.pastetoggle = "<F2>"
 o.completeopt = 'menuone,noselect'
+o.clipboard="unnamedplus" -- copies the selected text to clipboard
 
 -- ============== Search =============================
 
@@ -78,3 +80,5 @@ b.smartindent = true -- always set autoindenting on
 b.shiftwidth = 4 -- number of spaces to use for autoindenting
 o.smarttab = true -- insert tabs on the start of a line according to shiftwidth, not tabstop
 o.tabstop = 4 -- insert tabs on the start of a line according to shiftwidth, not tabstop
+
+vim.g.my_theme="tokyonight"
