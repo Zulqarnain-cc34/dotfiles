@@ -2,19 +2,26 @@ set previewer ~/.config/lf/preview
 # Basic Settings
 set preview true
 set drawbox true
+set icons true
 set ignorecase true
 
-#set filesep "\n"  # default already
+set shell zsh
+set shellopts '-eu:--shwordsplit'
+set ifs "\n"
+set filesep "\n"  # default already
 
 
 # Custom Functions
 cmd open ${{
     case $(file --mime-type "$f" -bL) in
+        application/vnd.openxmlformats-officedocument.spreadsheetml.sheet) xlsx2csv "$f" | column -t -s , | less -S ;;
+        application/vnd.openxmlformats-officedocument.wordprocessingml.document) pandoc -f docx -t markdown --wrap=preserve "$f" |mdcat | less -r;;
         text/html) $BROWSERCLI "$f" ;;
         text/*|application/json) $EDITOR "$f";;
-        image/*) feh "$f" &> /dev/null &;;
-        video/*|image/*/application/pdf) xdg-open "$f" &> /dev/null &;;
-        *) xdg-open "$f" &> /dev/null & ;;
+        image/vnd.djvu)nohup zathura "$f" &> /dev/null &;;
+        image/*)nohup sxiv "$f" &> /dev/null &;;
+        video/*|image/*/application/pdf)nohup xdg-open "$f" &> /dev/null &;;
+        *)nohup xdg-open "$f" &> /dev/null & ;;
     esac
 }}
 
@@ -48,7 +55,7 @@ cmd folder_size !{{
 }}
 
 cmd copy_desk_down ${{
-    cp $fx /home/wasif/LAN/Users/ziaul/Downloads/
+    cp $fx /home/wasif/LAN/Users/wasif/Downloads/
     }}
 
 cmd copy_down ${{
@@ -98,35 +105,26 @@ cmd mkfile %{{
 
 
 cmd mount_kdeconnect ${{
-    qdbus org.kde.kdeconnect /modules/kdeconnect/devices/4b3c7f6f758726fc/sftp mountAndWait
+    qdbus org.kde.kdeconnect /modules/kdeconnect/devices/439fc7a8f3a87d51/sftp mountAndWait
 }}
 
-cmd mount_iso %iso_mount_unmount.sh "$f"
-
-cmd mount_Gdrive ${{
-    rclone mount --vfs-cache-mode=writes --dir-cache-time=72h Gdrive:/ ~/Public/Gdrive &
-    lf -remote 'send reload'
-}}
-}}
-
-cmd mount_Nust_Onedrive ${{
-    rclone mount --vfs-cache-mode=writes --dir-cache-time=72h Nust_Onedrive:/ ~/Public/Nust_Onedrive &
-    lf -remote 'send reload'
-}}
 cmd chmod %{{
   printf "Mode Bits: "
   read ans
-  for file in ${fx// /'>'}
+  SAVEIFS=$IFS
+  IFS=$(echo -en "\n\b")
+  for file in $fx
   do
-    chmod $ans "${file//'>'/ }"
+    chmod $ans "$file"
   done
+  IFS=$SAVEIFS
 
   lf -remote 'send reload'
 }}
 
-
-
-cmd setwallpaper xfconf-query --channel xfce4-desktop --property /backdrop/screen0/monitorLVDS-1/workspace0/last-image --set "%s"
+#cmd setwallpaper %xfconf-query --channel xfce4-desktop --property /backdrop/screen0/monitorLVDS-1/workspace0/last-image --set "$f"
+cmd setwallpaper %cp "$f" ~/.config/wall.png && xwallpaper --stretch "$f"
+cmd selectwallpaper % ~/bin/bash_scripts/personal/wallpaper.sh "$f"
 
 cmd fzf_jump ${{
   res="$(find . -maxdepth 3 | fzf --reverse --header='Jump to location')"
@@ -218,7 +216,7 @@ cmd image2pdf_and_upload2onedrive ${{
     read rotate
     printf "File Name:"
     read filename
-    gm convert -size 810x1080 -rotate $rotate $fx -resize 810x1080 -extent 810x1080 -background white -compose Copy -gravity center -quality $quality "/tmp/${filename}.pdf"
+    convert -size 810x1080 -rotate $rotate $fx -resize 810x1080 -extent 810x1080 -background white -compose Copy -gravity center -quality $quality "/tmp/${filename}.pdf"
     rclone sync "/tmp/${filename}.pdf" Nust_Onedrive:/
 }}
 
@@ -230,7 +228,7 @@ cmd image2pdf ${{
     read rotate
     printf "File Name:"
     read filename
-    gm convert -size 810x1080 -rotate $rotate $fx -resize 810x1080 -extent 810x1080 -background white -compose Copy -gravity center -quality $quality "${filename}.pdf"
+    convert -size 810x1080 -rotate $rotate $fx -resize 810x1080 -extent 810x1080 -background white -compose Copy -gravity center -quality $quality "${filename}.pdf"
 }}
 
 cmd stripspace ${{
@@ -239,9 +237,17 @@ cmd stripspace ${{
 }}
 
 cmd image_directory ${{
-    sxiv ./* &> /dev/null &
+    nohup sxiv -t ./* &> /dev/null &
 }}
 cmd share $curl -F"file=@$fx" https://0x0.st | xclip -selection clip
+
+cmd config-edit ${{
+    $EDITOR "$HOME/.config/lf/lfrc"
+}}
+
+cmd nvim-configedit ${{
+    $EDITOR "$HOME/.config/nvim/lua/general.lua"
+}}
 
 
 # Unmap the default binding
@@ -305,12 +311,11 @@ map m
 map md push :mkdir<space>
 map mf push :mkfile<space>
 map mk mount_kdeconnect
-map mi mount_iso
-map mg mount_Gdrive
-map mo mount_Nust_Onedrive
 
 map c
 map ch chmod
+map cn nvim-configedit
+map cl config-edit
 map cr stripspace
 map cd push :cd<space>
 
@@ -318,13 +323,18 @@ map u
 map uv unselect
 map uy clear
 
+map bg setwallpaper
+map bs selectwallpaper
+map bt set_mozillas_new_tab_back
+
+
 map e
 map ef fzf_jump
 map el fzf_locate
 map ed mpv_dvd
 map ec vimdiff_files
 map ei show_info_exif
-map ee $$EDITOR "$f"
+map ee $nvim -p $fx
 #map es $sudo $EDITOR "$f"
 map em send_mail
 map eg image2pdf
@@ -343,26 +353,21 @@ map tr restore_trash
 map tc clear_trash
 map tg cd ~/.local/share/Trash/
 
+
 map sa :{{ set sortby atime;set reverse!; }}
 map sc :{{ set sortby ctime;set reverse!; }}
 map se :{{ set sortby ext;set reverse!; }}
 map sn :{{ set sortby natural;set reverse!; }}
 map ss :{{ set sortby size;set reverse!; }}
 map st :{{ set sortby time;set reverse!; }}
-map sg :setwallpaper
-map st :set_mozillas_new_tab_back
 
 map zA set info atime
 map zc set info ctime
 
 map o push :open_with<space>
+map . set hidden!
 
-# Auto jump integration with lf
-cmd aj %lf -remote "send $id cd '$(autojump $1)'"
-map a push :aj<space>
-
-##random
-#map "'"
-#map '"'
-#map f
-
+#random
+map "'"
+map '"'
+map f

@@ -14,14 +14,13 @@ paq {'savq/paq-nvim', opt = true} -- Let Paq manage itself
 
 paq 'folke/tokyonight.nvim'
 -- paq 'ghifarit53/tokyonight-vim'
-paq "ray-x/aurora"
-paq "nekonako/xresources-nvim"
-paq "tanvirtin/monokai.nvim"
-paq "dracula/vim"
+--paq "nekonako/xresources-nvim"
+--paq "tanvirtin/monokai.nvim"
+--paq "dracula/vim"
 -- paq  'joshdick/onedark.vim'
-paq 'shaunsingh/moonlight.nvim'
+--paq 'shaunsingh/moonlight.nvim'
 -- paq 'tiagovla/tokyodark.nvim'
-paq 'navarasu/onedark.nvim'
+--paq 'navarasu/onedark.nvim'
 -- paq "monsonjeremy/onedark.nvim"
 
 -- ================== LSP and Treesitter =====================
@@ -71,10 +70,9 @@ paq 'rafamadriz/friendly-snippets'
 --                            Miscellenious                           --
 ------------------------------------------------------------------------
 
--- paq 'npxbr/glow.nvim'
+
 paq 'p00f/nvim-ts-rainbow'
 paq 'hoob3rt/lualine.nvim'
-paq 'nvim-lua/plenary.nvim'
 paq 'folke/todo-comments.nvim'
 paq 'glepnir/dashboard-nvim'
 paq 'mzlogin/vim-markdown-toc'
@@ -88,7 +86,6 @@ paq 'liuchengxu/vim-which-key'
 paq 'iamcco/markdown-preview.nvim'
 paq 'cjrh/vim-conda'
 paq 'tiagofumo/vim-nerdtree-syntax-highlight'
-paq 'lambdalisue/glyph-palette.vim'
 paq 'kkoomen/vim-doge'
 paq 'lukas-reineke/indent-blankline.nvim'
 -- paq 'JMcKiern/vim-shoot'
@@ -102,7 +99,6 @@ paq 'mfussenegger/nvim-dap-python'
 ------------------------------------------------------------------------
 
 paq "derekwyatt/vim-fswitch"
-paq 'AckslD/nvim-anywise-reg.lua'
 
 ------------------------------------------------------------------------
 --                                Lua                                 --

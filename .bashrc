@@ -11,6 +11,7 @@
 
 if [[ $TERM == 'linux' ]]; then
     PS1="\[\033[1;37m\][\[\033[01;33m\]\u\[\033[1;31m\]@\[\033[01;34m\]\h \[\033[1;32m\]\W\[\033[1;37m\]]\[\033[1;33m\]\$\[\033[1;37m\] "
+    paleofetch --recache
 elif [[ $TERM == 'rxvt-unicode-256color' ]]; then
     PS1="\[\033[1;37m\][\[\033[01;33m\]\u\[\033[1;31m\]@\[\033[01;34m\]\h \[\033[1;32m\]\W\[\033[1;37m\]]\[\033[1;33m\]\$\[\033[1;36m\] "
     paleofetch --recache
@@ -21,6 +22,7 @@ elif [[ $TERM == 'alacritty' ]]; then
     paleofetch --recache 
 else
     PS1="\[\033[0;30m\][\[\033[0;33m\]\u\[\033[1;31m\]@\[\033[01;34m\]\h \[\033[0;32m\]\W\[\033[0;30m\]]\[\033[0;33m\]\$\[\033[1;32m\] "
+    paleofetch --recache 
 fi
 
 #Sourcing all files in .config/shellconfig/*
@@ -46,5 +48,6 @@ else
     fi
 fi
 unset __conda_setup
+
 # <<< conda initialize <<<
 eval "$(starship init bash)"
