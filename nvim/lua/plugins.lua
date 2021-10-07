@@ -14,13 +14,13 @@ paq {'savq/paq-nvim', opt = true} -- Let Paq manage itself
 
 paq 'folke/tokyonight.nvim'
 -- paq 'ghifarit53/tokyonight-vim'
---paq "nekonako/xresources-nvim"
---paq "tanvirtin/monokai.nvim"
---paq "dracula/vim"
+-- paq "nekonako/xresources-nvim"
+-- paq "tanvirtin/monokai.nvim"
+-- paq "dracula/vim"
 -- paq  'joshdick/onedark.vim'
---paq 'shaunsingh/moonlight.nvim'
+-- paq 'shaunsingh/moonlight.nvim'
 -- paq 'tiagovla/tokyodark.nvim'
---paq 'navarasu/onedark.nvim'
+-- paq 'navarasu/onedark.nvim'
 -- paq "monsonjeremy/onedark.nvim"
 
 -- ================== LSP and Treesitter =====================
@@ -30,7 +30,7 @@ paq 'hrsh7th/nvim-compe'
 paq 'glepnir/lspsaga.nvim'
 paq 'nvim-treesitter/nvim-treesitter'
 paq 'onsails/lspkind-nvim'
-paq 'nvim-lua/lsp-status.nvim'
+--paq 'nvim-lua/lsp-status.nvim'
 paq 'ray-x/lsp_signature.nvim'
 paq 'folke/trouble.nvim'
 
@@ -70,11 +70,11 @@ paq 'rafamadriz/friendly-snippets'
 --                            Miscellenious                           --
 ------------------------------------------------------------------------
 
-
 paq 'p00f/nvim-ts-rainbow'
 paq 'hoob3rt/lualine.nvim'
 paq 'folke/todo-comments.nvim'
 paq 'glepnir/dashboard-nvim'
+paq 'tveskag/nvim-blame-line'
 paq 'mzlogin/vim-markdown-toc'
 paq 'preservim/nerdcommenter'
 paq 'windwp/nvim-autopairs'
@@ -94,7 +94,6 @@ paq 'lukas-reineke/indent-blankline.nvim'
 paq 'mfussenegger/nvim-dap'
 paq 'mfussenegger/nvim-dap-python'
 
-------------------------------------------------------------------------
 --                                C++
 ------------------------------------------------------------------------
 
