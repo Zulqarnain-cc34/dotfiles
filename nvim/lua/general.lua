@@ -81,4 +81,6 @@ b.shiftwidth = 4 -- number of spaces to use for autoindenting
 o.smarttab = true -- insert tabs on the start of a line according to shiftwidth, not tabstop
 o.tabstop = 4 -- insert tabs on the start of a line according to shiftwidth, not tabstop
 
+o.timeoutlen = 500 -- timeout before which key shows its keybindings prompt
+
 vim.g.my_theme="tokyonight"

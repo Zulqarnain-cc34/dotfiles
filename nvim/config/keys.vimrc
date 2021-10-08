@@ -5,7 +5,6 @@
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
 
-
 " FZF Plugins keymappings
 "nnoremap <silent> <Leader>b :Buffers<CR>
 "nnoremap <silent> <C-s> :Files<CR>
@@ -222,10 +221,10 @@ map <silent> <leader><cr> :noh<cr>
 "                                   Which Key Plugin                                    "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "Mappings for WhichKey
-nnoremap <silent> <leader> :WhichKey 'm'<CR>
-" By default timeoutlen is 1000 ms
+"nnoremap <silent> <leader> :WhichKey <CR>
 
-set timeoutlen=500
+" By default timeoutlen is 1000 ms
+"set timeoutlen=500
 
 
 " Return to last edit position when opening files (You want this!)

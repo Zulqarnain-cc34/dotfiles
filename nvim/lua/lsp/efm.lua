@@ -55,6 +55,7 @@ require"lspconfig".efm.setup {
             css = {prettier},
             scss = {prettier},
             yaml = {prettier},
+            html= {prettier},
             json = {prettier, eslint}
         }
     }

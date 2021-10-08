@@ -65,9 +65,9 @@ map('n', '<leader>lp', '<cmd>:Lspsaga diagnostic_jump_prev<CR>', options)
 
 map('n', '<leader>lb', '<cmd>:Lspsaga show_cursor_diagnostics<CR>', options)
 
-map('n', '<C-f>', '<cmd>:lua require("lspsaga.action").smart_scroll_with_saga(1)<CR>', options)
+--map('n', '<C-f>', '<cmd>:lua require("lspsaga.action").smart_scroll_with_saga(1)<CR>', options)
 
-map('n', '<C-b>', '<cmd>:lua require("lspsaga.action").smart_scroll_with_saga(-1)<CR>', options)
+--map('n', '<C-b>', '<cmd>:lua require("lspsaga.action").smart_scroll_with_saga(-1)<CR>', options)
 
 ------------------------------------------------------------------------
 --                            Neovim Compe                            --
@@ -187,3 +187,15 @@ map("n", "<leader>oh", ':FSSplitLeft<CR>', {noremap = true, silent = true})
 map("n", "<leader>oj", ':FSSplitBelow<CR>', {noremap = true, silent = true})
 map("n", "<leader>ok", ':FSSplitAbove<CR>', {noremap = true, silent = true})
 map("n", "<leader>ol", ':FSSplitRight<CR>', {noremap = true, silent = true})
+
+
+
+map("n", "<leader>ol", ':FSSplitRight<CR>', {noremap = true, silent = true})
+
+-----------------------------------------------------------------------
+--                         WhichKey 
+------------------------------------------------------------------------
+
+--map("n", "<leader>", ':WhichKey <leader><CR>', {noremap = true, silent = true})
+
+
