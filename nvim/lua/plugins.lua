@@ -52,7 +52,7 @@ return require('packer').startup(function()
 
     -- =================== Themes ===================
 
-    use {'folke/tokyonight.nvim'}
+    use {'folke/tokyonight.nvim', disable = true}
 
     -- use  'ghifarit53/tokyonight-vim'
     -- use  "nekonako/xresources-nvim"
@@ -61,24 +61,21 @@ return require('packer').startup(function()
     -- use   'joshdick/onedark.vim'
     -- use  'shaunsingh/moonlight.nvim'
     -- use  'tiagovla/tokyodark.nvim'
-    -- use  'navarasu/onedark.nvim'
+    use 'navarasu/onedark.nvim'
     -- use  "monsonjeremy/onedark.nvim"
 
     -- ================== LSP and Treesitter =====================
 
     -- use {'hrsh7th/nvim-compe', event = 'InsertEnter *', config = [[require('plugins.compe')]]}
 
-    use {'hrsh7th/nvim-compe', config = [[require('plugins.compe')]]}
+    use {'hrsh7th/nvim-compe', event = 'InsertEnter *', config = [[require('plugins.compe')]]}
 
     use {
         'kyazdani42/nvim-tree.lua',
         requires = 'kyazdani42/nvim-web-devicons',
-         config = function()
-             require'nvim-tree'.setup {}
-         end
-        --config = function()
-            --require('plugins.nvimtree')
-        --end
+        config = function()
+            require('plugins.nvimtree')
+        end
     }
 
     use {
@@ -97,15 +94,23 @@ return require('packer').startup(function()
 
     use {
         'onsails/lspkind-nvim',
+        event = "InsertEnter",
         config = function()
             require("plugins.lspkind")
         end
     }
 
     -- 'hrsh7th/vim-vsnip'
-    use {'glepnir/lspsaga.nvim', event = 'BufRead'}
+    use {
+        'glepnir/lspsaga.nvim',
+        event = 'BufRead',
+        config = function()
+            require("plugins.lspsaga")
+        end
+    }
 
     -- use {'SirVer/ultisnips'}
+
     use {'hrsh7th/vim-vsnip'}
 
     use {
@@ -206,19 +211,47 @@ return require('packer').startup(function()
 
     use {
         'p00f/nvim-ts-rainbow',
+        after = 'nvim-treesitter',
         config = function()
             require("plugins.nvim-ts-rainbow")
-        end,
-        after = 'nvim-treesitter'
+        end
     }
 
     use {"windwp/nvim-ts-autotag", event = "InsertEnter", after = 'nvim-treesitter'}
 
     -- Lsp - Ui
 
-    use {'folke/trouble.nvim', requires = 'nvim-web-devicons', cmd = "TroubleToggle"}
+    use {
+        'folke/trouble.nvim',
+        requires = 'nvim-web-devicons',
+        cmd = "TroubleToggle",
+        config = function()
+            require('plugins.trouble')
+        end
+    }
 
     use {'folke/lua-dev.nvim'}
+
+    -- Git
+    --
+    use {'tpope/vim-fugitive'}
+
+    use {'airblade/vim-gitgutter'}
+
+    -- Miscellenious
+    --
+    use {
+        'folke/todo-comments.nvim',
+        event = "BufRead",
+        requires = "nvim-lua/plenary.nvim",
+        config = function()
+            require("plugins.todocomments")
+        end
+    }
+
+    use {'kkoomen/vim-doge', run = ":call doge#install()"}
+    -- paq 'airblade/vim-gitgutter'
+    --
     -- use {
     -- 'lewis6991/gitsigns.nvim',
     -- requires = {'nvim-lua/plenary.nvim'},
@@ -230,15 +263,7 @@ return require('packer').startup(function()
 
 end)
 
----- =================== Git =====================
-
--- paq 'tpope/vim-fugitive'
--- paq 'rhysd/git-messenger.vim'
--- paq 'Xuyuanp/nerdtree-git-plugin'
--- paq 'airblade/vim-gitgutter'
-
 ---- =================== File Traversing =================
-
 ---- paq 'preservim/nerdtree'
 ---- paq 'ojroques/nvim-lspfuzzy'
 ---- paq 'vim-utils/vim-man'
@@ -252,6 +277,7 @@ end)
 -- paq 'sophacles/vim-processing'
 -- paq 'rafamadriz/friendly-snippets'
 
+-- paq 'Xuyuanp/nerdtree-git-plugin'
 -- paq 'cstrap/python-snippets'
 -- paq 'ylcnfrht/vscode-python-snippet-pack'
 
@@ -259,20 +285,17 @@ end)
 ----                            Miscellenious                           --
 --------------------------------------------------------------------------
 
--- paq 'folke/todo-comments.nvim'
 -- paq 'tveskag/nvim-blame-line'
--- paq 'mzlogin/vim-markdown-toc'
+-- paq 'tpope/vim-surround'
+-- paq 'tveskag/nvim-blame-line'
 -- paq 'tpope/vim-surround'
 -- paq 'cjrh/vim-conda'
 -- paq 'tiagofumo/vim-nerdtree-syntax-highlight'
--- paq 'kkoomen/vim-doge'
----- paq 'JMcKiern/vim-shoot'
----- paq 'vimwiki/vimwiki'
----- paq 'matbme/JABS.nvim'
+-- paq 'matbme/JABS.nvim'
 -- paq 'mfussenegger/nvim-dap'
 -- paq 'mfussenegger/nvim-dap-python'
-
-----                                C++
+-- paq 'mfussenegger/nvim-dap'
+-- paq 'mfussenegger/nvim-dap-python'
 --------------------------------------------------------------------------
 
 -- paq "derekwyatt/vim-fswitch"

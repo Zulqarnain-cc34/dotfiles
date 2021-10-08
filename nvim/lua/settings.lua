@@ -23,7 +23,7 @@ g.tokyonight_colors = {hint = "orange", error = "#ff0000"}
 g.doge_doc_standard_python = 'numpy'
 g.doge_mapping = "<Leader>q"
 
-cmd("colorscheme tokyonight")
+cmd("colorscheme onedark")
 
 ------------------------------------------------------------------------
 --                              WikiList                              --
