@@ -169,7 +169,7 @@ map("n", "<leader>nr", "<cmd>:NvimTreeRefresh<CR>", {noremap = true, silent = tr
 --                           Macros
 ------------------------------------------------------------------------
 -- map("i", "<Space>", '<C-o>1z=<C-o>e<C-o>A<Space>', {noremap = true, silent = true})
-map("n", "<leader>q,", 'i"<ESC>ewwi"<ESC>', {noremap = true, silent = true})
+--map("n", "<leader>q,", 'i"<ESC>ewwi"<ESC>', {noremap = true, silent = true})
 
 -----------------------------------------------------------------------
 --                           Miscellinious

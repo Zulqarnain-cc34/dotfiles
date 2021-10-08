@@ -25,7 +25,8 @@
 -- ' [operator]',
 -- '⌂ [type]',
 -- }
---
+
+
 require'compe'.setup {
     enabled = true,
     autocomplete = true,

@@ -72,14 +72,13 @@ g.nvim_tree_gitignore = 1 -- 0 by default
 -- g.nvim_tree_auto_open = 1 -- 0 by default, opens the tree when typing `vim $DIR` or `vim`
 -- g.nvim_tree_auto_close = 1 -- 0 by default, closes the tree when it's the last window
 -- g.nvim_tree_auto_ignore_ft = 'dashboard'
-g.nvim_tree_quit_on_open = 1 -- 0 by default, closes the tree when you open a file
+-- g.nvim_tree_quit_on_open = 1 -- 0 by default, closes the tree when you open a file
 -- g.nvim_tree_follow = 1 -- 0 by default, this option allows the cursor to be updated when entering a buffer
 g.nvim_tree_indent_markers = 1 -- 0 by default, this option shows indent markers when folders are open
-g.nvim_tree_hide_dotfiles = 1 -- 0 by default, this option hides files and folders starting with a dot `.`
+g.nvim_tree_hide_dotfiles = 0 -- 0 by default, this option hides files and folders starting with a dot `.`
 g.nvim_tree_git_hl = 1 -- 0 by default, will enable file highlight for git attributes (can be used without the icons).
 g.nvim_tree_highlight_opened_files = 1 -- 0 by default, will enable folder and file icon highlight for opened files/directories.
 g.nvim_tree_root_folder_modifier = ':~' -- This is the default. See :help filename-modifiers for more options
--- g.nvim_tree_tab_open = 1 -- 0 by default, will open the tree when entering a new tab and the tree was previously open
 g.nvim_tree_width_allow_resize = 1 -- 0 by default, will not resize the tree when opening a file
 -- g.nvim_tree_disable_netrw = 0 -- 1 by default, disables netrw
 -- g.nvim_tree_hijack_netrw = 0 -- 1 by default, prevents netrw from automatically opening when opening directories (but lets you keep its other utilities)
@@ -112,27 +111,27 @@ g.nvim_tree_icon_padding = ' '
 
 -- default will show icon by default if no icon is provided
 -- default shows no icon by default
-g.nvim_tree_icons = {
-    default = '',
-    symlink = '',
-    git = {
-        unstaged = "✗",
-        staged = "✓",
-        unmerged = "",
-        renamed = "➜",
-        untracked = "★",
-        deleted = "",
-        ignored = "◌"
-    },
-    folder = {
-        arrow_open = "",
-        arrow_cosed = "",
-        default = "",
-        open = "",
-        empty = "",
-        empty_open = "",
-        symlink = "",
-        symlink_open = ""
-    },
-    lsp = {hint = "", info = "", warning = "", error = ""}
-}
+--g.nvim_tree_icons = {
+    --default = '',
+    --symlink = '',
+    --git = {
+        --unstaged = "✗",
+        --staged = "✓",
+        --unmerged = "",
+        --renamed = "➜",
+        --untracked = "★",
+        --deleted = "",
+        --ignored = "◌"
+    --},
+    --folder = {
+        --arrow_open = "",
+        --arrow_cosed = "",
+        --default = "",
+        --open = "",
+        --empty = "",
+        --empty_open = "",
+        --symlink = "",
+        --symlink_open = ""
+    --},
+    --lsp = {hint = "", info = "", warning = "", error = ""}
+--}
