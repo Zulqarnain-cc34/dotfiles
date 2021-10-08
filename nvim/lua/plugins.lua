@@ -25,20 +25,26 @@ end
 
 local packer = require 'packer'
 
-packer.init {opt_default = true}
+packer.init {opt_default = false}
 
 local use = packer.use
 packer.reset()
 
 return require('packer').startup(function()
     -- Packer can manage itself
-    use {'wbthomason/packer.nvim', opt = false}
+    use {'wbthomason/packer.nvim'}
 
-    use {"nvim-lua/popup.nvim", "nvim-lua/plenary.nvim", opt = false}
+    use {"nvim-lua/popup.nvim"}
+
+    use {
+        "kyazdani42/nvim-web-devicons",
+        config = function()
+            require("plugins.nvim-web-devicons")
+        end
+    }
 
     use {
         'neovim/nvim-lspconfig',
-        opt = false,
         config = function()
             require("config")
         end
@@ -46,7 +52,7 @@ return require('packer').startup(function()
 
     -- =================== Themes ===================
 
-    use {'folke/tokyonight.nvim', opt = false}
+    use {'folke/tokyonight.nvim'}
 
     -- use  'ghifarit53/tokyonight-vim'
     -- use  "nekonako/xresources-nvim"
@@ -60,30 +66,64 @@ return require('packer').startup(function()
 
     -- ================== LSP and Treesitter =====================
 
-    use {'hrsh7th/nvim-compe', event = 'InsertEnter *', config = [[require('plugins.compe')]]}
-    --
-    -- use {
-    -- 'onsails/lspkind-nvim',
-    -- 'nvim-lua/lsp-status.nvim',
-    -- 'ray-x/lsp_signature.nvim',
-    -- 'glepnir/lspsaga.nvim',
-    -- }
+    -- use {'hrsh7th/nvim-compe', event = 'InsertEnter *', config = [[require('plugins.compe')]]}
+
+    use {'hrsh7th/nvim-compe', config = [[require('plugins.compe')]]}
+
+    use {
+        'kyazdani42/nvim-tree.lua',
+        requires = 'kyazdani42/nvim-web-devicons',
+         config = function()
+             require'nvim-tree'.setup {}
+         end
+        --config = function()
+            --require('plugins.nvimtree')
+        --end
+    }
+
+    use {
+        'nvim-lua/lsp-status.nvim',
+        config = function()
+            require('lsp-status').register_progress()
+        end
+    }
+
+    use {
+        'ray-x/lsp_signature.nvim',
+        config = function()
+            require('plugins.lsp-signature-hint')
+        end
+    }
+
+    use {
+        'onsails/lspkind-nvim',
+        config = function()
+            require("plugins.lspkind")
+        end
+    }
+
+    -- 'hrsh7th/vim-vsnip'
+    use {'glepnir/lspsaga.nvim', event = 'BufRead'}
+
+    -- use {'SirVer/ultisnips'}
+    use {'hrsh7th/vim-vsnip'}
 
     use {
         "nvim-telescope/telescope.nvim",
-        opt = false,
+        requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}},
         config = function()
             require("plugins.telescope")
         end
     }
 
-    use {
-        'windwp/nvim-autopairs',
-        after = 'nvim-compe',
-        config = function()
-            require('nvim-autopairs').setup()
-        end
-    }
+    -- use {
+    -- 'windwp/nvim-autopairs',
+    -- opt = true,
+    -- after = 'nvim-compe',
+    -- config = function()
+    -- require('nvim-autopairs').setup()
+    -- end
+    -- }
 
     use {
         "folke/which-key.nvim",
@@ -96,7 +136,6 @@ return require('packer').startup(function()
 
     use {
         'akinsho/bufferline.nvim',
-        opt = false,
         config = function()
             require('plugins.bufferline')
         end
@@ -104,7 +143,6 @@ return require('packer').startup(function()
 
     use {
         'hoob3rt/lualine.nvim',
-        opt = false,
         config = function()
             require('plugins.lualine')
         end
@@ -114,18 +152,7 @@ return require('packer').startup(function()
 
     use {'dstein64/vim-startuptime', event = 'VimEnter'}
 
-    use {
-        'iamcco/markdown-preview.nvim',
-        run = 'cd app && yarn install',
-        cmd = 'MarkdownPreview',
-        ft = 'markdown'
-    }
-
-    use {
-        "windwp/nvim-ts-autotag",
-        requires = {'nvim-treesitter/nvim-treesitter'},
-        event = "InsertEnter"
-    }
+    -- Colorizer and Indentation
 
     use {
         "norcalli/nvim-colorizer.lua",
@@ -143,6 +170,7 @@ return require('packer').startup(function()
         end
     }
 
+    -- Dashboard
     use {
         'glepnir/dashboard-nvim',
         event = "BufWinEnter",
@@ -151,31 +179,55 @@ return require('packer').startup(function()
         end
     }
 
+    -- Markdown Snippets
+
     use {'mzlogin/vim-markdown-toc', ft = "markdown"}
+
+    -- Markdown Preview
+    --
+    use {
+        'iamcco/markdown-preview.nvim',
+        run = 'cd app && yarn install',
+        cmd = 'MarkdownPreview',
+        ft = 'markdown'
+    }
+
+    -- Treesitter
 
     use {
         "nvim-treesitter/nvim-treesitter",
         run = ":TSUpdate",
-        opt = false,
-        -- disable = true,
         config = function()
             require("plugins.nvim-treesitter")
         end
     }
 
-    use {'p00f/nvim-ts-rainbow', requires = {"nvim-treesitter/nvim-treesitter"}, opt = false}
+    -- Colors and Tags
 
-    use {'folke/trouble.nvim', cmd = "TroubleToggle"}
+    use {
+        'p00f/nvim-ts-rainbow',
+        config = function()
+            require("plugins.nvim-ts-rainbow")
+        end,
+        after = 'nvim-treesitter'
+    }
 
-    ---- Use dependency and run lua function after load
+    use {"windwp/nvim-ts-autotag", event = "InsertEnter", after = 'nvim-treesitter'}
+
+    -- Lsp - Ui
+
+    use {'folke/trouble.nvim', requires = 'nvim-web-devicons', cmd = "TroubleToggle"}
+
+    use {'folke/lua-dev.nvim'}
     -- use {
-    -- 'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' },
-    -- config = function() require('gitsigns').setup() end
+    -- 'lewis6991/gitsigns.nvim',
+    -- requires = {'nvim-lua/plenary.nvim'},
+    -- opt = false,
+    -- config = function()
+    -- require('plugins.gitsigns')
+    -- end
     -- }
-    ---- You can specify multiple plugins in a single call
-    -- use {'tjdevries/colorbuddy.vim', {'nvim-treesitter/nvim-treesitter', opt = true}}
-    ---- You can alias plugin names
-    -- use {'dracula/vim', as = 'dracula'}
+
 end)
 
 ---- =================== Git =====================
@@ -188,12 +240,6 @@ end)
 ---- =================== File Traversing =================
 
 ---- paq 'preservim/nerdtree'
--- paq 'kyazdani42/nvim-tree.lua'
----- paq 'junegunn/fzf'
----- paq 'junegunn/fzf.vim'
--- paq 'nvim-lua/popup.nvim'
--- paq 'nvim-lua/plenary.nvim'
--- paq 'nvim-telescope/telescope.nvim'
 ---- paq 'ojroques/nvim-lspfuzzy'
 ---- paq 'vim-utils/vim-man'
 ---- paq 'mg979/vim-visual-multi'
@@ -202,13 +248,12 @@ end)
 ----                              Snippets                               --
 --------------------------------------------------------------------------
 
----- paq 'SirVer/ultisnips'
 -- paq 'hrsh7th/vim-vsnip'
 -- paq 'sophacles/vim-processing'
 -- paq 'rafamadriz/friendly-snippets'
 
----- paq 'cstrap/python-snippets'
----- paq 'ylcnfrht/vscode-python-snippet-pack'
+-- paq 'cstrap/python-snippets'
+-- paq 'ylcnfrht/vscode-python-snippet-pack'
 
 --------------------------------------------------------------------------
 ----                            Miscellenious                           --
@@ -218,7 +263,6 @@ end)
 -- paq 'tveskag/nvim-blame-line'
 -- paq 'mzlogin/vim-markdown-toc'
 -- paq 'tpope/vim-surround'
--- paq 'kyazdani42/nvim-web-devicons'
 -- paq 'cjrh/vim-conda'
 -- paq 'tiagofumo/vim-nerdtree-syntax-highlight'
 -- paq 'kkoomen/vim-doge'
@@ -236,5 +280,4 @@ end)
 --------------------------------------------------------------------------
 ----                                Lua                                 --
 --------------------------------------------------------------------------
--- paq 'folke/lua-dev.nvim'
 
