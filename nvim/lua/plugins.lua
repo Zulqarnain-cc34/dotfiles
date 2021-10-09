@@ -25,17 +25,19 @@ end
 
 local packer = require 'packer'
 
-packer.init {opt_default = false}
+-- packer.init {opt_default = false}
 
 local use = packer.use
 packer.reset()
 
 return require('packer').startup(function()
     -- Packer can manage itself
+    --
     use {'wbthomason/packer.nvim'}
 
-    use {"nvim-lua/popup.nvim"}
+    use {"nvim-lua/popup.nvim", 'kosayoda/nvim-lightbulb'}
 
+    -- Icons for Nvimtree
     use {
         "kyazdani42/nvim-web-devicons",
         config = function()
@@ -43,16 +45,9 @@ return require('packer').startup(function()
         end
     }
 
-    use {
-        'neovim/nvim-lspconfig',
-        config = function()
-            require("config")
-        end
-    }
-
     -- =================== Themes ===================
 
-    use {'folke/tokyonight.nvim', disable = true}
+    use {'folke/tokyonight.nvim', disable = false}
 
     -- use  'ghifarit53/tokyonight-vim'
     -- use  "nekonako/xresources-nvim"
@@ -61,14 +56,42 @@ return require('packer').startup(function()
     -- use   'joshdick/onedark.vim'
     -- use  'shaunsingh/moonlight.nvim'
     -- use  'tiagovla/tokyodark.nvim'
-    use 'navarasu/onedark.nvim'
-    -- use  "monsonjeremy/onedark.nvim"
 
-    -- ================== LSP and Treesitter =====================
+    -- Good Themes
 
-    -- use {'hrsh7th/nvim-compe', event = 'InsertEnter *', config = [[require('plugins.compe')]]}
+    -- use 'ray-x/aurora'
+    -- use 'mhartington/oceanic-next'
+    -- use 'ChristianChiarulli/nvcode-color-schemes.vim'
+    -- use 'sainnhe/sonokai'
+
+    use 'Th3Whit3Wolf/one-nvim'
+
+
+    --one dark theme
+    --use 'navarasu/onedark.nvim'
+    --use 'olimorris/onedark.nvim'
+
+    --use {'MordechaiHadad/nvim-papadark', requires = {'rktjmp/lush.nvim'}}
+
+
+    -- use {
+    -- 'bkegley/gloombuddy',
+    -- requires = 'tjdevries/colorbuddy.vim'
+    ---- config = function()
+    ---- require'colorbuddy'.colorscheme('gloombuddy')
+    ---- end
+    -- }
+
+    -- ================== LSP, Autocomplete and Treesitter =====================
 
     use {'hrsh7th/nvim-compe', event = 'InsertEnter *', config = [[require('plugins.compe')]]}
+
+    use {
+        'neovim/nvim-lspconfig',
+        config = function()
+            require("config")
+        end
+    }
 
     use {
         'kyazdani42/nvim-tree.lua',
@@ -94,25 +117,24 @@ return require('packer').startup(function()
 
     use {
         'onsails/lspkind-nvim',
-        event = "InsertEnter",
+        event = "InsertEnter *",
         config = function()
             require("plugins.lspkind")
         end
     }
 
-    -- 'hrsh7th/vim-vsnip'
-    use {
-        'glepnir/lspsaga.nvim',
-        event = 'BufRead',
-        config = function()
-            require("plugins.lspsaga")
-        end
-    }
+    use {'simrat39/symbols-outline.nvim'}
+
+    use {'jose-elias-alvarez/nvim-lsp-ts-utils'}
+
+    -- Snippets
 
     -- use {'SirVer/ultisnips'}
+    --
 
-    use {'hrsh7th/vim-vsnip'}
+    use {'hrsh7th/vim-vsnip', event = "InsertEnter *"}
 
+    -- Fuzzy finder
     use {
         "nvim-telescope/telescope.nvim",
         requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}},
@@ -130,6 +152,8 @@ return require('packer').startup(function()
     -- end
     -- }
 
+    -- KeyBindings Viewer
+
     use {
         "folke/which-key.nvim",
         cmd = 'WhichKey',
@@ -139,6 +163,7 @@ return require('packer').startup(function()
         end
     }
 
+    -- Status Bar and Bufferline
     use {
         'akinsho/bufferline.nvim',
         config = function()
@@ -153,9 +178,9 @@ return require('packer').startup(function()
         end
     }
 
+    -- Commenting
+    --
     use {'preservim/nerdcommenter', event = "BufReadPre"}
-
-    use {'dstein64/vim-startuptime', event = 'VimEnter'}
 
     -- Colorizer and Indentation
 
@@ -164,14 +189,6 @@ return require('packer').startup(function()
         event = "BufRead",
         config = function()
             require("plugins.colorizer")
-        end
-    }
-
-    use {
-        "lukas-reineke/indent-blankline.nvim",
-        event = "BufReadPre",
-        config = function()
-            require("plugins.blankline")
         end
     }
 
@@ -207,7 +224,7 @@ return require('packer').startup(function()
         end
     }
 
-    -- Colors and Tags
+    -- Colors,blanklines and Tags
 
     use {
         'p00f/nvim-ts-rainbow',
@@ -217,9 +234,26 @@ return require('packer').startup(function()
         end
     }
 
+    use {
+        "lukas-reineke/indent-blankline.nvim",
+        event = "BufReadPre",
+        config = function()
+            require("plugins.blankline")
+        end
+    }
+
     use {"windwp/nvim-ts-autotag", event = "InsertEnter", after = 'nvim-treesitter'}
 
     -- Lsp - Ui
+
+    use {
+        -- 'glepnir/lspsaga.nvim',
+        'rinx/lspsaga.nvim',
+        event = 'BufRead',
+        config = function()
+            require("plugins.lspsaga")
+        end
+    }
 
     use {
         'folke/trouble.nvim',
@@ -230,13 +264,27 @@ return require('packer').startup(function()
         end
     }
 
-    use {'folke/lua-dev.nvim'}
-
     -- Git
     --
     use {'tpope/vim-fugitive'}
 
     use {'airblade/vim-gitgutter'}
+
+    use {'f-person/git-blame.nvim'}
+    -- paq 'airblade/vim-gitgutter'
+
+    use {
+        'lewis6991/gitsigns.nvim',
+        disable = true,
+        requires = {'nvim-lua/plenary.nvim'},
+        config = function()
+            require('plugins.gitsigns')
+        end
+    }
+
+    -- Documentation
+    --
+    use {'kkoomen/vim-doge', run = ":call doge#install()"}
 
     -- Miscellenious
     --
@@ -249,17 +297,14 @@ return require('packer').startup(function()
         end
     }
 
-    use {'kkoomen/vim-doge', run = ":call doge#install()"}
-    -- paq 'airblade/vim-gitgutter'
-    --
-    -- use {
-    -- 'lewis6991/gitsigns.nvim',
-    -- requires = {'nvim-lua/plenary.nvim'},
-    -- opt = false,
-    -- config = function()
-    -- require('plugins.gitsigns')
-    -- end
-    -- }
+    use {'folke/lua-dev.nvim'}
+
+    use {
+        'dstein64/vim-startuptime',
+        event = 'VimEnter',
+        cmd = 'StartupTime',
+        config = [[vim.g.startuptime_tries = 10]]
+    }
 
 end)
 
@@ -287,15 +332,12 @@ end)
 
 -- paq 'tveskag/nvim-blame-line'
 -- paq 'tpope/vim-surround'
--- paq 'tveskag/nvim-blame-line'
--- paq 'tpope/vim-surround'
 -- paq 'cjrh/vim-conda'
 -- paq 'tiagofumo/vim-nerdtree-syntax-highlight'
 -- paq 'matbme/JABS.nvim'
 -- paq 'mfussenegger/nvim-dap'
--- paq 'mfussenegger/nvim-dap-python'
--- paq 'mfussenegger/nvim-dap'
--- paq 'mfussenegger/nvim-dap-python'
+--
+
 --------------------------------------------------------------------------
 
 -- paq "derekwyatt/vim-fswitch"
