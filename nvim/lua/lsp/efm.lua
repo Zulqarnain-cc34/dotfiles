@@ -28,19 +28,19 @@ local shellcheck = {
     lintFormats = {'%f:%l:%c: %trror: %m', '%f:%l:%c: %tarning: %m', '%f:%l:%c: %tote: %m'}
 }
 
-local asmfmt = {
-    formatCommand='asmfmt --stdin-filename ${INPUT} -w',
-    formatStdin = true
-}
+-- local asmfmt = {
+-- formatCommand='asmfmt --stdin-filename ${INPUT} -w',
+-- formatStdin = true
+-- }
 
 require"lspconfig".efm.setup {
     on_attach = on_attach,
-    init_options = {documentFormatting = true},
+    init_options = {documentFormatting = true, codeAction = true},
     rootdir = vim.loop.cwd,
     filetypes = {
-        "lua", "python", "sh", "golang","html", "css", "javascript", "json", "javascriptreact", "markdown",
-        "pandoc", "scss", "yaml", "javascript.jsx", "typescript", "typescript.tsx",
-        "typescriptreact", "vim", 'asm'
+        "lua", "python", "sh", "golang", "html", "css", "javascriptreact", "markdown", "pandoc",
+        "scss", "yaml", "javascript.jsx", "typescript", "typescript.tsx", "typescriptreact", "vim",
+        "json"
     },
     settings = {
         rootMarkers = {".git/"},
@@ -51,7 +51,7 @@ require"lspconfig".efm.setup {
             markdown = {markdownPandocFormat, markdownlint},
             python = {flake8, isort},
             javascript = {prettier, eslint},
-            assembly = {asmfmt},
+            -- assembly = {asmfmt},
             go = {gofumpt},
             javascriptreact = {prettier, eslint},
             ["javascript.jsx"] = {prettier, eslint},
@@ -62,7 +62,7 @@ require"lspconfig".efm.setup {
             css = {prettier},
             scss = {prettier},
             yaml = {prettier},
-            html= {prettier},
+            html = {prettier},
             json = {prettier, eslint}
         }
     }

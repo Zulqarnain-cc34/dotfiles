@@ -239,4 +239,4 @@ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g
 "hi PmenuSel ctermfg=NONE ctermbg=24 cterm=NONE guifg=NONE guibg=#204a87
 "gui=NONE
 "
-:command! -nargs=* Tmuxnew :! tmux new-window -n "<args>" && tmux send-keys "<args>" 'Enter'
+":command! -nargs=* Tmuxnew :! tmux new-window -n "<args>" && tmux send-keys "<args>" 'Enter'
