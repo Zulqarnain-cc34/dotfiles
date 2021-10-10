@@ -66,13 +66,11 @@ return require('packer').startup(function()
 
     use 'Th3Whit3Wolf/one-nvim'
 
+    -- one dark theme
+    -- use 'navarasu/onedark.nvim'
+    -- use 'olimorris/onedark.nvim'
 
-    --one dark theme
-    --use 'navarasu/onedark.nvim'
-    --use 'olimorris/onedark.nvim'
-
-    --use {'MordechaiHadad/nvim-papadark', requires = {'rktjmp/lush.nvim'}}
-
+    -- use {'MordechaiHadad/nvim-papadark', requires = {'rktjmp/lush.nvim'}}
 
     -- use {
     -- 'bkegley/gloombuddy',
@@ -129,10 +127,9 @@ return require('packer').startup(function()
 
     -- Snippets
 
-    -- use {'SirVer/ultisnips'}
-    --
+    use {'SirVer/ultisnips',event="InsertEnter *", requires= {'honza/vim-snippets'}}
 
-    use {'hrsh7th/vim-vsnip', event = "InsertEnter *"}
+    --use {'hrsh7th/vim-vsnip', event = "InsertEnter *"}
 
     -- Fuzzy finder
     use {
@@ -229,6 +226,7 @@ return require('packer').startup(function()
     use {
         'p00f/nvim-ts-rainbow',
         after = 'nvim-treesitter',
+        -- disable = true,
         config = function()
             require("plugins.nvim-ts-rainbow")
         end
