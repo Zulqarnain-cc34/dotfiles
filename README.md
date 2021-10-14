@@ -11,7 +11,7 @@ Dotfiles for my local Arch setup,
 | terminal       | alacritty    |
 | email client   | neomutt      |
 | rss reader     | newsboat     |
-| file manager   | ranger       |
+| file manager   | lf           |
 | launcher       | rofi         |
 | torrent        | transmission |
 | video player   | mpv          |
@@ -44,11 +44,11 @@ to their appropriate locations.
 - [Alacritty](#alacritty)
 - [Polybar](#polybar)
 - [Neovim](#neovim)
-- [Ranger](#ranger)
 - [Rofi](#rofi)
 - [Neomutt](#neomutt)
 - [Newsboat](#newsboat)
 - [Transmission](#transmission)
+- [lf](#lf)
 - [Miscellaneous](#miscellaneous)
 
 #### Desktop
@@ -84,40 +84,39 @@ modules from
 
 #### Neovim
 
-#### ScreenShots
-
 <p align="center">
 <img src="./screenshots/neovim.png"  title="neovim">
 <img src="./screenshots/neovim-1.png"  title="neovim">
 <img src="./screenshots/neovim-2.png"  title="neovim">
 </p>
 
-#### Features
+##### Features
 
 - IDE like Configuration with native
   [lsp](https://github.com/neovim/nvim-lspconfig).
+- Linting, Formatting and Code actions configured for most languages.
 - [nvim-compe](https://github.com/hrsh7th/nvim-compe) for Code
-  Autocompletion.
+  Autocompletion with snippets from
+  [ulitsnips](https://github.com/SirVer/ultisnips).
 - Fast Directory traversal with
-  [Nerdtree](https://github.com/preservim/nerdtree).
+  [nvimtree](https://github.com/kyazdani42/nvim-tree.lua).
 - Git integration with [fugitive](https://github.com/tpope/vim-fugitive)
-  and [GitGutter](https://github.com/airblade/vim-gitgutter).
+  and [gitgutter](https://github.com/airblade/vim-gitgutter).
 - Colorful theme from
   [nvim-tokyonight](https://github.com/ghifarit53/tokyonight-vim).
 - Fuzzy searcher and finder
   [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim).
 - Keybinding Prompt with
-  [whichkey](https://github.com/liuchengxu/vim-which-key).
+  [whichkey](https://github.com/folke/which-key.nvim).
 - Beautiful dashboard via
   [dashboard-nvim](https://github.com/glepnir/dashboard-nvim).
-- Source code linting and fixing using
-  [nvim-compe](https://github.com/hrsh8th/nvim-compe) and
-  [efm](https://github.com/mattn/efm-langserver).
+- Source code linting and fixing with
+  [efm-language-server](https://github.com/mattn/efm-langserver).
 - Code Semantic and Structure highlighting using
   [Treesitter](https://github.com/nvim-treesitter/nvim-treesitter).
-- [NerdCommentor](https://github.com/preservim/nerdcommenter) for Faster
-  Code Commenting.
-- View function signatures with
+- [NerdCommentor](https://github.com/preservim/nerdcommenter) for Code
+  Commenting.
+- On the fly function signatures with
   [lsp-signature.nvim](https://github.com/ray-x/lsp_signature.nvim)
 - Highly Performatant UI for built-in-lsp
   [Lspsaga](https://github.com/glepnir/lspsaga.nvim).
@@ -125,12 +124,13 @@ modules from
   [Lualine](https://github.com/hoob3rt/lualine.nvim).
 - Vim Diary to note TODOs
   [vim-wiki](https://github.com/vimwiki/vimwiki).
-- Shorcuts and keybindings in
-  [KeyBindings](https://github.com/Zulqarnain-cc34/dotfiles/tree/main/nvim/README.md).
 - Snazzy bufferline with
   [nvim-bufferline](https://github.com/akinsho/nvim-bufferline.lua).
 
-#### Ranger
+You can find shorcuts and keybindings in
+[KeyBindings](https://github.com/Zulqarnain-cc34/dotfiles/tree/main/nvim/README.md).About
+70% of these plugins are lazy loaded to improve faster runtimes for
+neovim.
 
 #### Rofi
 
@@ -170,6 +170,8 @@ and [neon-mutt-theme](https://github.com/h3xx/mutt-colors-neonwolf)
 
 #### Transmission
 
+#### lf
+
 #### Miscellaneous
 
 - Starship Prompt configured with `starship.toml` file.
@@ -178,9 +180,8 @@ and [neon-mutt-theme](https://github.com/h3xx/mutt-colors-neonwolf)
 - `twitch notifer.cfg` to format output for
   [twitch-notifier](https://github.com/GiedriusS/TwitchNotifier)
   package.
-- Coc settings configured in `nvim/coc-settings.json`.
 - urlportal.sh script to open files depending upon their extensions.
-- A light weight System Moniter with [Conky
+- Conky light weight System Moniter with [Conky
   theme](https://github.com/juliojsb/jotack).
 
 Currently Under work

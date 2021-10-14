@@ -1,4 +1,4 @@
- local luadev = require("lua-dev").setup()
+local luadev = require("lua-dev").setup()
 -- https://github.com/sumneko/lua-language-server/wiki/Build-and-Run-(Standalone)
 USER = vim.fn.expand('$USER')
 
@@ -13,7 +13,7 @@ else
     print("Unsupported system for sumneko")
 end
 
- require'lspconfig'.sumneko_lua.setup(luadev)
+require'lspconfig'.sumneko_lua.setup(luadev)
 
 require'lspconfig'.sumneko_lua.setup {
     cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"},
@@ -33,10 +33,10 @@ require'lspconfig'.sumneko_lua.setup {
                 disable = {"lowercase-global"}
             },
             workspace = {
-                -- Make the server aware of Neovim runtime files
                 library = {
-                    [vim.fn.expand('$VIMRUNTIME/lua')] = true,
-                    [vim.fn.expand('$VIMRUNTIME/lua/lsp')] = true
+                    [vim.fn.expand "$VIMRUNTIME/lua/lsp"] = true,
+                    [vim.fn.expand("$VIMRUNTIME/lua")] = true,
+                    [vim.fn.stdpath("config") .. '/lua'] = true
                 }
             }
         }

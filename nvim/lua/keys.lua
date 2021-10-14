@@ -150,6 +150,8 @@ map("n", "<F12>", "<cmd>:lua require 'dap'.step_out()()<cr>", {noremap = true, s
 map("n", "<leader>bb", "<cmd>:lua require 'dap'.toggle_breakpoint()<cr>",
     {noremap = true, silent = true})
 map("n", "<leader>B", ":lua require'dap'.repl.open()<CR>", {noremap = true, silent = true})
+
+
 --map("n", "<leader>lp", ":lua require 'dap'.run_last()<cr>", {noremap = true, silent = true})
 map("n", "<leader>dr",
     "<cmd>:lua require 'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<cr>",

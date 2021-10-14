@@ -11,7 +11,7 @@ require'nvim-tree'.setup {
     -- g.nvim_tree_follow = 1 -- 0 by default, this option allows the cursor to be updated when entering a buffer
     auto_close = false,
     -- opens the tree when changing/opening a new tab if the tree wasn't previously opened
-    open_on_tab = false,
+    open_on_tab = true,
     -- hijacks new directory buffers when they are opened.
     update_to_buf_dir = {
         -- g.nvim_tree_tab_open = 1 -- 0 by default, will open the tree when entering a new tab and the tree was previously open
@@ -24,7 +24,7 @@ require'nvim-tree'.setup {
     -- updates the root directory of the tree on `DirChanged` (when your run `:cd` usually)
     -- g.nvim_tree_hijack_cursor = 0 -- 1 by default, when moving cursor in the tree, will position the cursor at the start of the file on the current line
     -- show lsp diagnostics in the signcolumn
-    --lsp_diagnostics = false,
+    -- lsp_diagnostics = false,
     -- update the focused file on `BufEnter`, un-collapses the folders recursively until it finds the file
     update_focused_file = {
         -- enables the feature
@@ -111,27 +111,51 @@ g.nvim_tree_icon_padding = ' '
 
 -- default will show icon by default if no icon is provided
 -- default shows no icon by default
---g.nvim_tree_icons = {
-    --default = '',
-    --symlink = '',
-    --git = {
-        --unstaged = "✗",
-        --staged = "✓",
-        --unmerged = "",
-        --renamed = "➜",
-        --untracked = "★",
-        --deleted = "",
-        --ignored = "◌"
-    --},
-    --folder = {
-        --arrow_open = "",
-        --arrow_cosed = "",
-        --default = "",
-        --open = "",
-        --empty = "",
-        --empty_open = "",
-        --symlink = "",
-        --symlink_open = ""
-    --},
-    --lsp = {hint = "", info = "", warning = "", error = ""}
---}
+
+-- g.nvim_tree_icons = {
+
+-- default = '',
+
+-- symlink = '',
+
+-- git = {
+
+-- unstaged = "✗",
+
+-- staged = "✓",
+
+-- unmerged = "",
+
+-- renamed = "➜",
+
+-- untracked = "★",
+
+-- deleted = "",
+
+-- ignored = "◌"
+
+-- },
+
+-- folder = {
+
+-- arrow_open = "",
+
+-- arrow_cosed = "",
+
+-- default = "",
+
+-- open = "",
+
+-- empty = "",
+
+-- empty_open = "",
+
+-- symlink = "",
+
+-- symlink_open = ""
+
+-- },
+
+-- lsp = {hint = "", info = "", warning = "", error = ""}
+
+-- }
