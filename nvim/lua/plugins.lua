@@ -25,6 +25,18 @@ end
 
 local packer = require 'packer'
 
+packer.startup {
+    function()
+
+    end,
+    config = {
+        display = {
+            open_fn = function()
+                return require('packer.util').float({border = 'single'})
+            end
+        }
+    }
+}
 -- packer.init {opt_default = false}
 
 local use = packer.use
@@ -53,7 +65,6 @@ return require('packer').startup(function()
     -- use  "nekonako/xresources-nvim"
     -- use  "tanvirtin/monokai.nvim"
     -- use  "dracula/vim"
-    -- use   'joshdick/onedark.vim'
     -- use  'shaunsingh/moonlight.nvim'
     -- use  'tiagovla/tokyodark.nvim'
 
@@ -64,11 +75,14 @@ return require('packer').startup(function()
     -- use 'ChristianChiarulli/nvcode-color-schemes.vim'
     -- use 'sainnhe/sonokai'
 
+    -- use 'ful1e5/onedark.nvim'
+
     use 'Th3Whit3Wolf/one-nvim'
 
     -- one dark theme
     -- use 'navarasu/onedark.nvim'
     -- use 'olimorris/onedark.nvim'
+    -- use   'joshdick/onedark.vim'
 
     -- use {'MordechaiHadad/nvim-papadark', requires = {'rktjmp/lush.nvim'}}
 
@@ -82,12 +96,32 @@ return require('packer').startup(function()
 
     -- ================== LSP, Autocomplete and Treesitter =====================
 
+    -- html
+
+    use {
+        'mattn/emmet-vim',
+        -- disable = true,
+        -- event = "InsertEnter *",
+        ft = {
+            "html", "css", "javascriptreact", "scss", "javascript", "javascript.jsx", "typescript",
+            "typescript.tsx", "typescriptreact"
+        }
+    }
+
+    -- Snippets
     use {'hrsh7th/nvim-compe', event = 'InsertEnter *', config = [[require('plugins.compe')]]}
 
     use {
         'neovim/nvim-lspconfig',
         config = function()
             require("config")
+        end
+    }
+
+    use {
+        "tamago324/nlsp-settings.nvim",
+        config = function()
+            require'nlspsettings'.setup {config_home = vim.fn.stdpath('config') .. '/.nlspsettings'}
         end
     }
 
@@ -125,13 +159,13 @@ return require('packer').startup(function()
 
     use {'jose-elias-alvarez/nvim-lsp-ts-utils'}
 
-    -- Snippets
+    -- ultisnips
+    use {'SirVer/ultisnips', event = "InsertEnter *", requires = {'honza/vim-snippets'}}
 
-    use {'SirVer/ultisnips',event="InsertEnter *", requires= {'honza/vim-snippets'}}
-
-    --use {'hrsh7th/vim-vsnip', event = "InsertEnter *"}
+    -- use {'hrsh7th/vim-vsnip', event = "InsertEnter *"}
 
     -- Fuzzy finder
+
     use {
         "nvim-telescope/telescope.nvim",
         requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}},
@@ -235,6 +269,7 @@ return require('packer').startup(function()
     use {
         "lukas-reineke/indent-blankline.nvim",
         event = "BufReadPre",
+        disable = true,
         config = function()
             require("plugins.blankline")
         end

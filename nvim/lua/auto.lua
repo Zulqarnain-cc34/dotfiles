@@ -31,6 +31,8 @@ vim.api.nvim_command([[
      autocmd FileType sh   nnoremap <F9> :!bash %
      autocmd FileType c   nnoremap <F9> :!gcc %
      autocmd FileType typescript   nnoremap <F9> :!ts-node %
+
+     autocmd FileType html,css EmmetInstall
 ]])
 
 vim.api.nvim_command([[

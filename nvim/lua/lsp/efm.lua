@@ -2,7 +2,7 @@ local on_attach = function(client)
     if client.resolved_capabilities.document_formatting then
         vim.api.nvim_command [[augroup Format]]
         vim.api.nvim_command [[autocmd! * <buffer>]]
-        vim.api.nvim_command [[autocmd BufWritePost <buffer> lua vim.lsp.buf.formatting()]]
+        vim.api.nvim_command [[autocmd BufWritePost <buffer> lua vim.lsp.buf.formatting_sync({},1500)]]
         vim.api.nvim_command [[augroup END]]
     end
 end
@@ -34,12 +34,12 @@ local shellcheck = {
 -- }
 
 require"lspconfig".efm.setup {
-    on_attach = on_attach,
+    --on_attach = on_attach,
     init_options = {documentFormatting = true, codeAction = true},
     rootdir = vim.loop.cwd,
     filetypes = {
         "lua", "python", "sh", "golang", "html", "css", "javascriptreact", "markdown", "pandoc",
-        "scss", "yaml", "javascript.jsx", "typescript", "typescript.tsx", "typescriptreact", "vim",
+        "scss", "yaml", "javascript","javascript.jsx", "typescript", "typescript.tsx", "typescriptreact", "vim",
         "json"
     },
     settings = {
@@ -54,6 +54,7 @@ require"lspconfig".efm.setup {
             -- assembly = {asmfmt},
             go = {gofumpt},
             javascriptreact = {prettier, eslint},
+            typescriptreact = {prettier, eslint},
             ["javascript.jsx"] = {prettier, eslint},
             typescript = {prettier, eslint},
             ["typescript.tsx"] = {prettier, eslint},
@@ -63,7 +64,7 @@ require"lspconfig".efm.setup {
             scss = {prettier},
             yaml = {prettier},
             html = {prettier},
-            json = {prettier, eslint}
+            json = {prettier,eslint}
         }
     }
 }

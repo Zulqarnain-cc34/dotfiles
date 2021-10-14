@@ -33,8 +33,11 @@ g.UltiSnipsJumpForwardTrigger = '<c-j>'
 
 g.UltiSnipsJumpBackwardTrigger = '<c-k>'
 
+g.user_emmet_leader_key='<C-Z>'
+--g.user_emmet_install_global = 0
+
 cmd("colorscheme one-nvim")
--- cmd("colorscheme onedark")
+--cmd("colorscheme onedark")
 
 ------------------------------------------------------------------------
 --                              WikiList                              --
