@@ -17,9 +17,9 @@ local cmd = vim.api.nvim_command
 
 -- ============== Commands =====================
 
-cmd("syntax enable")
-cmd("filetype plugin on")
-cmd("filetype plugin indent on")
+--cmd("syntax off")
+--cmd("filetype plugin on")
+--cmd("filetype plugin indent off")
 
 -- ============== Basic   ==========================
 

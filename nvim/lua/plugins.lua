@@ -339,7 +339,7 @@ return require('packer').startup(function()
 
     -- Documentation
     --
-    use {'kkoomen/vim-doge', run = ":call doge#install()"}
+    use {'kkoomen/vim-doge',disable=true,opt=true, run = ":call doge#install()"}
 
     -- Miscellenious
     --
