@@ -1,7 +1,7 @@
 require'nvim-treesitter.configs'.setup {
     ensure_installed = {
-        "lua", "python", "bash", "go", "html", "css", "javascript", "json",
-         "scss", "yaml", "typescript", "vim"
+        "lua", "python", "bash", "go", "html", "css", "javascript", "json","c","cpp",
+         "scss", "yaml", "typescript", "vim","dart","fish","java","dockerfile"
     }, -- one of "all", "maintained" (parsers with maintainers), or a list of languages
     ignore_install = {}, -- List of parsers to ignore installing
     autopairs = {enable = true},

@@ -35,12 +35,12 @@ vim.api.nvim_command([[
      autocmd FileType html,css EmmetInstall
 ]])
 
-vim.api.nvim_command([[
-    augroup packer_user_config
-      autocmd!
-      autocmd BufWritePost plugins.lua source <afile> | PackerCompile
-    augroup end
-]])
+--vim.api.nvim_command([[
+    --augroup packer_user_config
+      --autocmd!
+      --autocmd BufWritePost plugins.lua source <afile> | PackerCompile
+    --augroup end
+--]])
 -- Copies the test selected in visual mode and yanked with y to system clipboard
 vim.api.nvim_command([[
     autocmd TextYankPost *

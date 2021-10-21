@@ -2,7 +2,8 @@ local on_attach = function(client)
     if client.resolved_capabilities.document_formatting then
         vim.api.nvim_command [[augroup Format]]
         vim.api.nvim_command [[autocmd! * <buffer>]]
-        vim.api.nvim_command [[autocmd BufWritePost <buffer> lua vim.lsp.buf.formatting_sync({},1500)]]
+        vim.api
+            .nvim_command [[autocmd BufWritePost <buffer> lua vim.lsp.buf.formatting_sync({},1500)]]
         vim.api.nvim_command [[augroup END]]
     end
 end
@@ -16,6 +17,7 @@ local vint = require "efm/vint"
 local prettier = require "efm/prettier"
 local markdownlint = require "efm/markdownlint"
 local gofumpt = require "efm/gofumpt"
+-- local dartfmt = require "efm/dartfmt"
 
 -- local markdownPandocFormat = require "efm/pandoc"
 local markdownPandocFormat = {
@@ -34,19 +36,20 @@ local shellcheck = {
 -- }
 
 require"lspconfig".efm.setup {
-    --on_attach = on_attach,
+    -- on_attach = on_attach,
     init_options = {documentFormatting = true, codeAction = true},
     rootdir = vim.loop.cwd,
     filetypes = {
         "lua", "python", "sh", "golang", "html", "css", "javascriptreact", "markdown", "pandoc",
-        "scss", "yaml", "javascript","javascript.jsx", "typescript", "typescript.tsx", "typescriptreact", "vim",
-        "json"
+        "scss", "yaml", "javascript", "javascript.jsx", "typescript", "typescript.tsx",
+        "typescriptreact", "vim", "json"
     },
     settings = {
         rootMarkers = {".git/"},
         languages = {
             sh = {shfmt, shellcheck},
             vim = {vint},
+            -- dart = {dartfmt},
             lua = {luafmt},
             markdown = {markdownPandocFormat, markdownlint},
             python = {flake8, isort},
@@ -64,7 +67,7 @@ require"lspconfig".efm.setup {
             scss = {prettier},
             yaml = {prettier},
             html = {prettier},
-            json = {prettier,eslint}
+            json = {prettier, eslint}
         }
     }
 }

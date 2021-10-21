@@ -90,17 +90,15 @@ https://www.youtube.com/feeds/videos.xml?channel_id=UCbfYPyITQ-7l4upoX8nvctg "~Y
 -----------------------------
 
 https://www.linuxjournal.com/node/feed "~Linux-SubReddit: linuxjournal" "Linux-Subreddit"
-https://www.archlinux.org/feeds/news "~Linux-Subreddit: archlinux-official" "Linux-Subreddit"
-https://www.reddit.com/r/w3m/.rss "~Linux-Subreddit: W3m" "Linux-subreddit"
 https://www.reddit.com/r/linux/.rss "~Linux-Subreddit: linux" "Linux-subreddit"
 https://www.reddit.com/r/commandline/.rss "~Linux-Subreddit: commandline" "Linux-subreddit"
+https://www.reddit.com/r/linuxmasterrace/.rss "~Linux-Subreddit: LinuxMasterRace" "Linux-subreddit"
 https://www.reddit.com/r/unixporn/.rss "~Linux-Subreddit: unixporn" "Linux-subreddit"
 https://www.reddit.com/r/UsabilityPorn/.rss "~Linux-Subreddit: UsabilityPorn" "Linux-subreddit"
 https://www.reddit.com/r/zsh/.rss "~Linux-Subreddit: zsh" "Linux-subreddit"
 https://www.reddit.com/r/neovim/.rss "~Linux-Subreddit: neovim" "Linux-subreddit"
 https://www.reddit.com/r/tmux/.rss "~Linux-Subreddit: tmux" "Linux-subreddit"
 https://www.reddit.com/r/bash/.rss "~Linux-Subreddit: bash" "Linux-subreddit"
-https://www.reddit.com/r/vim_magic/.rss "~Linux-Subreddit: vim_magic" "Linux-subreddit"
 https://www.reddit.com/r/vim/.rss "~Linux-Subreddit: vim" "Linux-subreddit"
 https://www.reddit.com/r/linuxprojects/.rss "~Linux-Subreddit: linuxprojects" "Linux-subreddit"
 https://www.reddit.com/r/ScriptSwap/.rss "~Linux-Subreddit: ScriptSwap" "Linux-subreddit"

@@ -59,7 +59,14 @@ return require('packer').startup(function()
 
     -- =================== Themes ===================
 
-    use {'folke/tokyonight.nvim', disable = false}
+    -- use({ -- color scheme
+    -- 'folke/tokyonight.nvim',
+    -- config = function()
+    -- vim.g.tokyonight_style = 'night'
+    -- vim.g.tokyonight_sidebars = {'qf', 'packer'}
+    -- vim.cmd('color tokyonight')
+    -- end
+    -- })
 
     -- use  'ghifarit53/tokyonight-vim'
     -- use  "nekonako/xresources-nvim"
@@ -130,7 +137,12 @@ return require('packer').startup(function()
         requires = 'kyazdani42/nvim-web-devicons',
         config = function()
             require('plugins.nvimtree')
-        end
+        end,
+        opt = true,
+        cmd = {
+            'NvimTreeClipboard', 'NvimTreeClose', 'NvimTreeFindFile', 'NvimTreeOpen',
+            'NvimTreeRefresh', 'NvimTreeToggle'
+        }
     }
 
     use {
@@ -210,18 +222,27 @@ return require('packer').startup(function()
     }
 
     -- Commenting
-    --
-    use {'preservim/nerdcommenter', event = "BufReadPre"}
+    use({
+        'numToStr/Comment.nvim',
+        config = function()
+            require('Comment').setup()
+        end,
+        event = 'BufRead'
+    })
+
+    -- use {'preservim/nerdcommenter', event = "BufReadPre"}
 
     -- Colorizer and Indentation
+    -- colorized hex codes
 
-    use {
-        "norcalli/nvim-colorizer.lua",
-        event = "BufRead",
+    use({
+        'norcalli/nvim-colorizer.lua',
+        opt = true,
+        cmd = {'ColorizerToggle'},
         config = function()
             require("plugins.colorizer")
         end
-    }
+    })
 
     -- Dashboard
     use {
@@ -260,7 +281,8 @@ return require('packer').startup(function()
     use {
         'p00f/nvim-ts-rainbow',
         after = 'nvim-treesitter',
-        -- disable = true,
+        disable = true,
+        requires = {'windwp/nvim-ts-autotag'},
         config = function()
             require("plugins.nvim-ts-rainbow")
         end
@@ -338,6 +360,14 @@ return require('packer').startup(function()
         cmd = 'StartupTime',
         config = [[vim.g.startuptime_tries = 10]]
     }
+
+    -- use {
+    -- 'akinsho/flutter-tools.nvim',
+    -- requires = 'nvim-lua/plenary.nvim',
+    -- config = function()
+    -- require('flutter-tools').setup{}
+    -- end
+    -- }
 
 end)
 

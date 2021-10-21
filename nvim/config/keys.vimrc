@@ -184,10 +184,6 @@ map <right> <nop>
 map <PageUp> <nop>
 map <PageDown> <nop>
 
-" Map <Space> to / (search) and Ctrl-<Space> to ? (backwards search)
-map <space> /
-map <C-space> ?
-
 " Disable highlight when <leader><cr> is pressed
 map <silent> <leader><cr> :noh<cr>
 
