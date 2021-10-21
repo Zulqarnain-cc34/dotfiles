@@ -203,3 +203,9 @@ map("n", "<leader>ol", ':FSSplitRight<CR>', {noremap = true, silent = true})
 --map("n", "<leader>", ':WhichKey <leader><CR>', {noremap = true, silent = true})
 
 
+--" Map <Space> to / (search) and Ctrl-<Space> to ? (backwards search)
+--map <space> /
+--map <C-space> ?
+
+
+--map("n", "<space>", "/", {})

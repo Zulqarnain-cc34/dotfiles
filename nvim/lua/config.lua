@@ -2,7 +2,10 @@
 ------------------------------------------------------------------------
 --                                LSP                                 --
 ------------------------------------------------------------------------
-require('lsp/python')
+--require('lsp/python')
+require('lsp/tailwindcss')
+--require('lsp/eslint')
+require('lsp/dartls')
 require('lsp/sqlls')
 require('lsp/sumenko_lua')
 require('lsp/bash')
