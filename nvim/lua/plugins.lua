@@ -48,6 +48,7 @@ return require('packer').startup(function()
     use {'wbthomason/packer.nvim'}
 
     use {"nvim-lua/popup.nvim", 'kosayoda/nvim-lightbulb'}
+    use 'arkav/lualine-lsp-progress'
 
     -- Icons for Nvimtree
     use {
@@ -86,6 +87,13 @@ return require('packer').startup(function()
 
     use 'Th3Whit3Wolf/one-nvim'
 
+    use "Tastyep/structlog.nvim"
+    use {
+        "nvim-lua/lsp-status.nvim",
+        require = function()
+            require("plugins.lsp-status")
+        end
+    }
     -- one dark theme
     -- use 'navarasu/onedark.nvim'
     -- use 'olimorris/onedark.nvim'
@@ -116,7 +124,7 @@ return require('packer').startup(function()
     }
 
     -- Snippets
-    use {'hrsh7th/nvim-compe', event = 'InsertEnter *', config = [[require('plugins.compe')]]}
+    use {'hrsh7th/nvim-compe', event = 'InsertEnter', config = [[require('plugins.compe')]]}
 
     use {
         'neovim/nvim-lspconfig',
@@ -146,13 +154,6 @@ return require('packer').startup(function()
     }
 
     use {
-        'nvim-lua/lsp-status.nvim',
-        config = function()
-            require('lsp-status').register_progress()
-        end
-    }
-
-    use {
         'ray-x/lsp_signature.nvim',
         config = function()
             require('plugins.lsp-signature-hint')
@@ -161,7 +162,7 @@ return require('packer').startup(function()
 
     use {
         'onsails/lspkind-nvim',
-        event = "InsertEnter *",
+        event = "BufRead",
         config = function()
             require("plugins.lspkind")
         end
@@ -247,7 +248,7 @@ return require('packer').startup(function()
     -- Dashboard
     use {
         'glepnir/dashboard-nvim',
-        event = "BufWinEnter",
+        cmd = {"Dashboard", "DashboardNewFile", "DashboardJumpMarks", "SessionLoad", "SessionSave"},
         config = function()
             require("plugins.dashboard")
         end
@@ -281,7 +282,7 @@ return require('packer').startup(function()
     use {
         'p00f/nvim-ts-rainbow',
         after = 'nvim-treesitter',
-        disable = true,
+        -- disable = true,
         requires = {'windwp/nvim-ts-autotag'},
         config = function()
             require("plugins.nvim-ts-rainbow")
@@ -339,7 +340,7 @@ return require('packer').startup(function()
 
     -- Documentation
     --
-    use {'kkoomen/vim-doge',disable=true,opt=true, run = ":call doge#install()"}
+    use {'kkoomen/vim-doge', disable = true, opt = true, run = ":call doge#install()"}
 
     -- Miscellenious
     --
@@ -356,8 +357,8 @@ return require('packer').startup(function()
 
     use {
         'dstein64/vim-startuptime',
-        event = 'VimEnter',
-        cmd = 'StartupTime',
+        -- event = 'VimEnter',
+        -- cmd = 'StartupTime',
         config = [[vim.g.startuptime_tries = 10]]
     }
 

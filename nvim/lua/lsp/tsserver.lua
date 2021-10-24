@@ -1,14 +1,3 @@
--- local function organize_imports()
--- local params = {
--- command = "_typescript.organizeImports",
--- arguments = {vim.api.nvim_buf_get_name(0)},
--- title = ""
--- }
--- vim.lsp.buf.execute_command(params)
--- end
--- require'lspconfig'.tsserver.setup {
--- commands = {OrganizeImports = {organize_imports, description = "Organize Imports"}}
--- }
 require'lspconfig'.tsserver.setup {
 
     cmd = {'typescript-language-server', '--stdio'},
@@ -42,15 +31,9 @@ require'lspconfig'.tsserver.setup {
         vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>lA", ":TSLspImportAll<CR>", {silent = true})
 
         -- vim.api.nvim_buf_set_keymap("i", ".", ".<C-x><C-o>", nil, bufnr)
-
         -- vim.opt_local.omnifunc = "v:lua.vim.lsp.omnifunc"
-
     end
-
     -- flags = {
-
     -- debounce_text_changes = 150,
-
     -- },
-
 }
