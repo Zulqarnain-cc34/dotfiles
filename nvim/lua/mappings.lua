@@ -168,6 +168,44 @@ map("n", "<leader>dr",
 map("n", "<C-n>", "<cmd>:NvimTreeToggle<CR>", {noremap = true, silent = true})
 map("n", "<leader>nr", "<cmd>:NvimTreeRefresh<CR>", {noremap = true, silent = true})
 
+------------------------------------------------------------------------
+--                                Git                                 --
+------------------------------------------------------------------------
+
+
+map("n", "<leader>ga", "<cmd>:Git add %:p<CR>", {noremap = true, silent = true})
+map("n", "<leader>gs", "<cmd>:Git<CR>", {noremap = true, silent = true})
+map("n", "<leader>gc", "<cmd>:Git commit -v -q<CR>", {noremap = true, silent = true})
+map("n", "<leader>gt", "<cmd>:Git commit -v -q %:p<CR>", {noremap = true, silent = true})
+map("n", "<leader>gd", "<cmd>:Gdiff<CR>", {noremap = true, silent = true})
+map("n", "<leader>ge", "<cmd>:Gedit<CR>", {noremap = true, silent = true})
+map("n", "<leader>gr", "<cmd>:Gread<CR>", {noremap = true, silent = true})
+map("n", "<leader>gw", "<cmd>:Gwrite<CR>", {noremap = true, silent = true})
+map("n", "<leader>gl", "<cmd>:silent! Glog<CR>:bot copen<CR>", {noremap = true, silent = true})
+map("n", "<leader>gp", "<cmd>:Ggrep<Space>", {noremap = true, silent = true})
+map("n", "<leader>gb", "<cmd>:Gmove<Space>", {noremap = true, silent = true})
+map("n", "<leader>go", "<cmd>:Git branch<Space>", {noremap = true, silent = true})
+map("n", "<leader>gps", "<cmd>:Git checkout<Space>", {noremap = true, silent = true})
+map("n", "<leader>gpl", "<cmd>:Dispatch! git push<CR>", {noremap = true, silent = true})
+map("n", "<leader>gpl", "<cmd>:Dispatch! git pull<CR>", {noremap = true, silent = true})
+
+-- nnoremap <leader>ga :Git add %:p<CR><CR>
+-- nnoremap <leader>gs :Gstatus<CR>
+-- nnoremap <leader>gc :Gcommit -v -q<CR>
+-- nnoremap <leader>gt :Gcommit -v -q %:p<CR>
+-- nnoremap <leader>gd :Gdiff<CR>
+-- nnoremap <leader>ge :Gedit<CR>
+-- nnoremap <leader>gr :Gread<CR>
+-- nnoremap <leader>gw :Gwrite<CR><CR>
+-- nnoremap <leader>gl :silent! Glog<CR>:bot copen<CR>
+-- nnoremap <leader>gp :Ggrep<Space>
+-- nnoremap <leader>gm :Gmove<Space>
+-- nnoremap <leader>gb :Git branch<Space>
+-- nnoremap <leader>go :Git checkout<Space>
+-- nnoremap <leader>gps :Dispatch! git push<CR>
+-- nnoremap <leader>gpl :Dispatch! git pull<CR>
+
+
 -----------------------------------------------------------------------
 --                           Macros
 ------------------------------------------------------------------------
