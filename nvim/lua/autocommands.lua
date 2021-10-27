@@ -50,6 +50,10 @@ vim.api.nvim_command([[
 ]])
 
 vim.api.nvim_command([[
+    au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+]])
+
+vim.api.nvim_command([[
      au BufEnter *.h  let b:fswitchdst = "c,cpp,cc,m"
      au BufEnter *.cc let b:fswitchdst = "h,hpp"
 ]])

@@ -309,7 +309,7 @@ return require('packer').startup(function()
     use {"windwp/nvim-ts-autotag", event = "InsertEnter", after = 'nvim-treesitter'}
 
     -- Lsp - Ui
-
+    --
     use {
         -- 'glepnir/lspsaga.nvim',
         'rinx/lspsaga.nvim',
@@ -335,7 +335,6 @@ return require('packer').startup(function()
     use {'airblade/vim-gitgutter'}
 
     use {'f-person/git-blame.nvim'}
-    -- paq 'airblade/vim-gitgutter'
 
     use {
         'lewis6991/gitsigns.nvim',
@@ -351,7 +350,7 @@ return require('packer').startup(function()
     use {'kkoomen/vim-doge', cmd = {"DogeGenerate"}, run = ":call doge#install()"}
 
     -- Miscellenious
-    --
+
     use {
         'folke/todo-comments.nvim',
         event = "BufRead",
@@ -365,8 +364,7 @@ return require('packer').startup(function()
 
     use {
         'dstein64/vim-startuptime',
-        -- event = 'VimEnter',
-        -- cmd = 'StartupTime',
+        cmd = 'StartupTime',
         config = [[vim.g.startuptime_tries = 10]]
     }
 

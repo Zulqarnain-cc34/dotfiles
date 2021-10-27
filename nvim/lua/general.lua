@@ -72,7 +72,7 @@ o.hlsearch = true -- highlight the search results
 
 o.wildmenu = true
 o.wildmode = 'longest:full,full'
-	
+
 -- ================= Indentation ================= --
 
 b.autoindent = true -- copy the previous indentation on autoindenting
