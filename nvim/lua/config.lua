@@ -2,7 +2,7 @@
 ------------------------------------------------------------------------
 --                                LSP                                 --
 ------------------------------------------------------------------------
--- require('lsp/python')
+require('lsp/python')
 require('lsp/tailwindcss')
 --require('lsp/eslint')
 require('lsp/dartls')

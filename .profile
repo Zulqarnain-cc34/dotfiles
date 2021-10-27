@@ -21,7 +21,14 @@ export CONFIG_BACKUP="$HOME/etc/linuxConfig/dotfiles/"
 export IMAGES_DIR="$HOME/Images/images"
 export BOOKDIR="$HOME/Documents/Books/*"
 export ALIASDIR="$HOME/.aliases/aliases"
+
 export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_STATE_HOME="$HOME/.local/state"
+export XDG_DATA_DIRS="/usr/local/share:/usr/share"
+
+
 
 # LESS COLORS
 export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
