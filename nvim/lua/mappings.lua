@@ -45,7 +45,7 @@ map('n', '<leader>ws', '<cmd>:Trouble lsp_workspace_diagnostics<CR>', options)
 -- Make a code action based on diagnostics
 map('n', '<leader>la', '<cmd>:Lspsaga code_action<CR>', options)
 
---map('n', '<leader>la', '<cmd>lua vim.lsp.buf.code_action()<CR>', options)
+-- map('n', '<leader>la', '<cmd>lua vim.lsp.buf.code_action()<CR>', options)
 -- Bulk rename
 map('n', '<leader>le', '<cmd>:Lspsaga rename<CR>', options)
 -- Shows Incoming
@@ -151,8 +151,7 @@ map("n", "<leader>bb", "<cmd>:lua require 'dap'.toggle_breakpoint()<cr>",
     {noremap = true, silent = true})
 map("n", "<leader>B", ":lua require'dap'.repl.open()<CR>", {noremap = true, silent = true})
 
-
---map("n", "<leader>lp", ":lua require 'dap'.run_last()<cr>", {noremap = true, silent = true})
+-- map("n", "<leader>lp", ":lua require 'dap'.run_last()<cr>", {noremap = true, silent = true})
 map("n", "<leader>dr",
     "<cmd>:lua require 'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<cr>",
     {noremap = true, silent = true})
@@ -173,13 +172,15 @@ map("n", "<leader>nr", "<cmd>:NvimTreeRefresh<CR>", {noremap = true, silent = tr
 --                           Macros
 ------------------------------------------------------------------------
 -- map("i", "<Space>", '<C-o>1z=<C-o>e<C-o>A<Space>', {noremap = true, silent = true})
---map("n", "<leader>q,", 'i"<ESC>ewwi"<ESC>', {noremap = true, silent = true})
+-- map("n", "<leader>q,", 'i"<ESC>ewwi"<ESC>', {noremap = true, silent = true})
 
 -----------------------------------------------------------------------
 --                           Miscellinious
 ------------------------------------------------------------------------
 
 map("n", "<leader>bg", '<cmd>:ToggleBlameLine<CR>', {noremap = true, silent = true})
+map("n", "<leader><CR>", ':noh<CR>', {noremap = true, silent = true})
+map("n", ";", ':', {noremap = true, silent = true})
 
 -----------------------------------------------------------------------
 --                          C++ Switching h and cpp files
@@ -192,20 +193,17 @@ map("n", "<leader>oj", ':FSSplitBelow<CR>', {noremap = true, silent = true})
 map("n", "<leader>ok", ':FSSplitAbove<CR>', {noremap = true, silent = true})
 map("n", "<leader>ol", ':FSSplitRight<CR>', {noremap = true, silent = true})
 
-
-
 map("n", "<leader>ol", ':FSSplitRight<CR>', {noremap = true, silent = true})
 
------------------------------------------------------------------------
---                         WhichKey 
+------------------------------------------------------------------------
+--                                 WhichKey                           --
 ------------------------------------------------------------------------
 
---map("n", "<leader>", ':WhichKey <leader><CR>', {noremap = true, silent = true})
+-- map("n", "<leader>", ':WhichKey <leader><CR>', {noremap = true, silent = true})
+
+-- " Map <Space> to / (search) and Ctrl-<Space> to ? (backwards search)
+-- map <space> /
+-- map <C-space> ?
 
 
---" Map <Space> to / (search) and Ctrl-<Space> to ? (backwards search)
---map <space> /
---map <C-space> ?
-
-
---map("n", "<space>", "/", {})
+-- map("n", "<space>", "/", {})
