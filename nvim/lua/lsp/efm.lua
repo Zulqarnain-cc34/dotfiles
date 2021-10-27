@@ -17,6 +17,8 @@ local vint = require "efm/vint"
 local prettier = require "efm/prettier"
 local markdownlint = require "efm/markdownlint"
 local gofumpt = require "efm/gofumpt"
+local luacheck = require "efm/luacheck"
+local cppcheck = require "efm/cppcheck"
 -- local dartfmt = require "efm/dartfmt"
 
 -- local markdownPandocFormat = require "efm/pandoc"
@@ -42,15 +44,17 @@ require"lspconfig".efm.setup {
     filetypes = {
         "lua", "python", "sh", "golang", "html", "css", "javascriptreact", "markdown", "pandoc",
         "scss", "yaml", "javascript", "javascript.jsx", "typescript", "typescript.tsx",
-        "typescriptreact", "vim", "json"
+        "typescriptreact", "vim", "json","c","cpp"
     },
     settings = {
         rootMarkers = {".git/"},
         languages = {
+            c = {cppcheck},
+            cpp = {cppcheck},
             sh = {shfmt, shellcheck},
             vim = {vint},
             -- dart = {dartfmt},
-            lua = {luafmt},
+            lua = {luafmt, luacheck},
             markdown = {markdownPandocFormat, markdownlint},
             python = {flake8, isort},
             javascript = {prettier, eslint},

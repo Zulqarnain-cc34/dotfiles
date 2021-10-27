@@ -9,6 +9,7 @@
 local execute = vim.api.nvim_command
 local fn = vim.fn
 
+
 local packer_install_dir = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
 
 local plug_url_format = 'https://github.com/%s'
@@ -48,6 +49,7 @@ return require('packer').startup(function()
     use {'wbthomason/packer.nvim'}
 
     use {"nvim-lua/popup.nvim", 'kosayoda/nvim-lightbulb'}
+
     use 'arkav/lualine-lsp-progress'
 
     -- Icons for Nvimtree
@@ -58,6 +60,12 @@ return require('packer').startup(function()
         end
     }
 
+    use {
+        'kevinhwang91/nvim-hlslens',
+        config = function()
+            require("plugins.hlslens")
+        end
+    }
     -- =================== Themes ===================
 
     -- use({ -- color scheme
@@ -340,7 +348,7 @@ return require('packer').startup(function()
 
     -- Documentation
     --
-    use {'kkoomen/vim-doge', disable = true, opt = true, run = ":call doge#install()"}
+    use {'kkoomen/vim-doge', cmd = {"DogeGenerate"}, run = ":call doge#install()"}
 
     -- Miscellenious
     --
@@ -353,7 +361,7 @@ return require('packer').startup(function()
         end
     }
 
-    use {'folke/lua-dev.nvim'}
+    -- use {'folke/lua-dev.nvim'}
 
     use {
         'dstein64/vim-startuptime',
