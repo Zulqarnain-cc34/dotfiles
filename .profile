@@ -1,20 +1,24 @@
 export NPM_PACKAGES="$HOME/.npm-packages"
+
+# Default Apps
 export BROWSERCLI="w3m"
 export BROWSER="firefox"
 export TERMINAL="urxvt"
 export EDITOR=nvim
+export RTV_BROWSER=~/.scripts/urlportal.sh
+export TERM="alacritty"
+
 export PATH="$PATH:/usr/local/opt/coreutils/libexec/gnubin"
 export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 export NODE_PATH="$NPM_PACKAGES/lib/node_modules:$NODE_PATH"
 
-unset MANPATH # delete if you already modified MANPATH elsewhere in your configuration
-export MANPATH
-MANPATH="$NPM_PACKAGES/share/man:$(manpath)"
+# Fcitx
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export SDL_IM_MODULE=fcitx
+export XMODIFIERS='@im=fcitx'
 
-export RTV_BROWSER=~/.scripts/urlportal.sh
-export TERM="alacritty"
-
-export QT_QPA_PLATFORMTHEME="qt5ct"
+# Aliases
 export WGETRC="$HOME/.config/wget/wgetrc"
 export MUSIC="$HOME/Videos/Audios/*"
 export CONFIG_BACKUP="$HOME/etc/linuxConfig/dotfiles/"
@@ -22,12 +26,18 @@ export IMAGES_DIR="$HOME/Images/images"
 export BOOKDIR="$HOME/Documents/Books/*"
 export ALIASDIR="$HOME/.aliases/aliases"
 
+# XDG
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_STATE_HOME="$HOME/.local/state"
 export XDG_DATA_DIRS="/usr/local/share:/usr/share"
 
+# Man
+unset MANPATH # delete if you already modified MANPATH elsewhere in your configuration
+export MANPATH
+MANPATH="$NPM_PACKAGES/share/man:$(manpath)"
+export QT_QPA_PLATFORMTHEME="qt5ct"
 
 
 # LESS COLORS
@@ -41,6 +51,7 @@ export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
 export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
 export PATH="$HOME/etc/Programs/paleofetch:$PATH"
 
+# Sourcing paths
 if [ -d "$HOME/bin" ]; then
     PATH="$HOME/bin:$PATH"
 fi

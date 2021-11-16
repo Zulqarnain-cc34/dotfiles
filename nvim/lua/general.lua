@@ -75,8 +75,8 @@ o.wildmode = 'longest:full,full'
 
 -- ================= Indentation ================= --
 
-b.autoindent = true -- copy the previous indentation on autoindenting
 b.smartindent = true -- always set autoindenting on
+b.autoindent = true -- copy the previous indentation on autoindenting
 b.shiftwidth = 4 -- number of spaces to use for autoindenting
 o.smarttab = true -- insert tabs on the start of a line according to shiftwidth, not tabstop
 o.tabstop = 4 -- insert tabs on the start of a line according to shiftwidth, not tabstop
