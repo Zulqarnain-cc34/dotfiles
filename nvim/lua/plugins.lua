@@ -95,7 +95,8 @@ return require('packer').startup(function()
 
     use 'Th3Whit3Wolf/one-nvim'
 
-    use "Tastyep/structlog.nvim"
+    use {"Tastyep/structlog.nvim", opt=true}
+
     use {
         "nvim-lua/lsp-status.nvim",
         require = function()
@@ -154,7 +155,6 @@ return require('packer').startup(function()
         config = function()
             require('plugins.nvimtree')
         end,
-        opt = true,
         cmd = {
             'NvimTreeClipboard', 'NvimTreeClose', 'NvimTreeFindFile', 'NvimTreeOpen',
             'NvimTreeRefresh', 'NvimTreeToggle'
@@ -181,7 +181,7 @@ return require('packer').startup(function()
     use {'jose-elias-alvarez/nvim-lsp-ts-utils'}
 
     -- ultisnips
-    use {'SirVer/ultisnips', event = "InsertEnter *", requires = {'honza/vim-snippets'}}
+    use {'SirVer/ultisnips', event = "InsertEnter", requires = {'honza/vim-snippets'}}
 
     -- use {'hrsh7th/vim-vsnip', event = "InsertEnter *"}
 

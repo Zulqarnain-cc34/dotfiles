@@ -40,11 +40,14 @@ local shellcheck = {
 require"lspconfig".efm.setup {
     -- on_attach = on_attach,
     init_options = {documentFormatting = true, codeAction = true},
-    rootdir = vim.loop.cwd,
+    rootdir = function()
+        if not require("utils").eslint_config_exists() then return nil end
+        return vim.fn.getcwd()
+    end,
     filetypes = {
         "lua", "python", "sh", "golang", "html", "css", "javascriptreact", "markdown", "pandoc",
         "scss", "yaml", "javascript", "javascript.jsx", "typescript", "typescript.tsx",
-        "typescriptreact", "vim", "json","c","cpp"
+        "typescriptreact", "vim", "json", "c", "cpp"
     },
     settings = {
         rootMarkers = {".git/"},
@@ -56,8 +59,8 @@ require"lspconfig".efm.setup {
             -- dart = {dartfmt},
             lua = {luafmt, luacheck},
             markdown = {markdownPandocFormat, markdownlint},
+            javascript = {eslint,prettier},
             python = {flake8, isort},
-            javascript = {prettier, eslint},
             -- assembly = {asmfmt},
             go = {gofumpt},
             javascriptreact = {prettier, eslint},

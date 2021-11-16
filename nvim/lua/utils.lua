@@ -10,6 +10,7 @@ local M = {}
 -- end
 
 local efm_priority_document_format
+
 function M.efm_priority_document_format()
     if not efm_priority_document_format then
         local clients = vim.lsp.buf_get_clients(0)
@@ -37,10 +38,23 @@ function M.efm_priority_document_format()
     vim.lsp.buf.formatting()
 end
 
+function M.eslint_config_exists()
+    local eslintrc = vim.fn.glob(".eslintrc*", 0, 1)
+
+    if not vim.tbl_isempty(eslintrc) then return true end
+
+    if vim.fn.filereadable("package.json") then
+        if vim.fn.json_decode(vim.fn.readfile("package.json"))["eslintConfig"] then
+            return true
+        end
+    end
+
+    return false
+end
+
 return M
 
 -- function g.LspSignatureHint()
 -- return vim.api.nvim_command("call vim.lsp.buf.code_action")
 -- end
-
 
