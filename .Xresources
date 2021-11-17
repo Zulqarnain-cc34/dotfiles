@@ -1,7 +1,7 @@
 #include "/home/precision/etc/.configResources/Xresources-themes/iterm-Brogrammer.Xresources"
 
-URxvt*font:xft:UbuntuMono:size=13:minspace=False:antialias=true, Fira Code Retina:pixelsize=11:minspace=False, xft:DejaVu Sans:pixelsize=8, xft:Symbola
-URxvt*boldFont:xft:UbuntuMono:size=13:minspace=False:antialias=true, xft:Fira Code Retina:pixelsize=11:minspace=False, xft:DejaVu Sans:pixelsize=8, xft:Symbola
+URxvt*font:xft:UbuntuMono:size=13:minspace=False:antialias=true, Fira Code Retina:pixelsize=9:minspace=False, xft:DejaVu Sans:pixelsize=8, xft:Symbola
+URxvt*boldFont:xft:UbuntuMono:size=13:minspace=False:antialias=true, xft:Fira Code Retina:pixelsize=9:minspace=False, xft:DejaVu Sans:pixelsize=8, xft:Symbola
 
 
 URxvt.scrollBar: false
