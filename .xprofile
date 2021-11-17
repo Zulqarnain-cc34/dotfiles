@@ -5,7 +5,7 @@ sxhkd &
 fcitx -d &
 dunst &
 
-hsetroot -cover ~/Pictures/Wallpapers/Wallpapers/2veek29rath51.jpg &
+hsetroot -cover ~/Pictures/Wallpapers/Wallpapers/forest-sunset-artwork.jpg &
 xset r rate 300 50 
 xmodmap /home/precision/.Xmodmap
 

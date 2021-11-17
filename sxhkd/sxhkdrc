@@ -188,6 +188,9 @@ alt + n
 
 super + e
 
+super + p
+  ~/.config/polybar/scripts/powermenu
+
 # F7
 #   toggletouch
 
