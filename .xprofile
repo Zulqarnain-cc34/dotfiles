@@ -4,8 +4,9 @@ picom &
 sxhkd &
 fcitx -d &
 dunst &
-polybar -r main --config=$HOME/.config/polybar/config.ini &
-hsetroot ~/Pictures/Wallpapers/Wallpapers/2veek29rath51.jpg &
 
+hsetroot -cover ~/Pictures/Wallpapers/Wallpapers/2veek29rath51.jpg &
 xset r rate 300 50 
 xmodmap /home/precision/.Xmodmap
+
+polybar -r main --config=$HOME/.config/polybar/config.ini &
