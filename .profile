@@ -74,6 +74,7 @@ fi
 
 export GOBIN="$HOME/.local/go"
 export PATH="$PATH:$HOME/.local/go"
+export PATH= "$PATH:$HOME/.cargo/env"
 
 export LS_COLORS="$(vivid generate one-dark)"
 
