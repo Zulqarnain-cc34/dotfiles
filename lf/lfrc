@@ -18,7 +18,7 @@ cmd open ${{
         application/vnd.openxmlformats-officedocument.wordprocessingml.document) pandoc -f docx -t markdown --wrap=preserve "$f" |mdcat | less -r;;
         text/html) $BROWSERCLI "$f" ;;
         text/*|application/json) $EDITOR "$f";;
-        image/vnd.djvu)nohup zathura "$f" &> /dev/null &;;
+        image/vnd.djvu)nohup okular "$f" &> /dev/null &;;
         image/*)nohup sxiv "$f" &> /dev/null &;;
         video/*|image/*/application/pdf)nohup xdg-open "$f" &> /dev/null &;;
         *)nohup xdg-open "$f" &> /dev/null & ;;
@@ -185,6 +185,7 @@ cmd zip %zip -r "$f" "$f"
 cmd tar %tar cvf "$f.tar" "$f"
 cmd targz %tar cvzf "$f.tar.gz" "$f"
 cmd tarbz2 %tar cjvf "$f.tar.bz2" "$f"
+cmd setbg %hsetroot -cover "$f"
 
 cmd clear_trash %trash-empty
 
@@ -317,6 +318,7 @@ map ch chmod
 map cn nvim-configedit
 map cl config-edit
 map cr stripspace
+map cs setbg
 map cd push :cd<space>
 
 map u

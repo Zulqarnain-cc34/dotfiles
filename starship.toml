@@ -100,7 +100,7 @@ format = "[$symbol$environment](dimmed Yellow) "
 symbol="🅒 "
 
 [cmd_duration]
-min_time = 2000   
+min_time = 1000   
 show_milliseconds = false
 disabled = false
 format = "⏲️ took [$duration]($style)"
