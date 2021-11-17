@@ -1,3 +1,209 @@
 # move focused window to the next workspace and then switch to that workspace
 alt + shift + {Left,Right}
     id=$(bspc query --nodes --node); bspc node --to-desktop {prev,next}; bspc desktop --focus next; bspc node --focus ${id}
+
+
+
+
+##---BSPWM Bindings
+# # Quit bspwm
+super + shift + Escape
+prompt "Are you sure you would like to quit this Xsession" "bspc quit"
+#
+# # Restart bspwm
+super + shift + w
+bspc wm -r
+
+# # Kill Window
+super + shift + q
+crystal --close
+
+# # Focus on window in direction
+# super + {h,j,k,l}
+# 	bspc node -f {west,south,north,east}
+#
+# #	Send window to desktop
+# super + shift + {0-9}
+#   crystal --send {0-9}
+#
+# # Send window to desktop and swap to desktop
+# super + control + {0-9}
+#   bspc node -d {0-9} && bspunhide && bspc desktop -f {0-9}
+#
+# # Swap nodes the tree from the current nodes parent
+# super + control + {Up, Down}
+#   bspc node @parent -C {forward, backward}
+#
+# # Rotate the tree from the current nodes parent
+# super + control + {Right, Left}
+# 	bspc node @parent --rotate {90,270}
+#
+# # Flip the tree from the current nodes parent
+# super + control + {h,j,k,l}
+#   bspc node @parent -F {vertical,horizontal,horizontal,vertical}
+#
+# # Toggle fullscreen on and off
+# super + f
+#   crystal --fullscreen
+#
+# # Toggle floating on and off
+# super + o
+#   bspc node focused.tiled -t floating || bspc node focused.floating -t tiled
+#
+# # Swap window with direction
+# super + shift + {h,j,k,l}
+# 	bspc node -s {west,south,north,east}
+#
+# # Focus on desktop
+# super + {0-9}
+# 	crystal --focus {0-9}
+#
+# # Cycle through desktops
+# super + alt + {Left, Right}
+#   crystal --focus {prev, next}
+#
+# # Close all receptacle
+# super + shift + i
+#   for win in `bspc query -N -n .leaf.\!window`; do bspc node $win -k ; done;
+#
+# # Insert receptacle
+# super + i; {h,j,k,l}
+#   bspc node --presel-dir {west,south,north,east} -i
+#
+# # Move to rectacle
+# super + r
+#   bspreceptacle
+#
+# # Balance nodes
+# super + e
+#   bspc node @/ -B
+#
+# # Expand a window by moving one of its side outward
+# ctrl + alt + {h,j,k,l}
+# 	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
+#
+# # Contract a window by moving one of its side inward
+# ctrl + alt + shift + {h,j,k,l}
+# 	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
+#
+# # Move a floating window
+# ctrl + alt + {Left,Right,Up,Down}
+#   xdo move {-x -20, -x +20, -y -20, -y +20}
+#
+# # Dropdown terminal
+# super + alt + Return
+# 	tdrop -ma -w 1916 -y 0 st
+#
+#  super + shift + o
+#    reloadpolybar
+
+#---System Control---#
+# Restart hotkey damon
+super + shift + x
+  killandnotify "sxhkd" "Config reloaded" && sxhkd &
+
+super + shift + {r, s}
+  prompt {"Are you sure you would like to reboot?" "sudo reboot", "Are you sure you would like to shutdown" "sudo shutdown"}
+
+# Lock the screen
+alt + l
+  slock
+
+# super + shift + c
+#   toggleprogram "picom" "--experimental-backends"
+
+#---Script Keys---#
+shift + alt + t
+  notifytorrents
+
+# Quit Program
+super + q
+
+
+# super + {b, c, e}
+#   {bookmenu -p "Select a bookmark" -b ~/.config/bookmenu/browser -co $BROWSER, bookmenu -p "Select a config" -b ~/.config/bookmenu/configs -co "$TERMINAL -e nvim"}
+
+super + {t,r,k}
+    {alacritty,rtv,kitty}
+
+F7
+  toggletouch
+
+# Audio Control
+# ALSA Controls
+#super + {_, shift} + p
+#  alsavolctrl Headphone {2%+, 2%-}
+#
+#super + {_, shift} + s
+#  alsavolctrl Speaker {2%+, 2%-}
+#
+#super + {Up, Down}
+#  alsavolctrl Master {2%+, 2%-}
+#
+#super + F4
+#  alsavolctrl All mute
+# super + F1
+# 	$TERMINAL -e ncmpcpp
+
+# Pulse Controls
+# super + {F3, F2}
+#   pulsevolctrl "output-vol" "alsa_output.pci-0000_0b_00.4.analog-stereo" {+2%, -2%}
+#
+# super + F4
+#   pulsevolctrl "output-mute" "alsa_output.pci-0000_0b_00.4.analog-stereo"
+#
+# super + F9
+# 	thunderbird
+#
+# # Media Controls
+# super + F1
+# 	$TERMINAL -e ncmpcpp
+#
+# super + F8
+#   playerctl -p "mpd" next
+#
+# super + F6
+#   playerctl -p "mpd" previous
+#
+# super + F7
+#   playerctl -p "mpd" play-pause
+#
+# super + F5
+#   playerctl -p "mpd" stop
+#
+# super + slash
+#   songnotification
+
+# Brightness
+# super + {Right, Left}
+#   light {-A 5, -U 5} && polybar-msg hook backlight 1
+
+# Screenshots
+# Print
+# 	flameshot full -p ~/pictures/screenshots
+#
+# Print + shift
+# 	flameshot gui
+#
+# Print + super
+# 	flameshot screen -p ~/pictures/screenshots
+
+
+#---Application Launchers---#
+super + space
+  rofi-bangs
+
+super + Return
+  $TERMINAL
+
+# super + alt + {k, o, g, b, f, v, s, d}
+#   {kdenlive, obs, gimp, $BROWSER, pcmanfm, virtualbox, spotify, discord-canary}
+
+super + w
+  $BROWSER 
+
+super + e
+  neomutt
+
+# super + alt + {a, r, t, h, n, c, j, p}
+#   $TERMINAL -e {alsamixer, lf, transmission-remote-cli, htop, nvim, calcurse, nvim $XDG_DATA_HOME/vimwiki/index.wiki, pulsemixer}
