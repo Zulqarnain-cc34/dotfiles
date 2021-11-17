@@ -31,6 +31,7 @@
 [ ! -d "$HOME"/.config/zsh ] && ln -s "$PWD"/zsh "$HOME"/.config/zsh
 [ ! -d "$HOME"/.config/conky ] && ln -s "$PWD"/conky "$HOME"/.config/conky
 [ ! -d "$HOME"/.config/bspwm ] && ln -s "$PWD"/bspwm "$HOME"/.config/bspwm
+[ ! -d "$HOME"/.config/sxhkd ] && ln -s "$PWD"/sxhkd "$HOME"/.config/sxhkd
 
 ##################################
 ## _____  ___  _      _____  ____
