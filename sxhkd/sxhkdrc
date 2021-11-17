@@ -177,8 +177,8 @@ alt + l
 shift + alt + t
   notifytorrents
 
-super + {t,r,y}
-    {alacritty,$TERMINAL -e rtv,kitty}
+super + {t,r,y,o}
+    {alacritty,$TERM -e rtv,kitty,$TERM -e htop}
 
 super + space
   rofi-bangs
@@ -187,7 +187,7 @@ super + w
   $BROWSER
 
 super + e
-  $TERMINAL -e neomutt
+  $TERM -e neomutt
 
 # F7
 #   toggletouch
