@@ -32,6 +32,7 @@
 [ ! -d "$HOME"/.config/conky ] && ln -s "$PWD"/conky "$HOME"/.config/conky
 [ ! -d "$HOME"/.config/bspwm ] && ln -s "$PWD"/bspwm "$HOME"/.config/bspwm
 [ ! -d "$HOME"/.config/sxhkd ] && ln -s "$PWD"/sxhkd "$HOME"/.config/sxhkd
+[ ! -d "$HOME"/.config/eww ] && ln -s "$PWD"/eww "$HOME"/.config/eww
 
 ##################################
 ## _____  ___  _      _____  ____
