@@ -4,7 +4,7 @@ bspc rule -r "*"
 # killall bspswallow
 # pidof bspswallow | bspswallow &
 
-bspc monitor -d I II III
+bspc monitor -d I II III IV V
 
 bspc monitor DisplayPort-0 -d 1 2 3 4 5 6 7
 bspc monitor DisplayPort-1 -d 8 9

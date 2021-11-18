@@ -37,7 +37,7 @@ draw_shades no
 #############################
 use_xft yes
 xftalpha 1
-xftfont DejaVu Sans:size=8
+xftfont UbuntuMono:size=8
 
 #############################
 # Alignment

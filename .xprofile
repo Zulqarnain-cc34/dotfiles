@@ -4,6 +4,7 @@ picom &
 sxhkd &
 fcitx -d &
 dunst &
+redshift_toggle.sh &
 
 hsetroot -cover ~/Pictures/Wallpapers/Wallpapers/forest-sunset-artwork.jpg &
 xset r rate 300 50 

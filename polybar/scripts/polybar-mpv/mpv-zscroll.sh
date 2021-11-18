@@ -9,7 +9,7 @@ while :; do
     fi
 done &
 
-zscroll --length 25 --delay 0.4 \
+zscroll --length 15 --delay 0.4 \
     --match-command "$HOME/.config/polybar/scripts/polybar-mpv/mpv.sh --status" \
     --match-text "true" "--after-text ' ' --scroll false" \
     --match-text "false" "--after-text ' ' --scroll true" \
