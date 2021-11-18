@@ -182,7 +182,8 @@ ins_left {
         end
         return msg
     end,
-    icon = '賓LSP:',
+    --賓
+    icon = ' LSP:',
     color = {fg = "#117c80", gui = 'bold'}
 }
 

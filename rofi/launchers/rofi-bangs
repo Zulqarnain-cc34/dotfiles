@@ -21,7 +21,7 @@ declare -A COMMANDS
 COMMANDS["exec"]="rofi -show run -show -modi run"
 LABELS["exec"]=""
 
-COMMANDS["apps"]="$HOME/.config/rofi/appmenu/launcher.sh"
+COMMANDS["apps"]="$HOME/.config/rofi/launchers/ribbon/launcher.sh"
 LABELS["apps"]="Applications"
 
 
