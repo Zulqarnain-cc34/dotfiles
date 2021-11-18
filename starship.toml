@@ -93,7 +93,7 @@ symbol="🐋 "
 
 #[dart]
 #format= "via [$symbol($version )]($style)"
-#symbol = "🎯 "
+#symbol = "🎯 "🔰
 
 [conda]
 format = "[$symbol$environment](dimmed Yellow) "
