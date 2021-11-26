@@ -32,7 +32,6 @@ vim.api.nvim_command([[
      autocmd FileType c   nnoremap <F9> :!gcc %
      autocmd FileType typescript   nnoremap <F9> :!ts-node %
 
-     autocmd FileType html,css EmmetInstall
 ]])
 
 --vim.api.nvim_command([[
@@ -42,12 +41,12 @@ vim.api.nvim_command([[
     --augroup end
 --]])
 -- Copies the test selected in visual mode and yanked with y to system clipboard
-vim.api.nvim_command([[
-    autocmd TextYankPost *
-      \ if v:event.visual && v:operator == 'y' |
-      \   let @+ = getreg(v:event.regname) |
-      \ endif
-]])
+-- vim.api.nvim_command([[
+--     autocmd TextYankPost *
+--       \ if v:event.visual && v:operator == 'y' |
+--       \   let @+ = getreg(v:event.regname) |
+--       \ endif
+-- ]])
 
 vim.api.nvim_command([[
     au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
