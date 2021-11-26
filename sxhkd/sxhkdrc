@@ -7,6 +7,14 @@
 super + alt + {q,r}
 	bspc {quit, wm -r}
 
+# Toggle floating
+super + d
+    if [ -z "$(bspc query -N -n focused.floating)" ]; then \
+        bspc node focused -t floating; \
+    else \
+        bspc node focused -t tiled; \
+    fi
+
 # Shutdown and Reboot
 super + shift + {r, s}
   prompt {"Are you sure you would like to reboot?" "sudo reboot", "Are you sure you would like to shutdown" "sudo shutdown"}

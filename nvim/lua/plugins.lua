@@ -59,6 +59,9 @@ return require('packer').startup(function()
             require("plugins.nvim-web-devicons")
         end
     }
+    -- use {"romgrk/nvim-treesitter-context"}
+
+    -- use {"github/copilot.vim"}
 
     use {
         'kevinhwang91/nvim-hlslens',
