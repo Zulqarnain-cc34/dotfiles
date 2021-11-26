@@ -368,7 +368,7 @@ return require('packer').startup(function()
     use {
         'dstein64/vim-startuptime',
         cmd = 'StartupTime',
-        config = [[vim.g.startuptime_tries = 10]]
+        -- config = [[vim.g.startuptime_tries = 10]]
     }
 
     -- use {
