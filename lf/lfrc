@@ -122,9 +122,7 @@ cmd chmod %{{
   lf -remote 'send reload'
 }}
 
-#cmd setwallpaper %xfconf-query --channel xfce4-desktop --property /backdrop/screen0/monitorLVDS-1/workspace0/last-image --set "$f"
-cmd setwallpaper %cp "$f" ~/.config/wall.png && xwallpaper --stretch "$f"
-cmd selectwallpaper % ~/bin/bash_scripts/personal/wallpaper.sh "$f"
+cmd setwallpaper %hsetroot -cover "$f"
 
 cmd fzf_jump ${{
   res="$(find . -maxdepth 3 | fzf --reverse --header='Jump to location')"
@@ -325,9 +323,8 @@ map u
 map uv unselect
 map uy clear
 
-map bg setwallpaper
-map bs selectwallpaper
 map bt set_mozillas_new_tab_back
+map bg setwallpaper
 
 
 map e
