@@ -9,7 +9,6 @@
 local execute = vim.api.nvim_command
 local fn = vim.fn
 
-
 local packer_install_dir = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
 
 local plug_url_format = 'https://github.com/%s'
@@ -98,7 +97,7 @@ return require('packer').startup(function()
 
     use 'Th3Whit3Wolf/one-nvim'
 
-    use {"Tastyep/structlog.nvim", opt=true}
+    use {"Tastyep/structlog.nvim", opt = true}
 
     use {
         "nvim-lua/lsp-status.nvim",
@@ -367,7 +366,7 @@ return require('packer').startup(function()
 
     use {
         'dstein64/vim-startuptime',
-        cmd = 'StartupTime',
+        cmd = 'StartupTime'
         -- config = [[vim.g.startuptime_tries = 10]]
     }
 
