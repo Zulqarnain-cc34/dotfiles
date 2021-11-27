@@ -20,7 +20,8 @@ require('lsp/json')
 require('lsp/gopls')
 require('lsp/efm')
 require('lsp/vim')
-require('lsp/css')
+require('lsp/vim')
+-- require('lsp/lsp')
 
 ------------------------------------------------------------------------
 --                              Plugins                               --
