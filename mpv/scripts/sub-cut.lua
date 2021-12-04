@@ -297,7 +297,7 @@ function cut_audio_fragment()
             "--aid=" .. aid,
             "--video=no",
             -- "--af=afade=t=in:st=" .. start_timestamp .. ":d=" .. d .. ",afade=t=out:st=" .. (end_timestamp - d) .. ":d=" .. d,
-            "--o=" .. filename .. ".m4a"
+            "--o=" .. filename .. ".mp4"
         }
 
         if video_path:sub(1, 4) == "http" and mp.get_property("ytdl-format") ~= "" then
