@@ -73,7 +73,7 @@ return require('packer').startup(function()
     -- use({ -- color scheme
     -- 'folke/tokyonight.nvim',
     -- config = function()
-    -- vim.g.tokyonight_style = 'night'
+    -- vim.g.tokyonight_style = 'storm'
     -- vim.g.tokyonight_sidebars = {'qf', 'packer'}
     -- vim.cmd('color tokyonight')
     -- end
@@ -311,10 +311,10 @@ return require('packer').startup(function()
     use {"windwp/nvim-ts-autotag", event = "InsertEnter", after = 'nvim-treesitter'}
 
     -- Lsp - Ui
-    --
     use {
+        "tami5/lspsaga.nvim",
         -- 'glepnir/lspsaga.nvim',
-        'rinx/lspsaga.nvim',
+        -- 'rinx/lspsaga.nvim',
         event = 'BufRead',
         config = function()
             require("plugins.lspsaga")
