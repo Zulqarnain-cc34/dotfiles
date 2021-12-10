@@ -12,6 +12,7 @@ set alias_file=~/.mutt/aliases        # Where to store aliases
 set signature=~/.mutt/Mail/.signature            # Silly signature
 set mailcap_path= ~/.mutt/mailcap       # entries for filetypes
 
+set sendmail="/usr/bin/msmtp"
 set ssl_starttls=yes
 set imap_check_subscribed=yes
 set imap_list_subscribed=yes
@@ -22,6 +23,7 @@ unset imap_passive
 set imap_idle
 set editor = "nvim"
 set auto_tag = yes 
+
 #
 # The header weed list
 #
@@ -90,7 +92,7 @@ set   tilde                             # Indicate empty lines in the pager.
 set   to_chars=" +TCF "                 # Don't tag list mail in the index
 unset use_domain                        # Don't append a domain to addresses.
 set   write_inc=50                      # Progress indicator when writing folders.
-set   query_command="lbdb2q.pl %s"              # Use the Little Brother's Database with the external
+set   query_command="lbdbq %s"          # Use the Little Brother's Database with the external
 set   sendmail_wait=-1                  # Don't put sendmail into the background.
 set   encode_from                       # "From " in the beginning of a line triggers quoted-printable
 set   nowait_key                        # Return immediately from external programs
@@ -133,6 +135,8 @@ set forward_quote		# include message in forwards
 set include			# include message in replies
 set mail_check=60 # to avoid lags using IMAP with some email providers (yahoo for example)
 auto_view text/html		# automatically show html (mailcap uses lynx)
+auto_view application/pgp-encrypted
+alternative_order text/plain text/enriched text/html
 unset sig_dashes                     # no dashes before sig
 unset mime_forward                   # forward attachments as part of body
 unset help                           # No help bar at the top of index

@@ -1,16 +1,12 @@
-# MS Word documents
-#application/msword; ~/dotfiles/office/view-attachment.sh %s "-" '/Applications/LibreOffice.app'
-#application/vnd.ms-excel; ~/dotfiles/office/view-attachment.sh %s "-" '/Applications/LibreOffice.app'
-#application/vnd.openxmlformats-officedocument.presentationml.presentation; ~/dotfiles/office/view-attachment.sh %s "-" '/Applications/LibreOffice.app'
-#application/vnd.oasis.opendocument.text; ~/dotfiles/office/view-attachment.sh %s "-" '/Applications/LibreOffice.app'
-
-# HTML
-text/html; w3m -I %{charset} -T text/html; copiousoutput;
-text/plain; nvim %s
-
-#PDFs
-application/pdf; /usr/bin/xdg-open %s pdf
-
-#Images
-image/png; /usr/bin/xdg-open %s
-image/jpeg; /usr/bin/xdg-open %s
+text/plain; $EDITOR %s ;
+text/html; w3m %s ; nametemplate=%s.html;
+# text/calendar; ~/bin/bash_scripts/calcurse-mutt.sh '%s';
+#text/html; lynx -assume_charset=%{charset} -display_charset=utf-8 -dump %s; nametemplate=%s.html; copiousoutput;
+image/*; sxiv %s ;
+video/*; setsid mpv --quiet %s &; copiousoutput;
+audio/*; mpv %s ;
+application/pdf; zathura %s ;
+application/pgp-encrypted; gpg -d '%s'; copiousoutput;
+application/pgp-keys; gpg --import '%s'; copiousoutput;
+application/vnd.openxmlformats-officedocument.spreadsheetml.sheet; xlsx2csv '%s' | column -t -s , | less -S;
+application/vnd.openxmlformats-officedocument.wordprocessingml.document; pandoc -f docx -t markdown --wrap=preserve '%s' | mdcat | less -r ;

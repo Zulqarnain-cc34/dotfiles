@@ -1,0 +1,7 @@
+#!/bin/dash
+set -eu
+
+TMPFILE="$(mktemp)"
+trap "rm -f '$TMPFILE'" INT QUIT TERM HUP EXIT
+alacritty -e lf -selection-path "$TMPFILE"
+cat $TMPFILE
