@@ -329,6 +329,7 @@ return require('packer').startup(function()
             require('plugins.trouble')
         end
     }
+    use{ "vimwiki/vimwiki" }
 
     -- Git
     --

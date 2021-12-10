@@ -20,6 +20,7 @@
 "query:All Reddit Posts:tags # \"Reddit\"" "Reddit"
 "query:All Programming Posts:tags # \"Programming\"" "Programming"
 "query:All Sports Posts:tags # \"Sports\"" "Sports"
+"query:All Japanese Posts:tags # \"Japanese\"" "Japanese"
 "query:All Github Posts:tags # \"Github\"" "Github"
 
 "query:All Youtube Posts:tags # \"Youtube\"" "YOUTUBE"
@@ -42,6 +43,17 @@
 
 
 -----------------------------
+----------Japanese-----------
+-----------------------------
+https://www.reddit.com/r/NHKEasyNews/.rss "~Japanese: NBK NEWS" "Japanese"
+https://learnjapanesepod.com/feed/ "~Japanese: learnjapanesepod" "Japanese"
+https://www.tofugu.com/feed.xml "~Japanese: tofugu" "Japanese"
+https://languagemastery.com/comments/feed/ "~Japanese: languagemastery" "Japanese"
+# https://languagemastery.com/feed/ "~Japanese: languagemastery" "Japanese"
+# https://learnjapanesedaily.com/feed  "~Japanese: learnjapanesedaily" "Japanese"
+https://fluentu.com/blog/japanese/feed "~Japanese: fluentu" "Japanese"
+
+-----------------------------
 ----------Sports-------------
 -----------------------------
 https://github.com/trimstray/the-book-of-secret-knowledge/commits/master.atom "~Github: The book of secret knowledge" "Github"
@@ -55,14 +67,14 @@ https://www.hltv.org/rss/news "~Sports: Csgo" "Sports"
 https://www.reddit.com/r/artificial/.rss "AI: Artifical Intelligence" "AI"
 https://www.aitrends.com/feed/ "~AI: Aitrends" "AI"
 https://theaisummer.com/feed.xml "~AI: TheAiSummer" "AI"
-https://chatbotslife.com/feed "~AI: Chatbotslife" "AI"
+# https://chatbotslife.com/feed "~AI: Chatbotslife" "AI"
 https://machinelearningmastery.com/feed/ "~AI: MLMastery" "AI"
-https://www.reddit.com/r/reinforcementlearning/.rss?format=xml "~AI: Reinforcment Learning" "Ai"
+# https://www.reddit.com/r/reinforcementlearning/.rss?format=xml "~AI: Reinforcment Learning" "Ai"
 https://becominghuman.ai/feed  "~AI: Becoming Human" "Ai"
 https://blog.paralleldots.com/feed "~AI: ParallelDots" "Ai"
-https://medium.com/feed/towards-data-science/tagged/data-science "~AI:Towards Data Science " "Ai"
-https://www.reddit.com/r/datascience/.rss "~AI: Datascience" "AI"
-https://nanonets.com/blog/rss/ "~AI: Nanonets" "AI"
+# https://medium.com/feed/towards-data-science/tagged/data-science "~AI:Towards Data Science " "Ai"
+# https://www.reddit.com/r/datascience/.rss "~AI: Datascience" "AI"
+# https://nanonets.com/blog/rss/ "~AI: Nanonets" "AI"
 
 -----------------------------
 ---------programming---------
