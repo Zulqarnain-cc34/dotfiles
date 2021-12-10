@@ -33,6 +33,8 @@
 [ ! -d "$HOME"/.config/bspwm ] && ln -s "$PWD"/bspwm "$HOME"/.config/bspwm
 [ ! -d "$HOME"/.config/sxhkd ] && ln -s "$PWD"/sxhkd "$HOME"/.config/sxhkd
 [ ! -d "$HOME"/.config/eww ] && ln -s "$PWD"/eww "$HOME"/.config/eww
+[ ! -d "$HOME"/.config/qutebrowser ] && ln -s "$PWD"/qutebrowser "$HOME"/.config/qutebrowser
+[ ! -d "$HOME"/.config/zathura ] && ln -s "$PWD"/zathura "$HOME"/.config/zathura
 
 ##################################
 ## _____  ___  _      _____  ____

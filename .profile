@@ -12,6 +12,9 @@ export PATH="$PATH:/usr/local/opt/coreutils/libexec/gnubin"
 export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 export NODE_PATH="$NPM_PACKAGES/lib/node_modules:$NODE_PATH"
 
+# GTk scaling
+export GDK_DPI_SCALE=0.7
+
 # Fcitx
 export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
@@ -62,6 +65,10 @@ fi
 
 if [ -d "$HOME/bin/Application" ]; then
     PATH="$PATH:$HOME/bin/Application"
+fi
+
+if [ -d "$HOME/bin/scripts" ]; then
+    PATH="$PATH:$HOME/bin/scripts"
 fi
 
 if [ -d "$HOME/bin/colorscripts" ]; then

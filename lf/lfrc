@@ -1,4 +1,5 @@
 set previewer ~/.config/lf/preview
+set cleaner ~/.config/lf/clear_img.sh
 # Basic Settings
 set preview true
 set drawbox true
@@ -10,17 +11,24 @@ set shellopts '-eu:--shwordsplit'
 set ifs "\n"
 set filesep "\n"  # default already
 
+%[ $LF_LEVEL -eq 1 ] || echo "Warning: You're in a nested lf instance!"
 
 # Custom Functions
 cmd open ${{
     case $(file --mime-type "$f" -bL) in
-        application/vnd.openxmlformats-officedocument.spreadsheetml.sheet) xlsx2csv "$f" | column -t -s , | less -S ;;
-        application/vnd.openxmlformats-officedocument.wordprocessingml.document) pandoc -f docx -t markdown --wrap=preserve "$f" |mdcat | less -r;;
+        application/vnd.openxmlformats-officedocument.spreadsheetml.sheet) 
+            xlsx2csv "$f" | column -t -s , | less -S 
+            ;;
+        application/vnd.openxmlformats-officedocument.wordprocessingml.document) 
+            pandoc -f docx -t markdown --wrap=preserve "$f" |mdcat | less -r
+            ;;
         text/html) $BROWSERCLI "$f" ;;
         text/*|application/json) $EDITOR "$f";;
-        image/vnd.djvu)nohup okular "$f" &> /dev/null &;;
+        application/pdf)nohup zathura "$f" &> /dev/null &;;
+        image/vnd.djvu)nohup zathura "$f" &> /dev/null &;;
+        image/svg+xml)nohup inkview "$f" &> /dev/null &;;
         image/*)nohup sxiv "$f" &> /dev/null &;;
-        video/*|image/*/application/pdf)nohup xdg-open "$f" &> /dev/null &;;
+        video/*)nohup mpv "$f" &> /dev/null &;;
         *)nohup xdg-open "$f" &> /dev/null & ;;
     esac
 }}
@@ -105,14 +113,35 @@ cmd mkfile %{{
 
 
 cmd mount_kdeconnect ${{
-    qdbus org.kde.kdeconnect /modules/kdeconnect/devices/439fc7a8f3a87d51/sftp mountAndWait
+    qdbus org.kde.kdeconnect /modules/kdeconnect/devices/4b3c7f6f758726fc/sftp mountAndWait
 }}
 
+cmd mount_iso %iso_mount_unmount.sh "$f"
+
+cmd mount_Gdrive ${{
+    rclone mount --vfs-cache-mode=writes --dir-cache-time=72h Gdrive:/ ~/Public/Gdrive &
+    lf -remote 'send reload'
+}}
+cmd mount_mySecret ${{
+    rclone mount --vfs-cache-mode=writes --dir-cache-time=72h mysecret:/ ~/Public/mysecret &
+    lf -remote 'send reload'
+}}
+
+cmd mount_Nust_Onedrive ${{
+    rclone mount --vfs-cache-mode=writes --dir-cache-time=72h Nust_Onedrive:/ ~/Public/Nust_Onedrive &
+    lf -remote 'send reload'
+}}
+
+cmd mount_nextcloud ${{
+    rclone mount --vfs-cache-mode=writes --dir-cache-time=72h nextcloud:/ ~/Public/nextcloud &
+    lf -remote 'send reload'
+}}
 cmd chmod %{{
   printf "Mode Bits: "
   read ans
   SAVEIFS=$IFS
   IFS=$(echo -en "\n\b")
+  #for file in ${fx// /'>'}
   for file in $fx
   do
     chmod $ans "$file"
@@ -122,7 +151,10 @@ cmd chmod %{{
   lf -remote 'send reload'
 }}
 
-cmd setwallpaper %hsetroot -cover "$f"
+
+
+cmd setwallpaper %cp "$f" ~/.config/wall.png && xwallpaper --stretch "$f"
+cmd selectwallpaper % ~/bin/bash_scripts/personal/wallpaper.sh "$f"
 
 cmd fzf_jump ${{
   res="$(find . -maxdepth 3 | fzf --reverse --header='Jump to location')"
@@ -183,7 +215,6 @@ cmd zip %zip -r "$f" "$f"
 cmd tar %tar cvf "$f.tar" "$f"
 cmd targz %tar cvzf "$f.tar.gz" "$f"
 cmd tarbz2 %tar cjvf "$f.tar.bz2" "$f"
-cmd setbg %hsetroot -cover "$f"
 
 cmd clear_trash %trash-empty
 
@@ -244,8 +275,25 @@ cmd config-edit ${{
     $EDITOR "$HOME/.config/lf/lfrc"
 }}
 
-cmd nvim-configedit ${{
-    $EDITOR "$HOME/.config/nvim/lua/general.lua"
+cmd on-cd &{{
+    # display git repository status in your prompt
+    source /usr/share/git/completion/git-prompt.sh
+    GIT_PS1_SHOWDIRTYSTATE=auto
+    GIT_PS1_SHOWSTASHSTATE=auto
+    GIT_PS1_SHOWUNTRACKEDFILES=auto
+    GIT_PS1_SHOWUPSTREAM=auto
+    GIT_PS1_COMPRESSSPARSESTATE=auto
+    git=$(__git_ps1 " [GIT BRANCH:> %s]") || true
+    fmt="\033[32;1m%u@%h\033[0m:\033[34;1m%w\033[0m\033[33;1m$git\033[0m"
+    lf -remote "send $id set promptfmt \"$fmt\""
+}}
+
+cmd bulk-rename ${{
+    if [[ $fs != "" ]];then
+        printf '%s\n' $fx!| vidir -
+    else
+        vidir
+    fi
 }}
 
 
@@ -254,15 +302,14 @@ map r
 # Rename the file with a completely different name
 map rc push :rename<space>
 # Edit the current filename
-map ra rename
-#map ra ${{
-#	# get 'basename' of the selection
-#	filename="${f##*/}"
-#	# quote it so we won't deal with quotes in the lf -remote command
-#	filename="$(printf '%q' "$filename")"
-#	filename="${filename// /<space>}"
-#	lf -remote "send $id push :rename<space>$filename"
-#}}
+map ra ${{
+	# get 'basename' of the selection
+	filename="${f##*/}"
+	# quote it so we won't deal with quotes in the lf -remote command
+	filename="$(printf '%q' "$filename")"
+	filename="${filename// /<space>}"
+	lf -remote "send $id push :rename<space>$filename"
+}}
 # Edit filename before the extension
 map re ${{
 	# get 'basename' of the selection
@@ -272,16 +319,69 @@ map re ${{
 	filename="${filename// /<space>}"
 	lf -remote "send $id push :rename<space>$filename<a-b><c-b>"
 }}
-
+# Edit filename but place cursor at start
 map ri ${{
 	# get 'basename' of the selection
 	filename="${f##*/}"
 	# quote it so we won't deal with quotes in the lf -remote command
 	filename="$(printf '%q' "$filename")"
 	filename="${filename// /<space>}"
-	lf -remote "send $id push :rename<space>$filename<c-a><a-f><right>"
+	lf -remote "send $id push :rename<space>$filename<c-a><a-f><c-f>"
 }}
 
+cmd link %{{
+    set -- $(cat ~/.local/share/lf/files)
+    mode="$1"
+    shift
+    if [ "$#" -lt 1 ]; then
+        lf -remote "send $id echo no files to link"
+        exit 0
+    fi
+    case "$mode" in
+        # symbolically copy mode is indicating a soft link
+        copy) ln -sr -t . -- "$@";;
+        # while a move mode is indicating a hard link
+        move) ln -t . -- "$@";;
+    esac
+    rm ~/.local/share/lf/files
+    lf -remote "send clear"
+}}
+map P :link
+
+
+cmd newfold ${{
+    set -f
+    read newd
+    mkdir -- "$newd"
+    mv -- $fx "$newd"
+}}
+map eD newfold
+
+cmd select-files ${{
+    { echo "$fs"; find -L "$(pwd)" -mindepth 1 -maxdepth 1 -type f; } |
+        if [ "$lf_hidden" = "false" ]; then
+          # remove any hidden files so you only select files you can see.
+          grep -v '/\.[^/]\+$'
+        else
+          cat
+        fi |
+        sed '/^$/d' | sort | uniq -u |
+        xargs -d '\n' -r -I{} lf -remote "send $id toggle {}"
+}}
+
+cmd select-dirs ${{
+    { echo "$fs"; find -L "$(pwd)" -mindepth 1 -maxdepth 1 -type d; } |
+        if [ "$lf_hidden" = "false" ]; then
+          grep -v '/\.[^/]\+$'
+        else
+          cat
+        fi |
+        sed '/^$/d' | sort | uniq -u |
+        xargs -d '\n' -r -I{} lf -remote "send $id toggle {}"
+}}
+
+map Sf select-files
+map Sd select-dirs
 
 
 map d
@@ -310,21 +410,24 @@ map m
 map md push :mkdir<space>
 map mf push :mkfile<space>
 map mk mount_kdeconnect
+map mi mount_iso
+map mg mount_Gdrive
+map ms mount_mySecret
+map mo mount_Nust_Onedrive
+map mn mount_nextcloud
 
 map c
 map ch chmod
-map cn nvim-configedit
-map cl config-edit
 map cr stripspace
-map cs setbg
 map cd push :cd<space>
 
 map u
 map uv unselect
 map uy clear
 
-map bt set_mozillas_new_tab_back
 map bg setwallpaper
+map bs selectwallpaper
+map bt set_mozillas_new_tab_back
 
 
 map e
@@ -338,6 +441,7 @@ map ee $nvim -p $fx
 map em send_mail
 map eg image2pdf
 map ep image_directory
+map eP %sxiv $f
 map es share
 
 
@@ -347,6 +451,10 @@ map ag targz
 map ab targz
 map au unarchive
 
+
+map Vna ${{
+    ffmpeg -i "$f" -an -c copy "no_audio_$(basename $f)"
+}}
 
 map tr restore_trash
 map tc clear_trash
@@ -370,3 +478,203 @@ map . set hidden!
 map "'"
 map '"'
 map f
+
+# movement binds
+# map gk cd /run/user/1000/4b3c7f6f758726fc/
+
+# map gv. cd ~/Videos
+# map Dv. $mv $fx ~/Videos/
+# map Yv. $cp $fx ~/Videos/
+#
+# map gvp cd ~/Videos/Performances
+# map Dvp $mv $fx ~/Videos/Performances/
+# map Yvp $cp $fx ~/Videos/Performances/
+#
+# map gvy cd ~/Videos/youtube-dl
+# map Dvy $mv $fx ~/Videos/youtube-dl/
+# map Yvy $cp $fx ~/Videos/youtube-dl/
+#
+# map gvr cd ~/Videos/random
+# map Dvr $mv $fx ~/Videos/random/
+# map Yvr $cp $fx ~/Videos/random/
+#
+# map gvo cd ~/Videos/OBS
+# map Dvo $mv $fx ~/Videos/OBS/
+# map Yvo $cp $fx ~/Videos/OBS/
+#
+# map gvS cd /home/wasif/Videos/subs
+# map DvS $mv $fx /home/wasif/Videos/subs/
+# map YvS $cp $fx /home/wasif/Videos/subs/
+#
+# map gv8 cd /home/wasif/Videos/Team-8
+# map Dv8 $mv $fx /home/wasif/Videos/Team-8/
+# map Yv8 $cp $fx /home/wasif/Videos/Team-8/
+#
+# map gm. cd ~/Music
+# map Dm. $mv $fx ~/Music/
+# map Ym. $cp $fx ~/Music/
+#
+# map gb. cd ~/bin
+# map Db. $mv $fx ~/bin/
+# map Yb. $cp $fx ~/bin/
+#
+# map gbb cd /home/wasif/bin/bash_scripts
+# map Dbb $mv $fx /home/wasif/bin/bash_scripts/
+# map Ybb $cp $fx /home/wasif/bin/bash_scripts/
+#
+# map gbB cd /home/wasif/bin/binaries
+# map DbB $mv $fx /home/wasif/bin/binaries/
+# map YbB $cp $fx /home/wasif/bin/binaries/
+#
+# map gbc cd /home/wasif/bin/C
+# map Dbc $mv $fx /home/wasif/bin/C/
+# map Ybc $cp $fx /home/wasif/bin/C/
+#
+# map gbd cd /home/wasif/bin/dwm_autostart_scripts
+# map Dbd $mv $fx /home/wasif/bin/dwm_autostart_scripts/
+# map Ybd $cp $fx /home/wasif/bin/dwm_autostart_scripts/
+#
+# map gbp cd /home/wasif/bin/python_scripts
+# map Dbp $mv $fx /home/wasif/bin/python_scripts/
+# map Ybp $cp $fx /home/wasif/bin/python_scripts/
+#
+# map gd. cd ~/Documents
+# map Dd. $mv $fx ~/Documents/
+# map Yd. $cp $fx ~/Documents/
+#
+# map gda cd /home/wasif/Documents/assignment
+# map Dda $mv $fx /home/wasif/Documents/assignment/
+# map Yda $cp $fx /home/wasif/Documents/assignment/
+#
+# map gdf cd /home/wasif/Documents/frequent
+# map Ddf $mv $fx /home/wasif/Documents/frequent/
+# map Ydf $cp $fx /home/wasif/Documents/frequent/
+#
+# map gdn cd /home/wasif/Documents/Notes
+# map Ddn $mv $fx /home/wasif/Documents/Notes/
+# map Ydn $cp $fx /home/wasif/Documents/Notes/
+#
+# map gdp cd /home/wasif/Documents/personal
+# map Ddp $mv $fx /home/wasif/Documents/personal/
+# map Ydp $cp $fx /home/wasif/Documents/personal/
+#
+# map gdP cd /home/wasif/Documents/projects
+# map DdP $mv $fx /home/wasif/Documents/projects/
+# map YdP $cp $fx /home/wasif/Documents/projects/
+#
+# map gdu cd /home/wasif/Documents/Uni
+# map Ddu $mv $fx /home/wasif/Documents/Uni/
+# map Ydu $cp $fx /home/wasif/Documents/Uni/
+#
+# map gde cd /home/wasif/Documents/etc
+# map Dde $mv $fx /home/wasif/Documents/etc/
+# map Yde $cp $fx /home/wasif/Documents/etc/
+#
+# map gD. cd ~/Downloads
+# map DD. $mv $fx ~/Downloads/
+# map YD. $cp $fx ~/Downloads/
+#
+# map gB. cd /home/wasif/build
+# map DB. $mv $fx /home/wasif/build/
+# map YB. $cp $fx /home/wasif/build/
+#
+# map gBm cd /home/wasif/build/my-projects
+# map DBm $mv $fx /home/wasif/build/my-projects/
+# map YBm $cp $fx /home/wasif/build/my-projects/
+#
+# map gBo cd /home/wasif/build/other-projects
+# map DBo $mv $fx /home/wasif/build/other-projects/
+# map YBo $cp $fx /home/wasif/build/other-projects/
+#
+# map gp. cd ~/Pictures
+# map Dp. $mv $fx ~/Pictures/
+# map Yp. $cp $fx ~/Pictures/
+#
+# map gpA cd ~/Pictures/AC_BGs_Resize
+# map DpA $mv $fx ~/Pictures/AC_BGs_Resize/
+# map YpA $cp $fx ~/Pictures/AC_BGs_Resize/
+#
+# map gpa cd /home/wasif/Pictures/aidoru-backup
+# map Dpa $mv $fx /home/wasif/Pictures/aidoru-backup/
+# map Ypa $cp $fx /home/wasif/Pictures/aidoru-backup/
+#
+# map gpe cd ~/Pictures/etc
+# map Dpe $mv $fx ~/Pictures/etc/
+# map Ype $cp $fx ~/Pictures/etc/
+#
+# map gpr cd ~/Pictures/random
+# map Dpr $mv $fx ~/Pictures/random/
+# map Ypr $cp $fx ~/Pictures/random/
+#
+# map gps cd ~/Pictures/Spectacle
+# map Dps $mv $fx ~/Pictures/Spectacle/
+# map Yps $cp $fx ~/Pictures/Spectacle/
+#
+# map gpR cd ~/Pictures/rings
+# map DpR $mv $fx ~/Pictures/rings/
+# map YpR $cp $fx ~/Pictures/rings/
+#
+# map gpw cd ~/Pictures/Wallpapers
+# map Dpw $mv $fx ~/Pictures/Wallpapers/
+# map Ypw $cp $fx ~/Pictures/Wallpapers/
+#
+# map gC. cd ~/.config
+# map DC. $mv $fx ~/.config/
+# map YC. $cp $fx ~/.config/
+#
+# map gl. cd ~/.local
+# map Dl. $mv $fx ~/.local/
+# map Yl. $cp $fx ~/.local/
+#
+# map gL. cd ~/LAN
+# map DL. $mv $fx ~/LAN/
+# map YL. $cp $fx ~/LAN/
+#
+# map gLb cd /home/wasif/LAN/books
+# map DLb $mv $fx /home/wasif/LAN/books/
+# map YLb $cp $fx /home/wasif/LAN/books/
+#
+# map gLg cd /home/wasif/LAN/Games
+# map DLg $mv $fx /home/wasif/LAN/Games/
+# map YLg $cp $fx /home/wasif/LAN/Games/
+#
+# map gLs cd /home/wasif/LAN/Software
+# map DLs $mv $fx /home/wasif/LAN/Software/
+# map YLs $cp $fx /home/wasif/LAN/Software/
+#
+# map gLt cd /home/wasif/LAN/Torrents
+# map DLt $mv $fx /home/wasif/LAN/Torrents/
+# map YLt $cp $fx /home/wasif/LAN/Torrents/
+#
+# map gLU cd /home/wasif/LAN/usb
+# map DLU $mv $fx /home/wasif/LAN/usb/
+# map YLU $cp $fx /home/wasif/LAN/usb/
+#
+# map gLu cd /home/wasif/LAN/Users
+# map DLu $mv $fx /home/wasif/LAN/Users/
+# map YLu $cp $fx /home/wasif/LAN/Users/
+#
+# map gLS cd /home/wasif/LAN/E650-EB07
+# map DLS $mv $fx /home/wasif/LAN/E650-EB07/
+# map YLS $cp $fx /home/wasif/LAN/E650-EB07/
+#
+# map gLp cd /home/wasif/LAN/primary
+# map DLp $mv $fx /home/wasif/LAN/primary/
+# map YLp $cp $fx /home/wasif/LAN/primary/
+#
+# map gLw. cd /home/wasif/LAN/Users/wasif
+# map DLw. $mv $fx /home/wasif/LAN/Users/wasif/
+# map YLw. $cp $fx /home/wasif/LAN/Users/wasif/
+#
+# map gLwd cd /home/wasif/LAN/Users/wasif/Downloads
+# map DLwd $mv $fx /home/wasif/LAN/Users/wasif/Downloads/
+# map YLwd $cp $fx /home/wasif/LAN/Users/wasif/Downloads/
+#
+# map gr. cd /home/wasif/ram
+# map Dr. $mv $fx /home/wasif/ram/
+# map Yr. $cp $fx /home/wasif/ram/
+#
+#
+# map gt cd /tmp
+# map Dt $mv $fx /tmp
+# map Yt $cp $fx /tmp

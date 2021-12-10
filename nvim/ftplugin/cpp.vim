@@ -1,11 +1,11 @@
 
  "Highlights the trailing spaces with dark red
-highlight ExtraWhitespace ctermbg=red guibg=red
-match ExtraWhitespace /\s\+$/
-au BufWinEnter * match ExtraWhitespace /\s\+$/
-au InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
-au InsertLeave * match ExtraWhitespace /\s\+$/
-au BufWinLeave * call clearmatches()
+" highlight ExtraWhitespace ctermbg=red guibg=red
+" match ExtraWhitespace /\s\+$/
+" au BufWinEnter * match ExtraWhitespace /\s\+$/
+" au InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+" au InsertLeave * match ExtraWhitespace /\s\+$/
+" au BufWinLeave * call clearmatches()
 
 
 "Removes the space after a semicolon

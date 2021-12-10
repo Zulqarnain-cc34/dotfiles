@@ -9,8 +9,7 @@
 #   https://github.com/alacritty/alacritty
 #
 # import:
-  # - ~/.config/alacritty/colors.yml
-
+# - ~/.config/alacritty/colors.yml
 window:
   padding:
     x: 4
@@ -36,7 +35,7 @@ font:
   bold_italic:
     family: Ubuntu Mono
     style: Bold Italic
-  size: 9 
+  size: 9
 
 draw_bold_text_with_bright_colors: true
 
@@ -72,7 +71,6 @@ colors:
     magenta: '#A578EA'
     cyan: '#73FBF1'
     white: '#FEFEF8'
-
 
 selection:
   save_to_clipboard: false
