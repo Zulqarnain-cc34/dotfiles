@@ -63,16 +63,12 @@ if [ -d "$HOME/.local/bin" ]; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
-if [ -d "$HOME/bin/Application" ]; then
-    PATH="$PATH:$HOME/bin/Application"
+if [ -d "$HOME/bin/binaries" ]; then
+    PATH="$PATH:$HOME/bin/binaries"
 fi
 
-if [ -d "$HOME/bin/scripts" ]; then
-    PATH="$PATH:$HOME/bin/scripts"
-fi
-
-if [ -d "$HOME/bin/colorscripts" ]; then
-    PATH="$HOME/bin/colorscripts:$PATH"
+if [ -d "$HOME/bin/bash_scripts" ]; then
+    PATH="$PATH:$HOME/bin/bash_scripts"
 fi
 
 if [ -d "$NPM_PACKAGES/bin" ]; then

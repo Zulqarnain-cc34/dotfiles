@@ -335,9 +335,9 @@ return require('packer').startup(function()
     --
     use {'tpope/vim-fugitive'}
 
-    use {'airblade/vim-gitgutter'}
+    -- use {'airblade/vim-gitgutter'}
 
-    use {'f-person/git-blame.nvim'}
+    -- use {'f-person/git-blame.nvim'}
 
     use {
         'lewis6991/gitsigns.nvim',
