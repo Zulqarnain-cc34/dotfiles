@@ -458,7 +458,7 @@ def_key "m"
   show_media_library
 def_key "m"
   toggle_media_library_columns_mode
-odef_key "t"
+def_key "t"
   show_tag_editor
 def_key "v"
   show_visualizer
