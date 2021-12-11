@@ -35,6 +35,7 @@
 [ ! -d "$HOME"/.config/eww ] && ln -s "$PWD"/eww "$HOME"/.config/eww
 [ ! -d "$HOME"/.config/qutebrowser ] && ln -s "$PWD"/qutebrowser "$HOME"/.config/qutebrowser
 [ ! -d "$HOME"/.config/zathura ] && ln -s "$PWD"/zathura "$HOME"/.config/zathura
+[ ! -d "$HOME"/.config/mpd ] && ln -s "$PWD"/mpd "$HOME"/.config/mpd
 
 ##################################
 ## _____  ___  _      _____  ____

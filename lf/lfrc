@@ -459,6 +459,10 @@ map Vna ${{
     ffmpeg -i "$f" -an -c copy "no_audio_$(basename $f)"
 }}
 
+map Vaa ${{
+    ffmpeg -i "$f" -vn -c copy "audio_$(basename $f)"
+}}
+
 map tr restore_trash
 map tc clear_trash
 map tg cd ~/.local/share/Trash/
