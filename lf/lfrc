@@ -301,16 +301,19 @@ cmd bulk-rename ${{
 map r
 # Rename the file with a completely different name
 map rc push :rename<space>
+
+map ra rename
+
 # Edit the current filename
-map ra ${{
-	# get 'basename' of the selection
-	filename="${f##*/}"
-	# quote it so we won't deal with quotes in the lf -remote command
-	filename="$(printf '%q' "$filename")"
-	filename="${filename// /<space>}"
-	lf -remote "send $id push :rename<space>$filename"
-}}
-# Edit filename before the extension
+# map ra ${{
+# 	# get 'basename' of the selection
+# 	filename="${f##*/}"
+# 	# quote it so we won't deal with quotes in the lf -remote command
+# 	filename="$(printf '%q' "$filename")"
+# 	filename="${filename// /<space>}"
+# 	lf -remote "send $id push :rename<space>$filename"
+# }}
+# # Edit filename before the extension
 map re ${{
 	# get 'basename' of the selection
 	filename="${f##*/}"
