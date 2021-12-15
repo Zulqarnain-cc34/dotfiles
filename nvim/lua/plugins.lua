@@ -110,6 +110,7 @@ return require('packer').startup(function()
     -- use 'olimorris/onedark.nvim'
     -- use   'joshdick/onedark.vim'
 
+
     -- use {'MordechaiHadad/nvim-papadark', requires = {'rktjmp/lush.nvim'}}
 
     -- use {
@@ -165,6 +166,7 @@ return require('packer').startup(function()
 
     use {
         'ray-x/lsp_signature.nvim',
+        disable = true,
         config = function()
             require('plugins.lsp-signature-hint')
         end
@@ -337,7 +339,7 @@ return require('packer').startup(function()
 
     -- use {'airblade/vim-gitgutter'}
 
-    -- use {'f-person/git-blame.nvim'}
+    use {'f-person/git-blame.nvim'}
 
     use {
         'lewis6991/gitsigns.nvim',

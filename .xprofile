@@ -5,10 +5,10 @@ sxhkd &
 fcitx -d &
 dunst &
 
-hsetroot -cover ~/Pictures/Wallpapers/Wallpapers/forest-sunset-artwork.jpg &
+xset r rate 300 50 &
+xmodmap /home/precision/.Xmodmap &
 
-xset r rate 300 50 
-xmodmap /home/precision/.Xmodmap
+random-wallpaper.sh &
 
 redshift -O 5000 &
 redshift -O 5000 &
