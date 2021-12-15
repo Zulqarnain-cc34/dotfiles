@@ -75,7 +75,7 @@ map('n', '<C-b>', '<cmd>:lua require("lspsaga.action").smart_scroll_with_saga(-1
 --                            Neovim Compe                            --
 ------------------------------------------------------------------------
 
-map('i', '<C-Space>', [[compe#complete()]], {expr = true, silent = true})
+map('i', '<A-Space>', [[compe#complete()]], {expr = true, silent = true})
 map('i', '<CR>', [[compe#confirm('<CR>')]], {expr = true, silent = true})
 map('i', '<c-e>', [[compe#close('<C-e>')]], {noremap = true, silent = true})
 
