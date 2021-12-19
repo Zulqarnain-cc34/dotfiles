@@ -7,8 +7,6 @@ set first-page-column 1:1
 
 set selection-clipboard clipboard
 
-
-
 # zathurarc-dark
 
 set font "inconsolata 15"

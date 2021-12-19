@@ -74,4 +74,3 @@ enable_window_title = yes
 external_editor = vim
 use_console_editor = yes
 colors_enabled = yes
-
