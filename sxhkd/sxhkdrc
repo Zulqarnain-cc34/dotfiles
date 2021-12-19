@@ -191,10 +191,11 @@ super + {t,r,y,o,w,e}
 super + space
   rofi-bangs
 
+super + m
+    alacritty -e ncmpcpp
+
 alt + n
   $TERM -e newsboat
-
-super + e
 
 super + p
   ~/.config/polybar/scripts/powermenu
