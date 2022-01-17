@@ -220,6 +220,10 @@ map("n", "<leader>bg", '<cmd>:ToggleBlameLine<CR>', {noremap = true, silent = tr
 map("n", "<leader><CR>", ':noh<CR>', {noremap = true, silent = true})
 map("n", ";", ':', {noremap = true, silent = true})
 
+
+map("n", "<leader>ss", '<cmd>:set filetype=sh>CR>', {noremap = true, silent = true})
+map("n", "<leader>sh", '<cmd>:set filetype=bash<CR>', {noremap = true, silent = true})
+
 -----------------------------------------------------------------------
 --                          C++ Switching h and cpp files
 ------------------------------------------------------------------------
