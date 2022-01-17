@@ -109,7 +109,7 @@ programming:
     clojure: [.clj]
     crystal: [.cr]
     csharp: [.cs, .csx]
-    css: [css]
+    css: [.css]
     cxx: [.c, .cpp, .cc, .cp, .cxx, .c++, .h, .hh, .hpp, .hxx, .h++, .inc, .inl, .ipp, .def]
     d: [.d, .di]
     dart: [.dart]
@@ -415,4 +415,4 @@ unimportant:
     - .pid
     - .swp
     - .tmp
-    - package-lock.jsona
+    - package-lock.json
