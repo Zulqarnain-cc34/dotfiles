@@ -86,6 +86,8 @@ markup:
 programming:
   source:
     foreground: green
+    css:
+      foreground: yellow
 
   tooling:
     foreground: green

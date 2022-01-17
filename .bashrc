@@ -35,6 +35,7 @@ source "$HOME"/.aliases/functions
 #echo -e "$($HOME/Downloads/archlogo.txt)"
 source /usr/share/fzf/key-bindings.bash
 
+export LS_COLORS="$(vivid generate one-dark-modified)"
 
 # test -r ~/.dir_colors && eval $(dircolors ~/.dir_colors)
 
