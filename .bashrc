@@ -35,6 +35,9 @@ source "$HOME"/.aliases/functions
 #echo -e "$($HOME/Downloads/archlogo.txt)"
 source /usr/share/fzf/key-bindings.bash
 
+
+# test -r ~/.dir_colors && eval $(dircolors ~/.dir_colors)
+
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$("$HOME/Softwares/anaconda3/bin/conda" "shell.bash" "hook" 2>/dev/null)"

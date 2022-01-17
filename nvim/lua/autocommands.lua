@@ -31,15 +31,14 @@ vim.api.nvim_command([[
      autocmd FileType sh   nnoremap <F9> :!bash %
      autocmd FileType c   nnoremap <F9> :!gcc %
      autocmd FileType typescript   nnoremap <F9> :!ts-node %
-
 ]])
 
---vim.api.nvim_command([[
-    --augroup packer_user_config
-      --autocmd!
-      --autocmd BufWritePost plugins.lua source <afile> | PackerCompile
-    --augroup end
---]])
+-- vim.api.nvim_command([[
+-- augroup packer_user_config
+-- autocmd!
+-- autocmd BufWritePost plugins.lua source <afile> | PackerCompile
+-- augroup end
+-- ]])
 -- Copies the test selected in visual mode and yanked with y to system clipboard
 -- vim.api.nvim_command([[
 --     autocmd TextYankPost *
@@ -57,11 +56,11 @@ vim.api.nvim_command([[
      au BufEnter *.cc let b:fswitchdst = "h,hpp"
 ]])
 
-
 vim.api.nvim_command([[
      autocmd BufWritePre *.go lua goimports(1000)
 ]])
 
+vim.api.nvim_command([[     hi Comment guifg=#968d8c   ]])
 -- vim.api.nvim_command([[
 -- au BufWritePost ~/.config/nvim/*.{vim,lua} so $MYVIMRC
 -- ]])

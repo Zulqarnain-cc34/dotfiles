@@ -37,6 +37,7 @@
 [ ! -d "$HOME"/.config/zathura ] && ln -s "$PWD"/zathura "$HOME"/.config/zathura
 [ ! -d "$HOME"/.config/mpd ] && ln -s "$PWD"/mpd "$HOME"/.config/mpd
 [ ! -d "$HOME"/.config/ncmpcpp ] && ln -s "$PWD"/ncmpcpp "$HOME"/.config/ncmpcpp
+[ ! -d "$HOME"/.config/vivid ] && ln -s "$PWD"/vivid "$HOME"/.config/vivid
 
 ##################################
 ## _____  ___  _      _____  ____
@@ -61,3 +62,4 @@
 [ ! -f "$HOME"/.config/picom.conf ] && ln -s "$PWD"/picom.conf "$HOME"/.config/picom.conf
 [ ! -f "$HOME"/.xprofile ] && ln -s "$PWD"/.xprofile "$HOME"/.xprofile
 [ ! -f "$HOME"/.zprofile ] && ln -s "$PWD"/.zprofile "$HOME"/.zprofile
+[ ! -f "$HOME"/.dir_colors ] && ln -s "$PWD"/.dir_colors "$HOME"/.dir_colors

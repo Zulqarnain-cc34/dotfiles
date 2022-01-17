@@ -16,7 +16,7 @@ set filesep "\n"  # default already
 # Custom Functions
 cmd open ${{
     case ${f##*.} in
-        cbz) mcomix "$f" &;return;;
+        cbz) mcomix "$f" & ;return;;
     esac
 
     case $(file --mime-type "$f" -bL) in

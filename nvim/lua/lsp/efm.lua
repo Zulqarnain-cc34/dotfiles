@@ -22,15 +22,15 @@ local cppcheck = require "efm/cppcheck"
 -- local dartfmt = require "efm/dartfmt"
 
 -- local markdownPandocFormat = require "efm/pandoc"
-local markdownPandocFormat = {
-    formatCommand = 'pandoc -f markdown -t gfm -sp --tab-stop=2',
-    formatStdin = true
-}
-
-local shellcheck = {
-    LintCommand = 'shellcheck -f gcc -x',
-    lintFormats = {'%f:%l:%c: %trror: %m', '%f:%l:%c: %tarning: %m', '%f:%l:%c: %tote: %m'}
-}
+-- local markdownPandocFormat = {
+--     formatCommand = 'pandoc -f markdown -t gfm -sp --tab-stop=2',
+--     formatStdin = true
+-- }
+--
+-- local shellcheck = {
+--     LintCommand = 'shellcheck -f gcc -x',
+--     lintFormats = {'%f:%l:%c: %trror: %m', '%f:%l:%c: %tarning: %m', '%f:%l:%c: %tote: %m'}
+-- }
 
 -- local asmfmt = {
 -- formatCommand='asmfmt --stdin-filename ${INPUT} -w',
@@ -51,11 +51,11 @@ require"lspconfig".efm.setup {
         languages = {
             c = {cppcheck},
             cpp = {cppcheck},
-            sh = {shfmt, shellcheck},
+            sh = {shfmt},
             vim = {vint},
             -- dart = {dartfmt},
             lua = {luafmt, luacheck},
-            markdown = {markdownPandocFormat, markdownlint},
+            -- markdown = {markdownPandocFormat, markdownlint},
             javascript = {eslint},
             python = {flake8, isort},
             -- assembly = {asmfmt},

@@ -19,6 +19,7 @@
 "query:All Articles Linux-Subreddit:tags # \"Linux-subreddit\"" "Linux-Subreddit"
 "query:All Reddit Posts:tags # \"Reddit\"" "Reddit"
 "query:All Programming Posts:tags # \"Programming\"" "Programming"
+"query:All Anime Posts:tags # \"Anime\"" "Anime" 
 "query:All Sports Posts:tags # \"Sports\"" "Sports"
 "query:All Japanese Posts:tags # \"Japanese\"" "Japanese"
 "query:All Github Posts:tags # \"Github\"" "Github"
@@ -76,6 +77,12 @@ https://blog.paralleldots.com/feed "~AI: ParallelDots" "Ai"
 # https://www.reddit.com/r/datascience/.rss "~AI: Datascience" "AI"
 # https://nanonets.com/blog/rss/ "~AI: Nanonets" "AI"
 
+--------------------------------
+------------Anime---------------
+--------------------------------
+
+https://rss.app/feeds/5oYtUghEgBdx9SGs.xml  "anime: Sword Art Online" "anime"
+
 -----------------------------
 ---------programming---------
 -----------------------------
@@ -91,12 +98,16 @@ https://medium.com/feed/better-programming "Programming: General" "Programming"
 -------------------------
 -------YOUTUBE-----------
 -------------------------
+
+https://www.youtube.com/feeds/videos.xml?channel_id=UCjP_ME-L8Ls-RHcMt8MIR9g "~YOUTUBE: Gamerturk" "Youtube"
 https://www.youtube.com/feeds/videos.xml?channel_id=UCXuqSBlHAE6Xw-yeJA0Tunw "~YOUTUBE: Linus Tech Tips" "Youtube"
-https://www.youtube.com/feeds/videos.xml?channel_id=UCRAEUAmW9kletIzOxhpLRFw "~YOUTUBE: Sykunno" "Youtube"
+# https://www.youtube.com/feeds/videos.xml?channel_id=UCRAEUAmW9kletIzOxhpLRFw "~YOUTUBE: Sykunno" "Youtube"
 https://www.youtube.com/feeds/videos.xml?channel_id=UCeVMnSShP_Iviwkknt83cww "~YOUTUBE: CodeWithHarry" "Youtube"
 https://www.youtube.com/feeds/videos.xml?channel_id=UC8butISFwT-Wl7EV0hUK0BQ "~YOUTUBE: FreeCodeCamp" "Youtube"
 https://www.youtube.com/feeds/videos.xml?channel_id=UCaTgewHBmzlJspYnItVubSg "~YOUTUBE: valdopard3" "Youtube"
 https://www.youtube.com/feeds/videos.xml?channel_id=UCbfYPyITQ-7l4upoX8nvctg "~YOUTUBE: The Two Minute Papers" "Youtube"
+https://www.youtube.com/feeds/videos.xml?channel_id=UCzs3FmQ5qPfBcZj-xSZDKcw  "~YOUTUBE: FoxenAnime" "Youtube"
+
 -----------------------------
 -----------Linux-------------
 -----------------------------

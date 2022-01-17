@@ -19,6 +19,7 @@ prepopulate-query-feeds yes
 refresh-on-startup yes
 reload-threads 4                    # parallel
 reload-only-visible-feeds yes       # manually reloading all feeds will only reload the currently visible feeds
+
 suppress-first-reload yes           # do not reload feeds on first startup
 scrolloff 10                        # keep cursor above and below set line
 mark-as-read-on-hover yes
@@ -35,6 +36,11 @@ articlelist-title-format    "%N %V - '%T' (%u unread, %t total)"
 save-path ~/.newsboat/saved_articles
 cleanup-on-quit yes
 datetime-format "%b %d %Y" # date example: Mar 01 2017
+
+# -- Bookmarks ---------------------------------------------------------
+bookmark-cmd $NEWSBOAT_BOOKMARKS
+bookmark-interactive yes
+bookmark-autopilot no
 
 # open in cli web browser
 # w3m: https://www.youtube.com/watch?v=Z22cFTB-uqg
@@ -80,15 +86,16 @@ bind-key RIGHT open
 #                        Theme
 #---------------------------------------------------------
 
-color background          color236   default
+color background          color6     default
 color listnormal          color248   default
 color listnormal_unread   color6     default
 color listfocus           color236   color12
-color listfocus_unread    color15    color12
+color listfocus_unread    color15    color102
 color info                color248   color236
 color article             color248   default
 
-# highlights
+# Highlights
+
 highlight article "^(Feed|Link):.*$" color6 default bold
 highlight article "^(Title|Date|Author):.*$" color6 default bold
 highlight article "https?://[^ ]+" color10 default underline
