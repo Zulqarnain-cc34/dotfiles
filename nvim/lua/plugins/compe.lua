@@ -26,7 +26,6 @@
 -- '⌂ [type]',
 -- }
 
-
 require'compe'.setup {
     enabled = true,
     autocomplete = true,
@@ -48,7 +47,7 @@ require'compe'.setup {
         nvim_lsp = true,
         nvim_lua = true,
         ultisnips = true,
-        treesitter = true,
-        --vsnip = true
+        treesitter = false,
+        vsnip = false
     }
 }
