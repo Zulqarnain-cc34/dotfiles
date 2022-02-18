@@ -83,7 +83,7 @@ cmd copy_text ${{
     xclip -sel clip -t text/plain $f
     }}
 cmd send_to_phone ${{
-    kdeconnect-cli -d 4b3c7f6f758726fc --share $fx
+    kdeconnect-cli -d 439fc7a8f3a87d51 --share $fx
     }}
 
 #cmd yank-dirname $dirname -- "$f" | head -c-1 | xclip -i -selection clipboard

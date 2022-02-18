@@ -19,7 +19,8 @@
 "query:All Articles Linux-Subreddit:tags # \"Linux-subreddit\"" "Linux-Subreddit"
 "query:All Reddit Posts:tags # \"Reddit\"" "Reddit"
 "query:All Programming Posts:tags # \"Programming\"" "Programming"
-"query:All Anime Posts:tags # \"Anime\"" "Anime" 
+# "query:All Anime Posts:tags # \"Anime\"" "Anime" 
+"query:All Entertainment Posts:tags # \"Entertainment\"" "Entertainment" 
 "query:All Sports Posts:tags # \"Sports\"" "Sports"
 "query:All Japanese Posts:tags # \"Japanese\"" "Japanese"
 "query:All Github Posts:tags # \"Github\"" "Github"
@@ -77,11 +78,14 @@ https://blog.paralleldots.com/feed "~AI: ParallelDots" "Ai"
 # https://www.reddit.com/r/datascience/.rss "~AI: Datascience" "AI"
 # https://nanonets.com/blog/rss/ "~AI: Nanonets" "AI"
 
-# --------------------------------
-# ------------Anime---------------
-# --------------------------------
+----------------------------------------
+------------Entertainment---------------
+----------------------------------------
 
 # https://rss.app/feeds/5oYtUghEgBdx9SGs.xml  "anime: Sword Art Online" "anime"
+https://www.reddit.com/r/LightNovels/.rss "r/Lightnovels" "Entertainment"
+https://www.reddit.com/r//.rss "r/Manga" "Entertainment"
+https://myanimelist.net/rss.php?type=rw&u=unfriendme "Anime Blog Feed" "Entertainment"
 
 -----------------------------
 ---------programming---------
@@ -107,6 +111,9 @@ https://www.youtube.com/feeds/videos.xml?channel_id=UC8butISFwT-Wl7EV0hUK0BQ "~Y
 https://www.youtube.com/feeds/videos.xml?channel_id=UCaTgewHBmzlJspYnItVubSg "~YOUTUBE: valdopard3" "Youtube"
 https://www.youtube.com/feeds/videos.xml?channel_id=UCbfYPyITQ-7l4upoX8nvctg "~YOUTUBE: The Two Minute Papers" "Youtube"
 https://www.youtube.com/feeds/videos.xml?channel_id=UCzs3FmQ5qPfBcZj-xSZDKcw  "~YOUTUBE: FoxenAnime" "Youtube"
+https://www.youtube.com/feeds/videos.xml?channel_id=UCRuix3Z9C5gOSB4nF8i0hvw "~YOUTUBE: AnimeTrends" "Youtube"
+https://www.youtube.com/feeds/videos.xml?channel_id=UCedG6psZXqBIaguc41k-GVQ "~YOUTUBE: AnimeWeekly" "Youtube"
+
 
 -----------------------------
 -----------Linux-------------
@@ -125,4 +132,4 @@ https://www.reddit.com/r/bash/.rss "~Linux-Subreddit: bash" "Linux-subreddit"
 https://www.reddit.com/r/vim/.rss "~Linux-Subreddit: vim" "Linux-subreddit"
 https://www.reddit.com/r/opensource/.rss "~Linux-Subreddit: opensource" "Linux-subreddit"
 https://www.reddit.com/r/coolgithubprojects/.rss "~Linux-Subreddit: coolgithubprojects" "Linux-subreddit"
-https://www.reddit.com/r/Anki/.rss "~Linux-Subreddit: Anki" "Linux-subreddit"
+# https://www.reddit.com/r/Anki/.rss "~Linux-Subreddit: Anki" "Linux-subreddit"

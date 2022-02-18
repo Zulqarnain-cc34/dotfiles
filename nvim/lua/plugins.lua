@@ -105,6 +105,7 @@ return require('packer').startup(function()
             require("plugins.lsp-status")
         end
     }
+    use{'j-hui/fidget.nvim'}
     -- one dark theme
     -- use 'navarasu/onedark.nvim'
     -- use 'olimorris/onedark.nvim'
