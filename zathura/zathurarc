@@ -6,6 +6,20 @@ set adjust-open "width"
 set first-page-column 1:1
 
 set selection-clipboard clipboard
+set dual
+
+# One page per row by default
+set pages-per-row 2
+
+#stop at page boundries
+set scroll-page-aware "true"
+set smooth-scroll "true"
+set scroll-full-overlap 0.01
+set scroll-step 100
+
+#zoom settings
+set zoom-min 10
+set guioptions ""
 
 # zathurarc-dark
 
@@ -39,3 +53,7 @@ map <C-p> print
 #map <C-o> feedkeys ":exec firefox $FILE<Return>"
 map <C-o> exec 'firefox "%"'
 map <C-o> exec 'firefox "%"'
+unmap f
+map f toggle_fullscreen
+map [fullscreen] f toggle_fullscreen
+

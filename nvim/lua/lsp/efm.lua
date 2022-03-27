@@ -12,10 +12,10 @@ local eslint = require "efm/eslint"
 local isort = require "efm/isort"
 local flake8 = require "efm/flake"
 local luafmt = require "efm/luafmt"
-local shfmt = require "efm/shfmt"
+-- local shfmt = require "efm/shfmt"
 local vint = require "efm/vint"
 local prettier = require "efm/prettier"
-local markdownlint = require "efm/markdownlint"
+-- local markdownlint = require "efm/markdownlint"
 local gofumpt = require "efm/gofumpt"
 local luacheck = require "efm/luacheck"
 local cppcheck = require "efm/cppcheck"
@@ -38,20 +38,21 @@ local cppcheck = require "efm/cppcheck"
 -- }
 
 require"lspconfig".efm.setup {
-    -- on_attach = on_attach,
-    init_options = {documentFormatting = true, codeAction = true},
+    on_attach = on_attach,
+    init_options = {documentFormatting = true},
     rootdir = vim.loop.cwd,
     filetypes = {
-        "lua", "python", "sh", "golang", "html", "css", "javascriptreact", "markdown", "pandoc",
-        "scss", "yaml", "javascript", "javascript.jsx", "typescript", "typescript.tsx",
-        "typescriptreact", "vim", "json","c","cpp"
+        ---@diagnostic disable-next-line: undefined-global
+        "lua", "python", "sh", "golang", "html", "css", "markdown", "scss", "yaml",
+        "javascript.jsx", "typescript", "typescript.tsx", "typescriptreact", "vim", "json", "c",
+        "cpp"
     },
     settings = {
         rootMarkers = {".git/"},
         languages = {
             c = {cppcheck},
             cpp = {cppcheck},
-            sh = {shfmt},
+            -- sh = {shfmt},
             vim = {vint},
             -- dart = {dartfmt},
             lua = {luafmt, luacheck},
@@ -65,7 +66,7 @@ require"lspconfig".efm.setup {
             ["javascript.jsx"] = {prettier, eslint},
             typescript = {prettier, eslint},
             ["typescript.tsx"] = {prettier, eslint},
-            pandoc = {markdownlint},
+            -- pandoc = {markdownlint},
             -- html = {formatCommand="prettier ${--tab-width:tabWidth} ${--single-quote:singleQuote} --parser html",formatStdin=true},
             css = {prettier},
             scss = {prettier},

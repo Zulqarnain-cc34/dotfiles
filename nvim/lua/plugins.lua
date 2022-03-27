@@ -105,12 +105,11 @@ return require('packer').startup(function()
             require("plugins.lsp-status")
         end
     }
-    use{'j-hui/fidget.nvim'}
+    use {'j-hui/fidget.nvim'}
     -- one dark theme
     -- use 'navarasu/onedark.nvim'
     -- use 'olimorris/onedark.nvim'
     -- use   'joshdick/onedark.vim'
-
 
     -- use {'MordechaiHadad/nvim-papadark', requires = {'rktjmp/lush.nvim'}}
 
@@ -192,6 +191,7 @@ return require('packer').startup(function()
 
     -- Fuzzy finder
 
+    use {'mfussenegger/nvim-jdtls'}
     use {
         "nvim-telescope/telescope.nvim",
         requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}},
@@ -332,7 +332,7 @@ return require('packer').startup(function()
             require('plugins.trouble')
         end
     }
-    use{ "vimwiki/vimwiki" }
+    use {"vimwiki/vimwiki"}
 
     -- Git
     --
