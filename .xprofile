@@ -11,6 +11,5 @@ xmodmap /home/precision/.Xmodmap &
 random-wallpaper.sh &
 
 redshift -O 5000 &
-redshift -O 5000 &
 
 polybar -r main --config=$HOME/.config/polybar/config.ini &

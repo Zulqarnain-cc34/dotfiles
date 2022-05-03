@@ -1,0 +1,4 @@
+function prompt_lf() {
+    p10k segment -f 208 -i '📂' -t "$LF_LEVEL" -c "$LF_LEVEL"
+  }
+

@@ -1,5 +1,6 @@
 set previewer ~/.config/lf/preview
-set cleaner ~/.config/lf/clear_img.sh
+set cleaner ~/.config/lf/cleaner
+
 # Basic Settings
 set preview true
 set drawbox true
@@ -16,7 +17,7 @@ set filesep "\n"  # default already
 # Custom Functions
 cmd open ${{
     case ${f##*.} in
-        cbz) mcomix "$f" & ;return;;
+        cbz) zathura "$f" & ;return;;
     esac
 
     case $(file --mime-type "$f" -bL) in
@@ -117,29 +118,11 @@ cmd mkfile %{{
 
 
 cmd mount_kdeconnect ${{
-    qdbus org.kde.kdeconnect /modules/kdeconnect/devices/4b3c7f6f758726fc/sftp mountAndWait
+    qdbus org.kde.kdeconnect /modules/kdeconnect/devices/439fc7a8f3a87d51/sftp mountAndWait
 }}
 
 cmd mount_iso %iso_mount_unmount.sh "$f"
 
-cmd mount_Gdrive ${{
-    rclone mount --vfs-cache-mode=writes --dir-cache-time=72h Gdrive:/ ~/Public/Gdrive &
-    lf -remote 'send reload'
-}}
-cmd mount_mySecret ${{
-    rclone mount --vfs-cache-mode=writes --dir-cache-time=72h mysecret:/ ~/Public/mysecret &
-    lf -remote 'send reload'
-}}
-
-cmd mount_Nust_Onedrive ${{
-    rclone mount --vfs-cache-mode=writes --dir-cache-time=72h Nust_Onedrive:/ ~/Public/Nust_Onedrive &
-    lf -remote 'send reload'
-}}
-
-cmd mount_nextcloud ${{
-    rclone mount --vfs-cache-mode=writes --dir-cache-time=72h nextcloud:/ ~/Public/nextcloud &
-    lf -remote 'send reload'
-}}
 cmd chmod %{{
   printf "Mode Bits: "
   read ans
@@ -279,6 +262,10 @@ cmd config-edit ${{
     $EDITOR "$HOME/.config/lf/lfrc"
 }}
 
+cmd anime-mount ${{
+        sshfs anime@192.168.100.66:/home/anime/Videos/ /home/precision/mnt/anime/
+}}
+    
 cmd on-cd &{{
     # display git repository status in your prompt
     source /usr/share/git/completion/git-prompt.sh
@@ -293,12 +280,44 @@ cmd on-cd &{{
 }}
 
 cmd bulk-rename ${{
-    if [[ $fs != "" ]];then
-        printf '%s\n' $fx!| vidir -
+    old="$(mktemp)"
+    new="$(mktemp)"
+    if [ -n "$fs" ]; then
+        fs="$(basename $fs)"
     else
-        vidir
+        fs="$(ls)"
     fi
+    printf '%s\n' "$fs" >"$old"
+    printf '%s\n' "$fs" >"$new"
+    $EDITOR "$new"
+    [ "$(wc -l < "$new")" -ne "$(wc -l < "$old")" ] && exit
+    paste "$old" "$new" | while IFS= read -r names; do
+        src="$(printf '%s' "$names" | cut -f1)"
+        dst="$(printf '%s' "$names" | cut -f2)"
+        if [ "$src" = "$dst" ] || [ -e "$dst" ]; then
+            continue
+        fi
+        mv -- "$src" "$dst"
+    done
+    rm -- "$old" "$new"
+    lf -remote "send $id unselect"
 }}
+
+# cmd bulk-rename ${{
+#     if [[ $fs != "" ]];then
+#         printf '%s\n' $fx!| vidir -
+#     else
+#         vidir
+#     fi
+# }}
+
+######################################
+##############   AutoJump   ##########
+######################################
+#
+
+cmd aj %lf -remote "send $id cd '$(autojump $1)'"
+map aj push :aj<space>
 
 
 # Unmap the default binding
@@ -388,6 +407,24 @@ cmd select-dirs ${{
         xargs -d '\n' -r -I{} lf -remote "send $id toggle {}"
 }}
 
+cmd paste &{{
+    set -- $(cat ~/.local/share/lf/files)
+    mode="$1"
+    shift
+    case "$mode" in
+        copy)
+            rsync -av --ignore-existing --progress -- "$@" . |
+            stdbuf -i0 -o0 -e0 tr '\r' '\n' |
+            while IFS= read -r line; do
+                lf -remote "send $id echo $line"
+            done
+            ;;
+        move) mv -n -- "$@" .;;
+    esac
+    rm ~/.local/share/lf/files
+    lf -remote "send clear"
+}}
+
 map Sf select-files
 map Sd select-dirs
 
@@ -458,6 +495,7 @@ map at tar
 map ag targz
 map ab targz
 map au unarchive
+map anm anime-mount 
 
 
 map Vna ${{
@@ -490,6 +528,16 @@ map . set hidden!
 map "'"
 map '"'
 map f
+%{{
+    w=$(tput cols)
+    if [ $w -le 80 ]; then
+        lf -remote "send $id set ratios 1:2"
+    elif [ $w -le 160 ]; then
+        lf -remote "send $id set ratios 1:2:3"
+    else
+        lf -remote "send $id set ratios 1:2:3:5"
+    fi
+}}
 
 # movement binds
 # map gk cd /run/user/1000/4b3c7f6f758726fc/

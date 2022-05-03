@@ -1,7 +1,7 @@
 execute_on_song_change="~/.config/ncmpcpp/ncmpcpp-ueberzug/ncmpcpp_cover_art.sh"
 
 # Files
- mpd_music_dir = "~/Videos/Audios"  
+ mpd_music_dir = "~/Music"  
  lyrics_directory  = ~/.config/ncmpcpp/lyrics
  mpd_host = "localhost"
  mpd_port = "6600"  

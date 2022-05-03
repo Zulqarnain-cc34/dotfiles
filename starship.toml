@@ -99,10 +99,10 @@ symbol="🐋 "
 format = "[$symbol$environment](dimmed Yellow) "
 symbol="🅒 "
 
-[cmd_duration]
-min_time = 1000   
-show_milliseconds = false
-format = "took [$duration](bold yellow)"
+# [cmd_duration]
+# min_time = 1000   
+# show_milliseconds = false
+# format = "took [$duration](bold yellow)"
 
 # format = "⏲️ took [$duration]($style)"
 # style = "bold italic #FFD23F"
