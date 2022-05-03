@@ -1,6 +1,6 @@
 #!/bin/bash
 
-MUSIC_DIR=$HOME/Videos/Audios/
+MUSIC_DIR=$HOME/Music/
 
 HOST=127.0.0.1
 

@@ -27,7 +27,7 @@ fi
 
 #Sourcing all files in .config/shellconfig/*
 source /usr/share/autojump/autojump.bash
-xrdb -merge "$HOME"/.Xresources &
+# xrdb -merge "$HOME"/.Xresources &
 
 source "$HOME"/.aliases/aliases
 source "$HOME"/.aliases/functions
@@ -35,23 +35,23 @@ source "$HOME"/.aliases/functions
 #echo -e "$($HOME/Downloads/archlogo.txt)"
 source /usr/share/fzf/key-bindings.bash
 
-export LS_COLORS="$(vivid generate one-dark-modified)"
+# export LS_COLORS="$(vivid generate one-dark-modified)"
 
 # test -r ~/.dir_colors && eval $(dircolors ~/.dir_colors)
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$("$HOME/Softwares/anaconda3/bin/conda" "shell.bash" "hook" 2>/dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "$HOME/Softwares/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "$HOME/Softwares/anaconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="$HOME/Softwares/anaconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-
-# <<< conda initialize <<<
-eval "$(starship init bash)"
+# __conda_setup="$("$HOME/Softwares/anaconda3/bin/conda" "shell.bash" "hook" 2>/dev/null)"
+# if [ $? -eq 0 ]; then
+#     eval "$__conda_setup"
+# else
+#     if [ -f "$HOME/Softwares/anaconda3/etc/profile.d/conda.sh" ]; then
+#         . "$HOME/Softwares/anaconda3/etc/profile.d/conda.sh"
+#     else
+#         export PATH="$HOME/Softwares/anaconda3/bin:$PATH"
+#     fi
+# fi
+# unset __conda_setup
+#
+# # <<< conda initialize <<<
+# eval "$(starship init bash)"

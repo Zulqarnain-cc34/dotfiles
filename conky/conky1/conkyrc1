@@ -173,12 +173,12 @@ ${color}Down ${downspeed enp2s0} ${alignr}Received ${totaldown}
 ${color black}${downspeedgraph enp2s0 32,250 eb984e eb984e}
 \
 ${else}\
-${if_existing /proc/net/route wlp3s0}\
-${font}${color}Private IP $alignr ${addr wlp3s0}
-${color}Up ${upspeed wlp3s0} ${alignr}Sent ${totalup}
-${color black}${upspeedgraph wlp3s0 32,250 7fb3d5 7fb3d5}
-${color}Down ${downspeed wlp3s0} ${alignr}Received ${totaldown}
-${color black}${downspeedgraph wlp3s0 32,250 eb984e eb984e}
+${if_existing /proc/net/route wlp2s0}\
+${font}${color}Private IP $alignr ${addr wlp2s0}
+${color}Up ${upspeed wlp2s0} ${alignr}Sent ${totalup}
+${color black}${upspeedgraph wlp2s0 32,250 7fb3d5 7fb3d5}
+${color}Down ${downspeed wlp2s0} ${alignr}Received ${totaldown}
+${color black}${downspeedgraph wlp2s0 32,250 eb984e eb984e}
 \
 ${endif}${endif}${endif}${endif}${endif}\
 \

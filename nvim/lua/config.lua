@@ -19,8 +19,10 @@ require('lsp/yaml')
 require('lsp/docker')
 -- require('lsp/json')
 require('lsp/gopls')
---NOTE: Error in efm
+
+-- NOTE: Error in efm
 require('lsp/efm')
+require('lsp/emmet')
 require('lsp/vim')
 -- require('lsp/lsp')
 

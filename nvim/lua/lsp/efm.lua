@@ -43,7 +43,7 @@ require"lspconfig".efm.setup {
     rootdir = vim.loop.cwd,
     filetypes = {
         ---@diagnostic disable-next-line: undefined-global
-        "lua", "python", "sh", "golang", "html", "css", "markdown", "scss", "yaml",
+        "lua", "python", "sh", "golang", "html",  "markdown", "scss", "yaml",
         "javascript.jsx", "typescript", "typescript.tsx", "typescriptreact", "vim", "json", "c",
         "cpp"
     },
@@ -68,7 +68,7 @@ require"lspconfig".efm.setup {
             ["typescript.tsx"] = {prettier, eslint},
             -- pandoc = {markdownlint},
             -- html = {formatCommand="prettier ${--tab-width:tabWidth} ${--single-quote:singleQuote} --parser html",formatStdin=true},
-            css = {prettier},
+            -- css = {prettier},
             scss = {prettier},
             yaml = {prettier},
             html = {prettier},
