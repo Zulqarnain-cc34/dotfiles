@@ -9,7 +9,7 @@ require'nvim-tree'.setup {
     -- g.nvim_tree_auto_ignore_ft = 'dashboard'
     ignore_ft_on_setup = {},
     -- g.nvim_tree_follow = 1 -- 0 by default, this option allows the cursor to be updated when entering a buffer
-    auto_close = false,
+    -- auto_close = false,
     -- opens the tree when changing/opening a new tab if the tree wasn't previously opened
     open_on_tab = true,
     -- hijacks new directory buffers when they are opened.

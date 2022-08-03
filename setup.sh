@@ -38,6 +38,8 @@
 [ ! -d "$HOME"/.config/mpd ] && ln -s "$PWD"/mpd "$HOME"/.config/mpd
 [ ! -d "$HOME"/.config/ncmpcpp ] && ln -s "$PWD"/ncmpcpp "$HOME"/.config/ncmpcpp
 [ ! -d "$HOME"/.config/vivid ] && ln -s "$PWD"/vivid "$HOME"/.config/vivid
+[ ! -d "$HOME"/.config/fish ] && ln -s "$PWD"/fish "$HOME"/.config/fish
+[ ! -d "$HOME"/.config/imv ] && ln -s "$PWD"/imv "$HOME"/.config/imv
 
 ##################################
 ## _____  ___  _      _____  ____

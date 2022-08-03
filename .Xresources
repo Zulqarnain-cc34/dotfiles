@@ -1,4 +1,4 @@
-#include "/home/precision/etc/.configResources/Xresources-themes/iterm-Brogrammer.Xresources"
+#include "/home/alpha/etc/.configResources/Xresources-themes/iterm-Brogrammer.Xresources"
 
 URxvt*font:xft:UbuntuMonoNerdFont:size=13:minspace=False:antialias=true, Fira Code Retina:pixelsize=9:minspace=False, xft:DejaVu Sans:pixelsize=8, xft:Symbola
 URxvt*boldFont:xft:UbuntuMonoNerdFont:sizee=13:minspace=False:antialias=true, xft:Fira Code Retina:pixelsize=9:minspace=False, xft:DejaVu Sans:pixelsize=8, xft:Symbola

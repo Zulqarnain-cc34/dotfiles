@@ -48,7 +48,6 @@ return require('packer').startup(function()
     use {'wbthomason/packer.nvim'}
 
     use {"nvim-lua/popup.nvim", 'kosayoda/nvim-lightbulb'}
-
     use 'arkav/lualine-lsp-progress'
 
     -- Icons for Nvimtree
@@ -185,7 +184,7 @@ return require('packer').startup(function()
     use {'jose-elias-alvarez/nvim-lsp-ts-utils'}
 
     -- ultisnips
-    use {'SirVer/ultisnips', event = "InsertEnter", requires = {'honza/vim-snippets'}}
+    -- use {'SirVer/ultisnips', event = "InsertEnter", requires = {'honza/vim-snippets'}}
 
     -- use {'hrsh7th/vim-vsnip', event = "InsertEnter *"}
 

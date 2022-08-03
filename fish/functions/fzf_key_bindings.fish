@@ -1,0 +1,1 @@
+/home/jojo/.fzf/shell/key-bindings.fish

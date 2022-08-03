@@ -74,6 +74,9 @@ LABELS["multisnippet"]=""
 COMMANDS["websearch"]="$HOME/.config/rofi/launchers/rofi-surfraw-websearch"
 LABELS["websearch"]=""
 
+COMMANDS["manga"]="$HOME/.config/rofi/launchers/rofi-manga"
+LABELS["manga"]=""
+
 # Change theme of rofi
 COMMANDS["theme"]='rofi-theme-selector'
 LABELS["theme"]=""
