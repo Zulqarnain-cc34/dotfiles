@@ -6,7 +6,7 @@ fcitx -d &
 dunst &
 
 xset r rate 300 50 &
-xmodmap /home/precision/.Xmodmap &
+xmodmap ~/.Xmodmap &
 
 random-wallpaper.sh &
 

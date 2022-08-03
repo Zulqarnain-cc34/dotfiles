@@ -44,7 +44,7 @@ xftfont UbuntuMono:size=8
 #############################
 alignment middle_right
 border_inner_margin 15
-gap_x 20
+gap_x 25
 gap_y 15
 
 #############################

@@ -79,3 +79,4 @@ live_config_reload: true
 
 shell:
   program: /usr/bin/bash
+theme: Argonaut

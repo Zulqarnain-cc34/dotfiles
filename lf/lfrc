@@ -17,7 +17,8 @@ set filesep "\n"  # default already
 # Custom Functions
 cmd open ${{
     case ${f##*.} in
-        cbz) zathura "$f" & ;return;;
+        cbz) YACReader "$f" & ;return;;
+        cbr) YACReader "$f" & ;return;;
     esac
 
     case $(file --mime-type "$f" -bL) in
@@ -263,7 +264,7 @@ cmd config-edit ${{
 }}
 
 cmd anime-mount ${{
-        sshfs anime@192.168.100.66:/home/anime/Videos/ /home/precision/mnt/anime/
+        sshfs anime@192.168.100.66:/home/anime/Videos/ /home/alpha/mnt/anime/
 }}
     
 cmd on-cd &{{
