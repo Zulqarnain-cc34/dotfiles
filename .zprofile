@@ -1,3 +1,1 @@
-
-source ~/.profile
-export ZDOTDIR="~/.config/zsh"
+export ZDOTDIR="$HOME/.config/zsh"

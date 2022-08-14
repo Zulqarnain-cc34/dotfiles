@@ -66,6 +66,7 @@ bind index,pager B sidebar-toggle-visible
 # Macros for switching accounts
 
 macro index <f2> '<sync-mailbox><enter-command>source ~/.mutt/account.com.gmail.powerranger16918<enter><change-folder>!<enter>'
+
 macro index <f3> '<sync-mailbox><enter-command>source ~/.mutt/account.com.gmail.Airuniversity<enter><change-folder>!<enter>'
 
 macro index,pager \CW ": unset wait_key; set pipe_decode\n|w3m\n: set wait_key; unset pipe_decode\n" "call w3m to extract URLs out of a message"

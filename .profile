@@ -19,10 +19,10 @@ export npm_config_prefix="$HOME/.local"
 export GDK_DPI_SCALE=0.8
 
 # Fcitx
-export GTK_IM_MODULE=fcitx
-export QT_IM_MODULE=fcitx
-export SDL_IM_MODULE=fcitx
-export XMODIFIERS='@im=fcitx'
+# export GTK_IM_MODULE=fcitx
+# export QT_IM_MODULE=fcitx
+# export SDL_IM_MODULE=fcitx
+# export XMODIFIERS='@im=fcitx'
 
 # Aliases
 export WGETRC="$HOME/.config/wget/wgetrc"
