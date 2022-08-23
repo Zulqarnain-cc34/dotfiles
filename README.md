@@ -54,7 +54,7 @@ to their appropriate locations.
 #### Desktop
 
 <p align="center">
-<img src="./screenshots/desktop-2.png"  title="alacritty">
+<img src="./screenshots/desktop-4.png"  title="alacritty">
 </p>
 
 #### Alacritty
