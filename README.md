@@ -51,14 +51,11 @@ to their appropriate locations.
 ### Modules
 
 - [Desktop](#desktop)
-- [Alacritty](#alacritty)
+- [Kitty](#kitty)
 - [Polybar](#polybar)
 - [Neovim](#neovim)
 - [Rofi](#rofi)
-- [Neomutt](#neomutt)
 - [Newsboat](#newsboat)
-- [Transmission](#transmission)
-- [lf](#lf)
 - [Miscellaneous](#miscellaneous)
 
 #### Desktop
