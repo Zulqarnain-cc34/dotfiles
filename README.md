@@ -1,14 +1,22 @@
-# Dotfiles
+  
+<br />
+<div align="center">
+  <a href="https://github.com/Zulqarnain-cc34/dotfiles">
+    <img src="screenshots/logo.png" alt="Logo" width="80" height="80">
+  </a>
 
-[Zulqarnain-cc34](https://www.github.com/Zulqarnain-cc34)
+<h3 align="center">Dotfiles</h3>
 
-Dotfiles for my local Arch setup,
+  <p align="center">
+    These are my linux configuration files, Hope you can find something to your liking.
+  </p>
+</div>
 
 | Functionality  | Program      |
 |----------------|--------------|
 | status bar     | polybar      |
 | editor         | neovim       |
-| terminal       | alacritty    |
+| terminal       | kitty        |
 | email client   | neomutt      |
 | rss reader     | newsboat     |
 | file manager   | lf           |
@@ -26,13 +34,15 @@ Dotfiles for my local Arch setup,
 
 ### Requirements
 
+You will need to install the above listed packages from your package manager.
+
 ### Installation
 
 To install on your system ,just run setup.sh on your local linux
 machine. It will create symbolic links for all the configuration files
 to their appropriate locations.
 
-- git clone the repo
+- Clone the Repository.
 - Run command to make symbolic links
   `chmod +x setup.sh         bash setup.sh`
 - Run `bash uninstall.sh`, will remove all the config files. uninstall
@@ -54,20 +64,14 @@ to their appropriate locations.
 #### Desktop
 
 <p align="center">
-<img src="./screenshots/desktop-4.png"  title="alacritty">
+    <img src="./screenshots/desktop-4.png"  title="alacritty">
 </p>
 
-#### Alacritty
-
-<p align="center">
-<img src="./screenshots/alacritty.png"  title="alacritty">
-</p>
+#### Kitty 
 
 - Custom shell prompt with
-  [Startship](https://github.com/starship/starship).
-- Multiple Alacritty themes via
-  [alacritty-themes](https://github.com/eendroroy/alacritty-theme) (i am
-  using Argonaut theme).
+  [zsh](https://github.com/Zulqarnain-cc34/zsh).
+- Vim like features and key bindings with [zsh](https://github.com/Zulqarnain-cc34/zsh).
 - Background blur and transparency using
   [picom](https://github.com/yshui/picom).
 
@@ -95,7 +99,7 @@ modules from
 - IDE like Configuration with native
   [lsp](https://github.com/neovim/nvim-lspconfig).
 - Linting, Formatting and Code actions configured for most languages.
-- [nvim-compe](https://github.com/hrsh7th/nvim-compe) for Code
+- [Nvim-compe](https://github.com/hrsh7th/nvim-compe) for Code
   Autocompletion with snippets from
   [ulitsnips](https://github.com/SirVer/ultisnips).
 - Fast Directory traversal with
@@ -116,8 +120,6 @@ modules from
   [Treesitter](https://github.com/nvim-treesitter/nvim-treesitter).
 - [NerdCommentor](https://github.com/preservim/nerdcommenter) for Code
   Commenting.
-- On the fly function signatures with
-  [lsp-signature.nvim](https://github.com/ray-x/lsp_signature.nvim)
 - Highly Performatant UI for built-in-lsp
   [Lspsaga](https://github.com/glepnir/lspsaga.nvim).
 - Fast Status bar with
@@ -134,15 +136,16 @@ neovim.
 
 #### Rofi
 
-using rofi as a custom launcher,ssh launcher and search engine. Lots of
-more scripts to integrate rofi with
-[twitch](https://github.com/indeedwatson/rofi-twitch),
-[youtube](https://github.com/pystardust/ytfzf),
-[surfraw](https://github.com/gotbletu/dotfiles_v2/tree/master/normal_user/rofi/.config/rofi/launchers)
-,[wifi-menu](https://github.com/zbaylin/rofi-wifi-menu)
-,[rofi-spotlight](https://github.com/manilarome/rofi-spotlight) and
-[others](https://github.com/gotbletu/dotfiles_v2/tree/master/normal_user/rofi/.config/rofi/launchers).
-Using rofi bangs script to manage all in one menu. Themes have been used
+A window switcher, Application launcher and search engine launcher.
+<br> Lots of
+features to intergrate rofi more smoothly with 
+
+
+- [Youtube](https://github.com/pystardust/ytfzf),
+- [Surfraw](https://github.com/gotbletu/dotfiles_v2/tree/master/normal_user/rofi/.config/rofi/launchers)
+- [Twitch](https://github.com/indeedwatson/rofi-twitch),
+
+A script to manage all of above in one menu. Themes have been used
 from [rofi-themes](https://github.com/davatorium/rofi-themes.git) and
 [rofi-collection](https://github.com/Murzchnvok/rofi-collection) .
 
@@ -155,35 +158,11 @@ Configuration has features
   according to their extension.
 - feeds update on cronjob every x minutes in time.
 
-#### NeoMutt
-
-Setup with - Aliases `~/.mutt/aliases` All the aliases are stored in
-aliases file. - Colors `~/.mutt/colors` Color theme for neomutt. -
-Settings `~/.mutt/settings` Main config and personalized settings. -
-Sidebar `~/.mutt/sidebar` Sidebar theme. - muttrc `~/.mutt/.muttrc` All
-files are sourced in .muttrc as `source ./settings` and
-`source ./aliases` etc.
-
-Mutt themes are forked from
-[mutt-solarized-theme](https://github.com/altercation/mutt-colors-solarized)
-and [neon-mutt-theme](https://github.com/h3xx/mutt-colors-neonwolf)
-
-#### Transmission
-
-#### lf
-
 #### Miscellaneous
 
 - Starship Prompt configured with `starship.toml` file.
-- Themes for desktop in themes folder (I am using xfce4).
+- Conky light weight System Moniter with [Conky themes](https://github.com/juliojsb/jotack).
 - `.Xmodmap` for unbinding and binding keys on a system level.
-- `twitch notifer.cfg` to format output for
-  [twitch-notifier](https://github.com/GiedriusS/TwitchNotifier)
   package.
 - urlportal.sh script to open files depending upon their extensions.
-- Conky light weight System Moniter with [Conky
-  theme](https://github.com/juliojsb/jotack).
 
-Currently Under work
-
-[(Back to top)](#top)
