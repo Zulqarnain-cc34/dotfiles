@@ -1,9 +1,8 @@
 local on_attach = function(client)
-    if client.resolved_capabilities.document_formatting then
+    if client.server_capabilities.documentFormattingProvider then
         vim.api.nvim_command [[augroup Format]]
         vim.api.nvim_command [[autocmd! * <buffer>]]
-        vim.api
-            .nvim_command [[autocmd BufWritePost <buffer> lua vim.lsp.buf.formatting_sync({},1500)]]
+        vim.api.nvim_command [[autocmd BufWritePre * lua vim.lsp.buf.formatting_sync()]]
         vim.api.nvim_command [[augroup END]]
     end
 end
@@ -59,7 +58,6 @@ require"lspconfig".efm.setup {
             -- markdown = {markdownPandocFormat, markdownlint},
             javascript = {eslint},
             python = {flake8, isort},
-            -- assembly = {asmfmt},
             go = {gofumpt},
             javascriptreact = {prettier, eslint},
             typescriptreact = {prettier, eslint},

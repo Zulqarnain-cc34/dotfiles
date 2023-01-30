@@ -12,6 +12,7 @@ g.mapleader = "m"
 
 -- ============== Lsp Server KeyBindings ===================
 local options = {noremap = true, silent = true}
+local bufopts = { noremap=true, silent=true, buffer=bufnr }
 -- Mappings for Lsp
 -- List the Info for current file specific language servers
 map('n', '<Leader>lI', ':LspInfo<CR>', options)
@@ -37,13 +38,15 @@ map('n', '<leader>li', '<cmd>lua vim.lsp.buf.implementation()<CR>', options)
 -- Goto type defination
 map('n', '<leader>ly', '<cmd>lua vim.lsp.buf.type_definition()<CR>', options)
 -- Format Code according to file specific formatter
-map('n', '<leader>lf', '<cmd>lua vim.lsp.buf.formatting()<CR>', options)
+map('n', '<leader>lf', '<cmd>lua vim.lsp.buf.format{ async:true }<CR>', options)
 -- Shows the variable and function symbols
 map('n', '<leader>ds', '<cmd>:Trouble lsp_document_diagnostics<CR>', options)
 -- Shows thw workspace Symbolj
 map('n', '<leader>ws', '<cmd>:Trouble lsp_workspace_diagnostics<CR>', options)
 -- Make a code action based on diagnostics
 map('n', '<leader>la', '<cmd>:Lspsaga code_action<CR>', options)
+
+vim.keymap.set('n', '<leader>lf', function() vim.lsp.buf.format { async = true } end, bufopts)
 
 -- map('n', '<leader>la', '<cmd>lua vim.lsp.buf.code_action()<CR>', options)
 -- Bulk rename
@@ -139,6 +142,12 @@ map("n", "<leader>bp", "<cmd>:BufferLineMovePrev<cr>", {noremap = true, silent =
 map("n", "be", "<cmd>:BufferLineSortByExtension<cr>", {noremap = true, silent = true})
 map("n", "bd", "<cmd>:BufferLineSortByDirectory<cr>", {noremap = true, silent = true})
 
+------------------------------------------------------------------------
+--                           ChatGPT
+------------------------------------------------------------------------
+map("n", "<leader>c", "<cmd>:ChatGPT<cr>", {noremap = true, silent = true})
+--
+--
 ------------------------------------------------------------------------
 --                           Nvim-Dap--
 ------------------------------------------------------------------------
