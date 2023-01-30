@@ -51,12 +51,12 @@ return require('packer').startup(function()
     use 'arkav/lualine-lsp-progress'
 
     -- Icons for Nvimtree
-    use {
-        "kyazdani42/nvim-web-devicons",
-        config = function()
-            require("plugins.nvim-web-devicons")
-        end
-    }
+    -- use {
+    --     "kyazdani42/nvim-web-devicons",
+    --     config = function()
+    --         require("plugins.nvim-web-devicons")
+    --     end
+    -- }
     -- use {"romgrk/nvim-treesitter-context"}
 
     -- use {"github/copilot.vim"}
@@ -67,6 +67,20 @@ return require('packer').startup(function()
             require("plugins.hlslens")
         end
     }
+
+    -- use({
+    --   "jackMort/ChatGPT.nvim",
+    --     config = function()
+    --       require("chatgpt").setup({
+    --         -- optional configuration
+    --       })
+    --     end,
+    --     requires = {
+    --       "MunifTanjim/nui.nvim",
+    --       "nvim-lua/plenary.nvim",
+    --       "nvim-telescope/telescope.nvim"
+    --     }
+    -- })
     -- =================== Themes ===================
 
     -- use({ -- color scheme

@@ -77,6 +77,25 @@ export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
 
 export LS_COLORS="$(vivid generate one-dark-modified)"
 
+#Hadoop Related Options
+
+export HADOOP_HOME=/home/alpha/program_files/binaries/Hadoop_Stack/hadoop-3.3.4
+export HADOOP_INSTALL=$HADOOP_HOME
+export HADOOP_MAPRED_HOME=$HADOOP_HOME
+export HADOOP_COMMON_HOME=$HADOOP_HOME
+export HADOOP_HDFS_HOME=$HADOOP_HOME
+export YARN_HOME=$HADOOP_HOME
+export HADOOP_COMMON_LIB_NATIVE_DIR=$HADOOP_HOME/lib/native
+export PATH=$PATH:$HADOOP_HOME/sbin:$HADOOP_HOME/bin
+export HADOOP_OPTS="-Djava.library.path=$HADOOP_HOME/lib/nativ"
+
+export HIVE_HOME="/home/alpha/program_files/binaries/Hadoop_Stack/apache-hive-3.1.3-bin"
+export PATH=$PATH:$HIVE_HOME/bin
+
+export SPARK_HOME="/home/alpha/program_files/binaries/Hadoop_Stack/spark-3.3.1-bin-hadoop"
+export PATH=$PATH:$SPARK_HOME/bin
+export PYTHONPATH=${SPARK_HOME}/python/:$(echo ${SPARK_HOME}/python/lib/py4j-*-src.zip):${PYTHONPATH}
+
 #Path
 # path=("$HOME/bin/binaries" "$HOME/bin/python_scripts" "$HOME/bin/bash_scripts" 
 # 	"$HOME/go/bin" "$HOME/.local/bin" "$path[@]")
@@ -98,7 +117,8 @@ if [ -d "$HOME/bin/bash_scripts" ]; then
     PATH="$PATH:$HOME/bin/bash_scripts"
 fi
 
-
+export PATH="$PATH:/usr/local/spark/bin"
+export PATH=/opt/apache-maven-3.8.6/bin:$PATH
 # LESS COLORS
 export LESS_TERMCAP_mb=$'\e[1;31m'     # begin bold
 export LESS_TERMCAP_md=$'\e[1;33m'     # begin blink
