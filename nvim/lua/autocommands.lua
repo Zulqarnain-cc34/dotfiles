@@ -24,6 +24,7 @@ function goimports(timeout_ms)
     end
 end
 
+
 vim.api.nvim_command([[
      autocmd FileType python nnoremap <F9> :!python %
      autocmd FileType cpp    nnoremap <F9> :!g++ %
@@ -31,6 +32,7 @@ vim.api.nvim_command([[
      autocmd FileType sh   nnoremap <F9> :!bash %
      autocmd FileType c   nnoremap <F9> :!gcc %
      autocmd FileType typescript   nnoremap <F9> :!ts-node %
+     autocmd BufWinEnter *.py call :!VenomActivate %
 ]])
 
 -- vim.api.nvim_command([[

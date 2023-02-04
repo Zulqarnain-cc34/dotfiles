@@ -20,20 +20,21 @@ compinit
 _comp_options+=(globdots)		# Include hidden files.
 
 # History in Cache Directory and HIstory Size
-HISTSIZE=10000
-SAvEHIST=10000
-HISTFILE="$HOME/.cache/zsh/history"
+export HISTSIZE=1000000000
+export SAVEHIST=$HISTSIZE
+HISTFILE="$HOME/.logs/zsh/history"
 HISTDUP=erase
 
 # History Options
 # No repeating commands
 setopt appendhistory
 setopt sharehistory
-setopt incappendhistory
-setopt hist_ignore_all_dups
-setopt hist_save_no_dups
-setopt hist_ignore_dups
-setopt hist_find_no_dups
+setopt EXTENDED_HISTORY
+# setopt incappendhistory
+# setopt hist_ignore_all_dups
+# setopt hist_save_no_dups
+# setopt hist_ignore_dups
+# setopt hist_find_no_dups
 
 # vi mode
 bindkey -v

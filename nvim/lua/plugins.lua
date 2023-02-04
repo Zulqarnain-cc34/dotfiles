@@ -1,5 +1,5 @@
 -- ===================================
--- ____  _             _
+-- _______  _             _
 -- |  _ \| |_   _  __ _(_)_ __  ___
 -- | |_) | | | | |/ _` | | '_ \/ __|
 -- |  __/| | |_| | (_| | | | | \__ \
@@ -45,6 +45,23 @@ packer.reset()
 return require('packer').startup(function()
     -- Packer can manage itself
     --
+    --
+
+    use {
+        'neovim/nvim-lspconfig',
+         -- opt = true,
+         -- event = "BufReadPre",
+         -- wants = {
+         --    "schemastore.nvim",
+         --  },
+        config = function()
+            require("config")
+        end,
+        requires = {
+           "b0o/schemastore.nvim",
+         },
+    }
+
     use {'wbthomason/packer.nvim'}
 
     use {"nvim-lua/popup.nvim", 'kosayoda/nvim-lightbulb'}
@@ -67,6 +84,22 @@ return require('packer').startup(function()
             require("plugins.hlslens")
         end
     }
+
+    use 'JoosepAlviste/palenightfall.nvim'
+
+    use {
+         "someone-stole-my-name/yaml-companion.nvim",
+      requires = {
+          { "neovim/nvim-lspconfig" },
+          { "nvim-lua/plenary.nvim" },
+          { "nvim-telescope/telescope.nvim" },
+      },
+      config = function()
+        require("telescope").load_extension("yaml_schema")
+        require("plugins.yaml-companion")
+      end,
+    }
+
 
     -- use({
     --   "jackMort/ChatGPT.nvim",
@@ -107,6 +140,19 @@ return require('packer').startup(function()
     -- use 'sainnhe/sonokai'
 
     -- use 'ful1e5/onedark.nvim'
+    --
+    use {
+        "onsails/diaglist.nvim",
+        require = function()
+            require("plugins.diaglist")
+        end
+
+    }
+
+    use {
+      'rafi/vim-venom',
+      config = 'require("venom").setup()'
+    }
 
     use 'Th3Whit3Wolf/one-nvim'
 
@@ -150,14 +196,6 @@ return require('packer').startup(function()
 
     -- Snippets
     use {'hrsh7th/nvim-compe', event = 'InsertEnter', config = [[require('plugins.compe')]]}
-
-    use {
-        'neovim/nvim-lspconfig',
-        config = function()
-            require("config")
-        end
-    }
-
     use {
         "tamago324/nlsp-settings.nvim",
         config = function()
@@ -327,15 +365,14 @@ return require('packer').startup(function()
     use {"windwp/nvim-ts-autotag", event = "InsertEnter", after = 'nvim-treesitter'}
 
     -- Lsp - Ui
-    use {
-        "tami5/lspsaga.nvim",
-        -- 'glepnir/lspsaga.nvim',
-        -- 'rinx/lspsaga.nvim',
-        event = 'BufRead',
+    use({
+        "glepnir/lspsaga.nvim",
+        branch = "main",
         config = function()
-            require("plugins.lspsaga")
-        end
-    }
+            require("lspsaga").setup({})
+        end,
+        requires = { {"nvim-tree/nvim-web-devicons"} }
+    })
 
     use {
         'folke/trouble.nvim',

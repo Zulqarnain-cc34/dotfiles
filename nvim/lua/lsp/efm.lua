@@ -1,11 +1,11 @@
-local on_attach = function(client)
-    if client.server_capabilities.documentFormattingProvider then
-        vim.api.nvim_command [[augroup Format]]
-        vim.api.nvim_command [[autocmd! * <buffer>]]
-        vim.api.nvim_command [[autocmd BufWritePre * lua vim.lsp.buf.formatting_sync()]]
-        vim.api.nvim_command [[augroup END]]
-    end
-end
+-- local on_attach = function(client)
+--     if client.server_capabilities.documentFormattingProvider then
+--         vim.api.nvim_command [[augroup Format]]
+--         vim.api.nvim_command [[autocmd! * <buffer>]]
+--         vim.api.nvim_command [[autocmd BufWritePre * lua vim.lsp.buf.formatting_sync()]]
+--         vim.api.nvim_command [[augroup END]]
+--     end
+-- end
 
 local eslint = require "efm/eslint"
 local isort = require "efm/isort"
