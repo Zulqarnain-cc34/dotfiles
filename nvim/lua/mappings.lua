@@ -15,6 +15,7 @@ local options = {noremap = true, silent = true}
 local bufopts = { noremap=true, silent=true, buffer=bufnr }
 
 
+
 -- Mappings for Lsp
 -- List the Info for current file specific language servers
 map('n', '<Leader>lI', ':LspInfo<CR>', options)
@@ -25,6 +26,9 @@ map('n', '<leader>lT', ':LspStop<cr>', options)
 -- Restarts the lsp Server
 map('n', '<leader>lR', ':LspRestart<cr>', options)
 
+map ('n','<space>dw', "<cmd>lua require('diaglist').open_all_diagnostics()<cr>",options)
+map ('n','<space>do', "<cmd>lua require('diaglist').open_buffer_diagnostics()<cr>",options)
+
 -- ===================== Lsp KeyBindings ==================================
 
 --  Highlights and Goto Declarations of function
@@ -32,9 +36,10 @@ map('n', '<leader>lD', '<cmd>lua vim.lsp.buf.declaration()<CR>', options)
 -- Goto Definations of functions
 map('n', '<leader>ld', '<cmd>:Lspsaga preview_definition<CR>', options)
 -- Show function doc on hover
-map('n', 'K', '<cmd>:Lspsaga hover_doc<CR>', options)
+map('n', 'K', '<cmd>:Lspsaga hover_doc ++keep<CR>', options)
 -- Show and goto refrences of functions
 map('n', '<leader>ls', '<cmd>:Lspsaga signature_help<CR>', options)
+map("n", "<A-d>", "<cmd>Lspsaga term_toggle<CR>",options)
 -- Shows function implementation
 map('n', '<leader>li', '<cmd>lua vim.lsp.buf.implementation()<CR>', options)
 -- Goto type defination
@@ -42,9 +47,9 @@ map('n', '<leader>ly', '<cmd>lua vim.lsp.buf.type_definition()<CR>', options)
 -- Format Code according to file specific formatter
 map('n', '<leader>lf', '<cmd>lua vim.lsp.buf.format{ async:true }<CR>', options)
 -- Shows the variable and function symbols
-map('n', '<leader>ds', '<cmd>:Trouble lsp_document_diagnostics<CR>', options)
+map('n', '<leader>ds', '<cmd>:Trouble document_diagnostics<CR>', options)
 -- Shows thw workspace Symbolj
-map('n', '<leader>ws', '<cmd>:Trouble lsp_workspace_diagnostics<CR>', options)
+map('n', '<leader>ws', '<cmd>:Trouble workspace_diagnostics<CR>', options)
 -- Make a code action based on diagnostics
 map('n', '<leader>la', '<cmd>:Lspsaga code_action<CR>', options)
 
@@ -54,9 +59,9 @@ vim.keymap.set('n', '<leader>lf', function() vim.lsp.buf.format { async = true }
 -- Bulk rename
 map('n', '<leader>le', '<cmd>:Lspsaga rename<CR>', options)
 -- Shows Incoming
-map('n', '<leader>lc', '<cmd>lua vim.lsp.buf.incoming_calls()<CR>', options)
+map('n', '<leader>lc', '<cmd>Lspsaga incoming_calls<CR>', options)
 -- Shows Outgoing
-map('n', '<leader>lo', '<cmd>lua vim.lsp.buf.outgoing_calls()<CR>', options)
+map('n', '<leader>lo', '<cmd>Lspsaga outgoing_calls<CR>', options)
 -- Shows Outgoing
 map('n', '<leader>lx', '<cmd>lua vim.lsp.buf.definition()<CR>', options)
 -- Shows Outgoing
@@ -72,9 +77,9 @@ map('n', '<leader>lp', '<cmd>:Lspsaga diagnostic_jump_prev<CR>', options)
 
 map('n', '<leader>lb', '<cmd>:Lspsaga show_cursor_diagnostics<CR>', options)
 
-map('n', '<C-f>', '<cmd>:lua require("lspsaga.action").smart_scroll_with_saga(1)<CR>', options)
-
-map('n', '<C-b>', '<cmd>:lua require("lspsaga.action").smart_scroll_with_saga(-1)<CR>', options)
+-- map('n', '<C-f>', '<cmd>:lua require("lspsaga.action").smart_scroll_with_saga(1)<CR>', options)
+--
+-- map('n', '<C-b>', '<cmd>:lua require("lspsaga.action").smart_scroll_with_saga(-1)<CR>', options)
 
 ------------------------------------------------------------------------
 --                            Neovim Compe                            --
@@ -102,24 +107,21 @@ local check_back_space = function()
 end
 
 -- Use (s-)tab to:
---- move to prev/next item in completion menuone
---- jump to prev/next snippet's placeholder
+-- - move to prev/next item in completion menuone
+-- - jump to prev/next snippet's placeholder
 _G.tab_complete = function()
   if vim.fn.pumvisible() == 1 then
     return t "<C-n>"
-  elseif vim.fn['vsnip#available'](1) == 1 then
-    return t "<Plug>(vsnip-expand-or-jump)"
   elseif check_back_space() then
     return t "<Tab>"
   else
     return vim.fn['compe#complete']()
   end
 end
+
 _G.s_tab_complete = function()
   if vim.fn.pumvisible() == 1 then
     return t "<C-p>"
-  elseif vim.fn['vsnip#jumpable'](-1) == 1 then
-    return t "<Plug>(vsnip-jump-prev)"
   else
     -- If <S-Tab> is not working in your terminal, change it to <C-h>
     return t "<S-Tab>"
