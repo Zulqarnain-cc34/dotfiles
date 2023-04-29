@@ -186,7 +186,7 @@ shift + alt + t
   notifytorrents
 
 super + {t,r,y,o,w,e}
-    {alacritty,$TERM -e rtv,$HOME/bin/bash_scripts/ytfzf -D,$TERM -e htop,$BROWSER,$TERM -e neomutt}
+    {kitty,$TERM -e rtv,$HOME/bin/bash_scripts/ytfzf -D,$TERM -e htop,$BROWSER,$TERM -e neomutt}
 
 super + space
   rofi-bangs
@@ -195,7 +195,7 @@ super + m
     alacritty -e ncmpcpp
 
 alt + n
-  $TERM -e newsboat
+  kitty -e newsboat
 
 super + p
   ~/.config/polybar/scripts/powermenu

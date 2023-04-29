@@ -3,8 +3,8 @@ bspc rule -r "*"
 
 # killall bspswallow
 # pidof bspswallow | bspswallow &
-# "一", "二", "三", "四", "五", "六", "七", "八", "九" 
-bspc monitor -d 一 二 三 四 五
+# "一", "二", "三", "四", "五",
+bspc monitor -d 一 二 三 四 五 六 七 八 九 
 
 bspc monitor DisplayPort-0 -d 1 2 3 4 5 6 7
 bspc monitor DisplayPort-1 -d 8 9
