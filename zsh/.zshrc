@@ -20,7 +20,7 @@ compinit
 _comp_options+=(globdots)		# Include hidden files.
 
 # History in Cache Directory and HIstory Size
-export HISTSIZE=1000000000
+export HISTSIZE=50000
 export SAVEHIST=$HISTSIZE
 HISTFILE="$HOME/.logs/zsh/history"
 HISTDUP=erase
