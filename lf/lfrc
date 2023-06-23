@@ -458,8 +458,6 @@ map mf push :mkfile<space>
 map mk mount_kdeconnect
 map mi mount_iso
 map mg mount_Gdrive
-map ms mount_mySecret
-map mo mount_Nust_Onedrive
 map mn mount_nextcloud
 
 map c

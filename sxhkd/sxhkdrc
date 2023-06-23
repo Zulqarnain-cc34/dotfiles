@@ -186,7 +186,7 @@ shift + alt + t
   notifytorrents
 
 super + {t,r,y,o,w,e}
-    {kitty,$TERM -e rtv,$HOME/bin/bash_scripts/ytfzf -D,$TERM -e htop,$BROWSER,$TERM -e neomutt}
+    {kitty,kitty -e rtv,$HOME/bin/bash_scripts/ytfzf -D,kitty -e htop, firefox,kitty -e neomutt}
 
 super + space
   rofi-bangs

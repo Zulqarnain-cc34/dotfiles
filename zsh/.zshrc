@@ -121,7 +121,7 @@ source ~/.config/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # Sourcing Files,Aliases and Bindings
 #
 #Sourcing all files in .config/shellconfig/*
-source /usr/share/autojump/autojump.zsh
+# source /usr/share/autojump/autojump.zsh
 # xrdb -merge "$HOME"/.Xresources &
 
 source "$HOME"/.aliases/aliases
@@ -145,7 +145,7 @@ else
     fi
 fi
 unset __conda_setup
-# <<< conda initialize <<<
-
 
 alias luamake=/home/alpha/.config/nvim/lua-language-server/3rd/luamake/luamake
+
+source /etc/profile.d/autojump.sh
