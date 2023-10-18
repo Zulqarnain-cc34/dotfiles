@@ -148,4 +148,11 @@ unset __conda_setup
 
 alias luamake=/home/alpha/.config/nvim/lua-language-server/3rd/luamake/luamake
 
-source /etc/profile.d/autojump.sh
+# source /etc/profile.d/autojump.sh
+
+if [ -n $R_LIBS ]; then
+  export R_LIBS=~/.Rlibs:$R_LIBS
+else
+  export R_LIBS=~/.Rlibs
+fi
+
