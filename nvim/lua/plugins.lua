@@ -62,8 +62,15 @@ return require('packer').startup(function()
          },
     }
 
-    use {'wbthomason/packer.nvim'}
+    use{
+        'gaborvecsei/memento.nvim',
+        requires = {
+            'nvim-lua/plenary.nvim'
+        }
+    }
 
+
+    use {'wbthomason/packer.nvim'}
     use {"nvim-lua/popup.nvim", 'kosayoda/nvim-lightbulb'}
     use 'arkav/lualine-lsp-progress'
 

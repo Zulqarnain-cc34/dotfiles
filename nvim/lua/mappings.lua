@@ -284,6 +284,8 @@ map("n", "<leader>ol", ':FSSplitRight<CR>', {noremap = true, silent = true})
 
 map("n", "<leader>ol", ':FSSplitRight<CR>', {noremap = true, silent = true})
 
+map("n", "<leader>h", "<cmd>lua require('memento').toggle()<CR>", {noremap = true, silent = true})
+
 ------------------------------------------------------------------------
 --                                 WhichKey                           --
 ------------------------------------------------------------------------

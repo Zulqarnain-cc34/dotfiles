@@ -40,6 +40,7 @@
 [ ! -d "$HOME"/.config/vivid ] && ln -s "$PWD"/vivid "$HOME"/.config/vivid
 [ ! -d "$HOME"/.config/fish ] && ln -s "$PWD"/fish "$HOME"/.config/fish
 [ ! -d "$HOME"/.config/imv ] && ln -s "$PWD"/imv "$HOME"/.config/imv
+[ ! -d "$HOME"/.config/kitty ] && ln -s "$PWD"/kitty "$HOME"/.config/kitty
 
 ##################################
 ## _____  ___  _      _____  ____
