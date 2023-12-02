@@ -79,23 +79,23 @@ export LS_COLORS="$(vivid generate one-dark)"
 
 #Hadoop Related Options
 
-export HADOOP_HOME=/home/alpha/program_files/binaries/Hadoop_Stack/hadoop-3.3.4
-export HADOOP_INSTALL=$HADOOP_HOME
-export HADOOP_MAPRED_HOME=$HADOOP_HOME
-export HADOOP_COMMON_HOME=$HADOOP_HOME
-export HADOOP_HDFS_HOME=$HADOOP_HOME
-export YARN_HOME=$HADOOP_HOME
-export HADOOP_COMMON_LIB_NATIVE_DIR=$HADOOP_HOME/lib/native
-export PATH=$PATH:$HADOOP_HOME/sbin:$HADOOP_HOME/bin
-export HADOOP_OPTS="-Djava.library.path=$HADOOP_HOME/lib/nativ"
-
-export HIVE_HOME="/home/alpha/program_files/binaries/Hadoop_Stack/apache-hive-3.1.3-bin"
-export PATH=$PATH:$HIVE_HOME/bin
-
-export SPARK_HOME="/home/alpha/program_files/binaries/Hadoop_Stack/spark-3.3.1-bin-hadoop"
-export PATH=$PATH:$SPARK_HOME/bin
-export PYTHONPATH=${SPARK_HOME}/python/:$(echo ${SPARK_HOME}/python/lib/py4j-*-src.zip):${PYTHONPATH}
-
+# export HADOOP_HOME=/home/alpha/program_files/binaries/Hadoop_Stack/hadoop-3.3.4
+# export HADOOP_INSTALL=$HADOOP_HOME
+# export HADOOP_MAPRED_HOME=$HADOOP_HOME
+# export HADOOP_COMMON_HOME=$HADOOP_HOME
+# export HADOOP_HDFS_HOME=$HADOOP_HOME
+# export YARN_HOME=$HADOOP_HOME
+# export HADOOP_COMMON_LIB_NATIVE_DIR=$HADOOP_HOME/lib/native
+# export PATH=$PATH:$HADOOP_HOME/sbin:$HADOOP_HOME/bin
+# export HADOOP_OPTS="-Djava.library.path=$HADOOP_HOME/lib/nativ"
+#
+# export HIVE_HOME="/home/alpha/program_files/binaries/Hadoop_Stack/apache-hive-3.1.3-bin"
+# export PATH=$PATH:$HIVE_HOME/bin
+#
+# export SPARK_HOME="/home/alpha/program_files/binaries/Hadoop_Stack/spark-3.3.1-bin-hadoop"
+# export PATH=$PATH:$SPARK_HOME/bin
+# export PYTHONPATH=${SPARK_HOME}/python/:$(echo ${SPARK_HOME}/python/lib/py4j-*-src.zip):${PYTHONPATH}
+#
 #Path
 # path=("$HOME/bin/binaries" "$HOME/bin/python_scripts" "$HOME/bin/bash_scripts" 
 # 	"$HOME/go/bin" "$HOME/.local/bin" "$path[@]")
