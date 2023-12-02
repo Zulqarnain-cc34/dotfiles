@@ -188,8 +188,11 @@ shift + alt + t
 super + {t,r,y,o,w,e}
     {kitty,kitty -e rtv,$HOME/bin/bash_scripts/ytfzf -D,kitty -e htop, firefox,kitty -e neomutt}
 
+# super + space
+#   rofi-bangs
+
 super + space
-  rofi-bangs
+    $HOME/.config/rofi/launchers/ribbon/launcher.sh
 
 super + m
     alacritty -e ncmpcpp
