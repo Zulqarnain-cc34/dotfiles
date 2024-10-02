@@ -54,7 +54,7 @@ o.undodir = '/home/alpha/.config/nvim/tempdir/undodir'
 o.shortmess = o.shortmess .. "c" -- Don't pass messages to |ins-completion-menu|.
 o.expandtab = true -- Converts tabs to spaces
 o.ttyfast = true -- fast scrolling
-o.pastetoggle = "<F2>"
+-- o.pastetoggle = "<F2>"
 o.completeopt = 'menuone,noselect'
 o.clipboard="unnamedplus" -- copies the selected text to clipboard
 

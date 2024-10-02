@@ -483,3 +483,5 @@ export GROFF_NO_SGR=1                  # for konsole and gnome-terminal
 # *.nix=:\
 # "
 
+export NVM_DIR="$HOME/.config/nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
