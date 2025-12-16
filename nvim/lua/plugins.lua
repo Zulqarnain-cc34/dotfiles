@@ -328,14 +328,22 @@ return require('packer').startup(function()
 
     -- Markdown Preview
     --
-    use {
-        'iamcco/markdown-preview.nvim',
-        run = 'cd app && yarn install',
-        cmd = 'MarkdownPreview',
-        ft = 'markdown'
-    }
-
+    -- use({
+    --     "iamcco/markdown-preview.nvim",
+    --     run = "cd app && npm install",
+    --     setup = function()
+    --         vim.g.mkdp_filetypes = {
+    --            "markdown"
+    --         }
+    --     end,
+    --     ft = { "markdown" }, })
     -- Treesitter
+    use {
+        "iamcco/markdown-preview.nvim",
+        cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+        ft = { "markdown" },
+        build = function() vim.fn["mkdp#util#install"]() end,
+    }
 
     use {
         "nvim-treesitter/nvim-treesitter",
