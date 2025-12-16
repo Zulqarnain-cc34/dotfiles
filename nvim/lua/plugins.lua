@@ -11,7 +11,6 @@
 
 -- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-local opts = require("plugins.symbols-outline")
 -- OLD LINE: if not vim.loop.fs_stat(lazypath) then
 if vim.fn.isdirectory(lazypath) == 0 then -- Check if the directory does NOT exist
     vim.fn.system({
@@ -37,16 +36,6 @@ return require('lazy').setup({
         },
     },
     {
-        "fei6409/log-highlight.nvim",
-        event = "BufRead *.log",
-        opts = {}
-    },
-    {
-        'simrat39/symbols-outline.nvim',
-        -- Keymap to open the plugin
-        opts = opts,
-    },
-    {
         "folke/noice.nvim",
         event = "VeryLazy",
         dependencies = {
@@ -54,7 +43,6 @@ return require('lazy').setup({
             "rcarriga/nvim-notify",
         }
     },
-    "ellisonleao/gruvbox.nvim",
     {
         "folke/persistence.nvim",
         event = "BufReadPre", -- this will only start session saving when an actual file was opened
@@ -100,21 +88,20 @@ return require('lazy').setup({
             require("scrollbar").setup()
         end
     },
-    "nvim-lua/popup.nvim",
-    "kosayoda/nvim-lightbulb",
     'arkav/lualine-lsp-progress',
+    "folke/neodev.nvim",
     {
         "NeogitOrg/neogit",
         lazy = true,
         dependencies = {
-            "nvim-lua/plenary.nvim", -- required
+            "nvim-lua/plenary.nvim",  -- required
             "sindrets/diffview.nvim", -- optional - Diff integration
 
             -- Only one of these is needed.
             "nvim-telescope/telescope.nvim", -- optional
-            "ibhagwan/fzf-lua",      -- optional
-            "nvim-mini/mini.pick",   -- optional
-            "folke/snacks.nvim",     -- optional
+            "ibhagwan/fzf-lua",              -- optional
+            "nvim-mini/mini.pick",           -- optional
+            "folke/snacks.nvim",             -- optional
         },
         cmd = "Neogit",
         keys = {
@@ -136,17 +123,18 @@ return require('lazy').setup({
         end
     },
 
-    'JoosepAlviste/palenightfall.nvim',
-    'ful1e5/onedark.nvim',
-
+    {
+        "folke/tokyonight.nvim",
+        lazy = false,
+        priority = 1000,
+        opts = {},
+    },
     {
         "onsails/diaglist.nvim",
         config = function()
             require("plugins.diaglist")
         end
     },
-
-    'Th3Whit3Wolf/one-nvim',
 
     -- opt = true in packer usually means the plugin is lazy-loaded by default
     { "Tastyep/structlog.nvim" },
@@ -338,7 +326,6 @@ return require('lazy').setup({
             auto_install = true,
             highlight = {
                 enable = true,
-                additional_vim_regex_highlighting = false,
             },
             indent = {
                 enable = false,

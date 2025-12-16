@@ -32,19 +32,9 @@ g.UltiSnipsJumpBackwardTrigger = '<c-k>'
 g.user_emmet_leader_key = '<C-Z>'
 -- g.user_emmet_install_global = 0
 --
--- g.venom_use_tools = 1
-
-local colors = require('palenightfall').colors
-
-require('palenightfall').setup({
-    highlight_overrides = {
-        Normal = { fg = colors.orange },
-    },
-})
-
 
 -- cmd("colorscheme nvim")
--- cmd("colorscheme onedark")
+cmd("colorscheme tokyonight")
 
 ------------------------------------------------------------------------
 --                              WikiList                              --
