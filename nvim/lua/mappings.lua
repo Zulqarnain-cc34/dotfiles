@@ -53,7 +53,8 @@ map('n', '<leader>ws', '<cmd>:Trouble workspace_diagnostics<CR>', options)
 -- Make a code action based on diagnostics
 map('n', '<leader>la', '<cmd>:Lspsaga code_action<CR>', options)
 
-vim.keymap.set('n', '<leader>lf', function() vim.lsp.buf.format { async = true } end, bufopts)
+-- Removed duplicate <leader>lf mapping (already defined on line 48)
+-- vim.keymap.set('n', '<leader>lf', function() vim.lsp.buf.format { async = true } end, bufopts)
 
 -- map('n', '<leader>la', '<cmd>lua vim.lsp.buf.code_action()<CR>', options)
 -- Bulk rename
@@ -123,7 +124,6 @@ _G.s_tab_complete = function()
   if vim.fn.pumvisible() == 1 then
     return t "<C-p>"
   else
-    -- If <S-Tab> is not working in your terminal, change it to <C-h>
     return t "<S-Tab>"
   end
 end

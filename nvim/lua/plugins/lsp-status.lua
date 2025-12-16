@@ -106,7 +106,7 @@ local M = {
 }
 
 M.on_attach = function(client)
-  if client.resolved_capabilities.document_symbol then
+  if client.server_capabilities.documentSymbolProvider then
     vim.api.nvim_command(
       'au CursorHold <buffer> lua require"lsp_status".update()'
     )

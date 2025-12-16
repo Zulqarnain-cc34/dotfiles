@@ -1,2 +1,3 @@
-require"lspconfig".cssls.setup {}
+vim.lsp.config['cssls'] = {}
 
+vim.lsp.enable('cssls')

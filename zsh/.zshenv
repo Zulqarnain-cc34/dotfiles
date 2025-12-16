@@ -1,10 +1,10 @@
 typeset -U PATH path
 
 # Fcitx
-export GTK_IM_MODULE=fcitx
-export QT_IM_MODULE=fcitx
-export SDL_IM_MODULE=fcitx
-export XMODIFIERS='@im=fcitx'
+# export GTK_IM_MODULE=fcitx
+# export QT_IM_MODULE=fcitx
+# export SDL_IM_MODULE=fcitx
+# export XMODIFIERS='@im=fcitx'
 
 # XDG
 export XDG_DATA_HOME="$HOME/.local/share"
@@ -116,9 +116,6 @@ fi
 if [ -d "$HOME/bin/bash_scripts" ]; then
     PATH="$PATH:$HOME/bin/bash_scripts"
 fi
-
-export PATH="$PATH:/usr/local/spark/bin"
-export PATH=/opt/apache-maven-3.8.6/bin:$PATH
 # LESS COLORS
 export LESS_TERMCAP_mb=$'\e[1;31m'     # begin bold
 export LESS_TERMCAP_md=$'\e[1;33m'     # begin blink

@@ -1,6 +1,7 @@
 function goimports(timeout_ms)
     local context = {only = {"source.organizeImports"}}
-    vim.validate {context = {context, "t", true}}
+    -- Updated to new vim.validate signature: vim.validate({ name = { value, type, optional } })
+    vim.validate({ context = { context, 'table', true } })
 
     local params = vim.lsp.util.make_range_params()
     params.context = context

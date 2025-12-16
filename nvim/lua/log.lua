@@ -4,7 +4,11 @@ local logfile = string.format("%s/%s.log", vim.fn.stdpath "cache", "logger")
 
 Log.levels = {TRACE = 1, DEBUG = 2, INFO = 3, WARN = 4, ERROR = 5}
 
-vim.tbl_add_reverse_lookup(Log.levels)
+-- Fixed: vim.tbl_add_reverse_lookup is deprecated, manually create reverse lookup
+-- Create reverse lookup: {1 = "TRACE", 2 = "DEBUG", ...}
+for name, value in pairs(Log.levels) do
+    Log.levels[value] = name
+end
 
 function Log:init()
     local status_ok, structlog = pcall(require, "structlog")
@@ -22,9 +26,12 @@ function Log:init()
     end
 
     nvim_notify_params_injecter(nil, {})
-    local log_level = Log.levels[(lvim.log.level):upper() or "WARN"]
+    -- Fixed: lvim is not defined, use default log level "WARN" (4)
+    -- If you want to configure log level, set it via a config variable
+    local log_level_name = "WARN" -- Default log level
+    local log_level = Log.levels[log_level_name] or Log.levels.WARN
     structlog.configure {
-        lvim = {
+        nvim = {  -- Changed from "lvim" to "nvim" since lvim is not available
             sinks = {
                 structlog.sinks.Console(log_level, {
                     async = false,
@@ -63,9 +70,14 @@ function Log:init()
         }
     }
 
-    local logger = structlog.get_logger "lvim"
+    local logger = structlog.get_logger "nvim"  -- Changed from "lvim" to "nvim"
 
-    if lvim.log.override_notify then
+    -- Fixed: lvim.log.override_notify is not defined, make it configurable
+    -- Set this to true if you want to override vim.notify
+    local override_notify = false  -- Set to true to enable notify override
+    if override_notify then
+        -- Store original vim.notify to avoid duplicate field warning
+        local original_notify = vim.notify
         -- Overwrite vim.notify to use the logger
         vim.notify = function(msg, vim_log_level, opts)
             nvim_notify_params = opts or {}
@@ -82,11 +94,14 @@ function Log:init()
 end
 
 --- Adds a log entry using Plenary.log
----@fparam msg any
----@param level string [same as vim.log.log_levels]
+---@param level number|string [log level as number (1-5) or string name]
+---@param msg any
+---@param event any
 function Log:add_entry(level, msg, event)
+    -- Fixed: Convert level to number if it's a string, or use directly if number
+    local level_num = type(level) == "string" and Log.levels[level] or level
     if self.__handle then
-        self.__handle:log(level, msg, event)
+        self.__handle:log(level_num, msg, event)
         return
     end
 
@@ -94,7 +109,7 @@ function Log:add_entry(level, msg, event)
     if not logger then return end
 
     self.__handle = logger
-    self.__handle:log(level, msg, event)
+    self.__handle:log(level_num, msg, event)
 end
 
 ---Retrieves the path of the logfile
@@ -128,7 +143,8 @@ end
 ---@param msg any
 ---@param event any
 function Log:warn(msg, event)
-    self:add_entry(self.levelsWARN, msg, event)
+    -- Fixed: typo - was self.levelsWARN, should be self.levels.WARN
+    self:add_entry(self.levels.WARN, msg, event)
 end
 
 ---Add a log entry at ERROR level

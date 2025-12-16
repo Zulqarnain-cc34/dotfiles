@@ -1,4 +1,4 @@
-require'lspconfig'.ts_ls.setup {
+vim.lsp.config['ts_ls'] = {
 
     cmd = {'typescript-language-server', '--stdio'},
     filetypes = {
@@ -6,8 +6,8 @@ require'lspconfig'.ts_ls.setup {
         "typescript.tsx"
     },
     on_attach = function(client, bufnr)
-         client.server_capabilities.document_formatting = false
-         client.server_capabilities.document_range_formatting = false
+         client.server_capabilities.documentFormattingProvider = false
+         client.server_capabilities.documentRangeFormattingProvider = false
 
         local ts_utils = require("nvim-lsp-ts-utils")
 
@@ -37,3 +37,5 @@ require'lspconfig'.ts_ls.setup {
     -- debounce_text_changes = 150,
     -- },
 }
+
+vim.lsp.enable('ts_ls')

@@ -15,10 +15,10 @@ local plug_url_format = 'https://github.com/%s'
 
 local packer_repo = string.format(plug_url_format, 'wbthomason/packer.nvim')
 local install_cmd = string.format('10split |term git clone --depth=1 %s %s', packer_repo,
-                                  packer_install_dir)
+    packer_install_dir)
 
 if fn.empty(fn.glob(packer_install_dir)) > 0 then
-    vim.api.nvim_echo({{'Installing packer.nvim', 'Type'}}, true, {})
+    vim.api.nvim_echo({ { 'Installing packer.nvim', 'Type' } }, true, {})
     execute(install_cmd)
     execute 'packadd packer.nvim'
 end
@@ -32,7 +32,7 @@ packer.startup {
     config = {
         display = {
             open_fn = function()
-                return require('packer.util').float({border = 'single'})
+                return require('packer.util').float({ border = 'single' })
             end
         }
     }
@@ -49,29 +49,39 @@ return require('packer').startup(function()
 
     use {
         'neovim/nvim-lspconfig',
-         -- opt = true,
-         -- event = "BufReadPre",
-         -- wants = {
-         --    "schemastore.nvim",
-         --  },
+        -- opt = true,
+        -- event = "BufReadPre",
+        -- wants = {
+        --    "schemastore.nvim",
+        --  },
         config = function()
             require("config")
         end,
         requires = {
-           "b0o/schemastore.nvim",
-         },
+            "b0o/schemastore.nvim",
+        },
     }
 
-    use{
+    use {
         'gaborvecsei/memento.nvim',
         requires = {
             'nvim-lua/plenary.nvim'
         }
     }
 
+    use {
+        "FabijanZulj/blame.nvim",
+        lazy = false,
+        config = function()
+            require('blame').setup {}
+        end,
+        opts = {
+            blame_options = { '-w' },
+        }
+    }
 
-    use {'wbthomason/packer.nvim'}
-    use {"nvim-lua/popup.nvim", 'kosayoda/nvim-lightbulb'}
+    use { 'wbthomason/packer.nvim' }
+    use { "nvim-lua/popup.nvim", 'kosayoda/nvim-lightbulb' }
     use 'arkav/lualine-lsp-progress'
 
     -- Icons for Nvimtree
@@ -94,33 +104,20 @@ return require('packer').startup(function()
 
     use 'JoosepAlviste/palenightfall.nvim'
 
-    use {
-         "someone-stole-my-name/yaml-companion.nvim",
-      requires = {
-          { "neovim/nvim-lspconfig" },
-          { "nvim-lua/plenary.nvim" },
-          { "nvim-telescope/telescope.nvim" },
-      },
-      config = function()
-        require("telescope").load_extension("yaml_schema")
-        require("plugins.yaml-companion")
-      end,
-    }
+    -- use {
+    --      -- "someone-stole-my-name/yaml-companion.nvim",
+    --   requires = {
+    --       { "neovim/nvim-lspconfig" },
+    --       { "nvim-lua/plenary.nvim" },
+    --       { "nvim-telescope/telescope.nvim" },
+    --   },
+    --   config = function()
+    --     require("telescope").load_extension("yaml_schema")
+    --     require("plugins.yaml-companion")
+    --   end,
+    -- }
 
 
-    -- use({
-    --   "jackMort/ChatGPT.nvim",
-    --     config = function()
-    --       require("chatgpt").setup({
-    --         -- optional configuration
-    --       })
-    --     end,
-    --     requires = {
-    --       "MunifTanjim/nui.nvim",
-    --       "nvim-lua/plenary.nvim",
-    --       "nvim-telescope/telescope.nvim"
-    --     }
-    -- })
     -- =================== Themes ===================
 
     -- use({ -- color scheme
@@ -146,7 +143,7 @@ return require('packer').startup(function()
     -- use 'ChristianChiarulli/nvcode-color-schemes.vim'
     -- use 'sainnhe/sonokai'
 
-    -- use 'ful1e5/onedark.nvim'
+    use 'ful1e5/onedark.nvim'
     --
     use {
         "onsails/diaglist.nvim",
@@ -156,14 +153,14 @@ return require('packer').startup(function()
 
     }
 
-    use {
-      'rafi/vim-venom',
-      config = 'require("venom").setup()'
-    }
+    -- use {
+    --   'rafi/vim-venom',
+    --   config = 'require("venom").setup()'
+    -- }
 
     use 'Th3Whit3Wolf/one-nvim'
 
-    use {"Tastyep/structlog.nvim", opt = true}
+    use { "Tastyep/structlog.nvim", opt = true }
 
     use {
         "nvim-lua/lsp-status.nvim",
@@ -171,7 +168,7 @@ return require('packer').startup(function()
             require("plugins.lsp-status")
         end
     }
-    use {'j-hui/fidget.nvim'}
+    use { 'j-hui/fidget.nvim' }
     -- one dark theme
     -- use 'navarasu/onedark.nvim'
     -- use 'olimorris/onedark.nvim'
@@ -202,13 +199,13 @@ return require('packer').startup(function()
     }
 
     -- Snippets
-    use {'hrsh7th/nvim-compe', event = 'InsertEnter', config = [[require('plugins.compe')]]}
-    use {
-        "tamago324/nlsp-settings.nvim",
-        config = function()
-            require'nlspsettings'.setup {config_home = vim.fn.stdpath('config') .. '/.nlspsettings'}
-        end
-    }
+    use { 'hrsh7th/nvim-compe', event = 'InsertEnter', config = [[require('plugins.compe')]] }
+    -- use {
+    --     "tamago324/nlsp-settings.nvim",
+    --     config = function()
+    --         require'nlspsettings'.setup {config_home = vim.fn.stdpath('config') .. '/.nlspsettings'}
+    --     end
+    -- }
 
     use {
         'kyazdani42/nvim-tree.lua',
@@ -238,9 +235,9 @@ return require('packer').startup(function()
         end
     }
 
-    use {'simrat39/symbols-outline.nvim'}
+    use { 'simrat39/symbols-outline.nvim' }
 
-    use {'jose-elias-alvarez/nvim-lsp-ts-utils'}
+    use { 'jose-elias-alvarez/nvim-lsp-ts-utils' }
 
     -- ultisnips
     -- use {'SirVer/ultisnips', event = "InsertEnter", requires = {'honza/vim-snippets'}}
@@ -249,10 +246,10 @@ return require('packer').startup(function()
 
     -- Fuzzy finder
 
-    use {'mfussenegger/nvim-jdtls'}
+    use { 'mfussenegger/nvim-jdtls' }
     use {
         "nvim-telescope/telescope.nvim",
-        requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}},
+        requires = { { 'nvim-lua/popup.nvim' }, { 'nvim-lua/plenary.nvim' } },
         config = function()
             require("plugins.telescope")
         end
@@ -310,7 +307,7 @@ return require('packer').startup(function()
     use({
         'norcalli/nvim-colorizer.lua',
         opt = true,
-        cmd = {'ColorizerToggle'},
+        cmd = { 'ColorizerToggle' },
         config = function()
             require("plugins.colorizer")
         end
@@ -319,7 +316,7 @@ return require('packer').startup(function()
     -- Dashboard
     use {
         'glepnir/dashboard-nvim',
-        cmd = {"Dashboard", "DashboardNewFile", "DashboardJumpMarks", "SessionLoad", "SessionSave"},
+        cmd = { "Dashboard", "DashboardNewFile", "DashboardJumpMarks", "SessionLoad", "SessionSave" },
         config = function()
             require("plugins.dashboard")
         end
@@ -327,7 +324,7 @@ return require('packer').startup(function()
 
     -- Markdown Snippets
 
-    use {'mzlogin/vim-markdown-toc', ft = "markdown"}
+    use { 'mzlogin/vim-markdown-toc', ft = "markdown" }
 
     -- Markdown Preview
     --
@@ -351,13 +348,10 @@ return require('packer').startup(function()
     -- Colors,blanklines and Tags
 
     use {
-        'p00f/nvim-ts-rainbow',
+        'HiPhish/rainbow-delimiters.nvim',
         after = 'nvim-treesitter',
         -- disable = true,
-        requires = {'windwp/nvim-ts-autotag'},
-        config = function()
-            require("plugins.nvim-ts-rainbow")
-        end
+        requires = { 'windwp/nvim-ts-autotag' },
     }
 
     use {
@@ -369,16 +363,15 @@ return require('packer').startup(function()
         end
     }
 
-    use {"windwp/nvim-ts-autotag", event = "InsertEnter", after = 'nvim-treesitter'}
+    use { "windwp/nvim-ts-autotag", event = "InsertEnter", after = 'nvim-treesitter' }
 
     -- Lsp - Ui
     use({
-        "glepnir/lspsaga.nvim",
-        branch = "main",
+        'nvimdev/lspsaga.nvim',
+        after = 'nvim-lspconfig',
         config = function()
-            require("lspsaga").setup({})
+            require('lspsaga').setup({})
         end,
-        requires = { {"nvim-tree/nvim-web-devicons"} }
     })
 
     use {
@@ -389,20 +382,20 @@ return require('packer').startup(function()
             require('plugins.trouble')
         end
     }
-    use {"vimwiki/vimwiki"}
+    use { "vimwiki/vimwiki" }
 
     -- Git
     --
-    use {'tpope/vim-fugitive'}
+    use { 'tpope/vim-fugitive' }
 
     -- use {'airblade/vim-gitgutter'}
 
-    use {'f-person/git-blame.nvim'}
+    -- use { 'f-person/git-blame.nvim' }
 
     use {
         'lewis6991/gitsigns.nvim',
         disable = true,
-        requires = {'nvim-lua/plenary.nvim'},
+        requires = { 'nvim-lua/plenary.nvim' },
         config = function()
             require('plugins.gitsigns')
         end
@@ -410,7 +403,7 @@ return require('packer').startup(function()
 
     -- Documentation
     --
-    use {'kkoomen/vim-doge', cmd = {"DogeGenerate"}, run = ":call doge#install()"}
+    use { 'kkoomen/vim-doge', cmd = { "DogeGenerate" }, run = ":call doge#install()" }
 
     -- Miscellenious
 
@@ -438,7 +431,6 @@ return require('packer').startup(function()
     -- require('flutter-tools').setup{}
     -- end
     -- }
-
 end)
 
 ---- =================== File Traversing =================
@@ -478,4 +470,3 @@ end)
 --------------------------------------------------------------------------
 ----                                Lua                                 --
 --------------------------------------------------------------------------
-
