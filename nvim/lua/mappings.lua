@@ -1,9 +1,9 @@
 local g = vim.g
 
 local function map(mode, lhs, rhs, opts)
-    local options = {noremap = true, silent = true}
-    if opts then options = vim.tbl_extend('force', options, opts) end
-    vim.api.nvim_set_keymap(mode, lhs, rhs, options)
+        local options = { noremap = true, silent = true }
+        if opts then options = vim.tbl_extend('force', options, opts) end
+        vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
 -- ============== Leader Key =========================
@@ -11,8 +11,8 @@ end
 g.mapleader = "m"
 
 -- ============== Lsp Server KeyBindings ===================
-local options = {noremap = true, silent = true}
-local bufopts = { noremap=true, silent=true, buffer=bufnr }
+local options = { noremap = true, silent = true }
+local bufopts = { noremap = true, silent = true, buffer = bufnr }
 
 
 
@@ -26,8 +26,8 @@ map('n', '<leader>lT', ':LspStop<cr>', options)
 -- Restarts the lsp Server
 map('n', '<leader>lR', ':LspRestart<cr>', options)
 
-map ('n','<space>dw', "<cmd>lua require('diaglist').open_all_diagnostics()<cr>",options)
-map ('n','<space>do', "<cmd>lua require('diaglist').open_buffer_diagnostics()<cr>",options)
+map('n', '<space>dw', "<cmd>lua require('diaglist').open_all_diagnostics()<cr>", options)
+map('n', '<space>do', "<cmd>lua require('diaglist').open_buffer_diagnostics()<cr>", options)
 
 -- ===================== Lsp KeyBindings ==================================
 
@@ -39,7 +39,7 @@ map('n', '<leader>ld', '<cmd>:Lspsaga preview_definition<CR>', options)
 map('n', 'K', '<cmd>:Lspsaga hover_doc ++keep<CR>', options)
 -- Show and goto refrences of functions
 map('n', '<leader>ls', '<cmd>:Lspsaga signature_help<CR>', options)
-map("n", "<A-d>", "<cmd>Lspsaga term_toggle<CR>",options)
+map("n", "<A-d>", "<cmd>Lspsaga term_toggle<CR>", options)
 -- Shows function implementation
 map('n', '<leader>li', '<cmd>lua vim.lsp.buf.implementation()<CR>', options)
 -- Goto type defination
@@ -78,7 +78,7 @@ map('n', '<leader>lp', '<cmd>:Lspsaga diagnostic_jump_prev<CR>', options)
 
 map('n', '<leader>lb', '<cmd>:Lspsaga show_cursor_diagnostics<CR>', options)
 
--- map('n', '<C-f>', '<cmd>:lua require("lspsaga.action").smart_scroll_with_saga(1)<CR>', options)
+-- map('n', '<C-f>', '<cmd>:lua require("lspsaga.action").smart_scroll_with_saga(1)<CR>', options
 --
 -- map('n', '<C-b>', '<cmd>:lua require("lspsaga.action").smart_scroll_with_saga(-1)<CR>', options)
 
@@ -97,111 +97,81 @@ map('n', '<leader>lb', '<cmd>:Lspsaga show_cursor_diagnostics<CR>', options)
 -- map('n', '<A-d>', '<cmd>:Lspsaga open_floaterm<CR>', options)
 --
 -- -- remap('t', '<A-d>', "<C-\><C-n>:Lspsaga close_floaterm<CR>", options)
---
-local t = function(str)
-  return vim.api.nvim_replace_termcodes(str, true, true, true)
-end
 
-local check_back_space = function()
-    local col = vim.fn.col('.') - 1
-    return col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') ~= nil
-end
-
--- Use (s-)tab to:
--- - move to prev/next item in completion menuone
--- - jump to prev/next snippet's placeholder
-_G.tab_complete = function()
-  if vim.fn.pumvisible() == 1 then
-    return t "<C-n>"
-  elseif check_back_space() then
-    return t "<Tab>"
-  else
-    return vim.fn['compe#complete']()
-  end
-end
-
-_G.s_tab_complete = function()
-  if vim.fn.pumvisible() == 1 then
-    return t "<C-p>"
-  else
-    return t "<S-Tab>"
-  end
-end
-
-vim.api.nvim_set_keymap("i", "<Tab>", "v:lua.tab_complete()", {expr = true})
-vim.api.nvim_set_keymap("s", "<Tab>", "v:lua.tab_complete()", {expr = true})
-vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
-vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
+-- vim.api.nvim_set_keymap("i", "<Tab>", "v:lua.tab_complete()", { expr = true })
+-- vim.api.nvim_set_keymap("s", "<Tab>", "v:lua.tab_complete()", { expr = true })
+-- vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", { expr = true })
+-- vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", { expr = true })
 
 ------------------------------------------------------------------------
 --                              Trouble                               --
 ------------------------------------------------------------------------
 
-map("n", "<leader>xx", "<cmd>Trouble<cr>", {silent = true, noremap = true})
-map("n", "<leader>xw", "<cmd>Trouble lsp_workspace_diagnostics<cr>", {silent = true, noremap = true})
-map("n", "<leader>xd", "<cmd>Trouble lsp_document_diagnostics<cr>", {silent = true, noremap = true})
-map("n", "<leader>xl", "<cmd>Trouble loclist<cr>", {silent = true, noremap = true})
-map("n", "<leader>xq", "<cmd>Trouble quickfix<cr>", {silent = true, noremap = true})
-map("n", "<leader>xr", "<cmd>Trouble lsp_references<cr>", {silent = true, noremap = true})
+map("n", "<leader>xx", "<cmd>Trouble<cr>", { silent = true, noremap = true })
+map("n", "<leader>xw", "<cmd>Trouble lsp_workspace_diagnostics<cr>", { silent = true, noremap = true })
+map("n", "<leader>xd", "<cmd>Trouble lsp_document_diagnostics<cr>", { silent = true, noremap = true })
+map("n", "<leader>xl", "<cmd>Trouble loclist<cr>", { silent = true, noremap = true })
+map("n", "<leader>xq", "<cmd>Trouble quickfix<cr>", { silent = true, noremap = true })
+map("n", "<leader>xr", "<cmd>Trouble lsp_references<cr>", { silent = true, noremap = true })
 
 ------------------------------------------------------------------------
 --                             Telescope                              --
 ------------------------------------------------------------------------
 
-map("n", "<C-s>", "<cmd>:Telescope find_files<cr>", {noremap = true})
-map("n", "<leader>fg", "<cmd>:Telescope live_grep<cr>", {noremap = true})
-map("n", "<leader>fb", "<cmd>:Telescope buffers<cr>", {noremap = true})
-map("n", "<leader>fh", "<cmd>:Telescope help_tags<cr>", {noremap = true})
-map("n", "<leader>fm", "<cmd>:Telescope marks<cr>", {noremap = true})
-map("n", "<leader>fl", "<cmd>:Telescope old_files<cr>", {noremap = true})
-map("n", "<leader>fc", "<cmd>:Telescope command_history<cr>", {noremap = true})
-map("n", "<leader>fa", "<cmd>:Telescope man_pages<cr>", {noremap = true})
-map("n", "<leader>fr", "<cmd>:Telescope registers<cr>", {noremap = true})
-map("n", "<leader>gg", "<cmd>:Telescope git_commits<cr>", {noremap = true})
-map("n", "<leader>Gs", "<cmd>:Telescope git_status<cr>", {noremap = true})
+map("n", "<C-s>", "<cmd>:Telescope find_files<cr>", { noremap = true })
+map("n", "<leader>fg", "<cmd>:Telescope live_grep<cr>", { noremap = true })
+map("n", "<leader>fb", "<cmd>:Telescope buffers<cr>", { noremap = true })
+map("n", "<leader>fh", "<cmd>:Telescope help_tags<cr>", { noremap = true })
+map("n", "<leader>fm", "<cmd>:Telescope marks<cr>", { noremap = true })
+map("n", "<leader>fl", "<cmd>:Telescope old_files<cr>", { noremap = true })
+map("n", "<leader>fc", "<cmd>:Telescope command_history<cr>", { noremap = true })
+map("n", "<leader>fa", "<cmd>:Telescope man_pages<cr>", { noremap = true })
+map("n", "<leader>fr", "<cmd>:Telescope registers<cr>", { noremap = true })
+map("n", "<leader>gg", "<cmd>:Telescope git_commits<cr>", { noremap = true })
+map("n", "<leader>Gs", "<cmd>:Telescope git_status<cr>", { noremap = true })
 
 ------------------------------------------------------------------------
 --                           Todo comments                            --
 ------------------------------------------------------------------------
 
-map("n", "<leader>tT", "<cmd>:TodoTelescope <cr>", {noremap = true})
-map("n", "<leader>tq", "<cmd>:TodoQuickFix<cr>", {noremap = true})
-map("n", "<leader>tt", "<cmd>:TodoTrouble<cr>", {noremap = true})
+map("n", "<leader>tT", "<cmd>:TodoTelescope <cr>", { noremap = true })
+map("n", "<leader>tq", "<cmd>:TodoQuickFix<cr>", { noremap = true })
+map("n", "<leader>tt", "<cmd>:TodoTrouble<cr>", { noremap = true })
 
 ------------------------------------------------------------------------
 --                              JABS--
 ------------------------------------------------------------------------
 
-map("n", "<leader>j", "<cmd>:JABSOpen<cr>", {noremap = true})
+map("n", "<leader>j", "<cmd>:JABSOpen<cr>", { noremap = true })
 
 ------------------------------------------------------------------------
 --                             BUfferline                             --
 ------------------------------------------------------------------------
 
-map("n", "bj", "<cmd>:BufferLineCycleNext<cr>", {noremap = true, silent = true})
-map("n", "bk", "<cmd>:BufferLineCyclePrev<cr>", {noremap = true, silent = true})
-map("n", "<leader>bn", "<cmd>:BufferLineMoveNext<cr>", {noremap = true, silent = true})
-map("n", "<leader>bp", "<cmd>:BufferLineMovePrev<cr>", {noremap = true, silent = true})
-map("n", "be", "<cmd>:BufferLineSortByExtension<cr>", {noremap = true, silent = true})
-map("n", "bd", "<cmd>:BufferLineSortByDirectory<cr>", {noremap = true, silent = true})
+map("n", "bj", "<cmd>:BufferLineCycleNext<cr>", { noremap = true, silent = true })
+map("n", "bk", "<cmd>:BufferLineCyclePrev<cr>", { noremap = true, silent = true })
+map("n", "<leader>bn", "<cmd>:BufferLineMoveNext<cr>", { noremap = true, silent = true })
+map("n", "<leader>bp", "<cmd>:BufferLineMovePrev<cr>", { noremap = true, silent = true })
+map("n", "be", "<cmd>:BufferLineSortByExtension<cr>", { noremap = true, silent = true })
+map("n", "bd", "<cmd>:BufferLineSortByDirectory<cr>", { noremap = true, silent = true })
 
 --
 ------------------------------------------------------------------------
 --                           Nvim-Dap--
 ------------------------------------------------------------------------
 
-map("n", "<F5>", "<cmd>:lua require 'dap'.continue()<cr>", {noremap = true, silent = true})
-map("n", "<F10>", "<cmd>:lua require 'dap'.step_over()<cr>", {noremap = true, silent = true})
-map("n", "<F11>", "<cmd>:lua require 'dap'.step_into()()<cr>", {noremap = true, silent = true})
-map("n", "<F12>", "<cmd>:lua require 'dap'.step_out()()<cr>", {noremap = true, silent = true})
+map("n", "<F5>", "<cmd>:lua require 'dap'.continue()<cr>", { noremap = true, silent = true })
+map("n", "<F10>", "<cmd>:lua require 'dap'.step_over()<cr>", { noremap = true, silent = true })
+map("n", "<F11>", "<cmd>:lua require 'dap'.step_into()()<cr>", { noremap = true, silent = true })
+map("n", "<F12>", "<cmd>:lua require 'dap'.step_out()()<cr>", { noremap = true, silent = true })
 map("n", "<leader>bb", "<cmd>:lua require 'dap'.toggle_breakpoint()<cr>",
-    {noremap = true, silent = true})
-map("n", "<leader>B", ":lua require'dap'.repl.open()<CR>", {noremap = true, silent = true})
+        { noremap = true, silent = true })
+map("n", "<leader>B", ":lua require'dap'.repl.open()<CR>", { noremap = true, silent = true })
 
 -- map("n", "<leader>lp", ":lua require 'dap'.run_last()<cr>", {noremap = true, silent = true})
 map("n", "<leader>dr",
-    "<cmd>:lua require 'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<cr>",
-    {noremap = true, silent = true})
+        "<cmd>:lua require 'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<cr>",
+        { noremap = true, silent = true })
 
 -- map("n", "<leader>dl",
 -- map("n", "<leader>dl",
@@ -212,29 +182,29 @@ map("n", "<leader>dr",
 --                           Nvim Tree--
 ------------------------------------------------------------------------
 
-map("n", "<C-n>", "<cmd>:NvimTreeToggle<CR>", {noremap = true, silent = true})
-map("n", "<leader>nr", "<cmd>:NvimTreeRefresh<CR>", {noremap = true, silent = true})
+map("n", "<C-n>", "<cmd>:NvimTreeToggle<CR>", { noremap = true, silent = true })
+map("n", "<leader>nr", "<cmd>:NvimTreeRefresh<CR>", { noremap = true, silent = true })
 
 ------------------------------------------------------------------------
 --                                Git                                 --
 ------------------------------------------------------------------------
 
 
-map("n", "<leader>ga", "<cmd>:Git add %:p<CR>", {noremap = true, silent = true})
-map("n", "<leader>gs", "<cmd>:Git<CR>", {noremap = true, silent = true})
-map("n", "<leader>gc", "<cmd>:Git commit -v -q<CR>", {noremap = true, silent = true})
-map("n", "<leader>gt", "<cmd>:Git commit -v -q %:p<CR>", {noremap = true, silent = true})
-map("n", "<leader>gd", "<cmd>:Gdiff<CR>", {noremap = true, silent = true})
-map("n", "<leader>ge", "<cmd>:Gedit<CR>", {noremap = true, silent = true})
-map("n", "<leader>gr", "<cmd>:Gread<CR>", {noremap = true, silent = true})
-map("n", "<leader>gw", "<cmd>:Gwrite<CR>", {noremap = true, silent = true})
-map("n", "<leader>gl", "<cmd>:silent! Glog<CR>:bot copen<CR>", {noremap = true, silent = true})
-map("n", "<leader>gp", "<cmd>:Ggrep<Space>", {noremap = true, silent = true})
-map("n", "<leader>gb", "<cmd>:Gmove<Space>", {noremap = true, silent = true})
-map("n", "<leader>go", "<cmd>:Git branch<Space>", {noremap = true, silent = true})
-map("n", "<leader>gps", "<cmd>:Git checkout<Space>", {noremap = true, silent = true})
-map("n", "<leader>gpl", "<cmd>:Dispatch! git push<CR>", {noremap = true, silent = true})
-map("n", "<leader>gpl", "<cmd>:Dispatch! git pull<CR>", {noremap = true, silent = true})
+map("n", "<leader>ga", "<cmd>:Git add %:p<CR>", { noremap = true, silent = true })
+map("n", "<leader>gs", "<cmd>:Git<CR>", { noremap = true, silent = true })
+map("n", "<leader>gc", "<cmd>:Git commit -v -q<CR>", { noremap = true, silent = true })
+map("n", "<leader>gt", "<cmd>:Git commit -v -q %:p<CR>", { noremap = true, silent = true })
+map("n", "<leader>gd", "<cmd>:Gdiff<CR>", { noremap = true, silent = true })
+map("n", "<leader>ge", "<cmd>:Gedit<CR>", { noremap = true, silent = true })
+map("n", "<leader>gr", "<cmd>:Gread<CR>", { noremap = true, silent = true })
+map("n", "<leader>gw", "<cmd>:Gwrite<CR>", { noremap = true, silent = true })
+map("n", "<leader>gl", "<cmd>:silent! Glog<CR>:bot copen<CR>", { noremap = true, silent = true })
+map("n", "<leader>gp", "<cmd>:Ggrep<Space>", { noremap = true, silent = true })
+map("n", "<leader>gb", "<cmd>:Gmove<Space>", { noremap = true, silent = true })
+map("n", "<leader>go", "<cmd>:Git branch<Space>", { noremap = true, silent = true })
+map("n", "<leader>gps", "<cmd>:Git checkout<Space>", { noremap = true, silent = true })
+map("n", "<leader>gpl", "<cmd>:Dispatch! git push<CR>", { noremap = true, silent = true })
+map("n", "<leader>gpl", "<cmd>:Dispatch! git pull<CR>", { noremap = true, silent = true })
 
 -- nnoremap <leader>ga :Git add %:p<CR><CR>
 -- nnoremap <leader>gs :Gstatus<CR>
@@ -263,28 +233,28 @@ map("n", "<leader>gpl", "<cmd>:Dispatch! git pull<CR>", {noremap = true, silent 
 --                           Miscellinious
 ------------------------------------------------------------------------
 
-map("n", "<leader>bg", '<cmd>:ToggleBlameLine<CR>', {noremap = true, silent = true})
-map("n", "<leader><CR>", ':noh<CR>', {noremap = true, silent = true})
-map("n", ";", ':', {noremap = true, silent = true})
+map("n", "<leader>bg", '<cmd>:ToggleBlameLine<CR>', { noremap = true, silent = true })
+map("n", "<leader><CR>", ':noh<CR>', { noremap = true, silent = true })
+map("n", ";", ':', { noremap = true, silent = true })
 
 
-map("n", "<leader>ss", '<cmd>:set filetype=sh>CR>', {noremap = true, silent = true})
-map("n", "<leader>sh", '<cmd>:set filetype=bash<CR>', {noremap = true, silent = true})
+map("n", "<leader>ss", '<cmd>:set filetype=sh>CR>', { noremap = true, silent = true })
+map("n", "<leader>sh", '<cmd>:set filetype=bash<CR>', { noremap = true, silent = true })
 
 -----------------------------------------------------------------------
 --                          C++ Switching h and cpp files
 ------------------------------------------------------------------------
 
-map("n", "<A-o>", ':FSHere', {noremap = true, silent = true})
+map("n", "<A-o>", ':FSHere', { noremap = true, silent = true })
 -- Extra hotkeys to open header/source in the split
-map("n", "<leader>oh", ':FSSplitLeft<CR>', {noremap = true, silent = true})
-map("n", "<leader>oj", ':FSSplitBelow<CR>', {noremap = true, silent = true})
-map("n", "<leader>ok", ':FSSplitAbove<CR>', {noremap = true, silent = true})
-map("n", "<leader>ol", ':FSSplitRight<CR>', {noremap = true, silent = true})
+map("n", "<leader>oh", ':FSSplitLeft<CR>', { noremap = true, silent = true })
+map("n", "<leader>oj", ':FSSplitBelow<CR>', { noremap = true, silent = true })
+map("n", "<leader>ok", ':FSSplitAbove<CR>', { noremap = true, silent = true })
+map("n", "<leader>ol", ':FSSplitRight<CR>', { noremap = true, silent = true })
 
-map("n", "<leader>ol", ':FSSplitRight<CR>', {noremap = true, silent = true})
+map("n", "<leader>ol", ':FSSplitRight<CR>', { noremap = true, silent = true })
 
-map("n", "<leader>h", "<cmd>lua require('memento').toggle()<CR>", {noremap = true, silent = true})
+map("n", "<leader>h", "<cmd>lua require('memento').toggle()<CR>", { noremap = true, silent = true })
 
 ------------------------------------------------------------------------
 --                                 WhichKey                           --

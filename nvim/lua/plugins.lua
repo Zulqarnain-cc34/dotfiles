@@ -54,6 +54,17 @@ return require('lazy').setup({
             blame_options = { '-w' },
         }
     },
+    {
+        'stevearc/oil.nvim',
+        ---@module 'oil'
+        ---@type oil.SetupOpts
+        opts = {},
+        -- Optional dependencies
+        dependencies = { { "nvim-mini/mini.icons", opts = {} } },
+        -- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if you prefer nvim-web-devicons
+        -- Lazy loading is not recommended because it is very tricky to make it work correctly in all situations.
+        lazy = false,
+    },
 
     "nvim-lua/popup.nvim",
     "kosayoda/nvim-lightbulb",
@@ -227,13 +238,27 @@ return require('lazy').setup({
         end
     },
 
-    -- Dashboard
     {
-        'glepnir/dashboard-nvim',
-        cmd = { "Dashboard", "DashboardNewFile", "DashboardJumpMarks", "SessionLoad", "SessionSave" },
-        config = function()
-            require("plugins.dashboard")
-        end
+        "folke/snacks.nvim",
+        priority = 1000,
+        lazy = false,
+        opts = {
+            -- your configuration comes here
+            -- or leave it empty to use the default settings
+            -- refer to the configuration section below
+            bigfile = { enabled = true },
+            dashboard = { enabled = true },
+            explorer = { enabled = true },
+            indent = { enabled = true },
+            input = { enabled = true },
+            picker = { enabled = true },
+            notifier = { enabled = true },
+            quickfile = { enabled = true },
+            scope = { enabled = true },
+            scroll = { enabled = true },
+            statuscolumn = { enabled = true },
+            words = { enabled = true },
+        },
     },
 
     -- Markdown Snippets

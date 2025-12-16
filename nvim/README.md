@@ -1,5 +1,4 @@
 # KeyBindings
-
 - [Introduction](#introduction)
 - [General](#general)
 - [Search](#search)
