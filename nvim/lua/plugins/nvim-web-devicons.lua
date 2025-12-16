@@ -1,4 +1,5 @@
-local global_theme = "colors/" .. vim.g.my_theme
+local theme_name = vim.g.my_theme or "tokyonight" -- Add a fallback theme
+local global_theme = "colors/" .. theme_name
 local colors = require(global_theme)
 
 
@@ -41,7 +42,7 @@ require "nvim-web-devicons".setup {
         },
         jpeg = {
             icon = "",
-            color = "colors.dark_purple",
+            color = colors.dark_purple, -- <--- Removed the quotes
             name = "jpeg"
         },
         mp3 = {
