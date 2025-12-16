@@ -1,9 +1,9 @@
 local g = vim.g
 
 local function map(mode, lhs, rhs, opts)
-        local options = { noremap = true, silent = true }
-        if opts then options = vim.tbl_extend('force', options, opts) end
-        vim.api.nvim_set_keymap(mode, lhs, rhs, options)
+    local options = { noremap = true, silent = true }
+    if opts then options = vim.tbl_extend('force', options, opts) end
+    vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
 -- ============== Leader Key =========================
@@ -127,7 +127,6 @@ map("n", "<leader>fl", "<cmd>:Telescope old_files<cr>", { noremap = true })
 map("n", "<leader>fc", "<cmd>:Telescope command_history<cr>", { noremap = true })
 map("n", "<leader>fa", "<cmd>:Telescope man_pages<cr>", { noremap = true })
 map("n", "<leader>fr", "<cmd>:Telescope registers<cr>", { noremap = true })
-map("n", "<leader>gg", "<cmd>:Telescope git_commits<cr>", { noremap = true })
 map("n", "<leader>Gs", "<cmd>:Telescope git_status<cr>", { noremap = true })
 
 ------------------------------------------------------------------------
@@ -165,13 +164,13 @@ map("n", "<F10>", "<cmd>:lua require 'dap'.step_over()<cr>", { noremap = true, s
 map("n", "<F11>", "<cmd>:lua require 'dap'.step_into()()<cr>", { noremap = true, silent = true })
 map("n", "<F12>", "<cmd>:lua require 'dap'.step_out()()<cr>", { noremap = true, silent = true })
 map("n", "<leader>bb", "<cmd>:lua require 'dap'.toggle_breakpoint()<cr>",
-        { noremap = true, silent = true })
+    { noremap = true, silent = true })
 map("n", "<leader>B", ":lua require'dap'.repl.open()<CR>", { noremap = true, silent = true })
 
 -- map("n", "<leader>lp", ":lua require 'dap'.run_last()<cr>", {noremap = true, silent = true})
 map("n", "<leader>dr",
-        "<cmd>:lua require 'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<cr>",
-        { noremap = true, silent = true })
+    "<cmd>:lua require 'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<cr>",
+    { noremap = true, silent = true })
 
 -- map("n", "<leader>dl",
 -- map("n", "<leader>dl",
@@ -182,9 +181,7 @@ map("n", "<leader>dr",
 --                           Nvim Tree--
 ------------------------------------------------------------------------
 
-map("n", "<C-n>", "<cmd>:NvimTreeToggle<CR>", { noremap = true, silent = true })
-map("n", "<leader>nr", "<cmd>:NvimTreeRefresh<CR>", { noremap = true, silent = true })
-
+map("n", "<C-n>", "<CMD>Oil<CR>", { noremap = true, silent = true })
 ------------------------------------------------------------------------
 --                                Git                                 --
 ------------------------------------------------------------------------
