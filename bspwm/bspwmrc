@@ -59,14 +59,10 @@ bspc rule -a Screenkey manage=off
 conky -q -c ~/.config/conky/conky1/conkyrc1 &
 picom &
 sxhkd &
-fcitx -d &
 dunst &
+redshift -O 5000 & 
+random-wallpaper.sh & # Not working
 xset r rate 300 50 &
-
 xmodmap ~/.Xmodmap &
-
-redshift -O 5000 &
-
-random-wallpaper.sh &
 
 polybar -r main --config=$HOME/.config/polybar/config.ini &

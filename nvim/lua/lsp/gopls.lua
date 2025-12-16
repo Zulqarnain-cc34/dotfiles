@@ -20,6 +20,3 @@ require'lspconfig'.gopls.setup {
 		},
 	},
 }
-
--- …
-

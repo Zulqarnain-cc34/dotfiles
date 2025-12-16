@@ -1,1 +1,3 @@
-require'lspconfig'.graphql.setup {}
+vim.lsp.config['graphql'] = {}
+
+vim.lsp.enable('graphql')

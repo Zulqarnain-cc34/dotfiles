@@ -1,12 +1,17 @@
--- local on_attach = function(client)
---     if client.server_capabilities.documentFormattingProvider then
---         vim.api.nvim_command [[augroup Format]]
---         vim.api.nvim_command [[autocmd! * <buffer>]]
---         vim.api.nvim_command [[autocmd BufWritePre * lua vim.lsp.buf.formatting_sync()]]
---         vim.api.nvim_command [[augroup END]]
---     end
--- end
+local on_attach = function(client, bufnr)
+    if client.server_capabilities.documentFormattingProvider then
+        vim.api.nvim_create_autocmd("BufWritePre", {
+            buffer = bufnr,
+            callback = function()
+                -- Fixed: use new vim.lsp.buf.format() API instead of deprecated buf.formatting()
+                vim.lsp.buf.format()
+            end,
+            group = vim.api.nvim_create_augroup("EfmFormat", { clear = true }),
+        })
+    end
+end
 
+-- Imports
 local eslint = require "efm/eslint"
 local isort = require "efm/isort"
 local flake8 = require "efm/flake"
@@ -20,31 +25,19 @@ local luacheck = require "efm/luacheck"
 local cppcheck = require "efm/cppcheck"
 -- local dartfmt = require "efm/dartfmt"
 
--- local markdownPandocFormat = require "efm/pandoc"
--- local markdownPandocFormat = {
---     formatCommand = 'pandoc -f markdown -t gfm -sp --tab-stop=2',
---     formatStdin = true
--- }
---
--- local shellcheck = {
---     LintCommand = 'shellcheck -f gcc -x',
---     lintFormats = {'%f:%l:%c: %trror: %m', '%f:%l:%c: %tarning: %m', '%f:%l:%c: %tote: %m'}
--- }
 
--- local asmfmt = {
--- formatCommand='asmfmt --stdin-filename ${INPUT} -w',
--- formatStdin = true
--- }
-
-require"lspconfig".efm.setup {
+-- 1. Configure EFM
+vim.lsp.config['efm'] = {
     on_attach = on_attach,
-    init_options = {documentFormatting = true},
-    rootdir = vim.loop.cwd,
+    init_options = { documentFormatting = true },
+    -- root_dir = vim.loop.cwd, -- note: fixed spelling from 'rootdir' to 'root_dir'
     filetypes = {
-        ---@diagnostic disable-next-line: undefined-global
-        "lua", "python", "sh", "golang", "html",  "markdown", "scss", "yaml",
+        "lua", "python", "sh", "golang", "html", "markdown", "scss", "yaml",
         "javascript.jsx", "typescript", "typescript.tsx", "typescriptreact", "vim", "json", "c",
         "cpp"
+    },
+    flags = {
+        exit_timeout = false, -- or set to a low number like 100 (ms)
     },
     settings = {
         rootMarkers = {".git/"},
@@ -64,9 +57,6 @@ require"lspconfig".efm.setup {
             ["javascript.jsx"] = {prettier, eslint},
             typescript = {prettier, eslint},
             ["typescript.tsx"] = {prettier, eslint},
-            -- pandoc = {markdownlint},
-            -- html = {formatCommand="prettier ${--tab-width:tabWidth} ${--single-quote:singleQuote} --parser html",formatStdin=true},
-            -- css = {prettier},
             scss = {prettier},
             yaml = {prettier},
             html = {prettier},
@@ -74,3 +64,6 @@ require"lspconfig".efm.setup {
         }
     }
 }
+
+-- 2. Enable EFM
+vim.lsp.enable('efm')
