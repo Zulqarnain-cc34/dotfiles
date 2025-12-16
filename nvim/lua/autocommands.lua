@@ -1,5 +1,5 @@
 function goimports(timeout_ms)
-    local context = {only = {"source.organizeImports"}}
+    local context = { only = { "source.organizeImports" } }
     -- Updated to new vim.validate signature: vim.validate({ name = { value, type, optional } })
     vim.validate({ context = { context, 'table', true } })
 
@@ -24,7 +24,6 @@ function goimports(timeout_ms)
         vim.lsp.buf.execute_command(action)
     end
 end
-
 
 vim.api.nvim_command([[
      autocmd FileType python nnoremap <F9> :!python %

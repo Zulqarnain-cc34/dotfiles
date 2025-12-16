@@ -11,6 +11,7 @@
 
 -- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+local opts = require("plugins.symbols-outline")
 -- OLD LINE: if not vim.loop.fs_stat(lazypath) then
 if vim.fn.isdirectory(lazypath) == 0 then -- Check if the directory does NOT exist
     vim.fn.system({
@@ -35,15 +36,39 @@ return require('lazy').setup({
             "b0o/schemastore.nvim",
         },
     },
-
-    -- Other Plugins
     {
-        'gaborvecsei/memento.nvim',
+        "fei6409/log-highlight.nvim",
+        event = "BufRead *.log",
+        opts = {}
+    },
+    {
+        'simrat39/symbols-outline.nvim',
+        -- Keymap to open the plugin
+        opts = opts,
+    },
+    {
+        "folke/noice.nvim",
+        event = "VeryLazy",
         dependencies = {
-            'nvim-lua/plenary.nvim'
+            "MunifTanjim/nui.nvim",
+            "rcarriga/nvim-notify",
         }
     },
-
+    "ellisonleao/gruvbox.nvim",
+    {
+        "folke/persistence.nvim",
+        event = "BufReadPre", -- this will only start session saving when an actual file was opened
+    },
+    {
+        "folke/styler.nvim",
+        config = function()
+            require("styler").setup({
+                themes = {
+                    markdown = { colorscheme = "gruvbox" },
+                },
+            })
+        end
+    },
     {
         "FabijanZulj/blame.nvim",
         lazy = false, -- Keep loaded eagerly
@@ -56,8 +81,6 @@ return require('lazy').setup({
     },
     {
         'stevearc/oil.nvim',
-        ---@module 'oil'
-        ---@type oil.SetupOpts
         opts = {},
         -- Optional dependencies
         dependencies = { { "nvim-mini/mini.icons", opts = {} } },
@@ -65,11 +88,39 @@ return require('lazy').setup({
         -- Lazy loading is not recommended because it is very tricky to make it work correctly in all situations.
         lazy = false,
     },
-
+    {
+        "catgoose/nvim-colorizer.lua",
+        event = "BufReadPre",
+        opts = { -- set to setup table
+        },
+    },
+    {
+        "petertriho/nvim-scrollbar",
+        config = function()
+            require("scrollbar").setup()
+        end
+    },
     "nvim-lua/popup.nvim",
     "kosayoda/nvim-lightbulb",
     'arkav/lualine-lsp-progress',
+    {
+        "NeogitOrg/neogit",
+        lazy = true,
+        dependencies = {
+            "nvim-lua/plenary.nvim", -- required
+            "sindrets/diffview.nvim", -- optional - Diff integration
 
+            -- Only one of these is needed.
+            "nvim-telescope/telescope.nvim", -- optional
+            "ibhagwan/fzf-lua",      -- optional
+            "nvim-mini/mini.pick",   -- optional
+            "folke/snacks.nvim",     -- optional
+        },
+        cmd = "Neogit",
+        keys = {
+            { "<leader>gg", "<cmd>Neogit<cr>", desc = "Show Neogit UI" }
+        }
+    },
     -- Icons (Explicitly listed as it has configuration in lua/plugins/nvim-web-devicons.lua)
     {
         "kyazdani42/nvim-web-devicons",
@@ -119,17 +170,17 @@ return require('lazy').setup({
     },
 
 
-    {
-        'kyazdani42/nvim-tree.lua',
-        dependencies = 'kyazdani42/nvim-web-devicons',
-        config = function()
-            require('plugins.nvimtree')
-        end,
-        cmd = {
-            'NvimTreeClipboard', 'NvimTreeClose', 'NvimTreeFindFile', 'NvimTreeOpen',
-            'NvimTreeRefresh', 'NvimTreeToggle'
-        }
-    },
+    -- {
+    --     'kyazdani42/nvim-tree.lua',
+    --     dependencies = 'kyazdani42/nvim-web-devicons',
+    --     config = function()
+    --         require('plugins.nvimtree')
+    --     end,
+    --     cmd = {
+    --         'NvimTreeClipboard', 'NvimTreeClose', 'NvimTreeFindFile', 'NvimTreeOpen',
+    --         'NvimTreeRefresh', 'NvimTreeToggle'
+    --     }
+    -- },
 
     {
         'ray-x/lsp_signature.nvim',
@@ -207,6 +258,7 @@ return require('lazy').setup({
     -- Status Bar and Bufferline
     {
         'akinsho/bufferline.nvim',
+        requires = 'nvim-tree/nvim-web-devicons',
         config = function()
             require('plugins.bufferline')
         end
