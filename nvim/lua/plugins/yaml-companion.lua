@@ -1,7 +1,2 @@
-local cfg = require("yaml-companion").setup({
-  -- Add any options here, or leave empty to use the default settings
-  -- lspconfig = {
-  --   cmd = {"yaml-language-server"}
-  -- },
-})
+local cfg = require("yaml-companion").setup()
 require("lspconfig")["yamlls"].setup(cfg)

@@ -1,74 +1,123 @@
-function goimports(timeout_ms)
-    local context = { only = { "source.organizeImports" } }
-    -- Updated to new vim.validate signature: vim.validate({ name = { value, type, optional } })
-    vim.validate({ context = { context, 'table', true } })
+-- ============================================================================
+-- File Runner Keybindings
+-- ============================================================================
+-- using F9 key in normal mode
 
-    local params = vim.lsp.util.make_range_params()
-    params.context = context
+local keymap_opts = { noremap = true, silent = true }
 
-    -- See the implementation of the textDocument/codeAction callback
-    -- (lua/vim/lsp/handler.lua) for how to do this properly.
-    local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params, timeout_ms)
-    if not result or next(result) == nil then return end
-    local actions = result[1].result
-    if not actions then return end
-    local action = actions[1]
+-- Create augroup for file runners to avoid duplicate autocommands
+local runner_group = vim.api.nvim_create_augroup('FileRunners', { clear = true })
 
-    -- textDocument/codeAction can return either Command[] or CodeAction[]. If it
-    -- is a CodeAction, it can have either an edit, a command or both. Edits
-    -- should be executed first.
-    if action.edit or type(action.command) == "table" then
-        if action.edit then vim.lsp.util.apply_workspace_edit(action.edit) end
-        if type(action.command) == "table" then vim.lsp.buf.execute_command(action.command) end
-    else
-        vim.lsp.buf.execute_command(action)
-    end
-end
+-- Python: Run current file
+vim.api.nvim_create_autocmd('FileType', {
+    group = runner_group,
+    pattern = 'python',
+    callback = function()
+        vim.keymap.set('n', '<F9>', ':!python %<CR>', keymap_opts)
+    end,
+    desc = 'Run Python file with F9'
+})
 
-vim.api.nvim_command([[
-     autocmd FileType python nnoremap <F9> :!python %
-     autocmd FileType cpp    nnoremap <F9> :!g++ %
-     autocmd FileType javascript nnoremap <F9> :!node %
-     autocmd FileType sh   nnoremap <F9> :!bash %
-     autocmd FileType c   nnoremap <F9> :!gcc %
-     autocmd FileType typescript   nnoremap <F9> :!ts-node %
-     autocmd BufWinEnter *.py call :!VenomActivate %
-]])
+-- C++: Compile and run
+vim.api.nvim_create_autocmd('FileType', {
+    group = runner_group,
+    pattern = 'cpp',
+    callback = function()
+        vim.keymap.set('n', '<F9>', ':!g++ % -o %:r && ./%:r<CR>', keymap_opts)
+    end,
+    desc = 'Compile and run C++ file with F9'
+})
 
--- vim.api.nvim_command([[
--- augroup packer_user_config
--- autocmd!
--- autocmd BufWritePost plugins.lua source <afile> | PackerCompile
--- augroup end
--- ]])
--- Copies the test selected in visual mode and yanked with y to system clipboard
--- vim.api.nvim_command([[
---     autocmd TextYankPost *
---       \ if v:event.visual && v:operator == 'y' |
---       \   let @+ = getreg(v:event.regname) |
---       \ endif
--- ]])
+-- JavaScript: Run with Node.js
+vim.api.nvim_create_autocmd('FileType', {
+    group = runner_group,
+    pattern = 'javascript',
+    callback = function()
+        vim.keymap.set('n', '<F9>', ':!node %<CR>', keymap_opts)
+    end,
+    desc = 'Run JavaScript file with Node.js'
+})
 
-vim.api.nvim_command([[
-    au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-]])
+-- Shell scripts: Execute with bash
+vim.api.nvim_create_autocmd('FileType', {
+    group = runner_group,
+    pattern = 'sh',
+    callback = function()
+        vim.keymap.set('n', '<F9>', ':!bash %<CR>', keymap_opts)
+    end,
+    desc = 'Run shell script with bash'
+})
 
-vim.api.nvim_command([[
-     au BufEnter *.h  let b:fswitchdst = "c,cpp,cc,m"
-     au BufEnter *.cc let b:fswitchdst = "h,hpp"
-]])
+-- C: Compile and run
+vim.api.nvim_create_autocmd('FileType', {
+    group = runner_group,
+    pattern = 'c',
+    callback = function()
+        vim.keymap.set('n', '<F9>', ':!gcc % -o %:r && ./%:r<CR>', keymap_opts)
+    end,
+    desc = 'Compile and run C file with F9'
+})
 
-vim.api.nvim_command([[
-     autocmd BufWritePre *.go lua goimports(1000)
-]])
+-- TypeScript: Run with ts-node
+vim.api.nvim_create_autocmd('FileType', {
+    group = runner_group,
+    pattern = 'typescript',
+    callback = function()
+        vim.keymap.set('n', '<F9>', ':!ts-node %<CR>', keymap_opts)
+    end,
+    desc = 'Run TypeScript file with ts-node'
+})
 
-vim.api.nvim_command([[     hi Comment guifg=#968d8c   ]])
--- vim.api.nvim_command([[
--- au BufWritePost ~/.config/nvim/*.{vim,lua} so $MYVIMRC
--- ]])
--- vim.api.nvim_command([[
--- augroup my-glyph-palette
--- autocmd! *
--- autocmd filetype startify,lua,typescript,python,javascript call glyph_palette#apply()
--- augroup end
--- ]])
+-- ============================================================================
+-- Cursor Position Restoration
+-- ============================================================================
+
+vim.api.nvim_create_autocmd('BufReadPost', {
+    group = vim.api.nvim_create_augroup('RestoreCursor', { clear = true }),
+    pattern = '*',
+    callback = function()
+        local line = vim.fn.line("'\"")
+        if line > 1 and
+            line <= vim.fn.line("$") and
+            vim.bo.filetype ~= 'commit' and
+            vim.fn.index({ 'xxd', 'gitrebase', 'help' }, vim.bo.filetype) == -1 then
+            vim.cmd('normal! g`"')
+        end
+    end,
+    desc = 'Restore cursor position'
+})
+
+-- ============================================================================
+-- File Switching Configuration (FSwitchDst)
+-- ============================================================================
+-- Description: Configure header/source file switching for C/C++ development
+
+local fswitch_group = vim.api.nvim_create_augroup('FileSwitching', { clear = true })
+
+-- Header files: switch to C/C++ source files
+vim.api.nvim_create_autocmd('BufEnter', {
+    group = fswitch_group,
+    pattern = '*.h',
+    callback = function()
+        vim.b.fswitchdst = 'c,cpp,cc,m'
+    end,
+    desc = 'Configure file switching for header files'
+})
+
+-- C++ source files: switch to header files
+vim.api.nvim_create_autocmd('BufEnter', {
+    group = fswitch_group,
+    pattern = '*.cc',
+    callback = function()
+        vim.b.fswitchdst = 'h,hpp'
+    end,
+    desc = 'Configure file switching for C++ source files'
+})
+
+-- ============================================================================
+-- Syntax Highlighting: Comment Color Customization
+-- ============================================================================
+-- Description: Set custom color for comments
+
+-- Set comment color (adjust to your preference)
+vim.api.nvim_set_hl(0, 'Comment', { fg = '#968d8c' })
