@@ -52,10 +52,15 @@ return require('lazy').setup({
         config = function()
             require("styler").setup({
                 themes = {
-                    markdown = { colorscheme = "gruvbox" },
+                    markdown = { colorscheme = "gruvbox" }
                 },
             })
         end
+    },
+    {
+        "ellisonleao/gruvbox.nvim",
+        priority = 1000,
+        config = true,
     },
     {
         "FabijanZulj/blame.nvim",
@@ -98,10 +103,9 @@ return require('lazy').setup({
             "sindrets/diffview.nvim", -- optional - Diff integration
 
             -- Only one of these is needed.
-            "nvim-telescope/telescope.nvim", -- optional
-            "ibhagwan/fzf-lua",              -- optional
-            "nvim-mini/mini.pick",           -- optional
-            "folke/snacks.nvim",             -- optional
+            "ibhagwan/fzf-lua",    -- optional
+            "nvim-mini/mini.pick", -- optional
+            "folke/snacks.nvim",   -- optional
         },
         cmd = "Neogit",
         keys = {
@@ -227,14 +231,6 @@ return require('lazy').setup({
     { 'mfussenegger/nvim-jdtls' },
 
     {
-        "nvim-telescope/telescope.nvim",
-        dependencies = { 'nvim-lua/popup.nvim', 'nvim-lua/plenary.nvim' },
-        config = function()
-            require("plugins.telescope")
-        end
-    },
-
-    {
         "folke/which-key.nvim",
         cmd = 'WhichKey',
         event = "BufWinEnter",
@@ -258,7 +254,13 @@ return require('lazy').setup({
             require('plugins.lualine')
         end
     },
-
+    {
+        'MeanderingProgrammer/render-markdown.nvim',
+        dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
+        config = function()
+            require('render-markdown').setup()
+        end,
+    },
     -- Commenting
     {
         'numToStr/Comment.nvim',
@@ -304,13 +306,6 @@ return require('lazy').setup({
     -- Markdown Snippets
     { 'mzlogin/vim-markdown-toc', ft = "markdown" },
 
-    -- Markdown Preview
-    {
-        "iamcco/markdown-preview.nvim",
-        cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
-        ft = { "markdown" },
-        build = function() vim.fn["mkdp#util#install"]() end,
-    },
     {
         "nvim-treesitter/nvim-treesitter",
         build = ":TSUpdate",
