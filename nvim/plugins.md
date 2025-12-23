@@ -2,15 +2,11 @@
 
 ## Core & LSP
 
-- [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)
+[-](-) [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)
 - [schemastore.nvim](https://github.com/b0o/schemastore.nvim)
 - [neodev.nvim](https://github.com/folke/neodev.nvim)
-- [lsp-status.nvim](https://github.com/nvim-lua/lsp-status.nvim)
 - [lspsaga.nvim](https://github.com/nvimdev/lspsaga.nvim)
 - [lspkind-nvim](https://github.com/onsails/lspkind-nvim)
-- [lsp_signature.nvim](https://github.com/ray-x/lsp_signature.nvim)
-- [nvim-jdtls](https://github.com/mfussenegger/nvim-jdtls)
-- [nvim-lsp-ts-utils](https://github.com/jose-elias-alvarez/nvim-lsp-ts-utils)
 
 ## UI & Visual
 
@@ -21,13 +17,10 @@
 - [bufferline.nvim](https://github.com/akinsho/bufferline.nvim)
 - [which-key.nvim](https://github.com/folke/which-key.nvim)
 - [nvim-web-devicons](https://github.com/kyazdani42/nvim-web-devicons)
-- [indent-blankline.nvim](https://github.com/lukas-reineke/indent-blankline.nvim)
 - [nvim-scrollbar](https://github.com/petertriho/nvim-scrollbar)
 - [lualine-lsp-progress](https://github.com/arkav/lualine-lsp-progress)
 - [hlslens](https://github.com/kevinhwang91/nvim-hlslens)
 - [nvim-colorizer.lua](https://github.com/catgoose/nvim-colorizer.lua)
-- [norcalli-nvim-colorizer.lua](https://github.com/norcalli/nvim-colorizer.lua)
-- [render-markdown.nvim](https://github.com/MeanderingProgrammer/render-markdown.nvim)
 
 ## Themes & Colors
 
@@ -56,8 +49,6 @@
 - [mini.icons](https://github.com/nvim-mini/mini.icons)
 - [nvim-autopairs](https://github.com/windwp/nvim-autopairs)
 - [Comment.nvim](https://github.com/numToStr/Comment.nvim)
-- [emmet-vim](https://github.com/mattn/emmet-vim)
-- [fidget.nvim](https://github.com/j-hui/fidget.nvim)
 - [symbols-outline.nvim](https://github.com/simrat39/symbols-outline.nvim)
 
 ## Git & Development

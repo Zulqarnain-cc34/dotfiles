@@ -93,7 +93,6 @@ return require('lazy').setup({
             require("scrollbar").setup()
         end
     },
-    'arkav/lualine-lsp-progress',
     "folke/neodev.nvim",
     {
         "NeogitOrg/neogit",
@@ -143,23 +142,7 @@ return require('lazy').setup({
     -- opt = true in packer usually means the plugin is lazy-loaded by default
     { "Tastyep/structlog.nvim" },
 
-    {
-        "nvim-lua/lsp-status.nvim",
-        config = function()
-            require("plugins.lsp-status")
-        end
-    },
-    { 'j-hui/fidget.nvim' },
-
     -- ================== LSP, Autocomplete and Treesitter =====================
-
-    {
-        'mattn/emmet-vim',
-        ft = {
-            "html", "css", "javascriptreact", "scss", "javascript", "javascript.jsx", "typescript",
-            "typescript.tsx", "typescriptreact"
-        }
-    },
 
 
     -- {
@@ -174,13 +157,6 @@ return require('lazy').setup({
     --     }
     -- },
 
-    {
-        'ray-x/lsp_signature.nvim',
-        enabled = false, -- `disable = true` from packer
-        config = function()
-            require('plugins.lsp-signature-hint')
-        end
-    },
 
     {
         'onsails/lspkind-nvim',
@@ -237,9 +213,6 @@ return require('lazy').setup({
         end,
     },
     { 'simrat39/symbols-outline.nvim' },
-    { 'jose-elias-alvarez/nvim-lsp-ts-utils' },
-    { 'mfussenegger/nvim-jdtls' },
-
     {
         "folke/which-key.nvim",
         cmd = 'WhichKey',
@@ -278,16 +251,6 @@ return require('lazy').setup({
             require('Comment').setup()
         end,
         event = 'BufRead'
-    },
-
-    -- Colorizer and Indentation
-    {
-        'norcalli/nvim-colorizer.lua',
-        lazy = true,
-        cmd = { 'ColorizerToggle' },
-        config = function()
-            require("plugins.colorizer")
-        end
     },
 
     {
@@ -390,15 +353,6 @@ return require('lazy').setup({
 
     -- Git
     { 'tpope/vim-fugitive' },
-
-    {
-        'lewis6991/gitsigns.nvim',
-        enabled = false, -- `disable = true` from packer
-        dependencies = { 'nvim-lua/plenary.nvim' },
-        config = function()
-            require('plugins.gitsigns')
-        end
-    },
 
     -- Documentation
     {
