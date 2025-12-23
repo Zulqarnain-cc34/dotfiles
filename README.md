@@ -111,6 +111,7 @@ modules from
 
 #### Neovim
 
+
 <p align="center">
 <img src="./screenshots/neovim.png"  title="neovim">
 <img src="./screenshots/neovim-1.png"  title="neovim">
@@ -138,6 +139,8 @@ A fully-featured IDE-like configuration with ~70% of plugins lazy-loaded for fas
 - 📓 **Notes** — [vimwiki](https://github.com/vimwiki/vimwiki)
 
 📖 **[View Keybindings →](https://github.com/Zulqarnain-cc34/dotfiles/tree/main/nvim/README.md)**
+
+**Full Neovim Plugins List:** See [plugins](./nvim/plugins.md) for docs on all plugins.
 
 #### Rofi
 
