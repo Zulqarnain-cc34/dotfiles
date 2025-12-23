@@ -9,6 +9,13 @@
   <p align="center">
     These are my linux configuration files, Hope you can find something to your liking.
   </p>
+  <p align="center">
+    <strong>⭐ If you find this useful, consider giving it a star!</strong>
+  </p>
+        
+  <p align="center">
+     Made with ❤️ by <a href="https://github.com/Zulqarnain-cc34">Zulqarnain</a>
+  </p>
 </div>
 
 ![Status](https://img.shields.io/badge/maintained-yes-brightgreen)
@@ -195,10 +202,3 @@ dotfiles/
 
 ---
 
-<p align="center">
-  <strong>⭐ If you find this useful, consider giving it a star!</strong>
-</p>
-
-<p align="center">
-  Made with ❤️ by <a href="https://github.com/Zulqarnain-cc34">Zulqarnain</a>
-</p>
