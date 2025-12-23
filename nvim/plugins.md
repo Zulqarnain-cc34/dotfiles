@@ -2,7 +2,7 @@
 
 ## Core & LSP
 
-[-](-) [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)
+- [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)
 - [schemastore.nvim](https://github.com/b0o/schemastore.nvim)
 - [neodev.nvim](https://github.com/folke/neodev.nvim)
 - [lspsaga.nvim](https://github.com/nvimdev/lspsaga.nvim)
