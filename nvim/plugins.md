@@ -18,7 +18,6 @@
 - [which-key.nvim](https://github.com/folke/which-key.nvim)
 - [nvim-web-devicons](https://github.com/kyazdani42/nvim-web-devicons)
 - [nvim-scrollbar](https://github.com/petertriho/nvim-scrollbar)
-- [lualine-lsp-progress](https://github.com/arkav/lualine-lsp-progress)
 - [hlslens](https://github.com/kevinhwang91/nvim-hlslens)
 - [nvim-colorizer.lua](https://github.com/catgoose/nvim-colorizer.lua)
 
@@ -49,21 +48,16 @@
 - [mini.icons](https://github.com/nvim-mini/mini.icons)
 - [nvim-autopairs](https://github.com/windwp/nvim-autopairs)
 - [Comment.nvim](https://github.com/numToStr/Comment.nvim)
-- [symbols-outline.nvim](https://github.com/simrat39/symbols-outline.nvim)
 
 ## Git & Development
 
-- [vim-fugitive](https://github.com/tpope/vim-fugitive)
 - [neogit](https://github.com/NeogitOrg/neogit)
 - [diffview.nvim](https://github.com/sindrets/diffview.nvim)
 - [fzf-lua](https://github.com/ibhagwan/fzf-lua)
-- [blame.nvim](https://github.com/FabijanZulj/blame.nvim)
 
 ## Writing & Documentation
 
 - [todo-comments.nvim](https://github.com/folke/todo-comments.nvim)
-- [vim-markdown-toc](https://github.com/mzlogin/vim-markdown-toc)
-- [vim-doge](https://github.com/kkoomen/vim-doge)
 - [vimwiki](https://github.com/vimwiki/vimwiki)
 
 ## Session & Persistence

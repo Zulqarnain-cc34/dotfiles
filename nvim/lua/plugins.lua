@@ -63,16 +63,6 @@ return require('lazy').setup({
         config = true,
     },
     {
-        "FabijanZulj/blame.nvim",
-        lazy = false, -- Keep loaded eagerly
-        config = function()
-            require('blame').setup {}
-        end,
-        opts = {
-            blame_options = { '-w' },
-        }
-    },
-    {
         'stevearc/oil.nvim',
         opts = {},
         -- Optional dependencies
@@ -212,7 +202,6 @@ return require('lazy').setup({
             require('plugins.nvim-cmp')
         end,
     },
-    { 'simrat39/symbols-outline.nvim' },
     {
         "folke/which-key.nvim",
         cmd = 'WhichKey',
@@ -236,13 +225,6 @@ return require('lazy').setup({
         config = function()
             require('plugins.lualine')
         end
-    },
-    {
-        'MeanderingProgrammer/render-markdown.nvim',
-        dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
-        config = function()
-            require('render-markdown').setup()
-        end,
     },
     -- Commenting
     {
@@ -282,9 +264,6 @@ return require('lazy').setup({
         -- use opts = {} for passing setup options
         -- this is equivalent to setup({}) function
     },
-    -- Markdown Snippets
-    { 'mzlogin/vim-markdown-toc', ft = "markdown" },
-
     {
         "nvim-treesitter/nvim-treesitter",
         build = ":TSUpdate",
@@ -329,7 +308,7 @@ return require('lazy').setup({
         end
     },
 
-    { "windwp/nvim-ts-autotag",   event = "InsertEnter", after = 'nvim-treesitter' },
+    { "windwp/nvim-ts-autotag", event = "InsertEnter", after = 'nvim-treesitter' },
 
     -- Lsp - Ui
     {
@@ -351,17 +330,6 @@ return require('lazy').setup({
     },
     { "vimwiki/vimwiki" },
 
-    -- Git
-    { 'tpope/vim-fugitive' },
-
-    -- Documentation
-    {
-        'kkoomen/vim-doge',
-        cmd = { "DogeGenerate" },
-        build = ":call doge#install()", -- `run` from packer
-    },
-
-    -- Miscellenious
     {
         'folke/todo-comments.nvim',
         event = "BufRead",
