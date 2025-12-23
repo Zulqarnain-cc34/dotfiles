@@ -64,8 +64,7 @@ to their appropriate locations.
 
 - Clone the Repository.
 - Run command to make symbolic links
-  `chmod +x setup.sh`
-  `bash setup.sh`
+  `chmod +x setup.sh` `bash setup.sh`
   script will come soon
 
 ### Modules
