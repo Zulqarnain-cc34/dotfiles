@@ -147,3 +147,49 @@ Configuration has features
 - `.Xmodmap` for unbinding and binding keys on a system level.
   package.
 - urlportal.sh script to open files depending upon their extensions.
+
+## 📂 Repository Structure
+
+```
+dotfiles/
+├── alacritty/       # Alacritty terminal config
+├── bspwm/           # Window manager config
+├── conky/           # System monitor widgets
+├── dunst/           # Notification daemon
+├── eww/             # ElKowars Wacky Widgets
+├── fish/            # Fish shell config
+├── firefox/         # Firefox userChrome
+├── kitty/           # Kitty terminal config
+├── lf/              # lf file manager
+├── mpd/             # Music Player Daemon
+├── mpv/             # Video player config
+├── mutt/            # Email client
+├── ncmpcpp/         # MPD client
+├── newsboat/        # RSS reader
+├── nvim/            # Neovim (IDE setup)
+├── polybar/         # Status bar
+├── qutebrowser/     # Keyboard-driven browser
+├── ranger/          # File manager
+├── rofi/            # Application launcher
+├── screenshots/     # Rice screenshots
+├── sxhkd/           # Keybinding daemon
+├── zathura/         # PDF viewer
+├── zsh/             # Zsh shell config
+└── ...
+```
+
+---
+
+## 📜 License
+
+This project is licensed under the **MIT License** — see the [LICENSE](LICENSE) file for details.
+
+---
+
+<p align="center">
+  <strong>⭐ If you find this useful, consider giving it a star!</strong>
+</p>
+
+<p align="center">
+  Made with ❤️ by <a href="https://github.com/Zulqarnain-cc34">Zulqarnain</a>
+</p>
