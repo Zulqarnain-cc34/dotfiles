@@ -133,21 +133,6 @@ return require('lazy').setup({
     { "Tastyep/structlog.nvim" },
 
     -- ================== LSP, Autocomplete and Treesitter =====================
-
-
-    -- {
-    --     'kyazdani42/nvim-tree.lua',
-    --     dependencies = 'kyazdani42/nvim-web-devicons',
-    --     config = function()
-    --         require('plugins.nvimtree')
-    --     end,
-    --     cmd = {
-    --         'NvimTreeClipboard', 'NvimTreeClose', 'NvimTreeFindFile', 'NvimTreeOpen',
-    --         'NvimTreeRefresh', 'NvimTreeToggle'
-    --     }
-    -- },
-
-
     {
         'onsails/lspkind-nvim',
         event = "BufRead",
