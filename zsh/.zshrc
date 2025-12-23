@@ -4,21 +4,6 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-# User Prompt and Prompt Colors
-autoload -U colors && colors
-PS1="%{$fg[red]%}%n%{$reset_color%}@%{$fg[blue]%}%m %{$fg[yellow]%}%~ %{$reset_color%}%% "
-
-umask 027
-
-autoload -U compinit && compinit -u
-zstyle ':completion:*' menu select
-# Case Insensitive tab completion
-zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
-
-zmodload zsh/complist
-compinit
-_comp_options+=(globdots)		# Include hidden files.
-
 # History in Cache Directory and HIstory Size
 export HISTSIZE=50000
 
@@ -107,13 +92,8 @@ bindkey -s "^h" "history 1\n"
 bindkey -s "^l" "clear\n"
 bindkey -s "^d" "dlfile\n"
 
-# Spaceship Prompt
-# autoload -U promptinit; promptinit
-# prompt spaceship
-
-# THEME
-
-# export 
+# eval "$(starship init zsh)"  # [web:113][web:114]
+# PS1="%{$fg[red]%}%n%{$reset_color%}@%{$fg[blue]%}%m %{$fg[yellow]%}%~ %{$reset_color%}%% "
 
 # PLUGINS 
 source ~/.config/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh 2>/dev/null
@@ -121,7 +101,7 @@ source ~/.config/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Sourcing Files,Aliases and Bindings
 #
-#Sourcing all files in .config/shellconfig/*
+# Sourcing all files in .config/shellconfig/*
 # source /usr/share/autojump/autojump.zsh
 # xrdb -merge "$HOME"/.Xresources &
 
@@ -133,19 +113,19 @@ source /usr/share/fzf/key-bindings.zsh
 
 source $HOME/.config/zsh/.zshenv
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/alpha/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/home/alpha/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/alpha/anaconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/home/alpha/anaconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
+conda-init() {
+  __conda_setup="$('/home/alpha/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+  if [ $? -eq 0 ]; then
+      eval "$__conda_setup"
+  else
+      if [ -f "/home/alpha/anaconda3/etc/profile.d/conda.sh" ]; then
+          . "/home/alpha/anaconda3/etc/profile.d/conda.sh"
+      else
+          export PATH="/home/alpha/anaconda3/bin:$PATH"
+      fi
+  fi
+  unset __conda_setup
+}
 
 alias luamake=/home/alpha/.config/nvim/lua-language-server/3rd/luamake/luamake
 
@@ -166,13 +146,18 @@ case ":$PATH:" in
 esac
 
 # pnpm end
-
 export NVM_DIR="$HOME/.config/nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# Lazy-load nvm when first needed
+nvm() {
+  unset -f nvm
+  [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+  [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"
+  nvm "$@"
+}
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/home/alpha/bin/binaries/google-cloud-sdk/path.zsh.inc' ]; then . '/home/alpha/bin/binaries/google-cloud-sdk/path.zsh.inc'; fi
+#jif [ -f '/home/alpha/bin/binaries/google-cloud-sdk/path.zsh.inc' ]; then . '/home/alpha/bin/binaries/google-cloud-sdk/path.zsh.inc'; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f '/home/alpha/bin/binaries/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/alpha/bin/binaries/google-cloud-sdk/completion.zsh.inc'; fi
+#if [ -f '/home/alpha/bin/binaries/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/alpha/bin/binaries/google-cloud-sdk/completion.zsh.inc'; fi

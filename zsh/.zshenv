@@ -5,7 +5,9 @@ typeset -U PATH path
 # export QT_IM_MODULE=fcitx
 # export SDL_IM_MODULE=fcitx
 # export XMODIFIERS='@im=fcitx'
-
+#
+export NPM_CONFIG_PREFIX="$HOME/.local"
+export PATH="$HOME/.local/bin:$PATH"
 # XDG
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CONFIG_HOME="$HOME/.config"
@@ -116,6 +118,10 @@ fi
 if [ -d "$HOME/bin/bash_scripts" ]; then
     PATH="$PATH:$HOME/bin/bash_scripts"
 fi
+
+export GOPATH="$HOME/go"
+export GOBIN="$GOPATH/bin"
+export PATH="$GOBIN:$PATH"
 # LESS COLORS
 export LESS_TERMCAP_mb=$'\e[1;31m'     # begin bold
 export LESS_TERMCAP_md=$'\e[1;33m'     # begin blink
