@@ -51,11 +51,10 @@
 This repository contains a curated collection of configuration files and dotfiles for a modern, efficient development setup.This setup prioritizes rapid prototyping, smooth CLI workflows, and deep integration with cutting-edge development tools in Linux.
 
 **Key Features:**
-- ⚡ **Neovim** configuration with LSP, DAP, and plugins optimized for AI/ML development
+- ⚡ **Neovim** configuration with LSP and plugins optimized for development
 - 🔌 **Modular architecture** for easy customization and maintenance
-- 🎯 **Shell configuration** (ZSH/Bash) with intelligent defaults and aliases
+- 🎯 **Shell configuration** ZSH with intelligent defaults and aliases
 - 🖼️ **Terminal multiplexer** (Tmux) setup with ergonomic keybindings
-- 🔄 **Automation workflows** using N8N, FastAPI, and custom scripts
 - 📦 **Python development** optimized with virtual environments and debugging tools
 - 🌐 **Git workflows** with enhanced aliases and utilities
 
