@@ -6,11 +6,13 @@
   </a>
 
 <h3 align="center">Dotfiles</h3>
-
   <p align="center">
     These are my linux configuration files, Hope you can find something to your liking.
   </p>
 </div>
+
+![Status](https://img.shields.io/badge/maintained-yes-brightgreen)
+![License](https://img.shields.io/badge/license-MIT-blue)
 
 ## 🖥️ System Overview
 
@@ -32,9 +34,23 @@
 
 ## Table of Contents
 
+- [Overview](#overview)
 - [Requirements](#requirements)
 - [Installation](#installation)
 - [Modules](#modules)
+
+### 📋 Overview
+
+This repository contains a curated collection of configuration files and dotfiles for a modern, efficient development setup.This setup prioritizes rapid prototyping, smooth CLI workflows, and deep integration with cutting-edge development tools in Linux.
+
+**Key Features:**
+- ⚡ **Neovim** configuration with LSP, DAP, and plugins optimized for AI/ML development
+- 🔌 **Modular architecture** for easy customization and maintenance
+- 🎯 **Shell configuration** (ZSH/Bash) with intelligent defaults and aliases
+- 🖼️ **Terminal multiplexer** (Tmux) setup with ergonomic keybindings
+- 🔄 **Automation workflows** using N8N, FastAPI, and custom scripts
+- 📦 **Python development** optimized with virtual environments and debugging tools
+- 🌐 **Git workflows** with enhanced aliases and utilities
 
 ### Requirements
 
@@ -177,12 +193,6 @@ dotfiles/
 ├── zsh/             # Zsh shell config
 └── ...
 ```
-
----
-
-## 📜 License
-
-This project is licensed under the **MIT License** — see the [LICENSE](LICENSE) file for details.
 
 ---
 

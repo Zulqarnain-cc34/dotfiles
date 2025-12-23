@@ -1,0 +1,74 @@
+theme = "Argonaut"
+
+[colors]
+draw_bold_text_with_bright_colors = true
+
+[colors.bright]
+black = "#6D7070"
+blue = "#1BA6FA"
+cyan = "#73FBF1"
+green = "#B8E466"
+magenta = "#A578EA"
+red = "#FF4352"
+white = "#FEFEF8"
+yellow = "#FFD750"
+
+[colors.cursor]
+cursor = "#FF261E"
+text = "#FF261E"
+
+[colors.normal]
+black = "#0d0d0d"
+blue = "#1BA6FA"
+cyan = "#21DEEF"
+green = "#A0E521"
+magenta = "#8763B8"
+red = "#FF301B"
+white = "#EBEBEB"
+yellow = "#FFC620"
+
+[colors.primary]
+background = "#292C3E"
+foreground = "#EBEBEB"
+
+[font]
+size = 7
+
+[font.bold]
+family = "JetBrains Mono"
+style = "Bold"
+
+[font.bold_italic]
+family = "JetBrains Mono"
+style = "Bold Italic"
+
+[font.italic]
+family = "JetBrains Mono"
+style = "Italic"
+
+[font.normal]
+family = "JetBrains Mono"
+style = "Regular"
+
+[scrolling]
+history = 10000
+
+[selection]
+save_to_clipboard = false
+
+[terminal.shell]
+program = "/usr/bin/bash"
+
+[window.class]
+general = "Alacritty"
+instance = "Alacritty"
+
+[window.padding]
+title = "Terminal"
+x = 4
+y = 4
+
+[general]
+live_config_reload = true
+
+[terminal]

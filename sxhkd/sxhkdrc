@@ -183,7 +183,7 @@ alt + l
 
 # Notify Running Torrents
 shift + alt + t
-  notifytorrents
+    notifytorrents
 
 super + {t,r,y,o,w,e}
     {kitty,kitty -e rtv,$HOME/bin/bash_scripts/ytfzf -D,kitty -e htop, firefox,kitty -e neomutt}
@@ -192,16 +192,16 @@ super + {t,r,y,o,w,e}
 #   rofi-bangs
 
 super + space
-    $HOME/.config/rofi/launchers/ribbon/launcher.sh
+   $HOME/.config/rofi/launchers/ribbon/launcher.sh
 
 super + m
-    alacritty -e ncmpcpp
+   kitty -e ncmpcpp
 
 alt + n
-  kitty -e newsboat
+   kitty -e newsboat
 
 super + p
-  ~/.config/polybar/scripts/powermenu
+   ~/.config/polybar/scripts/powermenu
 
 # F7
 #   toggletouch
