@@ -23,47 +23,47 @@ cmd("filetype plugin on")
 
 -- ============== Basic   ==========================
 
-o.termguicolors = true -- Allows coloring support and themes colors
-o.fileencoding = "utf-8" -- The encoding written to file
-o.undolevels = 1000 -- use many muchos levels of undo
-o.title = true -- change the terminal's title
-o.visualbell = true -- don't beep
-o.backup = false -- Some servers shave issues with backups
-o.cmdheight = 1 -- Bigger messages display. command line height
-o.updatetime = 200 -- Faster diagnostic messages (defaults 4000)
-o.mouse = 'a' -- Enable mouse support
+o.termguicolors = true           -- Allows coloring support and themes colors
+o.fileencoding = "utf-8"         -- The encoding written to file
+o.undolevels = 1000              -- use many muchos levels of undo
+o.title = true                   -- change the terminal's title
+o.visualbell = true              -- don't beep
+o.backup = false                 -- Some servers shave issues with backups
+o.cmdheight = 1                  -- Bigger messages display. command line height
+o.updatetime = 200               -- Faster diagnostic messages (defaults 4000)
+o.mouse = 'a'                    -- Enable mouse support
 o.wildignore = '*.swp,*.bak,*.pyc,*.class'
 o.backspace = 'indent,eol,start' -- allow back spacing over everything in insert mode
-w.wrap = true -- wrap lines
-w.linebreak = true -- Makes sure a word is not broken when wrapping
+w.wrap = true                    -- wrap lines
+w.linebreak = true               -- Makes sure a word is not broken when wrapping
 -- w.list = true
-w.number = true -- Setting up number line
-w.relativenumber = true -- Setting relative number line
+w.number = true                  -- Setting up number line
+w.relativenumber = true          -- Setting relative number line
 w.listchars = 'tab:>.,trail:.,extends:#,nbsp:.'
-o.showmatch = true -- set show matching parenthesis
-o.history = 1000 -- remember more commands and search history
-o.lazyredraw = true -- Don't redraw while executing macros (good performance config)
-o.magic = true -- For regular expressions turn magic on
+o.showmatch = true               -- set show matching parenthesis
+o.history = 1000                 -- remember more commands and search history
+o.lazyredraw = true              -- Don't redraw while executing macros (good performance config)
+o.magic = true                   -- For regular expressions turn magic on
 
-o.conceallevel = 0 -- So that I can see `` in markdown files
+o.conceallevel = 0               -- So that I can see `` in markdown files
 
-o.shiftround = true -- use multiple of shiftwidth when indenting with '<' and '>'
+o.shiftround = true              -- use multiple of shiftwidth when indenting with '<' and '>'
 -- o.whichwrap = '<,>,h,l' -- Allows moving between lines by hitting the end and start
-b.undofile = true -- Maintain undo history between sessions
+b.undofile = true                -- Maintain undo history between sessions
 o.undodir = '/home/alpha/.config/nvim/tempdir/undodir'
 o.shortmess = o.shortmess .. "c" -- Don't pass messages to |ins-completion-menu|.
-o.expandtab = true -- Converts tabs to spaces
-o.ttyfast = true -- fast scrolling
+o.expandtab = true               -- Converts tabs to spaces
+o.ttyfast = true                 -- fast scrolling
 -- o.pastetoggle = "<F2>"
 o.completeopt = 'menuone,noselect'
-o.clipboard="unnamedplus" -- copies the selected text to clipboard
+o.clipboard = "unnamedplus" -- copies the selected text to clipboard
 
 -- ============== Search =============================
 
 o.ignorecase = true -- Ignorecase when searching
-o.incsearch = true -- start searching on each keystroke
-o.smartcase = true -- ignore case when lowercase, match case when capital case is used
-o.hlsearch = true -- highlight the search results
+o.incsearch = true  -- start searching on each keystroke
+o.smartcase = true  -- ignore case when lowercase, match case when capital case is used
+o.hlsearch = true   -- highlight the search results
 -- o.spell= true -- highlight the search results
 -- o.spelllang= "en_us"-- highlight the search results
 -- o.mat = 1              -- How many tenths of a second to blink when matching brackets
@@ -76,11 +76,11 @@ o.wildmode = 'longest:full,full'
 -- ================= Indentation ================= --
 
 b.smartindent = true -- always set autoindenting on
-b.autoindent = true -- copy the previous indentation on autoindenting
-b.shiftwidth = 4 -- number of spaces to use for autoindenting
-o.smarttab = true -- insert tabs on the start of a line according to shiftwidth, not tabstop
-o.tabstop = 4 -- insert tabs on the start of a line according to shiftwidth, not tabstop
+b.autoindent = true  -- copy the previous indentation on autoindenting
+b.shiftwidth = 4     -- number of spaces to use for autoindenting
+o.smarttab = true    -- insert tabs on the start of a line according to shiftwidth, not tabstop
+o.tabstop = 4        -- insert tabs on the start of a line according to shiftwidth, not tabstop
 
-o.timeoutlen = 500 -- timeout before which key shows its keybindings prompt
+o.timeoutlen = 500   -- timeout before which key shows its keybindings prompt
 
-vim.g.my_theme="tokyonight"
+vim.g.my_theme = "tokyonight"

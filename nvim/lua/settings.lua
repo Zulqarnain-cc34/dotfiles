@@ -12,9 +12,8 @@ local g = vim.g
 --                               Theme                                --
 ------------------------------------------------------------------------
 
--- g.tokyonight_style = 'storm' -- available: night, storm
 -- g.tokyonight_enable_italic = 1
--- g.onedark_style = 'deep'
+--.onedark_style = 'deep'
 -- g.tokyonight_sidebars = {"qf", "vista_kind", "terminal", "pack"}
 -- g.mkdp_auto_start = 1
 -- Change the "hint" color to the "orange" color, and make the "error" color bright red
@@ -34,7 +33,10 @@ g.user_emmet_leader_key = '<C-Z>'
 --
 
 -- cmd("colorscheme nvim")
-cmd("colorscheme tokyonight")
+-- cmd("colorscheme nvim")
+--cmd("colorscheme onedark")
+--
+-- g.tokyonight_style = 'night' -- available: night, storm
 
 ------------------------------------------------------------------------
 --                              WikiList                              --
