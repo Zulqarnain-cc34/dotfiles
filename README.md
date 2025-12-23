@@ -12,19 +12,23 @@
   </p>
 </div>
 
-| Functionality  | Program      |
-|----------------|--------------|
-| status bar     | polybar      |
-| editor         | neovim       |
-| terminal       | kitty        |
-| email client   | neomutt      |
-| rss reader     | newsboat     |
-| file manager   | lf           |
-| launcher       | rofi         |
-| torrent        | transmission |
-| video player   | mpv          |
-| compositer     | picom        |
-| System Moniter | Conky        |
+## 🖥️ System Overview
+
+| Component         | Program                                          |
+|-------------------|--------------------------------------------------|
+| 🪟 Window Manager | [bspwm](https://github.com/baskerville/bspwm)    |
+| 📊 Status Bar     | [polybar](https://github.com/polybar/polybar)    |
+| ✏️ Editor         | [neovim](https://github.com/neovim/neovim)       |
+| 💻 Terminal       | [kitty](https://github.com/kovidgoyal/kitty)     |
+| 📧 Email Client   | [neomutt](https://github.com/neomutt/neomutt)    |
+| 📰 RSS Reader     | [newsboat](https://github.com/newsboat/newsboat) |
+| 📁 File Manager   | [lf](https://github.com/gokcehan/lf)             |
+| 🚀 Launcher       | [rofi](https://github.com/davatorium/rofi)       |
+| 🔽 Torrent        | [transmission](https://transmissionbt.com/)      |
+| 🎬 Video Player   | [mpv](https://github.com/mpv-player/mpv)         |
+| ✨ Compositor     | [picom](https://github.com/yshui/picom)          |
+| 📈 System Monitor | [conky](https://github.com/brndnmtthws/conky)    |
+| 🐚 Shell          | [zsh](https://www.zsh.org/)                      |
 
 ## Table of Contents
 
@@ -44,8 +48,8 @@ to their appropriate locations.
 
 - Clone the Repository.
 - Run command to make symbolic links
-  `chmod +x setup.sh         bash setup.sh`
-- Run `bash uninstall.sh`, will remove all the config files. uninstall
+  `chmod +x setup.sh`
+  `bash setup.sh`
   script will come soon
 
 ### Modules
@@ -93,43 +97,25 @@ modules from
 
 ##### Features
 
-- IDE like Configuration with native
-  [lsp](https://github.com/neovim/nvim-lspconfig).
-- Linting, Formatting and Code actions configured for most languages.
-- [Nvim-compe](https://github.com/hrsh7th/nvim-compe) for Code
-  Autocompletion with snippets from
-  [ulitsnips](https://github.com/SirVer/ultisnips).
-- Fast Directory traversal with
-  [nvimtree](https://github.com/kyazdani42/nvim-tree.lua).
-- Git integration with [fugitive](https://github.com/tpope/vim-fugitive)
-  and [gitgutter](https://github.com/airblade/vim-gitgutter).
-- Colorful theme from
-  [nvim-tokyonight](https://github.com/ghifarit53/tokyonight-vim).
-- Fuzzy searcher and finder
-  [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim).
-- Keybinding Prompt with
-  [whichkey](https://github.com/folke/which-key.nvim).
-- Beautiful dashboard via
-  [dashboard-nvim](https://github.com/glepnir/dashboard-nvim).
-- Source code linting and fixing with
-  [efm-language-server](https://github.com/mattn/efm-langserver).
-- Code Semantic and Structure highlighting using
-  [Treesitter](https://github.com/nvim-treesitter/nvim-treesitter).
-- [NerdCommentor](https://github.com/preservim/nerdcommenter) for Code
-  Commenting.
-- Highly Performatant UI for built-in-lsp
-  [Lspsaga](https://github.com/glepnir/lspsaga.nvim).
-- Fast Status bar with
-  [Lualine](https://github.com/hoob3rt/lualine.nvim).
-- Vim Diary to note TODOs
-  [vim-wiki](https://github.com/vimwiki/vimwiki).
-- Snazzy bufferline with
-  [nvim-bufferline](https://github.com/akinsho/nvim-bufferline.lua).
+A fully-featured IDE-like configuration with ~70% of plugins lazy-loaded for fast startup.
 
-You can find shorcuts and keybindings in
-[KeyBindings](https://github.com/Zulqarnain-cc34/dotfiles/tree/main/nvim/README.md).About
-70% of these plugins are lazy loaded to improve faster runtimes for
-neovim.
+**Features:**
+- 🧠 **LSP** — Native [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig) with linting, formatting, and code actions
+- ⚡ **Autocompletion** — [nvim-compe](https://github.com/hrsh7th/nvim-compe) + [ultisnips](https://github.com/SirVer/ultisnips)
+- 🔍 **Fuzzy Finder** — [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)
+- 🌳 **Syntax Highlighting** — [treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
+- 📂 **File Explorer** — [nvim-tree](https://github.com/kyazdani42/nvim-tree.lua)
+- 🎨 **Theme** — [tokyonight](https://github.com/ghifarit53/tokyonight-vim)
+- 📊 **Statusline** — [lualine](https://github.com/hoob3rt/lualine.nvim)
+- 📑 **Bufferline** — [nvim-bufferline](https://github.com/akinsho/nvim-bufferline.lua)
+- ⌨️ **Keybinding Help** — [which-key](https://github.com/folke/which-key.nvim)
+- 🏠 **Dashboard** — [dashboard-nvim](https://github.com/glepnir/dashboard-nvim)
+- 🔧 **Git Integration** — [fugitive](https://github.com/tpope/vim-fugitive) + [gitgutter](https://github.com/airblade/vim-gitgutter)
+- 💡 **LSP UI** — [lspsaga](https://github.com/glepnir/lspsaga.nvim)
+- 💬 **Comments** — [nerdcommenter](https://github.com/preservim/nerdcommenter)
+- 📓 **Notes** — [vimwiki](https://github.com/vimwiki/vimwiki)
+
+📖 **[View Keybindings →](https://github.com/Zulqarnain-cc34/dotfiles/tree/main/nvim/README.md)**
 
 #### Rofi
 
@@ -137,10 +123,9 @@ A window switcher, Application launcher and search engine launcher.
 <br> Lots of
 features to intergrate rofi more smoothly with 
 
-
-- [Youtube](https://github.com/pystardust/ytfzf),
-- [Surfraw](https://github.com/gotbletu/dotfiles_v2/tree/master/normal_user/rofi/.config/rofi/launchers)
-- [Twitch](https://github.com/indeedwatson/rofi-twitch),
+- 🎬 [YouTube](https://github.com/pystardust/ytfzf) — Search and play videos
+- 🌐 [Surfraw](https://github.com/gotbletu/dotfiles_v2/tree/master/normal_user/rofi/.config/rofi/launchers) — Search engines
+- 📺 [Twitch](https://github.com/indeedwatson/rofi-twitch) — Browse live streams
 
 A script to manage all of above in one menu. Themes have been used
 from [rofi-themes](https://github.com/davatorium/rofi-themes.git) and
@@ -162,4 +147,3 @@ Configuration has features
 - `.Xmodmap` for unbinding and binding keys on a system level.
   package.
 - urlportal.sh script to open files depending upon their extensions.
-
