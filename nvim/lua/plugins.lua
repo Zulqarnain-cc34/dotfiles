@@ -312,7 +312,13 @@ return require('lazy').setup({
             words = { enabled = true },
         },
     },
-
+    {
+        'windwp/nvim-autopairs',
+        event = "InsertEnter",
+        config = true
+        -- use opts = {} for passing setup options
+        -- this is equivalent to setup({}) function
+    },
     -- Markdown Snippets
     { 'mzlogin/vim-markdown-toc', ft = "markdown" },
 
