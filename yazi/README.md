@@ -1,1 +1,1 @@
-[yazi](./yazi.jpg)
+![yazi](./yazi.jpg)
