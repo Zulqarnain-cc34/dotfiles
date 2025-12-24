@@ -19,7 +19,6 @@
 [ ! -d "$HOME"/.config/ytfzf ] && ln -s "$PWD"/ytfzf "$HOME"/.config/ytfzf
 [ ! -d "$HOME"/.w3m ] && ln -s "$PWD"/.w3m "$HOME"/.w3m
 [ ! -d "$HOME"/.config/ranger ] && ln -s "$PWD"/ranger "$HOME"/.config/ranger
-[ ! -d "$HOME"/.config/rofi-twitch ] && ln -s "$PWD"/rofi-twitch "$HOME"/.config/rofi-twitch
 [ ! -d "$HOME"/.config/mutt ] && ln -s "$PWD"/mutt "$HOME"/.config/mutt
 [ ! -d "$HOME"/.config/Kvantum ] && ln -s "$PWD"/Kvantum "$HOME"/.config/Kvantum
 [ ! -d "$HOME"/.config/lf ] && ln -s "$PWD"/lf "$HOME"/.config/lf
@@ -32,7 +31,6 @@
 [ ! -d "$HOME"/.config/conky ] && ln -s "$PWD"/conky "$HOME"/.config/conky
 [ ! -d "$HOME"/.config/bspwm ] && ln -s "$PWD"/bspwm "$HOME"/.config/bspwm
 [ ! -d "$HOME"/.config/sxhkd ] && ln -s "$PWD"/sxhkd "$HOME"/.config/sxhkd
-[ ! -d "$HOME"/.config/eww ] && ln -s "$PWD"/eww "$HOME"/.config/eww
 [ ! -d "$HOME"/.config/qutebrowser ] && ln -s "$PWD"/qutebrowser "$HOME"/.config/qutebrowser
 [ ! -d "$HOME"/.config/zathura ] && ln -s "$PWD"/zathura "$HOME"/.config/zathura
 [ ! -d "$HOME"/.config/mpd ] && ln -s "$PWD"/mpd "$HOME"/.config/mpd
@@ -41,6 +39,7 @@
 [ ! -d "$HOME"/.config/fish ] && ln -s "$PWD"/fish "$HOME"/.config/fish
 [ ! -d "$HOME"/.config/imv ] && ln -s "$PWD"/imv "$HOME"/.config/imv
 [ ! -d "$HOME"/.config/kitty ] && ln -s "$PWD"/kitty "$HOME"/.config/kitty
+[ ! -d "$HOME"/.config/yazi ] && ln -s "$PWD"/yazi "$HOME"/.config/yazi
 
 ##################################
 ## _____  ___  _      _____  ____

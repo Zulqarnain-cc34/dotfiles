@@ -426,9 +426,24 @@ cmd paste &{{
     lf -remote "send clear"
 }}
 
+cmd z %{{
+    result="$(zoxide query --exclude "$PWD" "$@" | sed 's/\\/\\\\/g;s/"/\\"/g')"
+    lf -remote "send $id cd \"$result\""
+}}
+
+cmd zi ${{
+    result="$(zoxide query -i | sed 's/\\/\\\\/g;s/"/\\"/g')"
+    lf -remote "send $id cd \"$result\""
+}}
+
+cmd on-cd &{{
+    zoxide add "$PWD"
+}}
 map Sf select-files
 map Sd select-dirs
-
+map Z push :z-jump<space>-I<space>
+map zb push :z-jump<space>-b<space>
+map zz push :z-jump<space>
 
 map d
 map dt trash
