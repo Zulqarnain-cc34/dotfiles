@@ -75,7 +75,7 @@ return require('lazy').setup({
             require("scrollbar").setup()
         end
     },
-    "folke/neodev.nvim",
+    { "folke/neodev.nvim" },
     {
         "NeogitOrg/neogit",
         lazy = true,
@@ -144,7 +144,16 @@ return require('lazy').setup({
             require('plugins.whichkey')
         end
     },
-
+    {
+        "amitds1997/remote-nvim.nvim",
+        version = "*",                       -- Pin to GitHub releases
+        dependencies = {
+            "nvim-lua/plenary.nvim",         -- For standard functions
+            "MunifTanjim/nui.nvim",          -- To build the plugin UI
+            "nvim-telescope/telescope.nvim", -- For picking b/w different remote methods
+        },
+        config = true,
+    },
     -- Status Bar and Bufferline
     {
         'akinsho/bufferline.nvim',
@@ -161,14 +170,6 @@ return require('lazy').setup({
         end
     },
     -- Commenting
-    {
-        'numToStr/Comment.nvim',
-        config = function()
-            require('Comment').setup()
-        end,
-        event = 'BufRead'
-    },
-
     {
         "folke/snacks.nvim",
         priority = 1000,
@@ -225,18 +226,8 @@ return require('lazy').setup({
         dependencies = { 'windwp/nvim-ts-autotag' },
     },
 
-    {
-        "lukas-reineke/indent-blankline.nvim",
-        event = "BufReadPre",
-        enabled = false, -- `disable = true` from packer
-        config = function()
-            require("plugins.blankline")
-        end
-    },
-
     { "windwp/nvim-ts-autotag", event = "InsertEnter", after = 'nvim-treesitter' },
 
-    -- Lsp - Ui
     {
         'nvimdev/lspsaga.nvim',
         dependencies = { 'neovim/nvim-lspconfig' },
@@ -247,11 +238,10 @@ return require('lazy').setup({
     {
         'saghen/blink.cmp',
         dependencies = { 'rafamadriz/friendly-snippets' },
+        version = '1.*',
         opts = {
             keymap = {
                 preset = 'default',
-                ['<Tab>'] = { 'snippet_forward', 'fallback' },
-                ['<S-Tab>'] = { 'snippet_backward', 'fallback' }
             },
             appearance = {
                 nerd_font_variant = 'mono'

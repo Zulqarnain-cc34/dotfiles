@@ -35,12 +35,7 @@
 
 ## Completion & Snippets
 
-- [nvim-cmp](https://github.com/hrsh7th/nvim-cmp)
-- [LuaSnip](https://github.com/L3MON4D3/LuaSnip)
-- [friendly-snippets](https://github.com/rafamadriz/friendly-snippets)
-- [cmp_luasnip](https://github.com/saadparwaiz1/cmp_luasnip)
-- [cmp-nvim-lsp](https://github.com/hrsh7th/cmp-nvim-lsp)
-- [cmp-path](https://github.com/hrsh7th/cmp-path)
+- [blink.cmp](https://github.com/saghen/blink.cmp)
 
 ## Utilities & Editing
 
@@ -64,6 +59,7 @@
 
 - [persistence.nvim](https://github.com/folke/persistence.nvim)
 - [styler.nvim](https://github.com/folke/styler.nvim)
+- [remote-nvim.nvim](https://github.com/amitds1997/remote-nvim.nvim)
 
 ## Enhanced Features
 
