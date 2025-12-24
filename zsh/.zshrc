@@ -156,6 +156,15 @@ nvm() {
   nvm "$@"
 }
 
+function yazi() {
+    local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+    command yazi "$@" --cwd-file="$tmp"
+    if cwd=$(cat "$tmp" 2>/dev/null); then
+        cd -- "$cwd"
+    fi
+    rm -f "$tmp"
+}
+
 # The next line updates PATH for the Google Cloud SDK.
 #jif [ -f '/home/alpha/bin/binaries/google-cloud-sdk/path.zsh.inc' ]; then . '/home/alpha/bin/binaries/google-cloud-sdk/path.zsh.inc'; fi
 

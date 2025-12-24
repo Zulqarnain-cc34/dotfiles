@@ -29,7 +29,6 @@ keymap = [
   { on = "<C-c>", run = "close", desc = "Close current tab or quit" },
   { on = "<C-z>", run = "suspend", desc = "Suspend the process" },
   { on = ".", run = "hidden toggle", desc = "Toggle hidden files visibility" },
-  { on = "w", run = "quit --cwd-file", desc = "Quit Yazi and cd to current directory" },
 
   # ============ SELECTION OPERATIONS ============
   { on = "<Space>", run = ["toggle", "arrow 1"], desc = "Toggle selection and move down" },
@@ -68,15 +67,15 @@ keymap = [
   { on = ["r", "c"], run = "rename --cursor=before_ext", desc = "Rename (cursor before extension)" },
   { on = ["r", "e"], run = "rename --empty=ext --cursor=end", desc = "Rename extension only" },
 
-  # ============ BUILT-IN SORT ============
+  # ============ BUILT-IN SORT ============ 
   { on = ["s", "a"], run = "sort atime --reverse", desc = "Sort by access time (newest first)" },
   { on = ["s", "c"], run = "sort ctime --reverse", desc = "Sort by change time (newest first)" },
   { on = ["s", "e"], run = "sort ext --reverse", desc = "Sort by extension (reverse)" },
   { on = ["s", "n"], run = "sort natural --reverse", desc = "Sort by name naturally (reverse)" },
   { on = ["s", "s"], run = "sort size --reverse", desc = "Sort by size (largest first)" },
   { on = ["s", "t"], run = "sort mtime --reverse", desc = "Sort by modification time (newest first)" },
+  { on = ["w"] , run = "sh -c 'echo \"$YAZI_CWD\" > /tmp/yazi_cwd && exit'", desc = "Set directory and exit"},
 
-  # ============ BUILT-IN INFO ============
   { on = ["z", "A"], run = "show-info atime", desc = "Show access time info" },
   { on = ["z", "c"], run = "show-info ctime", desc = "Show change time info" },
 ]
@@ -85,8 +84,8 @@ prepend_keymap = [
   # ============ SHELL INTERACTIVE COMMANDS ============
   { on = ";", run = "shell --interactive", desc = "Run a shell command" },
   { on = ":", run = "shell --block --interactive", desc = "Run shell command (block until finishes)" },
+  { on = "w", run = "quit", desc = "Quit and CD into current directory" },
 
-  # ============ MOUNT OPERATIONS ============
   { on = ["m", "k"], run = "shell -- qdbus org.kde.kdeconnect /modules/kdeconnect/devices/439fc7a8f3a87d51/sftp mountAndWait", desc = "Mount KDE Connect" },
   { on = ["a", "n"], run = "shell -- sshfs anime@192.168.100.66:/home/anime/Videos/ /home/alpha/mnt/anime/", desc = "Mount anime share via SSHFS" },
 
