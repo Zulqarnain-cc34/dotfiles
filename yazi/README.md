@@ -10,6 +10,7 @@ A clean, organized keymap for [Yazi](https://github.com/sxyazi/yazi) file manage
 
 ### Selection
 - `<Space>` - Toggle select and move down
+- `q or w` - cd into current dir in yazi and close yazi
 - `u` - Clear selections and unyank
 
 ### Copy/Paste

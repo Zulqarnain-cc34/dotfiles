@@ -23,21 +23,21 @@
 
 ## 🖥️ System Overview
 
-| Component         | Program                                          |
-|-------------------|--------------------------------------------------|
-| 🪟 Window Manager | [bspwm](https://github.com/baskerville/bspwm)    |
-| 📊 Status Bar     | [polybar](https://github.com/polybar/polybar)    |
-| ✏️ Editor         | [neovim](https://github.com/neovim/neovim)       |
-| 💻 Terminal       | [kitty](https://github.com/kovidgoyal/kitty)     |
-| 📧 Email Client   | [neomutt](https://github.com/neomutt/neomutt)    |
-| 📰 RSS Reader     | [newsboat](https://github.com/newsboat/newsboat) |
-| 📁 File Manager   | [lf](https://github.com/gokcehan/lf)             |
-| 🚀 Launcher       | [rofi](https://github.com/davatorium/rofi)       |
-| 🔽 Torrent        | [transmission](https://transmissionbt.com/)      |
-| 🎬 Video Player   | [mpv](https://github.com/mpv-player/mpv)         |
-| ✨ Compositor     | [picom](https://github.com/yshui/picom)          |
-| 📈 System Monitor | [conky](https://github.com/brndnmtthws/conky)    |
-| 🐚 Shell          | [zsh](https://www.zsh.org/)                      |
+| Component         | Program                                                                       |
+|-------------------|-------------------------------------------------------------------------------|
+| 🪟 Window Manager | [bspwm](https://github.com/baskerville/bspwm)                                 |
+| 📊 Status Bar     | [polybar](https://github.com/polybar/polybar)                                 |
+| ✏️ Editor         | [neovim](https://github.com/neovim/neovim)                                    |
+| 💻 Terminal       | [kitty](https://github.com/kovidgoyal/kitty)                                  |
+| 📧 Email Client   | [neomutt](https://github.com/neomutt/neomutt)                                 |
+| 📰 RSS Reader     | [newsboat](https://github.com/newsboat/newsboat)                              |
+| 📁 File Manager   | [lf](https://github.com/gokcehan/lf) + [yazi](https://github.com/sxyazi/yazi) |
+| 🚀 Launcher       | [rofi](https://github.com/davatorium/rofi)                                    |
+| 🔽 Torrent        | [transmission](https://transmissionbt.com/)                                   |
+| 🎬 Video Player   | [mpv](https://github.com/mpv-player/mpv)                                      |
+| ✨ Compositor     | [picom](https://github.com/yshui/picom)                                       |
+| 📈 System Monitor | [conky](https://github.com/brndnmtthws/conky)                                 |
+| 🐚 Shell          | [zsh](https://www.zsh.org/)                                                   |
 
 ## Table of Contents
 
