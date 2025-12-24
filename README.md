@@ -187,6 +187,7 @@ dotfiles/
 ├── lf/              # lf file manager
 ├── mpd/             # Music Player Daemon
 ├── mpv/             # Video player config
+├── yazi/            # yazi file manager
 ├── mutt/            # Email client
 ├── ncmpcpp/         # MPD client
 ├── newsboat/        # RSS reader
