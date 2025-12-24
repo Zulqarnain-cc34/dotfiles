@@ -1,0 +1,22 @@
+# Visuals
+ya pkg add yazi-rs/plugins:full-border
+ya pkg add Rolv-Apneseth/starship
+
+# File operations
+ya pkg add yazi-rs/plugins:chmod
+ya pkg add yazi-rs/plugins:git
+
+# Navigation
+ya pkg add yazi-rs/plugins:jump-to-char
+ya pkg add yazi-rs/plugins:vcs-files
+
+# Pane control
+ya pkg add yazi-rs/plugins:toggle-pane
+
+# Color scheme
+ya pkg add kalidyasin/yazi-flavors:tokyonight-storm
+
+git clone https://github.com/BennyOe/onedark.yazi.git ~/.config/yazi/flavors/onedark.yazi
+git clone https://gitee.com/DreamMaoMao/mime-preview.yazi.git ~/.config/yazi/plugins/mime-preview.yazi
+
+ya pkg add AnirudhG07/nbpreview
