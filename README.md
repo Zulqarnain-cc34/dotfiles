@@ -149,7 +149,6 @@ features to intergrate rofi more smoothly with
 
 - 🎬 [YouTube](https://github.com/pystardust/ytfzf) — Search and play videos
 - 🌐 [Surfraw](https://github.com/gotbletu/dotfiles_v2/tree/master/normal_user/rofi/.config/rofi/launchers) — Search engines
-- 📺 [Twitch](https://github.com/indeedwatson/rofi-twitch) — Browse live streams
 
 A script to manage all of above in one menu. Themes have been used
 from [rofi-themes](https://github.com/davatorium/rofi-themes.git) and
