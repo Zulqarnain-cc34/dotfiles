@@ -38,6 +38,11 @@ use = "AnirudhG07/nbpreview"
 rev = "b504594"
 hash = "b83919985400521dee78e1c352b5d9db"
 
+[[plugin.deps]]
+use = "yazi-rs/plugins:smart-enter"
+rev = "05234ed"
+hash = "56fdabc96fc1f4d53c96eb884b02a5be"
+
 [[flavor.deps]]
 use = "yazi-rs/flavors:catppuccin-mocha"
 rev = "9276ffa"
@@ -47,4 +52,3 @@ hash = "8d7799e4598ff079fa5ee5c770d9bc08"
 use = "kalidyasin/yazi-flavors:tokyonight-storm"
 rev = "fa19b40"
 hash = "b9aa812b133d03b4445beac37c28caa8"
-

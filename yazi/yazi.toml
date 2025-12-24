@@ -1,14 +1,14 @@
 [mgr]
-ratio = [ 1, 4, 3 ]
+ratio = [ 1, 2, 2 ] # how the three panels are spaced out
 sort_by = "alphabetical"
 sort_sensitive = false
 sort_reverse = false
 sort_dir_first = true
 sort_translit = false
 linemode = "none"
-show_hidden = false
-show_symlink = true
-scrolloff = 5
+show_hidden = false  # showing hidden
+show_symlink = false # showing symblink
+scrolloff = 5        # while scrolling the end has a gap of 5 rows
 mouse_events = [ "click", "scroll" ]
 title_format = "Yazi: {cwd}"
 

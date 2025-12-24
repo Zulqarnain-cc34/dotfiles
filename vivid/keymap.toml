@@ -1,0 +1,142 @@
+# Yazi Keymap Configuration - Complete lf Migration
+# Full working configuration with all your custom keybindings
+# Place this file at ~/.config/yazi/keymap.toml
+
+[mgr]
+
+prepend_keymap = [
+  # ============ YANK / COPY / CUT / PASTE ============
+  { on = ["y", "y"], run = "yank", desc = "Yank (copy) selected files" },
+  { on = ["d", "d"], run = "yank --cut", desc = "Yank (cut) selected files" },
+  { on = "p", run = ["paste", "unyank"], desc = "Paste and deselect" },
+  { on = "P", run = ["paste --force", "unyank"], desc = "Paste (overwrite) and deselect" },
+  { on = ["u", "v"], run = ["unyank", "select --state=none"], desc = "Clear all selections" },
+
+  # -------- Yank path/name variants --------
+  { on = ["y", "p"], run = "copy path", desc = "Copy file path" },
+  { on = ["y", "d"], run = "copy dirname", desc = "Copy directory path" },
+  { on = ["y", "n"], run = "copy filename", desc = "Copy filename" },
+  { on = ["y", "."], run = "copy name_without_ext", desc = "Copy filename without extension" },
+
+  # ============ DELETE / TRASH / REMOVE ============
+  { on = ["d", "t"], run = "remove", desc = "Trash selected files" },
+  { on = ["d", "D"], run = "remove --permanently", desc = "Delete permanently" },
+  { on = ["d", "u"], run = "shell -- du --max-depth=1 -h --apparent-size | sort -rh", desc = "Show folder sizes" },
+  { on = "<Delete>", run = "remove", desc = "Trash selected files" },
+
+  # ============ MAKE / CREATE OPERATIONS ============
+  { on = ["m", "d"], run = "create --dir", desc = "Create directory" },
+  { on = ["m", "f"], run = "create", desc = "Create file" },
+  { on = ["m", "k"], run = "shell -- qdbus org.kde.kdeconnect /modules/kdeconnect/devices/439fc7a8f3a87d51/sftp mountAndWait", desc = "Mount KDE Connect" },
+
+  # ============ EDIT / EXTERNAL OPERATIONS ============
+  { on = ["e", "e"], run = "open", desc = "Open/edit with default editor" },
+  { on = ["e", "f"], run = "shell -- find . -maxdepth 3 | fzf --reverse --header 'Jump to location'", desc = "FZF jump to file/directory" },
+  { on = ["e", "l"], run = "shell -- locate home media 2>/dev/null | fzf -e -i --reverse --header 'Jump to location'", desc = "FZF locate on filesystem" },
+  { on = ["e", "c"], run = "shell -- vimdiff \"$1\"", desc = "Vimdiff file" },
+  { on = ["e", "i"], run = "shell -- exiftool \"$1\" | less", desc = "Show EXIF metadata" },
+  { on = ["e", "g"], run = "shell -- convert \"$1\" \"${1%.*}.pdf\"", desc = "Convert image to PDF" },
+  { on = ["e", "p"], run = "shell -- sxiv -t ./* &> /dev/null &", desc = "Preview images in directory" },
+  { on = ["e", "P"], run = "shell -- sxiv \"$1\" &> /dev/null &", desc = "Open image with sxiv" },
+  { on = ["e", "s"], run = "shell -- curl -F 'file=@$1' https://0x0.st | xclip -selection clip", desc = "Share file via 0x0.st" },
+  { on = ["e", "d"], run = "shell -- $EDITOR ~/.config/yazi/keymap.toml", desc = "Edit Yazi keymap" },
+
+  # ============ ARCHIVE OPERATIONS ============
+  { on = ["a", "z"], run = "shell -- zip -r \"$1\" \"$1\"", desc = "Create ZIP archive" },
+  { on = ["a", "t"], run = "shell -- tar cvf \"$1.tar\" \"$1\"", desc = "Create TAR archive" },
+  { on = ["a", "g"], run = "shell -- tar cvzf \"$1.tar.gz\" \"$1\"", desc = "Create TAR.GZ archive" },
+  { on = ["a", "b"], run = "shell -- tar cjvf \"$1.tar.bz2\" \"$1\"", desc = "Create TAR.BZ2 archive" },
+  { on = ["a", "u"], run = "shell -- case \"${1##*.}\" in tar.bz2) tar xjf \"$1\";;tar.gz|tgz) tar xzf \"$1\";;bz2) bunzip2 \"$1\";;rar) unrar x \"$1\";;gz) gunzip \"$1\";;tar) tar xf \"$1\";;zip) unzip \"$1\";;Z) uncompress \"$1\";;7z) 7z x \"$1\";;deb) ar x \"$1\";;tar.xz) tar xf \"$1\";;tar.zst) unzstd \"$1\";;esac", desc = "Extract archive" },
+  { on = ["a", "n", "m"], run = "shell -- sshfs anime@192.168.100.66:/home/anime/Videos/ /home/alpha/mnt/anime/", desc = "Mount anime share via SSHFS" },
+
+  # ============ TRASH MANAGEMENT ============
+  { on = ["t", "r"], run = "shell -- trash-restore", desc = "Restore file from trash" },
+  { on = ["t", "c"], run = "shell -- trash-empty", desc = "Clear entire trash" },
+  { on = ["t", "g"], run = "cd ~/.local/share/Trash/", desc = "Go to trash directory" },
+
+  # ============ WALLPAPER OPERATIONS ============
+  { on = ["b", "g"], run = "shell -- cp \"$1\" ~/.config/wall.png && xwallpaper --stretch \"$1\"", desc = "Set as wallpaper" },
+  { on = ["b", "s"], run = "shell -- ~/bin/bash_scripts/personal/wallpaper.sh \"$1\"", desc = "Select wallpaper interactively" },
+  { on = ["b", "t"], run = "shell -- cp \"$1\" ~/.mozilla/firefox/oduj1f5k.default-release/chrome/newtab_background.jpg && cp \"$1\" ~/.mozilla/firefox/static-oduj1f5k.default-release/chrome/newtab_background.jpg", desc = "Set Firefox new tab background" },
+
+  # ============ SORT OPERATIONS ============
+  { on = ["s", "a"], run = "sort atime --reverse", desc = "Sort by access time (newest first)" },
+  { on = ["s", "c"], run = "sort ctime --reverse", desc = "Sort by change time (newest first)" },
+  { on = ["s", "e"], run = "sort ext --reverse", desc = "Sort by extension (reverse)" },
+  { on = ["s", "n"], run = "sort natural --reverse", desc = "Sort by name naturally (reverse)" },
+  { on = ["s", "s"], run = "sort size --reverse", desc = "Sort by size (largest first)" },
+  { on = ["s", "t"], run = "sort mtime --reverse", desc = "Sort by modification time (newest first)" },
+
+  # ============ INFO / DISPLAY ============
+  { on = ["z", "A"], run = "show-info atime", desc = "Show access time info" },
+  { on = ["z", "c"], run = "show-info ctime", desc = "Show change time info" },
+
+  # ============ VIDEO OPERATIONS ============
+  { on = ["V", "n", "a"], run = "shell -- ffmpeg -i \"$1\" -an -c copy \"no_audio_$(basename $1)\"", desc = "Remove audio from video" },
+  { on = ["V", "a", "a"], run = "shell -- ffmpeg -i \"$1\" -vn -c copy \"audio_$(basename $1)\"", desc = "Extract audio from video" },
+
+  # ============ RENAME OPERATIONS ============
+  { on = ["r", "a"], run = "rename --cursor=start", desc = "Rename (cursor at start)" },
+  { on = ["r", "c"], run = "rename --cursor=before_ext", desc = "Rename (cursor before extension)" },
+  { on = ["r", "e"], run = "rename --empty=ext --cursor=end", desc = "Rename extension only" },
+  { on = ["r", "b"], run = "shell -- vidir", desc = "Bulk rename with vidir" },
+  { on = ["c", "r"], run = "shell -- new_name=\"$(echo \"$1\" | tr ' ' -)\" && mv \"$1\" \"$new_name\"", desc = "Strip spaces from filename" },
+
+  # ============ SELECTION OPERATIONS ============
+  { on = ["S", "f"], run = "shell -- find -L \"$(pwd)\" -mindepth 1 -maxdepth 1 -type f", desc = "Select all files" },
+  { on = ["S", "d"], run = "shell -- find -L \"$(pwd)\" -mindepth 1 -maxdepth 1 -type d", desc = "Select all directories" },
+
+  # ============ EXIT / QUIT ============
+  { on = "w", run = "quit", desc = "Quit Yazi and cd to current directory" },
+  { on = "q", run = "quit", desc = "Quit Yazi" },
+]
+
+# ============ INPUT LAYER ============
+[input]
+
+keymap = [
+  { on = "<C-c>", run = "close", desc = "Cancel input" },
+  { on = "<Enter>", run = "close --submit", desc = "Submit input" },
+  { on = "<Esc>", run = "escape", desc = "Escape input mode" },
+  { on = "<C-h>", run = "backspace", desc = "Backspace" },
+  { on = "<C-a>", run = "move -999", desc = "Move cursor to start" },
+  { on = "<C-e>", run = "move 999", desc = "Move cursor to end" },
+  { on = "<C-u>", run = "kill bol", desc = "Kill from cursor to beginning" },
+  { on = "<C-w>", run = "kill backward", desc = "Kill word backwards" },
+]
+
+# ============ COMPLETION LAYER ============
+[completion]
+
+keymap = [
+  { on = "<C-c>", run = "close", desc = "Cancel completion" },
+  { on = "<Tab>", run = "close --submit", desc = "Submit completion" },
+  { on = "<Enter>", run = "close --submit", desc = "Submit completion" },
+  { on = "<C-n>", run = "move 1", desc = "Next completion" },
+  { on = "<C-p>", run = "move -1", desc = "Previous completion" },
+]
+
+# ============ TASKS LAYER ============
+[tasks]
+
+keymap = [
+  { on = "<C-c>", run = "close", desc = "Cancel task" },
+  { on = "w", run = "close", desc = "Close task" },
+  { on = "<Esc>", run = "close", desc = "Escape task view" },
+  { on = "k", run = "move -1", desc = "Move up in tasks" },
+  { on = "j", run = "move 1", desc = "Move down in tasks" },
+  { on = "<Enter>", run = "inspect", desc = "Inspect task" },
+]
+
+# ============ HELP LAYER ============
+[help]
+
+keymap = [
+  { on = "<C-c>", run = "close", desc = "Close help" },
+  { on = "q", run = "close", desc = "Close help" },
+  { on = "<Esc>", run = "close", desc = "Close help" },
+  { on = "k", run = "move -1", desc = "Move up in help" },
+  { on = "j", run = "move 1", desc = "Move down in help" },
+  { on = "<PageUp>", run = "move -10", desc = "Page up in help" },
+  { on = "<PageDown>", run = "move 10", desc = "Page down in help" },
+]

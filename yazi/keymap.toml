@@ -1,108 +1,111 @@
+# Yazi Keymap Configuration - Complete & Organized
+# Full working configuration with all custom keybindings
+# Place this file at ~/.config/yazi/keymap.toml
 
 [mgr]
 
-keymap = []
+keymap = [
+  # ============ NAVIGATION ============
+  { on = "j", run = "arrow 1 --no-wrap", desc = "Move down (no wrap)" },
+  { on = "k", run = "arrow -1 --no-wrap", desc = "Move up (no wrap)" },
+  { on = "l", run = "plugin smart-enter", desc = "Open file or enter directory" },
+  { on = "h", run = "leave", desc = "Go back to parent directory" },
+  { on = "<Up>", run = "arrow -1", desc = "Move cursor up" },
+  { on = "<Down>", run = "arrow 1", desc = "Move cursor down" },
 
-prepend_keymap = [
-  # NAVIGATION
-  { on = "k", run = "arrow -1" },
-  { on = "j", run = "arrow 1" },
-  { on = "h", run = "leave" },
-  { on = "l", run = "enter" },
-  { on = "g", run = "arrow -99999999" },
-  { on = "G", run = "arrow 99999999" },
+  # ============ PAGINATION ============
+  { on = "<C-u>", run = "arrow -50%", desc = "Move cursor up half page" },
+  { on = "<C-d>", run = "arrow 50%", desc = "Move cursor down half page" },
+  { on = "<C-b>", run = "arrow -100%", desc = "Move cursor up one page" },
+  { on = "<C-f>", run = "arrow 100%", desc = "Move cursor down one page" },
+  { on = "<S-PageUp>", run = "arrow -50%", desc = "Move cursor up half page" },
+  { on = "<S-PageDown>", run = "arrow 50%", desc = "Move cursor down half page" },
+  { on = "<PageUp>", run = "arrow -100%", desc = "Move cursor up one page" },
+  { on = "<PageDown>", run = "arrow 100%", desc = "Move cursor down one page" },
 
-  # SELECTION
-  { on = "<Space>", run = [ "toggle", "arrow 1" ] },
+  # ============ BASIC CONTROLS ============
+  { on = "q", run = "quit", desc = "Quit the process" },
+  { on = "Q", run = "quit --no-cwd-file", desc = "Quit without cwd-file" },
+  { on = "<C-c>", run = "close", desc = "Close current tab or quit" },
+  { on = "<C-z>", run = "suspend", desc = "Suspend the process" },
+  { on = ".", run = "hidden toggle", desc = "Toggle hidden files visibility" },
+  { on = "w", run = "quit --cwd-file", desc = "Quit Yazi and cd to current directory" },
 
-  { on = [ "d", "t" ], run = "remove" },                 # dt: trash
-  { on = [ "d", "d" ], run = [ "yank --cut", "toggle_all --state=off" ] },
-  { on = [ "d", "D" ], run = "remove --permanently" },   # dD: delete
-  { on = [ "d", "u" ], run = "shell --block 'du --max-depth=1 -h --apparent-size | sort -rh | less'" },
+  # ============ SELECTION OPERATIONS ============
+  { on = "<Space>", run = ["toggle", "arrow 1"], desc = "Toggle selection and move down" },
+  { on = "u", run = ["unyank", "escape --select"], desc = "Unyank and clear all selections" },
 
-  { on = [ "y", "y" ], run = [ "yank", "toggle_all --state=off" ] },
+  # ============ BUILT-IN COPY/PASTE ============
+  { on = ["y", "y"], run = "yank", desc = "Yank (copy) selected files" },
+  { on = ["d", "d"], run = "yank --cut", desc = "Yank (cut) selected files" },
+  { on = "p", run = ["paste", "unyank"], desc = "Paste and deselect" },
+  { on = "P", run = ["paste --force", "unyank"], desc = "Paste (overwrite) and deselect" },
 
-  # dd: cut + clear selection
-  { on = "p", run = "paste" },                           # p: paste
-  { on = "P", run = "paste --force" },                   # P: paste overwrite
+  # ============ BUILT-IN COPY PATH ============
+  { on = ["y", "p"], run = "copy path", desc = "Copy file path" },
+  { on = ["y", "d"], run = "copy dirname", desc = "Copy directory path" },
+  { on = ["y", "n"], run = "copy filename", desc = "Copy filename" },
+  { on = ["y", "."], run = "copy name_without_ext", desc = "Copy filename without extension" },
 
-  # UNDO
-  { on = [ "u", "v" ], run = "toggle_all --state=off" }, # uv: unselect all
-  { on = [ "u", "y" ], run = "unyank" },                 # uy: cancel yank
 
-  # MAKE DIR / FILE
-  { on = [ "m", "d" ], run = "create" },                 # md: mkdir (enter name)
-  { on = [ "m", "f" ], run = "shell --block 'printf \"Filename: \"; read fn; touch \"$fn\"'" }, # mf: new file
+  # ============ SEARCH / FIND ============
+  { on = "/", run = "find", desc = "Find file (forward)" },
+  { on = "?", run = "find --previous", desc = "Find file (backward)" },
+  { on = "n", run = "find_next", desc = "Find next match" },
+  { on = "N", run = "find_prev", desc = "Find previous match" },
 
-  # YANK TO CLIPBOARD
-  { on = [ "y", "p" ], run = "shell --block 'printf \"%s\" \"$1\" | xclip -i -sel clip'" },
-  { on = [ "y", "d" ], run = "shell --block 'dirname \"$1\" | xclip -i -sel clip'" },
-  { on = [ "y", "n" ], run = "shell --block 'basename \"$1\" | xclip -i -sel clip'" },
-  { on = [ "y", "." ], run = "shell --block 'basename \"$1\" | sed \"s/\\.[^.]*$//\" | xclip -i -sel clip'" },
+  # ============ BUILT-IN DELETE ============
+  { on = ["d", "t"], run = "remove", desc = "Trash selected files" },
+  { on = ["d", "D"], run = "remove --permanently", desc = "Delete permanently" },
+  { on = "<Delete>", run = "remove", desc = "Trash selected files" },
 
-  # IMAGE CLIPBOARD
-  { on = [ "y", "i", "p" ], run = "shell --block 'xclip -sel clip -t image/png -i \"$1\"'" },
-  { on = [ "y", "i", "j" ], run = "shell --block 'xclip -sel clip -t image/jpg -i \"$1\"'" },
-  { on = [ "y", "i", "t" ], run = "shell --block 'xclip -sel clip -t text/plain -i \"$1\"'" },
+  # ============ BUILT-IN CREATE ============
+  { on = ["m", "d"], run = "create --dir", desc = "Create directory" },
+  { on = ["m", "f"], run = "create", desc = "Create file" },
 
-  # PHONE / DEVICE
-  { on = [ "y", "i", "k" ], run = "shell --block 'kdeconnect-cli -d 439fc7a8f3a87d51 --share \"$@\"'" },
+  # ============ BUILT-IN RENAME ============
+  { on = ["r", "a"], run = "rename --cursor=start", desc = "Rename (cursor at start)" },
+  { on = ["r", "c"], run = "rename --cursor=before_ext", desc = "Rename (cursor before extension)" },
+  { on = ["r", "e"], run = "rename --empty=ext --cursor=end", desc = "Rename extension only" },
 
-  # CHMOD / STRIP SPACES
-  { on = [ "c", "h" ], run = "shell --block 'printf \"Mode: \"; read mode; for f in \"$@\"; do chmod \"$mode\" \"$f\"; done'" },
-  { on = [ "c", "r" ], run = "shell --block 'for f in \"$@\"; do mv \"$f\" \"$(echo \"$f\" | tr \" \" \"-\")\"; done'" },
+  # ============ BUILT-IN SORT ============
+  { on = ["s", "a"], run = "sort atime --reverse", desc = "Sort by access time (newest first)" },
+  { on = ["s", "c"], run = "sort ctime --reverse", desc = "Sort by change time (newest first)" },
+  { on = ["s", "e"], run = "sort ext --reverse", desc = "Sort by extension (reverse)" },
+  { on = ["s", "n"], run = "sort natural --reverse", desc = "Sort by name naturally (reverse)" },
+  { on = ["s", "s"], run = "sort size --reverse", desc = "Sort by size (largest first)" },
+  { on = ["s", "t"], run = "sort mtime --reverse", desc = "Sort by modification time (newest first)" },
 
-  # RENAME
-  { on = [ "r", "a" ], run = "rename" },
-  { on = [ "r", "e" ], run = "rename --cursor=before_ext" },
-  { on = [ "r", "b" ], run = "shell --block 'tmpfile=$(mktemp); printf \"%s\n\" \"$@\" > \"$tmpfile\"; \"$EDITOR\" \"$tmpfile\"; while IFS= read -r old; do read -r new <&3 || break; [ \"$old\" != \"$new\" ] && [ ! -e \"$new\" ] && mv -- \"$old\" \"$new\"; done < \"$tmpfile\" 3< <(tail -n +2 \"$tmpfile\"); rm -f \"$tmpfile\"'" },
-  { on = [ "r", "i" ], run = "rename" },
-
-  # ARCHIVE
-  { on = [ "a", "u" ], run = "shell --block 'for f in \"$@\"; do case \"$f\" in *.tar.bz2) tar xjf \"$f\";; *.tar.gz) tar xzf \"$f\";; *.bz2) bunzip2 \"$f\";; *.rar) unrar x \"$f\";; *.gz) gunzip \"$f\";; *.tar) tar xf \"$f\";; *.tbz2) tar xjf \"$f\";; *.tgz) tar xzf \"$f\";; *.zip) unzip \"$f\";; *.Z) uncompress \"$f\";; *.7z) 7z x \"$f\";; *.deb) ar x \"$f\";; *.tar.xz) tar xf \"$f\";; *.tar.zst) unzstd \"$f\";; esac; done'" },
-  { on = [ "a", "z" ], run = "shell --block 'for f in \"$@\"; do zip -r \"${f}.zip\" \"$f\"; done'" },
-  { on = [ "a", "t" ], run = "shell --block 'for f in \"$@\"; do tar cvf \"${f}.tar\" \"$f\"; done'" },
-  { on = [ "a", "g" ], run = "shell --block 'for f in \"$@\"; do tar cvzf \"${f}.tar.gz\" \"$f\"; done'" },
-  { on = [ "a", "b" ], run = "shell --block 'for f in \"$@\"; do tar cjvf \"${f}.tar.bz2\" \"$f\"; done'" },
-
-  # ZOXIDE
-  { on = [ "z", "z" ], run = "shell --block 'res=\"$(zoxide query --exclude \"$PWD\" \"$@\")\"; [ -n \"$res\" ] && cd \"$res\"'" },
-  { on = [ "z", "i" ], run = "shell --block 'res=\"$(zoxide query -i)\"; [ -n \"$res\" ] && cd \"$res\"'" },
-
-  # FZF
-  { on = [ "f", "f" ], run = "shell --block 'res=\"$(find . -maxdepth 3 | fzf --reverse --header=\"Jump\")\"; [ -d \"$res\" ] && cd \"$res\" || [ -f \"$res\" ] && echo \"$res\"'" },
-  { on = [ "f", "l" ], run = "shell --block 'res=\"$(locate home media | fzf -i --reverse --header=\"Locate\")\"; [ -d \"$res\" ] && cd \"$res\" || [ -f \"$res\" ] && echo \"$res\"'" },
-
-  # IMAGE OPS
-  { on = [ "e", "p" ], run = "shell --block 'nohup sxiv \"$@\" &> /dev/null &'" },
-  { on = [ "e", "g" ], run = "shell --block 'printf \"Quality: \"; read q; printf \"Rotation: \"; read r; printf \"Filename: \"; read fn; convert -size 810x1080 -rotate \"$r\" \"$@\" -resize 810x1080 -extent 810x1080 -background white -quality \"$q\" \"${fn}.pdf\"'" },
-  { on = [ "e", "s" ], run = "shell --block 'curl -F\"file=@$1\" https://0x0.st | xclip -sel clip && echo \"URL copied\"'" },
-  { on = [ "e", "i" ], run = "shell --block 'exiftool \"$1\" | less'" },
-  { on = [ "e", "e" ], run = "shell --block '\"$EDITOR\" \"$@\"'" },
-  { on = [ "e", "c" ], run = "shell --block 'nvim -d \"$@\"'" },
-  { on = [ "e", "d" ], run = "shell --block '\"$EDITOR\" \"$HOME/.config/yazi/yazi.toml\"'" },
-
-  # WALLPAPER
-  { on = [ "b", "g" ], run = "shell --block 'cp \"$1\" ~/.config/wall.png && xwallpaper --stretch \"$1\"'" },
-  { on = [ "b", "s" ], run = "shell --block '~/bin/bash_scripts/personal/wallpaper.sh \"$1\"'" },
-  { on = [ "b", "t" ], run = "shell --block 'cp \"$1\" ~/.mozilla/firefox/oduj1f5k.default-release/chrome/newtab_background.jpg'" },
-
-  # VIDEO
-  { on = [ "V", "a", "a" ], run = "shell --block 'ffmpeg -i \"$1\" -vn -c copy \"audio_$(basename \"$1\")\"'" },
-  { on = [ "V", "n", "a" ], run = "shell --block 'ffmpeg -i \"$1\" -an -c copy \"no_audio_$(basename \"$1\")\"'" },
-
-  # BASIC SYSTEM
-  { on = "q", run = "quit" },
+  # ============ BUILT-IN INFO ============
+  { on = ["z", "A"], run = "show-info atime", desc = "Show access time info" },
+  { on = ["z", "c"], run = "show-info ctime", desc = "Show change time info" },
 ]
 
-[tasks]
-keymap = []
+prepend_keymap = [
+  # ============ SHELL INTERACTIVE COMMANDS ============
+  { on = ";", run = "shell --interactive", desc = "Run a shell command" },
+  { on = ":", run = "shell --block --interactive", desc = "Run shell command (block until finishes)" },
 
-[input]
-keymap = []
+  # ============ MOUNT OPERATIONS ============
+  { on = ["m", "k"], run = "shell -- qdbus org.kde.kdeconnect /modules/kdeconnect/devices/439fc7a8f3a87d51/sftp mountAndWait", desc = "Mount KDE Connect" },
+  { on = ["a", "n"], run = "shell -- sshfs anime@192.168.100.66:/home/anime/Videos/ /home/alpha/mnt/anime/", desc = "Mount anime share via SSHFS" },
 
-[confirm]
-keymap = []
+  # ============ EDIT / EXTERNAL OPERATIONS ============
+  { on = ["e", "e"], run = "open", desc = "Open/edit with default editor" },
+  { on = ["e", "i"], run = "shell -- exiftool \"$1\" | less", desc = "Show EXIF metadata" },
+  { on = ["e", "g"], run = "shell -- convert \"$1\" \"${1%.*}.pdf\"", desc = "Convert image to PDF" },
+  { on = ["e", "p"], run = "shell -- sxiv -t ./* &> /dev/null &", desc = "Preview images in directory" },
+  { on = ["e", "P"], run = "shell -- sxiv \"$1\" &> /dev/null &", desc = "Open image with sxiv" },
 
-[help]
-keymap = []
+  # ============ ARCHIVE OPERATIONS ============
+  { on = ["a", "z"], run = "shell -- zip -r \"$1\" \"$1\"", desc = "Create ZIP archive" },
+  { on = ["a", "t"], run = "shell -- tar cvf \"$1.tar\" \"$1\"", desc = "Create TAR archive" },
+  { on = ["a", "g"], run = "shell -- tar cvzf \"$1.tar.gz\" \"$1\"", desc = "Create TAR.GZ archive" },
+  { on = ["a", "b"], run = "shell -- tar cjvf \"$1.tar.bz2\" \"$1\"", desc = "Create TAR.BZ2 archive" },
+  { on = ["a", "u"], run = "shell -- case \"${1##*.}\" in tar.bz2) tar xjf \"$1\";;tar.gz|tgz) tar xzf \"$1\";;bz2) bunzip2 \"$1\";;rar) unrar x \"$1\";;gz) gunzip \"$1\";;tar) tar xf \"$1\";;zip) unzip \"$1\";;Z) uncompress \"$1\";;7z) 7z x \"$1\";;deb) ar x \"$1\";;tar.xz) tar xf \"$1\";;tar.zst) unzstd \"$1\";;esac", desc = "Extract archive" },
+
+  # ============ TRASH MANAGEMENT ============
+  { on = ["t", "r"], run = "shell -- trash-restore", desc = "Restore file from trash" },
+  { on = ["t", "c"], run = "shell -- trash-empty", desc = "Clear entire trash" },
+  { on = ["t", "g"], run = "cd ~/.local/share/Trash/", desc = "Go to trash directory" },
+]
