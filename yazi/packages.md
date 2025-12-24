@@ -20,3 +20,4 @@ git clone https://github.com/BennyOe/onedark.yazi.git ~/.config/yazi/flavors/one
 git clone https://gitee.com/DreamMaoMao/mime-preview.yazi.git ~/.config/yazi/plugins/mime-preview.yazi
 
 ya pkg add AnirudhG07/nbpreview
+ya pack -a yazi-rs/plugins:smart-enter
