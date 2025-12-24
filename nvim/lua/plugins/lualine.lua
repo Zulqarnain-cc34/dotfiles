@@ -50,7 +50,15 @@ local config = {
     sections = {
         -- these are to remove the defaults
         lualine_a = {},
-        lualine_b = {},
+        lualine_b = { {
+            function()
+                ---@diagnostic disable-next-line: undefined-field
+                return vim.g.remote_neovim_host and ("Remote: %s"):format(vim.uv.os_gethostname()) or ""
+            end,
+            padding = { right = 1, left = 1 },
+            separator = { left = "", right = "" },
+        },
+        },
         lualine_y = {},
         lualine_z = {},
         -- These will be filled later
@@ -82,7 +90,7 @@ ins_left {
     function()
         return '▊'
     end,
-    color = { fg = colors.blue },    -- Sets highlighting of component
+    color = { fg = colors.blue },      -- Sets highlighting of component
     padding = { left = 0, right = 1 }, -- We don't need space before this
 }
 
@@ -178,7 +186,7 @@ ins_left {
 
 -- Add components to right sections
 ins_right {
-    'o:encoding',     -- option component same as &encoding in viml
+    'o:encoding',       -- option component same as &encoding in viml
     fmt = string.upper, -- I'm not sure why it's upper case either ;)
     cond = conditions.hide_in_width,
     color = { fg = colors.green, gui = 'bold' },

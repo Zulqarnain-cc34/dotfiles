@@ -123,7 +123,7 @@ A fully-featured IDE-like configuration with ~70% of plugins lazy-loaded for fas
 
 **Features:**
 - 🧠 **LSP** — Native [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig) with linting, formatting, and code actions
-- ⚡ **Autocompletion** — [nvim-compe](https://github.com/hrsh7th/nvim-compe) + [ultisnips](https://github.com/SirVer/ultisnips)
+- ⚡ **Autocompletion** — [blink.cmp](https://github.com/saghen/blink.cmp)
 - 🔍 **Fuzzy Finder** — [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)
 - 🌳 **Syntax Highlighting** — [treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
 - 📂 **File Explorer** — [nvim-tree](https://github.com/kyazdani42/nvim-tree.lua)
