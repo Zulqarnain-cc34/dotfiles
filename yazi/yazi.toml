@@ -1,14 +1,14 @@
 [mgr]
-ratio = [ 1, 2, 2 ] # how the three panels are spaced out
+ratio = [ 1, 2, 2 ]
 sort_by = "alphabetical"
 sort_sensitive = false
 sort_reverse = false
 sort_dir_first = true
 sort_translit = false
 linemode = "none"
-show_hidden = false  # showing hidden
-show_symlink = false # showing symblink
-scrolloff = 5        # while scrolling the end has a gap of 5 rows
+show_hidden = false
+show_symlink = false
+scrolloff = 5
 mouse_events = [ "click", "scroll" ]
 title_format = "Yazi: {cwd}"
 
@@ -17,7 +17,6 @@ wrap = "no"
 tab_size = 2
 max_width = 600
 max_height = 900
-cache_dir = ""
 image_delay = 30
 image_filter = "triangle"
 image_quality = 75
@@ -68,56 +67,93 @@ image_alloc = 536870912
 image_bound = [ 5000, 5000 ]
 suppress_preload = false
 
-[plugin]
-previewers = [
-  { name = "*/", run = "folder" },
-  { mime = "text/*", run = "code" },
-  { mime = "application/{mbox,javascript,wine-extension-ini}", run = "code" },
-  { mime = "image/{avif,hei?,jxl}", run = "magick" },
-  { mime = "image/svg+xml", run = "svg" },
-  { mime = "image/*", run = "image" },
-  { mime = "video/*", run = "video" },
-  { mime = "application/pdf", run = "pdf" },
-  { mime = "application/{zip,rar,7z*,tar,gzip,xz,zstd,bzip*,lzma,compress,archive,cpio,arj,xar,ms-cab*}", run = "archive" },
-  { name = "*", run = "file" },
-  { name = "*.ipynb", run = "nbpreview" },
-]
+[[plugin.previewers]]
+name = "*/"
+run  = "folder"
+sync = true 
 
-preloaders = [
-  { mime = "image/{avif,hei?,jxl}", run = "magick" },
-  { mime = "image/svg+xml", run = "svg" },
-  { mime = "image/*", run = "image" },
-  { mime = "video/*", run = "video" },
-  { mime = "application/pdf", run = "pdf" },
-]
+[[plugin.previewers]]
+mime = "text/*"
+run  = "code"
+
+[[plugin.previewers]]
+mime = "application/{mbox,javascript,wine-extension-ini}"
+run  = "code"
+
+[[plugin.previewers]]
+mime = "image/{avif,hei?,jxl}"
+run  = "magick"
+
+[[plugin.previewers]]
+mime = "image/svg+xml"
+run  = "svg"
+
+[[plugin.previewers]]
+mime = "image/*"
+run  = "image"
+
+[[plugin.previewers]]
+mime = "video/*"
+run  = "video"
+
+[[plugin.previewers]]
+mime = "application/pdf"
+run  = "pdf"
+
+[[plugin.previewers]]
+mime = "application/{zip,rar,7z*,tar,gzip,xz,zstd,bzip*,lzma,compress,archive,cpio,arj,xar,ms-cab*}"
+run  = "archive"
+
+[[plugin.previewers]]
+name = "*"
+run  = "file"
+
+[[plugin.previewers]]
+name = "*.ipynb"
+run  = "nbpreview"
+
+# --- Preloaders ---
+
+[[plugin.preloaders]]
+mime = "image/{avif,hei?,jxl}"
+run  = "magick"
+
+[[plugin.preloaders]]
+mime = "image/svg+xml"
+run  = "svg"
+
+[[plugin.preloaders]]
+mime = "image/*"
+run  = "image"
+
+[[plugin.preloaders]]
+mime = "video/*"
+run  = "video"
+
+[[plugin.preloaders]]
+mime = "application/pdf"
+run  = "pdf"
 
 [input]
 cursor_blink = false
-
 cd_title = "Change directory:"
 cd_origin = "top-center"
 cd_offset = [ 0, 2, 50, 3 ]
-
 create_title = [ "Create:", "Create (dir):" ]
 create_origin = "top-center"
 create_offset = [ 0, 2, 50, 3 ]
-
 rename_title = "Rename:"
 rename_origin = "hovered"
 rename_offset = [ 0, 1, 50, 3 ]
-
 filter_title = "Filter:"
 filter_origin = "top-center"
 filter_offset = [ 0, 2, 50, 3 ]
-
 find_title = [ "Find next:", "Find previous:" ]
 find_origin = "top-center"
 find_offset = [ 0, 2, 50, 3 ]
-
 search_title = "Search via {n}:"
 search_origin = "top-center"
 search_offset = [ 0, 2, 50, 3 ]
-
 shell_title = [ "Shell:", "Shell (block):" ]
 shell_origin = "top-center"
 shell_offset = [ 0, 2, 50, 3 ]
@@ -126,16 +162,13 @@ shell_offset = [ 0, 2, 50, 3 ]
 trash_title = "Trash {n} selected file{s}?"
 trash_origin = "center"
 trash_offset = [ 0, 0, 70, 20 ]
-
 delete_title = "Permanently delete {n} selected file{s}?"
 delete_origin = "center"
 delete_offset = [ 0, 0, 70, 20 ]
-
 overwrite_title = "Overwrite file?"
 overwrite_content = "Will overwrite the following file:"
 overwrite_origin = "center"
 overwrite_offset = [ 0, 0, 50, 15 ]
-
 quit_title = "Quit?"
 quit_content = "The following tasks are still running, are you sure you want to quit?"
 quit_origin = "center"
@@ -145,4 +178,3 @@ quit_offset = [ 0, 0, 50, 15 ]
 open_title = "Open with:"
 open_origin = "hovered"
 open_offset = [ 0, 1, 50, 7 ]
-

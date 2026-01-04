@@ -4,7 +4,7 @@ require("full-border"):setup({
 })
 
 -- Starship prompt integration (requires: ya pkg add Rolv-Apneseth/starship)
-require("starship"):setup()
+-- require("starship"):setup()
 
 -- Show user:group in status bar (Unix only)
 Status:children_add(function()

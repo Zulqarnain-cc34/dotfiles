@@ -40,6 +40,8 @@
 [ ! -d "$HOME"/.config/imv ] && ln -s "$PWD"/imv "$HOME"/.config/imv
 [ ! -d "$HOME"/.config/kitty ] && ln -s "$PWD"/kitty "$HOME"/.config/kitty
 [ ! -d "$HOME"/.config/yazi ] && ln -s "$PWD"/yazi "$HOME"/.config/yazi
+[ ! -d "$HOME"/.config/fastfetch ] && ln -s "$PWD"/fastfetch "$HOME"/.config/fastfetch
+
 
 ##################################
 ## _____  ___  _      _____  ____

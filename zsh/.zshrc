@@ -165,6 +165,8 @@ function yazi() {
     rm -f "$tmp"
 }
 
+fastfetch
+
 # The next line updates PATH for the Google Cloud SDK.
 #jif [ -f '/home/alpha/bin/binaries/google-cloud-sdk/path.zsh.inc' ]; then . '/home/alpha/bin/binaries/google-cloud-sdk/path.zsh.inc'; fi
 
