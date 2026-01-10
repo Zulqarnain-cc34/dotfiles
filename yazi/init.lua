@@ -3,6 +3,8 @@ require("full-border"):setup({
     type = ui.Border.ROUNDED,
 })
 
+require("eza-preview"):setup()
+
 -- Starship prompt integration (requires: ya pkg add Rolv-Apneseth/starship)
 -- require("starship"):setup()
 
