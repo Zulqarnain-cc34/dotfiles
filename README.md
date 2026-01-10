@@ -182,6 +182,7 @@ dotfiles/
 ├── eww/             # ElKowars Wacky Widgets
 ├── fish/            # Fish shell config
 ├── firefox/         # Firefox userChrome
+├── fastfetch/       # Terminal Wallpaper
 ├── kitty/           # Kitty terminal config
 ├── lf/              # lf file manager
 ├── mpd/             # Music Player Daemon
