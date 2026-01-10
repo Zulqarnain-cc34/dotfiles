@@ -68,10 +68,10 @@ image_alloc = 536870912
 image_bound = [ 5000, 5000 ]
 suppress_preload = false
 
-[[plugin.previewers]]
-name = "*/"
-run  = "folder"
-sync = true 
+[plugin]
+prepend_previewers = [
+  { name = "*/", run = "eza-preview" }
+]
 
 [[plugin.previewers]]
 mime = "text/*"
