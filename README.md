@@ -231,15 +231,6 @@ dotfiles/
 
 ---
 
-## 🛤️ Roadmap
-
-- [ ] Add **Wayland** support (Hyprland configuration).
-- [ ] Create a Light Mode theme toggle.
-- [ ] Improve installation script with error handling.
-- [ ] Add Docker development environment presets.
-
----
-
 <div align="center">
   <p>If you like this configuration, please give it a ⭐ star!</p>
   <p>Made with ❤️ by <a href="https://github.com/Zulqarnain-cc34">Zulqarnain</a></p>
