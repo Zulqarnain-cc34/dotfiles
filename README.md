@@ -153,7 +153,7 @@ This isn't just a text editor; it's a personalized Development Environment.
 
 </details>
 
-<details>
+<details open>
 <summary><b>🚀 Apps & CLI Tools</b></summary>
 <br>
 
