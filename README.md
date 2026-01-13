@@ -48,7 +48,7 @@
 <table>
   <tr>
     <td align="center" width="50%">
-      <img src="screenshots/neovim.png" alt="Dashboard" style="border-radius: 8px; width: 100%;">
+      <img src="screenshots/dashboard.png" alt="Dashboard" style="border-radius: 8px; width: 100%;">
       <br><b>Neovim Dashboard</b>
     </td>
     <td align="center" width="50%">
@@ -93,7 +93,7 @@ This isn't just a text editor; it's a personalized Development Environment.
 <table>
   <tr>
     <td align="center" width="50%">
-      <img src="screenshots/neovim.png" alt="Dashboard" style="width: 100%; border-radius: 5px;">
+      <img src="screenshots/dashboard.png" alt="Dashboard" style="width: 100%; border-radius: 5px;">
       <br><b>Dashboard</b>
     </td>
     <td align="center" width="50%">
@@ -163,21 +163,6 @@ This isn't just a text editor; it's a personalized Development Environment.
 | **`Super + M`** | NCMPCPP (Music Player) |
 | **`Super + W`** | Firefox |
 | **`Super + E`** | Neomutt (Email) |
-
-</details>
-
-<details>
-<summary><b>🖼️ Tmux (Multiplexer)</b></summary>
-<br>
-
-> **Note:** The prefix key is changed to **`Ctrl + A`** (like GNU Screen) instead of the default `Ctrl + B`.
-
-| Keybinding | Action |
-| :--- | :--- |
-| **`Ctrl + A`**, then **`c`** | Create new window |
-| **`Ctrl + A`**, then **`v`** | Split vertically |
-| **`Ctrl + A`**, then **`h`** | Split horizontally |
-| **`Ctrl + A`**, then **`Arrows`** | Navigate Panes |
 
 </details>
 
