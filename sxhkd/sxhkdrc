@@ -197,7 +197,7 @@ super + space
 super + m
    kitty -e ncmpcpp
 
-alt + n
+super  + n
    kitty -e newsboat
 
 super + p
