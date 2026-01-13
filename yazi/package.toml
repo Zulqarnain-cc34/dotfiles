@@ -48,6 +48,11 @@ use = "ahkohd/eza-preview"
 rev = "7a2d60f"
 hash = "eed8e19469f3dca38fd977eb938dd34e"
 
+[[plugin.deps]]
+use = "yazi-rs/plugins:piper"
+rev = "68f7d48"
+hash = "2dd68af59418b631b9703a03f606b31f"
+
 [[flavor.deps]]
 use = "yazi-rs/flavors:catppuccin-mocha"
 rev = "9276ffa"

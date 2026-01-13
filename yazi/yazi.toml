@@ -132,9 +132,8 @@ run  = "pdf"
 
 [plugin]
 prepend_previewers = [
-  { name = "*/", run = "eza-preview" }
+  { url = "*/", run = 'piper -- eza -TL=1 --color=always --icons=always --group-directories-first --no-quotes "$1"' }
 ]
-
 [input]
 cursor_blink = false
 cd_title = "Change directory:"
