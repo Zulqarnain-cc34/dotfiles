@@ -45,7 +45,7 @@
 | **Core** | **Apps** | **CLI Tools** |
 | :--- | :--- | :--- |
 | <img src="https://img.shields.io/badge/WM-bspwm-black?style=flat-square&logo=linux" /> | <img src="https://img.shields.io/badge/Terminal-Kitty-orange?style=flat-square&logo=terminal" /> | <img src="https://img.shields.io/badge/Shell-Zsh-green?style=flat-square&logo=zsh" /> |
-| <img src="https://img.shields.io/badge/Bar-Polybar-blue?style=flat-square" /> | <img src="https://img.shields.io/badge/Browser-Qutebrowser-yellow?style=flat-square" /> | <img src="https://img.shields.io/badge/Text_Editor-Neovim-blueviolet?style=flat-square&logo=neovim" /> |
+| <img src="https://img.shields.io/badge/Bar-Polybar-blue?style=flat-square" /> | <img src="https://img.shields.io/badge/Browser-firefox-yellow?style=flat-square&logo=firefox" /> | <img src="https://img.shields.io/badge/Text_Editor-Neovim-blueviolet?style=flat-square&logo=neovim" /> |
 | <img src="https://img.shields.io/badge/Compositor-Picom-purple?style=flat-square" /> | <img src="https://img.shields.io/badge/Launcher-Rofi-red?style=flat-square" /> | <img src="https://img.shields.io/badge/File_Manager-LF_+_Yazi-teal?style=flat-square" /> |
 
 </div>
@@ -57,25 +57,79 @@
 
 ---
 
-## ✨ Features
+## ⌨️ Cheatsheet & Keybindings
 
-- **⚡ Blazing Fast**: Optimized config for minimal latency.
-- **🧠 Intelligent Neovim**: Full LSP support (Python, Go, JS/TS, C++, etc.), DAP (Debugging), and Treesitter.
-- **🎹 Keyboard Driven**: Ergonomic keybindings for `bspwm`, `tmux`, and `nvim` to keep your hands on the home row.
-- **🎨 Consistent Theme**: Unified colorscheme across all applications (Terminal, Editor, Window Manager).
-- **🔋 Battery Friendly**: Minimal background services and lightweight daemons.
+Don't memorize everything at once. Here are the **critical** keybindings to get you started.
+
+#### 🪟 Window Manager (BSPWM)
+| Keybinding | Action |
+| :--- | :--- |
+| **`Super + T`** | Open Terminal (Kitty) |
+| **`Super + Space`** | App Launcher (Rofi) |
+| **`Super + Shift + Q`** | Close Focused Window |
+| **`Super + H/J/K/L`** | Focus Window (Left/Down/Up/Right) |
+| **`Super + D`** | Toggle Floating Mode |
+| **`Super + F`** | Toggle Fullscreen |
+| **`Super + Alt + R`** | Reload BSPWM |
+| **`Super + 1-9`** | Switch Workspaces |
+
+#### 🚀 Apps & Tools
+| Keybinding | Action |
+| :--- | :--- |
+| **`Alt + N`** | Newsboat (RSS Reader) |
+| **`Super + M`** | NCMPCPP (Music Player) |
+| **`Super + W`** | Firefox |
+| **`Super + E`** | Neomutt (Email) |
+
+#### 🖼️ Tmux (Multiplexer)
+> **Note:** The prefix key is changed to **`Ctrl + A`** (like GNU Screen) instead of the default `Ctrl + B`.
+
+| Keybinding | Action |
+| :--- | :--- |
+| **`Ctrl + A`**, then **`c`** | Create new window |
+| **`Ctrl + A`**, then **`v`** | Split vertically |
+| **`Ctrl + A`**, then **`h`** | Split horizontally |
+| **`Ctrl + A`**, then **`H/J/K/L`** | Navigate Panes |
+
+---
+
+## 🧩 Module Deep Dive
+
+### 🧠 Neovim (IDE)
+My pride and joy. This Neovim config is designed to replace VSCode entirelly.
+- **Lazy Loading**: Plugins load only when you need them (~50ms startup time).
+- **LSP**: Native support for Python, Go, C++, Rust, Lua, and Web (JS/TS/HTML/CSS).
+- **Aesthetics**: Tokyonight theme, custom statusline (Lualine), and dashboard.
+- **Git**: `Lazygit` integration and `Gitsigns` for line-by-line diffs.
+
+### 🐚 ZSH & Terminal
+- **Prompt**: Uses `Starship.rs` for a blazing fast, informative prompt.
+- **Completion**: `zsh-autosuggestions` and `zsh-syntax-highlighting`.
+- **Aliases**: `ls` -> `exa` (icons), `cat` -> `bat` (syntax highlighting).
+
+### 📺 Polybar
+A clean, forest-themed bar with custom scripts for:
+- 🎵 Music status (MPD)
+- 📅 Date & Time
+- 💻 CPU/RAM usage
+- 📶 Network connectivity
+- 🔋 Battery status
 
 ---
 
 ## 🚀 Installation
 
 ### 1. Requirements
-Ensure you have the following packages installed on your system (names may vary by distro):
+Ensure you have the following packages installed on your system (names may vary by distro). This setup is designed primarily for **Arch Linux**.
+
 ```bash
-# Arch Linux example
+# Arch Linux
 sudo pacman -S bspwm sxhkd polybar rofi kitty zsh neovim picom dunst \
-               ranger lf mpv mpd ncmpcpp newsboat brightnessctl playerctl
+               ranger lf mpv mpd ncmpcpp newsboat brightnessctl playerctl \
+               tmux starship bat exa twisted # ...and fonts!
 ```
+
+> **Fonts are crucial!** Make sure you install [Nerd Fonts](https://www.nerdfonts.com/) (specifically **JetBrains Mono Nerd Font** or **Iosevka**) for icons to appear correctly.
 
 ### 2. Clone & Setup
 Clone the repository and run the setup script to symlink configurations:
@@ -87,27 +141,20 @@ chmod +x setup.sh
 ./setup.sh
 ```
 
-> **Note:** The `setup.sh` script will create symbolic links from this directory to your `$HOME/.config` and other locations. It checks if the directory exists before linking.
+> **Note:** The `setup.sh` script handles symlinking automatically. It will back up or warn about existing configs in your `~/.config` directory.
 
 ---
 
-## 📂 Structure
+## 🤝 Troubleshooting
 
-A quick look at how the configs are organized:
+**Q: Icons are missing in Polybar/Neovim!**
+> **A:** You are likely missing a Nerd Font. Install `ttf-jetbrains-mono-nerd` or download one manually from the [Nerd Fonts website](https://www.nerdfonts.com/font-downloads).
 
-```tree
-dotfiles/
-├── bspwm/           # Window Manager
-├── polybar/         # Status Bar
-├── sxhkd/           # Global Keybindings
-├── nvim/            # Neovim IDE
-├── zsh/             # Shell Config
-├── kitty/           # Terminal
-├── rofi/            # Launcher
-├── picom.conf       # Compositor (Transparency/Blur)
-├── script/          # Utility scripts
-└── ...
-```
+**Q: Keybindings aren't working.**
+> **A:** Ensure `sxhkd` is running. You can check with `pgrep -a sxhkd`. If not, run standard `sxhkd &` in your terminal to see if it spits out errors.
+
+**Q: The setup script failed.**
+> **A:** Check permissions. Run `ls -la setup.sh` to ensure it is executable. Also, make sure you have `git` and `bash` installed.
 
 ---
 
