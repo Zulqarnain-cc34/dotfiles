@@ -1,207 +1,118 @@
   
-<br />
 <div align="center">
-  <a href="https://github.com/Zulqarnain-cc34/dotfiles">
-    <img src="screenshots/logo.png" alt="Logo" width="80" height="80">
-  </a>
+  <img src="screenshots/logo.png" alt="Logo" width="120" height="120">
 
-<h3 align="center">Dotfiles</h3>
+  <h1 align="center">Dotfiles</h1>
+
   <p align="center">
-    These are my linux configuration files, Hope you can find something to your liking.
+    <b>Aesthetic. Functional. Fast.</b><br>
+    My personal configuration files for Linux, tuned for a seamless development workflow.
   </p>
+
   <p align="center">
-    <strong>⭐ If you find this useful, consider giving it a star!</strong>
-  </p>
-        
-  <p align="center">
-     Made with ❤️ by <a href="https://github.com/Zulqarnain-cc34">Zulqarnain</a>
+    <a href="https://github.com/Zulqarnain-cc34/dotfiles/stargazers"><img src="https://img.shields.io/github/stars/Zulqarnain-cc34/dotfiles?style=for-the-badge&logo=star&color=ffce63" alt="Stars"></a>
+    <a href="https://github.com/Zulqarnain-cc34/dotfiles/network/members"><img src="https://img.shields.io/github/forks/Zulqarnain-cc34/dotfiles?style=for-the-badge&logo=git&color=9cf" alt="Forks"></a>
+    <a href="https://github.com/Zulqarnain-cc34/dotfiles/issues"><img src="https://img.shields.io/github/issues/Zulqarnain-cc34/dotfiles?style=for-the-badge&logo=github&color=ff6363" alt="Issues"></a>
+    <img src="https://img.shields.io/badge/Maintained-Yes-success?style=for-the-badge&logo=check" alt="Maintained">
   </p>
 </div>
 
-![Status](https://img.shields.io/badge/maintained-yes-brightgreen)
-![License](https://img.shields.io/badge/license-MIT-blue)
+---
 
-## 🖥️ System Overview
+## 🎨 Gallery
 
-| Component         | Program                                                                       |
-|-------------------|-------------------------------------------------------------------------------|
-| 🪟 Window Manager | [bspwm](https://github.com/baskerville/bspwm)                                 |
-| 📊 Status Bar     | [polybar](https://github.com/polybar/polybar)                                 |
-| ✏️ Editor         | [neovim](https://github.com/neovim/neovim)                                    |
-| 💻 Terminal       | [kitty](https://github.com/kovidgoyal/kitty)                                  |
-| 📧 Email Client   | [neomutt](https://github.com/neomutt/neomutt)                                 |
-| 📰 RSS Reader     | [newsboat](https://github.com/newsboat/newsboat)                              |
-| 📁 File Manager   | [lf](https://github.com/gokcehan/lf) + [yazi](https://github.com/sxyazi/yazi) |
-| 🚀 Launcher       | [rofi](https://github.com/davatorium/rofi)                                    |
-| 🔽 Torrent        | [transmission](https://transmissionbt.com/)                                   |
-| 🎬 Video Player   | [mpv](https://github.com/mpv-player/mpv)                                      |
-| ✨ Compositor     | [picom](https://github.com/yshui/picom)                                       |
-| 📈 System Monitor | [conky](https://github.com/brndnmtthws/conky)                                 |
-| 🐚 Shell          | [zsh](https://www.zsh.org/)                                                   |
+<div align="center">
+  <img src="screenshots/desktop-4.png" alt="Desktop Rice" width="100%" style="border-radius: 10px; box-shadow: 0px 4px 10px rgba(0,0,0,0.5);">
+  <p><i>My clean BSPWM setup with Polybar and customized transparency.</i></p>
+</div>
 
-## Table of Contents
+<br>
 
-- [Overview](#overview)
-- [Requirements](#requirements)
-- [Installation](#installation)
-- [Modules](#modules)
+| **Neovim Dashboard** | **Polybar** |
+| :---: | :---: |
+| <img src="screenshots/neovim.png" width="95%" style="border-radius: 8px;"> | <img src="screenshots/polybar.png" width="95%" style="border-radius: 8px;"> |
 
-### 📋 Overview
+| **Code Editing** | **Telescope / UI** |
+| :---: | :---: |
+| <img src="screenshots/neovim-1.png" width="95%" style="border-radius: 8px;"> | <img src="screenshots/neovim-2.png" width="95%" style="border-radius: 8px;"> |
 
-This repository contains a curated collection of configuration files and dotfiles for a modern, efficient development setup.This setup prioritizes rapid prototyping, smooth CLI workflows, and deep integration with cutting-edge development tools in Linux.
+---
 
-**Key Features:**
-- ⚡ **Neovim** configuration with LSP and plugins optimized for development
-- 🔌 **Modular architecture** for easy customization and maintenance
-- 🎯 **Shell configuration** ZSH with intelligent defaults and aliases
-- 🖼️ **Terminal multiplexer** (Tmux) setup with ergonomic keybindings
-- 📦 **Python development** optimized with virtual environments and debugging tools
-- 🌐 **Git workflows** with enhanced aliases and utilities
+## 🛠️ Tech Stack
 
-### Requirements
+<div align="center">
 
-You will need to install the above listed packages from your package manager.
+| **Core** | **Apps** | **CLI Tools** |
+| :--- | :--- | :--- |
+| <img src="https://img.shields.io/badge/WM-bspwm-black?style=flat-square&logo=linux" /> | <img src="https://img.shields.io/badge/Terminal-Kitty-orange?style=flat-square&logo=terminal" /> | <img src="https://img.shields.io/badge/Shell-Zsh-green?style=flat-square&logo=zsh" /> |
+| <img src="https://img.shields.io/badge/Bar-Polybar-blue?style=flat-square" /> | <img src="https://img.shields.io/badge/Browser-Qutebrowser-yellow?style=flat-square" /> | <img src="https://img.shields.io/badge/Text_Editor-Neovim-blueviolet?style=flat-square&logo=neovim" /> |
+| <img src="https://img.shields.io/badge/Compositor-Picom-purple?style=flat-square" /> | <img src="https://img.shields.io/badge/Launcher-Rofi-red?style=flat-square" /> | <img src="https://img.shields.io/badge/File_Manager-LF_+_Yazi-teal?style=flat-square" /> |
 
-### Installation
+</div>
 
-To install on your system ,just run setup.sh on your local linux
-machine. It will create symbolic links for all the configuration files
-to their appropriate locations.
+<br>
 
-- Clone the Repository.
-- Run command to make symbolic links
-  `chmod +x setup.sh` `bash setup.sh`
-  script will come soon
+**Other Notable Tools:**
+`dunst` (notifications), `mpd/ncmpcpp` (music), `newsboat` (RSS), `tmux` (multiplexer), `fzf`, `ripgrep`.
 
-### Modules
+---
 
-- [Desktop](#desktop)
-- [Kitty](#kitty)
-- [Polybar](#polybar)
-- [Neovim](#neovim)
-- [Rofi](#rofi)
-- [Newsboat](#newsboat)
-- [Miscellaneous](#miscellaneous)
+## ✨ Features
 
-#### Desktop
+- **⚡ Blazing Fast**: Optimized config for minimal latency.
+- **🧠 Intelligent Neovim**: Full LSP support (Python, Go, JS/TS, C++, etc.), DAP (Debugging), and Treesitter.
+- **🎹 Keyboard Driven**: Ergonomic keybindings for `bspwm`, `tmux`, and `nvim` to keep your hands on the home row.
+- **🎨 Consistent Theme**: Unified colorscheme across all applications (Terminal, Editor, Window Manager).
+- **🔋 Battery Friendly**: Minimal background services and lightweight daemons.
 
-<p align="center">
-    <img src="./screenshots/desktop-4.png"  title="alacritty">
-</p>
+---
 
-#### Kitty 
+## 🚀 Installation
 
-- Custom shell prompt with
-  [zsh](https://github.com/Zulqarnain-cc34/zsh).
-- Vim like features and key bindings with [zsh](https://github.com/Zulqarnain-cc34/zsh).
-- Background blur and transparency using
-  [picom](https://github.com/yshui/picom).
-
-#### Polybar
-
-Custom tweaks on
-[forest-theme](https://github.com/adi1090x/polybar-themes) and some
-modules from
-[polybar-scripts](https://github.com/polybar/polybar-scripts)
-
-<p align="center">
-<img src="./screenshots/polybar.png"  title="polybar">
-</p>
-
-#### Neovim
-
-
-<p align="center">
-<img src="./screenshots/neovim.png"  title="neovim">
-<img src="./screenshots/neovim-1.png"  title="neovim">
-<img src="./screenshots/neovim-2.png"  title="neovim">
-</p>
-
-##### Features
-
-A fully-featured IDE-like configuration with ~70% of plugins lazy-loaded for fast startup.
-
-**Features:**
-- 🧠 **LSP** — Native [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig) with linting, formatting, and code actions
-- ⚡ **Autocompletion** — [blink.cmp](https://github.com/saghen/blink.cmp)
-- 🔍 **Fuzzy Finder** — [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)
-- 🌳 **Syntax Highlighting** — [treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
-- 📂 **File Explorer** — [nvim-tree](https://github.com/kyazdani42/nvim-tree.lua)
-- 🎨 **Theme** — [tokyonight](https://github.com/ghifarit53/tokyonight-vim)
-- 📊 **Statusline** — [lualine](https://github.com/hoob3rt/lualine.nvim)
-- 📑 **Bufferline** — [nvim-bufferline](https://github.com/akinsho/nvim-bufferline.lua)
-- ⌨️ **Keybinding Help** — [which-key](https://github.com/folke/which-key.nvim)
-- 🏠 **Dashboard** — [dashboard-nvim](https://github.com/glepnir/dashboard-nvim)
-- 🔧 **Git Integration** — [fugitive](https://github.com/tpope/vim-fugitive) + [gitgutter](https://github.com/airblade/vim-gitgutter)
-- 💡 **LSP UI** — [lspsaga](https://github.com/glepnir/lspsaga.nvim)
-- 💬 **Comments** — [nerdcommenter](https://github.com/preservim/nerdcommenter)
-- 📓 **Notes** — [vimwiki](https://github.com/vimwiki/vimwiki)
-
-📖 **[View Keybindings →](https://github.com/Zulqarnain-cc34/dotfiles/tree/main/nvim/README.md)**
-
-**Full Neovim Plugins List:** See [plugins](./nvim/plugins.md) for docs on all plugins.
-
-#### Rofi
-
-A window switcher, Application launcher and search engine launcher.
-<br> Lots of
-features to intergrate rofi more smoothly with 
-
-- 🎬 [YouTube](https://github.com/pystardust/ytfzf) — Search and play videos
-- 🌐 [Surfraw](https://github.com/gotbletu/dotfiles_v2/tree/master/normal_user/rofi/.config/rofi/launchers) — Search engines
-
-A script to manage all of above in one menu. Themes have been used
-from [rofi-themes](https://github.com/davatorium/rofi-themes.git) and
-[rofi-collection](https://github.com/Murzchnvok/rofi-collection) .
-
-#### Newsboat
-
-Configuration has features
-
-- Vim like key bindings
-- integrated with `urlportal.sh` script to open url appropriately
-  according to their extension.
-- feeds update on cronjob every x minutes in time.
-
-#### Miscellaneous
-
-- Starship Prompt configured with `starship.toml` file.
-- Conky light weight System Moniter with [Conky themes](https://github.com/juliojsb/jotack).
-- `.Xmodmap` for unbinding and binding keys on a system level.
-  package.
-- urlportal.sh script to open files depending upon their extensions.
-
-## 📂 Repository Structure
-
+### 1. Requirements
+Ensure you have the following packages installed on your system (names may vary by distro):
+```bash
+# Arch Linux example
+sudo pacman -S bspwm sxhkd polybar rofi kitty zsh neovim picom dunst \
+               ranger lf mpv mpd ncmpcpp newsboat brightnessctl playerctl
 ```
+
+### 2. Clone & Setup
+Clone the repository and run the setup script to symlink configurations:
+
+```bash
+git clone https://github.com/Zulqarnain-cc34/dotfiles.git
+cd dotfiles
+chmod +x setup.sh
+./setup.sh
+```
+
+> **Note:** The `setup.sh` script will create symbolic links from this directory to your `$HOME/.config` and other locations. It checks if the directory exists before linking.
+
+---
+
+## 📂 Structure
+
+A quick look at how the configs are organized:
+
+```tree
 dotfiles/
-├── alacritty/       # Alacritty terminal config
-├── bspwm/           # Window manager config
-├── conky/           # System monitor widgets
-├── dunst/           # Notification daemon
-├── eww/             # ElKowars Wacky Widgets
-├── fish/            # Fish shell config
-├── firefox/         # Firefox userChrome
-├── fastfetch/       # Terminal Wallpaper
-├── kitty/           # Kitty terminal config
-├── lf/              # lf file manager
-├── mpd/             # Music Player Daemon
-├── mpv/             # Video player config
-├── yazi/            # yazi file manager
-├── mutt/            # Email client
-├── ncmpcpp/         # MPD client
-├── newsboat/        # RSS reader
-├── nvim/            # Neovim (IDE setup)
-├── polybar/         # Status bar
-├── qutebrowser/     # Keyboard-driven browser
-├── ranger/          # File manager
-├── rofi/            # Application launcher
-├── screenshots/     # Rice screenshots
-├── sxhkd/           # Keybinding daemon
-├── zathura/         # PDF viewer
-├── zsh/             # Zsh shell config
+├── bspwm/           # Window Manager
+├── polybar/         # Status Bar
+├── sxhkd/           # Global Keybindings
+├── nvim/            # Neovim IDE
+├── zsh/             # Shell Config
+├── kitty/           # Terminal
+├── rofi/            # Launcher
+├── picom.conf       # Compositor (Transparency/Blur)
+├── script/          # Utility scripts
 └── ...
 ```
 
 ---
+
+<div align="center">
+  <p>If you like this configuration, please give it a ⭐ star!</p>
+  <p>Made with ❤️ by <a href="https://github.com/Zulqarnain-cc34">Zulqarnain</a></p>
+</div>
 
