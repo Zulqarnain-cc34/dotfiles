@@ -96,17 +96,20 @@ bindkey -s "^d" "dlfile\n"
 # PS1="%{$fg[red]%}%n%{$reset_color%}@%{$fg[blue]%}%m %{$fg[yellow]%}%~ %{$reset_color%}%% "
 
 # PLUGINS 
+# Check if plugins exist, if not, download them (Auto-Install)
+if [ ! -d "$HOME/.config/zsh/plugins/zsh-autosuggestions" ]; then
+    git clone https://github.com/zsh-users/zsh-autosuggestions ~/.config/zsh/plugins/zsh-autosuggestions
+fi
+if [ ! -d "$HOME/.config/zsh/plugins/zsh-syntax-highlighting" ]; then
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.config/zsh/plugins/zsh-syntax-highlighting
+fi
+
 source ~/.config/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh 2>/dev/null
 source ~/.config/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
 
 # Sourcing Files,Aliases and Bindings
-#
-# Sourcing all files in .config/shellconfig/*
-# source /usr/share/autojump/autojump.zsh
-# xrdb -merge "$HOME"/.Xresources &
-
-source "$HOME"/.aliases/aliases
-source "$HOME"/.aliases/functions
+# Source aliases from properly linked config location
+[ -f "$HOME/.config/zsh/aliases.zsh" ] && source "$HOME/.config/zsh/aliases.zsh"
 
 #echo -e "$($HOME/Downloads/archlogo.txt)"
 source /usr/share/fzf/key-bindings.zsh

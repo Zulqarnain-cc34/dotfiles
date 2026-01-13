@@ -1,0 +1,58 @@
+# --- Restored & Improved ---
+
+# Editor temporary compressed files
+*.swp
+*.swo
+*session.vim*
+*Session.vim*
+
+# OS Generated
+.DS_Store
+Thumbs.db
+.spotlight-V100
+.Trashes
+
+# ZSH
+zsh/.zcompdump
+zsh/.cache/
+zsh/.zdirs
+zsh/plugins/
+
+# MPD
+mpd/database
+mpd/state
+mpd/sticker.sql
+
+Kvantum/Otto
+Kvantum/Sweet
+Kvantum/Sweet-Mars
+
+mpv/watch_later
+.mutt/accounts
+
+# Newsboat
+newsboat/cache.db
+
+.w3m/cookie
+
+.mutt/muttrc
+# Ncmpcpp
+ncmpcpp/error.log
+
+transmission-daemon/dht.dat
+transmission-daemon/stats.json
+
+surfraw/bookmarks
+nvim/tempdir
+
+.gitconfig
+
+# Misc
+.dotfiles_backup/
+
+polybar/scripts/gmail
+
+newsboat/colorschemes
+yazi/plugins
+
+qutebrowser/bookmarks
