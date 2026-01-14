@@ -109,11 +109,9 @@ source ~/.config/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Sourcing Files,Aliases and Bindings
 # Source aliases from properly linked config location
-[ -f "$HOME/.config/zsh/aliases.zsh" ] && source "$HOME/.config/zsh/aliases.zsh"
+source "$HOME/.aliases/aliases"
 
-#echo -e "$($HOME/Downloads/archlogo.txt)"
 source /usr/share/fzf/key-bindings.zsh
-
 source $HOME/.config/zsh/.zshenv
 
 conda-init() {
