@@ -83,6 +83,9 @@ super + alt + shift + {h,j,k,l}
 super + {Left,Down,Up,Right}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
 
+super + v
+    CM_LAUNCHER=rofi clipmenu
+
 # #	Send window to desktop
 # super + shift + {0-9}
 #   crystal --send {0-9}
@@ -197,7 +200,7 @@ super + space
 super + m
    kitty -e ncmpcpp
 
-super  + n
+alt  + n
    kitty -e newsboat
 
 super + p

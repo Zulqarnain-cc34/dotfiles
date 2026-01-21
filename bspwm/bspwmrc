@@ -64,5 +64,6 @@ redshift -O 5000 &
 random-wallpaper.sh & # Not working
 xset r rate 300 50 &
 xmodmap ~/.Xmodmap &
+clipmenud &
 
 polybar -r main --config=$HOME/.config/polybar/config.ini &

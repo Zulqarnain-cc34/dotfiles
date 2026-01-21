@@ -1,4 +1,4 @@
-require('lspsaga').init_lsp_saga {
+require('lspsaga').setup {
     error_sign = " ",
     warn_sign = "",
     hint_sign = "",

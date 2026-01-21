@@ -148,7 +148,7 @@ esac
 
 # pnpm end
 export NVM_DIR="$HOME/.config/nvm"
-
+export CLOUDSDK_PYTHON_SITEPACKAGES=1
 # Lazy-load nvm when first needed
 nvm() {
   unset -f nvm

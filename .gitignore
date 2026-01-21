@@ -11,6 +11,7 @@
 Thumbs.db
 .spotlight-V100
 .Trashes
+ nvim/lazy-lock.json
 
 # ZSH
 zsh/.zcompdump
