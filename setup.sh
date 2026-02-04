@@ -65,5 +65,5 @@
 [ ! -f "$HOME"/.inputrc ] && ln -s "$PWD"/.inputrc "$HOME"/.inputrc
 [ ! -f "$HOME"/.config/picom.conf ] && ln -s "$PWD"/picom.conf "$HOME"/.config/picom.conf
 [ ! -f "$HOME"/.xprofile ] && ln -s "$PWD"/.xprofile "$HOME"/.xprofile
-[ ! -f "$HOME"/.config/zsh/.zshrc ] && ln -s "$HOME"/.config/zsh/.zshrc "$PWD"/.zshrc 
+[ ! -f "$HOME"/.config/zsh/.zshrc ] && ln -s "$PWD"/zsh/.zshrc "$HOME"/.config/zsh/.zshrc 
 [ ! -f "$HOME"/.dir_colors ] && ln -s "$PWD"/.dir_colors "$HOME"/.dir_colors

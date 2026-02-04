@@ -14,10 +14,10 @@ HISTDUP=erase
 
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/home/alpha/Desktop/google-cloud-sdk/path.zsh.inc' ]; then . '/home/alpha/Desktop/google-cloud-sdk/path.zsh.inc'; fi
+if [ -f "$HOME/Desktop/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/Desktop/google-cloud-sdk/path.zsh.inc"; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f '/home/alpha/Desktop/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/alpha/Desktop/google-cloud-sdk/completion.zsh.inc'; fi
+if [ -f "$HOME/Desktop/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/Desktop/google-cloud-sdk/completion.zsh.inc"; fi
 
 # History Options
 # No repeating commands
@@ -123,20 +123,20 @@ fi
 [ -f $HOME/.config/zsh/.zshenv ] && source $HOME/.config/zsh/.zshenv
 
 conda-init() {
-  __conda_setup="$('/home/alpha/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+  __conda_setup="$("$HOME/anaconda3/bin/conda" 'shell.zsh' 'hook' 2> /dev/null)"
   if [ $? -eq 0 ]; then
       eval "$__conda_setup"
   else
-      if [ -f "/home/alpha/anaconda3/etc/profile.d/conda.sh" ]; then
-          . "/home/alpha/anaconda3/etc/profile.d/conda.sh"
+      if [ -f "$HOME/anaconda3/etc/profile.d/conda.sh" ]; then
+          . "$HOME/anaconda3/etc/profile.d/conda.sh"
       else
-          export PATH="/home/alpha/anaconda3/bin:$PATH"
+          export PATH="$HOME/anaconda3/bin:$PATH"
       fi
   fi
   unset __conda_setup
 }
 
-alias luamake=/home/alpha/.config/nvim/lua-language-server/3rd/luamake/luamake
+alias luamake=$HOME/.config/nvim/lua-language-server/3rd/luamake/luamake
 
 # source /etc/profile.d/autojump.sh
 
