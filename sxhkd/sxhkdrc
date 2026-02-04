@@ -35,7 +35,7 @@ super + {h,j,k,l}
 ctrl + alt + {Right, Left}
 	bspc desktop -f {next.local, prev.local}
 
-# Switch to last open workspacee
+# Switch to last open workspace
 alt + {Tab, grave}
 	bspc {node, desktop} -f last
 

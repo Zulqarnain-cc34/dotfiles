@@ -56,14 +56,14 @@ bspc rule -a mplayer2 state=floating
 bspc rule -a Kupfer.py focus=on
 bspc rule -a Screenkey manage=off
 
-conky -q -c ~/.config/conky/conky1/conkyrc1 &
+command -v conky >/dev/null && conky -q -c ~/.config/conky/conky1/conkyrc1 &
 picom &
 sxhkd &
 dunst &
 redshift -O 5000 & 
 [ -x "$HOME/bin/bash_scripts/random-wallpaper.sh" ] && "$HOME/bin/bash_scripts/random-wallpaper.sh" &
 xset r rate 300 50 &
-xmodmap ~/.Xmodmap &
+xmodmap "$HOME/.Xmodmap" &
 clipmenud &
 
 polybar -r main --config=$HOME/.config/polybar/config.ini &

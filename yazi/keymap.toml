@@ -86,8 +86,8 @@ prepend_keymap = [
   { on = ":", run = "shell --block --interactive", desc = "Run shell command (block until finishes)" },
   { on = "w", run = "quit", desc = "Quit and CD into current directory" },
 
-  { on = ["m", "k"], run = "shell -- qdbus org.kde.kdeconnect /modules/kdeconnect/devices/439fc7a8f3a87d51/sftp mountAndWait", desc = "Mount KDE Connect" },
-  { on = ["a", "n"], run = "shell -- sshfs anime@192.168.100.66:/home/anime/Videos/ /home/alpha/mnt/anime/", desc = "Mount anime share via SSHFS" },
+  { on = ["m", "k"], run = "shell -- qdbus org.kde.kdeconnect /modules/kdeconnect/devices/$(kdeconnect-cli -a --id-only)/sftp mountAndWait", desc = "Mount KDE Connect" },
+  { on = ["a", "n"], run = "shell -- sshfs anime@192.168.100.66:/home/anime/Videos/ $HOME/mnt/anime/", desc = "Mount anime share via SSHFS" },
 
   # ============ EDIT / EXTERNAL OPERATIONS ============
   { on = ["e", "e"], run = "open", desc = "Open/edit with default editor" },

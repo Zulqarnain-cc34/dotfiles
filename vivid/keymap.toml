@@ -27,7 +27,7 @@ prepend_keymap = [
   # ============ MAKE / CREATE OPERATIONS ============
   { on = ["m", "d"], run = "create --dir", desc = "Create directory" },
   { on = ["m", "f"], run = "create", desc = "Create file" },
-  { on = ["m", "k"], run = "shell -- qdbus org.kde.kdeconnect /modules/kdeconnect/devices/439fc7a8f3a87d51/sftp mountAndWait", desc = "Mount KDE Connect" },
+  { on = ["m", "k"], run = "shell -- qdbus org.kde.kdeconnect /modules/kdeconnect/devices/$(kdeconnect-cli -a --id-only)/sftp mountAndWait", desc = "Mount KDE Connect" },
 
   # ============ EDIT / EXTERNAL OPERATIONS ============
   { on = ["e", "e"], run = "open", desc = "Open/edit with default editor" },
@@ -47,7 +47,7 @@ prepend_keymap = [
   { on = ["a", "g"], run = "shell -- tar cvzf \"$1.tar.gz\" \"$1\"", desc = "Create TAR.GZ archive" },
   { on = ["a", "b"], run = "shell -- tar cjvf \"$1.tar.bz2\" \"$1\"", desc = "Create TAR.BZ2 archive" },
   { on = ["a", "u"], run = "shell -- case \"${1##*.}\" in tar.bz2) tar xjf \"$1\";;tar.gz|tgz) tar xzf \"$1\";;bz2) bunzip2 \"$1\";;rar) unrar x \"$1\";;gz) gunzip \"$1\";;tar) tar xf \"$1\";;zip) unzip \"$1\";;Z) uncompress \"$1\";;7z) 7z x \"$1\";;deb) ar x \"$1\";;tar.xz) tar xf \"$1\";;tar.zst) unzstd \"$1\";;esac", desc = "Extract archive" },
-  { on = ["a", "n", "m"], run = "shell -- sshfs anime@192.168.100.66:/home/anime/Videos/ /home/alpha/mnt/anime/", desc = "Mount anime share via SSHFS" },
+  { on = ["a", "n", "m"], run = "shell -- sshfs anime@192.168.100.66:/home/anime/Videos/ $HOME/mnt/anime/", desc = "Mount anime share via SSHFS" },
 
   # ============ TRASH MANAGEMENT ============
   { on = ["t", "r"], run = "shell -- trash-restore", desc = "Restore file from trash" },

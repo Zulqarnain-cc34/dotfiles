@@ -128,7 +128,7 @@ config.set('content.javascript.enabled', True,
 config.set('content.javascript.enabled', True, '*://localhost/*')
 config.set('content.javascript.enabled', True, '*://localhost:*/*')
 config.set('content.javascript.enabled', True,
-           'file:///home/wasif/build/other-projects/Bento/index.html')
+           f'file://{HOME}/build/other-projects/Bento/index.html')
 config.set('content.javascript.enabled', True, '*://gitlab.com/*')
 config.set('content.javascript.enabled', True, '*://github.com/*')
 config.set('content.javascript.enabled', True, '*://invidious.kavin.rocks/*')
@@ -197,7 +197,7 @@ c.downloads.location.suggestion = 'both'
 c.tabs.show = 'always'
 # Setting default page for when opening new tabs or new windows with
 # commands like :open -t and :open -w .
-c.url.default_page = 'file:///home/wasif/build/other-projects/Bento/index.html'
+c.url.default_page = f'file://{HOME}/build/other-projects/Bento/index.html'
 # Search engines which can be used via the address bar.  Maps a search
 # engine name (such as `DEFAULT`, or `ddg`) to a URL with a `{}`
 # placeholder. The placeholder will be replaced by the search term, use
@@ -441,7 +441,7 @@ config.bind(";wa",
 config.bind("gd", 'set downloads.location.directory ~/Downloads ; download')
 config.bind(
     ";ls",
-    'set downloads.location.directory ~/Pictures/Iwatate-Saho/ ; links download'
+    f'set downloads.location.directory {HOME}/Pictures/Iwatate-Saho/ ; links download'
 )
 ###############################################################################
 #              _ _               _

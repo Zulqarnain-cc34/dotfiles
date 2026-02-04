@@ -8,6 +8,7 @@
 export HISTSIZE=50000
 
 export SAVEHIST=$HISTSIZE
+mkdir -p "$HOME/.logs/zsh"
 HISTFILE="$HOME/.logs/zsh/history"
 HISTDUP=erase
 

@@ -77,7 +77,9 @@ export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
 '
 export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
 
-export LS_COLORS="$(vivid generate one-dark)"
+if command -v vivid >/dev/null 2>&1; then
+    export LS_COLORS="$(vivid generate one-dark)"
+fi
 
 #Hadoop Related Options
 
