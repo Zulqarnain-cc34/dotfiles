@@ -20,10 +20,12 @@ zsh/.zdirs
 zsh/plugins/
 
 # MPD
+cache.db.lock
 mpd/database
 mpd/state
 mpd/sticker.sql
 
+newsboat/cache.db.lock
 Kvantum/Otto
 Kvantum/Sweet
 Kvantum/Sweet-Mars

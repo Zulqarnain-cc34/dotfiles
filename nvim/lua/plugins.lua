@@ -119,13 +119,13 @@ return require('lazy').setup({
     { "Tastyep/structlog.nvim" },
 
     -- ================== LSP, Autocomplete and Treesitter =====================
-    {
-        'onsails/lspkind-nvim',
-        event = "BufRead",
-        config = function()
-            require("plugins.lspkind")
-        end
-    },
+    -- {
+    --     'onsails/lspkind-nvim',
+    --     event = "BufRead",
+    --     config = function()
+    --         require("plugins.lspkind")
+    --     end
+    -- },
     {
         "navarasu/onedark.nvim",
         priority = 1000,
