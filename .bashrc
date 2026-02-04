@@ -35,12 +35,17 @@ fi
 #echo -e "$($HOME/Downloads/archlogo.txt)"
 [ -f /usr/share/fzf/key-bindings.bash ] && source /usr/share/fzf/key-bindings.bash
 
-# export LS_COLORS="$(vivid generate one-dark-modified)"
+# Generate LS_COLORS with vivid if available (matches zsh behavior)
+if command -v vivid >/dev/null 2>&1; then
+    export LS_COLORS="$(vivid generate one-dark)"
+fi
 
 # test -r ~/.dir_colors && eval $(dircolors ~/.dir_colors)
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
+# NOTE: Conda initialization is disabled to avoid slow bash startup.
+# To enable conda in bash, uncomment the block below or run 'conda init bash'
 # __conda_setup="$("$HOME/Softwares/anaconda3/bin/conda" "shell.bash" "hook" 2>/dev/null)"
 # if [ $? -eq 0 ]; then
 #     eval "$__conda_setup"
@@ -54,4 +59,17 @@ fi
 # unset __conda_setup
 #
 # # <<< conda initialize <<<
+
+# NOTE: Starship prompt is disabled in bash to use the custom PS1 prompt defined above.
+# Zsh uses starship via fastfetch. To enable starship in bash, uncomment the line below:
 # eval "$(starship init bash)"
+
+# Lazy-load NVM for faster bash startup (matches zsh behavior)
+export NVM_DIR="$HOME/.config/nvm"
+nvm() {
+  unset -f nvm
+  [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+  [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"
+  nvm "$@"
+}
+

@@ -1,12 +1,12 @@
-#! /bin/sh
+#!/bin/sh
+# BSPWM configuration script
 bspc rule -r "*"
-
-# killall bspswallow
-# pidof bspswallow | bspswallow &
-#
-# "一", "二", "三", "四", "五",
+# Generic fallback monitor configuration (Chinese numerals for workspaces)
 bspc monitor -d 一 二 三 四 五 六 七 八 九
 
+# HARDWARE-SPECIFIC: Monitor configuration for multi-monitor setup
+# To find your monitor names, run: xrandr --query | grep " connected"
+# Then update the lines below with your actual monitor names
 bspc monitor DisplayPort-0 -d 1 2 3 4 5 6 7
 bspc monitor DisplayPort-1 -d 8 9
 bspc monitor HDMI-A-0 -d 10

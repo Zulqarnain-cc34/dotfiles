@@ -204,7 +204,7 @@ alt  + n
    kitty -e newsboat
 
 super + p
-   ~/.config/polybar/scripts/powermenu
+   $HOME/.config/polybar/scripts/powermenu
 
 # F7
 #   toggletouch

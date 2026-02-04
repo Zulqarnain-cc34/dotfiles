@@ -9,7 +9,7 @@ set -U SXHKD_SHELL sh
 
 # Default programs:
 set -x EDITOR "nvim"
-set -x TERMINAL "kitty"
+set -x TERMINAL "kitty"  # Consistent with .profile and .zshenv
 set -x BROWSER "qutebrowser"
 
 ## Fuzzy finder

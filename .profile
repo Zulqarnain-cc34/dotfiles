@@ -5,8 +5,8 @@ export NPM_PACKAGES="$HOME/.npm-packages"
 export BROWSERCLI="w3m"
 export BROWSER="firefox"
 export TERMINAL="alacritty"
-export EDITOR=nvim
-export RTV_BROWSER=\"$HOME/bin/bash_scripts/urlportal.sh\"
+export EDITOR="nvim"
+export RTV_BROWSER="$HOME/bin/bash_scripts/urlportal.sh"
 # export TERM="alacritty"
 
 # export PATH="$PATH:/usr/local/opt/coreutils/libexec/gnubin"

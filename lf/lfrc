@@ -80,6 +80,8 @@ cmd copy_text ${{
     xclip -sel clip -t text/plain $f
     }}
 cmd send_to_phone ${{
+    # NOTE: Assumes single KDE Connect device. For multiple devices, select manually:
+    # kdeconnect-cli --list-devices
     kdeconnect-cli -d $(kdeconnect-cli -a --id-only) --share $fx
     }}
 
@@ -114,6 +116,7 @@ cmd mkfile %{{
 
 
 cmd mount_kdeconnect ${{
+    # NOTE: Assumes single KDE Connect device
     qdbus org.kde.kdeconnect /modules/kdeconnect/devices/$(kdeconnect-cli -a --id-only)/sftp mountAndWait
 }}
 
@@ -258,6 +261,8 @@ cmd config-edit ${{
     $EDITOR "$HOME/.config/lf/lfrc"
 }}
 
+# USER-SPECIFIC: Network mount for anime server
+# Update IP address and credentials for your network setup
 cmd anime-mount ${{
         sshfs anime@192.168.100.66:/home/anime/Videos/ "$HOME/mnt/anime/"
 }}

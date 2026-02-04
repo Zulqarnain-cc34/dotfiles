@@ -15,10 +15,10 @@ HISTDUP=erase
 
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f "$HOME/Desktop/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/Desktop/google-cloud-sdk/path.zsh.inc"; fi
+if [ -f "$HOME/.local/share/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/.local/share/google-cloud-sdk/path.zsh.inc"; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f "$HOME/Desktop/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/Desktop/google-cloud-sdk/completion.zsh.inc"; fi
+if [ -f "$HOME/.local/share/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/.local/share/google-cloud-sdk/completion.zsh.inc"; fi
 
 # History Options
 # No repeating commands
@@ -121,6 +121,10 @@ fi
 [ -f "$HOME/.aliases/aliases" ] && source "$HOME/.aliases/aliases"
 
 [ -f /usr/share/fzf/key-bindings.zsh ] && source /usr/share/fzf/key-bindings.zsh
+
+# Autojump integration (matches bash behavior)
+[ -f /usr/share/autojump/autojump.zsh ] && source /usr/share/autojump/autojump.zsh
+
 [ -f $HOME/.config/zsh/.zshenv ] && source $HOME/.config/zsh/.zshenv
 
 conda-init() {
@@ -149,7 +153,7 @@ fi
 
 
 # pnpm
-export PNPM_HOME="/home/alpha/.local/share/pnpm"
+export PNPM_HOME="$HOME/.local/share/pnpm"
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;

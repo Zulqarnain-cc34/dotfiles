@@ -8,12 +8,9 @@ typeset -U PATH path
 #
 export NPM_CONFIG_PREFIX="$HOME/.local"
 export PATH="$HOME/.local/bin:$PATH"
-# XDG
-export XDG_DATA_HOME="$HOME/.local/share"
-export XDG_CONFIG_HOME="$HOME/.config"
-export XDG_CACHE_HOME="$HOME/.cache"
-export XDG_STATE_HOME="$HOME/.local/state"
-export XDG_DATA_DIRS="/usr/local/share:/usr/share"
+
+# NOTE: XDG variables and GDK_DPI_SCALE are defined in .profile and inherited
+# This avoids duplication and ensures consistency across shells
 
 # Scaling
 # export QT_AUTO_SCREEN_SCALE_FACTOR=0
@@ -21,7 +18,6 @@ export XDG_DATA_DIRS="/usr/local/share:/usr/share"
 # export QT_SCREEN_SCALE_FACTORS="1;1;1"
 # export GDK_SCALE=1
 # export GDK_DPI_SCALE=1
-export GDK_DPI_SCALE=0.8
 
 # Fixing Paths
 # export XINITRC="$XDG_CONFIG_HOME"/X11/xinitrc
@@ -29,21 +25,32 @@ export GDK_DPI_SCALE=0.8
 # export ZDOTDIR=$HOME/.config/zsh
 
 # Flutter
-export ANDROID_SDK_ROOT='/opt/android-sdk'
-export PATH=$PATH:$ANDROID_SDK_ROOT/platform-tools/
-export PATH=$PATH:$ANDROID_SDK_ROOT/tools/bin/
-# export PATH=$PATH:$ANDROID_ROOT/emulator
-export PATH=$PATH:$ANDROID_SDK_ROOT/tools/
+export ANDROID_SDK_ROOT="/opt/android-sdk"
+case ":$PATH:" in
+  *":$ANDROID_SDK_ROOT/platform-tools:"*) ;;
+  *) PATH="$PATH:$ANDROID_SDK_ROOT/platform-tools" ;;
+esac
+case ":$PATH:" in
+  *":$ANDROID_SDK_ROOT/tools/bin:"*) ;;
+  *) PATH="$PATH:$ANDROID_SDK_ROOT/tools/bin" ;;
+esac
+case ":$PATH:" in
+  *":$ANDROID_SDK_ROOT/tools:"*) ;;
+  *) PATH="$PATH:$ANDROID_SDK_ROOT/tools" ;;
+esac
 
 # java for sdkmanager flutter
-export JAVA_HOME='/usr/lib/jvm/java-8-openjdk'
-export PATH=$JAVA_HOME/bin:$PATH 
+export JAVA_HOME="/usr/lib/jvm/java-8-openjdk"
+case ":$PATH:" in
+  *":$JAVA_HOME/bin:"*) ;;
+  *) PATH="$JAVA_HOME/bin:$PATH" ;;
+esac 
 
 # Default Apps
 export EDITOR="nvim"
 export READER="zathura"
 export VISUAL="nvim"
-export TERMINAL="alacritty"
+export TERMINAL="kitty"  # Consistent with .profile
 export BROWSER="firefox"
 export VIDEO="mpv"
 export IMAGE="sxiv"
@@ -61,7 +68,7 @@ export IMAGES_DIR="$HOME/Pictures/Pictures/"
 export VIDEOS_DIR="$HOME/Videos/videos/"
 export BOOKDIR="$HOME/Documents/Books/"
 export ALIASDIR="$HOME/.aliases/aliases"
-export RTV_BROWSER="~/bin/bash_scripts/urlportal.sh"
+export RTV_BROWSER="$HOME/bin/bash_scripts/urlportal.sh"
 
 # export MANPATH
 # MANPATH="$NPM_PACKAGES/share/man:$(manpath)"
@@ -82,8 +89,9 @@ if command -v vivid >/dev/null 2>&1; then
 fi
 
 #Hadoop Related Options
+# NOTE: Commented out - uncomment and update paths if using Hadoop/Spark
 
-# export HADOOP_HOME=/home/alpha/program_files/binaries/Hadoop_Stack/hadoop-3.3.4
+# export HADOOP_HOME=$HOME/program_files/binaries/Hadoop_Stack/hadoop-3.3.4
 # export HADOOP_INSTALL=$HADOOP_HOME
 # export HADOOP_MAPRED_HOME=$HADOOP_HOME
 # export HADOOP_COMMON_HOME=$HADOOP_HOME
@@ -93,37 +101,41 @@ fi
 # export PATH=$PATH:$HADOOP_HOME/sbin:$HADOOP_HOME/bin
 # export HADOOP_OPTS="-Djava.library.path=$HADOOP_HOME/lib/nativ"
 #
-# export HIVE_HOME="/home/alpha/program_files/binaries/Hadoop_Stack/apache-hive-3.1.3-bin"
+# export HIVE_HOME="$HOME/program_files/binaries/Hadoop_Stack/apache-hive-3.1.3-bin"
 # export PATH=$PATH:$HIVE_HOME/bin
 #
-# export SPARK_HOME="/home/alpha/program_files/binaries/Hadoop_Stack/spark-3.3.1-bin-hadoop"
+# export SPARK_HOME="$HOME/program_files/binaries/Hadoop_Stack/spark-3.3.1-bin-hadoop"
 # export PATH=$PATH:$SPARK_HOME/bin
 # export PYTHONPATH=${SPARK_HOME}/python/:$(echo ${SPARK_HOME}/python/lib/py4j-*-src.zip):${PYTHONPATH}
 #
 #Path
-# path=("$HOME/bin/binaries" "$HOME/bin/python_scripts" "$HOME/bin/bash_scripts" 
-# 	"$HOME/go/bin" "$HOME/.local/bin" "$path[@]")
-# export PATH
+# Idempotent PATH additions (won't duplicate on nested shells)
+case ":$PATH:" in
+  *":$HOME/bin:"*) ;;
+  *) [ -d "$HOME/bin" ] && PATH="$HOME/bin:$PATH" ;;
+esac
 
-if [ -d "$HOME/bin" ]; then
-    PATH="$HOME/bin:$PATH"
-fi
+case ":$PATH:" in
+  *":$HOME/.local/bin:"*) ;;
+  *) [ -d "$HOME/.local/bin" ] && PATH="$HOME/.local/bin:$PATH" ;;
+esac
 
-if [ -d "$HOME/.local/bin" ]; then
-    PATH="$HOME/.local/bin:$PATH"
-fi
+case ":$PATH:" in
+  *":$HOME/bin/binaries:"*) ;;
+  *) [ -d "$HOME/bin/binaries" ] && PATH="$PATH:$HOME/bin/binaries" ;;
+esac
 
-if [ -d "$HOME/bin/binaries" ]; then
-    PATH="$PATH:$HOME/bin/binaries"
-fi
-
-if [ -d "$HOME/bin/bash_scripts" ]; then
-    PATH="$PATH:$HOME/bin/bash_scripts"
-fi
+case ":$PATH:" in
+  *":$HOME/bin/bash_scripts:"*) ;;
+  *) [ -d "$HOME/bin/bash_scripts" ] && PATH="$PATH:$HOME/bin/bash_scripts" ;;
+esac
 
 export GOPATH="$HOME/go"
 export GOBIN="$GOPATH/bin"
-export PATH="$GOBIN:$PATH"
+case ":$PATH:" in
+  *":$GOBIN:"*) ;;
+  *) PATH="$GOBIN:$PATH" ;;
+esac
 # LESS COLORS
 export LESS_TERMCAP_mb=$'\e[1;31m'     # begin bold
 export LESS_TERMCAP_md=$'\e[1;33m'     # begin blink
@@ -133,166 +145,3 @@ export LESS_TERMCAP_me=$'\e[0m'        # reset bold/blink
 export LESS_TERMCAP_se=$'\e[0m'        # reset reverse video
 export LESS_TERMCAP_ue=$'\e[0m'        # reset underline
 export GROFF_NO_SGR=1                  # for konsole and gnome-terminal
-
-export LF_ICONS="\
-di=:\
-fi=:\
-ln=:\
-or=:\
-ex=:\
-*.vimrc=:\
-*.viminfo=:\
-*.gitignore=:\
-*.c=:\
-*.cc=:\
-*.clj=:\
-*.coffee=:\
-*.cpp=:\
-*.css=:\
-*.d=:\
-*.dart=:\
-*.erl=:\
-*.exs=:\
-*.fs=:\
-*.go=:\
-*.h=:\
-*.hh=:\
-*.hpp=:\
-*.hs=:\
-*.html=:\
-*.java=:\
-*.jl=:\
-*.js=:\
-*.json=:\
-*.lua=:\
-*.md=:\
-*.php=:\
-*.pl=:\
-*.pro=:\
-*.py=:\
-*.rb=:\
-*.rs=:\
-*.scala=:\
-*.ts=:\
-*.vim=:\
-*.cmd=:\
-*.ps1=:\
-*.sh=:\
-*.bash=:\
-*.zsh=:\
-*.fish=:\
-*.tar=:\
-*.tgz=:\
-*.arc=:\
-*.arj=:\
-*.taz=:\
-*.lha=:\
-*.lz4=:\
-*.lzh=:\
-*.lzma=:\
-*.tlz=:\
-*.txz=:\
-*.tzo=:\
-*.t7z=:\
-*.zip=:\
-*.z=:\
-*.dz=:\
-*.gz=:\
-*.lrz=:\
-*.lz=:\
-*.lzo=:\
-*.xz=:\
-*.zst=:\
-*.tzst=:\
-*.bz2=:\
-*.bz=:\
-*.tbz=:\
-*.tbz2=:\
-*.tz=:\
-*.deb=:\
-*.rpm=:\
-*.jar=:\
-*.war=:\
-*.ear=:\
-*.sar=:\
-*.rar=:\
-*.alz=:\
-*.ace=:\
-*.zoo=:\
-*.cpio=:\
-*.7z=:\
-*.rz=:\
-*.cab=:\
-*.wim=:\
-*.swm=:\
-*.dwm=:\
-*.esd=:\
-*.jpg=:\
-*.jpeg=:\
-*.mjpg=:\
-*.mjpeg=:\
-*.gif=:\
-*.bmp=:\
-*.pbm=:\
-*.pgm=:\
-*.ppm=:\
-*.tga=:\
-*.xbm=:\
-*.xpm=:\
-*.tif=:\
-*.tiff=:\
-*.png=:\
-*.svg=:\
-*.svgz=:\
-*.mng=:\
-*.pcx=:\
-*.mov=:\
-*.mpg=:\
-*.mpeg=:\
-*.m2v=:\
-*.mkv=:\
-*.webm=:\
-*.ogm=:\
-*.mp4=:\
-*.m4v=:\
-*.mp4v=:\
-*.vob=:\
-*.qt=:\
-*.nuv=:\
-*.wmv=:\
-*.asf=:\
-*.rm=:\
-*.rmvb=:\
-*.flc=:\
-*.avi=:\
-*.fli=:\
-*.flv=:\
-*.gl=:\
-*.dl=:\
-*.xcf=:\
-*.xwd=:\
-*.yuv=:\
-*.cgm=:\
-*.emf=:\
-*.ogv=:\
-*.ogx=:\
-*.aac=:\
-*.au=:\
-*.flac=:\
-*.m4a=:\
-*.mid=:\
-*.midi=:\
-*.mka=:\
-*.mp3=:\
-*.mpc=:\
-*.ogg=:\
-*.ra=:\
-*.wav=:\
-*.oga=:\
-*.opus=:\
-*.spx=:\
-*.xspf=:\
-*.pdf=:\
-*.nix=:\
-"
-
