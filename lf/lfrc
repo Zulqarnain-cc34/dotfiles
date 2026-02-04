@@ -69,11 +69,11 @@ cmd folder_size !{{
 }}
 
 cmd copy_desk_down ${{
-    cp $fx /home/wasif/LAN/Users/wasif/Downloads/
+    cp $fx "$HOME/LAN/Users/$USER/Downloads/"
     }}
 
 cmd copy_down ${{
-    cp $fx /home/wasif/Downloads/
+    cp $fx "$HOME/Downloads/"
     }}
 cmd copy_image_png ${{
     xclip -sel clip -t image/png $f
@@ -167,7 +167,7 @@ cmd fzf_locate ${{
 
 
 cmd set_mozillas_new_tab_back %{{
-    cp "$f" ~/.mozilla/firefox/oduj1f5k.default-release/chrome/newtab_background.jpg && cp "$f" ~/.mozilla/firefox/static-oduj1f5k.default-release/chrome/newtab_background.jpg
+    cp "$f" "$HOME/.mozilla/firefox/oduj1f5k.default-release/chrome/newtab_background.jpg" && cp "$f" "$HOME/.mozilla/firefox/static-oduj1f5k.default-release/chrome/newtab_background.jpg"
 }}
 
 cmd show_info_exif ${{exiftool "$f" | less}}
@@ -264,7 +264,7 @@ cmd config-edit ${{
 }}
 
 cmd anime-mount ${{
-        sshfs anime@192.168.100.66:/home/anime/Videos/ /home/alpha/mnt/anime/
+        sshfs anime@192.168.100.66:/home/anime/Videos/ "$HOME/mnt/anime/"
 }}
     
 cmd on-cd &{{
@@ -552,205 +552,3 @@ map f
         lf -remote "send $id set ratios 1:2:3:5"
     fi
 }}
-
-# movement binds
-# map gk cd /run/user/1000/4b3c7f6f758726fc/
-
-# map gv. cd ~/Videos
-# map Dv. $mv $fx ~/Videos/
-# map Yv. $cp $fx ~/Videos/
-#
-# map gvp cd ~/Videos/Performances
-# map Dvp $mv $fx ~/Videos/Performances/
-# map Yvp $cp $fx ~/Videos/Performances/
-#
-# map gvy cd ~/Videos/youtube-dl
-# map Dvy $mv $fx ~/Videos/youtube-dl/
-# map Yvy $cp $fx ~/Videos/youtube-dl/
-#
-# map gvr cd ~/Videos/random
-# map Dvr $mv $fx ~/Videos/random/
-# map Yvr $cp $fx ~/Videos/random/
-#
-# map gvo cd ~/Videos/OBS
-# map Dvo $mv $fx ~/Videos/OBS/
-# map Yvo $cp $fx ~/Videos/OBS/
-#
-# map gvS cd /home/wasif/Videos/subs
-# map DvS $mv $fx /home/wasif/Videos/subs/
-# map YvS $cp $fx /home/wasif/Videos/subs/
-#
-# map gv8 cd /home/wasif/Videos/Team-8
-# map Dv8 $mv $fx /home/wasif/Videos/Team-8/
-# map Yv8 $cp $fx /home/wasif/Videos/Team-8/
-#
-# map gm. cd ~/Music
-# map Dm. $mv $fx ~/Music/
-# map Ym. $cp $fx ~/Music/
-#
-# map gb. cd ~/bin
-# map Db. $mv $fx ~/bin/
-# map Yb. $cp $fx ~/bin/
-#
-# map gbb cd /home/wasif/bin/bash_scripts
-# map Dbb $mv $fx /home/wasif/bin/bash_scripts/
-# map Ybb $cp $fx /home/wasif/bin/bash_scripts/
-#
-# map gbB cd /home/wasif/bin/binaries
-# map DbB $mv $fx /home/wasif/bin/binaries/
-# map YbB $cp $fx /home/wasif/bin/binaries/
-#
-# map gbc cd /home/wasif/bin/C
-# map Dbc $mv $fx /home/wasif/bin/C/
-# map Ybc $cp $fx /home/wasif/bin/C/
-#
-# map gbd cd /home/wasif/bin/dwm_autostart_scripts
-# map Dbd $mv $fx /home/wasif/bin/dwm_autostart_scripts/
-# map Ybd $cp $fx /home/wasif/bin/dwm_autostart_scripts/
-#
-# map gbp cd /home/wasif/bin/python_scripts
-# map Dbp $mv $fx /home/wasif/bin/python_scripts/
-# map Ybp $cp $fx /home/wasif/bin/python_scripts/
-#
-# map gd. cd ~/Documents
-# map Dd. $mv $fx ~/Documents/
-# map Yd. $cp $fx ~/Documents/
-#
-# map gda cd /home/wasif/Documents/assignment
-# map Dda $mv $fx /home/wasif/Documents/assignment/
-# map Yda $cp $fx /home/wasif/Documents/assignment/
-#
-# map gdf cd /home/wasif/Documents/frequent
-# map Ddf $mv $fx /home/wasif/Documents/frequent/
-# map Ydf $cp $fx /home/wasif/Documents/frequent/
-#
-# map gdn cd /home/wasif/Documents/Notes
-# map Ddn $mv $fx /home/wasif/Documents/Notes/
-# map Ydn $cp $fx /home/wasif/Documents/Notes/
-#
-# map gdp cd /home/wasif/Documents/personal
-# map Ddp $mv $fx /home/wasif/Documents/personal/
-# map Ydp $cp $fx /home/wasif/Documents/personal/
-#
-# map gdP cd /home/wasif/Documents/projects
-# map DdP $mv $fx /home/wasif/Documents/projects/
-# map YdP $cp $fx /home/wasif/Documents/projects/
-#
-# map gdu cd /home/wasif/Documents/Uni
-# map Ddu $mv $fx /home/wasif/Documents/Uni/
-# map Ydu $cp $fx /home/wasif/Documents/Uni/
-#
-# map gde cd /home/wasif/Documents/etc
-# map Dde $mv $fx /home/wasif/Documents/etc/
-# map Yde $cp $fx /home/wasif/Documents/etc/
-#
-# map gD. cd ~/Downloads
-# map DD. $mv $fx ~/Downloads/
-# map YD. $cp $fx ~/Downloads/
-#
-# map gB. cd /home/wasif/build
-# map DB. $mv $fx /home/wasif/build/
-# map YB. $cp $fx /home/wasif/build/
-#
-# map gBm cd /home/wasif/build/my-projects
-# map DBm $mv $fx /home/wasif/build/my-projects/
-# map YBm $cp $fx /home/wasif/build/my-projects/
-#
-# map gBo cd /home/wasif/build/other-projects
-# map DBo $mv $fx /home/wasif/build/other-projects/
-# map YBo $cp $fx /home/wasif/build/other-projects/
-#
-# map gp. cd ~/Pictures
-# map Dp. $mv $fx ~/Pictures/
-# map Yp. $cp $fx ~/Pictures/
-#
-# map gpA cd ~/Pictures/AC_BGs_Resize
-# map DpA $mv $fx ~/Pictures/AC_BGs_Resize/
-# map YpA $cp $fx ~/Pictures/AC_BGs_Resize/
-#
-# map gpa cd /home/wasif/Pictures/aidoru-backup
-# map Dpa $mv $fx /home/wasif/Pictures/aidoru-backup/
-# map Ypa $cp $fx /home/wasif/Pictures/aidoru-backup/
-#
-# map gpe cd ~/Pictures/etc
-# map Dpe $mv $fx ~/Pictures/etc/
-# map Ype $cp $fx ~/Pictures/etc/
-#
-# map gpr cd ~/Pictures/random
-# map Dpr $mv $fx ~/Pictures/random/
-# map Ypr $cp $fx ~/Pictures/random/
-#
-# map gps cd ~/Pictures/Spectacle
-# map Dps $mv $fx ~/Pictures/Spectacle/
-# map Yps $cp $fx ~/Pictures/Spectacle/
-#
-# map gpR cd ~/Pictures/rings
-# map DpR $mv $fx ~/Pictures/rings/
-# map YpR $cp $fx ~/Pictures/rings/
-#
-# map gpw cd ~/Pictures/Wallpapers
-# map Dpw $mv $fx ~/Pictures/Wallpapers/
-# map Ypw $cp $fx ~/Pictures/Wallpapers/
-#
-# map gC. cd ~/.config
-# map DC. $mv $fx ~/.config/
-# map YC. $cp $fx ~/.config/
-#
-# map gl. cd ~/.local
-# map Dl. $mv $fx ~/.local/
-# map Yl. $cp $fx ~/.local/
-#
-# map gL. cd ~/LAN
-# map DL. $mv $fx ~/LAN/
-# map YL. $cp $fx ~/LAN/
-#
-# map gLb cd /home/wasif/LAN/books
-# map DLb $mv $fx /home/wasif/LAN/books/
-# map YLb $cp $fx /home/wasif/LAN/books/
-#
-# map gLg cd /home/wasif/LAN/Games
-# map DLg $mv $fx /home/wasif/LAN/Games/
-# map YLg $cp $fx /home/wasif/LAN/Games/
-#
-# map gLs cd /home/wasif/LAN/Software
-# map DLs $mv $fx /home/wasif/LAN/Software/
-# map YLs $cp $fx /home/wasif/LAN/Software/
-#
-# map gLt cd /home/wasif/LAN/Torrents
-# map DLt $mv $fx /home/wasif/LAN/Torrents/
-# map YLt $cp $fx /home/wasif/LAN/Torrents/
-#
-# map gLU cd /home/wasif/LAN/usb
-# map DLU $mv $fx /home/wasif/LAN/usb/
-# map YLU $cp $fx /home/wasif/LAN/usb/
-#
-# map gLu cd /home/wasif/LAN/Users
-# map DLu $mv $fx /home/wasif/LAN/Users/
-# map YLu $cp $fx /home/wasif/LAN/Users/
-#
-# map gLS cd /home/wasif/LAN/E650-EB07
-# map DLS $mv $fx /home/wasif/LAN/E650-EB07/
-# map YLS $cp $fx /home/wasif/LAN/E650-EB07/
-#
-# map gLp cd /home/wasif/LAN/primary
-# map DLp $mv $fx /home/wasif/LAN/primary/
-# map YLp $cp $fx /home/wasif/LAN/primary/
-#
-# map gLw. cd /home/wasif/LAN/Users/wasif
-# map DLw. $mv $fx /home/wasif/LAN/Users/wasif/
-# map YLw. $cp $fx /home/wasif/LAN/Users/wasif/
-#
-# map gLwd cd /home/wasif/LAN/Users/wasif/Downloads
-# map DLwd $mv $fx /home/wasif/LAN/Users/wasif/Downloads/
-# map YLwd $cp $fx /home/wasif/LAN/Users/wasif/Downloads/
-#
-# map gr. cd /home/wasif/ram
-# map Dr. $mv $fx /home/wasif/ram/
-# map Yr. $cp $fx /home/wasif/ram/
-#
-#
-# map gt cd /tmp
-# map Dt $mv $fx /tmp
-# map Yt $cp $fx /tmp
-#
-#

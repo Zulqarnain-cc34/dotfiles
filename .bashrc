@@ -1,4 +1,4 @@
-#.Bashrc
+w#.Bashrc
 
 #############################################################################
 ##  _____                   _             _    ____      _                 ##
@@ -26,14 +26,14 @@ else
 fi
 
 #Sourcing all files in .config/shellconfig/*
-source /usr/share/autojump/autojump.bash
+[ -f /usr/share/autojump/autojump.bash ] && source /usr/share/autojump/autojump.bash
 # xrdb -merge "$HOME"/.Xresources &
 
-source "$HOME"/.aliases/aliases
-source "$HOME"/.aliases/functions
+[ -f "$HOME"/.aliases/aliases ] && source "$HOME"/.aliases/aliases
+[ -f "$HOME"/.aliases/functions ] && source "$HOME"/.aliases/functions
 
 #echo -e "$($HOME/Downloads/archlogo.txt)"
-source /usr/share/fzf/key-bindings.bash
+[ -f /usr/share/fzf/key-bindings.bash ] && source /usr/share/fzf/key-bindings.bash
 
 # export LS_COLORS="$(vivid generate one-dark-modified)"
 

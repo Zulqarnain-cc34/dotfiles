@@ -1,8 +1,7 @@
 export NPM_PACKAGES="$HOME/.npm-packages"
 
 # Default Apps
-
-export HOME="/home/alpha"
+# Note: HOME is set by the system, don't override it
 export BROWSERCLI="w3m"
 export BROWSER="firefox"
 export TERMINAL="urxvt"

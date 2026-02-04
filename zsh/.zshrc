@@ -112,15 +112,15 @@ if [ ! -d "$HOME/.config/zsh/plugins/zsh-syntax-highlighting" ]; then
     git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.config/zsh/plugins/zsh-syntax-highlighting
 fi
 
-source ~/.config/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh 2>/dev/null
-source ~/.config/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
+[ -f ~/.config/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ] && source ~/.config/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh 2>/dev/null
+[ -f ~/.config/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ] && source ~/.config/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
 
 # Sourcing Files,Aliases and Bindings
 # Source aliases from properly linked config location
-source "$HOME/.aliases/aliases"
+[ -f "$HOME/.aliases/aliases" ] && source "$HOME/.aliases/aliases"
 
-source /usr/share/fzf/key-bindings.zsh
-source $HOME/.config/zsh/.zshenv
+[ -f /usr/share/fzf/key-bindings.zsh ] && source /usr/share/fzf/key-bindings.zsh
+[ -f $HOME/.config/zsh/.zshenv ] && source $HOME/.config/zsh/.zshenv
 
 conda-init() {
   __conda_setup="$('/home/alpha/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"

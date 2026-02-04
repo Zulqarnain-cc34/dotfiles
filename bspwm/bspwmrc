@@ -61,7 +61,7 @@ picom &
 sxhkd &
 dunst &
 redshift -O 5000 & 
-random-wallpaper.sh & # Not working
+[ -x "$HOME/bin/bash_scripts/random-wallpaper.sh" ] && "$HOME/bin/bash_scripts/random-wallpaper.sh" &
 xset r rate 300 50 &
 xmodmap ~/.Xmodmap &
 clipmenud &
