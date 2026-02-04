@@ -13,7 +13,7 @@ configuration {
     display-drun:        "龎 manga:";
 }
 
-@import "~/.cache/wal/colors.rasi"
+@import "${HOME}/.cache/wal/colors.rasi"
 
 window {
     transparency:        "real";

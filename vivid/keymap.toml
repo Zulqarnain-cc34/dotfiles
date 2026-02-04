@@ -39,7 +39,7 @@ prepend_keymap = [
   { on = ["e", "p"], run = "shell -- sxiv -t ./* &> /dev/null &", desc = "Preview images in directory" },
   { on = ["e", "P"], run = "shell -- sxiv \"$1\" &> /dev/null &", desc = "Open image with sxiv" },
   { on = ["e", "s"], run = "shell -- curl -F 'file=@$1' https://0x0.st | xclip -selection clip", desc = "Share file via 0x0.st" },
-  { on = ["e", "d"], run = "shell -- $EDITOR ~/.config/yazi/keymap.toml", desc = "Edit Yazi keymap" },
+  { on = ["e", "d"], run = "shell -- $EDITOR $HOME/.config/yazi/keymap.toml", desc = "Edit Yazi keymap" },
 
   # ============ ARCHIVE OPERATIONS ============
   { on = ["a", "z"], run = "shell -- zip -r \"$1\" \"$1\"", desc = "Create ZIP archive" },
@@ -52,12 +52,12 @@ prepend_keymap = [
   # ============ TRASH MANAGEMENT ============
   { on = ["t", "r"], run = "shell -- trash-restore", desc = "Restore file from trash" },
   { on = ["t", "c"], run = "shell -- trash-empty", desc = "Clear entire trash" },
-  { on = ["t", "g"], run = "cd ~/.local/share/Trash/", desc = "Go to trash directory" },
+  { on = ["t", "g"], run = "cd $HOME/.local/share/Trash/", desc = "Go to trash directory" },
 
   # ============ WALLPAPER OPERATIONS ============
-  { on = ["b", "g"], run = "shell -- cp \"$1\" ~/.config/wall.png && xwallpaper --stretch \"$1\"", desc = "Set as wallpaper" },
-  { on = ["b", "s"], run = "shell -- ~/bin/bash_scripts/personal/wallpaper.sh \"$1\"", desc = "Select wallpaper interactively" },
-  { on = ["b", "t"], run = "shell -- cp \"$1\" ~/.mozilla/firefox/oduj1f5k.default-release/chrome/newtab_background.jpg && cp \"$1\" ~/.mozilla/firefox/static-oduj1f5k.default-release/chrome/newtab_background.jpg", desc = "Set Firefox new tab background" },
+  { on = ["b", "g"], run = "shell -- cp \"$1\" $HOME/.config/wall.png && xwallpaper --stretch \"$1\"", desc = "Set as wallpaper" },
+  { on = ["b", "s"], run = "shell -- $HOME/bin/bash_scripts/personal/wallpaper.sh \"$1\"", desc = "Select wallpaper interactively" },
+  { on = ["b", "t"], run = "shell -- cp \"$1\" $HOME/.mozilla/firefox/oduj1f5k.default-release/chrome/newtab_background.jpg && cp \"$1\" $HOME/.mozilla/firefox/static-oduj1f5k.default-release/chrome/newtab_background.jpg", desc = "Set Firefox new tab background" },
 
   # ============ SORT OPERATIONS ============
   { on = ["s", "a"], run = "sort atime --reverse", desc = "Sort by access time (newest first)" },
