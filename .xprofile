@@ -1,1 +1,1 @@
-xrdb ~/.Xresources &
+xrdb "$HOME/.Xresources" &

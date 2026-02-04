@@ -60,11 +60,6 @@ cmd trash ${{
 }}
 
 cmd folder_size !{{
-    du --max-depth=1 -h --apparent-size
-}}
-
-
-cmd folder_size !{{
     du --max-depth=1 -h --apparent-size | sort -rh
 }}
 
