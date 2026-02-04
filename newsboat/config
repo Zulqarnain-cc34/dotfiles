@@ -46,27 +46,29 @@ bookmark-autopilot no
 # w3m: https://www.youtube.com/watch?v=Z22cFTB-uqg
 # tmux: https://www.youtube.com/watch?v=ZNM1KfqpyGo
 
-macro o set browser "$BROWSERCLI %u"; open-in-browser ; set browser "$BROWSERCLI %u"
+# -- Macros ---------------------------------------------
 
-#macro o set browser "urxvtc -e $BROWSERCLI %u" ; open-in-browser ; set browser "$BROWSERCLI %u"
+# Standard usage: bind-key i macro-prefix
+bind-key i macro-prefix
 
-macro i set browser "wget -O /tmp/newsboat.img %u && feh /tmp/newsboat.img &> /dev/null &"; open-in-browser ; set browser "$BROWSERCLI %u"
+# Change the 'o' macro to explicitly use kitty
+macro o set browser "kitty w3m %u" ; open-in-browser ; set browser "${HOME}/bin/bash_scripts/urlportal.sh"
 
-# read reddit comments with rtv (reddit terminal viewer)
-macro r set browser "rtv -l %u"; open-in-browser ; set browser "$BROWSERCLI %u"
+# Download and view image
+macro i set browser "wget -O /tmp/newsboat.img %u && feh /tmp/newsboat.img &> /dev/null &" ; open-in-browser ; set browser "${HOME}/bin/bash_scripts/urlportal.sh"
 
-#macro r set browser "tmux split-window && tmux send-keys 'rtv -l %u && tmux kill-pane\n'"; open-in-browser ; set browser "$BROWSERCLI %u"
+# Reddit comments via RTV
+macro r set browser "rtv -l %u" ; open-in-browser ; set browser "${HOME}/bin/bash_scripts/urlportal.sh"
 
-# add video or audio to play queue using mpv (requires: task-spooler, mpv, youtube-dl)
-# task-spooler: https://www.youtube.com/watch?v=wv8D8wT20ZY
-# youtube-dl: https://www.youtube.com/watch?v=MFxlwVhwayg
+# Media Player (mpv)
+macro p set browser "mpv %u &> /dev/null &" ; open-in-browser ; set browser "${HOME}/bin/bash_scripts/urlportal.sh"
 
-macro p set browser "mpv %u &> /dev/null &"; open-in-browser ; set browser "$BROWSERCLI %u"
-macro c set browser "pipe-viewer --comments=\"%u\" "; open-in-browser ; set browser "$BROWSERCLI %u"
-macro s set browser "pipe-viewer "; open-in-browser ; set browser "$BROWSERCLI %u"
+# YouTube comments/Search via Pipe-Viewer
+macro c set browser "pipe-viewer --comments=\"%u\"" ; open-in-browser ; set browser "${HOME}/bin/bash_scripts/urlportal.sh"
+macro s set browser "pipe-viewer" ; open-in-browser ; set browser "${HOME}/bin/bash_scripts/urlportal.sh"
 
-# copy url to clipboard "yank"
-macro y set browser "echo -n %u | xclip -selection clipboard"; open-in-browser ; set browser "$BROWSERCLI %u"
+# Copy URL to clipboard
+macro y set browser "echo -n %u | xclip -selection clipboard" ; open-in-browser ; set browser "${HOME}/bin/bash_scripts/urlportal.sh"
 
 # bind keys
 bind-key i macro-prefix

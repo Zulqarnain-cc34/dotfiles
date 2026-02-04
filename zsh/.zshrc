@@ -12,8 +12,9 @@ mkdir -p "$HOME/.logs/zsh"
 HISTFILE="$HOME/.logs/zsh/history"
 HISTDUP=erase
 
+export BROWSERCLI="w3m"
 
-
+export PATH="/home/alpha/bin/binaries/google-cloud-sdk/bin:$PATH"
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f "$HOME/.local/share/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/.local/share/google-cloud-sdk/path.zsh.inc"; fi
 
@@ -92,20 +93,12 @@ zle-line-init() {
 }
 zle -N zle-line-init
 
-echo -ne '\e[5 q' # Use beam shape cursor on startup.
-precmd() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
-
 # Control bindings for programs
 bindkey -s "^g" "lc\n"
 bindkey -s "^h" "history 1\n"
 bindkey -s "^l" "clear\n"
 bindkey -s "^d" "dlfile\n"
 
-# eval "$(starship init zsh)"  # [web:113][web:114]
-# PS1="%{$fg[red]%}%n%{$reset_color%}@%{$fg[blue]%}%m %{$fg[yellow]%}%~ %{$reset_color%}%% "
-
-# PLUGINS 
-# Check if plugins exist, if not, download them (Auto-Install)
 if [ ! -d "$HOME/.config/zsh/plugins/zsh-autosuggestions" ]; then
     git clone https://github.com/zsh-users/zsh-autosuggestions ~/.config/zsh/plugins/zsh-autosuggestions
 fi
@@ -157,6 +150,7 @@ export PNPM_HOME="$HOME/.local/share/pnpm"
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
+
 esac
 
 # pnpm end
@@ -180,9 +174,3 @@ function yazi() {
 }
 
 fastfetch
-
-# The next line updates PATH for the Google Cloud SDK.
-#jif [ -f '/home/alpha/bin/binaries/google-cloud-sdk/path.zsh.inc' ]; then . '/home/alpha/bin/binaries/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-#if [ -f '/home/alpha/bin/binaries/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/alpha/bin/binaries/google-cloud-sdk/completion.zsh.inc'; fi
