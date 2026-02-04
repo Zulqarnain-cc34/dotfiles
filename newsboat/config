@@ -10,7 +10,7 @@ unbind-key ,
 unbind-key RIGHT
 unbind-key LEFT
 
-browser ~/bin/bash_scripts/urlportal.sh
+browser "${HOME}/bin/bash_scripts/urlportal.sh"
 feed-sort-order views
 
 
