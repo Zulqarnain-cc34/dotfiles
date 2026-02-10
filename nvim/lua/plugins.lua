@@ -169,7 +169,11 @@ return require('lazy').setup({
             require('plugins.lualine')
         end
     },
-    -- Commenting
+    {
+        'nemanjamalesija/smart-paste.nvim',
+        event = 'VeryLazy',
+        config = true,
+    },
     {
         "folke/snacks.nvim",
         priority = 1000,

@@ -31,6 +31,7 @@
   "rainbow-delimiters.nvim": { "branch": "master", "commit": "d6b802552cbe7d643a3b6b31f419c248d1f1e220" },
   "remote-nvim.nvim": { "branch": "main", "commit": "9992c2fb8bf4f11aca2c8be8db286b506f92efcb" },
   "schemastore.nvim": { "branch": "main", "commit": "6217ff926e951401ac32f572da04e93e8cd6129d" },
+  "smart-paste.nvim": { "branch": "main", "commit": "5fd0b8514ecac6098cd5b1855d60ee86d20dbc3e" },
   "snacks.nvim": { "branch": "main", "commit": "fe7cfe9800a182274d0f868a74b7263b8c0c020b" },
   "structlog.nvim": { "branch": "main", "commit": "45b26a2b1036bb93c0e83f4225e85ab3cee8f476" },
   "styler.nvim": { "branch": "main", "commit": "d73d868541a2536a96d057c793d53c50e5f407bb" },
