@@ -1,1 +1,1 @@
-@theme "${HOME}/.config/rofi/themes/ayuthemes.rasi"
+@theme "/home/alpha/.config/rofi/themes/sidebar.rasi"

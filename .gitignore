@@ -16,6 +16,7 @@ Thumbs.db
 # ZSH
 zsh/.zcompdump
 zsh/.cache/
+zsh/.zcompdump.archiso.102692
 zsh/.zdirs
 zsh/plugins/
 
