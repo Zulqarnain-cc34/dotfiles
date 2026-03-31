@@ -24,6 +24,9 @@ ueberzug_scale = 1
 ueberzug_offset = [ 0, 0, 0, 0 ]
 
 [opener]
+audio_only = [
+  { run = "mpv --no-video %s", block = true, for = "unix" }
+]
 edit = [
   { run = '${EDITOR:-vi} "$@"', desc = "$EDITOR", block = true, for = "unix" },
   { run = 'code %*', orphan = true, desc = "code", for = "windows" },
@@ -51,7 +54,7 @@ rules = [
   { name = "*/", use = [ "edit", "open", "reveal" ] },
   { mime = "text/*", use = [ "edit", "reveal" ] },
   { mime = "image/*", use = [ "open", "reveal" ] },
-  { mime = "{audio,video}/*", use = [ "play", "reveal" ] },
+  { mime = "{audio,video}/*", use = [ "play", "reveal","audio_only" ] },
   { mime = "application/{zip,rar,7z*,tar,gzip,xz,zstd,bzip*,lzma,compress,archive,cpio,arj,xar,ms-cab*}", use = [ "extract", "reveal" ] },
   { mime = "application/pdf", use = "open" },
   { mime = "application/{json,ndjson}", use = [ "edit", "reveal" ] },

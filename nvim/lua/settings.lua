@@ -34,9 +34,9 @@ g.user_emmet_leader_key = '<C-Z>'
 
 -- cmd("colorscheme nvim")
 -- cmd("colorscheme nvim")
---cmd("colorscheme onedark")
+cmd("colorscheme tokyonight")
 --
--- g.tokyonight_style = 'night' -- available: night, storm
+g.tokyonight_style = 'night' -- available: night, storm
 
 ------------------------------------------------------------------------
 --                              WikiList                              --

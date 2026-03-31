@@ -1,17 +1,18 @@
 vim.lsp.config['clangd'] = {
   cmd = {
-    "clangd",
-    "--background-index",
-    "--clang-tidy",
-    "--completion-style=detailed",
-    "--header-insertion=never",
-    "--offset-encoding=utf-8",
-  },
-  root_dir = vim.lsp.util.root_pattern(
-    "compile_commands.json",
-    "CMakeLists.txt",
-    ".git"
-  ),
+     "clangd",
+     "--background-index",
+     "-j=12",
+     "--query-driver=/usr/bin/**/clang-*,/bin/clang,/bin/clang++,/usr/bin/gcc,/usr/bin/g++",
+     "--clang-tidy",
+     "--clang-tidy-checks=*",
+     "--all-scopes-completion",
+     "--cross-file-rename",
+     "--completion-style=detailed",
+     "--header-insertion-decorators",
+     "--header-insertion=iwyu",
+     "--pch-storage=memory",
+   },
   filetypes = { "c", "cpp", "objc", "objcpp" },
 }
 

@@ -8,6 +8,10 @@ keymap = [
   # ============ NAVIGATION ============
   { on = "j", run = "arrow 1 --no-wrap", desc = "Move down (no wrap)" },
   { on = "k", run = "arrow -1 --no-wrap", desc = "Move up (no wrap)" },
+  { on = ["a", "p"],
+      run = 'shell --block "mpv --no-video \"$0\""',
+      desc = "Play as audio only"
+  },
   { on = "l", run = "plugin smart-enter", desc = "Open file or enter directory" },
   { on = "h", run = "leave", desc = "Go back to parent directory" },
   { on = "<Up>", run = "arrow -1", desc = "Move cursor up" },
