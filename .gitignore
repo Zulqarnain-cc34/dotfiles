@@ -18,8 +18,9 @@ zsh/.zcompdump
 zsh/.cache/
 zsh/.zcompdump.archiso.102692
 zsh/.zdirs
+zsh/.zsh_history
 zsh/plugins/
-
+fish/fish_variables
 # MPD
 cache.db.lock
 mpd/database

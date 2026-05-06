@@ -31,13 +31,7 @@ g.UltiSnipsJumpBackwardTrigger = '<c-k>'
 g.user_emmet_leader_key = '<C-Z>'
 -- g.user_emmet_install_global = 0
 --
-
--- cmd("colorscheme nvim")
--- cmd("colorscheme nvim")
-cmd("colorscheme tokyonight")
---
-g.tokyonight_style = 'night' -- available: night, storm
-
+cmd("colorscheme onedark")
 ------------------------------------------------------------------------
 --                              WikiList                              --
 ------------------------------------------------------------------------

@@ -11,7 +11,7 @@ require('lsp/bash')
 -- require('lsp/cmake')
 require('lsp/C')
 require('lsp/tsserver') -- a warning need to see and fix someday _____
-require('lsp/graphql') -- Not Working
+require('lsp/graphql')  -- Not Working
 require('lsp/html')
 require('lsp/docker')
 require('lsp/json')

@@ -83,4 +83,4 @@ o.tabstop = 4        -- insert tabs on the start of a line according to shiftwid
 
 o.timeoutlen = 500   -- timeout before which key shows its keybindings prompt
 
-vim.g.my_theme = "tokyonight"
+-- vim.g.my_theme = "tokyonight"

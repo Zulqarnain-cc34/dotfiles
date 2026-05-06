@@ -153,10 +153,6 @@ return require('lazy').setup({
         "navarasu/onedark.nvim",
         priority = 1000,
         config = function()
-            require('onedark').setup {
-                style = 'darker'
-            }
-            require('onedark').load()
         end
     },
     {
@@ -250,13 +246,6 @@ return require('lazy').setup({
 
     { "windwp/nvim-ts-autotag", event = "InsertEnter", after = 'nvim-treesitter' },
 
-    {
-        'nvimdev/lspsaga.nvim',
-        dependencies = { 'neovim/nvim-lspconfig' },
-        config = function()
-            require('lspsaga').setup({})
-        end,
-    },
     {
         'saghen/blink.cmp',
         dependencies = { 'rafamadriz/friendly-snippets' },
