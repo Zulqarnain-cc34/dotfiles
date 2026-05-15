@@ -19,7 +19,9 @@ styles=($(ls -p --hide="colors.rasi" $dir/styles))
 color="${styles[$(( $RANDOM % 8 ))]}"
 
 # comment this line to disable random colors
-sed -i -e "s/@import .*/@import \"$color\"/g" $dir/styles/colors.rasi
+colors="$dir/styles/colors.rasi"
+[[ -f "$colors" ]] || cp "$dir/styles/colors.rasi.example" "$colors"
+sed -i -e "s/@import .*/@import \"$color\"/g" "$colors"
 
 # comment these lines to disable random style
 themes=($(ls -p --hide="launcher.sh" --hide="styles" $dir))

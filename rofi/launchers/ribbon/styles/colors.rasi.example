@@ -1,0 +1,4 @@
+/*
+ * Copied to colors.rasi (gitignored). launcher.sh randomizes @import each run.
+ */
+@import "nightly.rasi"

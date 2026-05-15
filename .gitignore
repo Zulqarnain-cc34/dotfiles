@@ -61,3 +61,6 @@ newsboat/colorschemes
 yazi/plugins
 
 qutebrowser/bookmarks
+
+# Rofi ribbon launcher: runtime @import (sed-updated by launcher.sh)
+rofi/launchers/ribbon/styles/colors.rasi
