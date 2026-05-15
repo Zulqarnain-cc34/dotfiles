@@ -1,0 +1,13 @@
+[user]
+    name = Your Name
+    email = you@example.com
+
+[alias]
+    s = status -s
+    l = log --oneline -n 20 --graph --abbrev-commit
+
+[init]
+    defaultBranch = main
+
+[pull]
+    ff = only

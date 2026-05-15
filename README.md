@@ -195,6 +195,8 @@ chmod +x setup.sh
 
 > **Note:** The `setup.sh` script handles symlinking automatically. It will back up or warn about existing configs in your `~/.config` directory.
 
+See **[CHANGELOG.md](CHANGELOG.md)** for notable repo changes (security, setup, breaking tweaks).
+
 ---
 
 ## 📂 Structure

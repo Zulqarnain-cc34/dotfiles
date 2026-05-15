@@ -1,0 +1,28 @@
+title = "dotfiles_v2 gitleaks config"
+
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Docs, local dirs, and known false positives"
+paths = [
+    '''\.example$''',
+    '''plan\.md''',
+    '''context\.md''',
+    '''SECURITY\.md''',
+    '''docs/secrets\.md''',
+    '''\.mutt/''',
+    '''nvim/tempdir/''',
+    '''polybar/scripts/gmail/''',
+    '''yazi/plugins/''',
+    '''\.git/''',
+    '''qutebrowser/greassmonkey/4chanX\.js''',
+    '''qutebrowser/greassmonkey/''',
+    '''qutebrowser/greasemonkey/''',
+]
+regexes = [
+    '''your@example\.com''',
+    '''Your Name''',
+    '''789456123uiojklm''',
+    '''imageKeys:\s*''',
+]
