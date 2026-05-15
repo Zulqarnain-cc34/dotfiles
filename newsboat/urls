@@ -1,0 +1,71 @@
+
+#                          _                 _                _
+#  _ __   _____      _____| |__   ___   __ _| |_   _   _ _ __| |___
+# | '_ \ / _ \ \ /\ / / __| '_ \ / _ \ / _` | __| | | | | '__| / __|
+# | | | |  __/\ V  V /\__ \ |_) | (_) | (_| | |_  | |_| | |  | \__ \
+# |_| |_|\___| \_/\_/ |___/_.__/ \___/ \__,_|\__|  \__,_|_|  |_|___/
+#
+
+
+
+
+# }}}
+# -------- Query Feeds {{{
+# ------------------------------------------------------
+# Starred and flagged Articles
+
+"query:Starred Articles:flags # \"s\""
+
+"query:All Articles Linux-Subreddit:tags # \"Linux-subreddit\"" "Linux-Subreddit"
+"query:All Reddit Posts:tags # \"Reddit\"" "Reddit"
+"query:All Programming Posts:tags # \"Programming\"" "Programming"
+"query:All Sports Posts:tags # \"Sports\"" "Sports"
+"query:All Github Posts:tags # \"Github\"" "Github"
+"query:All Youtube Posts:tags # \"Youtube\"" "YOUTUBE"
+# "query:Unread Articles (3month year old):unread = \"yes\" and tags !# \"pouet\" and tags !# \"page2rss\" and age between 0:365"
+# "query:Unread Articles (1 year old):unread = \"yes\" and tags !# \"pouet\" and tags !# \"page2rss\" and age between 0:365"
+# "query:Unread Articles (1 month old):unread = \"yes\" and tags !# \"pouet\" and tags !# \"page2rss\" and age between 0:31"
+# "query:Unread Articles (1 week old):unread = \"yes\" and tags !# \"pouet\" and tags !# \"page2rss\" and age between 0:7"
+
+# "query:All Unread Articles (7 days old):unread = \"yes\" and age between 0:7"
+# "query:All Unread Articles (1 month old):unread = \"yes\" and age between 0:30"
+# "query:All Unread Articles (31-60 days old):unread = \"yes\" and age between 31:60"
+# "query:All Unread Articles (61-90 days old):unread = \"yes\" and age between 61:90"
+
+-----------------------------
+----------Sports-------------
+-----------------------------
+https://github.com/trimstray/the-book-of-secret-knowledge/commits/master.atom "~Github: The book of secret knowledge" "Github"
+
+
+-----------------------------
+---------programming---------
+-----------------------------
+
+https://thecrazyprogrammer.com/feed "Programming: General" "Programming"
+https://medium.com/feed/better-programming "Programming: General" "Programming"
+
+-------------------------
+-------YOUTUBE-----------
+-------------------------
+
+https://www.youtube.com/feeds/videos.xml?channel_id=UCXuqSBlHAE6Xw-yeJA0Tunw "~YOUTUBE: Linus Tech Tips" "Youtube"
+https://www.youtube.com/feeds/videos.xml?channel_id=UC8butISFwT-Wl7EV0hUK0BQ "~YOUTUBE: FreeCodeCamp" "Youtube"
+https://www.youtube.com/feeds/videos.xml?channel_id=UCbfYPyITQ-7l4upoX8nvctg "~YOUTUBE: The Two Minute Papers" "Youtube"
+
+-----------------------------
+-----------Linux-------------
+-----------------------------
+
+https://www.linuxjournal.com/node/feed "~Linux-SubReddit: linuxjournal" "Linux-Subreddit"
+https://www.reddit.com/r/linux/.rss "~Linux-Subreddit: linux" "Linux-subreddit"
+https://www.reddit.com/r/commandline/.rss "~Linux-Subreddit: commandline" "Linux-subreddit"
+https://terminaltrove.com/new.xml   "~Linux-Subreddit: cli-tools" "Linux-subreddit"
+https://www.reddit.com/r/linuxmasterrace/.rss "~Linux-Subreddit: LinuxMasterRace" "Linux-subreddit"
+https://www.reddit.com/r/unixporn/.rss "~Linux-Subreddit: unixporn" "Linux-subreddit"
+https://www.reddit.com/r/UsabilityPorn/.rss "~Linux-Subreddit: UsabilityPorn" "Linux-subreddit"
+https://www.reddit.com/r/zsh/.rss "~Linux-Subreddit: zsh" "Linux-subreddit"
+https://www.reddit.com/r/neovim/.rss "~Linux-Subreddit: neovim" "Linux-subreddit"
+https://www.reddit.com/r/bash/.rss "~Linux-Subreddit: bash" "Linux-subreddit"
+https://www.reddit.com/r/vim/.rss "~Linux-Subreddit: vim" "Linux-subreddit"
+https://www.reddit.com/r/opensource/.rss "~Linux-Subreddit: opensource" "Linux-subreddit"

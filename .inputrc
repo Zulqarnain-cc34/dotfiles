@@ -1,0 +1,8 @@
+# Readline config — copy to ~/.inputrc if desired
+#   cp .inputrc.example ~/.inputrc
+
+set enable-keypad on
+set meta-flag on
+set input-meta on
+set output-meta on
+set convert-meta off
