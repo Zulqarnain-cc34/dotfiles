@@ -14,19 +14,7 @@ HISTDUP=erase
 
 export BROWSERCLI="w3m"
 
-
-if [ -f '/home/alpha/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/home/alpha/Downloads/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/home/alpha/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/alpha/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
-
 export PATH="/home/alpha/bin/binaries/google-cloud-sdk/bin:$PATH"
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f "$HOME/.local/share/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/.local/share/google-cloud-sdk/path.zsh.inc"; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f "$HOME/.local/share/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/.local/share/google-cloud-sdk/completion.zsh.inc"; fi
-
 # History Options
 # No repeating commands
 setopt appendhistory
@@ -180,3 +168,9 @@ function yazi() {
 }
 
 fastfetch
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/home/alpha/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/home/alpha/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/home/alpha/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/alpha/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
