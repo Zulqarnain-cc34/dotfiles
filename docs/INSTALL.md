@@ -39,7 +39,13 @@ git config core.hooksPath .githooks
 
 ## 5. BSPWM monitors
 
-Edit `bspwm/bspwmrc` or use profiles under `bspwm/profiles/` (if present).
+Monitor profiles live under `bspwm/profiles/`:
+
+- `default.sh` — single monitor, nine desktops (fallback)
+- `desktop.sh` — author three-output layout (DisplayPort + HDMI)
+- `laptop.sh.example` — copy to `profiles/$(hostname -s).sh` and edit
+
+`bspwm/bspwmrc` loads `profiles/${DOTFILES_BSPWM_PROFILE:-$(uname -n)}.sh`, falling back to `default.sh`.
 
 Monitor names: `xrandr --query | grep ' connected'`
 
@@ -50,6 +56,8 @@ systemctl --user enable --now mpd.service   # optional
 ```
 
 Start BSPWM from your display manager or `.xprofile`.
+
+Neovim plugin pins are tracked in `nvim/lazy-lock.json` for reproducible installs; run `:Lazy sync` only when intentionally updating plugins.
 
 ## Docs
 

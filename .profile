@@ -4,7 +4,7 @@ export NPM_PACKAGES="$HOME/.npm-packages"
 # Note: HOME is set by the system, don't override it
 export BROWSERCLI="w3m"
 export BROWSER="firefox"
-export TERMINAL="alacritty"
+export TERMINAL="kitty"
 export EDITOR="nvim"
 export RTV_BROWSER="$HOME/bin/bash_scripts/urlportal.sh"
 # export TERM="alacritty"

@@ -146,10 +146,12 @@ This isn't just a text editor; it's a personalized Development Environment.
 | **`Super + T`** | Open Terminal (Kitty) |
 | **`Super + Space`** | App Launcher (Rofi) |
 | **`Super + Q`** | Close Window |
-| **`Super + Arrows`** | Focus Window (Left/Down/Up/Right) |
+| **`Super + H/J/K/L`** | Focus Window (Left/Down/Up/Right) |
+| **`Super + Arrows`** | Move Floating Window |
 | **`Super + D`** | Toggle Floating Mode |
-| **`Super + F`** | Toggle Fullscreen |
-| **`Super + 1-9`** | Switch Workspaces |
+| **`Super + F`** | Cycle Layout (fullscreen / monocle) |
+| **`Super + 1-8`** | Switch Workspaces |
+| **`Super + Shift + 1-8`** | Send Window to Workspace |
 
 </details>
 
@@ -159,7 +161,7 @@ This isn't just a text editor; it's a personalized Development Environment.
 
 | Keybinding | Action |
 | :--- | :--- |
-| **`Super + N`** | Newsboat (RSS Reader) |
+| **`Alt + N`** | Newsboat (RSS Reader) |
 | **`Super + M`** | NCMPCPP (Music Player) |
 | **`Super + W`** | Firefox |
 | **`Super + E`** | Neomutt (Email) |
@@ -170,32 +172,23 @@ This isn't just a text editor; it's a personalized Development Environment.
 
 ## 🚀 Installation
 
-### 1. Requirements
-Ensure you have the following packages installed on your system (names may vary by distro). This setup is designed primarily for **Arch Linux**.
+Full install guide: **[docs/INSTALL.md](docs/INSTALL.md)**
+
+### Quick start (Arch Linux)
 
 ```bash
-# Arch Linux (using pacman + yay)
-sudo pacman -S bspwm sxhkd polybar rofi kitty zsh neovim picom dunst \
-               ranger lf mpv mpd ncmpcpp newsboat brightnessctl playerctl \
-               tmux starship bat exa
-
-# Fonts (Crucial!)
-sudo pacman -S ttf-jetbrains-mono-nerd ttf-iosevka-nerd
+git clone https://github.com/Zulqarnain-cc34/dotfiles.git ~/etc/linuxConfig/dotfiles_v2
+cd ~/etc/linuxConfig/dotfiles_v2
+chmod +x setup.sh scripts/*.sh
+./scripts/install-deps.sh          # or install packages/minimal.txt by hand
+./setup.sh --backup                # symlink configs; backs up existing targets
+git config core.hooksPath .githooks
+./scripts/validate.sh
 ```
 
-### 2. Clone & Setup
-Clone the repository and run the setup script to symlink configurations:
+Minimal package list (one Nerd font if disk is tight): `packages/minimal.txt`
 
-```bash
-git clone https://github.com/Zulqarnain-cc34/dotfiles.git
-cd dotfiles
-chmod +x setup.sh
-./setup.sh
-```
-
-> **Note:** The `setup.sh` script handles symlinking automatically. It will back up or warn about existing configs in your `~/.config` directory.
-
-See **[CHANGELOG.md](CHANGELOG.md)** for notable repo changes (security, setup, breaking tweaks).
+> **Note:** `setup.sh` symlinks into `~/.config/` and `$HOME`. Use `--force` to replace existing targets. See [CHANGELOG.md](CHANGELOG.md) for notable repo changes.
 
 ---
 

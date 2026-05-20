@@ -11,7 +11,6 @@
 Thumbs.db
 .spotlight-V100
 .Trashes
- nvim/lazy-lock.json
 
 # ZSH
 zsh/.zcompdump
@@ -39,6 +38,7 @@ mpv/watch_later
 newsboat/cache.db
 
 .w3m/cookie
+.w3m/history
 
 .mutt/muttrc
 # Ncmpcpp
@@ -51,11 +51,10 @@ surfraw/bookmarks
 nvim/tempdir
 
 .gitconfig
+context.md
 
 # Misc
 .dotfiles_backup/
-
-polybar/scripts/gmail
 
 newsboat/colorschemes
 yazi/plugins

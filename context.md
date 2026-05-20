@@ -1,6 +1,6 @@
 # PROJECT CONTEXT — dotfiles_v2
 
-**Last Updated:** 2026-05-15 (full-repo audit)  
+**Last Updated:** 2026-05-20 (README/sxhkd sync, kitty TERMINAL, bspwm profiles, dunst cleanup, gmail module retired)  
 **Version:** v2 (stable daily driver; active maintenance)
 
 ---
@@ -10,8 +10,8 @@
 - **Purpose:** Personal Linux dotfiles repository (`dotfiles_v2`) that version-controls, documents, and deploys a cohesive desktop and CLI environment. Goals: aesthetic “rice,” fast dev workflow, reproducibility across machines via symlinks—not a distributable app.
 - **Audience / problem:** Built for the author (Zulqarnain / `zulqarnain-cc34`) on **Arch Linux**. Solves “new install or new machine” setup, keeps WM/shell/editor/launcher configs in sync, and encodes years of keybindings, themes, and tool integrations.
 - **Philosophy:** Minimal tiling WM (BSPWM), keyboard-driven workflow, Nord-ish borders + Tokyo Night / Gruvbox accents in terminals, `lazy.nvim` for IDE-like Neovim, Rofi as hub for launchers/menus, heavy use of terminal TUIs (ncmpcpp, newsboat, neomutt).
-- **Tech stack (summary):** **X11** session with **BSPWM 0.9.12** + **sxhkd**, **Polybar 3.7.2**, **picom** (blur/opacity), **dunst** notifications, **Zsh 5.9** + **Starship** + autosuggestions/syntax-highlighting, **Kitty 0.46.2** (README primary; `.profile` still sets `TERMINAL=alacritty`), **Neovim 0.12.2** + **lazy.nvim**, **Rofi 2.0**, file tools **Yazi**, **lf**, **ranger**, media **MPD/ncmpcpp/mpv**, browser **Firefox** + **qutebrowser** configs, optional **fish** shell config.
-- **Maturity:** Long-lived repo (commits back to 2021+); **stable daily driver** on author hardware. ~2,000+ tracked files (many vendored Zsh themes, Rofi `.rasi` themes). Ongoing tweaks (Neovim plugins, Yazi, Rofi ribbon colors). Not a 1:1 clone-and-forget kit—multi-monitor BSPWM block is **hardware-specific**.
+- **Tech stack (summary):** **X11** session with **BSPWM 0.9.12** + **sxhkd**, **Polybar 3.7.2**, **picom** (blur/opacity), **dunst** notifications, **Zsh 5.9** + **Starship** + autosuggestions/syntax-highlighting, **Kitty 0.46.2** (primary terminal; `TERMINAL=kitty` in `.profile`), **Neovim 0.12.2** + **lazy.nvim**, **Rofi 2.0**, file tools **Yazi**, **lf**, **ranger**, media **MPD/ncmpcpp/mpv**, browser **Firefox** + **qutebrowser** configs, optional **fish** shell config.
+- **Maturity:** Long-lived repo (commits back to 2021+); **stable daily driver** on author hardware. ~2,000+ tracked files (many vendored Zsh themes, Rofi `.rasi` themes). Ongoing tweaks (Neovim plugins, Yazi, Rofi ribbon colors). Multi-monitor layout lives in `bspwm/profiles/desktop.sh` — set `DOTFILES_BSPWM_PROFILE=desktop` or copy to `profiles/$(hostname).sh`.
 
 ---
 
@@ -48,8 +48,8 @@ bspwm (bspwmrc) ──► monitors/desktops/rules
 ### Config data flow
 
 1. Clone repo to e.g. `/home/alpha/etc/linuxConfig/dotfiles_v2`
-2. Run `./setup.sh` from repo root (`$PWD` must be repo dir)
-3. Script creates **symlinks** only if target does not exist (`[ ! -d ... ] && ln -s`)
+2. Run `./setup.sh` from repo root (optional `--backup`, `--force`; see `docs/INSTALL.md`)
+3. Script creates **symlinks** if target missing, or with `--force` replaces existing; runs `scripts/bootstrap-secrets.sh` for optional `.gitconfig`
 4. Apps read from `~/.config/<app>` or `$HOME` dotfiles
 
 **Design decisions**
@@ -60,8 +60,8 @@ bspwm (bspwmrc) ──► monitors/desktops/rules
 | BSPWM over DE | Lightweight, scriptable, keyboard tiling |
 | X11 (not Wayland) | Stack built around picom, sxhkd, polybar IPC—no Wayland migration |
 | `ZDOTDIR=$HOME/.config/zsh` | Keeps shell config inside XDG tree with other dotfiles |
-| Separate `dunstrc` at repo root + `dunst/` | Legacy: root `dunstrc` exists; `setup.sh` links `dunst/` dir only |
-| Hardware-specific `bspwmrc` monitors | Author runs 3 outputs; generic Chinese-numeral fallback runs first then overridden |
+| Separate `dunst/` only | Canonical config is `dunst/dunstrc`; root orphan removed |
+| BSPWM monitor profiles | `bspwm/profiles/` + `DOTFILES_BSPWM_PROFILE` or hostname file |
 
 ---
 
@@ -76,7 +76,7 @@ Versions below from **author machine** (`pacman -Q`, May 2026). Other installs m
 | polybar | 3.7.2-2 | Status bar |
 | rofi | 2.0.0-1 | Launcher / menus |
 | kitty | 0.46.2-1 | GPU terminal (README) |
-| alacritty | 0.16.1-1 | Alt terminal (`.profile`) |
+| alacritty | 0.16.1-1 | Alt terminal config (optional) |
 | neovim | 0.12.2-1 | Editor / IDE |
 | picom | 13-2 | Compositor (dual_kawase blur) |
 | dunst | 1.13.2-1 | Notifications |
@@ -99,7 +99,7 @@ Versions below from **author machine** (`pacman -Q`, May 2026). Other installs m
 **Notable custom setups**
 
 - **Neovim:** `lazy.nvim` bootstrapped in `nvim/lua/plugins.lua`; LSP via `nvim-lspconfig` + per-lang files in `nvim/lua/lsp/`; formatters via `efm` configs in `nvim/lua/efm/`.
-- **Rofi ribbon launcher:** Random theme + color on each invoke (`launcher.sh` sed-patches `colors.rasi`).
+- **Rofi ribbon launcher:** Random theme + color on each invoke (`launcher.sh` sed-patches `launchers/ribbon/styles/colors.rasi` — **gitignored**; template `colors.rasi.example`).
 - **Zsh plugins:** Cloned on first run into `~/.config/zsh/plugins/` (gitignored); not vendored in repo.
 - **Yazi:** Plugins directory gitignored; flavor + `yazi.toml` opener rules; preview via `code` for many mime types.
 - **Polybar:** Modular INI (`config.ini` includes `colors.ini`, `bars.ini`, `modules.ini`, `user_modules.ini`); custom scripts under `polybar/scripts/`.
@@ -117,7 +117,7 @@ This repo is organized as **one top-level folder (or root dotfile) per Linux pro
 
 | Repo path | Program | Symlink target (`setup.sh`) | Main config file(s) |
 |-----------|---------|----------------------------|---------------------|
-| `bspwm/` | BSPWM window manager | `~/.config/bspwm` | `bspwmrc` |
+| `bspwm/` | BSPWM window manager | `~/.config/bspwm` | `bspwmrc`, `profiles/*.sh` |
 | `sxhkd/` | Hotkey daemon | `~/.config/sxhkd` | `sxhkdrc` |
 | `polybar/` | Status bar | `~/.config/polybar` | `config.ini`, `modules.ini`, `colors.ini` |
 | `picom.conf` | Compositor (picom) | `~/.config/picom.conf` | `picom.conf` |
@@ -164,9 +164,8 @@ This repo is organized as **one top-level folder (or root dotfile) per Linux pro
 | `packages/v1`, `v2/` | Package manifests | *(not symlinked)* | `pacman-packages.txt`, etc. |
 | `screenshots/` | README assets | *(not symlinked)* | PNG previews only |
 | `context.md`, `prompt.txt` | Documentation | *(not symlinked)* | meta |
-| `dunstrc` (repo root) | Dunst (orphan copy) | **Not linked** | duplicate of `dunst/dunstrc`? |
 
-**`setup.sh` references missing from repo:** `twitchnotifier.cfg`, `.inputrc` (symlink lines exist; files may be absent on clone).
+**Repo meta (not app configs):** `SECURITY.md`, `CHANGELOG.md`, `docs/`, `scripts/`, `packages/minimal.txt`, `.gitleaks.toml`, `.github/workflows/secrets.yml`.
 
 ### Scale (approximate)
 
@@ -182,7 +181,6 @@ This repo is organized as **one top-level folder (or root dotfile) per Linux pro
 | Path | How to use |
 |------|------------|
 | `firefox/` | Copy or symlink `userChrome.css` / sweet theme into Firefox profile `chrome/` |
-| `dunstrc` (root) | Legacy; use `dunst/dunstrc` via setup |
 | `packages/` | Reference lists for `pacman`/`yay`/pip/npm — not loaded at runtime |
 
 ### Critical vs boilerplate
@@ -191,8 +189,9 @@ This repo is organized as **one top-level folder (or root dotfile) per Linux pro
 |-----------------------|--------------------------------------|
 | `bspwmrc`, `sxhkdrc`, `polybar/*.ini` | `zsh/themes/*`, `rofi/themes/*` |
 | `zsh/.zshrc`, `nvim/lua/*`, `yazi/*.toml` | `mpv/watch_later/`, `mpd/database`, `mpd/state` |
-| `kitty/kitty.conf`, `qutebrowser/config.py` | `nvim/lazy-lock.json` (gitignored) |
-| `ncmpcpp/config`, `newsboat/config` | `yazi/plugins/` (gitignored) |
+| `kitty/kitty.conf`, `qutebrowser/config.py` | `zsh/themes/*`, `rofi/themes/*` |
+| `ncmpcpp/config`, `newsboat/config` | `mpv/watch_later/`, `mpd/database`, `mpd/state` |
+| `nvim/lazy-lock.json` | tracked for reproducible Neovim plugin pins |
 | `.mutt/accounts/*` | `newsboat/cache.db`, `.w3m/cookie` |
 
 ### Entry points
@@ -223,7 +222,7 @@ One subsection per program/folder (alphabetical by repo path). See §4 catalog f
 | **Entry** | `alacritty.toml` |
 | **Theme** | Argonaut colors; cursor `#FF261E` |
 | **Links** | `~/.config/alacritty` |
-| **Notes** | `.profile` sets `TERMINAL=alacritty`; sxhkd uses **kitty** for `super+t`. Bash `.bashrc` has alacritty-specific PS1 branch. |
+| **Notes** | `.profile` sets `TERMINAL=kitty`; sxhkd uses `$TERMINAL`. Bash `.bashrc` has alacritty-specific PS1 branch. |
 
 ---
 
@@ -243,11 +242,11 @@ One subsection per program/folder (alphabetical by repo path). See §4 catalog f
 | | |
 |--|--|
 | **Entry** | `bspwmrc` |
-| **Role** | Monitors/desktops, border colors, window rules, **session autostart** |
-| **Desktops** | Fallback: 一–九; hardware: DP-0 → 1–7, DP-1 → 8–9, HDMI-A-0 → 10 |
+| **Role** | Loads monitor profile, borders/rules, **session autostart** |
+| **Profiles** | `profiles/default.sh` (9 desktops), `profiles/desktop.sh` (3 outputs), `profiles/laptop.sh.example`; selected by `DOTFILES_BSPWM_PROFILE`, `profiles/$(uname -n).sh`, or default |
 | **Rules** | `mpv` fullscreen; `Zathura` tiled; `Gimp` → desktop 8 floating; `Chromium` → desktop 2 |
 | **Autostart** | conky → picom → sxhkd → dunst → redshift → wallpaper script → xset/xmodmap → clipmenud → polybar |
-| **Gotcha** | Edit monitor names from `xrandr` on new hardware |
+| **Gotcha** | On author desktop: `export DOTFILES_BSPWM_PROFILE=desktop` or symlink profile to hostname |
 
 ---
 
@@ -261,11 +260,11 @@ One subsection per program/folder (alphabetical by repo path). See §4 catalog f
 
 ---
 
-### `dunst/` + root `dunstrc` — Notifications
+### `dunst/` — Notifications
 
 | | |
 |--|--|
-| **Entry** | `dunst/dunstrc` (linked); root `dunstrc` is **orphan** (not in setup) |
+| **Entry** | `dunst/dunstrc` (canonical; see `dunst/README.md`) |
 | **Style** | Terminus 12, gruvbox-ish separator `#ebdbb2`, geometry `500x5-30+50` |
 | **Links** | `~/.config/dunst` |
 | **Started** | From `bspwmrc` |
@@ -419,7 +418,7 @@ One subsection per program/folder (alphabetical by repo path). See §4 catalog f
 | **Format/lint** | `lua/efm/`: prettier, flake8, isort, gofumpt, shellcheck, shfmt, luacheck, markdownlint, pandoc, cppcheck, … |
 | **Extras** | `UltiSnips/` (JS/TS snippets), `ftplugin/cpp.vim`, `config/statusline.vimrc`, `README.md` plugin list |
 | **Docs** | See `nvim/README.md` for plugin inventory |
-| **Gotcha** | `lazy-lock.json` gitignored; run `:Lazy sync` on new machine |
+| **Gotcha** | `lazy-lock.json` tracked in git; run `:Lazy sync` after intentional plugin updates |
 
 ---
 
@@ -439,7 +438,7 @@ One subsection per program/folder (alphabetical by repo path). See §4 catalog f
 |--|--|
 | **INI** | `config.ini` includes colors, bars, modules, user_modules |
 | **Bar `main`** | Modules: launcher, bspwm, net up/down, battery, mpd, date, uptime, cpu/ram/fs bars, volume, backlight, powermenu |
-| **Scripts** | `powermenu` (rofi → lock/logout/suspend/reboot/shutdown), `weather.py`, `updates.sh`, `gmail` (gitignored), `polybar-mpv/` |
+| **Scripts** | `powermenu` (rofi → lock/logout/suspend/reboot/shutdown), `weather.py`, `updates.sh`, `polybar-mpv/` |
 | **statusbar/** | `sb-news`, `sb-volume`, `sb-pacpackages`, `sb-kbselect`, … |
 | **launch.sh** | killall polybar → restart `main` |
 | **Fonts** | Iosevka Nerd, waffle, Noto Color Emoji, Noto Sans CJK JP |
@@ -473,7 +472,8 @@ One subsection per program/folder (alphabetical by repo path). See §4 catalog f
 
 | | |
 |--|--|
-| **Primary** | `launchers/ribbon/launcher.sh` — random ribbon + random color (`sed` on `styles/colors.rasi`) |
+| **Primary** | `launchers/ribbon/launcher.sh` — random ribbon + random color (`sed` on `styles/colors.rasi`, gitignored) |
+| **Dynamic file** | `launchers/ribbon/styles/colors.rasi` — runtime `@import` pointer only; commit `colors.rasi.example`, not `colors.rasi` |
 | **Launchers** | `rofi-firefox-bookmarks`, `rofi-chromium-history`, `rofi-surfraw-websearch`, `rofi-manga`, `rofi-snippet`, `rofi-keepassXC`, `rofi-locate`, `web-search.py`, … |
 | **Applets** | `applets/` — battery, network, screenshot, powermenu variants (circle/square/rounded) |
 | **Themes** | ~154 `.rasi` files (Arc family, gruvbox, material, etc.) |
@@ -593,7 +593,7 @@ One subsection per program/folder (alphabetical by repo path). See §4 catalog f
 | **Features** | Vi mode, fzf, autosuggestions + syntax-highlighting (auto-clone to `plugins/`), yazi cwd hook, lazy nvm/conda, pnpm PATH, `fastfetch`, gcloud SDK snippets |
 | **themes/** | ~142 OMZ themes (vendored; rarely all used) |
 | **External** | `$HOME/.aliases/aliases`, optional `.zshenv` |
-| **`.zprofile`** | Only sets `ZDOTDIR` — **not** symlinked by setup.sh |
+| **`.zprofile`** | Login shell env; symlinked by `setup.sh` |
 
 ---
 
@@ -687,7 +687,7 @@ One subsection per program/folder (alphabetical by repo path). See §4 catalog f
 
 - **IPC:** enabled; `wm-restack = bspwm`
 - **Tray:** right side
-- **Scripts:** MPD, network speed, powermenu, gmail script path gitignored
+- **Scripts:** MPD, network speed, powermenu
 
 ### Picom
 
@@ -718,8 +718,8 @@ One subsection per program/folder (alphabetical by repo path). See §4 catalog f
 
 ### Terminal vs WM
 
-- sxhkd → **kitty** for `super+t`
-- `.profile` → `TERMINAL=alacritty`, `EDITOR=nvim`, `BROWSER=firefox`
+- sxhkd → `$TERMINAL` (kitty) for `super+t`, ncmpcpp, newsboat, neomutt
+- `.profile` → `TERMINAL=kitty`, `EDITOR=nvim`, `BROWSER=firefox`
 
 ### File managers & launcher
 
@@ -791,17 +791,23 @@ One subsection per program/folder (alphabetical by repo path). See §4 catalog f
 
 **Files:** `mimeapps.list`, `starship.toml`, `twitchnotifier.cfg` → `~/.config/`; `.bashrc`, `.bash_profile`, `.gitconfig`, `.Xresources`, `.tmux.conf`, `.Xmodmap`, `.profile`, `.inputrc`, `.xprofile`, `.dir_colors`, `.wgetrc` → `$HOME/`; `picom.conf` → `~/.config/picom.conf`; `zsh/.zshrc` → `~/.config/zsh/.zshrc`
 
-**Not symlinked by setup.sh:** `firefox/`, root `dunstrc`, `.zprofile`, `packages/`, `screenshots/`, `context.md`, `prompt.txt`
+**Not symlinked by setup.sh:** `firefox/` (see `docs/firefox.md`), `packages/`, `screenshots/`, `context.md`, `prompt.txt`
 
-**Note:** `setup.sh` does **not** overwrite existing paths; first install only.
+**Note:** Default is skip-if-exists; use `./setup.sh --backup` or `--force` for reinstalls.
 
 ### Gitignored / secret-adjacent
 
-- `.gitconfig`, `.mutt/muttrc`, `.mutt/accounts`
-- `polybar/scripts/gmail`
-- `newsboat/cache.db`, `mpv/watch_later`
-- `zsh/plugins/`, `yazi/plugins/`, `nvim/lazy-lock.json`
-- `transmission-daemon` state, `ncmpcpp/error.log`
+- `.gitconfig` (use `.gitconfig.example` locally)
+- `.mutt/muttrc`, `.mutt/accounts`
+- `.w3m/cookie`, `.w3m/history` (purged from history)
+- `rofi/launchers/ribbon/styles/colors.rasi` (sed-updated by theme switcher — **only this** `colors.rasi`)
+- `newsboat/cache.db`, `mpv/watch_later`, `nvim/tempdir/`
+- `zsh/plugins/`, `yazi/plugins/`
+- `transmission-daemon` state (`dht.dat`, `stats.json`, `resume/`, `torrents/`), `ncmpcpp/error.log`
+
+**Tracked config (author choice):** `newsboat/urls`, `transmission-daemon/settings.json`, `.inputrc`, `twitchnotifier.cfg`
+
+**Security tooling:** `scripts/validate.sh`, `scripts/purge-history.sh`, `SECURITY.md`, `docs/secrets.md`
 
 ---
 
@@ -815,7 +821,7 @@ One subsection per program/folder (alphabetical by repo path). See §4 catalog f
 | `XDG_*` | XDG base dirs |
 | `EDITOR` | `nvim` |
 | `BROWSER` / `BROWSERCLI` | `firefox` / `w3m` |
-| `TERMINAL` | `alacritty` (profile) vs kitty (keys) |
+| `TERMINAL` | `kitty` (`.profile`; sxhkd uses `$TERMINAL`) |
 | `FZF_DEFAULT_OPTS` | Dark theme, reverse layout |
 | `FZF_DEFAULT_COMMAND` | `ag --hidden ...` |
 | `CONFIG_BACKUP` | Points to dotfiles path |
@@ -835,12 +841,15 @@ One subsection per program/folder (alphabetical by repo path). See §4 catalog f
 
 ### Secrets
 
-- **Never commit:** mutt accounts, gmail polybar script, `.gitconfig`, API tokens in newsboat/mutt.
-- **Approach:** gitignore + machine-local files; `setup.sh` won't clobber existing secrets.
+- **Never re-commit (purged from history):** polybar Gmail OAuth paths, `.w3m/cookie`, `.w3m/history`
+- **Local-only:** `.gitconfig`, mutt accounts
+- **Retired:** Polybar Gmail module (removed from config; see `SECURITY.md`)
+- **Approach:** gitignore + `scripts/validate.sh` + optional `git config core.hooksPath .githooks`
+- See `SECURITY.md` and `docs/secrets.md`
 
 ### Host-specific
 
-- BSPWM monitor names
+- BSPWM monitor profiles under `bspwm/profiles/`
 - Paths under `/home/alpha/`, `~/bin/bash_scripts/`, `~/anaconda3`, Google Cloud SDK location
 - `conda`, `nvm`, `pnpm` optional installs
 
@@ -858,18 +867,13 @@ One subsection per program/folder (alphabetical by repo path). See §4 catalog f
 
 ### Partial / experimental
 
-- Multi-monitor `bspwmrc` block not portable without edit
 - Fish config present; primary shell is Zsh
 - Conky autostart optional (`command -v conky`)
-- Some sxhkd/README bindings out of sync (workspace count, `super+n` newsboat vs `alt+n`)
 
 ### Known issues
 
-- **Terminal inconsistency:** README/keys use Kitty; `.profile` exports `TERMINAL=alacritty`
-- **Rofi `sed -i`:** modifies tracked `colors.rasi` when using random colors
 - **Google Cloud SDK:** paths in `.zshrc` point to `~/Downloads/google-cloud-sdk` (fragile)
-- **setup.sh:** no backup despite README claiming warnings/backups
-- **dunstrc** duplicate at repo root vs `dunst/` directory
+- **CONFIG_BACKUP** in `.profile` still points at legacy `dotfiles/` path
 
 ### Not started / deferred
 
@@ -883,7 +887,9 @@ One subsection per program/folder (alphabetical by repo path). See §4 catalog f
 
 | Date | Change | Why | Files |
 |------|--------|-----|-------|
-| 2026-05-15 | Playtime list, lazy-lock, Rofi colors, Yazi `url`, gcloud PATH in zsh | Maintenance / QoL | `mpv/scripts/total_playtime.list`, `nvim/lazy-lock.json`, `rofi/.../colors.rasi`, `yazi/yazi.toml`, `zsh/.zshrc` |
+| 2026-05-20 | README/sxhkd sync; `TERMINAL=kitty`; bspwm profiles; dunst cleanup; gmail module retired; lazy-lock tracked | Portability and doc accuracy | `README.md`, `.profile`, `sxhkd/`, `bspwm/`, `dunst/`, `polybar/`, `.gitignore`, `context.md` |
+| 2026-05-20 | Gitignore ribbon `colors.rasi` only; setup `--backup`/`--force`; security scripts/docs | Stop noise commits from Rofi theme switcher | `.gitignore`, `setup.sh`, `rofi/launchers/ribbon/`, `scripts/`, `docs/` |
+| 2026-05-15 | Playtime list, lazy-lock, Rofi colors, Yazi `url`, gcloud PATH in zsh | Maintenance / QoL | `mpv/scripts/total_playtime.list`, `nvim/lazy-lock.json`, `yazi/yazi.toml`, `zsh/.zshrc` |
 | 2026-05-06 | Misc fixes | Unspecified | various |
 | 2026-04-01 | Branch sync `main` | Housekeeping | — |
 | 2026-03-31 | Neovim plugin version bumps | Compatibility | `nvim/` |
@@ -907,15 +913,18 @@ One subsection per program/folder (alphabetical by repo path). See §4 catalog f
 | Picom deprecated options | Updated `picom.conf` (2026-02-10) |
 | Hardcoded `/home/alpha` paths | Replaced with `$HOME` (2026-02-04) |
 | Critical config issues batch | Feb 2026 “resolve 20 critical config issues” commits |
+| README vs sxhkd key mismatches | README cheatsheet synced (2026-05-20) |
+| Terminal kitty vs alacritty | `TERMINAL=kitty`; sxhkd uses `$TERMINAL` (2026-05-20) |
+| Root orphan `dunstrc` | Removed; `dunst/dunstrc` canonical (2026-05-20) |
+| Polybar gmail module | Retired; module and scripts removed (2026-05-20) |
+| BSPWM monitor portability | Profile-based loading in `bspwm/profiles/` (2026-05-20) |
 
 ### Open
 
 | Issue | Workaround |
 |-------|------------|
-| Monitor names in bspwmrc | Edit for your `xrandr` output |
+| Monitor names on new hardware | Copy `bspwm/profiles/laptop.sh.example` to `profiles/$(uname -n).sh` or set `DOTFILES_BSPWM_PROFILE` |
 | Rofi random color edits git tree | Comment `sed` lines in `launcher.sh` |
-| README vs sxhkd key mismatches | Trust `sxhkdrc` over README |
-| `lazy-lock.json` not tracked | Regenerate locally after plugin changes |
 
 ---
 
@@ -951,7 +960,6 @@ ttf-jetbrains-mono-nerd ttf-iosevka-nerd
 |------|-------------------|
 | MPD | localhost, PulseAudio |
 | Git | `~/.gitconfig` (local, ignored) |
-| Gmail (polybar) | Script gitignored |
 | gcloud | Local SDK install + zsh snippets |
 | w3m/surfraw | CLI, no OAuth in repo |
 
@@ -1012,7 +1020,7 @@ picom --config ~/.config/picom.conf --diagnostics
 6. Clone zsh plugins (happens automatically on first zsh start) or pre-clone to `~/.config/zsh/plugins/`.
 7. Install Neovim plugins: open `nvim`, run `:Lazy sync`.
 8. Install Yazi plugins per `yazi/packages.md` if needed.
-9. Edit `bspwm/bspwmrc` monitor section for your displays.
+9. Set BSPWM profile: `DOTFILES_BSPWM_PROFILE=desktop` or add `bspwm/profiles/$(uname -n).sh`
 10. Start X session with bspwm (DM-specific).
 
 ### Post-install
@@ -1037,22 +1045,22 @@ picom --config ~/.config/picom.conf --diagnostics
 
 ### Immediate (from recent git)
 
-- Neovim plugin lockfile hygiene
 - Yazi config (`url` vs `name` fields) stabilization
-- Rofi ribbon color import consistency
+- ~~Rofi ribbon `colors.rasi` git noise~~ — fixed: only `launchers/ribbon/styles/colors.rasi` gitignored
 - Consolidate gcloud PATH (single location)
+- Fix `CONFIG_BACKUP` path in `.profile`
 
 ### Short-term
 
-- Align README keybindings with `sxhkdrc`
-- Resolve `TERMINAL` kitty vs alacritty
-- Document or script bspwm monitor detection
+- ~~Align README keybindings with `sxhkdrc`~~ — done
+- ~~Resolve `TERMINAL` kitty vs alacritty~~ — done
+- ~~Document or script bspwm monitor detection~~ — profiles in `bspwm/profiles/`
 
 ### Long-term
 
 - Optional Wayland migration (not started)
 - Central theme variables shared across kitty/nvim/polybar/rofi
-- `setup.sh` backup/overwrite flags
+- ~~`setup.sh` backup/overwrite flags~~ — done (`--backup`, `--force`)
 
 ### Explicitly not doing
 
@@ -1072,8 +1080,7 @@ picom --config ~/.config/picom.conf --diagnostics
 ### Do NOT touch (unless user asks)
 
 - `mpv/watch_later/`, `mpv/scripts/total_playtime.list` (user data) — only if task-related
-- `nvim/lazy-lock.json` — only when updating Neovim plugins intentionally
-- `.gitconfig`, `.mutt/accounts`, `polybar/scripts/gmail`
+- `.gitconfig`, `.mutt/accounts`
 - `zsh/plugins/` (downloaded), `yazi/plugins/` (managed separately)
 - `transmission-daemon` resume/torrent state
 - Mass renames in `zsh/themes/` or `rofi/themes/`

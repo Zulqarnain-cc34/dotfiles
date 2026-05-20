@@ -16,6 +16,7 @@ Versions are dated milestones, not semver releases (this is a personal config re
 
 ### Changed
 - `setup.sh` uses `ln -sfn`, skips missing repo paths, links `.zprofile`
+- Gitignore **only** `rofi/launchers/ribbon/styles/colors.rasi` (dynamic theme switcher); add `colors.rasi.example`
 
 ## [2026-05-15]
 

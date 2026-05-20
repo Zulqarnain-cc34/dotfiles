@@ -189,7 +189,7 @@ shift + alt + t
     notifytorrents
 
 super + {t,r,y,o,w,e}
-    {kitty,kitty -e rtv,$HOME/bin/bash_scripts/ytfzf -D,kitty -e htop, firefox,kitty -e neomutt}
+    {$TERMINAL,$TERMINAL -e rtv,$HOME/bin/bash_scripts/ytfzf -D,$TERMINAL -e htop, firefox,$TERMINAL -e neomutt}
 
 # super + space
 #   rofi-bangs
@@ -198,10 +198,10 @@ super + space
    $HOME/.config/rofi/launchers/ribbon/launcher.sh
 
 super + m
-   kitty -e ncmpcpp
+   $TERMINAL -e ncmpcpp
 
 alt  + n
-   kitty -e newsboat
+   $TERMINAL -e newsboat
 
 super + p
    $HOME/.config/polybar/scripts/powermenu

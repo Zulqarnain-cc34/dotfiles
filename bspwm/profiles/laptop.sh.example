@@ -1,0 +1,9 @@
+#!/bin/sh
+# Example laptop profile — copy to bspwm/profiles/$(hostname -s).sh and edit monitor names.
+#
+#   cp bspwm/profiles/laptop.sh.example bspwm/profiles/my-laptop.sh
+#   export DOTFILES_BSPWM_PROFILE=my-laptop   # or rely on hostname match
+#
+# Find outputs: xrandr --query | grep ' connected'
+
+bspc monitor eDP-1 -d 1 2 3 4 5 6 7 8 9
