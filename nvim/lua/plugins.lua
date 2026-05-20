@@ -212,13 +212,21 @@ return require('lazy').setup({
             words = { enabled = true },
         },
     },
+    -- For `plugins.lua` users.
+    {
+        "OXY2DEV/markview.nvim",
+        lazy = false,
+        -- Completion for `blink.cmp`
+        dependencies = { "saghen/blink.cmp" },
+    },
     {
         "nvim-treesitter/nvim-treesitter",
         build = ":TSUpdate",
         lazy = false,
         opts = {
             ensure_installed = {
-                "lua", "python", "bash", "go", "html", "css", "javascript", "json", "c", "cpp", "markdown",
+                "lua", "python", "bash", "go", "html", "css", "javascript", "json", "c", "cpp",
+                "markdown",
                 "scss", "yaml", "typescript", "vim", "dart", "fish", "java", "dockerfile"
             },
 
@@ -271,6 +279,15 @@ return require('lazy').setup({
     },
     {
         'stevearc/dressing.nvim'
+    },
+    {
+        "iamcco/markdown-preview.nvim",
+        cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+        build = "cd app && yarn install",
+        init = function()
+            vim.g.mkdp_filetypes = { "markdown" }
+        end,
+        ft = { "markdown" },
     },
     {
         'folke/trouble.nvim',
