@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+if [[ "$1" ]]; then
+    WALLPAPER_DIR="$1"
+else
+    WALLPAPER_DIR="/home/precision/Images/backgrounds/"
+fi
+
+WALLPAPERS=($(ls -d -1 $WALLPAPER_DIR*))
+while true; do
+    RAND_NUM=$((RANDOM % ${#WALLPAPERS[@]}))
+    cg-wall -p "${WALLPAPERS[$RAND_NUM]}"
+    if [[ "$2" ]]; then
+        sleep "$2"
+    else
+        sleep 180
+    fi
+done

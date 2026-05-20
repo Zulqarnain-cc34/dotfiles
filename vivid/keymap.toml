@@ -56,7 +56,7 @@ prepend_keymap = [
 
   # ============ WALLPAPER OPERATIONS ============
   { on = ["b", "g"], run = "shell -- cp \"$1\" $HOME/.config/wall.png && xwallpaper --stretch \"$1\"", desc = "Set as wallpaper" },
-  { on = ["b", "s"], run = "shell -- $HOME/bin/bash_scripts/personal/wallpaper.sh \"$1\"", desc = "Select wallpaper interactively" },
+  { on = ["b", "s"], run = "shell -- $HOME/bin/bash_scripts/scripts/wallpaper.sh \"$1\"", desc = "Select wallpaper interactively" },
   { on = ["b", "t"], run = "shell -- cp \"$1\" $HOME/.mozilla/firefox/oduj1f5k.default-release/chrome/newtab_background.jpg && cp \"$1\" $HOME/.mozilla/firefox/static-oduj1f5k.default-release/chrome/newtab_background.jpg", desc = "Set Firefox new tab background" },
 
   # ============ SORT OPERATIONS ============

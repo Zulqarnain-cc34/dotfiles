@@ -1,0 +1,5 @@
+#!/bin/bash
+
+filename="$@"
+#cat "$filename" | /usr/heirloom/bin/ucb/tbl | /usr/heirloom/bin/ucb/troff -mpictures -Tps -ms | /usr/heirloom/bin/ucb/dpost > "${filename%.*}.ps"
+cat "$filename" | /usr/heirloom/bin/ucb/tbl | /usr/heirloom/bin/ucb/eqn | /usr/heirloom/bin/ucb/troff -mpictures -Tps -ms | /usr/heirloom/bin/ucb/dpost > "${filename%.*}.ps"

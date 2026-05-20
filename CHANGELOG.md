@@ -8,6 +8,7 @@ Versions are dated milestones, not semver releases (this is a personal config re
 ## [Unreleased]
 
 ### Added
+- `bash_scripts/` vendored → `~/bin/bash_scripts` via `setup.sh`
 - `setup.sh` flags: `--backup`, `--force`, `--help`
 - `scripts/`: `bootstrap-secrets.sh`, `validate.sh`, `install-deps.sh`
 - `docs/`: `INSTALL.md`, `secrets.md`, `firefox.md`

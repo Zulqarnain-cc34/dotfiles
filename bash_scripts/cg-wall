@@ -1,0 +1,66 @@
+#! /bin/bash
+
+function change-background() {
+    if [[ $1 ]]; then
+        if [[ -d $1 ]]; then
+            WALLPAPER_DIR=$1
+        else
+            WALLPAPER=$1
+        fi
+    else
+        WALLPAPER_DIR="/home/precision/Images/backgrounds"
+    fi
+    if [[ -v $WALLPAPER_DIR ]]; then
+        cd $WALLPAPER_DIR || exit
+        sxiv -r -o -q * | xargs -I {} xfconf-query --channel xfce4-desktop --property /backdrop/screen0/monitorLVDS-1/workspace0/last-image --set $WALLPAPER_DIR/{}
+    elif [[ -v $WALLPAPER ]]; then
+        xfconf-query --channel xfce4-desktop --property /backdrop/screen0/monitorLVDS-1/workspace0/last-image --set "$WALLPAPER"
+    fi
+}
+
+__ScriptVersion="0.1"
+
+#===  FUNCTION  ================================================================
+#         NAME: Change Wallpaper
+#  DESCRIPTION: Used to Change Wallpaper using sxiv.
+#===============================================================================
+function usage() {
+    echo "Usage :  $0 [options] [-p -h -v]
+
+    Options:
+    -h|help       Display help message
+    -v|version    Display script version
+    -p|path	  path to wallpapers directory"
+
+}
+
+#-----------------------------------------------------------------------
+#  Handle command line arguments
+#-----------------------------------------------------------------------
+
+while getopts ":hvp:" opt; do
+    case $opt in
+
+    h)
+        usage
+        exit 0
+        ;;
+
+    v)
+        echo "$0 -- Version $__ScriptVersion"
+        exit 0
+        ;;
+
+    p)
+        change-background "$OPTARG"
+        exit 0
+        ;;
+
+    *)
+        echo -e "\n  Option does not exist : $OPTARG\n"
+        usage
+        exit 1
+        ;;
+    esac
+done
+shift $((OPTIND - 1))

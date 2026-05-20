@@ -140,7 +140,7 @@ cmd chmod %{{
 
 
 cmd setwallpaper %cp "$f" ~/.config/wall.png && xwallpaper --stretch "$f"
-cmd selectwallpaper % ~/bin/bash_scripts/personal/wallpaper.sh "$f"
+cmd selectwallpaper % $HOME/bin/bash_scripts/scripts/wallpaper.sh "$f"
 
 cmd fzf_jump ${{
   res="$(find . -maxdepth 3 | fzf --reverse --header='Jump to location')"

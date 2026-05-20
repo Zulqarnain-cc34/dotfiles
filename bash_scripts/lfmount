@@ -1,0 +1,48 @@
+#!/usr/bin/env bash
+#
+
+# Get the target volume
+target_vol=$(lsblk | fzf --reverse | sed 's/^[^[:alnum:]]*//' | cut -d' ' -f1)
+# Is it encrypted or something?
+if [[ $(lsblk -o NAME,FSTYPE | sed 's/^[^[:alnum:]]*//' | grep "$target_vol" | awk '{print $2}') == "crypto_LUKS" ]]; then
+	echo "Volume is encrypted"
+	udisksctl unlock -b /dev/"$target_vol"
+	list_mount
+	exit 0
+fi
+# Is it internal?
+if [[ $(lsblk -o NAME,RM | sed 's/^[^[:alnum:]]*//' | grep "$target_vol " | awk '{print $2}') -eq 1 ]]; then
+	removable=true
+else
+	removable=false
+fi
+
+
+# Adjust to proper device path
+if [[ -e /dev/"$target_vol" ]]; then
+	target_vol="/dev/$target_vol"
+elif [[ -e /dev/mapper/"$target_vol" ]]; then
+	target_vol="/dev/mapper/$target_vol"
+else
+	echo "Something vent wrong, no such volume?"
+fi
+
+if $removable; then
+	udisksctl mount -b "$target_vol"
+	echo "Press Return to continue"
+	read 
+else
+	echo "Input mountpoint:"
+
+	read mountpoint
+	
+	while ! [[ -d "$mountpoint" ]]; do
+		sudo mkdir -p "$mountpoint" ||\
+		echo "$mountpoint is not a possible mountpoint.
+Input new mountpoint:" && read mountpoint
+	done
+	sudo mount "$target_vol" "$mountpoint" && \
+	echo "Mounted $target_vol to $mountpoint
+Press Return to continue"
+read
+fi

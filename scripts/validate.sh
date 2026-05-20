@@ -48,6 +48,19 @@ else
     fail "missing packages/minimal.txt"
 fi
 
+echo "==> bash_scripts (~/bin/bash_scripts)"
+for f in bash_scripts/urlportal.sh bash_scripts/random-wallpaper.sh bash_scripts/ytfzf \
+         bash_scripts/notifytorrents bash_scripts/killandnotify; do
+    if [[ -f "$f" ]]; then
+        [[ -x "$f" ]] && ok "$(basename "$f") executable" || warn "$(basename "$f") not executable (chmod +x)"
+    else
+        fail "missing $f"
+    fi
+done
+for f in bash_scripts/newsboat/dangerzone/bookmark.sh; do
+    [[ -f "$f" ]] && ok "newsboat bookmark.sh" || warn "optional missing: $f (NEWSBOAT_BOOKMARKS)"
+done
+
 echo "==> Polybar scripts (active bar modules)"
 if [[ -f polybar/config.ini ]]; then
     active_mods=""

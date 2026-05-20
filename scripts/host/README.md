@@ -1,28 +1,28 @@
-# External scripts (`~/bin/bash_scripts/`)
+# Host scripts (`~/bin/bash_scripts/`)
 
-These paths are **not** in this repo but are required for a full session. Install or clone your personal scripts repo to `$HOME/bin/bash_scripts/`, or copy minimal stubs from [`stubs/`](stubs/) (see [docs/INSTALL.md](../../docs/INSTALL.md) §6).
+Vendored in the repo as **`bash_scripts/`** and symlinked by `setup.sh`:
+
+```text
+~/bin/bash_scripts  →  <dotfiles>/bash_scripts
+```
+
+Full index: [bash_scripts/README.md](../../bash_scripts/README.md).
+
+## Session-critical
 
 | Script | Used by |
 |--------|---------|
+| `urlportal.sh` | `.profile`, `newsboat/config` |
 | `random-wallpaper.sh` | `bspwm/bspwmrc` autostart |
-| `urlportal.sh` | `.profile`, `newsboat/config` (default browser) |
-| `newsboat/dangerzone/bookmark.sh` | `NEWSBOAT_BOOKMARKS` in `.profile` |
-| `ytfzf` (or wrapper) | `sxhkd` (`super+y`), `rofi/launchers/rofi-bangs` |
-| `personal/wallpaper.sh` | `lf/lfrc`, `vivid/keymap.toml` |
-| `calcurse-mutt.sh` | `.mutt/mailcap` |
+| `ytfzf` | `sxhkd` (`super+y`), `rofi/launchers/rofi-bangs` |
 | `notifytorrents` | `sxhkd` (`shift+alt+t`) |
+| `killandnotify` | `sxhkd` (config reload notify) |
 
-Optional helpers referenced in commented sxhkd blocks: `killandnotify`, `prompt`.
+## Optional
 
-## Minimal stub example
+| Path | Used by |
+|------|---------|
+| `scripts/wallpaper.sh` | `lf/lfrc`, `vivid/keymap.toml` |
+| `scripts/calcurse-mutt.sh` | `.mutt/mailcap` (commented) |
 
-```bash
-mkdir -p ~/bin/bash_scripts
-cat > ~/bin/bash_scripts/urlportal.sh <<'EOF'
-#!/bin/sh
-exec "${BROWSER:-firefox}" "$@"
-EOF
-chmod +x ~/bin/bash_scripts/urlportal.sh
-```
-
-Replace stubs with your real implementations over time.
+Legacy minimal stubs (if not using the full `bash_scripts/` tree): [stubs/](stubs/).

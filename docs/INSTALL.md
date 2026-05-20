@@ -51,19 +51,9 @@ Default on author machine: `DOTFILES_BSPWM_PROFILE=desktop` in `.profile`.
 
 Monitor names: `xrandr --query | grep ' connected'`
 
-## 6. External scripts & aliases
+## 6. Host scripts & aliases
 
-Host-specific scripts are **not** vendored in this repo. Copy stubs or install your real scripts under `~/bin/bash_scripts/`:
-
-- **Index:** [scripts/host/README.md](../scripts/host/README.md) — required paths (`urlportal.sh`, `random-wallpaper.sh`, `notifytorrents`, etc.)
-- **Optional stubs:** [scripts/host/stubs/](../scripts/host/stubs/) — minimal placeholders; replace with your implementations
-
-```bash
-mkdir -p ~/bin/bash_scripts
-cp -n scripts/host/stubs/* ~/bin/bash_scripts/ 2>/dev/null || true
-chmod +x ~/bin/bash_scripts/*.sh ~/bin/bash_scripts/urlportal.sh 2>/dev/null || true
-```
-
+- **Scripts:** `bash_scripts/` → `~/bin/bash_scripts` via `setup.sh` (see [bash_scripts/README.md](../bash_scripts/README.md))
 - **Shell aliases:** `~/.aliases/` → repo `.aliases/` via `setup.sh` (`aliases`, `functions`; sourced by zsh/bash)
 
 ## 6b. Redshift

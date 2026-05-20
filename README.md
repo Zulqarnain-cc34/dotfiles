@@ -187,7 +187,7 @@ Full list: [sxhkd/sxhkdrc](sxhkd/sxhkdrc)
 | Legacy FM | lf, ranger | Optional; see `lf/README.md`, `ranger/README.md` |
 | Alt terminal | Alacritty | Config kept; not primary |
 
-External scripts under `~/bin/bash_scripts/` are documented in [scripts/host/README.md](scripts/host/README.md).
+Host scripts: repo `bash_scripts/` → `~/bin/bash_scripts` via `setup.sh` ([bash_scripts/README.md](bash_scripts/README.md)).
 
 ---
 
@@ -231,7 +231,8 @@ dotfiles_v2/
 ├── dunst/           # Notifications
 ├── docs/            # INSTALL, secrets, firefox
 ├── .aliases/        # Shell aliases & functions → ~/.aliases
-├── scripts/         # setup helpers, validate, host stubs
+├── bash_scripts/    # Host scripts → ~/bin/bash_scripts
+├── scripts/         # setup helpers, validate, host index
 ├── packages/        # minimal.txt, v2 manifests
 ├── setup.sh         # Symlink deploy
 └── picom.conf       # Compositor

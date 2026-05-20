@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+echo "$ALIASDIR" | grep -e 'alias.*=' -e '=.*alias' | cut -d " " -f2- \
+    | awk 'BEGIN {FS="="} {for(i=2;i<=NF;i++){gsub("\"","",$2);gsub("\047","",$2);printf ("%-40s %s \n",$1,$2) ;}}' \
+    | fzf --border rounded | cut -d " " -f2- | ${SHELL}

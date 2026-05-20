@@ -1,0 +1,20 @@
+#!/bin/bash
+declare -A month
+month=(
+["January"]=33
+["February"]=31
+["March"]=33
+["April"]=32
+["May"]=33
+["June"]=32
+["July"]=33
+["August"]=33
+["September"]=32
+["October"]=33
+["November"]=32
+["December"]=33
+)
+current_month=$(date +%B)
+today_date=$(date +%-d)
+
+w3m ~/Documents/personal/Islam/Yearly\ prayer\ times\ 2019\ \|\ IslamicFinder.html | grep -A ${month[$current_month]} -e "$current_month" | sed -n -e "3p" -e "/^$today_date\s\+.\+/p"

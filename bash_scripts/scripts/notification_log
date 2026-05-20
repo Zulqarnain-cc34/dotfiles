@@ -1,0 +1,39 @@
+#!/bin/bash
+set -e
+another_instance()
+{
+  echo "There is another instance running, exiting"
+  exit 1
+} 
+
+scriptname="$(basename $0).lock"
+pidfile="/tmp/${scriptname}"
+ 
+# lock it
+exec 202>$pidfile
+flock -n 202 || another_instance
+pid=$$
+echo $pid 1>&202
+
+log_file="$HOME/.local/share/notification.log"
+
+if [ "$1" = "-r" ]
+then
+    tac $log_file | less
+    exit
+fi
+
+dbus-monitor "interface='org.freedesktop.Notifications'" |\
+stdbuf -oL sed -e 's/^method call.*$/------'"$(date)"'------/' \
+-e '1,4d' \
+-e 's/^.*string.*\(".*"\)/\1/' \
+-ne '/^[-\"]/p' >> $log_file
+
+#log_file="$HOME/.cache/xfce4/notifyd/log"
+#notify_num=7
+#
+#sed -E 's/\[(.*)\]/\1/' $log_file |\
+#awk '/^[0-9]*-.*$/ {print "-------------------------------------------------------------------";system("date -d "$0" \"+%a, %d %b %Y at %r\"")} /^[A-Za-z]/ {print} /^$/ {print}' |\
+#tail -n $((notify_num*7))
+#
+#

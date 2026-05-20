@@ -1,0 +1,41 @@
+#!/bin/bash
+# Twitch launcher for rofi
+# Supports chat popout via browser
+
+[ -z "$XDG_CONFIG_HOME" ] &&
+XDG_CONFIG_HOME="$HOME/.config"
+mkdir -p "$XDG_CONFIG_HOME"
+source "$XDG_CONFIG_HOME/rofi-twitch/settings"
+twitch=https://www.twitch.tv
+
+[ -z $user ] && echo "You should set your username in \
+    ~/.config/rofi-twitch/settings."
+
+# Choose quality, best by default
+case "${2:-b}" in
+    b*) quality=best;;
+    l*) quality=480p;;
+    m*) quality=720p60;;
+    *)
+        echo '%s: unkown quality option: %s. Choose one of\n
+        [l]ow\n
+        [m]edium\n
+        [b]est)'"$0" "$2" >&2
+        exit 1
+        ;;
+esac
+
+[ -z "$channel" ] && channel=$(twitchnotifier -c $user -n | perl \
+    -MHTML::Entities -pe 'encode_entities($_);' | rofi \
+    -theme-str '#window { width: 1000; }' -dmenu -markup-rows -i \
+    -p "" | grep -Po '^.+?(?=\:)')
+[ -z "$channel" ] && exit
+
+[[ -z $player ]] && player=mpv
+
+# make verbose option
+
+streamlink -p $player $twitch/$channel --default-stream $quality 2>&1 >/dev/null &
+[[ -z $browser ]] && : || { channel="$(echo $channel | tr -d ' ')" && $browser \
+    --new-window "$twitch/popout/$channel/chat"; }
+exit

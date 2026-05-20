@@ -1,0 +1,11 @@
+#!/bin/bash
+
+if [ -z "$@" ]; then
+    rsync "$HOME"/.mozilla/firefox/hjx19msl.default-release-1615141411601/places.sqlite /tmp/places.sqlite &>/dev/null
+    sqlite3 /tmp/places.sqlite "select title from moz_bookmarks where moz_bookmarks.fk is not NULL"
+else
+    title="$@"
+    fk=$(sqlite3 /tmp/places.sqlite "select fk from moz_bookmarks where moz_bookmarks.title='$title';")
+    url="$(sqlite3 /tmp/places.sqlite "select url from moz_places where moz_places.id=$fk;")"
+    firefox "$url"
+fi
