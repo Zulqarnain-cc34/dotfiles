@@ -64,7 +64,7 @@ cp -n scripts/host/stubs/* ~/bin/bash_scripts/ 2>/dev/null || true
 chmod +x ~/bin/bash_scripts/*.sh ~/bin/bash_scripts/urlportal.sh 2>/dev/null || true
 ```
 
-- **Shell aliases:** create `~/.aliases/aliases` locally (sourced by zsh/bash; not in repo)
+- **Shell aliases:** `~/.aliases/` → repo `.aliases/` via `setup.sh` (`aliases`, `functions`; sourced by zsh/bash)
 
 ## 6b. Redshift
 

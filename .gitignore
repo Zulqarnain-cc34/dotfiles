@@ -12,6 +12,9 @@ Thumbs.db
 .spotlight-V100
 .Trashes
 
+# Local-only AI / project notes (not versioned)
+context.md
+
 # ZSH
 zsh/.zcompdump
 zsh/.cache/
@@ -51,7 +54,6 @@ surfraw/bookmarks
 nvim/tempdir
 
 .gitconfig
-context.md
 
 # Misc
 .dotfiles_backup/

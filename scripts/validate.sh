@@ -30,7 +30,7 @@ fail() { echo "  FAIL: $*"; errors=$((errors + 1)); }
 SECRET_PATH_RE='(client_secrets\.json|credentials\.json|\.mutt/accounts/|^\.w3m/cookie$|^\.w3m/history$|polybar/gmail/)'
 
 echo "==> Required repo scripts and docs"
-for f in scripts/bootstrap-secrets.sh scripts/validate.sh scripts/install-deps.sh docs/secrets.md docs/INSTALL.md scripts/host/README.md redshift/redshift.conf; do
+for f in scripts/bootstrap-secrets.sh scripts/validate.sh scripts/install-deps.sh docs/secrets.md docs/INSTALL.md scripts/host/README.md redshift/redshift.conf .aliases/aliases .aliases/functions; do
     [[ -f "$f" ]] && ok "$f" || fail "missing $f"
 done
 
@@ -99,7 +99,7 @@ for f in .gitconfig.example; do
 done
 
 echo "==> No hardcoded /home/alpha in tracked config files"
-HARDCODED_EXCLUDE='^(context\.md|README\.md|CHANGELOG\.md|scripts/validate\.sh|\.github/|docs/)'
+HARDCODED_EXCLUDE='^(README\.md|CHANGELOG\.md|scripts/validate\.sh|\.github/|docs/)'
 if git ls-files | grep -Ev "$HARDCODED_EXCLUDE" | xargs grep -l '/home/alpha' 2>/dev/null | grep -q .; then
     while IFS= read -r f; do
         fail "hardcoded path: $f"

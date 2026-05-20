@@ -1,0 +1,203 @@
+#################################################################################################
+## ALIASES ###
+#    _    _     ___    _    ____  _____ ____
+#   / \  | |   |_ _|  / \  / ___|| ____/ ___|
+#  / _ \ | |    | |  / _ \ \___ \|  _| \___ \
+# / ___ \| |___ | | / ___ \ ___) | |___ ___) |
+#/_/   \_\_____|___/_/   \_\____/|_____|____/
+#
+#aliases
+alias wthr='curl wttr.in/islamabad'
+alias cpu='watch -n1 "lscpu | grep MHz"'
+alias scrcpy_wifi_readonly='scrcpy -s 192.168.0.101:5555 --render-expired-frames -b2M -m500 --max-fps 15 --always-on-top -n'
+alias scrcpy_wifi_ctrl='scrcpy -s 192.168.0.101:5555 --render-expired-frames -b2M -m500 --max-fps 20 --always-on-top -Sw'
+alias work='while [ TRUE ]; do head -n 100 /dev/urandom; sleep .1; done | hexdump -C | grep "ca fe"'
+alias comp-rdp='xfreerdp -wallpaper /compression -themes /async-update /microphone /async-input /audio-mode:0 /clipboard /scale:140 /f /v:192.168.10.3 /u:all /p:123456 /smart-sizing &> /dev/null'
+alias lgin="ssh anime@192.168.10.3"
+alias ptfd="ssh -N -L localhost:8888:localhost:8888 precision@192.168.10.3"
+# alias adb_connect="(adb tcpip 5555)&&(adb connect 192.168.0.100:5555)"
+#misc
+alias pa='sudo pacman'
+alias vim='nvim'
+alias kubectl="minikube kubectl --"
+alias lf='YAZI_FILE_ONE=file yazi'
+
+# root privileges
+alias doas="doas --"
+
+# Trash
+alias trp='trash-put'
+alias tre='trash-empty'
+alias trl='trash-list'
+alias trr='trash-restore'
+alias trm='trash-rm'
+# navigation
+alias b='cd -'
+alias gh='cd ~'
+alias gv.='cd ~/Videos'
+alias gC.='cd ~/etc/Coding'
+alias gb.='cd ~/bin'
+alias gd.='cd ~/Documents'
+alias gD.='cd ~/Downloads'
+alias gp.='cd ~/Pictures'
+alias gc.='cd ~/.config'
+alias gl.='cd ~/.local'
+alias grep='grep --color=auto'
+alias ls='ls --color=auto'
+alias ..='cd ..'
+alias ...='cd ../..'
+alias .3='cd ../../..'
+alias .4='cd ../../..'
+alias .5='cd ../../../..'
+alias .6='cd ../../../../..'
+
+
+# pacman and yay
+alias pacsyu='sudo pacman -Syyu'
+alias yaysua="yay -Sua --noconfirm"
+alias yaysyu="yay -Syu --noconfirm"
+alias unlock="sudo rm /var/lib/pacman/db.lck"
+#remove oprpahned packaes
+alias cleanup='sudo pacman -Rns $(pacman -Qtdq)'
+
+# get fastest mirrors
+alias mirror="sudo reflector --verbose --latest 200 --sort rate --save /etc/pacman.d/mirrorlist"
+alias mirrord="sudo reflector --latest 50 --number 20 --sort delay --save /etc/pacman.d/mirrorlist"
+alias mirrors="sudo reflector --latest 50 --number 20 --sort score --save /etc/pacman.d/mirrorlist"
+alias mirrora="sudo reflector --latest 50 --number 20 --sort age --save /etc/pacman.d/mirrorlist"
+
+# Changing "ls" to "exa"
+alias exa='exa -al --color=always --group-directories-first'
+alias la='exa -a --color=always --group-directories-first'
+alias ll='exa -l --color=always --group-directories-first'
+alias lt='exa -aT --color=always --group-directories-first'
+alias l.='exa -a | egrep "^\."'
+
+#rsync
+alias rsync='rsync --progress'
+alias pbcpy='xclip -selection clipboard'
+alias pbpte='xclip -selection clipboard -o'
+
+# Colorize grep output (good for log files)
+alias grep='grep --color=auto'
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
+
+# adding flags
+alias cp="cp -iv"
+alias rm='rm -iv'
+alias df='df -h'
+#alias free='free -m
+alias history='history | fzf --border rounded --tac'
+
+# shutdown or reboot
+alias sn="shutdown now"
+alias rn="reboot"
+
+# Merge Xresources
+alias merge='xrdb -merge ~/.Xresources'
+
+# get error messages from journalctl
+alias jctl="journalctl -p 3 -xb"
+
+# gpg encryption
+# verify signature for isos
+alias gpg-check="gpg2 --keyserver-options auto-key-retrieve --verify"
+# receive the key of a developer
+alias gpg-retrieve="gpg2 --keyserver-options auto-key-retrieve --receive-keys"
+
+# youtube-dl
+alias yta-aac="youtube-dl --extract-audio --audio-format aac "
+alias yta-best="youtube-dl --extract-audio --audio-format best "
+alias yta-flac="youtube-dl --extract-audio --audio-format flac "
+alias yta-m4a="youtube-dl --extract-audio --audio-format m4a "
+alias yta-mp3="youtube-dl --extract-audio --audio-format mp3 "
+alias yta-opus="youtube-dl --extract-audio --audio-format opus "
+alias yta-vorbis="youtube-dl --extract-audio --audio-format vorbis "
+alias yta-wav="youtube-dl --extract-audio --audio-format wav "
+alias ytv-best="youtube-dl -f bestvideo+bestaudio "
+
+#apps
+alias r="ranger"
+alias mp="ncmpcpp"
+alias r.=". ranger"
+alias cd="cd"
+
+#git aliases
+alias g='git'
+alias gst='git status'
+alias gc='git commit'
+alias ga='git add'
+alias gpl='git pull'
+alias gpom='git pull origin master'
+alias gpu='git push'
+alias gpuom='git push origin master'
+alias gd='git diff'
+alias gch='git checkout'
+alias gnb='git checkout -b'
+alias gac='git add . && git commit'
+alias gas='git add . && git status'
+alias grs='git restore --staged .'
+alias gre='git restore'
+alias gr='git remote'
+alias gcl='git clone'
+alias glg="git log --graph --abbrev-commit --decorate --format=format:'%C(bold green)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold yellow)(%ar)%C(reset)%C(auto)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all"
+alias gt='git ls-tree -r master --name-only'
+alias grm='git remote'
+alias gb='git branch'
+alias gm='git merge'
+alias gf='git fetch'
+
+#aliases
+alias v='nvim'
+
+#alias
+alias m='mpv'
+alias trs='transmission-rss'
+alias trc='transmission-remote'
+alias xup='xrdb .Xresources'
+alias nb='newsboat'
+alias sc='source /home/alpha/.bashrc'
+alias sp='source /home/alpha/.bash_profile'
+alias zc='source /home/alpha/.config/zsh/.zshrc'
+alias zp='source /home/alpha/.zprofile'
+
+alias check-sites='python3 /home/alpha/etc/Coding/Python/sherlock/sherlock/sherlock.py'
+alias sr='sr -browser=$BROWSERCLI'
+alias surfraw='surfraw -browser=$BROWSER'
+
+#Custom Configs
+alias cfg-mimelists="$EDITOR $HOME/.config/mimeapps.list"
+alias cfg-rnconf="$EDITOR  $HOME/.config/ranger/rc.conf"
+alias cfg-rifleconf="$EDITOR  $HOME/.config/ranger/rifle.conf"
+alias cfg-urlportal="$EDITOR $HOME/bin/urlportal.sh"
+alias cfg-muttrc="$EDITOR $HOME/.mutt/muttrc"
+alias cfg-starship="$EDITOR $HOME/.config/starship.toml"
+alias cfg-zshrc="$EDITOR $HOME/.zshrc"
+alias cfg-bashrc="$EDITOR $HOME/.bashrc"
+alias cfg-bashprofile="$EDITOR $HOME/.bash_profile"
+alias cfg-w3m="$EDITOR $HOME/.w3m/config"
+alias cfg-w3m-keymap="$EDITOR $HOME/.w3m/keymap"
+alias cfg-w3m-mailcap="$EDITOR $HOME/.w3m/mailcap"
+alias cfg-w3m-urimethodmap="$EDITOR $HOME/.w3m/urimethodmap"
+alias cfg-mpvconf="$EDITOR $HOME/.config/mpv/mpv.conf"
+alias cfg-profile="$EDITOR $HOME/.profile"
+alias cfg-alias="$EDITOR $HOME/.aliases/aliases"
+alias cfg-functions="$EDITOR $HOME/.aliases/functions"
+alias cfg-polybar="$EDITOR $HOME/.config/polybar/config"
+alias cfg-picom="$EDITOR $HOME/.config/picom.conf"
+alias cfg-transmission="$EDITOR $HOME/.config/transmission-daemon/settings.json"
+alias cfg-dunst="$EDITOR $HOME/.config/dunst/dunstrc"
+alias cfg-ytfzf="$EDITOR $HOME/.config/ytfzf/conf.sh"
+alias cfg-mpv="$EDITOR $HOME/.config/mpv/mpv.conf"
+alias cfg-rofi="$EDITOR $HOME/.config/rofi/config"
+alias cfg-surfraw="$EDITOR $HOME/.config/surfraw/conf"
+
+alias cutycapt="CutyCapt"
+
+alias usbmount="sudo mount -o gid=users,fmask=111,dmask=000"
+alias song="/home/alpha/etc/linuxConfig/dotfiles_v2/ncmpcpp/notification"
+alias pip-upgrade="pip freeze --user | cut -d'=' -f1 | xargs -n1 pip install -U"
+alias anm="sshfs anime@192.168.10.3:/home/anime/Videos/ /home/alpha/program_files/anime_collection/"
+
+alias cvtbashtozsh='cat ~/.bash_history | uniq | sed "s/^/\: $(date +%s)\:0;/" >> ~/.zsh_history'

@@ -230,6 +230,7 @@ dotfiles_v2/
 ├── rofi/            # Launcher (ribbon)
 ├── dunst/           # Notifications
 ├── docs/            # INSTALL, secrets, firefox
+├── .aliases/        # Shell aliases & functions → ~/.aliases
 ├── scripts/         # setup helpers, validate, host stubs
 ├── packages/        # minimal.txt, v2 manifests
 ├── setup.sh         # Symlink deploy

@@ -22,6 +22,7 @@ Versions are dated milestones, not semver releases (this is a personal config re
 - Restored `bootstrap-secrets.sh`, `docs/secrets.md`
 
 ### Removed
+- `context.md` from git (local-only; listed in `.gitignore`)
 - `scripts/purge-history.sh` — not needed for day-to-day use
 - Portability: `$HOME` paths, `CONFIG_BACKUP`, wget, gcloud SDK, nvim undodir
 - Polybar unified via `launch.sh`; maim screenshots; redshift config file
