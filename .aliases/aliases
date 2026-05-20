@@ -9,12 +9,12 @@
 #aliases
 alias wthr='curl wttr.in/islamabad'
 alias cpu='watch -n1 "lscpu | grep MHz"'
-alias scrcpy_wifi_readonly='scrcpy -s 192.168.0.101:5555 --render-expired-frames -b2M -m500 --max-fps 15 --always-on-top -n'
-alias scrcpy_wifi_ctrl='scrcpy -s 192.168.0.101:5555 --render-expired-frames -b2M -m500 --max-fps 20 --always-on-top -Sw'
+# alias scrcpy_wifi_readonly='scrcpy -s 192.168.0.101:5555 --render-expired-frames -b2M -m500 --max-fps 15 --always-on-top -n'
+# alias scrcpy_wifi_ctrl='scrcpy -s 192.168.0.101:5555 --render-expired-frames -b2M -m500 --max-fps 20 --always-on-top -Sw'
 alias work='while [ TRUE ]; do head -n 100 /dev/urandom; sleep .1; done | hexdump -C | grep "ca fe"'
 alias comp-rdp='xfreerdp -wallpaper /compression -themes /async-update /microphone /async-input /audio-mode:0 /clipboard /scale:140 /f /v:192.168.10.3 /u:all /p:123456 /smart-sizing &> /dev/null'
-alias lgin="ssh anime@192.168.10.3"
-alias ptfd="ssh -N -L localhost:8888:localhost:8888 precision@192.168.10.3"
+# alias lgin="ssh anime@192.168.10.3"
+# alias ptfd="ssh -N -L localhost:8888:localhost:8888 precision@192.168.10.3"
 # alias adb_connect="(adb tcpip 5555)&&(adb connect 192.168.0.100:5555)"
 #misc
 alias pa='sudo pacman'
@@ -198,6 +198,5 @@ alias cutycapt="CutyCapt"
 alias usbmount="sudo mount -o gid=users,fmask=111,dmask=000"
 alias song="/home/alpha/etc/linuxConfig/dotfiles_v2/ncmpcpp/notification"
 alias pip-upgrade="pip freeze --user | cut -d'=' -f1 | xargs -n1 pip install -U"
-alias anm="sshfs anime@192.168.10.3:/home/anime/Videos/ /home/alpha/program_files/anime_collection/"
 
 alias cvtbashtozsh='cat ~/.bash_history | uniq | sed "s/^/\: $(date +%s)\:0;/" >> ~/.zsh_history'
