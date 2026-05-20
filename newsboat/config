@@ -51,8 +51,8 @@ bookmark-autopilot no
 # Standard usage: bind-key i macro-prefix
 bind-key i macro-prefix
 
-# Change the 'o' macro to explicitly use kitty
-macro o set browser "kitty w3m %u" ; open-in-browser ; set browser "${HOME}/bin/bash_scripts/urlportal.sh"
+# Open in terminal w3m (uses $TERMINAL from environment)
+macro o set browser "$TERMINAL w3m %u" ; open-in-browser ; set browser "${HOME}/bin/bash_scripts/urlportal.sh"
 
 # Download and view image
 macro i set browser "wget -O /tmp/newsboat.img %u && feh /tmp/newsboat.img &> /dev/null &" ; open-in-browser ; set browser "${HOME}/bin/bash_scripts/urlportal.sh"

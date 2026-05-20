@@ -6,6 +6,7 @@ export BROWSERCLI="w3m"
 export BROWSER="firefox"
 export TERMINAL="kitty"
 export EDITOR="nvim"
+export DOTFILES_BSPWM_PROFILE="${DOTFILES_BSPWM_PROFILE:-desktop}"
 export RTV_BROWSER="$HOME/bin/bash_scripts/urlportal.sh"
 # export TERM="alacritty"
 
@@ -24,10 +25,10 @@ export GDK_DPI_SCALE=0.8
 # export XMODIFIERS='@im=fcitx'
 
 # Aliases
-export WGETRC="$HOME/.config/wget/wgetrc"
+export WGETRC="$HOME/.wgetrc"
 export NEWSBOAT_BOOKMARKS="$HOME/bin/bash_scripts/newsboat/dangerzone/bookmark.sh"
 export MUSIC="$HOME/Videos/Audios/*"
-export CONFIG_BACKUP="$HOME/etc/linuxConfig/dotfiles/"
+export CONFIG_BACKUP="$HOME/etc/linuxConfig/dotfiles_v2/"
 export IMAGES_DIR="$HOME/Pictures/Pictures/"
 export VIDEOS_DIR="$HOME/Videos/videos/"
 export BOOKDIR="$HOME/Documents/Books/"

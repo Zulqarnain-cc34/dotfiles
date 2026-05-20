@@ -1,6 +1,6 @@
 # PROJECT CONTEXT — dotfiles_v2
 
-**Last Updated:** 2026-05-20 (README/sxhkd sync, kitty TERMINAL, bspwm profiles, dunst cleanup, gmail module retired)  
+**Last Updated:** 2026-05-20 (theme prune, portability, host scripts docs, tooling restore)  
 **Version:** v2 (stable daily driver; active maintenance)
 
 ---
@@ -11,7 +11,7 @@
 - **Audience / problem:** Built for the author (Zulqarnain / `zulqarnain-cc34`) on **Arch Linux**. Solves “new install or new machine” setup, keeps WM/shell/editor/launcher configs in sync, and encodes years of keybindings, themes, and tool integrations.
 - **Philosophy:** Minimal tiling WM (BSPWM), keyboard-driven workflow, Nord-ish borders + Tokyo Night / Gruvbox accents in terminals, `lazy.nvim` for IDE-like Neovim, Rofi as hub for launchers/menus, heavy use of terminal TUIs (ncmpcpp, newsboat, neomutt).
 - **Tech stack (summary):** **X11** session with **BSPWM 0.9.12** + **sxhkd**, **Polybar 3.7.2**, **picom** (blur/opacity), **dunst** notifications, **Zsh 5.9** + **Starship** + autosuggestions/syntax-highlighting, **Kitty 0.46.2** (primary terminal; `TERMINAL=kitty` in `.profile`), **Neovim 0.12.2** + **lazy.nvim**, **Rofi 2.0**, file tools **Yazi**, **lf**, **ranger**, media **MPD/ncmpcpp/mpv**, browser **Firefox** + **qutebrowser** configs, optional **fish** shell config.
-- **Maturity:** Long-lived repo (commits back to 2021+); **stable daily driver** on author hardware. ~2,000+ tracked files (many vendored Zsh themes, Rofi `.rasi` themes). Ongoing tweaks (Neovim plugins, Yazi, Rofi ribbon colors). Multi-monitor layout lives in `bspwm/profiles/desktop.sh` — set `DOTFILES_BSPWM_PROFILE=desktop` or copy to `profiles/$(hostname).sh`.
+- **Maturity:** Long-lived repo (commits back to 2021+); **stable daily driver** on author hardware. ~1,152 tracked files (bulk `rofi/themes/` and `zsh/themes/` removed). Ongoing tweaks (Neovim plugins, Yazi, Rofi ribbon colors). Multi-monitor layout lives in `bspwm/profiles/desktop.sh` — set `DOTFILES_BSPWM_PROFILE=desktop` or copy to `profiles/$(hostname).sh`.
 
 ---
 
@@ -121,10 +121,11 @@ This repo is organized as **one top-level folder (or root dotfile) per Linux pro
 | `sxhkd/` | Hotkey daemon | `~/.config/sxhkd` | `sxhkdrc` |
 | `polybar/` | Status bar | `~/.config/polybar` | `config.ini`, `modules.ini`, `colors.ini` |
 | `picom.conf` | Compositor (picom) | `~/.config/picom.conf` | `picom.conf` |
+| `redshift/` | Night colour temp | `~/.config/redshift` | `redshift.conf` (edit lat/lon) |
 | `dunst/` | Notifications | `~/.config/dunst` | `dunstrc` |
 | `conky/` | Desktop HUD widgets | `~/.config/conky` | `conky1/conkyrc1`, `conky2/conkyrc2`, `conky3/conkyrc` |
-| `zsh/` | Zsh shell | `~/.config/zsh` + `~/.config/zsh/.zshrc` | `.zshrc`, `themes/` |
-| `.zprofile` | Zsh login | *(file not in setup; source manually or copy)* | sets `ZDOTDIR` |
+| `zsh/` | Zsh shell | `~/.config/zsh` + `~/.config/zsh/.zshrc` | `.zshrc` (prompt: starship) |
+| `.zprofile` | Zsh login | `~/.zprofile` (via `setup.sh`) | sets `ZDOTDIR` |
 | `starship.toml` | Prompt | `~/.config/starship.toml` | `starship.toml` |
 | `.profile` | Login env (all shells) | `~/.profile` | large PATH/XDG/FZF block |
 | `.bashrc`, `.bash_profile` | Bash | `~/.bashrc`, `~/.bash_profile` | `.bashrc` |
@@ -133,10 +134,10 @@ This repo is organized as **one top-level folder (or root dotfile) per Linux pro
 | `alacritty/` | Terminal (alt) | `~/.config/alacritty` | `alacritty.toml` |
 | `.tmux.conf` | Terminal multiplexer | `~/.tmux.conf` | `.tmux.conf` |
 | `nvim/` | Neovim editor | `~/.config/nvim` | `init.lua` → `lua/*` |
-| `rofi/` | Launcher / menus | `~/.config/rofi` | `launchers/`, `themes/`, `applets/` |
-| `yazi/` | File manager (primary) | `~/.config/yazi` | `yazi.toml`, `keymap.toml`, `init.lua` |
-| `lf/` | File manager (lf) | `~/.config/lf` | `lfrc`, `preview`, `cleaner` |
-| `ranger/` | File manager (ranger) | `~/.config/ranger` | `rc.conf`, `rifle.conf`, `commands.py` |
+| `rofi/` | Launcher / menus | `~/.config/rofi` | `launchers/ribbon/`, `applets/` |
+| `yazi/` | File manager (**primary**) | `~/.config/yazi` | `yazi.toml`, `keymap.toml`, `init.lua` |
+| `lf/` | File manager (legacy) | `~/.config/lf` | `lfrc` — see `lf/README.md` |
+| `ranger/` | File manager (legacy) | `~/.config/ranger` | `rc.conf` — see `ranger/README.md` |
 | `mpv/` | Media player | `~/.config/mpv` | `mpv.conf` (if present), `scripts/*.lua` |
 | `mpd/` | Music daemon | `~/.config/mpd` | `mpd.conf` |
 | `ncmpcpp/` | MPD TUI client | `~/.config/ncmpcpp` | `config`, `bindings` |
@@ -163,7 +164,7 @@ This repo is organized as **one top-level folder (or root dotfile) per Linux pro
 | `.gitconfig` | Git | `~/.gitconfig` | **gitignored** |
 | `packages/v1`, `v2/` | Package manifests | *(not symlinked)* | `pacman-packages.txt`, etc. |
 | `screenshots/` | README assets | *(not symlinked)* | PNG previews only |
-| `context.md`, `prompt.txt` | Documentation | *(not symlinked)* | meta |
+| `context.md` | Documentation | *(not symlinked)* | meta |
 
 **Repo meta (not app configs):** `SECURITY.md`, `CHANGELOG.md`, `docs/`, `scripts/`, `packages/minimal.txt`, `.gitleaks.toml`, `.github/workflows/secrets.yml`.
 
@@ -171,10 +172,9 @@ This repo is organized as **one top-level folder (or root dotfile) per Linux pro
 
 | Path | Notes |
 |------|--------|
-| `rofi/themes/` | ~154 `.rasi` theme files |
-| `zsh/themes/` | ~142 OMZ theme files (vendored collection) |
-| `rofi/launchers/` | ribbon, rofi-firefox-bookmarks, rofi-surfraw-websearch, rofi-manga, etc. |
-| Total tracked files | ~2,000+ (excluding `.git`) |
+| `rofi/launchers/ribbon/` | Primary app launcher (`super+space`) |
+| `rofi/themes/` | Pruned; see `rofi/themes/README.md` |
+| Total tracked files | ~1,152 (excluding `.git`) |
 
 ### Repo-only (manual install)
 
@@ -187,10 +187,10 @@ This repo is organized as **one top-level folder (or root dotfile) per Linux pro
 
 | Critical (edit often) | Boilerplate / generated / local-only |
 |-----------------------|--------------------------------------|
-| `bspwmrc`, `sxhkdrc`, `polybar/*.ini` | `zsh/themes/*`, `rofi/themes/*` |
-| `zsh/.zshrc`, `nvim/lua/*`, `yazi/*.toml` | `mpv/watch_later/`, `mpd/database`, `mpd/state` |
-| `kitty/kitty.conf`, `qutebrowser/config.py` | `zsh/themes/*`, `rofi/themes/*` |
-| `ncmpcpp/config`, `newsboat/config` | `mpv/watch_later/`, `mpd/database`, `mpd/state` |
+| `bspwmrc`, `sxhkdrc`, `polybar/*.ini` | `mpv/watch_later/`, `mpd/database`, `mpd/state` |
+| `zsh/.zshrc`, `nvim/lua/*`, `yazi/*.toml` | `yazi/plugins/` (gitignored) |
+| `kitty/kitty.conf`, `qutebrowser/config.py` | `newsboat/cache.db`, `.w3m/cookie` |
+| `ncmpcpp/config`, `newsboat/config` | `~/.aliases/` (local, not in repo) |
 | `nvim/lazy-lock.json` | tracked for reproducible Neovim plugin pins |
 | `.mutt/accounts/*` | `newsboat/cache.db`, `.w3m/cookie` |
 
@@ -791,7 +791,7 @@ One subsection per program/folder (alphabetical by repo path). See §4 catalog f
 
 **Files:** `mimeapps.list`, `starship.toml`, `twitchnotifier.cfg` → `~/.config/`; `.bashrc`, `.bash_profile`, `.gitconfig`, `.Xresources`, `.tmux.conf`, `.Xmodmap`, `.profile`, `.inputrc`, `.xprofile`, `.dir_colors`, `.wgetrc` → `$HOME/`; `picom.conf` → `~/.config/picom.conf`; `zsh/.zshrc` → `~/.config/zsh/.zshrc`
 
-**Not symlinked by setup.sh:** `firefox/` (see `docs/firefox.md`), `packages/`, `screenshots/`, `context.md`, `prompt.txt`
+**Not symlinked by setup.sh:** `firefox/` (see `docs/firefox.md`), `packages/`, `screenshots/`, `context.md`
 
 **Note:** Default is skip-if-exists; use `./setup.sh --backup` or `--force` for reinstalls.
 
@@ -799,7 +799,7 @@ One subsection per program/folder (alphabetical by repo path). See §4 catalog f
 
 - `.gitconfig` (use `.gitconfig.example` locally)
 - `.mutt/muttrc`, `.mutt/accounts`
-- `.w3m/cookie`, `.w3m/history` (purged from history)
+- `.w3m/cookie`, `.w3m/history` (gitignored)
 - `rofi/launchers/ribbon/styles/colors.rasi` (sed-updated by theme switcher — **only this** `colors.rasi`)
 - `newsboat/cache.db`, `mpv/watch_later`, `nvim/tempdir/`
 - `zsh/plugins/`, `yazi/plugins/`
@@ -807,7 +807,7 @@ One subsection per program/folder (alphabetical by repo path). See §4 catalog f
 
 **Tracked config (author choice):** `newsboat/urls`, `transmission-daemon/settings.json`, `.inputrc`, `twitchnotifier.cfg`
 
-**Security tooling:** `scripts/validate.sh`, `scripts/purge-history.sh`, `SECURITY.md`, `docs/secrets.md`
+**Security tooling:** `scripts/validate.sh`, `SECURITY.md`, `docs/secrets.md`
 
 ---
 
@@ -841,7 +841,7 @@ One subsection per program/folder (alphabetical by repo path). See §4 catalog f
 
 ### Secrets
 
-- **Never re-commit (purged from history):** polybar Gmail OAuth paths, `.w3m/cookie`, `.w3m/history`
+- **Do not commit:** paths listed in `docs/secrets.md` (gmail OAuth, w3m cookies, mutt accounts)
 - **Local-only:** `.gitconfig`, mutt accounts
 - **Retired:** Polybar Gmail module (removed from config; see `SECURITY.md`)
 - **Approach:** gitignore + `scripts/validate.sh` + optional `git config core.hooksPath .githooks`
@@ -873,34 +873,19 @@ One subsection per program/folder (alphabetical by repo path). See §4 catalog f
 ### Known issues
 
 - **Google Cloud SDK:** paths in `.zshrc` point to `~/Downloads/google-cloud-sdk` (fragile)
-- **CONFIG_BACKUP** in `.profile` still points at legacy `dotfiles/` path
+- **Redshift:** edit `redshift/redshift.conf` lat/lon if defaults (Islamabad) are wrong for your location
 
 ### Not started / deferred
 
 - Wayland port (Hyprland/Sway) — explicitly not in repo
-- Automated CI/config tests
+- Full end-to-end install CI on a live Arch VM
 - Unified theme token file across all apps
 
 ---
 
 ## 11. RECENT CHANGES & DECISIONS LOG
 
-| Date | Change | Why | Files |
-|------|--------|-----|-------|
-| 2026-05-20 | README/sxhkd sync; `TERMINAL=kitty`; bspwm profiles; dunst cleanup; gmail module retired; lazy-lock tracked | Portability and doc accuracy | `README.md`, `.profile`, `sxhkd/`, `bspwm/`, `dunst/`, `polybar/`, `.gitignore`, `context.md` |
-| 2026-05-20 | Gitignore ribbon `colors.rasi` only; setup `--backup`/`--force`; security scripts/docs | Stop noise commits from Rofi theme switcher | `.gitignore`, `setup.sh`, `rofi/launchers/ribbon/`, `scripts/`, `docs/` |
-| 2026-05-15 | Playtime list, lazy-lock, Rofi colors, Yazi `url`, gcloud PATH in zsh | Maintenance / QoL | `mpv/scripts/total_playtime.list`, `nvim/lazy-lock.json`, `yazi/yazi.toml`, `zsh/.zshrc` |
-| 2026-05-06 | Misc fixes | Unspecified | various |
-| 2026-04-01 | Branch sync `main` | Housekeeping | — |
-| 2026-03-31 | Neovim plugin version bumps | Compatibility | `nvim/` |
-| 2026-03-08 | Clangd / C LSP config | C++ dev | `nvim/lua/lsp/C.lua` |
-| 2026-02-27 | General changes | — | — |
-| 2026-02-10 | Picom deprecation fix | picom 13 API | `picom.conf` |
-| 2026-02-04 | Newsboat URL cleanup | Reduce feed bloat | `newsboat/` |
-| 2026-02-04 | Path portability | Remove hardcoded `/home/alpha` | many configs |
-| 2026-02-04 | QoL + critical config fixes | Stability | multiple |
-| 2026-01-21 | clipmenu + rofi | Clipboard UX | `sxhkdrc`, rofi |
-| 2026-01-14 | Neovim doc rename | GitHub visibility | `nvim/README` |
+See **[CHANGELOG.md](CHANGELOG.md)** — section **[Unreleased]** for the current batch (theme prune, validate/CI, host scripts, portability).
 
 ---
 
@@ -949,10 +934,7 @@ One subsection per program/folder (alphabetical by repo path). See §4 catalog f
 
 ### README minimum set
 
-```
-bspwm sxhkd polybar rofi kitty zsh neovim picom dunst ranger lf mpv mpd ncmpcpp newsboat brightnessctl playerctl tmux starship bat exa
-ttf-jetbrains-mono-nerd ttf-iosevka-nerd
-```
+Canonical list: **`packages/minimal.txt`** (install via `./scripts/install-deps.sh` or by hand).
 
 ### Integrations
 
@@ -1047,8 +1029,9 @@ picom --config ~/.config/picom.conf --diagnostics
 
 - Yazi config (`url` vs `name` fields) stabilization
 - ~~Rofi ribbon `colors.rasi` git noise~~ — fixed: only `launchers/ribbon/styles/colors.rasi` gitignored
-- Consolidate gcloud PATH (single location)
-- Fix `CONFIG_BACKUP` path in `.profile`
+- Consolidate gcloud PATH (single location — use `GCLOUD_SDK` env)
+- ~~Fix `CONFIG_BACKUP` path in `.profile`~~ — done
+- Edit `redshift/redshift.conf` lat/lon for your location
 
 ### Short-term
 
@@ -1082,8 +1065,9 @@ picom --config ~/.config/picom.conf --diagnostics
 - `mpv/watch_later/`, `mpv/scripts/total_playtime.list` (user data) — only if task-related
 - `.gitconfig`, `.mutt/accounts`
 - `zsh/plugins/` (downloaded), `yazi/plugins/` (managed separately)
+- `lf/`, `ranger/` (legacy file managers — minimal maintenance)
 - `transmission-daemon` resume/torrent state
-- Mass renames in `zsh/themes/` or `rofi/themes/`
+- Mass renames in `rofi/launchers/` vendored assets
 
 ### Recurring mistakes to avoid
 
@@ -1103,5 +1087,5 @@ picom --config ~/.config/picom.conf --diagnostics
 
 ---
 
-*Generated from repository analysis per `prompt.txt`. Re-run analysis after major structural changes.*
+*Re-run a full repo review after major structural changes; keep facts in sync with CHANGELOG [Unreleased].*
 

@@ -169,8 +169,8 @@ c.tabs.show_switching_delay = 2000
 c.messages.timeout = 5000
 c.keyhint.delay = 0
 
-# default text editor
-c.editor.command = ['alacritty', '-e', 'nvim', '{file}']
+# default text editor (uses $TERMINAL from environment)
+c.editor.command = [os.environ.get('TERMINAL', 'kitty'), '-e', 'nvim', '{file}']
 c.editor.encoding = 'utf-8'
 
 # use the new ad-blocker

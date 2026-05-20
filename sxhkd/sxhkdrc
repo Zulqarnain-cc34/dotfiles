@@ -86,85 +86,6 @@ super + {Left,Down,Up,Right}
 super + v
     CM_LAUNCHER=rofi clipmenu
 
-# #	Send window to desktop
-# super + shift + {0-9}
-#   crystal --send {0-9}
-
-# # Send window to desktop and swap to desktop
-# super + control + {0-9}
-#   bspc node -d {0-9} && bspunhide && bspc desktop -f {0-9}
-
-
-# # Swap nodes the tree from the current nodes parent
-# super + control + {Up, Down}
-#   bspc node @parent -C {forward, backward}
-#
-# # Rotate the tree from the current nodes parent
-# super + control + {Right, Left}
-# 	bspc node @parent --rotate {90,270}
-#
-# # Flip the tree from the current nodes parent
-# super + control + {h,j,k,l}
-#   bspc node @parent -F {vertical,horizontal,horizontal,vertical}
-
-
-# # Toggle fullscreen on and off
-# super + f
-#   crystal --fullscreen
-
-# # Toggle floating on and off
-# super + o
-#   bspc node focused.tiled -t floating || bspc node focused.floating -t tiled
-#
-# # Swap window with direction
-# super + shift + {h,j,k,l}
-# 	bspc node -s {west,south,north,east}
-#
-# # Focus on desktop
-# super + {0-9}
-# 	crystal --focus {0-9}
-#
-# # Cycle through desktops
-# super + alt + {Left, Right}
-#   crystal --focus {prev, next}
-#
-# # Close all receptacle
-# super + shift + i
-#   for win in `bspc query -N -n .leaf.\!window`; do bspc node $win -k ; done;
-#
-# # Insert receptacle
-# super + i; {h,j,k,l}
-#   bspc node --presel-dir {west,south,north,east} -i
-#
-# # Move to rectacle
-# super + r
-#   bspreceptacle
-#
-# # Balance nodes
-# super + e
-#   bspc node @/ -B
-#
-# # Expand a window by moving one of its side outward
-# ctrl + alt + {h,j,k,l}
-# 	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
-#
-# # Contract a window by moving one of its side inward
-# ctrl + alt + shift + {h,j,k,l}
-# 	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
-#
-# # Move a floating window
-# ctrl + alt + {Left,Right,Up,Down}
-#   xdo move {-x -20, -x +20, -y -20, -y +20}
-#
-# # Dropdown terminal
-# super + alt + Return
-# 	tdrop -ma -w 1916 -y 0 st
-#
-#  super + shift + o
-#    reloadpolybar
-
-
-
 #######################################################################
 #                           SYSTEM CONTROLS                           #
 #######################################################################
@@ -176,9 +97,6 @@ super + shift + x
 # Lock the screen
 alt + l
   slock
-
-# super + shift + c
-#   toggleprogram "picom" "--experimental-backends"
 
 #######################################################################
 #                            APPLICATIONS                             #
@@ -206,24 +124,9 @@ alt  + n
 super + p
    $HOME/.config/polybar/scripts/powermenu
 
-# F7
-#   toggletouch
+# Screenshots (maim)
+Print
+    mkdir -p "$HOME/Pictures/screenshots" && maim -u "$HOME/Pictures/screenshots/$(date +%Y%m%d-%H%M%S).png"
 
-# # Brightness
-# super + {Right, Left}
-#    light {-A 5, -U 5} && polybar-msg hook backlight 1
-#
-# Screenshots
-# Print
-# 	flameshot full -p ~/pictures/screenshots
-#
-# Print + shift
-# 	flameshot gui
-#
-# Print + super
-# 	flameshot screen -p ~/pictures/screenshots
-
-
-
-# super + alt + {a, r, t, h, n, c, j, p}
-#   $TERMINAL -e {alsamixer, lf, transmission-remote-cli, htop, nvim, calcurse, nvim $XDG_DATA_HOME/vimwiki/index.wiki, pulsemixer}
+shift + Print
+    mkdir -p "$HOME/Pictures/screenshots" && maim -s -u "$HOME/Pictures/screenshots/$(date +%Y%m%d-%H%M%S).png"

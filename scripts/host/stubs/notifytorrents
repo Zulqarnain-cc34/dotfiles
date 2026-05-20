@@ -1,0 +1,4 @@
+#!/bin/sh
+# Stub: replace with transmission notify script
+echo "notifytorrents: install your script in ~/bin/bash_scripts/" >&2
+exit 0

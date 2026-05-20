@@ -14,7 +14,10 @@ HISTDUP=erase
 
 export BROWSERCLI="w3m"
 
-export PATH="/home/alpha/bin/binaries/google-cloud-sdk/bin:$PATH"
+_gcloud_sdk="${GCLOUD_SDK:-$HOME/Downloads/google-cloud-sdk}"
+if [ -d "$_gcloud_sdk/bin" ]; then
+    export PATH="$_gcloud_sdk/bin:$PATH"
+fi
 # History Options
 # No repeating commands
 setopt appendhistory
@@ -169,8 +172,7 @@ function yazi() {
 
 fastfetch
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/home/alpha/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/home/alpha/Downloads/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/home/alpha/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/alpha/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
+# Google Cloud SDK (optional; set GCLOUD_SDK to override install path)
+_gcloud_sdk="${GCLOUD_SDK:-$HOME/Downloads/google-cloud-sdk}"
+if [ -f "$_gcloud_sdk/path.zsh.inc" ]; then . "$_gcloud_sdk/path.zsh.inc"; fi
+if [ -f "$_gcloud_sdk/completion.zsh.inc" ]; then . "$_gcloud_sdk/completion.zsh.inc"; fi

@@ -64,10 +64,10 @@ command -v conky >/dev/null && conky -q -c ~/.config/conky/conky1/conkyrc1 &
 picom &
 sxhkd &
 dunst &
-redshift -O 5000 & 
+command -v redshift >/dev/null && redshift -c "$HOME/.config/redshift/redshift.conf" &
 [ -x "$HOME/bin/bash_scripts/random-wallpaper.sh" ] && "$HOME/bin/bash_scripts/random-wallpaper.sh" &
 xset r rate 300 50 &
 xmodmap "$HOME/.Xmodmap" &
 clipmenud &
 
-polybar -r main --config=$HOME/.config/polybar/config.ini &
+[ -x "$HOME/.config/polybar/launch.sh" ] && "$HOME/.config/polybar/launch.sh" &

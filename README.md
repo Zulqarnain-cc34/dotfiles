@@ -150,8 +150,13 @@ This isn't just a text editor; it's a personalized Development Environment.
 | **`Super + Arrows`** | Move Floating Window |
 | **`Super + D`** | Toggle Floating Mode |
 | **`Super + F`** | Cycle Layout (fullscreen / monocle) |
+| **`Super + V`** | Clipboard menu (clipmenu via rofi) |
+| **`Super + P`** | Polybar power menu |
+| **`Alt + L`** | Lock screen (slock) |
 | **`Super + 1-8`** | Switch Workspaces |
 | **`Super + Shift + 1-8`** | Send Window to Workspace |
+
+Full list: [sxhkd/sxhkdrc](sxhkd/sxhkdrc)
 
 </details>
 
@@ -165,8 +170,24 @@ This isn't just a text editor; it's a personalized Development Environment.
 | **`Super + M`** | NCMPCPP (Music Player) |
 | **`Super + W`** | Firefox |
 | **`Super + E`** | Neomutt (Email) |
+| **`Print`** | Screenshot (full screen) |
+| **`Shift + Print`** | Screenshot (selection) |
 
 </details>
+
+---
+
+## Primary stack
+
+| Role | Tool | Notes |
+|------|------|--------|
+| Terminal | **Kitty** | `TERMINAL=kitty` in `.profile` |
+| File manager | **Yazi** | Primary TUI |
+| Launcher | **Rofi ribbon** | `super+space`; bulk themes removed |
+| Legacy FM | lf, ranger | Optional; see `lf/README.md`, `ranger/README.md` |
+| Alt terminal | Alacritty | Config kept; not primary |
+
+External scripts under `~/bin/bash_scripts/` are documented in [scripts/host/README.md](scripts/host/README.md).
 
 ---
 
@@ -177,6 +198,7 @@ Full install guide: **[docs/INSTALL.md](docs/INSTALL.md)**
 ### Quick start (Arch Linux)
 
 ```bash
+# GitHub repo is named dotfiles; local clone path is dotfiles_v2
 git clone https://github.com/Zulqarnain-cc34/dotfiles.git ~/etc/linuxConfig/dotfiles_v2
 cd ~/etc/linuxConfig/dotfiles_v2
 chmod +x setup.sh scripts/*.sh
@@ -197,16 +219,21 @@ Minimal package list (one Nerd font if disk is tight): `packages/minimal.txt`
 Everything is neatly organized in `~/.config/`:
 
 ```tree
-dotfiles/
-├── bspwm/           # Core Window Manager config
-├── polybar/         # The top status bar
-├── sxhkd/           # Global keybinding daemon
-├── nvim/            # The Lua-based IDE
-├── zsh/             # Shell aliases and environment
-├── kitty/           # Terminal emulator config
-├── rofi/            # Application launcher & menus
-├── picom.conf       # Transparency & Blur logic
-└── script/          # Custom utility scripts
+dotfiles_v2/
+├── bspwm/           # Window manager
+├── polybar/         # Status bar
+├── sxhkd/           # Global keybindings
+├── nvim/            # Neovim (lazy.nvim)
+├── zsh/             # Shell config
+├── kitty/           # Primary terminal
+├── yazi/            # Primary file manager
+├── rofi/            # Launcher (ribbon)
+├── dunst/           # Notifications
+├── docs/            # INSTALL, secrets, firefox
+├── scripts/         # setup helpers, validate, host stubs
+├── packages/        # minimal.txt, v2 manifests
+├── setup.sh         # Symlink deploy
+└── picom.conf       # Compositor
 ```
 
 ---

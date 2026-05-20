@@ -18,8 +18,12 @@ playerctl
 tmux
 starship
 bat
-exa
+eza
+yazi
+fastfetch
+slock
 feh
+maim
 xorg-xset
 xorg-xmodmap
 clipmenu
