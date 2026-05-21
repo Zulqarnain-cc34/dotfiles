@@ -1,1 +1,178 @@
-/home/alpha/etc/linuxConfig/dotfiles_v2/zsh/.zshrc
+# Flex on the ubuntu users
+# paleofetch
+
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+# History in Cache Directory and HIstory Size
+export HISTSIZE=50000
+
+export SAVEHIST=$HISTSIZE
+mkdir -p "$HOME/.logs/zsh"
+HISTFILE="$HOME/.logs/zsh/history"
+HISTDUP=erase
+
+export BROWSERCLI="w3m"
+
+_gcloud_sdk="${GCLOUD_SDK:-$HOME/Downloads/google-cloud-sdk}"
+if [ -d "$_gcloud_sdk/bin" ]; then
+    export PATH="$_gcloud_sdk/bin:$PATH"
+fi
+# History Options
+# No repeating commands
+setopt appendhistory
+setopt sharehistory
+setopt EXTENDED_HISTORY
+# setopt incappendhistory
+# setopt hist_ignore_all_dups
+# setopt hist_save_no_dups
+# setopt hist_ignore_dups
+# setopt hist_find_no_dups
+
+# vi mode
+bindkey -v
+export KEYTIMEOUT=1
+
+# Enable searching through history
+bindkey '^R' history-incremental-pattern-search-backward
+
+# Edit line in vim buffer ctrl-v
+autoload edit-command-line; zle -N edit-command-line
+bindkey '^v' edit-command-line
+# Enter vim buffer from normal mode
+autoload -U edit-command-line && zle -N edit-command-line && bindkey -M vicmd "^v" edit-command-line
+
+# Use vim keys in tab complete menu:
+bindkey -M menuselect 'h' vi-backward-char
+bindkey -M menuselect 'j' vi-down-line-or-history
+bindkey -M menuselect 'k' vi-up-line-or-history
+bindkey -M menuselect 'l' vi-forward-char
+bindkey -M menuselect 'left' vi-backward-char
+bindkey -M menuselect 'down' vi-down-line-or-history
+bindkey -M menuselect 'up' vi-up-line-or-history
+bindkey -M menuselect 'right' vi-forward-char
+
+# Change cursor shape for different vi modes.
+function zle-keymap-select {
+  if [[ ${KEYMAP} == vicmd ]] ||
+     [[ $1 = 'block' ]]; then
+    echo -ne '\e[1 q'
+  elif [[ ${KEYMAP} == main ]] ||
+       [[ ${KEYMAP} == viins ]] ||
+       [[ ${KEYMAP} = '' ]] ||
+       [[ $1 = 'beam' ]]; then
+    echo -ne '\e[5 q'
+  fi
+}
+zle -N zle-keymap-select
+
+# ci", ci', ci`, di", etc
+autoload -U select-quoted
+zle -N select-quoted
+for m in visual viopp; do
+  for c in {a,i}{\',\",\`}; do
+    bindkey -M $m $c select-quoted
+  done
+done
+
+# ci{, ci(, ci<, di{, etc
+autoload -U select-bracketed
+zle -N select-bracketed
+for m in visual viopp; do
+  for c in {a,i}${(s..)^:-'()[]{}<>bB'}; do
+    bindkey -M $m $c select-bracketed
+  done
+done
+
+zle-line-init() {
+    zle -K viins # initiate `vi insert` as keymap (can be removed if `bindkey -V` has been set elsewhere)
+    echo -ne "\e[5 q"
+}
+zle -N zle-line-init
+
+# Control bindings for programs
+bindkey -s "^g" "lc\n"
+bindkey -s "^h" "history 1\n"
+bindkey -s "^l" "clear\n"
+bindkey -s "^d" "dlfile\n"
+
+if [ ! -d "$HOME/.config/zsh/plugins/zsh-autosuggestions" ]; then
+    git clone https://github.com/zsh-users/zsh-autosuggestions ~/.config/zsh/plugins/zsh-autosuggestions
+fi
+if [ ! -d "$HOME/.config/zsh/plugins/zsh-syntax-highlighting" ]; then
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.config/zsh/plugins/zsh-syntax-highlighting
+fi
+
+[ -f ~/.config/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ] && source ~/.config/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh 2>/dev/null
+[ -f ~/.config/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ] && source ~/.config/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
+
+# Sourcing Files,Aliases and Bindings
+# Source aliases from properly linked config location
+[ -f "$HOME/.aliases/aliases" ] && source "$HOME/.aliases/aliases"
+
+[ -f /usr/share/fzf/key-bindings.zsh ] && source /usr/share/fzf/key-bindings.zsh
+
+# Autojump integration (matches bash behavior)
+[ -f /usr/share/autojump/autojump.zsh ] && source /usr/share/autojump/autojump.zsh
+
+[ -f $HOME/.config/zsh/.zshenv ] && source $HOME/.config/zsh/.zshenv
+
+conda-init() {
+  __conda_setup="$("$HOME/anaconda3/bin/conda" 'shell.zsh' 'hook' 2> /dev/null)"
+  if [ $? -eq 0 ]; then
+      eval "$__conda_setup"
+  else
+      if [ -f "$HOME/anaconda3/etc/profile.d/conda.sh" ]; then
+          . "$HOME/anaconda3/etc/profile.d/conda.sh"
+      else
+          export PATH="$HOME/anaconda3/bin:$PATH"
+      fi
+  fi
+  unset __conda_setup
+}
+
+alias luamake=$HOME/.config/nvim/lua-language-server/3rd/luamake/luamake
+
+# source /etc/profile.d/autojump.sh
+
+if [ -n $R_LIBS ]; then
+  export R_LIBS=~/.Rlibs:$R_LIBS
+else
+  export R_LIBS=~/.Rlibs
+fi
+
+
+# pnpm
+export PNPM_HOME="$HOME/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+
+esac
+
+# pnpm end
+export NVM_DIR="$HOME/.config/nvm"
+export CLOUDSDK_PYTHON_SITEPACKAGES=1
+# Lazy-load nvm when first needed
+nvm() {
+  unset -f nvm
+  [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+  [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"
+  nvm "$@"
+}
+
+function yazi() {
+    local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+    command yazi "$@" --cwd-file="$tmp"
+    if cwd=$(cat "$tmp" 2>/dev/null); then
+        cd -- "$cwd"
+    fi
+    rm -f "$tmp"
+}
+
+fastfetch
+
+# Google Cloud SDK (optional; set GCLOUD_SDK to override install path)
+_gcloud_sdk="${GCLOUD_SDK:-$HOME/Downloads/google-cloud-sdk}"
+if [ -f "$_gcloud_sdk/path.zsh.inc" ]; then . "$_gcloud_sdk/path.zsh.inc"; fi
+if [ -f "$_gcloud_sdk/completion.zsh.inc" ]; then . "$_gcloud_sdk/completion.zsh.inc"; fi

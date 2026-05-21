@@ -20,7 +20,6 @@ alias comp-rdp='xfreerdp -wallpaper /compression -themes /async-update /micropho
 alias pa='sudo pacman'
 alias vim='nvim'
 alias kubectl="minikube kubectl --"
-alias lf='YAZI_FILE_ONE=file yazi'
 
 # root privileges
 alias doas="doas --"
@@ -200,3 +199,5 @@ alias song="/home/alpha/etc/linuxConfig/dotfiles_v2/ncmpcpp/notification"
 alias pip-upgrade="pip freeze --user | cut -d'=' -f1 | xargs -n1 pip install -U"
 
 alias cvtbashtozsh='cat ~/.bash_history | uniq | sed "s/^/\: $(date +%s)\:0;/" >> ~/.zsh_history'
+
+alias lf='YAZI_FILE_ONE=file yazi'

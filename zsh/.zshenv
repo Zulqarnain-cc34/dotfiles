@@ -24,20 +24,6 @@ export PATH="$HOME/.local/bin:$PATH"
 # export XSERVERRC="$XDG_CONFIG_HOME"/X11/xserverrc
 # export ZDOTDIR=$HOME/.config/zsh
 
-# Flutter
-export ANDROID_SDK_ROOT="/opt/android-sdk"
-case ":$PATH:" in
-  *":$ANDROID_SDK_ROOT/platform-tools:"*) ;;
-  *) PATH="$PATH:$ANDROID_SDK_ROOT/platform-tools" ;;
-esac
-case ":$PATH:" in
-  *":$ANDROID_SDK_ROOT/tools/bin:"*) ;;
-  *) PATH="$PATH:$ANDROID_SDK_ROOT/tools/bin" ;;
-esac
-case ":$PATH:" in
-  *":$ANDROID_SDK_ROOT/tools:"*) ;;
-  *) PATH="$PATH:$ANDROID_SDK_ROOT/tools" ;;
-esac
 
 # java for sdkmanager flutter
 export JAVA_HOME="/usr/lib/jvm/java-8-openjdk"
@@ -136,6 +122,7 @@ case ":$PATH:" in
   *":$GOBIN:"*) ;;
   *) PATH="$GOBIN:$PATH" ;;
 esac
+
 # LESS COLORS
 export LESS_TERMCAP_mb=$'\e[1;31m'     # begin bold
 export LESS_TERMCAP_md=$'\e[1;33m'     # begin blink

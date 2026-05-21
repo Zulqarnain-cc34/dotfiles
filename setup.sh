@@ -46,6 +46,10 @@ backup_target() {
 
 link_path() {
     local src=$1 dest=$2
+    if [[ -L "$src" ]] && [[ ! -e "$src" ]]; then
+        echo "  ERROR: broken symlink in repo: $src (restore real file, e.g. git show HEAD~1:zsh/.zshrc)" >&2
+        return 1
+    fi
     if [[ ! -e "$src" ]]; then
         echo "  skip (missing in repo): $src"
         return 0

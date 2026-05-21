@@ -1,0 +1,20 @@
+# Optional: if you prefer msmtp over NeoMutt smtp_url, install msmtp and:
+#   cp msmtprc.example ~/.msmtprc && chmod 600 ~/.msmtprc
+# Then in account file: remove "unset sendmail" and use account in msmtp.
+
+defaults
+auth           on
+tls            on
+tls_trust_file /etc/ssl/certs/ca-certificates.crt
+logfile        ~/.msmtp.log
+
+account        gmail
+host           smtp.gmail.com
+port           587
+tls            on
+tls_starttls   on
+from           powerranger16918@gmail.com
+user           powerranger16918@gmail.com
+password       plain
+
+account default : gmail
