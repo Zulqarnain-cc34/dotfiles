@@ -106,17 +106,17 @@ alt + l
 shift + alt + t
     notifytorrents
 
-super + {t,r,y,o,w,e}
-    {$TERMINAL,$TERMINAL -e rtv,$HOME/bin/bash_scripts/ytfzf -D,$TERMINAL -e htop, firefox,$TERMINAL -e neomutt}
+super + {t,r,y,o,w}
+    {$TERMINAL,$TERMINAL -e rtv,$HOME/bin/bash_scripts/ytfzf -D,$TERMINAL -e htop, firefox}
 
-# super + space
-#   rofi-bangs
+super + space
+  rofi-bangs
 
 super + space
    $HOME/.config/rofi/launchers/ribbon/launcher.sh
 
 super + m
-   $TERMINAL -e ncmpcpp
+   $TERMINAL -e neomutt
 
 alt  + n
    $TERMINAL -e newsboat
