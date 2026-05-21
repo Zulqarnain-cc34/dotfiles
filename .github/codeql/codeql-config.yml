@@ -1,0 +1,4 @@
+# Dotfiles repo: skip vendored userscripts (not maintained here).
+name: "dotfiles CodeQL"
+paths-ignore:
+  - qutebrowser/greassmonkey
