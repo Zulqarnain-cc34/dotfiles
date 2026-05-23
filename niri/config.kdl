@@ -55,6 +55,12 @@ environment {
     ELECTRON_OZONE_PLATFORM_HINT "auto"
 }
 
+// X11 apps: niri creates the X11 socket, sets $DISPLAY, and starts
+// xwayland-satellite on demand (>= 0.7). Do not spawn-at-startup it manually.
+xwayland-satellite {
+    path "xwayland-satellite"
+}
+
 // Session autostart (X11-only tools like picom/sxhkd/bspwm are not started here)
 spawn-at-startup "dunst"
 spawn-at-startup "waybar"

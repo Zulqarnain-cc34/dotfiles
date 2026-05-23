@@ -8,7 +8,8 @@ cliphist
 swaylock
 grim
 slurp
-swww
+awww
+xwayland-satellite
 gammastep
 wireplumber
 qt6ct

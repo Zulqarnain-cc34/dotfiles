@@ -8,7 +8,7 @@ Scrollable-tiling Wayland session alongside the existing BSPWM/X11 setup. Config
 sudo pacman -S --needed $(grep -v '^#' packages/niri-wayland.txt | tr '\n' ' ')
 ```
 
-Or install manually: `niri`, `waybar`, `wl-clipboard`, `cliphist`, `swaylock`, `grim`, `slurp`, `swww`, `gammastep`, `wireplumber`.
+Or install manually: `niri`, `waybar`, `wl-clipboard`, `cliphist`, `swaylock`, `grim`, `slurp`, `awww`, `xwayland-satellite`, `gammastep`, `wireplumber`.
 
 ## Link configs
 
@@ -48,7 +48,9 @@ On Arch, `niri` package typically installs `/usr/share/wayland-sessions/niri.des
 | `waybar` | Status bar (replaces polybar on Wayland) |
 | `gammastep` | Night colour (Wayland replacement for redshift) |
 | `wl-paste` + `cliphist` | Clipboard history |
-| `autostart.sh` | Wallpaper (`swww`) + optional MPD |
+| `autostart.sh` | Wallpaper (`awww`, cycles via `random-wallpaper.sh`) + optional MPD |
+
+**X11 apps:** niri 25.08+ integrates `xwayland-satellite` automatically — no `spawn-at-startup` needed. On session start niri creates the X11 socket, sets `$DISPLAY`, and starts `xwayland-satellite` when the first X11 client connects (and restarts it if it dies). Verify with `echo $DISPLAY` inside a niri terminal; niri logs should show `listening on X11 socket: :N`.
 
 ## Keybindings
 
@@ -76,9 +78,7 @@ Mirrors your `sxhkd` habits where possible:
 | `Shift+Print` | Region screenshot (grim + slurp) |
 | `Super+Shift+X` | Reload niri config |
 
-Niri-specific actions moved off conflicting keys: overview `Super+Shift+O`, tabbed column `Super+Shift+W`.
-
-**Workspaces:** dynamic, not pre-declared names. Waybar maps index 1–9 to 一–九; empty workspaces are hidden via CSS (Arch waybar 0.15 has no `hide-empty` yet).
+Niri-specific actions moved off conflicting keys: overview `Super+Shift+O`, tabbed column `Super+Shift+W`..
 
 ## Outputs / monitors
 
@@ -93,4 +93,4 @@ niri msg outputs
 - **BSPWM stack** (picom, sxhkd, polybar, feh, redshift, clipmenud) is for X11 only.
 - **Kitty** works on Wayland out of the box.
 - Set **gammastep** latitude/longitude in `~/.config/gammastep/config.toml` (similar to `redshift/redshift.conf`).
-- Wallpapers: place images in `~/Pictures/wallpapers` for `swww` in `autostart.sh`.
+- Wallpapers: same folder as BSPWM — `~/Pictures/Wallpapers/Wallpapers`. Wayland uses `awww` (`awww img --resize crop`). Logs: `~/.cache/niri-wallpaper.log`.
