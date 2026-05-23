@@ -81,6 +81,7 @@ fi
 
 echo "==> Directories -> ~/.config and \$HOME"
 link_dir redshift              "$HOME/.config/redshift"
+link_dir gammastep             "$HOME/.config/gammastep"
 link_dir polybar              "$HOME/.config/polybar"
 link_dir newsboat             "$HOME/.newsboat"
 link_dir transmission-daemon  "$HOME/.config/transmission-daemon"

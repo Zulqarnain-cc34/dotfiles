@@ -135,6 +135,20 @@ set_wallpaper() {
     fi
 }
 
+# One-shot helpers for niri per-workspace wallpapers (no flock, no loop).
+if [[ "${1:-}" == "--pick" ]]; then
+    dir=$(find_wall_dir || { echo "No wallpaper directory found" >&2; exit 1; })
+    pick_wallpaper "$dir"
+    exit 0
+fi
+
+if [[ "${1:-}" == "--set" && -n "${2:-}" ]]; then
+    BACKEND=wayland
+    [[ -f "$2" ]] || { echo "Missing wallpaper: $2" >&2; exit 1; }
+    set_wallpaper "$2"
+    exit $?
+fi
+
 BACKEND=$(detect_backend)
 pidfile=$(lock_file)
 

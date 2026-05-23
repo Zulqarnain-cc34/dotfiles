@@ -64,7 +64,6 @@ xwayland-satellite {
 // Session autostart (X11-only tools like picom/sxhkd/bspwm are not started here)
 spawn-at-startup "dunst"
 spawn-at-startup "waybar"
-spawn-at-startup "gammastep"
 spawn-at-startup "wl-paste" "--watch" "cliphist" "store"
 spawn-sh-at-startup "$HOME/.config/niri/autostart.sh"
 

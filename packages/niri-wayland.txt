@@ -10,6 +10,7 @@ grim
 slurp
 awww
 xwayland-satellite
+jq
 gammastep
 wireplumber
 qt6ct
