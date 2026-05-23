@@ -148,6 +148,9 @@ binds {
     Mod+Shift+H { focus-monitor-left; }
     Mod+Shift+L { focus-monitor-right; }
 
+    // Move window to prev/next workspace (matches sxhkd: shift+ctrl+Left/Right)
+    Ctrl+Shift+Left { move-column-to-workspace-up; }
+    Ctrl+Shift+Right { move-column-to-workspace-down; }
 
     Mod+1 { focus-workspace 1; }
     Mod+2 { focus-workspace 2; }

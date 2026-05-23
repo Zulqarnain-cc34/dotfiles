@@ -32,30 +32,28 @@ window#waybar {
     font-size: 11px;
 }
 
-/* --- workspaces (polybar bspwm) --- */
+/* --- workspaces (niri; polybar-style) --- */
 #workspaces {
     margin: 0 4px 0 2px;
     background: transparent;
 }
 
+/* Reset waybar implicit workspace button styling */
 #workspaces button {
     padding: 0 5px;
     margin: 0 1px;
     min-width: 14px;
     color: #abb2bf;
     background: transparent;
-}
-
-#workspaces button.occupied {
-    color: #c678dd;
+    border: none;
+    text-shadow: none;
+    box-shadow: none;
+    transition: none;
+    -gtk-icon-shadow: none;
 }
 
 #workspaces button.urgent {
     color: #e06c75;
-}
-
-#workspaces button.active {
-    color: #c678dd;
 }
 
 #workspaces button.focused {
@@ -63,8 +61,20 @@ window#waybar {
     color: #282c34;
 }
 
-#workspaces button:hover {
+/* Unfocused workspaces (with or without windows) — light text, not black */
+#workspaces button:not(.focused) {
+    color: #abb2bf;
+    background: transparent;
+}
+
+#workspaces button:hover:not(.focused) {
     background: rgba(97, 175, 239, 0.2);
+    color: #abb2bf;
+}
+
+#workspaces button.focused:hover {
+    background-color: #61afef;
+    color: #282c34;
 }
 
 /* waybar 0.15 (Arch) has no hide-empty; GTK CSS has no display/max-width */

@@ -72,6 +72,7 @@ Mirrors your `sxhkd` habits where possible:
 | `Super+Q` | Close window |
 | `Super+1-9` | Focus workspace index 1–9 |
 | `Super+Shift+1-9` | Move column to workspace index 1–9 |
+| `Ctrl+Shift+Left/Right` | Move window to prev/next workspace (follows focus) |
 | `Super+V` | Clipboard history (cliphist + rofi) |
 | `Alt+L` | swaylock |
 | `Print` | Screenshot (niri) |
