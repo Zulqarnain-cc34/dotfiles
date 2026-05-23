@@ -87,20 +87,40 @@ window#waybar {
 }
 
 /* --- network speed (polybar networkspeedup/down) --- */
-#custom-net-up {
+#custom-net-up-icon {
     color: #56b6c2;
-    padding: 0;
-    margin: 0 0 0 2px;
+    padding: 0 0 0 8px;
+    margin: 0 8px 0 0;
     font-family: "Iosevka Nerd Font Mono", "JetBrainsMono Nerd Font Mono", monospace;
     font-size: 12px;
+    min-width: 0;
+}
+
+#custom-net-down-icon {
+    color: #56b6c2;
+    padding: 0;
+    margin: 0 8px 0 0;
+    font-family: "Iosevka Nerd Font Mono", "JetBrainsMono Nerd Font Mono", monospace;
+    font-size: 12px;
+    min-width: 0;
+}
+
+#custom-net-up {
+    color: #56b6c2;
+    padding: 0 2px 0 0;
+    margin: 0 6px 0 0;
+    font-family: "Iosevka Nerd Font Mono", "JetBrainsMono Nerd Font Mono", monospace;
+    font-size: 12px;
+    min-width: 0;
 }
 
 #custom-net-down {
     color: #56b6c2;
-    padding: 0;
-    margin: 0 2px 0 -2px;
+    padding: 0 2px 0 0;
+    margin: 0 8px 0 0;
     font-family: "Iosevka Nerd Font Mono", "JetBrainsMono Nerd Font Mono", monospace;
     font-size: 12px;
+    min-width: 0;
 }
 
 /* Icon+text pairs are separate waybar modules — keep boxes transparent and tight */
@@ -118,8 +138,8 @@ label {
 
 /* --- battery (polybar: green/lime icon, gray label) --- */
 #battery {
-    padding: 0 4px 0 4px;
-    margin: 0;
+    padding: 0;
+    margin: 0 10px 0 0;
     min-width: 0;
     color: #b9c244;
 }
@@ -143,7 +163,7 @@ label {
 
 #custom-battery-pct {
     color: #abb2bf;
-    padding: 0 6px 0 2px;
+    padding: 0 8px 0 0;
     min-width: 0;
 }
 
@@ -190,8 +210,6 @@ label {
 }
 
 /* --- right modules: colored icon + text (tight pairs, no box clipping) --- */
-#custom-uptime-icon,
-#custom-uptime-icon label,
 #custom-cpu-icon,
 #custom-cpu-icon label,
 #custom-memory-icon,
@@ -215,6 +233,9 @@ label {
 #custom-uptime-icon,
 #custom-uptime-icon label {
     color: #00b19f;
+    margin: 0;
+    min-width: 0;
+    padding: 0 10px 0 8px;
 }
 
 #custom-cpu-icon,

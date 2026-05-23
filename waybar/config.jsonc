@@ -15,7 +15,9 @@
         "custom/launcher",
         "custom/mod",
         "niri/workspaces",
+        "custom/net-up-icon",
         "custom/net-up",
+        "custom/net-down-icon",
         "custom/net-down",
         "battery",
         "custom/battery-pct"
@@ -66,16 +68,24 @@
         },
         "all-outputs": false
     },
+    "custom/net-up-icon": {
+        "format": "🔺",
+        "tooltip": false
+    },
     "custom/net-up": {
         "exec": "$HOME/.config/waybar/scripts/net-speed.sh up",
         "interval": 1,
-        "format": "🔺{}",
+        "format": "{}",
+        "tooltip": false
+    },
+    "custom/net-down-icon": {
+        "format": "🔻",
         "tooltip": false
     },
     "custom/net-down": {
         "exec": "$HOME/.config/waybar/scripts/net-speed.sh down",
         "interval": 1,
-        "format": "🔻{}",
+        "format": "{}",
         "tooltip": false
     },
     "battery": {
@@ -102,7 +112,7 @@
     "custom/battery-pct": {
         "exec": "$HOME/.config/waybar/scripts/battery-pct.sh",
         "interval": 5,
-        "format": "{}",
+        "format": " {}",
         "tooltip": false
     },
     "mpd": {
