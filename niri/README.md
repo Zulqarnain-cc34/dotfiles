@@ -15,6 +15,7 @@ Or install manually: `niri`, `waybar`, `wl-clipboard`, `cliphist`, `swaylock`, `
 ```bash
 ./setup.sh --force   # links niri/ and waybar/ into ~/.config/
 chmod +x ~/.config/niri/autostart.sh
+~/.config/niri/scripts/disable-xdg-autostart.sh
 ```
 
 ### What starts automatically

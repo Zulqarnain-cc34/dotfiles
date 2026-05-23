@@ -1,56 +1,48 @@
 #!/usr/bin/env bash
-# Per-workspace wallpapers for niri (dynamic workspaces).
-# Assigns a random image when a workspace first appears; applies it on focus.
-set -euo pipefail
+# Random wallpaper on every niri workspace switch (including revisits).
+set -uo pipefail
 
-MAP="${HOME}/.cache/niri-workspace-wallpapers.map"
 LOG="${HOME}/.cache/niri-workspace-wallpaper.log"
+STATE="${HOME}/.cache/niri-workspace-wallpaper.state"
 PICK="${HOME}/bin/bash_scripts/random-wallpaper.sh"
 LOCK="${HOME}/.cache/niri-workspace-wallpaper.lock"
 
-ensure_map() {
-    mkdir -p "$(dirname "$MAP")"
-    touch "$MAP"
+read_state() {
+    last_focused=""
+    last_wall=""
+    [[ -f "$STATE" ]] || return 0
+    IFS='|' read -r last_focused last_wall < "$STATE" || true
 }
 
-assign_workspace() {
+write_state() {
+    printf '%s|%s\n' "$1" "$2" > "$STATE"
+}
+
+apply_random_wallpaper() {
     local id=$1 wall
 
-    ensure_map
-    if grep -q "^${id}=" "$MAP" 2>/dev/null; then
-        return 0
-    fi
-
-    wall=$("$PICK" --pick) || return 1
-    echo "${id}=${wall}" >> "$MAP"
-    echo "$(date -Iseconds) assigned workspace ${id}: ${wall}" >> "$LOG"
+    read_state
+    wall=$("$PICK" --pick ${last_wall:+--exclude "$last_wall"}) || {
+        echo "$(date -Iseconds) pick failed for workspace ${id}" >> "$LOG"
+        return 1
+    }
+    WALLPAPER_BACKEND=wayland "$PICK" --set "$wall" || {
+        echo "$(date -Iseconds) set failed for workspace ${id}: ${wall}" >> "$LOG"
+        return 1
+    }
+    write_state "$id" "$wall"
+    echo "$(date -Iseconds) workspace ${id}: ${wall}" >> "$LOG"
 }
 
-apply_workspace() {
-    local id=$1 wall
+on_focused_workspace() {
+    local id=$1
 
-    ensure_map
-    assign_workspace "$id"
+    [[ -n "$id" && "$id" != null ]] || return 0
 
-    wall=$(grep "^${id}=" "$MAP" | tail -1 | cut -d= -f2-)
-    [[ -n "$wall" && -f "$wall" ]] || return 1
+    read_state
+    [[ "$id" == "$last_focused" ]] && return 0
 
-    WALLPAPER_BACKEND=wayland "$PICK" --set "$wall"
-    echo "$(date -Iseconds) applied workspace ${id}: ${wall}" >> "$LOG"
-}
-
-handle_workspaces_changed() {
-    local json=$1 id focused
-
-    while read -r id; do
-        [[ -n "$id" && "$id" != null ]] || continue
-        assign_workspace "$id"
-    done < <(jq -r '.WorkspacesChanged.workspaces[].id' <<< "$json")
-
-    focused=$(jq -r '.WorkspacesChanged.workspaces[] | select(.is_focused == true) | .id' <<< "$json" | head -1)
-    if [[ -n "$focused" && "$focused" != null ]]; then
-        apply_workspace "$focused"
-    fi
+    apply_random_wallpaper "$id" || true
 }
 
 handle_workspace_activated() {
@@ -58,8 +50,15 @@ handle_workspace_activated() {
 
     id=$(jq -r '.WorkspaceActivated.id' <<< "$json")
     focused=$(jq -r '.WorkspaceActivated.focused' <<< "$json")
-    [[ "$focused" == "true" && -n "$id" && "$id" != null ]] || return 0
-    apply_workspace "$id"
+    [[ "$focused" == "true" ]] || return 0
+    on_focused_workspace "$id"
+}
+
+handle_workspaces_changed() {
+    local json=$1 focused
+
+    focused=$(jq -r '.WorkspacesChanged.workspaces[] | select(.is_focused == true) | .id' <<< "$json" | head -1)
+    on_focused_workspace "$focused"
 }
 
 handle_event() {
@@ -67,11 +66,35 @@ handle_event() {
 
     jq -e . >/dev/null 2>&1 <<< "$line" || return 0
 
-    if jq -e '.WorkspacesChanged' >/dev/null 2>&1 <<< "$line"; then
-        handle_workspaces_changed "$line"
-    elif jq -e '.WorkspaceActivated' >/dev/null 2>&1 <<< "$line"; then
+    if jq -e '.WorkspaceActivated' >/dev/null 2>&1 <<< "$line"; then
         handle_workspace_activated "$line"
+    elif jq -e '.WorkspacesChanged' >/dev/null 2>&1 <<< "$line"; then
+        handle_workspaces_changed "$line"
     fi
+}
+
+apply_initial() {
+    local id
+
+    id=$(niri msg --json workspaces | jq -r '.[] | select(.is_focused == true) | .id' | head -1)
+    rm -f "$STATE"
+    on_focused_workspace "$id"
+}
+
+stop_other_daemons() {
+    local pid=$$
+    while read -r line; do
+        [[ "$line" =~ workspace-wallpaper\.sh\ daemon ]] || continue
+        [[ "$line" =~ ^([0-9]+)\  ]] || continue
+        [[ "${BASH_REMATCH[1]}" == "$pid" ]] && continue
+        kill "${BASH_REMATCH[1]}" 2>/dev/null || true
+    done < <(pgrep -af 'workspace-wallpaper\.sh daemon' 2>/dev/null || true)
+}
+
+run_event_loop() {
+    while read -r line; do
+        handle_event "$line" || echo "$(date -Iseconds) event failed: ${line:0:120}" >> "$LOG"
+    done < <(niri msg --json event-stream)
 }
 
 run_daemon() {
@@ -85,29 +108,29 @@ run_daemon() {
         exit 1
     }
 
+    stop_other_daemons
+
     exec 200>"$LOCK"
     flock -n 200 || exit 0
 
-    : > "$LOG"
     echo "$(date -Iseconds) daemon started (WAYLAND_DISPLAY=${WAYLAND_DISPLAY:-?})" >> "$LOG"
+    apply_initial
 
-    niri msg --json event-stream | while read -r line; do
-        handle_event "$line" || echo "$(date -Iseconds) event failed: ${line:0:120}" >> "$LOG"
+    while true; do
+        run_event_loop || echo "$(date -Iseconds) event-stream ended, reconnecting" >> "$LOG"
+        sleep 1
     done
 }
 
 case "${1:-daemon}" in
     daemon) run_daemon ;;
     apply)
+        rm -f "$STATE"
         [[ -n "${2:-}" ]] || { echo "usage: $0 apply <workspace-id>" >&2; exit 1; }
-        apply_workspace "$2"
-        ;;
-    assign)
-        [[ -n "${2:-}" ]] || { echo "usage: $0 assign <workspace-id>" >&2; exit 1; }
-        assign_workspace "$2"
+        on_focused_workspace "$2"
         ;;
     *)
-        echo "usage: $0 [daemon|apply <id>|assign <id>]" >&2
+        echo "usage: $0 [daemon|apply <id>]" >&2
         exit 1
         ;;
 esac

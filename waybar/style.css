@@ -103,10 +103,23 @@ window#waybar {
     font-size: 12px;
 }
 
+/* Icon+text pairs are separate waybar modules — keep boxes transparent and tight */
+.modules-left > box,
+.modules-center > box,
+.modules-right > box {
+    background: transparent;
+    margin: 0;
+    padding: 0;
+}
+
+label {
+    margin: 0;
+}
+
 /* --- battery (polybar: green/lime icon, gray label) --- */
 #battery {
-    padding: 0 2px 0 0;
-    margin-left: 4px;
+    padding: 0 4px 0 4px;
+    margin: 0;
     min-width: 0;
     color: #b9c244;
 }
@@ -130,8 +143,8 @@ window#waybar {
 
 #custom-battery-pct {
     color: #abb2bf;
-    padding: 0 6px 0 0;
-    min-width: 36px;
+    padding: 0 6px 0 2px;
+    min-width: 0;
 }
 
 /* --- center: mpd + clock --- */
@@ -160,83 +173,68 @@ window#waybar {
 
 #custom-clock-icon {
     color: #e06c75;
-    padding: 0 6px 0 8px;
+    padding: 0 5px 0 8px;
     margin: 0;
+    min-width: 0;
 }
 
 #clock {
     color: #abb2bf;
-    padding: 0 8px 0 4px;
+    padding: 0 8px 0 0;
     margin: 0;
+    min-width: 0;
 }
 
 #clock label {
     color: #abb2bf;
 }
 
-/* --- right modules: colored icon + white text (polybar prefix/label) --- */
+/* --- right modules: colored icon + text (tight pairs, no box clipping) --- */
+#custom-uptime-icon,
+#custom-uptime-icon label,
+#custom-cpu-icon,
+#custom-cpu-icon label,
+#custom-memory-icon,
+#custom-memory-icon label,
+#pulseaudio.icon,
+#pulseaudio.icon label,
+#backlight.icon,
+#backlight.icon label {
+    margin: 0;
+    min-width: 0;
+    padding: 0 5px 0 8px;
+}
+
+#custom-disk-icon,
+#custom-disk-icon label {
+    margin: 0;
+    min-width: 0;
+    padding: 0 8px 0 8px;
+}
+
 #custom-uptime-icon,
 #custom-uptime-icon label {
     color: #00b19f;
-    padding: 0 10px 0 6px;
-    margin: 0;
-}
-
-#custom-uptime,
-#custom-uptime label {
-    color: #abb2bf;
-    padding: 0 6px 0 6px;
-    margin: 0;
 }
 
 #custom-cpu-icon,
 #custom-cpu-icon label {
     color: #e06c75;
-    padding: 0 6px 0 6px;
-    margin: 0;
-}
-
-#cpu,
-#cpu label {
-    color: #abb2bf;
-    padding: 0 6px 0 4px;
-    margin: 0;
 }
 
 #custom-memory-icon,
 #custom-memory-icon label {
     color: #c678dd;
-    padding: 0 6px 0 6px;
-    margin: 0;
-}
-
-#memory,
-#memory label {
-    color: #abb2bf;
-    padding: 0 6px 0 4px;
-    margin: 0;
 }
 
 #custom-disk-icon,
 #custom-disk-icon label {
     color: #e5c07b;
-    padding: 0 6px 0 6px;
-    margin: 0;
 }
 
-#disk,
-#disk label {
-    color: #abb2bf;
-    padding: 0 6px 0 4px;
-    margin: 0;
-}
-
-/* pulseaudio#icon → #pulseaudio.icon (not #pulseaudio-icon) */
 #pulseaudio.icon,
 #pulseaudio.icon label {
     color: #61afef;
-    padding: 0 6px 0 6px;
-    margin: 0;
 }
 
 #pulseaudio.icon.muted,
@@ -244,25 +242,33 @@ window#waybar {
     color: #e06c75;
 }
 
-#pulseaudio.text,
-#pulseaudio.text label {
-    color: #abb2bf;
-    padding: 0 6px 0 4px;
-    margin: 0;
-}
-
 #backlight.icon,
 #backlight.icon label {
     color: #e5c07b;
-    padding: 0 6px 0 6px;
-    margin: 0;
 }
 
+#disk,
+#disk label {
+    color: #abb2bf;
+    margin: 0;
+    min-width: 0;
+    padding: 0 8px 0 2px;
+}
+
+#custom-uptime,
+#custom-uptime label,
+#cpu,
+#cpu label,
+#memory,
+#memory label,
+#pulseaudio.text,
+#pulseaudio.text label,
 #backlight.text,
 #backlight.text label {
     color: #abb2bf;
-    padding: 0 6px 0 4px;
     margin: 0;
+    min-width: 0;
+    padding: 0 8px 0 0;
 }
 
 #tray {

@@ -15,17 +15,19 @@ if command -v gammastep >/dev/null && [[ -f "$GAMMASTEP_CONF" ]]; then
     ) &
 fi
 
+stop_wallpaper_daemons() {
+    pkill -f 'bash_scripts/random-wallpaper\.sh$' 2>/dev/null || true
+    pkill -f 'workspace-wallpaper\.sh daemon' 2>/dev/null || true
+    rm -f "$HOME/.cache/niri-workspace-wallpaper.lock"
+    rm -f "/tmp/random-wallpaper.sh.wayland.${WAYLAND_DISPLAY}.lock"
+}
+
 if [[ -n "${WAYLAND_DISPLAY:-}" ]]; then
-    # Stop global wallpaper cycler (BSPWM-style loop); niri uses per-workspace wallpapers.
-    lock="/tmp/random-wallpaper.sh.wayland.${WAYLAND_DISPLAY}.lock"
-    if [[ -f "$lock" ]]; then
-        oldpid=$(<"$lock" 2>/dev/null || true)
-        [[ -n "$oldpid" ]] && kill "$oldpid" 2>/dev/null || true
-        rm -f "$lock"
-    fi
+    stop_wallpaper_daemons
+    sleep 0.3
+    stop_wallpaper_daemons
 
     if [[ -x "$HOME/.config/niri/scripts/workspace-wallpaper.sh" ]]; then
-        command -v awww >/dev/null && awww kill >/dev/null 2>&1 || true
         "$HOME/.config/niri/scripts/workspace-wallpaper.sh" daemon \
             >>"$HOME/.cache/niri-workspace-wallpaper.log" 2>&1 &
     elif [[ -x "$HOME/bin/bash_scripts/random-wallpaper.sh" ]]; then

@@ -25,9 +25,26 @@ find_wall_dir() {
 }
 
 pick_wallpaper() {
-    find "$1" -maxdepth 1 -type f \( \
+    local dir=$1 exclude=${2:-}
+    local -a files
+
+    mapfile -t files < <(find "$dir" -maxdepth 1 -type f \( \
         -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.png' -o -iname '*.webp' \
-    \) | shuf -n 1
+    \))
+
+    ((${#files[@]})) || return 1
+
+    if [[ -n "$exclude" && ${#files[@]} -gt 1 ]]; then
+        local -a filtered=()
+        local f
+        for f in "${files[@]}"; do
+            [[ "$f" == "$exclude" ]] && continue
+            filtered+=("$f")
+        done
+        ((${#filtered[@]})) && files=("${filtered[@]}")
+    fi
+
+    printf '%s\n' "${files[@]}" | shuf -n 1
 }
 
 wayland_wallpaper_tool() {
@@ -138,7 +155,22 @@ set_wallpaper() {
 # One-shot helpers for niri per-workspace wallpapers (no flock, no loop).
 if [[ "${1:-}" == "--pick" ]]; then
     dir=$(find_wall_dir || { echo "No wallpaper directory found" >&2; exit 1; })
-    pick_wallpaper "$dir"
+    exclude=""
+    shift
+    while [[ $# -gt 0 ]]; do
+        case "$1" in
+            --exclude)
+                [[ -n "${2:-}" ]] || { echo "usage: $0 --pick [--exclude PATH]" >&2; exit 1; }
+                exclude=$2
+                shift 2
+                ;;
+            *)
+                echo "usage: $0 --pick [--exclude PATH]" >&2
+                exit 1
+                ;;
+        esac
+    done
+    pick_wallpaper "$dir" "$exclude"
     exit 0
 fi
 
