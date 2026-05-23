@@ -1,0 +1,293 @@
+/* Waybar — polybar/colors.ini + polybar/config.ini styling */
+
+* {
+    border: none;
+    border-radius: 0;
+    font-family: "Iosevka Nerd Font", "JetBrainsMono Nerd Font", "Font Awesome 6 Free", sans-serif;
+    font-size: 13px;
+    min-height: 0;
+}
+
+window#waybar {
+    background-color: #282c34;
+    color: #abb2bf;
+}
+
+/* --- launcher (blue pill) --- */
+#custom-launcher {
+    background-color: #61afef;
+    color: #282c34;
+    padding: 0 8px;
+    margin: 0 2px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+/* --- layout mode (yellow pill, polybar mod) --- */
+#custom-mod {
+    background-color: #e5c07b;
+    color: #282c34;
+    padding: 0 6px;
+    margin: 0 2px;
+    font-size: 11px;
+}
+
+/* --- workspaces (polybar bspwm) --- */
+#workspaces {
+    margin: 0 4px 0 2px;
+    background: transparent;
+}
+
+#workspaces button {
+    padding: 0 5px;
+    margin: 0 1px;
+    min-width: 14px;
+    color: #abb2bf;
+    background: transparent;
+}
+
+#workspaces button.occupied {
+    color: #c678dd;
+}
+
+#workspaces button.urgent {
+    color: #e06c75;
+}
+
+#workspaces button.active {
+    color: #c678dd;
+}
+
+#workspaces button.focused {
+    background-color: #61afef;
+    color: #282c34;
+}
+
+#workspaces button:hover {
+    background: rgba(97, 175, 239, 0.2);
+}
+
+/* waybar 0.15 (Arch) has no hide-empty; GTK CSS has no display/max-width */
+#workspaces button.empty:not(.focused) {
+    opacity: 0;
+    min-width: 0;
+    padding: 0;
+    margin: 0;
+    font-size: 0;
+}
+
+/* --- network speed (polybar networkspeedup/down) --- */
+#custom-net-up {
+    color: #56b6c2;
+    padding: 0;
+    margin: 0 0 0 2px;
+    font-family: "Iosevka Nerd Font Mono", "JetBrainsMono Nerd Font Mono", monospace;
+    font-size: 12px;
+}
+
+#custom-net-down {
+    color: #56b6c2;
+    padding: 0;
+    margin: 0 2px 0 -2px;
+    font-family: "Iosevka Nerd Font Mono", "JetBrainsMono Nerd Font Mono", monospace;
+    font-size: 12px;
+}
+
+/* --- battery (polybar: green/lime icon, gray label) --- */
+#battery {
+    padding: 0 2px 0 0;
+    margin-left: 4px;
+    min-width: 0;
+    color: #b9c244;
+}
+
+#battery.good {
+    color: #00b19f;
+}
+
+#battery.charging,
+#battery.plugged {
+    color: #98c379;
+}
+
+#battery.warning {
+    color: #e5c07b;
+}
+
+#battery.critical {
+    color: #e06c75;
+}
+
+#custom-battery-pct {
+    color: #abb2bf;
+    padding: 0 6px 0 0;
+    min-width: 36px;
+}
+
+/* --- center: mpd + clock --- */
+#mpd.disconnected,
+#mpd.stopped {
+    opacity: 0;
+    min-width: 0;
+    padding: 0;
+    margin: 0;
+    font-size: 0;
+}
+
+#mpd {
+    color: #abb2bf;
+    padding: 0 8px;
+}
+
+#mpd.disconnected {
+    color: #abb2bf;
+}
+
+#mpd.paused,
+#mpd.playing {
+    color: #abb2bf;
+}
+
+#custom-clock-icon {
+    color: #e06c75;
+    padding: 0 6px 0 8px;
+    margin: 0;
+}
+
+#clock {
+    color: #abb2bf;
+    padding: 0 8px 0 4px;
+    margin: 0;
+}
+
+#clock label {
+    color: #abb2bf;
+}
+
+/* --- right modules: colored icon + white text (polybar prefix/label) --- */
+#custom-uptime-icon,
+#custom-uptime-icon label {
+    color: #00b19f;
+    padding: 0 10px 0 6px;
+    margin: 0;
+}
+
+#custom-uptime,
+#custom-uptime label {
+    color: #abb2bf;
+    padding: 0 6px 0 6px;
+    margin: 0;
+}
+
+#custom-cpu-icon,
+#custom-cpu-icon label {
+    color: #e06c75;
+    padding: 0 6px 0 6px;
+    margin: 0;
+}
+
+#cpu,
+#cpu label {
+    color: #abb2bf;
+    padding: 0 6px 0 4px;
+    margin: 0;
+}
+
+#custom-memory-icon,
+#custom-memory-icon label {
+    color: #c678dd;
+    padding: 0 6px 0 6px;
+    margin: 0;
+}
+
+#memory,
+#memory label {
+    color: #abb2bf;
+    padding: 0 6px 0 4px;
+    margin: 0;
+}
+
+#custom-disk-icon,
+#custom-disk-icon label {
+    color: #e5c07b;
+    padding: 0 6px 0 6px;
+    margin: 0;
+}
+
+#disk,
+#disk label {
+    color: #abb2bf;
+    padding: 0 6px 0 4px;
+    margin: 0;
+}
+
+/* pulseaudio#icon → #pulseaudio.icon (not #pulseaudio-icon) */
+#pulseaudio.icon,
+#pulseaudio.icon label {
+    color: #61afef;
+    padding: 0 6px 0 6px;
+    margin: 0;
+}
+
+#pulseaudio.icon.muted,
+#pulseaudio.icon.muted label {
+    color: #e06c75;
+}
+
+#pulseaudio.text,
+#pulseaudio.text label {
+    color: #abb2bf;
+    padding: 0 6px 0 4px;
+    margin: 0;
+}
+
+#backlight.icon,
+#backlight.icon label {
+    color: #e5c07b;
+    padding: 0 6px 0 6px;
+    margin: 0;
+}
+
+#backlight.text,
+#backlight.text label {
+    color: #abb2bf;
+    padding: 0 6px 0 4px;
+    margin: 0;
+}
+
+#tray {
+    padding: 0 4px;
+}
+
+/* --- powermenu (red pill) --- */
+#custom-powermenu {
+    background-color: #e06c75;
+    color: #282c34;
+    padding: 0 8px;
+    margin: 0 2px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+#custom-powermenu:hover {
+    background-color: #be5046;
+}
+
+#custom-launcher:hover {
+    background-color: #528bcc;
+}
+
+/* MPD toggle icon colors */
+#mpd .mpd.repeat,
+#mpd .mpd.random,
+#mpd .mpd.single,
+#mpd .mpd.consume {
+    color: #61afef;
+}
+
+#mpd .mpd.repeat.active,
+#mpd .mpd.random.active,
+#mpd .mpd.single.active,
+#mpd .mpd.consume.active {
+    color: #e06c75;
+}

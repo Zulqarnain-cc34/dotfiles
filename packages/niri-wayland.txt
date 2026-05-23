@@ -1,0 +1,14 @@
+# Optional Wayland / Niri session packages (Arch)
+# Install: sudo pacman -S --needed $(grep -v '^#' packages/niri-wayland.txt | tr '\n' ' ')
+
+niri
+waybar
+wl-clipboard
+cliphist
+swaylock
+grim
+slurp
+swww
+gammastep
+wireplumber
+qt6ct

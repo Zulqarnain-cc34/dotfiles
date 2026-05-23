@@ -116,6 +116,8 @@ link_dir imv                  "$HOME/.config/imv"
 link_dir kitty                "$HOME/.config/kitty"
 link_dir yazi                 "$HOME/.config/yazi"
 link_dir fastfetch            "$HOME/.config/fastfetch"
+link_dir niri                 "$HOME/.config/niri"
+link_dir waybar               "$HOME/.config/waybar"
 
 echo "==> Files"
 link_file mimeapps.list       "$HOME/.config/mimeapps.list"
@@ -141,10 +143,8 @@ else
     echo "  skip: .gitconfig (copy .gitconfig.example to .gitconfig if needed)"
 fi
 
-# zsh: repo also keeps a direct .zshrc symlink under ~/.config/zsh
-if [[ -f "$ROOT/zsh/.zshrc" ]]; then
-    link_file zsh/.zshrc "$HOME/.config/zsh/.zshrc"
-fi
+# zsh/.zshrc is included via link_dir zsh -> ~/.config/zsh (must be a real file in repo,
+# not a symlink — link_file here would create a self-referential zsh/.zshrc)
 
 echo "==> Done"
 echo "  Firefox: see docs/firefox.md (not managed by setup.sh)"

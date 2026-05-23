@@ -1,0 +1,253 @@
+// Waybar — polybar replica for niri
+// Generated icons match polybar/colors.ini + modules
+
+{
+    "layer": "top",
+    "position": "top",
+    "height": 35,
+    "spacing": 4,
+    "margin-top": 0,
+    "margin-bottom": 0,
+    "margin-left": 0,
+    "margin-right": 0,
+    "reload_style_on_change": true,
+    "modules-left": [
+        "custom/launcher",
+        "custom/mod",
+        "niri/workspaces",
+        "custom/net-up",
+        "custom/net-down",
+        "battery",
+        "custom/battery-pct"
+    ],
+    "modules-center": [
+        "mpd",
+        "custom/clock-icon",
+        "clock"
+    ],
+    "modules-right": [
+        "custom/uptime-icon",
+        "custom/uptime",
+        "custom/cpu-icon",
+        "cpu",
+        "custom/memory-icon",
+        "memory",
+        "custom/disk-icon",
+        "disk",
+        "pulseaudio#icon",
+        "pulseaudio#text",
+        "backlight#icon",
+        "backlight#text",
+        "tray",
+        "custom/powermenu"
+    ],
+    "custom/launcher": {
+        "format": "",
+        "tooltip": false,
+        "on-click": "$HOME/.config/rofi/launchers/ribbon/launcher.sh",
+        "on-click-right": "rofi-bangs"
+    },
+    "custom/mod": {
+        "format": "Tiled",
+        "tooltip": false
+    },
+    "niri/workspaces": {
+        "format": "{icon}",
+        "format-icons": {
+            "1": "一",
+            "2": "二",
+            "3": "三",
+            "4": "四",
+            "5": "五",
+            "6": "六",
+            "7": "七",
+            "8": "八",
+            "9": "九"
+        },
+        "all-outputs": false
+    },
+    "custom/net-up": {
+        "exec": "$HOME/.config/waybar/scripts/net-speed.sh up",
+        "interval": 1,
+        "format": "🔺{}",
+        "tooltip": false
+    },
+    "custom/net-down": {
+        "exec": "$HOME/.config/waybar/scripts/net-speed.sh down",
+        "interval": 1,
+        "format": "🔻{}",
+        "tooltip": false
+    },
+    "battery": {
+        "bat": "BAT0",
+        "adapter": "AC",
+        "interval": 5,
+        "states": {
+            "good": 99,
+            "warning": 20,
+            "critical": 10
+        },
+        "format": "{icon}",
+        "format-charging": "{icon}",
+        "format-plugged": "{icon}",
+        "format-alt": "{icon}",
+        "format-icons": [
+            "",
+            "",
+            "",
+            "",
+            ""
+        ]
+    },
+    "custom/battery-pct": {
+        "exec": "$HOME/.config/waybar/scripts/battery-pct.sh",
+        "interval": 5,
+        "format": "  {}",
+        "tooltip": false
+    },
+    "mpd": {
+        "interval": 1,
+        "host": "127.0.0.1",
+        "port": 6600,
+        "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon} | {title} | {elapsedTime:%M:%S}/{totalTime:%M:%S}",
+        "format-disconnected": "",
+        "format-stopped": "",
+        "format-paused": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon} | {title} | {elapsedTime:%M:%S}/{totalTime:%M:%S}",
+        "format-playing": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon} | {title} | {elapsedTime:%M:%S}/{totalTime:%M:%S}",
+        "state-icons": {
+            "playing": "",
+            "paused": ""
+        },
+        "consume-icons": {
+            "on": " "
+        },
+        "random-icons": {
+            "on": " ",
+            "off": "<span color=\"#e06c75\"> </span>"
+        },
+        "repeat-icons": {
+            "on": " "
+        },
+        "single-icons": {
+            "on": " "
+        },
+        "max-length": 25,
+        "tooltip-format": "{title} — {artist} ({album})",
+        "on-click": "mpc toggle",
+        "on-click-right": "kitty -e ncmpcpp"
+    },
+    "custom/clock-icon": {
+        "format": "",
+        "tooltip": false
+    },
+    "clock": {
+        "interval": 1,
+        "format": " {:%I:%M %p}",
+        "tooltip-format": "<big>{:%A, %d %B %Y}</big>"
+    },
+    "custom/uptime-icon": {
+        "format": "<span color='#00b19f'></span>",
+        "tooltip": false
+    },
+    "custom/uptime": {
+        "exec": "$HOME/.config/waybar/scripts/uptime.sh",
+        "interval": 100,
+        "format": "{}",
+        "tooltip": false
+    },
+    "custom/cpu-icon": {
+        "format": "<span color='#e06c75'></span>",
+        "tooltip": false
+    },
+    "cpu": {
+        "interval": 1,
+        "format": " CPU {usage}%",
+        "tooltip": false
+    },
+    "custom/memory-icon": {
+        "format": "<span color='#c678dd'></span>",
+        "tooltip": false
+    },
+    "memory": {
+        "interval": 2,
+        "format": " {used:0.1f}G/{total:0.1f}G",
+        "tooltip-format": "Memory: {used:0.1f}G / {total:0.1f}G ({percentage}%)"
+    },
+    "custom/disk-icon": {
+        "format": "<span color='#e5c07b'></span>",
+        "tooltip": false
+    },
+    "disk": {
+        "interval": 30,
+        "path": "/",
+        "format": " {used}/{total}",
+        "tooltip-format": "Disk {used} used of {total} ({percentage_used}%)"
+    },
+    "pulseaudio#icon": {
+        "interval": 5,
+        "format": "{icon}",
+        "format-muted": "婢",
+        "format-icons": {
+            "headphone": "墳",
+            "hands-free": "墳",
+            "headset": "墳",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": [
+                "奄",
+                "奄",
+                "奄",
+                "奔",
+                "奔",
+                "奔",
+                "墳",
+                "墳",
+                "墳",
+                "墳"
+            ]
+        },
+        "scroll-step": 5,
+        "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+        "on-click-right": "$HOME/.config/rofi/bin/applet_volume",
+        "on-scroll-up": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05+",
+        "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05-"
+    },
+    "pulseaudio#text": {
+        "interval": 5,
+        "format": "{volume}%",
+        "format-muted": "Muted",
+        "tooltip": false
+    },
+    "backlight#icon": {
+        "device": "intel_backlight",
+        "interval": 2,
+        "format": "{icon}",
+        "format-icons": [
+            "",
+            "",
+            "",
+            "",
+            ""
+        ],
+        "scroll-step": 5,
+        "on-scroll-up": "brightnessctl set +5%",
+        "on-scroll-down": "brightnessctl set 5%-"
+    },
+    "backlight#text": {
+        "device": "intel_backlight",
+        "interval": 2,
+        "format": "{percent}%",
+        "tooltip": false
+    },
+    "tray": {
+        "icon-size": 16,
+        "spacing": 4
+    },
+    "custom/powermenu": {
+        "format": "",
+        "tooltip": false,
+        "on-click": "$HOME/.config/niri/powermenu.sh",
+        "on-click-right": "$HOME/.config/rofi/bin/applet_powermenu"
+    }
+}

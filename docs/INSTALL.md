@@ -76,6 +76,18 @@ systemctl --user enable --now mpd.service   # optional
 
 Start BSPWM from your display manager or `.xprofile`.
 
+## 9. Niri (optional Wayland session)
+
+Separate from the BSPWM/X11 stack. See [niri/README.md](../niri/README.md).
+
+```bash
+sudo pacman -S --needed $(grep -v '^#' packages/niri-wayland.txt | tr '\n' ' ')
+./setup.sh
+niri validate -c ~/.config/niri/config.kdl
+```
+
+Start from a TTY with `niri`, or pick **Niri** in your display manager.
+
 Neovim plugin pins are tracked in `nvim/lazy-lock.json` for reproducible installs; run `:Lazy sync` only when intentionally updating plugins.
 
 ## Docs
