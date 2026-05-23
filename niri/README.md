@@ -63,13 +63,19 @@ Mirrors your `sxhkd` habits where possible:
 | `Super+T` | Kitty |
 | `Super+R` | rtv |
 | `Super+Y` | ytfzf |
-| `Super+O` | htop |
+| `Super+O` | Overview (all windows) |
+| `Super+Shift+O` | htop |
 | `Super+W` | Firefox |
 | `Super+M` | neomutt |
 | `Super+P` | Powermenu |
 | `Super+D` | Toggle floating |
 | `Super+F` | Maximize column |
 | `Super+Q` | Close window |
+| `Super+←/→` or `Super+H/L` | Focus column left/right (scrolls hidden columns in) |
+| `Super+↑/↓` or `Super+K/J` | Focus window up/down in a column |
+| `Super+Ctrl+←/→` or `Super+Ctrl+H/L` | Same — switch between columns/terminals in workspace |
+| `Super+Ctrl+↑/↓` or `Super+Ctrl+K/J` | Switch between stacked windows in one column |
+| `Super+Ctrl+Shift+arrows` | Move column/window (reorder layout) |
 | `Super+1-9` | Focus workspace index 1–9 |
 | `Super+Shift+1-9` | Move column to workspace index 1–9 |
 | `Ctrl+Shift+Left/Right` | Move window to prev/next workspace (follows focus) |
@@ -81,7 +87,7 @@ Mirrors your `sxhkd` habits where possible:
 | `Shift+Print` | Region screenshot (grim + slurp) |
 | `Super+Shift+X` | Reload niri config |
 
-Niri-specific actions moved off conflicting keys: overview `Super+Shift+O`, tabbed column `Super+Shift+W`..
+Niri-specific: tabbed column `Super+Shift+W`.
 
 ## Outputs / monitors
 
