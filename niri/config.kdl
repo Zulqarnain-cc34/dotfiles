@@ -143,10 +143,15 @@ binds {
     Mod+Ctrl+K { move-window-up; }
     Mod+Ctrl+L { move-column-right; }
 
-    Mod+Shift+Left { focus-monitor-left; }
-    Mod+Shift+Right { focus-monitor-right; }
-    Mod+Shift+H { focus-monitor-left; }
-    Mod+Shift+L { focus-monitor-right; }
+    // Switch monitor (needs 2+ outputs; nested niri preview only ever has one)
+    Mod+Shift+Left { focus-monitor-previous; }
+    Mod+Shift+Right { focus-monitor-next; }
+    Mod+Shift+Up { focus-monitor-up; }
+    Mod+Shift+Down { focus-monitor-down; }
+    Mod+Shift+H { focus-monitor-previous; }
+    Mod+Shift+L { focus-monitor-next; }
+    Mod+Shift+K { focus-monitor-up; }
+    Mod+Shift+J { focus-monitor-down; }
 
     // Move window to prev/next workspace (matches sxhkd: shift+ctrl+Left/Right)
     Ctrl+Shift+Left { move-column-to-workspace-up; }

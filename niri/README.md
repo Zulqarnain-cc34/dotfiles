@@ -73,6 +73,8 @@ Mirrors your `sxhkd` habits where possible:
 | `Super+1-9` | Focus workspace index 1–9 |
 | `Super+Shift+1-9` | Move column to workspace index 1–9 |
 | `Ctrl+Shift+Left/Right` | Move window to prev/next workspace (follows focus) |
+| `Super+Shift+Left/Right` | Previous / next monitor (needs 2+ displays) |
+| `Super+Shift+Up/Down` | Monitor above / below |
 | `Super+V` | Clipboard history (cliphist + rofi) |
 | `Alt+L` | swaylock |
 | `Print` | Screenshot (niri) |
@@ -83,7 +85,15 @@ Niri-specific actions moved off conflicting keys: overview `Super+Shift+O`, tabb
 
 ## Outputs / monitors
 
-Edit `config.kdl` and uncomment/configure `output "NAME" { ... }` blocks after listing connectors:
+Monitor-switch keys do nothing with a single display. Check what niri sees:
+
+```bash
+niri msg outputs
+```
+
+You need **2+ outputs** and a **real niri session** (TTY or DM). Running `niri` inside a BSPWM terminal only gives one virtual screen.
+
+For a docked/desktop setup, list connectors and add `output` blocks if needed:
 
 ```bash
 niri msg outputs
