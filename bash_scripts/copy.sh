@@ -3,201 +3,170 @@
 ################################################################################
 # Parallel Recursive Copy Script
 # Usage: ./copy.sh <source_folder> <target_location>
-# Example: ./copy.sh /home/precision/etc /home/precision/mnt/usbstick/etc
+# Example: ./copy.sh ./Booklets ~/program_files/Videos_mAin
+#
+# Creates: <target_location>/<source_folder_name>/ with all files and subfolders
 ################################################################################
 
-# Color codes for output
+set -uo pipefail
+
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
-NC='\033[0m' # No Color
+NC='\033[0m'
 
-# ============================================================================
-# Function: Print error and exit
-# ============================================================================
+RUN_ID="$$"
+SUMMARY_FILE="/tmp/copy_summary_${RUN_ID}.txt"
+: > "$SUMMARY_FILE"
+
 error_exit() {
     echo -e "${RED}❌ Error: $1${NC}" >&2
+    rm -f "$SUMMARY_FILE"
     exit 1
 }
 
-# ============================================================================
-# Function: Print success message
-# ============================================================================
 success_msg() {
     echo -e "${GREEN}✅ $1${NC}"
 }
 
-# ============================================================================
-# Function: Print info message
-# ============================================================================
 info_msg() {
     echo -e "${YELLOW}ℹ️  $1${NC}"
 }
 
-# ============================================================================
-# Argument Validation
-# ============================================================================
 if [[ $# -lt 2 ]]; then
     echo -e "${YELLOW}Usage: $0 <source_folder> <target_location>${NC}"
     echo ""
     echo "Examples:"
-    echo "  $0 /home/precision/etc /home/precision/mnt/usbstick/etc"
+    echo "  $0 ./Booklets ~/program_files/Videos_mAin"
     echo "  $0 ~/Documents ~/backup"
-    echo "  $0 /var/log /mnt/backup/logs"
     exit 1
 fi
 
-# ============================================================================
-# Configuration
-# ============================================================================
-SOURCE_FOLDER="${1%/}"  # Remove trailing slash if present
+SOURCE_FOLDER="${1%/}"
 TARGET_LOCATION="${2%/}"
-
-# Expand ~ to home directory
 SOURCE_FOLDER="${SOURCE_FOLDER/#\~/$HOME}"
 TARGET_LOCATION="${TARGET_LOCATION/#\~/$HOME}"
 
-# ============================================================================
-# Validation Checks
-# ============================================================================
-
-# Check if source folder exists
 if [[ ! -d "$SOURCE_FOLDER" ]]; then
     error_exit "Source folder does not exist: $SOURCE_FOLDER"
 fi
 
-# Check if target location exists, create if not
 if [[ ! -d "$TARGET_LOCATION" ]]; then
     info_msg "Creating target directory: $TARGET_LOCATION"
     mkdir -p "$TARGET_LOCATION" || error_exit "Failed to create target directory"
 fi
 
-# Check write permissions on target
 if [[ ! -w "$TARGET_LOCATION" ]]; then
     error_exit "No write permission for target location: $TARGET_LOCATION"
 fi
 
-# ============================================================================
-# Main Copy Logic
-# ============================================================================
+SOURCE_NAME="$(basename "$SOURCE_FOLDER")"
+DEST_DIR="$TARGET_LOCATION/$SOURCE_NAME"
+mkdir -p "$DEST_DIR" || error_exit "Failed to create destination: $DEST_DIR"
 
-info_msg "Starting parallel copy from: $SOURCE_FOLDER"
-info_msg "Target location: $TARGET_LOCATION"
+# rsync flags: -a archive, -v verbose, --partial resume over slow/fuse mounts
+RSYNC_OPTS=(-av --partial --info=progress2)
+
+info_msg "Starting copy from: $SOURCE_FOLDER"
+info_msg "Target location: $DEST_DIR"
 echo ""
 
-# Count total folders
-total_folders=$(find "$SOURCE_FOLDER" -maxdepth 1 -type d ! -name "$(basename "$SOURCE_FOLDER")" | wc -l)
-info_msg "Found $total_folders folder(s) to copy"
+mapfile -t folders < <(
+    find "$SOURCE_FOLDER" -mindepth 1 -maxdepth 1 -type d -printf '%f\n'
+)
+
+root_file_count=$(
+    find "$SOURCE_FOLDER" -mindepth 1 -maxdepth 1 -type f | wc -l
+)
+
+info_msg "Found ${#folders[@]} subfolder(s) and $root_file_count top-level file(s)"
 echo ""
 
-# Initialize counters
-copied=0
-failed=0
-pids=()  # Store background process IDs
+pids=()
+job_names=()
 
-# Get list of folders (only direct children, not recursive)
-folders=($(find "$SOURCE_FOLDER" -maxdepth 1 -type d ! -name "$(basename "$SOURCE_FOLDER")" -printf '%f\n'))
+run_rsync_job() {
+    local label="$1"
+    local src="$2"
+    local dst="$3"
+    shift 3
+    local extra_opts=("$@")
+    local slug
+    slug="$(printf '%s' "$label" | tr -c '[:alnum:]._-' '_')"
+    local log_file="/tmp/copy_${RUN_ID}_${slug}.log"
 
-# If no folders found, copy files directly
-if [[ ${#folders[@]} -eq 0 ]]; then
-    info_msg "No subdirectories found, copying contents of source folder..."
-    rsync -av --progress "$SOURCE_FOLDER/" "$TARGET_LOCATION/" 2>&1 | grep -E "^(creating|[0-9]+%|\s+[0-9]+\s+[0-9]+%)" || true
-    
-    if [[ ${PIPESTATUS[0]} -eq 0 ]]; then
-        success_msg "Copy completed successfully"
-    else
-        error_exit "rsync failed for source folder"
-    fi
-    exit 0
+    (
+        echo "[$(date '+%H:%M:%S')] Starting copy: $label"
+        if rsync "${RSYNC_OPTS[@]}" "${extra_opts[@]}" "$src" "$dst" > "$log_file" 2>&1; then
+            success_msg "[$label] Copy completed successfully"
+            echo "SUCCESS:$label" >> "$SUMMARY_FILE"
+        else
+            echo -e "${RED}❌ [$label] Copy failed${NC}" >&2
+            echo "FAILED:$label" >> "$SUMMARY_FILE"
+            cat "$log_file" >&2
+            exit 1
+        fi
+        rm -f "$log_file"
+    ) &
+    pids+=("$!")
+    job_names+=("$label")
+    echo "📦 Spawned copy process [PID: $!] for: $label"
+}
+
+# Copy top-level files only (old script skipped these entirely)
+if (( root_file_count > 0 )); then
+    run_rsync_job "top-level files" \
+        "$SOURCE_FOLDER/" \
+        "$DEST_DIR/" \
+        --exclude='*/'
 fi
 
-# ============================================================================
-# Parallel Copy with Progress Tracking
-# ============================================================================
-
+# Copy each immediate subfolder in parallel (handles names with spaces)
 for folder in "${folders[@]}"; do
-    # Construct full paths
-    source_path="$SOURCE_FOLDER/$folder"
-    
-    # Skip if not a directory
-    if [[ ! -d "$source_path" ]]; then
-        continue
-    fi
-    
-    # Start rsync in background
-    (
-        echo "[$(date '+%H:%M:%S')] Starting copy: $folder"
-        
-        if rsync -av --progress "$source_path" "$TARGET_LOCATION/" > /tmp/copy_$$.log 2>&1; then
-            success_msg "[$folder] Copy completed successfully"
-            echo "SUCCESS:$folder" >> /tmp/copy_summary_$$.txt
-        else
-            echo -e "${RED}❌ [$folder] Copy failed${NC}" >&2
-            echo "FAILED:$folder" >> /tmp/copy_summary_$$.txt
-            cat /tmp/copy_$$.log >&2
-        fi
-        
-        rm -f /tmp/copy_$$.log
-    ) &
-    
-    # Store PID
-    pids+=($!)
-    
-    echo "📦 Spawned copy process [PID: $!] for: $folder"
+    [[ -d "$SOURCE_FOLDER/$folder" ]] || continue
+    run_rsync_job "$folder" \
+        "$SOURCE_FOLDER/$folder/" \
+        "$DEST_DIR/$folder/"
 done
+
+if [[ ${#pids[@]} -eq 0 ]]; then
+    error_exit "Nothing to copy in: $SOURCE_FOLDER"
+fi
 
 echo ""
 info_msg "All copy processes spawned. Waiting for completion..."
 echo ""
 
-# ============================================================================
-# Wait for All Background Processes
-# ============================================================================
-
 failed_count=0
 for pid in "${pids[@]}"; do
-    wait "$pid"
-    if [[ $? -ne 0 ]]; then
-        ((failed_count++))
+    if ! wait "$pid"; then
+        ((failed_count++)) || true
     fi
 done
 
-# ============================================================================
-# Summary Report
-# ============================================================================
+success_count=$(grep -c "^SUCCESS:" "$SUMMARY_FILE" 2>/dev/null || echo 0)
+failed_count=$(grep -c "^FAILED:" "$SUMMARY_FILE" 2>/dev/null || echo 0)
 
 echo ""
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 info_msg "Copy operation completed"
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+echo ""
+echo "📊 Summary:"
+success_msg "$success_count job(s) copied successfully"
 
-# Parse summary
-if [[ -f /tmp/copy_summary_$$.txt ]]; then
-    success_count=$(grep -c "SUCCESS:" /tmp/copy_summary_$$.txt 2>/dev/null || echo 0)
-    failed_count=$(grep -c "FAILED:" /tmp/copy_summary_$$.txt 2>/dev/null || echo 0)
-    
+if (( failed_count > 0 )); then
+    echo -e "${RED}❌ $failed_count job(s) failed${NC}"
     echo ""
-    echo "📊 Summary:"
-    success_msg "$success_count folder(s) copied successfully"
-    
-    if [[ $failed_count -gt 0 ]]; then
-        echo -e "${RED}❌ $failed_count folder(s) failed${NC}"
-        echo ""
-        echo "Failed folders:"
-        grep "FAILED:" /tmp/copy_summary_$$.txt | cut -d':' -f2 | sed 's/^/  - /'
-    fi
-    
-    rm -f /tmp/copy_summary_$$.txt
-else
-    if [[ $failed_count -eq 0 ]]; then
-        success_msg "All ${#folders[@]} folder(s) copied successfully"
-    else
-        echo -e "${RED}❌ $failed_count folder(s) failed${NC}"
-        exit 1
-    fi
+    echo "Failed:"
+    grep "^FAILED:" "$SUMMARY_FILE" | cut -d':' -f2- | sed 's/^/  - /'
+    rm -f "$SUMMARY_FILE"
+    exit 1
 fi
 
 echo ""
 info_msg "Source: $SOURCE_FOLDER"
-info_msg "Target: $TARGET_LOCATION"
+info_msg "Target: $DEST_DIR"
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+
+rm -f "$SUMMARY_FILE"
