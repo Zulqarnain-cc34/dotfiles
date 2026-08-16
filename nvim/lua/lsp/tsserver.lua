@@ -9,19 +9,19 @@ vim.lsp.config['ts_ls'] = {
         client.server_capabilities.documentFormattingProvider = false
         client.server_capabilities.documentRangeFormattingProvider = false
 
-
-        -- no default maps, so you may want to define some here
-
-        vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>lO", ":TSLspOrganize<CR>", { silent = true })
-
-        vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>lk", ":TSLspFixCurrent<CR>", { silent = true })
-
-        vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>lm", ":TSLspRenameFile<CR>", { silent = true })
-
-        vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>lA", ":TSLspImportAll<CR>", { silent = true })
-
-        -- vim.api.nvim_buf_set_keymap("i", ".", ".<C-x><C-o>", nil, bufnr)
-        -- vim.opt_local.omnifunc = "v:lua.vim.lsp.omnifunc"
+        local opts = { silent = true, buffer = bufnr }
+        -- Organize imports
+        vim.keymap.set("n", "<leader>lO", function()
+            vim.lsp.buf.code_action({ apply = true, context = { only = { "source.organizeImports" } } })
+        end, opts)
+        -- Apply first available code action (fix current issue)
+        vim.keymap.set("n", "<leader>lk", function()
+            vim.lsp.buf.code_action({ apply = true })
+        end, opts)
+        -- Add all missing imports
+        vim.keymap.set("n", "<leader>lA", function()
+            vim.lsp.buf.code_action({ apply = true, context = { only = { "source.addMissingImports.ts" } } })
+        end, opts)
     end
     -- flags = {
     -- debounce_text_changes = 150,

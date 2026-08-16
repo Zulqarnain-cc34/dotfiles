@@ -1,2 +1,3 @@
 local cfg = require("yaml-companion").setup()
-require("lspconfig")["yamlls"].setup(cfg)
+vim.lsp.config['yamlls'] = cfg
+vim.lsp.enable('yamlls')

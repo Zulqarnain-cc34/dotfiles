@@ -115,6 +115,9 @@ link_dir vivid                "$HOME/.config/vivid"
 link_dir fish                 "$HOME/.config/fish"
 link_dir imv                  "$HOME/.config/imv"
 link_dir kitty                "$HOME/.config/kitty"
+if [[ -x "$ROOT/kitty/scripts/link-font-size.sh" ]]; then
+    "$ROOT/kitty/scripts/link-font-size.sh"
+fi
 link_dir yazi                 "$HOME/.config/yazi"
 link_dir fastfetch            "$HOME/.config/fastfetch"
 link_dir niri                 "$HOME/.config/niri"

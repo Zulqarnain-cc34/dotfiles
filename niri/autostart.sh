@@ -5,6 +5,10 @@ set -euo pipefail
 
 mkdir -p "$HOME/Pictures/screenshots" "$HOME/.cache"
 
+if [[ -x "$HOME/.config/kitty/scripts/link-font-size.sh" ]]; then
+    "$HOME/.config/kitty/scripts/link-font-size.sh"
+fi
+
 # Night colour (Wayland) — same settings as ~/.config/redshift/redshift.conf
 GAMMASTEP_CONF="${HOME}/.config/gammastep/config.ini"
 if command -v gammastep >/dev/null && [[ -f "$GAMMASTEP_CONF" ]]; then

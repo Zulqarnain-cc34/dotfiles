@@ -113,6 +113,10 @@ image/jpg=sxiv.desktop
 x-scheme-handler/tg=userapp-Telegram Desktop-5RXN20.desktop
 image/vnd.djvu=zathura.desktop
 application/pdf=org.pwmt.zathura.desktop
+x-scheme-handler/claude-cli=claude-code-url-handler.desktop
+x-scheme-handler/postman=Postman.desktop
+x-scheme-handler/claude=claude-desktop.desktop
+x-scheme-handler/kdeconnect=org.kde.kdeconnect.handler.desktop
 
 [Removed Associations]
 application/vnd.sqlite3=Vim.desktop;

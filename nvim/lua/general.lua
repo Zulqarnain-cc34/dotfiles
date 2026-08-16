@@ -13,7 +13,7 @@
 local o = vim.o
 local b = vim.bo
 local w = vim.wo
-local cmd = vim.api.nvim_command
+local cmd = vim.cmd
 
 -- ============== Commands =====================
 
@@ -42,7 +42,7 @@ w.relativenumber = true          -- Setting relative number line
 w.listchars = 'tab:>.,trail:.,extends:#,nbsp:.'
 o.showmatch = true               -- set show matching parenthesis
 o.history = 1000                 -- remember more commands and search history
-o.lazyredraw = true              -- Don't redraw while executing macros (good performance config)
+-- o.lazyredraw removed in Neovim 0.10
 o.magic = true                   -- For regular expressions turn magic on
 
 o.conceallevel = 0               -- So that I can see `` in markdown files
@@ -53,7 +53,7 @@ b.undofile = true                -- Maintain undo history between sessions
 o.undodir = vim.fn.stdpath('config') .. '/tempdir/undodir'
 o.shortmess = o.shortmess .. "c" -- Don't pass messages to |ins-completion-menu|.
 o.expandtab = true               -- Converts tabs to spaces
-o.ttyfast = true                 -- fast scrolling
+-- o.ttyfast removed in Neovim (no-op)
 -- o.pastetoggle = "<F2>"
 o.completeopt = 'menuone,noselect'
 o.clipboard = "unnamedplus" -- copies the selected text to clipboard

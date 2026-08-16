@@ -1,10 +1,5 @@
-# Flex on the ubuntu users
-# paleofetch
-
-# If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-# History in Cache Directory and HIstory Size
 export HISTSIZE=50000
 
 export SAVEHIST=$HISTSIZE
@@ -14,20 +9,10 @@ HISTDUP=erase
 
 export BROWSERCLI="w3m"
 
-_gcloud_sdk="${GCLOUD_SDK:-$HOME/Downloads/google-cloud-sdk}"
-if [ -d "$_gcloud_sdk/bin" ]; then
-    export PATH="$_gcloud_sdk/bin:$PATH"
-fi
 # History Options
-# No repeating commands
 setopt appendhistory
 setopt sharehistory
 setopt EXTENDED_HISTORY
-# setopt incappendhistory
-# setopt hist_ignore_all_dups
-# setopt hist_save_no_dups
-# setopt hist_ignore_dups
-# setopt hist_find_no_dups
 
 # vi mode
 bindkey -v
@@ -169,10 +154,3 @@ function yazi() {
     fi
     rm -f "$tmp"
 }
-
-fastfetch
-
-# Google Cloud SDK (optional; set GCLOUD_SDK to override install path)
-_gcloud_sdk="${GCLOUD_SDK:-$HOME/Downloads/google-cloud-sdk}"
-if [ -f "$_gcloud_sdk/path.zsh.inc" ]; then . "$_gcloud_sdk/path.zsh.inc"; fi
-if [ -f "$_gcloud_sdk/completion.zsh.inc" ]; then . "$_gcloud_sdk/completion.zsh.inc"; fi

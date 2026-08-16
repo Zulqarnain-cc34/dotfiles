@@ -111,4 +111,7 @@ prepend_keymap = [
   { on = ["t", "r"], run = "shell -- trash-restore", desc = "Restore file from trash" },
   { on = ["t", "c"], run = "shell -- trash-empty", desc = "Clear entire trash" },
   { on = ["t", "g"], run = "cd $HOME/.local/share/Trash/", desc = "Go to trash directory" },
+
+  # ============ WALLPAPER ============
+  { on = ["b", "g"], run = "shell -- \"$HOME/.config/yazi/set-wallpaper.sh\" \"$1\"", desc = "Set hovered image as wallpaper" },
 ]

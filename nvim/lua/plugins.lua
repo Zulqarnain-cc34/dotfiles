@@ -75,7 +75,15 @@ return require('lazy').setup({
             require("scrollbar").setup()
         end
     },
-    { "folke/neodev.nvim" },
+    {
+        "folke/lazydev.nvim",
+        ft = "lua",
+        opts = {
+            library = {
+                { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+            },
+        },
+    },
     {
         "NeogitOrg/neogit",
         lazy = true,
@@ -98,12 +106,12 @@ return require('lazy').setup({
             require("plugins.nvim-web-devicons")
         end
     },
-    {
-        'kevinhwang91/nvim-hlslens',
-        config = function()
-            require("plugins.hlslens")
-        end
-    },
+    -- {
+    --     'kevinhwang91/nvim-hlslens',
+    --     config = function()
+    --         require("plugins.hlslens")
+    --     end
+    -- },
     {
         "folke/tokyonight.nvim",
         lazy = false,
@@ -237,11 +245,6 @@ return require('lazy').setup({
             indent = {
                 enable = false,
             },
-            rainbow = {
-                enable = true,
-                extended_mode = true,
-                max_file_lines = 1000
-            },
         },
     },
 
@@ -292,7 +295,7 @@ return require('lazy').setup({
     {
         'folke/trouble.nvim',
         dependencies = 'nvim-web-devicons',
-        cmd = "TroubleToggle",
+        cmd = "Trouble",
         config = function()
             require('plugins.trouble')
         end
