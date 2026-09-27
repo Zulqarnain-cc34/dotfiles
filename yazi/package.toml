@@ -1,37 +1,37 @@
 [[plugin.deps]]
 use = "yazi-rs/plugins:full-border"
-rev = "05234ed"
-hash = "3996fc74044bc44144b323686f887e1"
+rev = "f703392"
+hash = "f281261ff04ad7ec867c3f802a50835f"
 
 [[plugin.deps]]
 use = "Rolv-Apneseth/starship"
-rev = "eca1861"
-hash = "e519d894e94ded741e06aae4d4775981"
+rev = "ea92cf4"
+hash = "9776f378459072b6c2875eae5addc49d"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:chmod"
-rev = "05234ed"
-hash = "5b2eb0cc2050cec1e4de83cfa51a5b90"
+rev = "f703392"
+hash = "87472b05a8c420100f6a2b9cde1e7746"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:git"
-rev = "05234ed"
-hash = "d2aa1b2f32c8b4fd1775e8f5c45f8fab"
+rev = "f703392"
+hash = "347cc6b190eb0c2fd60513cc7ae37412"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:jump-to-char"
-rev = "05234ed"
-hash = "ce67445ebb1bf3d97b8e44f50904b2c5"
+rev = "f703392"
+hash = "7a4b4237223aaa94e589d1c01a23542a"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:vcs-files"
-rev = "05234ed"
-hash = "4ee57085277d616acfa0ef1fef37dc00"
+rev = "f703392"
+hash = "4f2a05edce73aef2bceb2ee2c134c8f2"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:toggle-pane"
-rev = "05234ed"
-hash = "8a7c58225816a163a6e8730c0adafbc8"
+rev = "f703392"
+hash = "5b2fbef7d1513ce38ff72623a071a5e"
 
 [[plugin.deps]]
 use = "AnirudhG07/nbpreview"
@@ -40,25 +40,25 @@ hash = "b83919985400521dee78e1c352b5d9db"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:smart-enter"
-rev = "05234ed"
-hash = "56fdabc96fc1f4d53c96eb884b02a5be"
+rev = "f703392"
+hash = "187cc58ba7ac3befd49c342129e6f1b6"
 
 [[plugin.deps]]
 use = "ahkohd/eza-preview"
-rev = "7a2d60f"
-hash = "eed8e19469f3dca38fd977eb938dd34e"
+rev = "e8fb6c8"
+hash = "c238595c801caa4f28553b9af8cf8804"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:piper"
-rev = "68f7d48"
-hash = "2dd68af59418b631b9703a03f606b31f"
+rev = "f703392"
+hash = "d1e0499cae5f3aeb628c267616d4b682"
 
 [[flavor.deps]]
 use = "yazi-rs/flavors:catppuccin-mocha"
-rev = "9276ffa"
-hash = "8d7799e4598ff079fa5ee5c770d9bc08"
+rev = "20b47bf"
+hash = "ce320f877fe709b189433941aba747c4"
 
 [[flavor.deps]]
 use = "kalidyasin/yazi-flavors:tokyonight-storm"
-rev = "fa19b40"
-hash = "b9aa812b133d03b4445beac37c28caa8"
+rev = "bfd1b37"
+hash = "be618d6b9aecfdd23139fc5753cdeb3b"
