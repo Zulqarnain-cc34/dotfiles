@@ -80,7 +80,7 @@ Who doesn't love fast startup times?
 
 | **Component** | **Command** | **Time** |
 | :--- | :--- | :--- |
-| **Neovim** | `nvim --startuptime` | **~125ms** 🚀 |
+| **Neovim** | `nvim --startuptime` | **~140ms** 🚀 |
 | **ZSH** | `zsh -i -c exit` | **0.143s** ⚡ |
 
 ---
