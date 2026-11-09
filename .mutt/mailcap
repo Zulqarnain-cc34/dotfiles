@@ -2,7 +2,7 @@ text/plain; $EDITOR %s ;
 text/html; w3m %s ; nametemplate=%s.html;
 # text/calendar; ~/bin/bash_scripts/calcurse-mutt.sh '%s';
 #text/html; lynx -assume_charset=%{charset} -display_charset=utf-8 -dump %s; nametemplate=%s.html; copiousoutput;
-image/*; sxiv %s ;
+image/*; nsxiv %s ;
 video/*; setsid mpv --quiet %s &; copiousoutput;
 audio/*; mpv %s ;
 application/pdf; zathura %s ;

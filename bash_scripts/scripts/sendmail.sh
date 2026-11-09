@@ -1,3 +1,3 @@
 #!/bin/bash
 
-echo "Hi" | neomutt -a  /home/wasif/Documents/new.txt -s "Logwatch Report" -- 
+echo "Hi" | neomutt -a  $HOME/Documents/new.txt -s "Logwatch Report" -- 

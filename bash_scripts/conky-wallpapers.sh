@@ -6,7 +6,7 @@ CURRENT_THEME=0
 if [[ $1 ]]; then
     WALLPAPER_DIR=$1
 else
-    WALLPAPER_DIR="/home/precision/Images/backgrounds/"
+    WALLPAPER_DIR="$HOME/Images/backgrounds/"
 fi
 
 cd $WALLPAPER_DIR || exit

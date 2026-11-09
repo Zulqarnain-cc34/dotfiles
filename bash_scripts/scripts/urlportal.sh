@@ -19,7 +19,7 @@
 #       DESC: custom way to handle url (similar idea to xdg-open, mailcap)
 #             works with just about all programs (e.g w3m, rtv, newsboat, urlview ...etc)
 #       DEMO: https://www.youtube.com/watch?v=2jyfrmBYzVQ
-#       install: lynx youtube-dl task-spooler newsboat rtv w3m mpv urlview tmux feh plowshare streamlink curl coreutils
+#       install: lynx yt-dlp task-spooler newsboat rtv w3m mpv urlview tmux feh plowshare streamlink curl coreutils
 
 
 # newsboat:
@@ -87,16 +87,16 @@ case "$url" in
         fi
         ;;
     *nitter.*/pic/*)
-        file="$(date +%Y.%m.%d%T::%N).jpg";wget --backups -O /tmp/$file "$url" &>/dev/null && nohup sxiv /tmp/$file &>/dev/null &
+        file="$(date +%Y.%m.%d%T::%N).jpg";wget --backups -O /tmp/$file "$url" &>/dev/null && nohup nsxiv /tmp/$file &>/dev/null &
         ;;
     *vt.tiktok*)
         nohup $VIDEO_CLIP "$url" &>/dev/null &
         ;;
     *nitter.*/pic/*)
-        file="$(date +%Y.%m.%d.%T::%N).jpg";wget --backups -O /tmp/$file "$url" &>/dev/null && nohup sxiv /tmp/$file &>/dev/null &
+        file="$(date +%Y.%m.%d.%T::%N).jpg";wget --backups -O /tmp/$file "$url" &>/dev/null && nohup nsxiv /tmp/$file &>/dev/null &
         ;;
     *bibliogram.*/imageproxy*)
-        file="$(date +%Y.%m.%d%T::%N).jpg";wget --backups -O /tmp/$file "$url" &>/dev/null && nohup sxiv /tmp/$file &>/dev/null & 
+        file="$(date +%Y.%m.%d%T::%N).jpg";wget --backups -O /tmp/$file "$url" &>/dev/null && nohup nsxiv /tmp/$file &>/dev/null & 
         ;;
     *bibliogram.*/videoproxy*)
         nohup $VIDEO_CLIP "$url" &>/dev/null &
@@ -134,7 +134,7 @@ case "$url" in
         nohup $VIDEO_CLIP "$url" > /dev/null 2>&1 &
         ;;
     *i.imgur.com/*| *imgur.com/*.*)
-        file="$(date +%Y.%m.%d%T::%N).jpg";wget --backups -O /tmp/$file "$url" &>/dev/null && nohup sxiv /tmp/$file &>/dev/null &
+        file="$(date +%Y.%m.%d%T::%N).jpg";wget --backups -O /tmp/$file "$url" &>/dev/null && nohup nsxiv /tmp/$file &>/dev/null &
         # nohup $IMAGEGUI "$url" > /dev/null 2>&1 &
         #tmux new-window -n pixcli && tmux send-keys "$IMAGECLI '$url' && tmux kill-pane" 'Enter'
         ;;
@@ -154,7 +154,7 @@ case "$url" in
         ;;
     *.jpg|*.jpeg|*.png|*:large)
         #tmux new-window -n pixcli && tmux send-keys "$IMAGECLI '$url' && tmux kill-pane" 'Enter'
-        file="$(date +%Y.%m.%d%T::%N).jpg";wget --backups -O /tmp/$file "$url" &>/dev/null && nohup sxiv /tmp/$file &>/dev/null &
+        file="$(date +%Y.%m.%d%T::%N).jpg";wget --backups -O /tmp/$file "$url" &>/dev/null && nohup nsxiv /tmp/$file &>/dev/null &
         # nohup $IMAGEGUI "$url" > /dev/null 2>&1 &
         ;;
     *.pdf)

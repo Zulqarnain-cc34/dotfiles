@@ -694,7 +694,7 @@ keymap  XN      EXTERN        '$BROWSER_PRIVATE'
 
 # queue download file (task-spooler)
 # keymap  xd      EXTERN_LINK   'TS_SOCKET=/tmp/w3m tsp aria2c -j 1 -x 2 -c -d ~/Downloads'
-keymap  yd      EXTERN_LINK   'youtube-dl -o "~/Downloads/%(title)s.%(ext)s"'
+keymap  yd      EXTERN_LINK   'yt-dlp -o "~/Downloads/%(title)s.%(ext)s"'
 
 # keymap  wg      EXTERN_LINK   'TS_SOCKET=/tmp/w3m tsp wget -c -P /media/EdoTensei/Wget'
 # keymap  WG      EXTERN        'TS_SOCKET=/tmp/w3m tsp wget -c -P /media/EdoTensei/Wget'

@@ -3,7 +3,7 @@
 if [[ "$1" ]]; then
     WALLPAPER_DIR="$1"
 else
-    WALLPAPER_DIR="/home/precision/Images/backgrounds/"
+    WALLPAPER_DIR="$HOME/Images/backgrounds/"
 fi
 
 WALLPAPERS=($(ls -d -1 $WALLPAPER_DIR*))

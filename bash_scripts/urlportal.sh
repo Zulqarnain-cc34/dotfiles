@@ -18,7 +18,7 @@
 #       DESC: custom way to handle url (similar idea to xdg-open, mailcap)
 #             works with just about all programs (e.g w3m, rtv, newsboat, urlview ...etc)
 #       DEMO: https://www.youtube.com/watch?v=2jyfrmBYzVQ
-#       install: lynx youtube-dl task-spooler newsboat rtv w3m mpv urlview tmux feh plowshare streamlink curl coreutils
+#       install: lynx yt-dlp task-spooler newsboat rtv w3m mpv urlview tmux feh plowshare streamlink curl coreutils
 # newsboat:
 #     vim ~/.newsboat/config
 #        browser ~/.scripts/urlportal.sh
@@ -77,7 +77,7 @@ esac
 case "$url" in
   # Nitter images
   *nitter.*/pic/*)
-    wget -qO /tmp/web.img -- "$url" && sxiv /tmp/web.img &
+    wget -qO /tmp/web.img -- "$url" && nsxiv /tmp/web.img &
     ;;
 
   # TikTok short URLs
@@ -87,7 +87,7 @@ case "$url" in
 
   # Bibliogram image proxy
   *bibliogram.*/imageproxy*)
-    wget -qO /tmp/web.img -- "$url" && sxiv /tmp/web.img &
+    wget -qO /tmp/web.img -- "$url" && nsxiv /tmp/web.img &
     ;;
 
   # Bibliogram video proxy
@@ -128,7 +128,7 @@ case "$url" in
 
   # Imgur static images
   *i.imgur.com/* | *imgur.com/*.*)
-    wget -qO /tmp/web.img -- "$url" && sxiv /tmp/web.img &
+    wget -qO /tmp/web.img -- "$url" && nsxiv /tmp/web.img &
     ;;
 
   # mailto: links – open in neomutt inside kitty
@@ -150,7 +150,7 @@ case "$url" in
   *.jpg | *.jpeg | *.png | *:large)
     current_time=$(date +%s%N)
     tmp="/tmp/web-${current_time}.img"
-    wget -qO "$tmp" -- "$url" && sxiv "$tmp" &
+    wget -qO "$tmp" -- "$url" && nsxiv "$tmp" &
     ;;
 
   # PDFs – download then open with okular
