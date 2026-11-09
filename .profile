@@ -56,7 +56,7 @@ export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
     --color=fg:-1,bg:-1,hl:#5fff87,fg+:-1,bg+:-1,hl+:#ffaf5f
     --color=info:#af87ff,prompt:#5fff87,pointer:#ff87d7,marker:#ff87d7,spinner:#ff87d7
 '
-export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
+export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!.git"'
 # export PATH="$HOME/etc/Programs/paleofetch:$PATH"
 
 # Sourcing paths
@@ -484,4 +484,5 @@ export GROFF_NO_SGR=1                  # for konsole and gnome-terminal
 # "
 
 export NVM_DIR="$HOME/.config/nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+# nvm is lazy-loaded on first use in zsh/.zshrc and .bashrc. Sourcing it eagerly
+# here (read before the rc files on login) would defeat that and slow every login.

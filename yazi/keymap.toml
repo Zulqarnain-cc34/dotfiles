@@ -8,10 +8,7 @@ keymap = [
   # ============ NAVIGATION ============
   { on = "j", run = "arrow 1 --no-wrap", desc = "Move down (no wrap)" },
   { on = "k", run = "arrow -1 --no-wrap", desc = "Move up (no wrap)" },
-  { on = ["a", "p"],
-      run = 'shell --block "mpv --no-video \"$0\""',
-      desc = "Play as audio only"
-  },
+  { on = ["a", "p"], run = 'shell --block "mpv --no-video \"$0\""', desc = "Play as audio only" },
   { on = "l", run = "plugin smart-enter", desc = "Open file or enter directory" },
   { on = "h", run = "leave", desc = "Go back to parent directory" },
   { on = "<Up>", run = "arrow -1", desc = "Move cursor up" },
@@ -54,8 +51,8 @@ keymap = [
   # ============ SEARCH / FIND ============
   { on = "/", run = "find", desc = "Find file (forward)" },
   { on = "?", run = "find --previous", desc = "Find file (backward)" },
-  { on = "n", run = "find_next", desc = "Find next match" },
-  { on = "N", run = "find_prev", desc = "Find previous match" },
+  { on = "n", run = "find_arrow", desc = "Find next match" },
+  { on = "N", run = "find_arrow --previous", desc = "Find previous match" },
 
   # ============ BUILT-IN DELETE ============
   { on = ["d", "t"], run = "remove", desc = "Trash selected files" },
@@ -72,16 +69,17 @@ keymap = [
   { on = ["r", "e"], run = "rename --empty=ext --cursor=end", desc = "Rename extension only" },
 
   # ============ BUILT-IN SORT ============ 
-  { on = ["s", "a"], run = "sort atime --reverse", desc = "Sort by access time (newest first)" },
-  { on = ["s", "c"], run = "sort ctime --reverse", desc = "Sort by change time (newest first)" },
-  { on = ["s", "e"], run = "sort ext --reverse", desc = "Sort by extension (reverse)" },
+  # yazi has no atime/ctime sort (unlike lf/ranger); btime (creation) is the
+  # only extra time dimension it supports, so the old a/c binds are consolidated here.
+  { on = ["s", "b"], run = "sort btime --reverse", desc = "Sort by creation time (newest first)" },
+  { on = ["s", "e"], run = "sort extension --reverse", desc = "Sort by extension (reverse)" },
   { on = ["s", "n"], run = "sort natural --reverse", desc = "Sort by name naturally (reverse)" },
   { on = ["s", "s"], run = "sort size --reverse", desc = "Sort by size (largest first)" },
   { on = ["s", "t"], run = "sort mtime --reverse", desc = "Sort by modification time (newest first)" },
   { on = ["w"] , run = "sh -c 'echo \"$YAZI_CWD\" > /tmp/yazi_cwd && exit'", desc = "Set directory and exit"},
 
-  { on = ["z", "A"], run = "show-info atime", desc = "Show access time info" },
-  { on = ["z", "c"], run = "show-info ctime", desc = "Show change time info" },
+  # `show-info` is not a yazi command; 0.4+ uses `spot` for the file-info popup.
+  { on = ["z", "i"], run = "spot", desc = "Show file info (spot popup)" },
 ]
 
 prepend_keymap = [
@@ -95,9 +93,9 @@ prepend_keymap = [
 
   { on = ["e", "e"], run = 'shell -- nvim "$1"', desc = "Edit file with Neovim" },
   { on = ["e", "i"], run = "shell -- exiftool \"$1\" | less", desc = "Show EXIF metadata" },
-  { on = ["e", "g"], run = "shell -- convert \"$1\" \"${1%.*}.pdf\"", desc = "Convert image to PDF" },
-  { on = ["e", "p"], run = "shell -- sxiv -t ./* &> /dev/null &", desc = "Preview images in directory" },
-  { on = ["e", "P"], run = "shell -- sxiv \"$1\" &> /dev/null &", desc = "Open image with sxiv" },
+  { on = ["e", "g"], run = "shell -- magick \"$1\" \"${1%.*}.pdf\"", desc = "Convert image to PDF" },
+  { on = ["e", "p"], run = "shell -- nsxiv -t ./* &> /dev/null &", desc = "Preview images in directory" },
+  { on = ["e", "P"], run = "shell -- nsxiv \"$1\" &> /dev/null &", desc = "Open image with nsxiv" },
 
   # ============ ARCHIVE OPERATIONS ============
   { on = ["a", "z"], run = "shell -- zip -r \"$1\" \"$1\"", desc = "Create ZIP archive" },

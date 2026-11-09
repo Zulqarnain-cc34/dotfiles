@@ -33,7 +33,7 @@ cmd open ${{
         application/pdf)nohup zathura "$f" &> /dev/null &;;
         image/vnd.djvu)nohup zathura "$f" &> /dev/null &;;
         image/svg+xml)nohup inkview "$f" &> /dev/null &;;
-        image/*)nohup sxiv "$f" &> /dev/null &;;
+        image/*)nohup nsxiv "$f" &> /dev/null &;;
         video/*)nohup mpv "$f" &> /dev/null &;;
         *)nohup xdg-open "$f" &> /dev/null & ;;
     esac
@@ -253,7 +253,7 @@ cmd stripspace ${{
 }}
 
 cmd image_directory ${{
-    nohup sxiv -t ./* &> /dev/null &
+    nohup nsxiv -t ./* &> /dev/null &
 }}
 cmd share $curl -F"file=@$fx" https://0x0.st | xclip -selection clip
 
@@ -500,7 +500,7 @@ map ee $nvim -p $fx
 map em send_mail
 map eg image2pdf
 map ep image_directory
-map eP %sxiv $f
+map eP %nsxiv $f
 map es share
 
 

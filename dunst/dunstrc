@@ -4,7 +4,12 @@
     #   keyboard: follow window with keyboard focus
     #   none: don't follow anything
     follow = none
-    geometry = "500x5-30+50";
+    # `geometry` was removed in dunst 1.7; split into width/height/origin/offset.
+    # Old "500x5-30+50" = width 500, anchored top-right, 30x50 offset.
+    width = 500
+    height = 300
+    origin = "top-right"
+    offset = "30x50"
     indicate_hidden = yes
     shrink = no
     transparency = 0
@@ -76,14 +81,17 @@
     icon_position = left
     min_icon_size = 0
     max_icon_size = 32
-    icon_path = /usr/share/icons/gnome/16x16/status/:/usr/share/icons/gnome/16x16/devices/
+    # gnome-icon-theme was dropped from Arch; use dunst's recursive lookup (1.9+)
+    # against an installed theme instead of hardcoded 16x16 gnome paths.
+    enable_recursive_icon_lookup = true
+    icon_theme = "Adwaita, hicolor"
 
     sticky_history = yes
     history_length = 20
 
     ### Misc/Advanced ###
-    dmenu = /home/leon/.nix-profile/bin/rofi -dmenu -p dunst:
-    browser = /usr/bin/google-chrome-stable -new-tab
+    dmenu = rofi -dmenu -p dunst:
+    browser = xdg-open
     always_run_script = true
     title = Dunst
     class = Dunst

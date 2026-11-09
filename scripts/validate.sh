@@ -112,7 +112,9 @@ for f in .gitconfig.example; do
 done
 
 echo "==> No hardcoded /home/alpha in tracked config files"
-HARDCODED_EXCLUDE='^(README\.md|CHANGELOG\.md|scripts/validate\.sh|\.github/|docs/)'
+# transmission-daemon/ is exempt: transmission's settings.json cannot expand
+# $HOME/$USER, so download-dir/incomplete-dir must be absolute literal paths.
+HARDCODED_EXCLUDE='^(README\.md|CHANGELOG\.md|scripts/validate\.sh|\.github/|docs/|transmission-daemon/)'
 if git ls-files | grep -Ev "$HARDCODED_EXCLUDE" | xargs grep -l '/home/alpha' 2>/dev/null | grep -q .; then
     while IFS= read -r f; do
         fail "hardcoded path: $f"

@@ -65,12 +65,13 @@ alias mirrord="sudo reflector --latest 50 --number 20 --sort delay --save /etc/p
 alias mirrors="sudo reflector --latest 50 --number 20 --sort score --save /etc/pacman.d/mirrorlist"
 alias mirrora="sudo reflector --latest 50 --number 20 --sort age --save /etc/pacman.d/mirrorlist"
 
-# Changing "ls" to "exa"
-alias exa='exa -al --color=always --group-directories-first'
-alias la='exa -a --color=always --group-directories-first'
-alias ll='exa -l --color=always --group-directories-first'
-alias lt='exa -aT --color=always --group-directories-first'
-alias l.='exa -a | egrep "^\."'
+# Changing "ls" to "eza" (exa was discontinued in 2023; eza is the maintained fork)
+alias exa='eza -al --color=always --group-directories-first --icons=auto'
+alias eza='eza -al --color=always --group-directories-first --icons=auto'
+alias la='eza -a --color=always --group-directories-first --icons=auto'
+alias ll='eza -l --color=always --group-directories-first --icons=auto'
+alias lt='eza -aT --color=always --group-directories-first --icons=auto'
+alias l.='eza -a | egrep "^\."'
 
 #rsync
 alias rsync='rsync --progress'
@@ -105,16 +106,16 @@ alias gpg-check="gpg2 --keyserver-options auto-key-retrieve --verify"
 # receive the key of a developer
 alias gpg-retrieve="gpg2 --keyserver-options auto-key-retrieve --receive-keys"
 
-# youtube-dl
-alias yta-aac="youtube-dl --extract-audio --audio-format aac "
-alias yta-best="youtube-dl --extract-audio --audio-format best "
-alias yta-flac="youtube-dl --extract-audio --audio-format flac "
-alias yta-m4a="youtube-dl --extract-audio --audio-format m4a "
-alias yta-mp3="youtube-dl --extract-audio --audio-format mp3 "
-alias yta-opus="youtube-dl --extract-audio --audio-format opus "
-alias yta-vorbis="youtube-dl --extract-audio --audio-format vorbis "
-alias yta-wav="youtube-dl --extract-audio --audio-format wav "
-alias ytv-best="youtube-dl -f bestvideo+bestaudio "
+# yt-dlp
+alias yta-aac="yt-dlp --extract-audio --audio-format aac "
+alias yta-best="yt-dlp --extract-audio --audio-format best "
+alias yta-flac="yt-dlp --extract-audio --audio-format flac "
+alias yta-m4a="yt-dlp --extract-audio --audio-format m4a "
+alias yta-mp3="yt-dlp --extract-audio --audio-format mp3 "
+alias yta-opus="yt-dlp --extract-audio --audio-format opus "
+alias yta-vorbis="yt-dlp --extract-audio --audio-format vorbis "
+alias yta-wav="yt-dlp --extract-audio --audio-format wav "
+alias ytv-best="yt-dlp -f bestvideo+bestaudio "
 
 #apps
 alias r="ranger"
@@ -156,12 +157,12 @@ alias trs='transmission-rss'
 alias trc='transmission-remote'
 alias xup='xrdb .Xresources'
 alias nb='newsboat'
-alias sc='source /home/alpha/.bashrc'
-alias sp='source /home/alpha/.bash_profile'
-alias zc='source /home/alpha/.config/zsh/.zshrc'
-alias zp='source /home/alpha/.zprofile'
+alias sc='source $HOME/.bashrc'
+alias sp='source $HOME/.bash_profile'
+alias zc='source $HOME/.config/zsh/.zshrc'
+alias zp='source $HOME/.zprofile'
 
-alias check-sites='python3 /home/alpha/etc/Coding/Python/sherlock/sherlock/sherlock.py'
+alias check-sites='python3 $HOME/etc/Coding/Python/sherlock/sherlock/sherlock.py'
 alias sr='sr -browser=$BROWSERCLI'
 alias surfraw='surfraw -browser=$BROWSER'
 
@@ -172,7 +173,7 @@ alias cfg-rifleconf="$EDITOR  $HOME/.config/ranger/rifle.conf"
 alias cfg-urlportal="$EDITOR $HOME/bin/urlportal.sh"
 alias cfg-muttrc="$EDITOR $HOME/.mutt/muttrc"
 alias cfg-starship="$EDITOR $HOME/.config/starship.toml"
-alias cfg-zshrc="$EDITOR $HOME/.zshrc"
+alias cfg-zshrc="$EDITOR $HOME/.config/zsh/.zshrc"
 alias cfg-bashrc="$EDITOR $HOME/.bashrc"
 alias cfg-bashprofile="$EDITOR $HOME/.bash_profile"
 alias cfg-w3m="$EDITOR $HOME/.w3m/config"
@@ -195,7 +196,7 @@ alias cfg-surfraw="$EDITOR $HOME/.config/surfraw/conf"
 alias cutycapt="CutyCapt"
 
 alias usbmount="sudo mount -o gid=users,fmask=111,dmask=000"
-alias song="/home/alpha/etc/linuxConfig/dotfiles_v2/ncmpcpp/notification"
+alias song="$HOME/etc/linuxConfig/dotfiles_v2/ncmpcpp/notification"
 alias pip-upgrade="pip freeze --user | cut -d'=' -f1 | xargs -n1 pip install -U"
 
 alias cvtbashtozsh='cat ~/.bash_history | uniq | sed "s/^/\: $(date +%s)\:0;/" >> ~/.zsh_history'

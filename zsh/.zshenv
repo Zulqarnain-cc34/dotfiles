@@ -6,11 +6,15 @@ export PATH="$HOME/.local/bin:$PATH"
 # NOTE: XDG variables and GDK_DPI_SCALE are defined in .profile and inherited. 
 # This avoids duplication and ensures consistency across shells
 
-export JAVA_HOME="/usr/lib/jvm/java-8-openjdk"
-case ":$PATH:" in
-  *":$JAVA_HOME/bin:"*) ;;
-  *) PATH="$JAVA_HOME/bin:$PATH" ;;
-esac 
+# Point at Arch's current default JDK if one is installed (java-8 is long EOL).
+# Guarded so we never prepend a non-existent dir to PATH on a Java-less box.
+if [ -d /usr/lib/jvm/default ]; then
+  export JAVA_HOME="/usr/lib/jvm/default"
+  case ":$PATH:" in
+    *":$JAVA_HOME/bin:"*) ;;
+    *) PATH="$JAVA_HOME/bin:$PATH" ;;
+  esac
+fi
 
 export EDITOR="nvim"
 export READER="zathura"
@@ -18,7 +22,7 @@ export VISUAL="nvim"
 export TERMINAL="kitty"
 export BROWSER="firefox"
 export VIDEO="mpv"
-export IMAGE="sxiv"
+export IMAGE="nsxiv"
 export COLORTERM="truecolor"
 export OPENER="xdg-open"
 export PAGER="less"
@@ -41,10 +45,18 @@ export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
     --color=fg:-1,bg:-1,hl:#5fff87,fg+:-1,bg+:-1,hl+:#ffaf5f
     --color=info:#af87ff,prompt:#5fff87,pointer:#ff87d7,marker:#ff87d7,spinner:#ff87d7
 '
-export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
+# ag (the_silver_searcher) is abandoned; ripgrep is the maintained equivalent.
+export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!.git"'
 
+# Cache vivid's LS_COLORS instead of regenerating on every shell start.
+# .zshenv is sourced for non-interactive shells too, so this matters for startup time.
 if command -v vivid >/dev/null 2>&1; then
-    export LS_COLORS="$(vivid generate one-dark)"
+    _vivid_cache="${XDG_CACHE_HOME:-$HOME/.cache}/vivid-one-dark.lscolors"
+    if [ ! -s "$_vivid_cache" ] || [ "$(command -v vivid)" -nt "$_vivid_cache" ]; then
+        vivid generate one-dark > "$_vivid_cache" 2>/dev/null
+    fi
+    export LS_COLORS="$(cat "$_vivid_cache" 2>/dev/null)"
+    unset _vivid_cache
 fi
 
 # NOTE: Commented out - uncomment and update paths if using Hadoop/Spark

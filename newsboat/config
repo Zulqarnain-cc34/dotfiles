@@ -57,8 +57,8 @@ macro o set browser "$TERMINAL w3m %u" ; open-in-browser ; set browser "${HOME}/
 # Download and view image
 macro i set browser "wget -O /tmp/newsboat.img %u && feh /tmp/newsboat.img &> /dev/null &" ; open-in-browser ; set browser "${HOME}/bin/bash_scripts/urlportal.sh"
 
-# Reddit comments via RTV
-macro r set browser "rtv -l %u" ; open-in-browser ; set browser "${HOME}/bin/bash_scripts/urlportal.sh"
+# Reddit comments via tuir (maintained fork of the discontinued rtv)
+macro r set browser "tuir -l %u" ; open-in-browser ; set browser "${HOME}/bin/bash_scripts/urlportal.sh"
 
 # Media Player (mpv)
 macro p set browser "mpv %u &> /dev/null &" ; open-in-browser ; set browser "${HOME}/bin/bash_scripts/urlportal.sh"
