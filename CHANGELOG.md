@@ -5,6 +5,33 @@ All notable changes to this dotfiles repo are documented here.
 Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).  
 Versions are dated milestones, not semver releases (this is a personal config repo).
 
+## [2026-11-09] — Modernization & dead-tool cleanup (branch: `modernize-2026`)
+
+### Changed
+- Dead tools → maintained forks: `exa`→`eza`, `youtube-dl`→`yt-dlp`, `sxiv`→`nsxiv`, `rtv`→`tuir`, `ag`→`rg` (FZF command)
+- Neovim consolidated onto **snacks.nvim** (picker / explorer / notifier); dropped the noice, oil, dressing, mini.nvim, mini.icons, fzf-lua, mini.pick overlaps
+- mpv `sub-ass-force-style`→`sub-ass-style-overrides`; dunst `geometry`→`width`/`height`/`origin`/`offset`; picom dropped removed keys (`dbe`, `glx-copy-from-front`)
+- polybar network modules use `interface-type = wireless` (auto-detect) instead of hardcoded `wlan0`
+- Alacritty: removed invalid top-level `theme=` / misplaced `title=` keys
+- Package manifests: dropped `neofetch`/`screenfetch`, `ueberzug`→`ueberzugpp`, `sxiv`→`nsxiv`
+- `vivid` LS_COLORS cached instead of regenerated every shell; `JAVA_HOME` guarded to Arch default JDK
+
+### Fixed
+- Neovim latent bug: packer-era `requires=`/`after=` keys that lazy.nvim silently ignored → proper `dependencies`
+- Neovim keybinds repointed from Telescope/Oil to snacks (would have errored on keypress)
+- yazi: invalid commands (`find_next`, `atime/ctime` sorts, `show-info`), `%s`→`$@` openers, and an invalid multi-line inline table (TOML)
+- dunst: removed foreign `/home/leon/.nix-profile` dmenu path + dead gnome icon paths
+- sxhkd: workspace bind `{1-8}`→`{1-9}` (desktop 九 was unreachable); removed shadowed duplicate `super+space`
+- Transmission: RPC bound to `127.0.0.1` (was `0.0.0.0`); `$USER`/`$HOME` literal paths → absolute (exempted in `validate.sh`)
+- Hardcoded foreign usernames (`/home/precision`, `/home/wasif`) → `$HOME`
+
+### Removed
+- Neovim dead code: `config/*.vimrc` tree, `UltiSnips/` (no loader), 10 orphaned `plugins/*.lua` (~2,500 lines)
+- `.Xresources`: dead `~/etc/...` include + unused URxvt block (kept the `Xft.*` hints)
+
+### Added
+- `docs/firefox.md` (referenced by `setup.sh`/CHANGELOG but previously missing)
+
 ## [Unreleased]
 
 ### Added
