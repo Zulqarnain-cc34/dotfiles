@@ -36,8 +36,8 @@ prepend_keymap = [
   { on = ["e", "c"], run = "shell -- vimdiff \"$1\"", desc = "Vimdiff file" },
   { on = ["e", "i"], run = "shell -- exiftool \"$1\" | less", desc = "Show EXIF metadata" },
   { on = ["e", "g"], run = "shell -- convert \"$1\" \"${1%.*}.pdf\"", desc = "Convert image to PDF" },
-  { on = ["e", "p"], run = "shell -- sxiv -t ./* &> /dev/null &", desc = "Preview images in directory" },
-  { on = ["e", "P"], run = "shell -- sxiv \"$1\" &> /dev/null &", desc = "Open image with sxiv" },
+  { on = ["e", "p"], run = "shell -- nsxiv -t ./* &> /dev/null &", desc = "Preview images in directory" },
+  { on = ["e", "P"], run = "shell -- nsxiv \"$1\" &> /dev/null &", desc = "Open image with nsxiv" },
   { on = ["e", "s"], run = "shell -- curl -F 'file=@$1' https://0x0.st | xclip -selection clip", desc = "Share file via 0x0.st" },
   { on = ["e", "d"], run = "shell -- $EDITOR $HOME/.config/yazi/keymap.toml", desc = "Edit Yazi keymap" },
 

@@ -37,5 +37,5 @@ A clean, organized keymap for [Yazi](https://github.com/sxyazi/yazi) file manage
 ### Utilities
 - `;/:` - Shell command (interactive/block)
 - `ee` - Open with editor
-- `ei/eg/ep/eP` - EXIF/PDF/sxiv preview
+- `ei/eg/ep/eP` - EXIF/PDF/nsxiv preview
 - `tr/tc/tg` - Trash restore/clear/go to trash

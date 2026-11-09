@@ -15,16 +15,16 @@ if command -v yt-dlp &> /dev/null
 then
   downloader=yt-dlp
 else
-  downloader=youtube-dl
+  downloader=yt-dlp
 fi
 
 while test $# -gt 0; do
   case "$1" in
     -h|--help)
-      echo "this is a script to download mp3 files from any place that youtube-dl/yt-dlp can"
+      echo "this is a script to download mp3 files from any place that yt-dlp/yt-dlp can"
       echo ""
       echo "Please put your flags before input link"
-      echo "script will prefer yt-dlp over youtube-dl"
+      echo "script will prefer yt-dlp over yt-dlp"
       echo "default download path is '~/Music', feel free to change it (downloaddir variable in the beginning of the script)"
       echo ""
       echo "Flags:"

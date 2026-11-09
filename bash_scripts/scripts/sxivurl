@@ -1,3 +1,3 @@
 #!/bin/bash
 
-wget -O /tmp/web.img $1 &>/dev/null && sxiv /tmp/web.img
+wget -O /tmp/web.img $1 &>/dev/null && nsxiv /tmp/web.img

@@ -2,4 +2,4 @@
 
 input=$(xclip -out -selection clipborad)
 
-$TERMINAL -e youtube-dl -o '/home/precision/Videos/videos/%(title)s' ${input}
+$TERMINAL -e yt-dlp -o '$HOME/Videos/videos/%(title)s' ${input}

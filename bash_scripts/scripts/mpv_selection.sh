@@ -4,7 +4,7 @@ cd /tmp || exit
 
 url="$(xclip -out -selection primary)"
 
-youtube-dl --write-sub --skip-download "$url"
+yt-dlp --write-sub --skip-download "$url"
 
 mv /tmp/*?.srt /tmp/sub.srt
 

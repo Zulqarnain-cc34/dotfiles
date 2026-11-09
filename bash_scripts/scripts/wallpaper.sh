@@ -5,7 +5,7 @@ if [[ -d "$1" ]];then
 elif [[ -f "$1" ]];then
     dir=${1%/*}
 fi
-image="$(nohup sxiv -t -r -q -o "$dir"/*)"
+image="$(nohup nsxiv -t -r -q -o "$dir"/*)"
 
 [[ -z $image ]] && exit
 

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cache_file="/home/wasif/.local/share/surfraw/cache"
+cache_file="$HOME/.local/share/surfraw/cache"
 cache_dir=${cache_file%/*}
 search_engine=duckduckgo
 

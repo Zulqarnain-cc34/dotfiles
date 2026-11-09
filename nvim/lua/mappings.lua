@@ -112,25 +112,25 @@ map("n", "<leader>xq", "<cmd>Trouble qflist<cr>", { silent = true, noremap = tru
 map("n", "<leader>xr", "<cmd>Trouble lsp_references<cr>", { silent = true, noremap = true })
 
 ------------------------------------------------------------------------
---                             Telescope                              --
+--                        Picker (snacks.picker)                      --
 ------------------------------------------------------------------------
 
-map("n", "<C-s>", "<cmd>Telescope find_files<cr>", { noremap = true })
-map("n", "<leader>fg", "<cmd>Telescope live_grep<cr>", { noremap = true })
-map("n", "<leader>fb", "<cmd>Telescope buffers<cr>", { noremap = true })
-map("n", "<leader>fh", "<cmd>Telescope help_tags<cr>", { noremap = true })
-map("n", "<leader>fm", "<cmd>Telescope marks<cr>", { noremap = true })
-map("n", "<leader>fl", "<cmd>Telescope old_files<cr>", { noremap = true })
-map("n", "<leader>fc", "<cmd>Telescope command_history<cr>", { noremap = true })
-map("n", "<leader>fa", "<cmd>Telescope man_pages<cr>", { noremap = true })
-map("n", "<leader>fr", "<cmd>Telescope registers<cr>", { noremap = true })
-map("n", "<leader>Gs", "<cmd>Telescope git_status<cr>", { noremap = true })
+map("n", "<C-s>", "<cmd>lua Snacks.picker.files()<cr>", { noremap = true })
+map("n", "<leader>fg", "<cmd>lua Snacks.picker.grep()<cr>", { noremap = true })
+map("n", "<leader>fb", "<cmd>lua Snacks.picker.buffers()<cr>", { noremap = true })
+map("n", "<leader>fh", "<cmd>lua Snacks.picker.help()<cr>", { noremap = true })
+map("n", "<leader>fm", "<cmd>lua Snacks.picker.marks()<cr>", { noremap = true })
+map("n", "<leader>fl", "<cmd>lua Snacks.picker.recent()<cr>", { noremap = true })
+map("n", "<leader>fc", "<cmd>lua Snacks.picker.command_history()<cr>", { noremap = true })
+map("n", "<leader>fa", "<cmd>lua Snacks.picker.man()<cr>", { noremap = true })
+map("n", "<leader>fr", "<cmd>lua Snacks.picker.registers()<cr>", { noremap = true })
+map("n", "<leader>Gs", "<cmd>lua Snacks.picker.git_status()<cr>", { noremap = true })
 
 ------------------------------------------------------------------------
 --                           Todo comments                            --
 ------------------------------------------------------------------------
 
-map("n", "<leader>tT", "<cmd>TodoTelescope <cr>", { noremap = true })
+map("n", "<leader>tT", "<cmd>TodoTrouble<cr>", { noremap = true })
 map("n", "<leader>tq", "<cmd>TodoQuickFix<cr>", { noremap = true })
 map("n", "<leader>tt", "<cmd>TodoTrouble<cr>", { noremap = true })
 
@@ -172,7 +172,7 @@ map("n", "<leader>dr",
 --                           Nvim Tree--
 ------------------------------------------------------------------------
 
-map("n", "<C-n>", "<CMD>Oil<CR>", { noremap = true, silent = true })
+map("n", "<C-n>", "<cmd>lua Snacks.explorer()<CR>", { noremap = true, silent = true })
 ------------------------------------------------------------------------
 --                                Git                                 --
 ------------------------------------------------------------------------

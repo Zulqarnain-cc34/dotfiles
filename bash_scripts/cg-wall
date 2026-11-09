@@ -8,11 +8,11 @@ function change-background() {
             WALLPAPER=$1
         fi
     else
-        WALLPAPER_DIR="/home/precision/Images/backgrounds"
+        WALLPAPER_DIR="$HOME/Images/backgrounds"
     fi
     if [[ -v $WALLPAPER_DIR ]]; then
         cd $WALLPAPER_DIR || exit
-        sxiv -r -o -q * | xargs -I {} xfconf-query --channel xfce4-desktop --property /backdrop/screen0/monitorLVDS-1/workspace0/last-image --set $WALLPAPER_DIR/{}
+        nsxiv -r -o -q * | xargs -I {} xfconf-query --channel xfce4-desktop --property /backdrop/screen0/monitorLVDS-1/workspace0/last-image --set $WALLPAPER_DIR/{}
     elif [[ -v $WALLPAPER ]]; then
         xfconf-query --channel xfce4-desktop --property /backdrop/screen0/monitorLVDS-1/workspace0/last-image --set "$WALLPAPER"
     fi
@@ -22,7 +22,7 @@ __ScriptVersion="0.1"
 
 #===  FUNCTION  ================================================================
 #         NAME: Change Wallpaper
-#  DESCRIPTION: Used to Change Wallpaper using sxiv.
+#  DESCRIPTION: Used to Change Wallpaper using nsxiv.
 #===============================================================================
 function usage() {
     echo "Usage :  $0 [options] [-p -h -v]

@@ -1,34 +1,12 @@
-#include "~/etc/.configResources/Xresources-themes/iterm-Brogrammer.Xresources"
+! X resources.
+!
+! Terminals here are kitty + alacritty, which do their own font rendering, so the
+! old URxvt.* block and the dead `#include "~/etc/.configResources/..."` (which made
+! `xrdb -merge` fail on the missing file) have been removed.
+!
+! The Xft.* hints below still matter — they affect X apps like rofi and dunst.
 
-URxvt*font:xft:UbuntuMonoNerdFont:size=13:minspace=False:antialias=true, Fira Code Retina:pixelsize=9:minspace=False, xft:DejaVu Sans:pixelsize=8, xft:Symbola
-URxvt*boldFont:xft:UbuntuMonoNerdFont:size=13:minspace=False:antialias=true, xft:Fira Code Retina:pixelsize=9:minspace=False, xft:DejaVu Sans:pixelsize=8, xft:Symbola
-
-
-URxvt.scrollBar: false
-URxvt*letterSpace: 0
-Xft.hinting: true
-Xft.rgba: none
+Xft.hinting:   true
+Xft.rgba:      none
 Xft.hintstyle: hintfull
 Xft.lcdfilter: lcddefault
-URxvt.borderWidth: 0
-URxvt.internalBorder: 0
-URxvt.externalBorder: 0
-URxvt.transparent:   true
-URxvt.shading: 20
-URxvt.intensityStyles: false
-
-
-URxvt.keysym.Control-Meta-c: builtin-string:
-URxvt.keysym.Control-Meta-v: builtin-string:
-
-
-URxvt.keysym.Shift-Control-V: eval:paste_clipboard
-URxvt.keysym.Shift-Control-C: eval:selection_to_clipboard
-URxvt.keysym.Control-Up:     \033[1;5A
-URxvt.keysym.Control-Down:   \033[1;5B
-URxvt.keysym.Control-Left:   \033[1;5D
-URxvt.keysym.Control-Right:  \033[1;5C
-
-URxvt.iso14755: false
-URxvt.iso14755_52: false
-

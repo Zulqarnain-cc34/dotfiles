@@ -24,10 +24,7 @@ g.doge_mapping = "<Leader>q"
 
 g.gitblame_enabled = 0
 
-g.UltiSnipsExpandTrigger = '<tab>'
-g.UltiSnipsSnippetDirectories = { "UltiSnips" }
-g.UltiSnipsJumpForwardTrigger = '<c-j>'
-g.UltiSnipsJumpBackwardTrigger = '<c-k>'
+-- UltiSnips vars removed: no UltiSnips plugin is installed (blink.cmp uses friendly-snippets).
 g.user_emmet_leader_key = '<C-Z>'
 -- g.user_emmet_install_global = 0
 --

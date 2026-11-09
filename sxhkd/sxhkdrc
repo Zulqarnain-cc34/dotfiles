@@ -24,8 +24,9 @@ super + {_,shift + }q
 	bspc node -{c,k}
 
 # Send focused window to another workspace
-super + {_, shift + }{1-8}
-	bspc {desktop -f, node -d} '^{1-8}'
+# bspwm defines 9 desktops (一…九); bind all 9, not 1-8.
+super + {_, shift + }{1-9}
+	bspc {desktop -f, node -d} '^{1-9}'
 
 # Focus on window in direction
 super + {h,j,k,l}
@@ -107,11 +108,10 @@ shift + alt + t
     notifytorrents
 
 super + {t,r,y,o,w}
-    {$TERMINAL,$TERMINAL -e rtv,$HOME/bin/bash_scripts/ytfzf -D,$TERMINAL -e htop, firefox}
+    {$TERMINAL,$TERMINAL -e tuir,$HOME/bin/bash_scripts/ytfzf -D,$TERMINAL -e htop, firefox}
 
-super + space
-  rofi-bangs
-
+# super + space was defined twice; sxhkd honours only the last, so the dead
+# rofi-bangs binding is removed. Launcher is the rofi ribbon.
 super + space
    $HOME/.config/rofi/launchers/ribbon/launcher.sh
 
