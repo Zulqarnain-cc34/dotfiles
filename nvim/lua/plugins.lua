@@ -30,14 +30,7 @@ return require('lazy').setup({
             "b0o/schemastore.nvim",
         },
     },
-    {
-        "folke/noice.nvim",
-        event = "VeryLazy",
-        dependencies = {
-            "MunifTanjim/nui.nvim",
-            "rcarriga/nvim-notify",
-        }
-    },
+    -- noice + nvim-notify removed: snacks.notifier handles notifications now.
     {
         "folke/persistence.nvim",
         event = "BufReadPre",
@@ -57,12 +50,7 @@ return require('lazy').setup({
         priority = 1000,
         config = true,
     },
-    {
-        'stevearc/oil.nvim',
-        opts = {},
-        dependencies = { { "nvim-mini/mini.icons", opts = {} } },
-        lazy = false,
-    },
+    -- oil + mini.icons removed: snacks.explorer is the file explorer now.
     {
         "catgoose/nvim-colorizer.lua",
         event = "BufReadPre",
@@ -90,10 +78,7 @@ return require('lazy').setup({
         dependencies = {
             "nvim-lua/plenary.nvim",
             "sindrets/diffview.nvim",
-
-            "ibhagwan/fzf-lua",
-            "nvim-mini/mini.pick",
-            "folke/snacks.nvim",
+            "folke/snacks.nvim", -- neogit uses snacks as its picker backend
         },
         cmd = "Neogit",
         keys = {
@@ -101,7 +86,7 @@ return require('lazy').setup({
         }
     },
     {
-        "kyazdani42/nvim-web-devicons",
+        "nvim-tree/nvim-web-devicons",
         config = function()
             require("plugins.nvim-web-devicons")
         end
@@ -184,7 +169,7 @@ return require('lazy').setup({
     -- Status Bar and Bufferline
     {
         'akinsho/bufferline.nvim',
-        requires = 'nvim-tree/nvim-web-devicons',
+        dependencies = { 'nvim-tree/nvim-web-devicons' }, -- was packer `requires` (ignored by lazy)
         config = function()
             require('plugins.bufferline')
         end
@@ -250,12 +235,14 @@ return require('lazy').setup({
 
     -- Colors,blanklines and Tags
     {
+        -- `after = 'nvim-treesitter'` was a packer key lazy ignores; ordering is
+        -- handled via dependencies + an event trigger instead.
         'HiPhish/rainbow-delimiters.nvim',
-        after = 'nvim-treesitter',
-        dependencies = { 'windwp/nvim-ts-autotag' },
+        event = "BufReadPost",
+        dependencies = { 'nvim-treesitter/nvim-treesitter', 'windwp/nvim-ts-autotag' },
     },
 
-    { "windwp/nvim-ts-autotag", event = "InsertEnter", after = 'nvim-treesitter' },
+    { "windwp/nvim-ts-autotag", event = "InsertEnter" },
 
     {
         'saghen/blink.cmp',
@@ -277,12 +264,8 @@ return require('lazy').setup({
         },
         opts_extend = { "sources.default" }
     },
-    {
-        'nvim-mini/mini.nvim'
-    },
-    {
-        'stevearc/dressing.nvim'
-    },
+    -- mini.nvim (unused, no setup) and dressing.nvim removed:
+    -- snacks.input/snacks.picker provide the vim.ui.select/input UI now.
     {
         "iamcco/markdown-preview.nvim",
         cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
