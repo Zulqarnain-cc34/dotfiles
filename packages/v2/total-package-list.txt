@@ -944,7 +944,6 @@ ncdu
 ncmpcpp
 ncurses
 ndisc6
-neofetch
 neomutt
 neovim
 net-tools
@@ -1453,7 +1452,6 @@ rxvt-unicode
 rxvt-unicode-terminfo
 scrcpy
 screen
-screenfetch
 scrot
 sddm
 sdl2-compat
@@ -1522,7 +1520,7 @@ surfraw
 svt-av1
 swh-plugins
 sxhkd
-sxiv
+nsxiv
 syncthing
 syndication
 syndication5
@@ -1581,7 +1579,7 @@ tzdata
 uchardet
 udftools
 udisks2
-ueberzug
+ueberzugpp
 ufw
 unibilium
 unixodbc

@@ -2,11 +2,11 @@
 
 # --- CONFIGURATION ---
 # The folder where your USB is mounted (Leave the trailing slash!)
-# SOURCE="/home/alpha/LAN/" 
+# SOURCE="$HOME/LAN/" 
 #
 # # The local folder on your drive where you want the files to go
 # # Change this to your actual destination path
-# DESTINATION="/home/alpha/my_backup/" 
+# DESTINATION="$HOME/my_backup/" 
 # # ---------------------
 #
 # 1. Create destination directory if it doesn't exist
@@ -25,7 +25,7 @@ echo "=========================================="
 if [ "$#" -ne 2 ]; then
     echo "Error: Missing arguments."
     echo "Usage: $0 <source_folder> <destination_folder>"
-    echo "Example: $0 /home/alpha/LAN/ /home/alpha/my_backup/"
+    echo "Example: $0 $HOME/LAN/ $HOME/my_backup/"
     exit 1
 fi
 
