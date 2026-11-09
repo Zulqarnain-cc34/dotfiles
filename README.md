@@ -31,7 +31,7 @@
 | **Bar** | <img src="https://img.shields.io/badge/-Polybar-3B4252?style=flat-square" /> | Customized with specialized modules. |
 | **Shell** | <img src="https://img.shields.io/badge/-ZSH-98C379?style=flat-square&logo=zsh&logoColor=white" /> | With `Starship` prompt & `autosuggestions`. |
 | **Terminal** | <img src="https://img.shields.io/badge/-Kitty-C678DD?style=flat-square&logo=terminal&logoColor=white" /> | GPU accelerated, highly configurable. |
-| **Editor** | <img src="https://img.shields.io/badge/-Neovim-57A143?style=flat-square&logo=neovim&logoColor=white" /> | Full IDE replacement (~124ms startup). |
+| **Editor** | <img src="https://img.shields.io/badge/-Neovim-57A143?style=flat-square&logo=neovim&logoColor=white" /> | Full IDE replacement (~140ms startup). |
 | **Launcher** | <img src="https://img.shields.io/badge/-Rofi-E06C75?style=flat-square" /> | Application launcher & window switcher. |
 | **Compositor** | <img src="https://img.shields.io/badge/-Picom-61AFEF?style=flat-square" /> | For blurs, shadows, and transparency. |
 
@@ -188,6 +188,10 @@ Full list: [sxhkd/sxhkdrc](sxhkd/sxhkdrc)
 | Alt terminal | Alacritty | Config kept; not primary |
 
 Host scripts: repo `bash_scripts/` → `~/bin/bash_scripts` via `setup.sh` ([bash_scripts/README.md](bash_scripts/README.md)).
+
+> **Experimental Wayland session:** an in-progress **niri** session is also included
+> (`niri/`, `waybar/`, `gammastep/`). It is **not** the primary session — **BSPWM (X11)
+> is the daily driver** — and the Wayland bits are a work in progress kept for tinkering.
 
 ---
 

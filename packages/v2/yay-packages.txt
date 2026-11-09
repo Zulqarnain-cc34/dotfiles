@@ -197,7 +197,6 @@ nbd
 ncdu
 ncmpcpp
 ndisc6
-neofetch
 neomutt
 neovim
 networkmanager
@@ -326,7 +325,6 @@ rxvt-unicode
 rxvt-unicode-terminfo
 scrcpy
 screen
-screenfetch
 scrot
 sddm
 serf
@@ -346,7 +344,7 @@ streamlink
 subversion
 surfraw
 sxhkd
-sxiv
+nsxiv
 syncthing
 sysstat
 tcpdump
@@ -369,7 +367,7 @@ ttf-liberation
 ttf-ubuntu-mono-nerd
 typescript
 udftools
-ueberzug
+ueberzugpp
 ufw
 unrar
 unzip
