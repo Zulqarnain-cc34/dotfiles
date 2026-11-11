@@ -1,0 +1,23 @@
+# Zathura
+
+A minimal, keyboard-driven document viewer — the PDF reader for this setup, themed to sit quietly inside the dark desktop rather than look like a stray GTK app.
+
+Documents open fit to width in a two-page spread, scrolling is smooth and page-aware, and the GUI chrome is hidden so it's just you and the page. Selected text goes straight to the system clipboard.
+
+### Keybindings
+
+A few binds on top of Zathura's defaults:
+
+| Key | Action |
+|-----|--------|
+| `Ctrl+p` | Print the document |
+| `Ctrl+o` | Open the current file in Firefox |
+| `f` | Toggle fullscreen |
+
+The usual Vim-style motions still work — `j`/`k` and `h`/`l` to move, `/` to search, `a`/`s` to fit width/page, `Tab` for the index, `r` to rotate, `+`/`-` to zoom.
+
+### Setup
+
+Install `zathura` plus a PDF backend — `zathura-pdf-mupdf` (what this assumes) or `zathura-pdf-poppler` — and `ttf-inconsolata` for the UI font.
+
+Everything lives in one file, [`zathurarc`](zathurarc): edit the color block to re-theme, `dual` / `pages-per-row` to change the layout, or the `map` lines to rebind.
