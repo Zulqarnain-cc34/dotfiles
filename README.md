@@ -163,7 +163,7 @@ A complete map of the repo. Deep docs live in each component's own README — li
 | Component | Description | Docs |
 | :--- | :--- | :--- |
 | [`bash_scripts`](bash_scripts/) | Host scripts → `~/bin/bash_scripts` | [README](bash_scripts/README.md) |
-| [`scripts`](scripts/) | Setup, dependency install & validation | [README](scripts/README.md) |
+| [`scripts`](scripts/) | Setup, dependency install & validation | [host index](scripts/host/README.md) |
 | [`packages`](packages/) | Pacman / AUR / pip / npm / go manifests | — |
 | [`Kvantum`](Kvantum/) | Qt theming engine | — |
 | [`urlscan`](urlscan/) / [`urlview`](urlview/) | Extract & open URLs from text | — |
