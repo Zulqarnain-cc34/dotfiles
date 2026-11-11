@@ -1,4 +1,13 @@
-# qutebrowser
+<div align="center">
+  <img src="../assets/qutebrowser.svg" width="72" alt="qutebrowser logo"><br><br>
+  <h1>qutebrowser</h1>
+  <p><em>A keyboard-driven, Vim-like browser — private by default.</em></p>
+  <a href="https://github.com/qutebrowser/qutebrowser"><img src="https://img.shields.io/badge/upstream-qutebrowser%2Fqutebrowser-e06c75?style=flat-square&logo=github&logoColor=white" alt="upstream"></a>
+  <a href="https://github.com/qutebrowser/qutebrowser/stargazers"><img src="https://img.shields.io/github/stars/qutebrowser/qutebrowser?style=flat-square&color=ffce63&labelColor=1a1b26" alt="stars"></a>
+  <img src="https://img.shields.io/badge/license-GPL--3.0-7aa2f7?style=flat-square&labelColor=1a1b26" alt="license">
+</div>
+
+> Built on **[qutebrowser](https://qutebrowser.org)** by Florian Bruhin & contributors. ❤️
 
 A keyboard-driven, Vim-like browser built on QtWebEngine — the daily driver here, themed to match the dark desktop and configured to lean private by default: JavaScript is allow-listed per site, third-party cookies are blocked, the built-in ad-blocker runs in `both` mode, and a request interceptor reroutes Reddit, Twitter, YouTube, and Instagram to privacy front-ends. Everything lives in [`config.py`](config.py).
 
