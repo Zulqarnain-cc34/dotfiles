@@ -1,4 +1,13 @@
-# Niri (Wayland compositor)
+<div align="center">
+  <img src="../assets/niri.svg" width="72" alt="niri logo"><br><br>
+  <h1>niri</h1>
+  <p><em>Scrollable-tiling Wayland compositor — experimental session.</em></p>
+  <a href="https://github.com/niri-wm/niri"><img src="https://img.shields.io/badge/upstream-niri--wm%2Fniri-FF7139?style=flat-square&logo=github&logoColor=white" alt="upstream"></a>
+  <a href="https://github.com/niri-wm/niri/stargazers"><img src="https://img.shields.io/github/stars/niri-wm/niri?style=flat-square&color=ffce63&labelColor=1a1b26" alt="stars"></a>
+  <img src="https://img.shields.io/badge/license-GPL--3.0-7aa2f7?style=flat-square&labelColor=1a1b26" alt="license">
+</div>
+
+> Built on **[niri](https://niri-wm.github.io/niri/)** by Ivan Molodetskikh (YaLTeR). ❤️
 
 Scrollable-tiling Wayland session.
 
