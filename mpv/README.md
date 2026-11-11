@@ -13,8 +13,6 @@ The media player for this setup. It leans on a small set of Lua scripts to add t
 
 Files loop and remember their position when you quit, the window is borderless and autofits to 100%x95% of the screen so it never spills past the edges, and a progress bar sits in the terminal as it plays.
 
-Subtitles get a lot of attention here. External subs and audio autoload fuzzily (no need for exact filename matches), embedded ASS fonts are respected, and plain SRTs get their own Hack-based styling. Track selection follows a language priority: subtitles favour English then German, audio favours Japanese then English then German. There's also an IPC socket at `/tmp/mpv_socket` for driving mpv from the outside, and a handful of per-protocol profiles — HTTP(S) streams are cached behind a spoofed Firefox user-agent, GIFs loop without pausing, and FLAC/MP3 get the terminal bar.
-
 ### Keybindings
 
 The custom binds in [`input.conf`](input.conf) mostly drive the scripts:
