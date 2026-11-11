@@ -46,4 +46,4 @@ The whole map, as bound in [`sxhkdrc`](sxhkdrc):
 
 ### Setup
 
-Requires `sxhkd` and `bspwm` (for `bspc`). The bindings also reach for `rofi`, `maim`, `slock`, `clipmenu`, and `firefox`, plus a set of user scripts and tools: `neomutt`, `newsboat`, `tuir`, `htop`, `ytfzf`, `notifytorrents`, `killandnotify`, and `prompt`. Edit [`sxhkdrc`](sxhkdrc) and reload with `super + shift + x`; screenshots land in `~/Pictures/screenshots`.
+Requires `sxhkd` and `bspwm` (for `bspc`).
