@@ -13,5 +13,3 @@ You just need `conky` (the X11 build); conky3 additionally wants the Lua clock-r
 - [`conky1/conkyrc1`](conky1/conkyrc1) — the config `bspwmrc` loads (`conky -q -c ~/.config/conky/conky1/conkyrc1`).
 - `conky2/conkyrc2` — the unused alternate system-info theme.
 - `conky3/` — the "InfinitySVG" theme: `conkyrc`, `startconky.sh`, `scripts/haunted.lua`, and `background.png`.
-
-Fonts, colours, and position all live in `conky1/conkyrc1` — `xftfont`, `default_color`, and the `alignment`/`gap_x`/`gap_y` lines. To swap which widget runs at startup, change the conky line in `bspwm/bspwmrc`.
