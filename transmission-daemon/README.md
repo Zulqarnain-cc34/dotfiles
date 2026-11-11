@@ -4,14 +4,6 @@ A headless BitTorrent client that runs quietly in the background and takes its o
 
 The RPC interface is enabled but bound to `127.0.0.1` on port `9091` (under `/transmission/`), so it answers only to localhost and is never exposed to the network. A client whitelist (`127.0.0.1`) and host whitelist are both on for good measure, and a salted password hash sits in `settings.json` with authentication available but not currently required. A blocklist is enabled too, pulling iBlockList's "level1" P2P list into `blocklists/` (with `.bin` as Transmission's compiled form).
 
-Beyond that it's a sensible default torrent profile: downloads land in `/home/alpha/Videos`, encryption is preferred (`encryption: 1`), DHT/PEX/uTP are on, the download queue holds 5, and the ratio limit is set to 2 but left unenforced. On completion it runs `~/.local/share/transmission/tordone` via `script-torrent-done`.
-
 ### Usage
 
 Start the daemon, then drive it from the web UI at `http://127.0.0.1:9091/transmission/`, from `transmission-remote`, or from any RPC client like `transmission-remote-gtk`. One thing to remember: stop the daemon before editing [`settings.json`](settings.json), or it will overwrite your changes when it exits.
-
-### Setup
-
-Install `transmission-cli`, which provides both `transmission-daemon` and the `transmission-remote` controller; a browser or GTK client works just as well for day-to-day control.
-
-Edit [`settings.json`](settings.json) with the daemon stopped to change `download-dir`, the queue/speed/ratio limits, or `peer-port`. Leave `rpc-bind-address` and `rpc-whitelist` pinned to localhost unless you genuinely mean to expose the daemon — and if you do, turn on required authentication to match.
