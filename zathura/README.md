@@ -15,9 +15,3 @@ A few binds on top of Zathura's defaults:
 | `f` | Toggle fullscreen |
 
 The usual Vim-style motions still work — `j`/`k` and `h`/`l` to move, `/` to search, `a`/`s` to fit width/page, `Tab` for the index, `r` to rotate, `+`/`-` to zoom.
-
-### Setup
-
-Install `zathura` plus a PDF backend — `zathura-pdf-mupdf` (what this assumes) or `zathura-pdf-poppler` — and `ttf-inconsolata` for the UI font.
-
-Everything lives in one file, [`zathurarc`](zathurarc): edit the color block to re-theme, `dual` / `pages-per-row` to change the layout, or the `map` lines to rebind.
