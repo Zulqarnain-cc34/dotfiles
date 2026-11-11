@@ -1,4 +1,13 @@
-# Zathura
+<div align="center">
+  <img src="../assets/zathura.svg" width="72" alt="Zathura logo"><br><br>
+  <h1>Zathura</h1>
+  <p><em>A minimal, keyboard-driven document viewer.</em></p>
+  <a href="https://github.com/pwmt/zathura"><img src="https://img.shields.io/badge/upstream-pwmt%2Fzathura-61afef?style=flat-square&logo=github&logoColor=white" alt="upstream"></a>
+  <a href="https://github.com/pwmt/zathura/stargazers"><img src="https://img.shields.io/github/stars/pwmt/zathura?style=flat-square&color=ffce63&labelColor=1a1b26" alt="stars"></a>
+  <img src="https://img.shields.io/badge/license-Zlib-7aa2f7?style=flat-square&labelColor=1a1b26" alt="license">
+</div>
+
+> Built on **[Zathura](https://pwmt.org/projects/zathura/)** by pwmt (Moritz Lipp & contributors). ❤️
 
 A minimal, keyboard-driven document viewer — the PDF reader for this setup, themed to sit quietly inside the dark desktop rather than look like a stray GTK app.
 
