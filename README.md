@@ -100,22 +100,22 @@ A complete map of the repo. Deep docs live in each component's own README — li
 
 | Component | Description | Docs |
 | :--- | :--- | :--- |
-| [`bspwm`](bspwm/) | Tiling window manager (X11) — the primary session | — |
-| [`sxhkd`](sxhkd/) | Global hotkey daemon driving BSPWM & app launches | — |
-| [`polybar`](polybar/) | Status bar with custom modules | — |
+| [`bspwm`](bspwm/) | Tiling window manager (X11) — the primary session | [README](bspwm/README.md) |
+| [`sxhkd`](sxhkd/) | Global hotkey daemon driving BSPWM & app launches | [README](sxhkd/README.md) |
+| [`polybar`](polybar/) | Status bar with custom modules | [README](polybar/README.md) |
 | [`picom`](picom.conf) | Compositor — blur, shadows, transparency | — |
 | [`dunst`](dunst/) | Notification daemon | [README](dunst/README.md) |
 | [`rofi`](rofi/) | App launcher, window switcher, power menu | [README](rofi/README.md) |
-| [`conky`](conky/) | Desktop system widget | — |
-| [`redshift`](redshift/) | Night-time colour temperature | — |
+| [`conky`](conky/) | Desktop system widget | [README](conky/README.md) |
+| [`redshift`](redshift/) | Night-time colour temperature | [README](redshift/README.md) |
 
 ### 💻 Terminal & Shell
 
 | Component | Description | Docs |
 | :--- | :--- | :--- |
-| [`kitty`](kitty/) | Primary GPU-accelerated terminal | — |
+| [`kitty`](kitty/) | Primary GPU-accelerated terminal | [README](kitty/README.md) |
 | [`alacritty`](alacritty/) | Alternate terminal (TOML config) | [README](alacritty/README.md) |
-| [`zsh`](zsh/) | Shell — lazy-loaded plugins, hand-managed | — |
+| [`zsh`](zsh/) | Shell — lazy-loaded plugins, hand-managed | [README](zsh/README.md) |
 | [`starship.toml`](starship.toml) | Cross-shell prompt | — |
 | [`.aliases`](.aliases/) | Shared aliases & helper functions | — |
 | [`tmux`](.tmux.conf) | Terminal multiplexer | — |
@@ -140,30 +140,30 @@ A complete map of the repo. Deep docs live in each component's own README — li
 
 | Component | Description | Docs |
 | :--- | :--- | :--- |
-| [`mpv`](mpv/) | Video player (+ scripts) | — |
-| [`mpd`](mpd/) + [`ncmpcpp`](ncmpcpp/) | Music daemon + TUI client with cover art | — |
-| [`newsboat`](newsboat/) | RSS / Atom reader | — |
-| [`zathura`](zathura/) | Keyboard-driven PDF viewer | — |
-| [`imv`](imv/) / `nsxiv` | Image viewers | — |
-| [`transmission-daemon`](transmission-daemon/) | BitTorrent (RPC bound to localhost) | — |
+| [`mpv`](mpv/) | Video player (+ scripts) | [README](mpv/README.md) |
+| [`mpd`](mpd/) + [`ncmpcpp`](ncmpcpp/) | Music daemon + TUI client with cover art | [mpd](mpd/README.md) · [ncmpcpp](ncmpcpp/README.md) |
+| [`newsboat`](newsboat/) | RSS / Atom reader | [README](newsboat/README.md) |
+| [`zathura`](zathura/) | Keyboard-driven PDF viewer | [README](zathura/README.md) |
+| [`imv`](imv/) / `nsxiv` | Image viewers | [README](imv/README.md) |
+| [`transmission-daemon`](transmission-daemon/) | BitTorrent (RPC bound to localhost) | [README](transmission-daemon/README.md) |
 
 ### 🌐 Web
 
 | Component | Description | Docs |
 | :--- | :--- | :--- |
-| [`firefox`](firefox/) | Firefox `userChrome` + sweet theme | [docs](docs/firefox.md) |
-| [`qutebrowser`](qutebrowser/) | Keyboard-driven browser | — |
+| [`firefox`](firefox/) | Firefox `userChrome` + sweet theme | [README](firefox/README.md) |
+| [`qutebrowser`](qutebrowser/) | Keyboard-driven browser | [README](qutebrowser/README.md) |
 | [`.w3m`](.w3m/) | Terminal web browser | — |
-| [`surfraw`](surfraw/) | CLI web-search "elvi" | — |
-| [`ytfzf`](ytfzf/) | Search & play YouTube from the terminal | — |
-| [`mutt`](mutt/) / [`.mutt`](.mutt/) | Neomutt e-mail | — |
+| [`surfraw`](surfraw/) | CLI web-search "elvi" | [README](surfraw/README.md) |
+| [`ytfzf`](ytfzf/) | Search & play YouTube from the terminal | [README](ytfzf/README.md) |
+| [`mutt`](mutt/) / [`.mutt`](.mutt/) | Neomutt e-mail | [README](mutt/README.md) |
 
 ### 🛠️ Utilities & Theming
 
 | Component | Description | Docs |
 | :--- | :--- | :--- |
 | [`bash_scripts`](bash_scripts/) | Host scripts → `~/bin/bash_scripts` | [README](bash_scripts/README.md) |
-| [`scripts`](scripts/) | Setup, dependency install & validation | [host index](scripts/host/README.md) |
+| [`scripts`](scripts/) | Setup, dependency install & validation | [README](scripts/README.md) |
 | [`packages`](packages/) | Pacman / AUR / pip / npm / go manifests | — |
 | [`Kvantum`](Kvantum/) | Qt theming engine | — |
 | [`urlscan`](urlscan/) / [`urlview`](urlview/) | Extract & open URLs from text | — |
