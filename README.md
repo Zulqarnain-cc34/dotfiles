@@ -32,8 +32,6 @@
 - [Keybindings](#-keybindings)
 - [Repository Structure](#-repository-structure)
 - [Experimental Wayland Session](#-experimental-wayland-session)
-- [Making It Yours](#-making-it-yours)
-- [Maintenance](#-maintenance)
 - [Credits](#-credits)
 - [License](#-license)
 
@@ -317,34 +315,6 @@ A work-in-progress **niri** (scrollable-tiling Wayland) session lives alongside 
 - [`niri/`](niri/) — compositor config ([README](niri/README.md)) · [`waybar/`](waybar/) ([README](waybar/README.md)) · [`gammastep/`](gammastep/) (night colour) · [`fish/`](fish/)
 
 It is **not** the primary session — **BSPWM/X11 is the daily driver** — and these pieces are kept for tinkering. Install its extra packages from [`packages/niri-wayland.txt`](packages/niri-wayland.txt) if you want to try it.
-
----
-
-## 🎨 Making It Yours
-
-1. **Fork**, then clone your fork.
-2. Skim [`setup.sh`](setup.sh) — it's a readable list of exactly what gets symlinked where.
-3. Set your identity: copy [`.gitconfig.example`](.gitconfig.example) → `.gitconfig` (handled by `scripts/bootstrap-secrets.sh`).
-4. Swap colours/fonts in the terminal, `polybar/`, `rofi/themes/`, and your Neovim colourscheme.
-5. Run `./scripts/validate.sh` before you commit — it catches dead tools, leaked `$HOME` paths, and secrets.
-
----
-
-## 🔧 Maintenance
-
-This repo keeps itself honest with [`scripts/validate.sh`](scripts/validate.sh):
-
-- No hardcoded home paths in tracked configs
-- No discontinued tools (e.g. guards against `exa` — it's `eza` now)
-- No secrets in the index or history ([`gitleaks`](https://github.com/gitleaks/gitleaks) + git hooks)
-- Required scripts present and executable; Neovim, Polybar & sxhkd configs load cleanly
-
-```bash
-./scripts/validate.sh            # fast checks
-./scripts/validate.sh --history  # full gitleaks history scan
-```
-
-See [`CHANGELOG.md`](CHANGELOG.md) for notable changes.
 
 ---
 
