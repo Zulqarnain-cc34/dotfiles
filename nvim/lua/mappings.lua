@@ -15,7 +15,6 @@ local options = { noremap = true, silent = true }
 local bufopts = { noremap = true, silent = true, buffer = bufnr }
 
 
-
 -- Mappings for Lsp
 -- List the Info for current file specific language servers
 map('n', '<Leader>lI', ':checkhealth vim.lsp<CR>', options)
@@ -75,31 +74,6 @@ map('n', '<leader>lp', '<cmd>lua vim.diagnostic.goto_prev()<CR>', options)
 -- Shows diagnostics under cursor
 map('n', '<leader>lb', '<cmd>lua vim.diagnostic.open_float()<CR>', options)
 
--- map('n', '<C-f>', '<cmd>lua require("lspsaga.action").smart_scroll_with_saga(1)<CR>', options
---
--- map('n', '<C-b>', '<cmd>lua require("lspsaga.action").smart_scroll_with_saga(-1)<CR>', options)
-
-------------------------------------------------------------------------
---                            Neovim Compe                            --
-------------------------------------------------------------------------
---
--- map('i', '<A-Space>', [[compe#complete()]], {expr = true, silent = true})
--- map('i', '<CR>', [[compe#confirm('<CR>')]], {expr = true, silent = true})
--- map('i', '<c-e>', [[compe#close('<C-e>')]], {noremap = true, silent = true})
---
--- map('i', '<Tab>', 'pumvisible() ? "\\<C-n>" : "\\<Tab>"',
---     {expr = true, noremap = true, silent = true})
--- map('i', '<S-Tab>', 'pumvisible() ? "\\<C-p>" : "\\<Tab>"', {expr = true, noremap = true})
---
--- map('n', '<A-d>', '<cmd>Lspsaga open_floaterm<CR>', options)
---
--- -- remap('t', '<A-d>', "<C-\><C-n>:Lspsaga close_floaterm<CR>", options)
-
--- vim.api.nvim_set_keymap("i", "<Tab>", "v:lua.tab_complete()", { expr = true })
--- vim.api.nvim_set_keymap("s", "<Tab>", "v:lua.tab_complete()", { expr = true })
--- vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", { expr = true })
--- vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", { expr = true })
-
 ------------------------------------------------------------------------
 --                              Trouble                               --
 ------------------------------------------------------------------------
@@ -145,7 +119,6 @@ map("n", "<leader>bp", "<cmd>BufferLineMovePrev<cr>", { noremap = true, silent =
 map("n", "be", "<cmd>BufferLineSortByExtension<cr>", { noremap = true, silent = true })
 map("n", "bd", "<cmd>BufferLineSortByDirectory<cr>", { noremap = true, silent = true })
 
---
 ------------------------------------------------------------------------
 --                           Nvim-Dap--
 ------------------------------------------------------------------------
@@ -158,15 +131,9 @@ map("n", "<leader>bb", "<cmd>lua require 'dap'.toggle_breakpoint()<cr>",
     { noremap = true, silent = true })
 map("n", "<leader>B", ":lua require'dap'.repl.open()<CR>", { noremap = true, silent = true })
 
--- map("n", "<leader>lp", ":lua require 'dap'.run_last()<cr>", {noremap = true, silent = true})
 map("n", "<leader>dr",
     "<cmd>lua require 'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<cr>",
     { noremap = true, silent = true })
-
--- map("n", "<leader>dl",
--- map("n", "<leader>dl",
--- "<cmd>lua require 'dap'.set_breakpoint(nil,nil,vim.fn.input('Log point message: '))<cr>",
--- map("v", "<leader>rs", "<cmd>lua require 'dap-python'.debug_selection()<cr>",
 
 ------------------------------------------------------------------------
 --                           Nvim Tree--
@@ -176,7 +143,6 @@ map("n", "<C-n>", "<cmd>lua Snacks.explorer()<CR>", { noremap = true, silent = t
 ------------------------------------------------------------------------
 --                                Git                                 --
 ------------------------------------------------------------------------
-
 
 map("n", "<leader>ga", "<cmd>Git add %:p<CR>", { noremap = true, silent = true })
 map("n", "<leader>gs", "<cmd>Git<CR>", { noremap = true, silent = true })
@@ -194,29 +160,6 @@ map("n", "<leader>gps", "<cmd>Git checkout<Space>", { noremap = true, silent = t
 map("n", "<leader>gpu", "<cmd>Dispatch! git push<CR>", { noremap = true, silent = true })
 map("n", "<leader>gpl", "<cmd>Dispatch! git pull<CR>", { noremap = true, silent = true })
 
--- nnoremap <leader>ga :Git add %:p<CR><CR>
--- nnoremap <leader>gs :Gstatus<CR>
--- nnoremap <leader>gc :Gcommit -v -q<CR>
--- nnoremap <leader>gt :Gcommit -v -q %:p<CR>
--- nnoremap <leader>gd :Gdiff<CR>
--- nnoremap <leader>ge :Gedit<CR>
--- nnoremap <leader>gr :Gread<CR>
--- nnoremap <leader>gw :Gwrite<CR><CR>
--- nnoremap <leader>gl :silent! Glog<CR>:bot copen<CR>
--- nnoremap <leader>gp :Ggrep<Space>
--- nnoremap <leader>gm :Gmove<Space>
--- nnoremap <leader>gb :Git branch<Space>
--- nnoremap <leader>go :Git checkout<Space>
--- nnoremap <leader>gps :Dispatch! git push<CR>
--- nnoremap <leader>gpl :Dispatch! git pull<CR>
-
-
------------------------------------------------------------------------
---                           Macros
-------------------------------------------------------------------------
--- map("i", "<Space>", '<C-o>1z=<C-o>e<C-o>A<Space>', {noremap = true, silent = true})
--- map("n", "<leader>q,", 'i"<ESC>ewwi"<ESC>', {noremap = true, silent = true})
-
 -----------------------------------------------------------------------
 --                           Miscellinious
 ------------------------------------------------------------------------
@@ -228,17 +171,3 @@ map("n", ";", ':', { noremap = true, silent = true })
 
 map("n", "<leader>ss", '<cmd>set filetype=sh<CR>', { noremap = true, silent = true })
 map("n", "<leader>sh", '<cmd>set filetype=bash<CR>', { noremap = true, silent = true })
-
-
-------------------------------------------------------------------------
---                                 WhichKey                           --
-------------------------------------------------------------------------
-
--- map("n", "<leader>", ':WhichKey <leader><CR>', {noremap = true, silent = true})
-
--- " Map <Space> to / (search) and Ctrl-<Space> to ? (backwards search)
--- map <space> /
--- map <C-space> ?
-
-
--- map("n", "<space>", "/", {})

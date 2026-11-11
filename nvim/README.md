@@ -1,4 +1,19 @@
-# 🔌 Plugins
+<div align="center">
+  <img src="../assets/neovim.svg" width="72" alt="Neovim logo"><br><br>
+  <h1>Neovim</h1>
+  <p><em>A full IDE that still boots in ~140&nbsp;ms.</em></p>
+  <a href="https://github.com/neovim/neovim"><img src="https://img.shields.io/badge/upstream-neovim%2Fneovim-57A143?style=flat-square&logo=github&logoColor=white" alt="upstream"></a>
+  <a href="https://github.com/neovim/neovim/stargazers"><img src="https://img.shields.io/github/stars/neovim/neovim?style=flat-square&color=ffce63&labelColor=1a1b26" alt="stars"></a>
+  <img src="https://img.shields.io/badge/license-Apache--2.0-7aa2f7?style=flat-square&labelColor=1a1b26" alt="license">
+  <br><br>
+  <img src="../screenshots/dashboard.png" width="82%" alt="Neovim dashboard">
+</div>
+
+> Built on **[Neovim](https://neovim.io)** — thanks to the Neovim contributors. ❤️
+
+The full plugin set that makes this an IDE, grouped by job:
+
+## 🔌 Plugins
 
 ## Core & LSP
 
