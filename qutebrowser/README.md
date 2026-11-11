@@ -9,7 +9,9 @@
 
 > Built on **[qutebrowser](https://qutebrowser.org)** by Florian Bruhin & contributors. ❤️
 
-A keyboard-driven, Vim-like browser built on QtWebEngine — the daily driver here, themed to match the dark desktop and configured to lean private by default: JavaScript is allow-listed per site, third-party cookies are blocked, the built-in ad-blocker runs in `both` mode, and a request interceptor reroutes Reddit, Twitter, YouTube, and Instagram to privacy front-ends. Everything lives in [`config.py`](config.py).
+The daily-driver browser — Vim-like navigation on QtWebEngine, themed to match the dark desktop.
+
+It's tuned to stay private out of the box: JavaScript runs only on sites you allow, third-party cookies are blocked, the ad-blocker is on, and Reddit, Twitter, YouTube, and Instagram get rerouted to privacy front-ends. It all lives in one [`config.py`](config.py).
 
 ### Keybindings
 
@@ -26,5 +28,3 @@ On top of qutebrowser's defaults, this config adds its own binds:
 | `xb` / `xt` / `xx` | toggle statusbar / tabs / both |
 | `gF` | view source in editor |
 | `,ap` `,dr` `,gr` `,sd` `,sl` | cycle user stylesheet: apprentice / darculized / gruvbox / solarized-dark / solarized-light |
-
-Insert mode also picks up readline-style editing — `<Ctrl-a>`, `<Ctrl-e>`, `<Ctrl-w>`, and `<Ctrl-x><Ctrl-e>` to drop the field into nvim.
