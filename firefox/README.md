@@ -9,6 +9,6 @@
 
 > Built on **[Firefox](https://www.mozilla.org/firefox/)** by Mozilla; **Sweet** theme by **[EliverLara](https://github.com/EliverLara/firefox-sweet-theme)**. ❤️
 
-A `userChrome.css` plus the vendored **Sweet** theme for styling the Firefox UI to match the dark desktop. Firefox customisations live in a per-profile directory (`~/.mozilla/firefox/<profile>/chrome/`), so unlike most of this repo, `setup.sh` does **not** symlink this folder — applying it is a manual, per-profile affair. See **[docs/firefox.md](../docs/firefox.md)** for the walkthrough.
+Styling for the Firefox UI, themed to match the dark desktop — a thin `userChrome.css` wrapped around the **Sweet** theme by **[EliverLara](https://github.com/EliverLara/firefox-sweet-theme)**.
 
-The pieces are small: `userChrome.css` is a one-line `@import "firefox-sweet-theme/userChrome.css";`, and `firefox-sweet-theme/` is a vendored copy of the **Sweet** theme by **[EliverLara](https://github.com/EliverLara/firefox-sweet-theme)** (credit retained). The theme's `configuration/user.js` carries the profile prefs that make it work.
+Firefox keeps its customisations inside a per-profile folder, so — unlike the rest of this repo — `setup.sh` doesn't symlink it; applying the theme is a quick manual step. The full walkthrough is in **[docs/firefox.md](../docs/firefox.md)**.
