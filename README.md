@@ -32,8 +32,6 @@
 - [Keybindings](#-keybindings)
 - [Repository Structure](#-repository-structure)
 - [Experimental Wayland Session](#-experimental-wayland-session)
-- [Making It Yours](#-making-it-yours)
-- [Maintenance](#-maintenance)
 - [Credits](#-credits)
 - [License](#-license)
 
@@ -100,22 +98,22 @@ A complete map of the repo. Deep docs live in each component's own README — li
 
 | Component | Description | Docs |
 | :--- | :--- | :--- |
-| [`bspwm`](bspwm/) | Tiling window manager (X11) — the primary session | — |
-| [`sxhkd`](sxhkd/) | Global hotkey daemon driving BSPWM & app launches | — |
-| [`polybar`](polybar/) | Status bar with custom modules | — |
+| [`bspwm`](bspwm/) | Tiling window manager (X11) — the primary session | [README](bspwm/README.md) |
+| [`sxhkd`](sxhkd/) | Global hotkey daemon driving BSPWM & app launches | [README](sxhkd/README.md) |
+| [`polybar`](polybar/) | Status bar with custom modules | [README](polybar/README.md) |
 | [`picom`](picom.conf) | Compositor — blur, shadows, transparency | — |
 | [`dunst`](dunst/) | Notification daemon | [README](dunst/README.md) |
 | [`rofi`](rofi/) | App launcher, window switcher, power menu | [README](rofi/README.md) |
-| [`conky`](conky/) | Desktop system widget | — |
-| [`redshift`](redshift/) | Night-time colour temperature | — |
+| [`conky`](conky/) | Desktop system widget | [README](conky/README.md) |
+| [`redshift`](redshift/) | Night-time colour temperature | [README](redshift/README.md) |
 
 ### 💻 Terminal & Shell
 
 | Component | Description | Docs |
 | :--- | :--- | :--- |
-| [`kitty`](kitty/) | Primary GPU-accelerated terminal | — |
+| [`kitty`](kitty/) | Primary GPU-accelerated terminal | [README](kitty/README.md) |
 | [`alacritty`](alacritty/) | Alternate terminal (TOML config) | [README](alacritty/README.md) |
-| [`zsh`](zsh/) | Shell — lazy-loaded plugins, hand-managed | — |
+| [`zsh`](zsh/) | Shell — lazy-loaded plugins, hand-managed | [README](zsh/README.md) |
 | [`starship.toml`](starship.toml) | Cross-shell prompt | — |
 | [`.aliases`](.aliases/) | Shared aliases & helper functions | — |
 | [`tmux`](.tmux.conf) | Terminal multiplexer | — |
@@ -140,23 +138,23 @@ A complete map of the repo. Deep docs live in each component's own README — li
 
 | Component | Description | Docs |
 | :--- | :--- | :--- |
-| [`mpv`](mpv/) | Video player (+ scripts) | — |
-| [`mpd`](mpd/) + [`ncmpcpp`](ncmpcpp/) | Music daemon + TUI client with cover art | — |
-| [`newsboat`](newsboat/) | RSS / Atom reader | — |
-| [`zathura`](zathura/) | Keyboard-driven PDF viewer | — |
-| [`imv`](imv/) / `nsxiv` | Image viewers | — |
-| [`transmission-daemon`](transmission-daemon/) | BitTorrent (RPC bound to localhost) | — |
+| [`mpv`](mpv/) | Video player (+ scripts) | [README](mpv/README.md) |
+| [`mpd`](mpd/) + [`ncmpcpp`](ncmpcpp/) | Music daemon + TUI client with cover art | [mpd](mpd/README.md) · [ncmpcpp](ncmpcpp/README.md) |
+| [`newsboat`](newsboat/) | RSS / Atom reader | [README](newsboat/README.md) |
+| [`zathura`](zathura/) | Keyboard-driven PDF viewer | [README](zathura/README.md) |
+| [`imv`](imv/) / `nsxiv` | Image viewers | [README](imv/README.md) |
+| [`transmission-daemon`](transmission-daemon/) | BitTorrent (RPC bound to localhost) | [README](transmission-daemon/README.md) |
 
 ### 🌐 Web
 
 | Component | Description | Docs |
 | :--- | :--- | :--- |
-| [`firefox`](firefox/) | Firefox `userChrome` + sweet theme | [docs](docs/firefox.md) |
-| [`qutebrowser`](qutebrowser/) | Keyboard-driven browser | — |
+| [`firefox`](firefox/) | Firefox `userChrome` + sweet theme | [README](firefox/README.md) |
+| [`qutebrowser`](qutebrowser/) | Keyboard-driven browser | [README](qutebrowser/README.md) |
 | [`.w3m`](.w3m/) | Terminal web browser | — |
-| [`surfraw`](surfraw/) | CLI web-search "elvi" | — |
-| [`ytfzf`](ytfzf/) | Search & play YouTube from the terminal | — |
-| [`mutt`](mutt/) / [`.mutt`](.mutt/) | Neomutt e-mail | — |
+| [`surfraw`](surfraw/) | CLI web-search "elvi" | [README](surfraw/README.md) |
+| [`ytfzf`](ytfzf/) | Search & play YouTube from the terminal | [README](ytfzf/README.md) |
+| [`mutt`](mutt/) / [`.mutt`](.mutt/) | Neomutt e-mail | [README](mutt/README.md) |
 
 ### 🛠️ Utilities & Theming
 
@@ -317,34 +315,6 @@ A work-in-progress **niri** (scrollable-tiling Wayland) session lives alongside 
 - [`niri/`](niri/) — compositor config ([README](niri/README.md)) · [`waybar/`](waybar/) ([README](waybar/README.md)) · [`gammastep/`](gammastep/) (night colour) · [`fish/`](fish/)
 
 It is **not** the primary session — **BSPWM/X11 is the daily driver** — and these pieces are kept for tinkering. Install its extra packages from [`packages/niri-wayland.txt`](packages/niri-wayland.txt) if you want to try it.
-
----
-
-## 🎨 Making It Yours
-
-1. **Fork**, then clone your fork.
-2. Skim [`setup.sh`](setup.sh) — it's a readable list of exactly what gets symlinked where.
-3. Set your identity: copy [`.gitconfig.example`](.gitconfig.example) → `.gitconfig` (handled by `scripts/bootstrap-secrets.sh`).
-4. Swap colours/fonts in the terminal, `polybar/`, `rofi/themes/`, and your Neovim colourscheme.
-5. Run `./scripts/validate.sh` before you commit — it catches dead tools, leaked `$HOME` paths, and secrets.
-
----
-
-## 🔧 Maintenance
-
-This repo keeps itself honest with [`scripts/validate.sh`](scripts/validate.sh):
-
-- No hardcoded home paths in tracked configs
-- No discontinued tools (e.g. guards against `exa` — it's `eza` now)
-- No secrets in the index or history ([`gitleaks`](https://github.com/gitleaks/gitleaks) + git hooks)
-- Required scripts present and executable; Neovim, Polybar & sxhkd configs load cleanly
-
-```bash
-./scripts/validate.sh            # fast checks
-./scripts/validate.sh --history  # full gitleaks history scan
-```
-
-See [`CHANGELOG.md`](CHANGELOG.md) for notable changes.
 
 ---
 

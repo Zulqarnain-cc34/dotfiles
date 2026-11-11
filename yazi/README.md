@@ -1,4 +1,15 @@
-# Yazi Keymap Configuration
+<div align="center">
+  <img src="../assets/yazi.png" width="88" alt="Yazi logo"><br><br>
+  <h1>Yazi</h1>
+  <p><em>The primary file manager — a fast, vim-keyed Rust TUI.</em></p>
+  <a href="https://github.com/sxyazi/yazi"><img src="https://img.shields.io/badge/upstream-sxyazi%2Fyazi-9ece6a?style=flat-square&logo=github&logoColor=white" alt="upstream"></a>
+  <a href="https://github.com/sxyazi/yazi/stargazers"><img src="https://img.shields.io/github/stars/sxyazi/yazi?style=flat-square&color=ffce63&labelColor=1a1b26" alt="stars"></a>
+  <img src="https://img.shields.io/badge/license-MIT-7aa2f7?style=flat-square&labelColor=1a1b26" alt="license">
+</div>
+
+<!-- Screenshot slot: add assets/yazi-shot.png, then uncomment → <div align="center"><img src="../assets/yazi-shot.png" width="80%"></div> -->
+
+> Built on **[Yazi](https://yazi-rs.github.io)** by sxyazi. ❤️
 
 A clean, organized keymap for [Yazi](https://github.com/sxyazi/yazi) file manager with vim-style navigation and powerful shortcuts. These are my most used commands.
 

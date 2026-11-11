@@ -5,6 +5,21 @@ All notable changes to this dotfiles repo are documented here.
 Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).  
 Versions are dated milestones, not semver releases (this is a personal config repo).
 
+## [2026-11-11] — Documentation overhaul (branch: `modernize-2026`)
+
+### Added
+- Rewrote the main **`README.md`**: hero, gallery, a complete grouped component inventory (every tool linked), a Neovim deep-dive, install guide, and collapsible keybinding cheatsheets.
+- A **per-component README** for nearly every tool, written in a consistent, concise voice straight from the real configs (accurate keybinds/deps, with honest caveats kept).
+- **Hero headers** on the signature and medium/large tools — tool logo, upstream link, live GitHub stars badge, license, and a soft author credit; tools with no official logo get a clean typographic hero. Logos committed under `assets/`.
+- `docs/firefox.md`.
+
+### Changed
+- Trimmed component READMEs to essentials (intro + keybinding/usage tables); dropped most per-tool "Setup" sections.
+
+### Removed
+- Thin/redundant component READMEs: `urlscan`, `urlview`, `Kvantum`, `vivid`, `gammastep`, `scripts`.
+- Main README "Making It Yours" and "Maintenance" sections.
+
 ## [2026-11-09] — Modernization & dead-tool cleanup (branch: `modernize-2026`)
 
 ### Changed
