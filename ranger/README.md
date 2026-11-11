@@ -1,4 +1,13 @@
-# ranger
+<div align="center">
+  <img src="../assets/ranger.png" width="80" alt="ranger logo"><br><br>
+  <h1>ranger</h1>
+  <p><em>A Python terminal file manager (legacy/secondary).</em></p>
+  <a href="https://github.com/ranger/ranger"><img src="https://img.shields.io/badge/upstream-ranger%2Franger-9ece6a?style=flat-square&logo=github&logoColor=white" alt="upstream"></a>
+  <a href="https://github.com/ranger/ranger/stargazers"><img src="https://img.shields.io/github/stars/ranger/ranger?style=flat-square&color=ffce63&labelColor=1a1b26" alt="stars"></a>
+  <img src="https://img.shields.io/badge/license-GPL--3.0-7aa2f7?style=flat-square&labelColor=1a1b26" alt="license">
+</div>
+
+> Built on **[ranger](https://ranger.fm)** by Roman Zimbelmann & the ranger project. ❤️
 
 A Python-based terminal file manager, kept here as the legacy/secondary option — [Yazi](../yazi/README.md) handles daily work, and ranger stays for occasional use and the scripts that still call it. Options and keybindings live in [`rc.conf`](rc.conf), with [`rifle.conf`](rifle.conf) holding the file-opener rules that decide which app handles which type.
 

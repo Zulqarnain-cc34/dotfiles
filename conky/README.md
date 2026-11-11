@@ -1,4 +1,12 @@
-# Conky
+<div align="center">
+  <img src="../assets/conky.png" width="240" alt="Conky logo"><br><br>
+  <p><em>A lightweight system monitor drawn on the desktop.</em></p>
+  <a href="https://github.com/brndnmtthws/conky"><img src="https://img.shields.io/badge/upstream-brndnmtthws%2Fconky-3b4252?style=flat-square&logo=github&logoColor=white" alt="upstream"></a>
+  <a href="https://github.com/brndnmtthws/conky/stargazers"><img src="https://img.shields.io/github/stars/brndnmtthws/conky?style=flat-square&color=ffce63&labelColor=1a1b26" alt="stars"></a>
+  <img src="https://img.shields.io/badge/license-GPL--3.0-7aa2f7?style=flat-square&labelColor=1a1b26" alt="license">
+</div>
+
+> Built on **[Conky](https://conky.cc)** by Brenden Matthews & contributors. ❤️
 
 A lightweight system monitor that draws straight onto the X11 desktop — the panel of live stats sitting quietly off to one side of the wallpaper. Only `conky1` is wired into this session, autostarted from `bspwm/bspwmrc`.
 
