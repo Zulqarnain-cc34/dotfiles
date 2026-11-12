@@ -42,7 +42,7 @@ A clean, organized keymap for [Yazi](https://github.com/sxyazi/yazi) file manage
 - `<Delete>` - Trash
 
 ### Archive
-- `az/at/ag/ab` - Create ZIP/TAR/TAR.GZ/TAR.BZ2
+- `az/at/ag/ab` - Create ZIP/TAR/TAR.GZ/TAR.BZ2 (packs all selected, named after the last one, auto-renames on collision)
 - `au` - Extract archive
 
 ### Utilities
