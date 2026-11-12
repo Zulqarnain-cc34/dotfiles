@@ -2,8 +2,14 @@
 
 image() {
 	case "$TERM" in
+		# Ignore SIGTTOU/SIGTTIN *inside* the timeout'd subshell -- lf runs
+		# this script in a background process group, and icat's terminal
+		# read/write would otherwise get job-control-stopped (not hung)
+		# touching /dev/tty. timeout itself resets signal dispositions
+		# before exec, so the trap has to be set after it, not before.
 		*kitty*)
-			kitty +kitten icat --transfer-mode=memory --stdin=no --place="$(($2-1))x$(($3-1))@${4}x${5}" "$1" < /dev/tty > /dev/tty
+			timeout 5 sh -c 'trap "" TTOU TTIN; exec kitty +kitten icat --transfer-mode=memory --stdin=no --place="$1" "$2" < /dev/tty > /dev/tty' \
+				sh "$(($2-1))x$(($3-1))@${4}x${5}" "$1"
 			exit 1
 			;;
 	esac
