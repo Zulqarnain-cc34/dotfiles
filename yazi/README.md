@@ -49,4 +49,7 @@ A clean, organized keymap for [Yazi](https://github.com/sxyazi/yazi) file manage
 - `;/:` - Shell command (interactive/block)
 - `ee` - Open with editor
 - `ei/eg/ep/eP` - EXIF/PDF/nsxiv preview
+- `ap` - Play hovered file as audio only (no video)
+- `bg` - Set hovered image as desktop wallpaper
+- `an/mk` - Mount SSHFS / KDE Connect share
 - `tr/tc/tg` - Trash restore/clear/go to trash
