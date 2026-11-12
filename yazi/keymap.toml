@@ -53,6 +53,8 @@ keymap = [
   { on = "?", run = "find --previous", desc = "Find file (backward)" },
   { on = "n", run = "find_arrow", desc = "Find next match" },
   { on = "N", run = "find_arrow --previous", desc = "Find previous match" },
+  { on = ["z", "g"], run = "search --via=rg", desc = "Search file contents (ripgrep)" },
+  { on = ["z", "f"], run = "search --via=fd", desc = "Search filenames (fd)" },
 
   # ============ BUILT-IN DELETE ============
   { on = ["d", "t"], run = "remove", desc = "Trash selected files" },
