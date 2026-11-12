@@ -14,6 +14,7 @@ Versions are dated milestones, not semver releases (this is a personal config re
 
 ### Removed
 - `map mg mount_Gdrive` / `map mn mount_nextcloud` — both referenced commands that were never defined anywhere in `lfrc`; pressing either produced an "unknown mapping" error.
+- `anm` (SSHFS mount to a hardcoded LAN IP), `mk` (mount a paired KDE Connect device), `yLu` (`cp` to a hardcoded `$HOME/LAN/Users/$USER/Downloads/` path), `bt` (overwrote a hardcoded Firefox profile hash's new-tab background), and `image2pdf_and_upload2onedrive` (never mapped to any key, and synced to a hardcoded personal rclone remote) — all tied to the author's specific personal devices, network, or accounts, none of it meaningful or testable outside that one setup.
 
 Verified by installing `lf` and driving the real binary end-to-end, not just reasoning about the shell one-liners.
 

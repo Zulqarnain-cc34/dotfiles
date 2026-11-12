@@ -63,10 +63,6 @@ cmd folder_size !{{
     du --max-depth=1 -h --apparent-size | sort -rh
 }}
 
-cmd copy_desk_down ${{
-    cp $fx "$HOME/LAN/Users/$USER/Downloads/"
-    }}
-
 cmd copy_down ${{
     cp $fx "$HOME/Downloads/"
     }}
@@ -115,11 +111,6 @@ cmd mkfile %{{
 }}
 
 
-cmd mount_kdeconnect ${{
-    # NOTE: Assumes single KDE Connect device
-    qdbus org.kde.kdeconnect /modules/kdeconnect/devices/$(kdeconnect-cli -a --id-only)/sftp mountAndWait
-}}
-
 cmd mount_iso %iso_mount_unmount.sh "$f"
 
 cmd chmod %{{
@@ -163,10 +154,6 @@ cmd fzf_locate ${{
   lf -remote "send $id $cmd \"$res\""
 }}
 
-
-cmd set_mozillas_new_tab_back %{{
-    cp "$f" "$HOME/.mozilla/firefox/oduj1f5k.default-release/chrome/newtab_background.jpg" && cp "$f" "$HOME/.mozilla/firefox/static-oduj1f5k.default-release/chrome/newtab_background.jpg"
-}}
 
 cmd show_info_exif ${{exiftool "$f" | less}}
 cmd vimdiff_files ${{nvim -d $fx}}
@@ -252,18 +239,6 @@ cmd send_mail ${{
     fi
 }}
 
-cmd image2pdf_and_upload2onedrive ${{
-    printf "Quality:"
-    read quality
-    printf "Rotate Angle:"
-    read rotate
-    printf "File Name:"
-    read filename
-    convert -size 810x1080 -rotate $rotate $fx -resize 810x1080 -extent 810x1080 -background white -compose Copy -gravity center -quality $quality "/tmp/${filename}.pdf"
-    rclone sync "/tmp/${filename}.pdf" Nust_Onedrive:/
-}}
-
-
 cmd image2pdf ${{
     printf "Quality:"
     read quality
@@ -288,12 +263,6 @@ cmd config-edit ${{
     $EDITOR "$HOME/.config/lf/lfrc"
 }}
 
-# USER-SPECIFIC: Network mount for anime server
-# Update IP address and credentials for your network setup
-cmd anime-mount ${{
-        sshfs anime@192.168.100.66:/home/anime/Videos/ "$HOME/mnt/anime/"
-}}
-    
 cmd on-cd &{{
     # display git repository status in your prompt
     source /usr/share/git/completion/git-prompt.sh
@@ -482,7 +451,6 @@ map <delete> trash
 
 map y
 map yy copy
-map yLu copy_desk_down
 map yLd copy_down
 map yip copy_image_png
 map yij copy_image_jpg
@@ -497,7 +465,6 @@ map y. yank_name_without_extension
 map m
 map md push :mkdir<space>
 map mf push :mkfile<space>
-map mk mount_kdeconnect
 map mi mount_iso
 
 map c
@@ -511,7 +478,6 @@ map uy clear
 
 map bg setwallpaper
 map bs selectwallpaper
-map bt set_mozillas_new_tab_back
 
 
 map e
@@ -534,7 +500,6 @@ map at tar
 map ag targz
 map ab tarbz2
 map au unarchive
-map anm anime-mount 
 
 
 map Vna ${{
