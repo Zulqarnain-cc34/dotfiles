@@ -5,6 +5,16 @@ require("full-border"):setup({
 
 require("eza-preview"):setup()
 
+-- mime-preview.yazi is incompatible with yazi 26.9.1: it calls the
+-- removed/renamed `ya.mgr_emit` API, which throws on every redraw and
+-- breaks the whole UI (header/status/borders stop rendering). Installed
+-- but not activated until the plugin is updated upstream.
+-- require("mime-preview"):setup()
+
+require("git"):setup({
+    order = 1500,
+})
+
 -- Starship prompt integration (requires: ya pkg add Rolv-Apneseth/starship)
 -- require("starship"):setup()
 

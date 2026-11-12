@@ -5,6 +5,105 @@ All notable changes to this dotfiles repo are documented here.
 Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).  
 Versions are dated milestones, not semver releases (this is a personal config repo).
 
+## [2026-11-12] — Yazi deep audit: deprecations, search, plugin wiring (branch: `modernize-2026`)
+
+### Fixed
+- `yazi.toml`/`keymap.toml` had drifted from real 26.x renames/removals, confirmed against the **v26.9.1-tagged** source (not the `main` branch, which had already drifted ahead of our installed version and gave a first, incorrect read): `title_format` (removed, dead), `micro_workers`/`macro_workers` (removed, replaced by `file/plugin/fetch/preload/process_workers`; `bizarre_retry` is unrelated and still valid, kept), `overwrite_content`/`quit_content` (renamed to `*_body`), and `copy dirname` → `copy dirpath` (renamed, confirmed live via clipboard check). `[input].search_*` is **still valid** in 26.9.1 — initially removed by mistake, restored.
+- Added `z,g`/`z,f` bound to the real native `search --via=rg`/`--via=fd` action. First attempt used `plugin rg`/`plugin fd`, which is 26.9.1's *default keymap on the `main` branch* for an unreleased, plugin-based rewrite of search — live-tested and confirmed it throws "Plugin load failed" on our installed version, since no such `rg.yazi`/`fd.yazi` plugin exists anywhere (confirmed: neither is in the `yazi-rs/plugins` monorepo). Verified live via tmux: rg correctly filtered files by content, fd correctly filtered by filename.
+- Wired up `git.yazi` (fetcher, verified live via ANSI-color capture: untracked files get the magenta `?` sign, a modified tracked file gets a yellow unstaged sign), `chmod.yazi` (`c,m`, verified live via `ls -la`), `jump-to-char.yazi` (bare `f`, verified live jumping to two different files by letter), and `toggle-pane.yazi` (`g,p/P` `g,c/C` `g,v/V` `g,r`, verified live — pane layout actually changes). `vcs-files.yazi` deliberately left unwired (redundant with `git.yazi`, would collide with `toggle-pane`'s `g,c`).
+- `mime-preview.yazi` was installed via a bare `git clone`, invisible to `ya pkg sync`. Re-installed via `ya pkg add DreamMaoMao/mime-preview` (content was byte-identical — confirmed by diff before overwriting) and tracked in `package.toml`.
+- Discovered while wiring `toggle-pane`'s `g`-prefix: yazi's `[mgr].keymap` array fully *replaces* the stock keymap rather than layering on top of it (unlike lf), so our custom config had silently dropped yazi's default top/bottom/follow-symlink navigation. Added `gg`/`G`/`<Home>`/`<End>` (go to top/bottom) and `g,f` (follow symlink) to restore it; lf already had equivalent behavior natively, no lf change needed.
+
+## [2026-11-12] — Image preview: ueberzug → kitty (branch: `modernize-2026`)
+
+### Fixed
+- ranger's `preview_images_method` was set to `ueberzug` (the original, X11-window-overlay-based tool), which crashes with `OSError: [Errno 25] Inappropriate ioctl for device` outside a plain TTY and is well known to be unreliable, especially under terminal multiplexers. The user's actual terminal is kitty (`TERMINAL=kitty` in `.zshenv`/`.profile`), which ranger supports natively — switched `preview_images_method` to `kitty`.
+- lf's `preview` script's `image()` function always went through the same ueberzug-FIFO path whenever `$DISPLAY` was set, never checking for kitty at all. Added a `*kitty*` case using kitty's own `icat` kitten (ships with kitty, no extra dependency) via the documented `--place=<w>x<h>@<x>x<y>` syntax. `cleaner` updated to match (`icat --clear`) so switching away from an image preview actually clears it.
+
+### Fixed (follow-up, same day — found after the user hit it in real use)
+- Both `icat` calls redirected stdin to `/dev/null`, which hangs indefinitely — the kitty graphics protocol needs stdin connected to receive the terminal's handshake response. First fix was `< /dev/tty > /dev/tty`, which looked correct in isolated testing but still hung in real use (user-reported: lf stuck at a loading screen).
+- Root cause turned out to be deeper: `lf` runs `preview`/`cleaner` in a background process group, so the moment `icat` (a child process) tries to read/write `/dev/tty`, the kernel sends `SIGTTIN`/`SIGTTOU` and **job-control-stops** it (process state `T`, not actually hung) — confirmed via `ps`/`pstree` showing state `T` and zero CPU. Fixed by having the subshell `trap '' TTOU TTIN` before `exec`ing `icat` — but `timeout` (added as a safety net) resets signal dispositions before its own exec, so the trap has to be set *inside* the `timeout`'d subshell, not outside it (`timeout 5 sh -c 'trap ...; exec icat ...'`, not `timeout 5 icat ...` after a trap in the parent). Confirmed via process state only: navigated every file in a real directory (`~/Downloads`, mixed PDFs/images/folders) through real `lf` in a real kitty window, checking for any `T`-state process after each step — zero hangs across the full pass.
+- ranger's kitty image support doesn't share this risk: its Python `KittyImageDisplayer` writes escape codes directly from ranger's own main process (no subprocess spawn), so there's no background-process-group to get job-control-stopped. No change needed there.
+
+Pixel-level rendering (does the image actually *look* right) still could not be verified by me — not for lack of trying: X11 window-screenshot capture on this display leaked real, sensitive desktop content four separate times during this investigation (including once with the window's own metadata confirming the correct target immediately before and after capture, while the pixels returned were from something else entirely — a deeper tooling desync than simple window-ID reuse). That method is no longer used on this machine, full stop. What's confirmed via process state: the hang is genuinely fixed, not just in isolation but across every file in a real directory, through real `lf`. **Pixel rendering still needs your own eyes** — open `ranger` or `lf` on an image in your real kitty terminal (not tmux) and confirm it actually displays.
+
+## [2026-11-12] — Cross-tool feature parity (branch: `modernize-2026`)
+
+### Changed
+- `smart-extract.sh` moved from `yazi/` to `bash_scripts/` (on `$PATH` via `~/bin/bash_scripts`) and is now `au` in **all three** file managers, not just yazi. lf's `au` was single-file-only (`$f`) before; it's now multi-select (`$fx`) and single-root-aware, same as yazi and ranger.
+- Added `ap` (play hovered file as audio only, `mpv --no-video`) to lf and ranger, matching yazi.
+- Added `cke`/`cku` (chmod +x / -x on selection) to yazi and lf, matching ranger's existing ones.
+
+Verified live: `au` produces byte-identical results (single-rooted archive extracts with no wrapper, confirmed on all three via the same test fixture) since all three now call the same script. `cke`/`cku` confirmed live in yazi and lf (via tmux, after an xterm/xdotool session repeatedly misdirected input — switched to tmux mid-verification). `ap` relies on the same `mpv --no-video` invocation and `$`-prefix blocking already confirmed working earlier for yazi and lf respectively; not re-confirmed live for lf specifically due to an unrelated directory-listing cache issue in that session.
+
+## [2026-11-12] — Cross-tool keybinding consistency (branch: `modernize-2026`)
+
+### Changed
+- ranger's archive scheme (`gzu`/`gzz`/`gzr`/`gzn`/`etu`, tar-only, no creation) replaced with `az`/`at`/`ag`/`ab`/`au` — same letters, same behavior (collision-safe, no leading path, one archive at a time on extract) as yazi and lf. `gzu`/`gzz`/`gzr`/`gzn` (single-file gzip, a different operation) are kept as-is.
+- ranger's trash binding moved from `dT` to `dt`, and `tr`/`tc`/`tg` (restore/clear/go-to-trash) added — same scheme as yazi and lf. Overrides ranger's stock `dt` (cut mode=toggle, still reachable via `dd`/`da`/`dr`) and stock bare `t` (`tag_toggle`, no longer reachable); both were real stock features, not bugs, overridden deliberately for consistency.
+- ranger's bare `a` (`rename_append`) unmapped to make room for the `a*` archive prefix — still reachable via `<F2>`, `A`, or `I`.
+
+Verified live via `ranger` in `tmux`: `az`/`at`/`ag`/`ab` create correctly (no leading path, collision-safe rename confirmed earlier this session), `au` extracts and correctly surfaces `unzip`'s interactive overwrite prompt, `dt`/`tr`/`tc`/`tg` all round-trip correctly through real `trash-put`/`trash-restore`/`trash-empty`.
+
+## [2026-11-12] — ranger command fixes (branch: `modernize-2026`)
+
+### Fixed
+- `etu` (tar extract): `tar -xvf %s` passed every selected file to a single `tar` invocation — with more than one selected, tar treats the 2nd+ as path filters *inside* the first archive, fails with "Not found in archive", and extracts nothing (confirmed exit 2, zero files extracted, reproduced standalone before fixing). Now loops and extracts each selected archive individually; verified against multi-select and a filename containing a space (ranger's `%s`/`%f`/`%p` are all pre-quoted by ranger itself, confirmed via a debug binding).
+
+### Removed
+- `gkm`/`gkz` (mount/unmount a paired KDE Connect device) — same reasoning as yazi's `m,k` and lf's `mk`: not meaningful to verify outside a specific paired device.
+- `gkg`/`gku`/`gks` (rclone mount/unmount/sync to a hardcoded `mygoogledrive`/`assignmentRepo` remote) — same reasoning as lf's dropped SSHFS/OneDrive bindings: tied to the author's own cloud accounts.
+
+Verified live via `ranger` run inside `tmux` (text-based `capture-pane`, not X11 screenshots — this session's live GUI testing had already leaked real desktop content twice through window-ID-based screenshot capture, so ranger was deliberately tested through a fully isolated virtual terminal instead).
+
+## [2026-11-12] — lf command fixes (branch: `modernize-2026`)
+
+### Fixed
+- `az` (`cmd zip`): `zip -r "$f" "$f"` used the same name for input and output — zip never auto-appends `.zip` to a file that already has an extension, so it tried to treat the source as an existing archive to update and failed with "Zip file structure invalid". Reproduced standalone before fixing.
+- `az`/`at`/`ag`/`tarbz2`: all passed `$f` (lf's full absolute path) straight to zip/tar, baking the leading directory structure into the archive — confirmed live (`tar tf` showed `tmp/lf_archive_test/doc.txt` instead of `doc.txt`). All four now `cd` into the file's directory and pack by basename, with collision-safe auto-rename (`-1`, `-2`, ...), matching the yazi archive fixes above.
+- `map ab targz` — duplicate of `ag`; `ab` now correctly maps to the already-defined (but previously unreachable) `tarbz2` command.
+
+### Removed
+- `map mg mount_Gdrive` / `map mn mount_nextcloud` — both referenced commands that were never defined anywhere in `lfrc`; pressing either produced an "unknown mapping" error.
+- `anm` (SSHFS mount to a hardcoded LAN IP), `mk` (mount a paired KDE Connect device), `yLu` (`cp` to a hardcoded `$HOME/LAN/Users/$USER/Downloads/` path), `bt` (overwrote a hardcoded Firefox profile hash's new-tab background), and `image2pdf_and_upload2onedrive` (never mapped to any key, and synced to a hardcoded personal rclone remote) — all tied to the author's specific personal devices, network, or accounts, none of it meaningful or testable outside that one setup.
+
+Verified by installing `lf` and driving the real binary end-to-end, not just reasoning about the shell one-liners.
+
+## [2026-11-12] — Yazi keymap fixes & smart extraction (branch: `modernize-2026`)
+
+### Fixed
+- `a,p`/`a,z`/`a,t`/`a,g`/`a,b`/`a,u`/`b,g`: all read yazi's selected-file placeholder via `$1`/`$@`/`${!#}` — those are shell positional params and are never set in yazi's `run` strings (only `%h`/`%s`/`%1`/`%d1` are text-substituted in). Replaced with the correct placeholders throughout.
+- `a,z`/`a,t`/`a,g`/`a,b`: archive creation baked in the full absolute path and could silently clobber a same-named output; now packs by basename (no leading path) and auto-renames on collision (`-1`, `-2`, ...).
+- `[opener]`/`e,e`/`e,i`/`e,g`: redundant manual quoting around already-quoted `%s`/`%1` (doubled quotes broke filenames containing spaces/pipes), and a missing `--block` left `nvim`/`exiftool | less` running detached instead of taking over the terminal.
+- `t,r` (`trash-restore`): same missing-`--block` bug — the interactive "what file to restore" prompt had nowhere visible to go and no input reached it, so it exited immediately without restoring anything. `t,c` (`trash-empty`) got `--block` too, for visible output rather than a functional fix (it's non-interactive by default).
+
+### Removed
+- Dead `[mgr] keymap` binding on `w` ("Set directory and exit", wrote `$YAZI_CWD` to `/tmp/yazi_cwd`) — `prepend_keymap` binds `w` to `quit` too and is matched first, so this one never fired. Confirmed live: pressing `w` quit without creating the file. `/tmp/yazi_cwd` wasn't read anywhere else in the repo either.
+- `a,n`/`m,k` (mount a hardcoded SSHFS share / KDE Connect device) — tied to a specific LAN host and a paired device, neither reachable or meaningful to verify outside the author's own network.
+
+### Added
+- `yazi/smart-extract.sh`, bound to `a,u`: extracts into the current directory with no wrapper folder when an archive already has a single top-level folder (matches 7-Zip/Nautilus/Archive Utility convention); otherwise wraps the contents in a new folder named after the archive, auto-renamed on collision. Non-archive files in a mixed selection are skipped, not fatal.
+
+Verified by driving the real `yazi` binary end-to-end (real keystrokes, real screenshots), not just testing scripts standalone.
+
+## [2026-11-12] — Security & repo hygiene hardening (branch: `modernize-2026`)
+
+### Security
+- `transmission-daemon/settings.json`, which carried a real `rpc-password` hash, is no longer tracked. It's now generated from a sanitized `settings.json.example` by `scripts/bootstrap-secrets.sh` (same pattern already used for `.gitconfig` and the rofi ribbon colours).
+- `scripts/validate.sh`: added a guard so `transmission-daemon/settings.json` fails validation if it's ever re-tracked; added a check that fails on any committed compiled binary (ELF/Mach-O/PE32).
+- Removed `eval` from `bash_scripts/scripts/rofi-klipper.sh` — none of the calls needed shell re-parsing, so this closes an unnecessary injection surface.
+
+### Removed
+- ~30MB of committed Transmission blocklist data (`transmission-daemon/blocklists/*.p2p*`) — it's fetched at runtime via `settings.json`'s `blocklist-url` and never needed to be in git.
+- A compiled binary (`bash_scripts/scripts/greenclip`) that dotfiles should never ship.
+- `bash_scripts/scripts/autostart.sh` — an orphaned, unreferenced file (the real autostart lives in `bspwm/bspwmrc`); it also carried the dead binary call above and the deprecated picom `--experimental-backends` flag.
+
+### Added
+- `.gitattributes`: line-ending normalization, binary markers for images/fonts, and `linguist-vendored`/`linguist-generated` on third-party code (firefox-sweet-theme, qutebrowser greasemonkey scripts, yazi flavor packs, fish's generated functions).
+- `setup.sh --dry-run`: prints every planned action with zero filesystem writes.
+- `setup.sh --check`: reports per-target drift (ok / drift / missing) with zero filesystem writes.
+- A live CI "secrets scan" badge on the main README.
+
 ## [2026-11-11] — Documentation overhaul (branch: `modernize-2026`)
 
 ### Added

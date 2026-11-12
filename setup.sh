@@ -6,6 +6,8 @@
 #   ./setup.sh --backup     Backup existing targets before linking
 #   ./setup.sh --force      Replace existing files/dirs/symlinks
 #   ./setup.sh --backup --force
+#   ./setup.sh --dry-run    Show what would happen; touch nothing
+#   ./setup.sh --check      Report drift (ok / missing / wrong) for every target; touch nothing
 #
 # Firefox: not symlinked — see docs/firefox.md
 set -euo pipefail
@@ -13,17 +15,23 @@ set -euo pipefail
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 BACKUP=0
 FORCE=0
+DRYRUN=0
+CHECK=0
 
 for arg in "$@"; do
     case "$arg" in
-        --backup) BACKUP=1 ;;
-        --force)  FORCE=1 ;;
+        --backup)  BACKUP=1 ;;
+        --force)   FORCE=1 ;;
+        --dry-run) DRYRUN=1 ;;
+        --check)   CHECK=1 ;;
         -h|--help)
             cat <<'EOF'
-Usage: ./setup.sh [--backup] [--force]
+Usage: ./setup.sh [--backup] [--force] [--dry-run] [--check]
 
-  --backup  Copy existing targets to ~/.dotfiles_backup/<timestamp>/ first
-  --force   Remove and replace existing targets (use with care)
+  --backup   Copy existing targets to ~/.dotfiles_backup/<timestamp>/ first
+  --force    Remove and replace existing targets (use with care)
+  --dry-run  Print what would happen; create, back up, or remove nothing
+  --check    Report per-target status (ok / drift / missing); touch nothing
 
 After setup:
   git config core.hooksPath .githooks
@@ -54,8 +62,32 @@ link_path() {
         echo "  skip (missing in repo): $src"
         return 0
     fi
+
+    local already_linked=0
+    [[ -L "$dest" && "$(readlink "$dest")" == "$src" ]] && already_linked=1
+
+    if [[ "$CHECK" -eq 1 ]]; then
+        if [[ "$already_linked" -eq 1 ]]; then
+            echo "  ok: $dest"
+        elif [[ -e "$dest" || -L "$dest" ]]; then
+            echo "  drift: $dest exists but is not linked to $src"
+        else
+            echo "  missing: $dest"
+        fi
+        return 0
+    fi
+
+    if [[ "$already_linked" -eq 1 ]]; then
+        [[ "$DRYRUN" -eq 1 ]] && echo "  ok (already linked): $dest"
+        return 0
+    fi
+
     if [[ -e "$dest" || -L "$dest" ]]; then
         if [[ "$FORCE" -eq 1 ]]; then
+            if [[ "$DRYRUN" -eq 1 ]]; then
+                echo "  would back up + replace: $dest"
+                return 0
+            fi
             backup_target "$dest"
             rm -rf "$dest"
         else
@@ -63,6 +95,12 @@ link_path() {
             return 0
         fi
     fi
+
+    if [[ "$DRYRUN" -eq 1 ]]; then
+        echo "  would link: $dest -> $src"
+        return 0
+    fi
+
     mkdir -p "$(dirname "$dest")"
     ln -sfn "$src" "$dest"
     echo "  linked: $dest -> $src"
@@ -72,8 +110,12 @@ link_dir()  { link_path "$ROOT/$1" "$2"; }
 link_file() { link_path "$ROOT/$1" "$2"; }
 
 echo "==> Repository: $ROOT"
+[[ "$DRYRUN" -eq 1 ]] && echo "==> --dry-run: nothing below will be created, backed up, or removed"
+[[ "$CHECK" -eq 1 ]] && echo "==> --check: reporting status only; nothing will be touched"
 
-if [[ -x "$ROOT/scripts/bootstrap-secrets.sh" ]]; then
+if [[ "$DRYRUN" -eq 1 || "$CHECK" -eq 1 ]]; then
+    echo "  (skip: bootstrap-secrets.sh does not run in --dry-run/--check mode)"
+elif [[ -x "$ROOT/scripts/bootstrap-secrets.sh" ]]; then
     "$ROOT/scripts/bootstrap-secrets.sh"
 else
     echo "  (bootstrap-secrets.sh not found — skipping)"
@@ -92,7 +134,7 @@ link_dir surfraw              "$HOME/.config/surfraw"
 link_dir ytfzf                "$HOME/.config/ytfzf"
 link_dir .w3m                 "$HOME/.w3m"
 link_dir .aliases             "$HOME/.aliases"
-mkdir -p "$HOME/bin"
+[[ "$DRYRUN" -eq 0 && "$CHECK" -eq 0 ]] && mkdir -p "$HOME/bin"
 link_dir bash_scripts         "$HOME/bin/bash_scripts"
 link_dir ranger               "$HOME/.config/ranger"
 link_dir mutt                 "$HOME/.config/mutt"
@@ -115,7 +157,9 @@ link_dir vivid                "$HOME/.config/vivid"
 link_dir fish                 "$HOME/.config/fish"
 link_dir imv                  "$HOME/.config/imv"
 link_dir kitty                "$HOME/.config/kitty"
-if [[ -x "$ROOT/kitty/scripts/link-font-size.sh" ]]; then
+if [[ "$DRYRUN" -eq 1 || "$CHECK" -eq 1 ]]; then
+    echo "  (skip: kitty/scripts/link-font-size.sh does not run in --dry-run/--check mode)"
+elif [[ -x "$ROOT/kitty/scripts/link-font-size.sh" ]]; then
     "$ROOT/kitty/scripts/link-font-size.sh"
 fi
 link_dir yazi                 "$HOME/.config/yazi"
@@ -150,6 +194,12 @@ fi
 # zsh/.zshrc is included via link_dir zsh -> ~/.config/zsh (must be a real file in repo,
 # not a symlink — link_file here would create a self-referential zsh/.zshrc)
 
-echo "==> Done"
-echo "  Firefox: see docs/firefox.md (not managed by setup.sh)"
-echo "  Optional: ./scripts/install-deps.sh  |  git config core.hooksPath .githooks"
+if [[ "$DRYRUN" -eq 1 ]]; then
+    echo "==> Dry run complete — nothing was changed"
+elif [[ "$CHECK" -eq 1 ]]; then
+    echo "==> Check complete — nothing was changed"
+else
+    echo "==> Done"
+    echo "  Firefox: see docs/firefox.md (not managed by setup.sh)"
+    echo "  Optional: ./scripts/install-deps.sh  |  git config core.hooksPath .githooks"
+fi
