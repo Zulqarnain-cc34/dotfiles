@@ -220,7 +220,7 @@ git config core.hooksPath .githooks
 nvim +Lazy sync +qa
 ```
 
-`setup.sh` flags: `--backup` (copy existing targets to `~/.dotfiles_backup/<timestamp>/` first), `--force` (replace existing targets), `--help`.
+`setup.sh` flags: `--backup` (copy existing targets to `~/.dotfiles_backup/<timestamp>/` first), `--force` (replace existing targets), `--dry-run` (print what would happen, touch nothing), `--check` (report per-target drift, touch nothing), `--help`.
 
 Full notes: [`docs/INSTALL.md`](docs/INSTALL.md) · Secrets handling: [`docs/secrets.md`](docs/secrets.md) · Minimal package set: [`packages/minimal.txt`](packages/minimal.txt)
 

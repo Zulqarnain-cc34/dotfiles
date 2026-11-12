@@ -22,3 +22,4 @@ Run a staged-content scan before committing:
 
 ```bash
 gitleaks protect --staged --config .gitleaks.toml
+```
