@@ -10,7 +10,6 @@ show_hidden = false
 show_symlink = false
 scrolloff = 5
 mouse_events = [ "click", "scroll" ]
-title_format = "Yazi: {cwd}"
 
 [preview]
 wrap = "no"
@@ -25,27 +24,27 @@ ueberzug_offset = [ 0, 0, 0, 0 ]
 
 [opener]
 audio_only = [
-  { run = 'mpv --no-video "$@"', block = true, for = "unix" }
+  { run = "mpv --no-video %s", block = true, for = "unix" }
 ]
 edit = [
-  { run = '${EDITOR:-nvim} "$@"', block = true, for = "unix" }
+  { run = '${EDITOR:-nvim} %s', block = true, for = "unix" }
 ]
 
 open = [
-  { run = 'xdg-open "$@"', orphan = true, for = "unix" },
+  { run = 'xdg-open %s', orphan = true, for = "unix" },
   { run = 'open "$@"', desc = "Open", for = "macos" },
   { run = 'start "" "%1"', orphan = true, desc = "Open", for = "windows" },
 ]
 reveal = [
-  { run = 'xdg-open "$(dirname "$1")"', desc = "Reveal", for = "linux" },
+  { run = 'xdg-open %d1', desc = "Reveal", for = "linux" },
   { run = 'open -R "$1"', desc = "Reveal", for = "macos" },
   { run = 'explorer /select,"%1"', orphan = true, desc = "Reveal", for = "windows" },
 ]
 extract = [
-  { run = 'ya pub extract --list "$@"', desc = "Extract here", for = "unix" },
+  { run = 'ya pub extract --list %s', desc = "Extract here", for = "unix" },
 ]
 play = [
-  { run = 'mpv --force-window "$@"', orphan = true, for = "unix" },
+  { run = 'mpv --force-window %s', orphan = true, for = "unix" },
   { run = 'mpv --force-window %*', orphan = true, for = "windows" },
 ]
 
@@ -64,8 +63,11 @@ rules = [
 ]
 
 [tasks]
-micro_workers = 10
-macro_workers = 10
+file_workers = 5
+plugin_workers = 5
+fetch_workers = 5
+preload_workers = 5
+process_workers = 5
 bizarre_retry = 3
 image_alloc = 536870912
 image_bound = [ 5000, 5000 ]
@@ -108,10 +110,6 @@ run  = "archive"
 url = "*"           # Changed from name to url
 run  = "file"
 
-[[plugin.previewers]]
-url = "*.ipynb"     # Changed from name to url
-run  = "nbpreview"
-
 # --- Preloaders ---
 
 [[plugin.preloaders]]
@@ -137,6 +135,10 @@ run  = "pdf"
 [plugin]
 prepend_previewers = [
   { url = "*/", run = 'piper -- eza -TL=1 --color=always --icons=always --group-directories-first --no-quotes "$1"' }
+]
+prepend_fetchers = [
+  { url = "*", run = "git", group = "git" },
+  { url = "*/", run = "git", group = "git" },
 ]
 [input]
 cursor_blink = false
@@ -170,11 +172,11 @@ delete_title = "Permanently delete {n} selected file{s}?"
 delete_origin = "center"
 delete_offset = [ 0, 0, 70, 20 ]
 overwrite_title = "Overwrite file?"
-overwrite_content = "Will overwrite the following file:"
+overwrite_body = "Will overwrite the following file:"
 overwrite_origin = "center"
 overwrite_offset = [ 0, 0, 50, 15 ]
 quit_title = "Quit?"
-quit_content = "The following tasks are still running, are you sure you want to quit?"
+quit_body = "The following tasks are still running, are you sure you want to quit?"
 quit_origin = "center"
 quit_offset = [ 0, 0, 50, 15 ]
 

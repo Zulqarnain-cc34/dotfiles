@@ -49,6 +49,12 @@ ncmpcpp/error.log
 
 transmission-daemon/dht.dat
 transmission-daemon/stats.json
+# Downloaded at runtime via settings.json's blocklist-url; never commit the data itself.
+transmission-daemon/blocklists/*.p2p
+transmission-daemon/blocklists/*.p2p.bin
+transmission-daemon/blocklists/*.bin
+# Contains a real rpc-password hash once generated; templated from settings.json.example.
+transmission-daemon/settings.json
 
 surfraw/bookmarks
 nvim/tempdir
