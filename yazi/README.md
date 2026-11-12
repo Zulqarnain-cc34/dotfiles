@@ -18,6 +18,8 @@ A clean, organized keymap for [Yazi](https://github.com/sxyazi/yazi) file manage
 ### Navigation
 - `j/k` - Move down/up (no wrap)
 - `l/h` - Open/go back (smart enter for open)
+- `gg/G` or `<Home>/<End>` - Go to top/bottom
+- `gf` - Follow hovered symlink
 
 ### Selection
 - `<Space>` - Toggle select and move down
@@ -27,9 +29,14 @@ A clean, organized keymap for [Yazi](https://github.com/sxyazi/yazi) file manage
 ### Search / Sort / View
 - `/` `?` - Find file forward/backward
 - `n/N` - Next/previous match
+- `zg/zf` - Search file contents (ripgrep) / filenames (fd)
+- `f<char>` - Jump to next file starting with `<char>`
 - `.` - Toggle hidden files
 - `sb/se/sn/ss/st` - Sort by creation/extension/name/size/modified time
 - `zi` - Show file info (spot popup)
+- `gp/gP` `gc/gC` `gv/gV` - Show-hide / maximize-restore parent, current, preview panes
+- `gr` - Reset pane layout to configured ratio
+- Modified/untracked files are marked inline (git status, color-coded)
 
 ### Copy/Paste
 - `yy` - Copy files
@@ -59,6 +66,7 @@ A clean, organized keymap for [Yazi](https://github.com/sxyazi/yazi) file manage
 - `ap` - Play hovered file as audio only (no video)
 - `bg` - Set hovered image as desktop wallpaper
 - `cke/cku` - Make selected file(s) executable / non-executable
+- `cm` - Chmod on selected files (interactive)
 - `tr/tc/tg` - Trash restore/clear/go to trash
 
 > Archive (`az/at/ag/ab/au`), audio-only play (`ap`), trash (`dt`/`tr/tc/tg`), and permissions (`cke/cku`) use the same keys and behavior in [lf](../lf/README.md) and [ranger](../ranger/README.md).

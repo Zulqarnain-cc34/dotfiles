@@ -5,12 +5,14 @@ All notable changes to this dotfiles repo are documented here.
 Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).  
 Versions are dated milestones, not semver releases (this is a personal config repo).
 
-## [2026-11-12] — Yazi deep audit: deprecations, dead plugins (branch: `modernize-2026`)
+## [2026-11-12] — Yazi deep audit: deprecations, search, plugin wiring (branch: `modernize-2026`)
 
 ### Fixed
-- `yazi.toml`/`keymap.toml` had drifted from several 26.x renames/removals, confirmed against yazi's own CHANGELOG and live default config: `title_format` (removed, dead), `micro_workers`/`macro_workers`/`bizarre_retry` (removed, replaced by `file/plugin/fetch/preload/process_workers`), `overwrite_content`/`quit_content` (renamed to `*_body`), `[input]` `search_*` (orphaned since search moved to `[rg]`/`[fd]`), and `copy dirname` → `copy dirpath` (renamed, confirmed live via clipboard check).
-
-Full audit and plugin-wiring work tracked separately below as it lands.
+- `yazi.toml`/`keymap.toml` had drifted from real 26.x renames/removals, confirmed against the **v26.9.1-tagged** source (not the `main` branch, which had already drifted ahead of our installed version and gave a first, incorrect read): `title_format` (removed, dead), `micro_workers`/`macro_workers` (removed, replaced by `file/plugin/fetch/preload/process_workers`; `bizarre_retry` is unrelated and still valid, kept), `overwrite_content`/`quit_content` (renamed to `*_body`), and `copy dirname` → `copy dirpath` (renamed, confirmed live via clipboard check). `[input].search_*` is **still valid** in 26.9.1 — initially removed by mistake, restored.
+- Added `z,g`/`z,f` bound to the real native `search --via=rg`/`--via=fd` action. First attempt used `plugin rg`/`plugin fd`, which is 26.9.1's *default keymap on the `main` branch* for an unreleased, plugin-based rewrite of search — live-tested and confirmed it throws "Plugin load failed" on our installed version, since no such `rg.yazi`/`fd.yazi` plugin exists anywhere (confirmed: neither is in the `yazi-rs/plugins` monorepo). Verified live via tmux: rg correctly filtered files by content, fd correctly filtered by filename.
+- Wired up `git.yazi` (fetcher, verified live via ANSI-color capture: untracked files get the magenta `?` sign, a modified tracked file gets a yellow unstaged sign), `chmod.yazi` (`c,m`, verified live via `ls -la`), `jump-to-char.yazi` (bare `f`, verified live jumping to two different files by letter), and `toggle-pane.yazi` (`g,p/P` `g,c/C` `g,v/V` `g,r`, verified live — pane layout actually changes). `vcs-files.yazi` deliberately left unwired (redundant with `git.yazi`, would collide with `toggle-pane`'s `g,c`).
+- `mime-preview.yazi` was installed via a bare `git clone`, invisible to `ya pkg sync`. Re-installed via `ya pkg add DreamMaoMao/mime-preview` (content was byte-identical — confirmed by diff before overwriting) and tracked in `package.toml`.
+- Discovered while wiring `toggle-pane`'s `g`-prefix: yazi's `[mgr].keymap` array fully *replaces* the stock keymap rather than layering on top of it (unlike lf), so our custom config had silently dropped yazi's default top/bottom/follow-symlink navigation. Added `gg`/`G`/`<Home>`/`<End>` (go to top/bottom) and `g,f` (follow symlink) to restore it; lf already had equivalent behavior natively, no lf change needed.
 
 ## [2026-11-12] — Image preview: ueberzug → kitty (branch: `modernize-2026`)
 
