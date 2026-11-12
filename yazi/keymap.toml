@@ -76,7 +76,6 @@ keymap = [
   { on = ["s", "n"], run = "sort natural --reverse", desc = "Sort by name naturally (reverse)" },
   { on = ["s", "s"], run = "sort size --reverse", desc = "Sort by size (largest first)" },
   { on = ["s", "t"], run = "sort mtime --reverse", desc = "Sort by modification time (newest first)" },
-  { on = ["w"] , run = "sh -c 'echo \"$YAZI_CWD\" > /tmp/yazi_cwd && exit'", desc = "Set directory and exit"},
 
   # `show-info` is not a yazi command; 0.4+ uses `spot` for the file-info popup.
   { on = ["z", "i"], run = "spot", desc = "Show file info (spot popup)" },
