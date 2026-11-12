@@ -5,6 +5,13 @@ All notable changes to this dotfiles repo are documented here.
 Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).  
 Versions are dated milestones, not semver releases (this is a personal config repo).
 
+## [2026-11-12] — Yazi deep audit: deprecations, dead plugins (branch: `modernize-2026`)
+
+### Fixed
+- `yazi.toml`/`keymap.toml` had drifted from several 26.x renames/removals, confirmed against yazi's own CHANGELOG and live default config: `title_format` (removed, dead), `micro_workers`/`macro_workers`/`bizarre_retry` (removed, replaced by `file/plugin/fetch/preload/process_workers`), `overwrite_content`/`quit_content` (renamed to `*_body`), `[input]` `search_*` (orphaned since search moved to `[rg]`/`[fd]`), and `copy dirname` → `copy dirpath` (renamed, confirmed live via clipboard check).
+
+Full audit and plugin-wiring work tracked separately below as it lands.
+
 ## [2026-11-12] — Image preview: ueberzug → kitty (branch: `modernize-2026`)
 
 ### Fixed
