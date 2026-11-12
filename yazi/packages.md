@@ -16,10 +16,13 @@ ya pkg add yazi-rs/plugins:vcs-files     # installed, deliberately NOT wired
 ya pkg add yazi-rs/plugins:toggle-pane  # wired: g,p/P g,c/C g,v/V g,r
 
 # Previews
-ya pkg add ahkohd/eza-preview      # wired: yazi.toml prepend_previewers
-ya pkg add yazi-rs/plugins:piper   # wired: dependency of eza-preview
-ya pkg add AnirudhG07/nbpreview    # wired: yazi.toml previewer for *.ipynb
-ya pkg add DreamMaoMao/mime-preview  # wired: init.lua setup()
+ya pkg add ahkohd/eza-preview      # installed, setup() called, but NOT actually
+                                    # registered as a previewer -- piper (below)
+                                    # handles directory previews directly instead
+ya pkg add yazi-rs/plugins:piper   # wired: yazi.toml prepend_previewers (eza dir preview)
+ya pkg add DreamMaoMao/mime-preview  # installed, setup() DISABLED in init.lua --
+                                      # calls the removed/renamed ya.mgr_emit API,
+                                      # throws on every redraw and breaks the UI on 26.9.1
 
 # Smart enter
 ya pkg add yazi-rs/plugins:smart-enter  # wired: l

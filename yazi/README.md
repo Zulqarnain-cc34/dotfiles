@@ -11,7 +11,7 @@
 
 > Built on **[Yazi](https://yazi-rs.github.io)** by sxyazi. ❤️
 
-[Yazi](https://github.com/sxyazi/yazi) ("blazing fast") is an async, Rust-based terminal file manager — it's the daily driver in this repo because it stays responsive on large directories, previews almost anything inline (images, video, PDFs, archives, Jupyter notebooks) using the kitty graphics protocol, and is extensible through a real plugin ecosystem managed by its own package manager, `ya`. This config layers vim-style navigation and a consistent set of custom shortcuts on top of the stock bindings, and keeps the same keys and behavior in [lf](../lf/README.md) wherever the two tools overlap (archive, trash, permissions).
+[Yazi](https://github.com/sxyazi/yazi) ("blazing fast") is an async, Rust-based terminal file manager — it's the daily driver in this repo because it stays responsive on large directories, previews almost anything inline (images, video, PDFs, archives) using the kitty graphics protocol, and is extensible through a real plugin ecosystem managed by its own package manager, `ya`. This config layers vim-style navigation and a consistent set of custom shortcuts on top of the stock bindings, and keeps the same keys and behavior in [lf](../lf/README.md) wherever the two tools overlap (archive, trash, permissions).
 
 ## Requirements
 
@@ -28,7 +28,6 @@ External tools the plugins and openers shell out to:
 | `exiftool` | EXIF metadata (`ei`) |
 | `mpv`, `nsxiv` | Audio-only playback (`ap`), image viewing (`ep`/`eP`) |
 | `magick` (ImageMagick) | AVIF/HEIF/JXL preview, image→PDF conversion (`eg`) |
-| `nbpreview` (pip) | `.ipynb` preview — **not currently installed**, so notebook previews fail until `pip install nbpreview` is run |
 
 ## Package management (`ya`)
 
@@ -56,7 +55,6 @@ Everything below is pinned in `package.toml`. "Active" means it's actually wired
 | [`jump-to-char`](https://github.com/yazi-rs/plugins/tree/main/jump-to-char.yazi) | Vim-style jump to the next file starting with a letter | `f<char>` |
 | [`toggle-pane`](https://github.com/yazi-rs/plugins/tree/main/toggle-pane.yazi) | Show/hide/maximize the parent, current, or preview pane | `gp/gP` `gc/gC` `gv/gV` `gr` |
 | [`piper`](https://github.com/yazi-rs/plugins/tree/main/piper.yazi) | Pipes any shell command's output into the preview pane | `yazi.toml` previewer — currently used to preview directories via `eza` |
-| [`nbpreview`](https://github.com/AnirudhG07/nbpreview.yazi) | Renders Jupyter notebooks in the preview pane | `yazi.toml` previewer for `*.ipynb` — **broken**, needs the `nbpreview` pip package (not installed) |
 | [`eza-preview`](https://github.com/ahkohd/eza-preview.yazi) | Interactive tree/list directory preview with its own toggle keys | Installed, `setup()` called in `init.lua` — **but never registered as a previewer**, so it currently does nothing; `piper` handles directory previews directly instead |
 
 Installed but deliberately unused:
