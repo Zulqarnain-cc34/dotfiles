@@ -11,6 +11,7 @@ Versions are dated milestones, not semver releases (this is a personal config re
 - `a,p`/`a,z`/`a,t`/`a,g`/`a,b`/`a,u`/`b,g`: all read yazi's selected-file placeholder via `$1`/`$@`/`${!#}` — those are shell positional params and are never set in yazi's `run` strings (only `%h`/`%s`/`%1`/`%d1` are text-substituted in). Replaced with the correct placeholders throughout.
 - `a,z`/`a,t`/`a,g`/`a,b`: archive creation baked in the full absolute path and could silently clobber a same-named output; now packs by basename (no leading path) and auto-renames on collision (`-1`, `-2`, ...).
 - `[opener]`/`e,e`/`e,i`/`e,g`: redundant manual quoting around already-quoted `%s`/`%1` (doubled quotes broke filenames containing spaces/pipes), and a missing `--block` left `nvim`/`exiftool | less` running detached instead of taking over the terminal.
+- `t,r` (`trash-restore`): same missing-`--block` bug — the interactive "what file to restore" prompt had nowhere visible to go and no input reached it, so it exited immediately without restoring anything. `t,c` (`trash-empty`) got `--block` too, for visible output rather than a functional fix (it's non-interactive by default).
 
 ### Removed
 - Dead `[mgr] keymap` binding on `w` ("Set directory and exit", wrote `$YAZI_CWD` to `/tmp/yazi_cwd`) — `prepend_keymap` binds `w` to `quit` too and is matched first, so this one never fired. Confirmed live: pressing `w` quit without creating the file. `/tmp/yazi_cwd` wasn't read anywhere else in the repo either.
