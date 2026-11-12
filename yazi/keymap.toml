@@ -101,8 +101,8 @@ prepend_keymap = [
   { on = ["a", "u"], run = "shell -- $HOME/.config/yazi/smart-extract.sh %s", desc = "Extract archive(s) - smart: no wrapper folder if already single-rooted, auto-renames on collision" },
 
   # ============ TRASH MANAGEMENT ============
-  { on = ["t", "r"], run = "shell -- trash-restore", desc = "Restore file from trash" },
-  { on = ["t", "c"], run = "shell -- trash-empty", desc = "Clear entire trash" },
+  { on = ["t", "r"], run = "shell --block -- trash-restore", desc = "Restore file from trash" },
+  { on = ["t", "c"], run = "shell --block -- trash-empty", desc = "Clear entire trash" },
   { on = ["t", "g"], run = "cd $HOME/.local/share/Trash/", desc = "Go to trash directory" },
 
   # ============ WALLPAPER ============
