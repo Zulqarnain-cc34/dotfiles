@@ -50,7 +50,7 @@ Everything below is pinned in `package.toml`. "Active" means it's actually wired
 | Plugin | Does | Wired as |
 |---|---|---|
 | [`full-border`](https://github.com/yazi-rs/plugins/tree/main/full-border.yazi) | Rounded border around every pane | `init.lua` setup, passive |
-| [`git`](https://github.com/yazi-rs/plugins/tree/main/git.yazi) | Inline git status signs (`?` untracked, colored unstaged/staged/etc.) | `init.lua` setup + `yazi.toml` fetcher, passive |
+| [`git`](https://github.com/yazi-rs/plugins/tree/main/git.yazi) | Inline git status signs: `?` untracked, colored (yellow unstaged / green staged or added / red deleted) for everything else. Directories "bubble up" the most relevant status of anything inside them, so a folder shows a colored marker if any file within it is dirty — this is why unrelated-looking folders can show a colored square at the right edge of the row | `init.lua` setup + `yazi.toml` fetcher, passive |
 | [`smart-enter`](https://github.com/yazi-rs/plugins/tree/main/smart-enter.yazi) | One key to open a file *or* enter a directory | `l` |
 | [`chmod`](https://github.com/yazi-rs/plugins/tree/main/chmod.yazi) | Interactive chmod on the selection | `cm` |
 | [`jump-to-char`](https://github.com/yazi-rs/plugins/tree/main/jump-to-char.yazi) | Vim-style jump to the next file starting with a letter | `f<char>` |
