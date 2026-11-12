@@ -51,7 +51,6 @@ Everything below is pinned in `package.toml`. "Active" means it's actually wired
 |---|---|---|
 | [`full-border`](https://github.com/yazi-rs/plugins/tree/main/full-border.yazi) | Rounded border around every pane | `init.lua` setup, passive |
 | [`git`](https://github.com/yazi-rs/plugins/tree/main/git.yazi) | Inline git status signs (`?` untracked, colored unstaged/staged/etc.) | `init.lua` setup + `yazi.toml` fetcher, passive |
-| [`mime-preview`](https://gitee.com/DreamMaoMao/mime-preview.yazi) | Faster MIME-based preview rendering | `init.lua` setup, passive |
 | [`smart-enter`](https://github.com/yazi-rs/plugins/tree/main/smart-enter.yazi) | One key to open a file *or* enter a directory | `l` |
 | [`chmod`](https://github.com/yazi-rs/plugins/tree/main/chmod.yazi) | Interactive chmod on the selection | `cm` |
 | [`jump-to-char`](https://github.com/yazi-rs/plugins/tree/main/jump-to-char.yazi) | Vim-style jump to the next file starting with a letter | `f<char>` |
@@ -63,6 +62,9 @@ Everything below is pinned in `package.toml`. "Active" means it's actually wired
 Installed but deliberately unused:
 - [`starship`](https://github.com/Rolv-Apneseth/starship.yazi) — prompt integration, left commented out in `init.lua`.
 - [`vcs-files`](https://github.com/yazi-rs/plugins/tree/main/vcs-files.yazi) — redundant with `git.yazi`'s fetcher, and its suggested keys would collide with `toggle-pane`'s `gc`.
+
+Installed but **broken** on this yazi version, `setup()` left commented out in `init.lua`:
+- [`mime-preview`](https://gitee.com/DreamMaoMao/mime-preview.yazi) — calls the removed/renamed `ya.mgr_emit` API, which throws on every redraw and corrupts the whole UI (header/status/borders stop rendering, panes appear to freeze/flicker). Needs an upstream fix before it can be re-enabled.
 
 ## Flavors
 
