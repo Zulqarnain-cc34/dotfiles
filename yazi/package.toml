@@ -53,6 +53,11 @@ use = "yazi-rs/plugins:piper"
 rev = "f703392"
 hash = "d1e0499cae5f3aeb628c267616d4b682"
 
+[[plugin.deps]]
+use = "DreamMaoMao/mime-preview"
+rev = "d2308e4"
+hash = "ae85f60f99b53936634bd3e84b93e157"
+
 [[flavor.deps]]
 use = "yazi-rs/flavors:catppuccin-mocha"
 rev = "20b47bf"

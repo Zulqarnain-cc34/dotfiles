@@ -140,6 +140,10 @@ run  = "pdf"
 prepend_previewers = [
   { url = "*/", run = 'piper -- eza -TL=1 --color=always --icons=always --group-directories-first --no-quotes "$1"' }
 ]
+prepend_fetchers = [
+  { url = "*", run = "git", group = "git" },
+  { url = "*/", run = "git", group = "git" },
+]
 [input]
 cursor_blink = false
 cd_title = "Change directory:"
