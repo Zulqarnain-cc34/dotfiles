@@ -5,6 +5,17 @@ All notable changes to this dotfiles repo are documented here.
 Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).  
 Versions are dated milestones, not semver releases (this is a personal config repo).
 
+## [2026-11-12] — ranger command fixes (branch: `modernize-2026`)
+
+### Fixed
+- `etu` (tar extract): `tar -xvf %s` passed every selected file to a single `tar` invocation — with more than one selected, tar treats the 2nd+ as path filters *inside* the first archive, fails with "Not found in archive", and extracts nothing (confirmed exit 2, zero files extracted, reproduced standalone before fixing). Now loops and extracts each selected archive individually; verified against multi-select and a filename containing a space (ranger's `%s`/`%f`/`%p` are all pre-quoted by ranger itself, confirmed via a debug binding).
+
+### Removed
+- `gkm`/`gkz` (mount/unmount a paired KDE Connect device) — same reasoning as yazi's `m,k` and lf's `mk`: not meaningful to verify outside a specific paired device.
+- `gkg`/`gku`/`gks` (rclone mount/unmount/sync to a hardcoded `mygoogledrive`/`assignmentRepo` remote) — same reasoning as lf's dropped SSHFS/OneDrive bindings: tied to the author's own cloud accounts.
+
+Verified live via `ranger` run inside `tmux` (text-based `capture-pane`, not X11 screenshots — this session's live GUI testing had already leaked real desktop content twice through window-ID-based screenshot capture, so ranger was deliberately tested through a fully isolated virtual terminal instead).
+
 ## [2026-11-12] — lf command fixes (branch: `modernize-2026`)
 
 ### Fixed
