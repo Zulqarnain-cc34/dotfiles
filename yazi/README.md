@@ -43,7 +43,7 @@ A clean, organized keymap for [Yazi](https://github.com/sxyazi/yazi) file manage
 
 ### Archive
 - `az/at/ag/ab` - Create ZIP/TAR/TAR.GZ/TAR.BZ2 (packs all selected, named after the last one, auto-renames on collision)
-- `au` - Extract archive
+- `au` - Extract archive(s) (smart: no wrapper if already single-rooted, auto-renames on collision, skips non-archives)
 
 ### Utilities
 - `;/:` - Shell command (interactive/block)
