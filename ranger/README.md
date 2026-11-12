@@ -21,10 +21,11 @@ Default ranger movement still applies; these are the notable custom maps from `r
 |-----|--------|
 | `zi` / `zh` / `<C-h>` | toggle image preview / show hidden |
 | `gzu` `gzz` `gzr` `gzn` | gunzip / gzip / gzip -r / gunzip -r |
-| `etu` | tar extract, one archive at a time (safe with multiple selected) |
+| `az` `at` `ag` `ab` | create ZIP / TAR / TAR.GZ / TAR.BZ2 — same scheme as yazi and lf |
+| `au` | extract archive(s), one at a time — same scheme as yazi and lf |
 | `yLd` `yip` `yij` `yit` `yik` | copy to Downloads / image png / jpg / text / send to phone |
 | `bg` | set wallpaper (`cp` to `~/.config/wall.png` + `feh --bg-scale`) |
 | `gsx` `gsw` `gss` | nsxiv all / set wallpaper from nsxiv marks (recursive / selection) |
 | `cke` `cku` `cfm` | chmod +x / -x / flac→mp3 batch |
 | `ei` `emp` `ef` `el` | exif info / mpv dvd / fzf select / fzf locate |
-| `<F8>` / `<DELETE>` / `dT` | trash |
+| `dt` / `tr` / `tc` / `tg` | trash / restore / clear trash / go to trash — same scheme as yazi and lf |
