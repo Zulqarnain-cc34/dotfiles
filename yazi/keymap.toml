@@ -43,7 +43,7 @@ keymap = [
 
   # ============ BUILT-IN COPY PATH ============
   { on = ["y", "p"], run = "copy path", desc = "Copy file path" },
-  { on = ["y", "d"], run = "copy dirname", desc = "Copy directory path" },
+  { on = ["y", "d"], run = "copy dirpath", desc = "Copy directory path" },
   { on = ["y", "n"], run = "copy filename", desc = "Copy filename" },
   { on = ["y", "."], run = "copy name_without_ext", desc = "Copy filename without extension" },
 
