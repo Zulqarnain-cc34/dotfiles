@@ -148,27 +148,7 @@ cmd mpv_dvd %{{mpv dvd:// --dvd-device="$f" &>/dev/null &}}
 
 # Archive bindings
 cmd unarchive ${{
-  if [ -f "$f" ] ; then
-    case "$f" in
-      *.tar.bz2)   tar xjf "$f"   ;;
-      *.tar.gz)    tar xzf "$f"   ;;
-      *.bz2)       bunzip2 "$f"   ;;
-      *.rar)       unrar x "$f"   ;;
-      *.gz)        gunzip "$f"    ;;
-      *.tar)       tar xf "$f"    ;;
-      *.tbz2)      tar xjf "$f"   ;;
-      *.tgz)       tar xzf "$f"   ;;
-      *.zip)       unzip "$f"     ;;
-      *.Z)         uncompress "$f";;
-      *.7z)        7z x "$f"      ;;
-      *.deb)       ar x "$f"      ;;
-      *.tar.xz)    tar xf "$f"    ;;
-      *.tar.zst)   unzstd "$f"    ;;      
-      *)           echo "'$f' cannot be extracted" ;;
-    esac
-  else
-    echo "'"$f"' is not a valid file"
-  fi
+  smart-extract.sh $fx
 }}
 
 cmd zip %{{
@@ -454,6 +434,8 @@ map c
 map ch chmod
 map cr stripspace
 map cd push :cd<space>
+map cke %chmod +x $fx
+map cku %chmod -x $fx
 
 map u
 map uv unselect
@@ -483,6 +465,7 @@ map at tar
 map ag targz
 map ab tarbz2
 map au unarchive
+map ap $mpv --no-video "$f"
 
 
 map Vna ${{

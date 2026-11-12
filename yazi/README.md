@@ -58,4 +58,7 @@ A clean, organized keymap for [Yazi](https://github.com/sxyazi/yazi) file manage
 - `ei/eg/ep/eP` - EXIF/PDF/nsxiv preview
 - `ap` - Play hovered file as audio only (no video)
 - `bg` - Set hovered image as desktop wallpaper
+- `cke/cku` - Make selected file(s) executable / non-executable
 - `tr/tc/tg` - Trash restore/clear/go to trash
+
+> Archive (`az/at/ag/ab/au`), audio-only play (`ap`), trash (`dt`/`tr/tc/tg`), and permissions (`cke/cku`) use the same keys and behavior in [lf](../lf/README.md) and [ranger](../ranger/README.md).
