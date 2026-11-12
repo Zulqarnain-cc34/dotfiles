@@ -12,6 +12,9 @@ Versions are dated milestones, not semver releases (this is a personal config re
 - `a,z`/`a,t`/`a,g`/`a,b`: archive creation baked in the full absolute path and could silently clobber a same-named output; now packs by basename (no leading path) and auto-renames on collision (`-1`, `-2`, ...).
 - `[opener]`/`e,e`/`e,i`/`e,g`: redundant manual quoting around already-quoted `%s`/`%1` (doubled quotes broke filenames containing spaces/pipes), and a missing `--block` left `nvim`/`exiftool | less` running detached instead of taking over the terminal.
 
+### Removed
+- Dead `[mgr] keymap` binding on `w` ("Set directory and exit", wrote `$YAZI_CWD` to `/tmp/yazi_cwd`) — `prepend_keymap` binds `w` to `quit` too and is matched first, so this one never fired. Confirmed live: pressing `w` quit without creating the file. `/tmp/yazi_cwd` wasn't read anywhere else in the repo either.
+
 ### Added
 - `yazi/smart-extract.sh`, bound to `a,u`: extracts into the current directory with no wrapper folder when an archive already has a single top-level folder (matches 7-Zip/Nautilus/Archive Utility convention); otherwise wraps the contents in a new folder named after the archive, auto-renamed on collision. Non-archive files in a mixed selection are skipped, not fatal.
 
