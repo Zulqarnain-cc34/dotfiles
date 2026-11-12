@@ -5,6 +5,18 @@ All notable changes to this dotfiles repo are documented here.
 Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).  
 Versions are dated milestones, not semver releases (this is a personal config repo).
 
+## [2026-11-12] — Yazi keymap fixes & smart extraction (branch: `modernize-2026`)
+
+### Fixed
+- `a,p`/`a,z`/`a,t`/`a,g`/`a,b`/`a,u`/`b,g`: all read yazi's selected-file placeholder via `$1`/`$@`/`${!#}` — those are shell positional params and are never set in yazi's `run` strings (only `%h`/`%s`/`%1`/`%d1` are text-substituted in). Replaced with the correct placeholders throughout.
+- `a,z`/`a,t`/`a,g`/`a,b`: archive creation baked in the full absolute path and could silently clobber a same-named output; now packs by basename (no leading path) and auto-renames on collision (`-1`, `-2`, ...).
+- `[opener]`/`e,e`/`e,i`/`e,g`: redundant manual quoting around already-quoted `%s`/`%1` (doubled quotes broke filenames containing spaces/pipes), and a missing `--block` left `nvim`/`exiftool | less` running detached instead of taking over the terminal.
+
+### Added
+- `yazi/smart-extract.sh`, bound to `a,u`: extracts into the current directory with no wrapper folder when an archive already has a single top-level folder (matches 7-Zip/Nautilus/Archive Utility convention); otherwise wraps the contents in a new folder named after the archive, auto-renamed on collision. Non-archive files in a mixed selection are skipped, not fatal.
+
+Verified by driving the real `yazi` binary end-to-end (real keystrokes, real screenshots), not just testing scripts standalone.
+
 ## [2026-11-12] — Security & repo hygiene hardening (branch: `modernize-2026`)
 
 ### Security
