@@ -13,6 +13,11 @@ keymap = [
   { on = "h", run = "leave", desc = "Go back to parent directory" },
   { on = "<Up>", run = "arrow -1", desc = "Move cursor up" },
   { on = "<Down>", run = "arrow 1", desc = "Move cursor down" },
+  { on = ["g", "g"], run = "arrow top", desc = "Go to top" },
+  { on = "G", run = "arrow bot", desc = "Go to bottom" },
+  { on = "<Home>", run = "arrow top", desc = "Go to top" },
+  { on = "<End>", run = "arrow bot", desc = "Go to bottom" },
+  { on = ["g", "f"], run = "follow", desc = "Follow hovered symlink" },
 
   # ============ PAGINATION ============
   { on = "<C-u>", run = "arrow -50%", desc = "Move cursor up half page" },
@@ -55,6 +60,7 @@ keymap = [
   { on = "N", run = "find_arrow --previous", desc = "Find previous match" },
   { on = ["z", "g"], run = "search --via=rg", desc = "Search file contents (ripgrep)" },
   { on = ["z", "f"], run = "search --via=fd", desc = "Search filenames (fd)" },
+  { on = "f", run = "plugin jump-to-char", desc = "Jump to next file starting with <char>" },
 
   # ============ BUILT-IN DELETE ============
   { on = ["d", "t"], run = "remove", desc = "Trash selected files" },
@@ -81,6 +87,15 @@ keymap = [
 
   # `show-info` is not a yazi command; 0.4+ uses `spot` for the file-info popup.
   { on = ["z", "i"], run = "spot", desc = "Show file info (spot popup)" },
+
+  # ============ PANE CONTROL (toggle-pane plugin) ============
+  { on = ["g", "p"], run = "plugin toggle-pane min-parent", desc = "Show or hide the parent pane" },
+  { on = ["g", "P"], run = "plugin toggle-pane max-parent", desc = "Maximize or restore the parent pane" },
+  { on = ["g", "c"], run = "plugin toggle-pane min-current", desc = "Show or hide the current pane" },
+  { on = ["g", "C"], run = "plugin toggle-pane max-current", desc = "Maximize or restore the current pane" },
+  { on = ["g", "v"], run = "plugin toggle-pane min-preview", desc = "Show or hide the preview pane" },
+  { on = ["g", "V"], run = "plugin toggle-pane max-preview", desc = "Maximize or restore the preview pane" },
+  { on = ["g", "r"], run = "plugin toggle-pane reset", desc = "Reset all panes to configured ratio" },
 ]
 
 prepend_keymap = [
@@ -113,4 +128,5 @@ prepend_keymap = [
   # ============ PERMISSIONS ============
   { on = ["c", "k", "e"], run = "shell --block -- chmod +x %s", desc = "Make selected file(s) executable" },
   { on = ["c", "k", "u"], run = "shell --block -- chmod -x %s", desc = "Make selected file(s) non-executable" },
+  { on = ["c", "m"], run = "plugin chmod", desc = "Chmod on selected files (interactive)" },
 ]

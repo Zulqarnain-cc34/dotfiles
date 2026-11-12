@@ -5,6 +5,12 @@ require("full-border"):setup({
 
 require("eza-preview"):setup()
 
+require("mime-preview"):setup()
+
+require("git"):setup({
+    order = 1500,
+})
+
 -- Starship prompt integration (requires: ya pkg add Rolv-Apneseth/starship)
 -- require("starship"):setup()
 
