@@ -1,0 +1,23 @@
+# Normalize line endings for anything git thinks is text.
+* text=auto eol=lf
+
+# Treat these as binary explicitly, so git never tries to diff/merge them as text.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.woff binary
+*.woff2 binary
+*.ttf binary
+*.otf binary
+*.svg binary
+
+# Vendored third-party code: exclude from GitHub's language stats and diff noise,
+# since none of it was written for (or by) this repo.
+firefox/firefox-sweet-theme/** linguist-vendored
+qutebrowser/greassmonkey/** linguist-vendored
+yazi/flavors/** linguist-vendored
+fish/functions/** linguist-generated
+fish/completions/** linguist-vendored
+fish/conf.d/** linguist-vendored

@@ -27,7 +27,7 @@ ok()   { echo "  OK: $*"; }
 warn() { echo "  WARN: $*"; }
 fail() { echo "  FAIL: $*"; errors=$((errors + 1)); }
 
-SECRET_PATH_RE='(client_secrets\.json|credentials\.json|\.mutt/accounts/|^\.w3m/cookie$|^\.w3m/history$|polybar/gmail/)'
+SECRET_PATH_RE='(client_secrets\.json|credentials\.json|\.mutt/accounts/|^\.w3m/cookie$|^\.w3m/history$|polybar/gmail/|^transmission-daemon/settings\.json$)'
 
 echo "==> Required repo scripts and docs"
 for f in scripts/bootstrap-secrets.sh scripts/validate.sh scripts/install-deps.sh docs/secrets.md docs/INSTALL.md scripts/host/README.md redshift/redshift.conf .aliases/aliases .aliases/functions; do
@@ -134,9 +134,20 @@ done < <(git ls-files 2>/dev/null | grep -E "$SECRET_PATH_RE" || true)
 [[ "$tracked_secrets" -eq 0 ]] && ok "no sensitive paths in git index"
 
 echo "==> Tracked config files"
-for f in newsboat/urls transmission-daemon/settings.json; do
+for f in newsboat/urls transmission-daemon/settings.json.example; do
     git ls-files --error-unmatch "$f" &>/dev/null && ok "$f tracked" || warn "$f not in git"
 done
+
+echo "==> No compiled binaries in the repo"
+# Dotfiles should never ship a compiled binary — install it via a package manager instead.
+binaries_found=0
+while IFS= read -r path; do
+    if [[ -n "$path" ]] && file -b "$path" 2>/dev/null | grep -qE 'ELF|Mach-O|PE32'; then
+        fail "tracked binary: $path (install via a package instead of committing it)"
+        binaries_found=1
+    fi
+done < <(git ls-files 2>/dev/null)
+[[ "$binaries_found" -eq 0 ]] && ok "no compiled binaries tracked"
 
 echo "==> Tool checks"
 if command -v nvim >/dev/null; then

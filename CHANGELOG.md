@@ -5,6 +5,24 @@ All notable changes to this dotfiles repo are documented here.
 Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).  
 Versions are dated milestones, not semver releases (this is a personal config repo).
 
+## [2026-11-12] — Security & repo hygiene hardening (branch: `modernize-2026`)
+
+### Security
+- `transmission-daemon/settings.json`, which carried a real `rpc-password` hash, is no longer tracked. It's now generated from a sanitized `settings.json.example` by `scripts/bootstrap-secrets.sh` (same pattern already used for `.gitconfig` and the rofi ribbon colours). **If you used that password on a real daemon, change it** — it had been public in this repo's history before this change.
+- `scripts/validate.sh`: added a guard so `transmission-daemon/settings.json` fails validation if it's ever re-tracked; added a check that fails on any committed compiled binary (ELF/Mach-O/PE32).
+- Removed `eval` from `bash_scripts/scripts/rofi-klipper.sh` — none of the calls needed shell re-parsing, so this closes an unnecessary injection surface.
+
+### Removed
+- ~30MB of committed Transmission blocklist data (`transmission-daemon/blocklists/*.p2p*`) — it's fetched at runtime via `settings.json`'s `blocklist-url` and never needed to be in git.
+- A compiled binary (`bash_scripts/scripts/greenclip`) that dotfiles should never ship.
+- `bash_scripts/scripts/autostart.sh` — an orphaned, unreferenced file (the real autostart lives in `bspwm/bspwmrc`); it also carried the dead binary call above and the deprecated picom `--experimental-backends` flag.
+
+### Added
+- `.gitattributes`: line-ending normalization, binary markers for images/fonts, and `linguist-vendored`/`linguist-generated` on third-party code (firefox-sweet-theme, qutebrowser greasemonkey scripts, yazi flavor packs, fish's generated functions).
+- `setup.sh --dry-run`: prints every planned action with zero filesystem writes.
+- `setup.sh --check`: reports per-target drift (ok / drift / missing) with zero filesystem writes.
+- A live CI "secrets scan" badge on the main README.
+
 ## [2026-11-11] — Documentation overhaul (branch: `modernize-2026`)
 
 ### Added
