@@ -95,7 +95,7 @@ prepend_keymap = [
   { on = ["e", "i"], run = "shell --block -- exiftool %h | less", desc = "Show EXIF metadata" },
   { on = ["e", "g"], run = 'shell -- f=%h; magick %s "${f%.*}.pdf"', desc = "Convert image(s) to PDF (merges all selected into one)" },
   { on = ["e", "p"], run = "shell -- nsxiv -t ./* &> /dev/null &", desc = "Preview images in directory" },
-  { on = ["e", "P"], run = "shell -- nsxiv \"$1\" &> /dev/null &", desc = "Open image with nsxiv" },
+  { on = ["e", "P"], run = "shell -- nsxiv %h &> /dev/null &", desc = "Open image with nsxiv" },
 
   # ============ ARCHIVE OPERATIONS ============
   { on = ["a", "z"], run = "shell -- zip -r \"$1\" \"$1\"", desc = "Create ZIP archive" },
