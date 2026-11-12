@@ -11,7 +11,7 @@ function list(){
 	i=0
 	last_item="something"
 	while [[ ! -z $last_item ]];do
-		eval "$get_item $i" | paste -sd ' ' | cut -c1-80 | read last_item 
+		$get_item "$i" | paste -sd ' ' | cut -c1-80 | read last_item
 		i=$((i+1))
 		echo $last_item
 	done
@@ -24,15 +24,15 @@ case $ret in
 	10)
 		#delee selected
 		#dunno how.. so clear all ;)
-		eval $clear_history
+		$clear_history
 		;;
 	11)
 		#Alt+m
-		eval $show_klipper
+		$show_klipper
 		;;
 	0)
 		#update clipboard with selected
-		eval $get_item "$selected" | head -c -1 | eval xargs -0 -IREPLACE $set_content REPLACE
-		#eval $get_item "$selected" | perl -pe 'chomp if eof' - | eval xargs -0 -IREPLACE $set_content REPLACE
+		$get_item "$selected" | head -c -1 | xargs -0 -IREPLACE $set_content REPLACE
+		#$get_item "$selected" | perl -pe 'chomp if eof' - | xargs -0 -IREPLACE $set_content REPLACE
 		;;
 esac
