@@ -34,11 +34,6 @@ rev = "f703392"
 hash = "5b2fbef7d1513ce38ff72623a071a5e"
 
 [[plugin.deps]]
-use = "AnirudhG07/nbpreview"
-rev = "b504594"
-hash = "b83919985400521dee78e1c352b5d9db"
-
-[[plugin.deps]]
 use = "yazi-rs/plugins:smart-enter"
 rev = "f703392"
 hash = "187cc58ba7ac3befd49c342129e6f1b6"
@@ -52,6 +47,11 @@ hash = "c238595c801caa4f28553b9af8cf8804"
 use = "yazi-rs/plugins:piper"
 rev = "f703392"
 hash = "d1e0499cae5f3aeb628c267616d4b682"
+
+[[plugin.deps]]
+use = "DreamMaoMao/mime-preview"
+rev = "d2308e4"
+hash = "ae85f60f99b53936634bd3e84b93e157"
 
 [[flavor.deps]]
 use = "yazi-rs/flavors:catppuccin-mocha"

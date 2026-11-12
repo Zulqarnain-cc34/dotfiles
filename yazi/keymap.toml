@@ -8,11 +8,16 @@ keymap = [
   # ============ NAVIGATION ============
   { on = "j", run = "arrow 1 --no-wrap", desc = "Move down (no wrap)" },
   { on = "k", run = "arrow -1 --no-wrap", desc = "Move up (no wrap)" },
-  { on = ["a", "p"], run = 'shell --block "mpv --no-video \"$0\""', desc = "Play as audio only" },
+  { on = ["a", "p"], run = "shell --block -- mpv --no-video %h", desc = "Play as audio only" },
   { on = "l", run = "plugin smart-enter", desc = "Open file or enter directory" },
   { on = "h", run = "leave", desc = "Go back to parent directory" },
   { on = "<Up>", run = "arrow -1", desc = "Move cursor up" },
   { on = "<Down>", run = "arrow 1", desc = "Move cursor down" },
+  { on = ["g", "g"], run = "arrow top", desc = "Go to top" },
+  { on = "G", run = "arrow bot", desc = "Go to bottom" },
+  { on = "<Home>", run = "arrow top", desc = "Go to top" },
+  { on = "<End>", run = "arrow bot", desc = "Go to bottom" },
+  { on = ["g", "f"], run = "follow", desc = "Follow hovered symlink" },
 
   # ============ PAGINATION ============
   { on = "<C-u>", run = "arrow -50%", desc = "Move cursor up half page" },
@@ -43,7 +48,7 @@ keymap = [
 
   # ============ BUILT-IN COPY PATH ============
   { on = ["y", "p"], run = "copy path", desc = "Copy file path" },
-  { on = ["y", "d"], run = "copy dirname", desc = "Copy directory path" },
+  { on = ["y", "d"], run = "copy dirpath", desc = "Copy directory path" },
   { on = ["y", "n"], run = "copy filename", desc = "Copy filename" },
   { on = ["y", "."], run = "copy name_without_ext", desc = "Copy filename without extension" },
 
@@ -53,6 +58,9 @@ keymap = [
   { on = "?", run = "find --previous", desc = "Find file (backward)" },
   { on = "n", run = "find_arrow", desc = "Find next match" },
   { on = "N", run = "find_arrow --previous", desc = "Find previous match" },
+  { on = ["z", "g"], run = "search --via=rg", desc = "Search file contents (ripgrep)" },
+  { on = ["z", "f"], run = "search --via=fd", desc = "Search filenames (fd)" },
+  { on = "f", run = "plugin jump-to-char", desc = "Jump to next file starting with <char>" },
 
   # ============ BUILT-IN DELETE ============
   { on = ["d", "t"], run = "remove", desc = "Trash selected files" },
@@ -76,10 +84,18 @@ keymap = [
   { on = ["s", "n"], run = "sort natural --reverse", desc = "Sort by name naturally (reverse)" },
   { on = ["s", "s"], run = "sort size --reverse", desc = "Sort by size (largest first)" },
   { on = ["s", "t"], run = "sort mtime --reverse", desc = "Sort by modification time (newest first)" },
-  { on = ["w"] , run = "sh -c 'echo \"$YAZI_CWD\" > /tmp/yazi_cwd && exit'", desc = "Set directory and exit"},
 
   # `show-info` is not a yazi command; 0.4+ uses `spot` for the file-info popup.
   { on = ["z", "i"], run = "spot", desc = "Show file info (spot popup)" },
+
+  # ============ PANE CONTROL (toggle-pane plugin) ============
+  { on = ["g", "p"], run = "plugin toggle-pane min-parent", desc = "Show or hide the parent pane" },
+  { on = ["g", "P"], run = "plugin toggle-pane max-parent", desc = "Maximize or restore the parent pane" },
+  { on = ["g", "c"], run = "plugin toggle-pane min-current", desc = "Show or hide the current pane" },
+  { on = ["g", "C"], run = "plugin toggle-pane max-current", desc = "Maximize or restore the current pane" },
+  { on = ["g", "v"], run = "plugin toggle-pane min-preview", desc = "Show or hide the preview pane" },
+  { on = ["g", "V"], run = "plugin toggle-pane max-preview", desc = "Maximize or restore the preview pane" },
+  { on = ["g", "r"], run = "plugin toggle-pane reset", desc = "Reset all panes to configured ratio" },
 ]
 
 prepend_keymap = [
@@ -88,27 +104,29 @@ prepend_keymap = [
   { on = ":", run = "shell --block --interactive", desc = "Run shell command (block until finishes)" },
   { on = "w", run = "quit", desc = "Quit and CD into current directory" },
 
-  { on = ["m", "k"], run = "shell -- qdbus org.kde.kdeconnect /modules/kdeconnect/devices/$(kdeconnect-cli -a --id-only)/sftp mountAndWait", desc = "Mount KDE Connect" },
-  { on = ["a", "n"], run = "shell -- sshfs anime@192.168.100.66:/home/anime/Videos/ $HOME/mnt/anime/", desc = "Mount anime share via SSHFS" },
-
-  { on = ["e", "e"], run = 'shell -- nvim "$1"', desc = "Edit file with Neovim" },
-  { on = ["e", "i"], run = "shell -- exiftool \"$1\" | less", desc = "Show EXIF metadata" },
-  { on = ["e", "g"], run = "shell -- magick \"$1\" \"${1%.*}.pdf\"", desc = "Convert image to PDF" },
+  { on = ["e", "e"], run = "shell --block -- nvim %h", desc = "Edit file with Neovim" },
+  { on = ["e", "i"], run = "shell --block -- exiftool %h | less", desc = "Show EXIF metadata" },
+  { on = ["e", "g"], run = 'shell -- f=%h; magick %s "${f%.*}.pdf"', desc = "Convert image(s) to PDF (merges all selected into one)" },
   { on = ["e", "p"], run = "shell -- nsxiv -t ./* &> /dev/null &", desc = "Preview images in directory" },
-  { on = ["e", "P"], run = "shell -- nsxiv \"$1\" &> /dev/null &", desc = "Open image with nsxiv" },
+  { on = ["e", "P"], run = "shell -- nsxiv %h &> /dev/null &", desc = "Open image with nsxiv" },
 
   # ============ ARCHIVE OPERATIONS ============
-  { on = ["a", "z"], run = "shell -- zip -r \"$1\" \"$1\"", desc = "Create ZIP archive" },
-  { on = ["a", "t"], run = "shell -- tar cvf \"$1.tar\" \"$1\"", desc = "Create TAR archive" },
-  { on = ["a", "g"], run = "shell -- tar cvzf \"$1.tar.gz\" \"$1\"", desc = "Create TAR.GZ archive" },
-  { on = ["a", "b"], run = "shell -- tar cjvf \"$1.tar.bz2\" \"$1\"", desc = "Create TAR.BZ2 archive" },
-  { on = ["a", "u"], run = "shell -- case \"${1##*.}\" in tar.bz2) tar xjf \"$1\";;tar.gz|tgz) tar xzf \"$1\";;bz2) bunzip2 \"$1\";;rar) unrar x \"$1\";;gz) gunzip \"$1\";;tar) tar xf \"$1\";;zip) unzip \"$1\";;Z) uncompress \"$1\";;7z) 7z x \"$1\";;deb) ar x \"$1\";;tar.xz) tar xf \"$1\";;tar.zst) unzstd \"$1\";;esac", desc = "Extract archive" },
+  { on = ["a", "z"], run = 'shell -- pack() { f=""; for p in "$@"; do f="$p"; done; out="$f.zip"; i=1; while [ -e "$out" ]; do out="$f-$i.zip"; i=$((i+1)); done; d=$(dirname "$1"); cd "$d" || return 1; names=(); for p in "$@"; do names+=("$(basename "$p")"); done; zip -r "$out" "${names[@]}"; }; pack %s', desc = "Create ZIP archive (named after last selected, all selected packed; folders keep their own structure, no leading path)" },
+  { on = ["a", "t"], run = 'shell -- pack() { f=""; for p in "$@"; do f="$p"; done; out="$f.tar"; i=1; while [ -e "$out" ]; do out="$f-$i.tar"; i=$((i+1)); done; d=$(dirname "$1"); cd "$d" || return 1; names=(); for p in "$@"; do names+=("$(basename "$p")"); done; tar -cvf "$out" "${names[@]}"; }; pack %s', desc = "Create TAR archive (named after last selected, all selected packed; folders keep their own structure, no leading path)" },
+  { on = ["a", "g"], run = 'shell -- pack() { f=""; for p in "$@"; do f="$p"; done; out="$f.tar.gz"; i=1; while [ -e "$out" ]; do out="$f-$i.tar.gz"; i=$((i+1)); done; d=$(dirname "$1"); cd "$d" || return 1; names=(); for p in "$@"; do names+=("$(basename "$p")"); done; tar -cvzf "$out" "${names[@]}"; }; pack %s', desc = "Create TAR.GZ archive (named after last selected, all selected packed; folders keep their own structure, no leading path)" },
+  { on = ["a", "b"], run = 'shell -- pack() { f=""; for p in "$@"; do f="$p"; done; out="$f.tar.bz2"; i=1; while [ -e "$out" ]; do out="$f-$i.tar.bz2"; i=$((i+1)); done; d=$(dirname "$1"); cd "$d" || return 1; names=(); for p in "$@"; do names+=("$(basename "$p")"); done; tar -cjvf "$out" "${names[@]}"; }; pack %s', desc = "Create TAR.BZ2 archive (named after last selected, all selected packed; folders keep their own structure, no leading path)" },
+  { on = ["a", "u"], run = "shell -- smart-extract.sh %s", desc = "Extract archive(s) - smart: no wrapper folder if already single-rooted, auto-renames on collision" },
 
   # ============ TRASH MANAGEMENT ============
-  { on = ["t", "r"], run = "shell -- trash-restore", desc = "Restore file from trash" },
-  { on = ["t", "c"], run = "shell -- trash-empty", desc = "Clear entire trash" },
+  { on = ["t", "r"], run = "shell --block -- trash-restore", desc = "Restore file from trash" },
+  { on = ["t", "c"], run = "shell --block -- trash-empty", desc = "Clear entire trash" },
   { on = ["t", "g"], run = "cd $HOME/.local/share/Trash/", desc = "Go to trash directory" },
 
   # ============ WALLPAPER ============
-  { on = ["b", "g"], run = "shell -- \"$HOME/.config/yazi/set-wallpaper.sh\" \"$1\"", desc = "Set hovered image as wallpaper" },
+  { on = ["b", "g"], run = "shell -- $HOME/.config/yazi/set-wallpaper.sh %h", desc = "Set hovered image as wallpaper" },
+
+  # ============ PERMISSIONS ============
+  { on = ["c", "k", "e"], run = "shell --block -- chmod +x %s", desc = "Make selected file(s) executable" },
+  { on = ["c", "k", "u"], run = "shell --block -- chmod -x %s", desc = "Make selected file(s) non-executable" },
+  { on = ["c", "m"], run = "plugin chmod", desc = "Chmod on selected files (interactive)" },
 ]
