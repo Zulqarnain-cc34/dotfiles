@@ -5,6 +5,14 @@ All notable changes to this dotfiles repo are documented here.
 Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).  
 Versions are dated milestones, not semver releases (this is a personal config repo).
 
+## [2026-11-12] — Image preview: ueberzug → kitty (branch: `modernize-2026`)
+
+### Fixed
+- ranger's `preview_images_method` was set to `ueberzug` (the original, X11-window-overlay-based tool), which crashes with `OSError: [Errno 25] Inappropriate ioctl for device` outside a plain TTY and is well known to be unreliable, especially under terminal multiplexers. The user's actual terminal is kitty (`TERMINAL=kitty` in `.zshenv`/`.profile`), which ranger supports natively — switched `preview_images_method` to `kitty`.
+- lf's `preview` script's `image()` function always went through the same ueberzug-FIFO path whenever `$DISPLAY` was set, never checking for kitty at all. Added a `*kitty*` case using kitty's own `icat` kitten (ships with kitty, no extra dependency) via the documented `--place=<w>x<h>@<x>x<y>` syntax. `cleaner` updated to match (`icat --clear`) so switching away from an image preview actually clears it.
+
+Confirmed `kitty +kitten icat` is installed and its argument parsing is valid (tested outside a real kitty window, which fails at the "open controlling terminal" step — expected, not a syntax error; and again inside `tmux`, where it fails to render for the same documented reason kitty's own source gives: graphics protocol doesn't work through multiplexers). Actual image rendering could not be verified by me — kitty's protocol requires a real kitty window, and this session's X11 screenshot testing had already leaked real desktop content three times, so I did not risk a fourth attempt. **This one needs your own eyes**: open `ranger` or `lf` on an image file in your real kitty terminal (not inside tmux) and confirm it renders.
+
 ## [2026-11-12] — Cross-tool feature parity (branch: `modernize-2026`)
 
 ### Changed
