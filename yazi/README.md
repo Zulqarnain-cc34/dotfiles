@@ -11,62 +11,24 @@
 
 > Built on **[Yazi](https://yazi-rs.github.io)** by sxyazi. ❤️
 
-[Yazi](https://github.com/sxyazi/yazi) ("blazing fast") is an async, Rust-based terminal file manager — it's the daily driver in this repo because it stays responsive on large directories, previews almost anything inline (images, video, PDFs, archives) using the kitty graphics protocol, and is extensible through a real plugin ecosystem managed by its own package manager, `ya`. This config layers vim-style navigation and a consistent set of custom shortcuts on top of the stock bindings, and keeps the same keys and behavior in [lf](../lf/README.md) wherever the two tools overlap (archive, trash, permissions).
+A fast, async terminal file manager with inline previews (images, video, PDFs, archives) via kitty's graphics protocol. Plugins are managed with yazi's own `ya` package manager, pinned in [`package.toml`](package.toml) — see [`packages.md`](packages.md) for the install log and what each one is wired to.
 
-## Requirements
+### Plugins
 
-Core: `yazi` itself, plus [`ya`](#package-management-ya) (bundled with the yazi install) for managing plugins/flavors.
-
-External tools the plugins and openers shell out to:
-
-| Tool | Used for |
-|---|---|
-| `rg` (ripgrep), `fd` | `zg`/`zf` content/filename search |
-| `eza` | Directory preview (piped through `piper`) |
-| `kitty` | Image/video/PDF preview via the `icat` kitten |
-| `ffmpegthumbnailer`, `chafa` | Video/image thumbnailing fallback |
-| `exiftool` | EXIF metadata (`ei`) |
-| `mpv`, `nsxiv` | Audio-only playback (`ap`), image viewing (`ep`/`eP`) |
-| `magick` (ImageMagick) | AVIF/HEIF/JXL preview, image→PDF conversion (`eg`) |
-
-## Package management (`ya`)
-
-Plugins and flavors aren't vendored into this repo — they're declared in [`package.toml`](package.toml) and fetched by yazi's own package manager:
-
-```bash
-ya pkg add <owner>/<repo>[:<subdir>]   # install a plugin or flavor, pins it in package.toml
-ya pkg upgrade                         # update everything already pinned
-ya pkg install                         # fetch everything pinned in package.toml (fresh machine)
-ya pkg list                            # show what's installed
-```
-
-[`packages.md`](packages.md) keeps the original `ya pkg add` command per plugin, annotated with what each one is wired to (or deliberately left unwired) — useful as an install log/reference, separate from `package.toml`'s machine-readable pins.
-
-## Plugins
-
-Everything below is pinned in `package.toml`. "Active" means it's actually wired into `init.lua`/`keymap.toml`/`yazi.toml` and does something; a couple of entries are installed but intentionally inert, noted as such.
-
-| Plugin | Does | Wired as |
+| Plugin | Key | Note |
 |---|---|---|
-| [`full-border`](https://github.com/yazi-rs/plugins/tree/main/full-border.yazi) | Rounded border around every pane | `init.lua` setup, passive |
-| [`git`](https://github.com/yazi-rs/plugins/tree/main/git.yazi) | Inline git status signs: `?` untracked, colored (yellow unstaged / green staged or added / red deleted) for everything else. Directories "bubble up" the most relevant status of anything inside them, so a folder shows a colored marker if any file within it is dirty — this is why unrelated-looking folders can show a colored square at the right edge of the row | `init.lua` setup + `yazi.toml` fetcher, passive |
-| [`smart-enter`](https://github.com/yazi-rs/plugins/tree/main/smart-enter.yazi) | One key to open a file *or* enter a directory | `l` |
-| [`chmod`](https://github.com/yazi-rs/plugins/tree/main/chmod.yazi) | Interactive chmod on the selection | `cm` |
-| [`jump-to-char`](https://github.com/yazi-rs/plugins/tree/main/jump-to-char.yazi) | Vim-style jump to the next file starting with a letter | `f<char>` |
-| [`toggle-pane`](https://github.com/yazi-rs/plugins/tree/main/toggle-pane.yazi) | Show/hide/maximize the parent, current, or preview pane | `gp/gP` `gc/gC` `gv/gV` `gr` |
-| [`piper`](https://github.com/yazi-rs/plugins/tree/main/piper.yazi) | Pipes any shell command's output into the preview pane | `yazi.toml` previewer — currently used to preview directories via `eza` |
-| [`eza-preview`](https://github.com/ahkohd/eza-preview.yazi) | Interactive tree/list directory preview with its own toggle keys | Installed, `setup()` called in `init.lua` — **but never registered as a previewer**, so it currently does nothing; `piper` handles directory previews directly instead |
+| `git` | — | Inline status signs; directories show the worst status of anything inside them |
+| `smart-enter` | `l` | Open file or enter directory in one key |
+| `chmod` | `cm` | Interactive chmod on the selection |
+| `jump-to-char` | `f<char>` | Jump to next file starting with a letter |
+| `toggle-pane` | `gp/gP` `gc/gC` `gv/gV` `gr` | Show/hide/maximize parent, current, preview panes |
+| `full-border` | — | Rounded pane borders |
+| `piper` | — | Pipes `eza` into the directory preview |
+| `eza-preview` | — | Installed, inactive (never registered as a previewer) |
+| `vcs-files`, `starship` | — | Installed, unused |
+| `mime-preview` | — | Installed, **disabled** — breaks the UI on 26.9.1 (calls a removed API) |
 
-Installed but deliberately unused:
-- [`starship`](https://github.com/Rolv-Apneseth/starship.yazi) — prompt integration, left commented out in `init.lua`.
-- [`vcs-files`](https://github.com/yazi-rs/plugins/tree/main/vcs-files.yazi) — redundant with `git.yazi`'s fetcher, and its suggested keys would collide with `toggle-pane`'s `gc`.
-
-Installed but **broken** on this yazi version, `setup()` left commented out in `init.lua`:
-- [`mime-preview`](https://gitee.com/DreamMaoMao/mime-preview.yazi) — calls the removed/renamed `ya.mgr_emit` API, which throws on every redraw and corrupts the whole UI (header/status/borders stop rendering, panes appear to freeze/flicker). Needs an upstream fix before it can be re-enabled.
-
-## Flavors
-
-Two color flavors are pinned (`catppuccin-mocha`, `tokyonight-storm`), but neither is actually activated — there's no `theme.toml` setting `flavor.dark`/`flavor.light`, so yazi falls back to its built-in default colorscheme.
+Two flavors (`catppuccin-mocha`, `tokyonight-storm`) are pinned but not activated; no `theme.toml` means the default colorscheme is in use.
 
 ## Key Bindings
 
@@ -91,7 +53,6 @@ Two color flavors are pinned (`catppuccin-mocha`, `tokyonight-storm`), but neith
 - `zi` - Show file info (spot popup)
 - `gp/gP` `gc/gC` `gv/gV` - Show-hide / maximize-restore parent, current, preview panes
 - `gr` - Reset pane layout to configured ratio
-- Modified/untracked files are marked inline (git status, color-coded)
 
 ### Copy/Paste
 - `yy` - Copy files
