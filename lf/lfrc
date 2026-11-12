@@ -197,10 +197,37 @@ cmd unarchive ${{
   fi
 }}
 
-cmd zip %zip -r "$f" "$f"
-cmd tar %tar cvf "$f.tar" "$f"
-cmd targz %tar cvzf "$f.tar.gz" "$f"
-cmd tarbz2 %tar cjvf "$f.tar.bz2" "$f"
+cmd zip %{{
+  cd "$(dirname "$f")" || exit 1
+  name="$(basename "$f")"
+  out="$name.zip"; i=1
+  while [ -e "$out" ]; do out="$name-$i.zip"; i=$((i+1)); done
+  zip -r "$out" "$name"
+}}
+
+cmd tar %{{
+  cd "$(dirname "$f")" || exit 1
+  name="$(basename "$f")"
+  out="$name.tar"; i=1
+  while [ -e "$out" ]; do out="$name-$i.tar"; i=$((i+1)); done
+  tar cvf "$out" "$name"
+}}
+
+cmd targz %{{
+  cd "$(dirname "$f")" || exit 1
+  name="$(basename "$f")"
+  out="$name.tar.gz"; i=1
+  while [ -e "$out" ]; do out="$name-$i.tar.gz"; i=$((i+1)); done
+  tar cvzf "$out" "$name"
+}}
+
+cmd tarbz2 %{{
+  cd "$(dirname "$f")" || exit 1
+  name="$(basename "$f")"
+  out="$name.tar.bz2"; i=1
+  while [ -e "$out" ]; do out="$name-$i.tar.bz2"; i=$((i+1)); done
+  tar cjvf "$out" "$name"
+}}
 
 cmd clear_trash %trash-empty
 
@@ -472,8 +499,6 @@ map md push :mkdir<space>
 map mf push :mkfile<space>
 map mk mount_kdeconnect
 map mi mount_iso
-map mg mount_Gdrive
-map mn mount_nextcloud
 
 map c
 map ch chmod
@@ -507,7 +532,7 @@ map es share
 map az zip
 map at tar
 map ag targz
-map ab targz
+map ab tarbz2
 map au unarchive
 map anm anime-mount 
 

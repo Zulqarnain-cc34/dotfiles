@@ -5,6 +5,18 @@ All notable changes to this dotfiles repo are documented here.
 Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).  
 Versions are dated milestones, not semver releases (this is a personal config repo).
 
+## [2026-11-12] — lf command fixes (branch: `modernize-2026`)
+
+### Fixed
+- `az` (`cmd zip`): `zip -r "$f" "$f"` used the same name for input and output — zip never auto-appends `.zip` to a file that already has an extension, so it tried to treat the source as an existing archive to update and failed with "Zip file structure invalid". Reproduced standalone before fixing.
+- `az`/`at`/`ag`/`tarbz2`: all passed `$f` (lf's full absolute path) straight to zip/tar, baking the leading directory structure into the archive — confirmed live (`tar tf` showed `tmp/lf_archive_test/doc.txt` instead of `doc.txt`). All four now `cd` into the file's directory and pack by basename, with collision-safe auto-rename (`-1`, `-2`, ...), matching the yazi archive fixes above.
+- `map ab targz` — duplicate of `ag`; `ab` now correctly maps to the already-defined (but previously unreachable) `tarbz2` command.
+
+### Removed
+- `map mg mount_Gdrive` / `map mn mount_nextcloud` — both referenced commands that were never defined anywhere in `lfrc`; pressing either produced an "unknown mapping" error.
+
+Verified by installing `lf` and driving the real binary end-to-end, not just reasoning about the shell one-liners.
+
 ## [2026-11-12] — Yazi keymap fixes & smart extraction (branch: `modernize-2026`)
 
 ### Fixed
