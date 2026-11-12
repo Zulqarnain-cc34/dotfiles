@@ -8,7 +8,7 @@ Versions are dated milestones, not semver releases (this is a personal config re
 ## [2026-11-12] — Security & repo hygiene hardening (branch: `modernize-2026`)
 
 ### Security
-- `transmission-daemon/settings.json`, which carried a real `rpc-password` hash, is no longer tracked. It's now generated from a sanitized `settings.json.example` by `scripts/bootstrap-secrets.sh` (same pattern already used for `.gitconfig` and the rofi ribbon colours). **If you used that password on a real daemon, change it** — it had been public in this repo's history before this change.
+- `transmission-daemon/settings.json`, which carried a real `rpc-password` hash, is no longer tracked. It's now generated from a sanitized `settings.json.example` by `scripts/bootstrap-secrets.sh` (same pattern already used for `.gitconfig` and the rofi ribbon colours).
 - `scripts/validate.sh`: added a guard so `transmission-daemon/settings.json` fails validation if it's ever re-tracked; added a check that fails on any committed compiled binary (ELF/Mach-O/PE32).
 - Removed `eval` from `bash_scripts/scripts/rofi-klipper.sh` — none of the calls needed shell re-parsing, so this closes an unnecessary injection surface.
 
