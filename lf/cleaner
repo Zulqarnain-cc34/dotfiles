@@ -1,6 +1,6 @@
 #!/bin/sh
 case "$TERM" in
-	*kitty*) kitty +kitten icat --clear --stdin=no </dev/null >/dev/null 2>&1 ;;
+	*kitty*) kitty +kitten icat --clear --stdin=no < /dev/tty > /dev/tty 2>&1 ;;
 esac
 if [ -n "$FIFO_UEBERZUG" ]; then
 	printf '{"action": "remove", "identifier": "PREVIEW"}\n' > "$FIFO_UEBERZUG"
