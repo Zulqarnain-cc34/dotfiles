@@ -5,6 +5,15 @@ All notable changes to this dotfiles repo are documented here.
 Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).  
 Versions are dated milestones, not semver releases (this is a personal config repo).
 
+## [2026-11-12] — Cross-tool keybinding consistency (branch: `modernize-2026`)
+
+### Changed
+- ranger's archive scheme (`gzu`/`gzz`/`gzr`/`gzn`/`etu`, tar-only, no creation) replaced with `az`/`at`/`ag`/`ab`/`au` — same letters, same behavior (collision-safe, no leading path, one archive at a time on extract) as yazi and lf. `gzu`/`gzz`/`gzr`/`gzn` (single-file gzip, a different operation) are kept as-is.
+- ranger's trash binding moved from `dT` to `dt`, and `tr`/`tc`/`tg` (restore/clear/go-to-trash) added — same scheme as yazi and lf. Overrides ranger's stock `dt` (cut mode=toggle, still reachable via `dd`/`da`/`dr`) and stock bare `t` (`tag_toggle`, no longer reachable); both were real stock features, not bugs, overridden deliberately for consistency.
+- ranger's bare `a` (`rename_append`) unmapped to make room for the `a*` archive prefix — still reachable via `<F2>`, `A`, or `I`.
+
+Verified live via `ranger` in `tmux`: `az`/`at`/`ag`/`ab` create correctly (no leading path, collision-safe rename confirmed earlier this session), `au` extracts and correctly surfaces `unzip`'s interactive overwrite prompt, `dt`/`tr`/`tc`/`tg` all round-trip correctly through real `trash-put`/`trash-restore`/`trash-empty`.
+
 ## [2026-11-12] — ranger command fixes (branch: `modernize-2026`)
 
 ### Fixed
