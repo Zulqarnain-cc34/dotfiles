@@ -25,14 +25,14 @@ ueberzug_offset = [ 0, 0, 0, 0 ]
 
 [opener]
 audio_only = [
-  { run = 'mpv --no-video "$@"', block = true, for = "unix" }
+  { run = "mpv --no-video %s", block = true, for = "unix" }
 ]
 edit = [
-  { run = '${EDITOR:-nvim} "$@"', block = true, for = "unix" }
+  { run = '${EDITOR:-nvim} "%s"', block = true, for = "unix" }
 ]
 
 open = [
-  { run = 'xdg-open "$@"', orphan = true, for = "unix" },
+  { run = 'xdg-open "%s"', orphan = true, for = "unix" },
   { run = 'open "$@"', desc = "Open", for = "macos" },
   { run = 'start "" "%1"', orphan = true, desc = "Open", for = "windows" },
 ]
