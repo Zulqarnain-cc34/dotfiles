@@ -24,6 +24,13 @@ A clean, organized keymap for [Yazi](https://github.com/sxyazi/yazi) file manage
 - `q or w` - cd into current dir in yazi and close yazi
 - `u` - Clear selections and unyank
 
+### Search / Sort / View
+- `/` `?` - Find file forward/backward
+- `n/N` - Next/previous match
+- `.` - Toggle hidden files
+- `sb/se/sn/ss/st` - Sort by creation/extension/name/size/modified time
+- `zi` - Show file info (spot popup)
+
 ### Copy/Paste
 - `yy` - Copy files
 - `dd` - Cut files
