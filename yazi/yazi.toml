@@ -45,7 +45,7 @@ extract = [
   { run = 'ya pub extract --list "$@"', desc = "Extract here", for = "unix" },
 ]
 play = [
-  { run = 'mpv --force-window "$@"', orphan = true, for = "unix" },
+  { run = 'mpv --force-window "%s"', orphan = true, for = "unix" },
   { run = 'mpv --force-window %*', orphan = true, for = "windows" },
 ]
 
