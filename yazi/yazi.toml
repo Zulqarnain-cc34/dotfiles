@@ -110,10 +110,6 @@ run  = "archive"
 url = "*"           # Changed from name to url
 run  = "file"
 
-[[plugin.previewers]]
-url = "*.ipynb"     # Changed from name to url
-run  = "nbpreview"
-
 # --- Preloaders ---
 
 [[plugin.preloaders]]
