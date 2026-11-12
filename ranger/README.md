@@ -22,7 +22,8 @@ Default ranger movement still applies; these are the notable custom maps from `r
 | `zi` / `zh` / `<C-h>` | toggle image preview / show hidden |
 | `gzu` `gzz` `gzr` `gzn` | gunzip / gzip / gzip -r / gunzip -r |
 | `az` `at` `ag` `ab` | create ZIP / TAR / TAR.GZ / TAR.BZ2 — same scheme as yazi and lf |
-| `au` | extract archive(s), one at a time — same scheme as yazi and lf |
+| `au` | extract archive(s) — smart: no wrapper if already single-rooted, shares yazi's `smart-extract.sh` |
+| `ap` | play hovered file as audio only (no video) |
 | `yLd` `yip` `yij` `yit` `yik` | copy to Downloads / image png / jpg / text / send to phone |
 | `bg` | set wallpaper (`cp` to `~/.config/wall.png` + `feh --bg-scale`) |
 | `gsx` `gsw` `gss` | nsxiv all / set wallpaper from nsxiv marks (recursive / selection) |

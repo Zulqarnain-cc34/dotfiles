@@ -5,6 +5,15 @@ All notable changes to this dotfiles repo are documented here.
 Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).  
 Versions are dated milestones, not semver releases (this is a personal config repo).
 
+## [2026-11-12] — Cross-tool feature parity (branch: `modernize-2026`)
+
+### Changed
+- `smart-extract.sh` moved from `yazi/` to `bash_scripts/` (on `$PATH` via `~/bin/bash_scripts`) and is now `au` in **all three** file managers, not just yazi. lf's `au` was single-file-only (`$f`) before; it's now multi-select (`$fx`) and single-root-aware, same as yazi and ranger.
+- Added `ap` (play hovered file as audio only, `mpv --no-video`) to lf and ranger, matching yazi.
+- Added `cke`/`cku` (chmod +x / -x on selection) to yazi and lf, matching ranger's existing ones.
+
+Verified live: `au` produces byte-identical results (single-rooted archive extracts with no wrapper, confirmed on all three via the same test fixture) since all three now call the same script. `cke`/`cku` confirmed live in yazi and lf (via tmux, after an xterm/xdotool session repeatedly misdirected input — switched to tmux mid-verification). `ap` relies on the same `mpv --no-video` invocation and `$`-prefix blocking already confirmed working earlier for yazi and lf respectively; not re-confirmed live for lf specifically due to an unrelated directory-listing cache issue in that session.
+
 ## [2026-11-12] — Cross-tool keybinding consistency (branch: `modernize-2026`)
 
 ### Changed

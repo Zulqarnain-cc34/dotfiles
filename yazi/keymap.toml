@@ -98,7 +98,7 @@ prepend_keymap = [
   { on = ["a", "t"], run = 'shell -- pack() { f=""; for p in "$@"; do f="$p"; done; out="$f.tar"; i=1; while [ -e "$out" ]; do out="$f-$i.tar"; i=$((i+1)); done; d=$(dirname "$1"); cd "$d" || return 1; names=(); for p in "$@"; do names+=("$(basename "$p")"); done; tar -cvf "$out" "${names[@]}"; }; pack %s', desc = "Create TAR archive (named after last selected, all selected packed; folders keep their own structure, no leading path)" },
   { on = ["a", "g"], run = 'shell -- pack() { f=""; for p in "$@"; do f="$p"; done; out="$f.tar.gz"; i=1; while [ -e "$out" ]; do out="$f-$i.tar.gz"; i=$((i+1)); done; d=$(dirname "$1"); cd "$d" || return 1; names=(); for p in "$@"; do names+=("$(basename "$p")"); done; tar -cvzf "$out" "${names[@]}"; }; pack %s', desc = "Create TAR.GZ archive (named after last selected, all selected packed; folders keep their own structure, no leading path)" },
   { on = ["a", "b"], run = 'shell -- pack() { f=""; for p in "$@"; do f="$p"; done; out="$f.tar.bz2"; i=1; while [ -e "$out" ]; do out="$f-$i.tar.bz2"; i=$((i+1)); done; d=$(dirname "$1"); cd "$d" || return 1; names=(); for p in "$@"; do names+=("$(basename "$p")"); done; tar -cjvf "$out" "${names[@]}"; }; pack %s', desc = "Create TAR.BZ2 archive (named after last selected, all selected packed; folders keep their own structure, no leading path)" },
-  { on = ["a", "u"], run = "shell -- $HOME/.config/yazi/smart-extract.sh %s", desc = "Extract archive(s) - smart: no wrapper folder if already single-rooted, auto-renames on collision" },
+  { on = ["a", "u"], run = "shell -- smart-extract.sh %s", desc = "Extract archive(s) - smart: no wrapper folder if already single-rooted, auto-renames on collision" },
 
   # ============ TRASH MANAGEMENT ============
   { on = ["t", "r"], run = "shell --block -- trash-restore", desc = "Restore file from trash" },
@@ -107,4 +107,8 @@ prepend_keymap = [
 
   # ============ WALLPAPER ============
   { on = ["b", "g"], run = "shell -- $HOME/.config/yazi/set-wallpaper.sh %h", desc = "Set hovered image as wallpaper" },
+
+  # ============ PERMISSIONS ============
+  { on = ["c", "k", "e"], run = "shell --block -- chmod +x %s", desc = "Make selected file(s) executable" },
+  { on = ["c", "k", "u"], run = "shell --block -- chmod -x %s", desc = "Make selected file(s) non-executable" },
 ]
