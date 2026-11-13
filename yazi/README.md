@@ -20,10 +20,6 @@ A fast, async terminal file manager with inline previews (images, video, PDFs, a
 - 🧰 **Native `ripgrep`/`fd` integration** — `zg`/`zf` in this config search file contents and names without a plugin
 - 🔄 **Bulk rename, smart archive extraction, multi-tab** — the stuff you reach for daily, not buried behind config
 
-<div align="center">
-  <video src="../assets/yazi_demo.mp4" controls width="720"></video>
-</div>
-
 ### Plugins
 
 | Plugin | Key | Note |
