@@ -1,48 +1,25 @@
--- require("dpg/python")
 ------------------------------------------------------------------------
 --                                LSP                                 --
 ------------------------------------------------------------------------
-require('lsp/python')
--- require('lsp/eslint')
--- require('lsp/dartls') -- Not Working
-require('lsp/sqls')
-require('lsp/lua_ls')
-require('lsp/bash')
--- require('lsp/cmake')
-require('lsp/C')
-require('lsp/tsserver') -- a warning need to see and fix someday _____
-require('lsp/graphql')  -- Not Working
-require('lsp/html')
-require('lsp/docker')
-require('lsp/json')
--- require('lsp/gopls')
+-- Neovim 0.11+ native pattern: per-server overrides live in the top-level
+-- lsp/ directory -- each lsp/<server>.lua returns a config table that Neovim
+-- auto-discovers and merges over nvim-lspconfig's shipped default. So here we
+-- only enable servers. Those without an lsp/<name>.lua file use the shipped
+-- defaults as-is. Neovim reads lsp/<name>.lua lazily (when the server first
+-- starts), which keeps jsonls' schemastore catalog off the startup path.
 --
--- require('lsp/efm')
--- require('lsp/emmet')
-require('lsp/vim')
--- require('lsp/lsp')
+-- gopls/dartls/emmet_ls have stashed override files but are intentionally not
+-- enabled -- add their names to the list below to turn them on.
+vim.lsp.enable({
+    "lua_ls", "clangd", "ts_ls", "sqls", "html",         -- override files in lsp/
+    "bashls", "dockerls", "graphql", "pyrefly", "vimls", -- shipped defaults only
+})
 
-------------------------------------------------------------------------
---                              Plugins                               --
-------------------------------------------------------------------------
-
--- require('plugins/bufferline')
--- require('plugins/nvimtree')
--- require('plugins/nvim-treesitter')
--- require('plugins/colorizer')
--- require('plugins/lspsaga')
--- require('plugins/dashboard')
----- require('plugins/lspfuzzy')
--- require('plugins/compe')
--- require('plugins/lspkind')
--- require('plugins/nvim-ts-rainbow')
-----require('plugins/lsp-status')
--- require('plugins/lsp-signature-hint')
--- require('plugins/trouble')
--- require('plugins/nvim-web-devicons')
--- require('plugins/lsp-diagnostics')
--- require('plugins/todocomments')
--- require('plugins/lualine')
--- require('plugins/telescope')
--- require('plugins/nvim-dap')
---
+-- jsonls is deferred: enable() reads lsp/jsonls.lua eagerly, and that file
+-- pulls in the full schemastore catalog (~22ms). Enable it on the first json
+-- buffer instead so the catalog stays off the startup path.
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = { "json", "jsonc" },
+    once = true,
+    callback = function() vim.lsp.enable("jsonls") end,
+})

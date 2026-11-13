@@ -12,7 +12,6 @@ g.mapleader = "m"
 
 -- ============== Lsp Server KeyBindings ===================
 local options = { noremap = true, silent = true }
-local bufopts = { noremap = true, silent = true, buffer = bufnr }
 
 
 -- Mappings for Lsp
@@ -24,9 +23,6 @@ map('n', '<leader>lS', '<cmd>edit<cr>', options)
 map('n', '<leader>lT', '<cmd>lua vim.lsp.stop_client(vim.lsp.get_clients({bufnr=0}))<cr>', options)
 -- Restarts LSP clients for current buffer
 map('n', '<leader>lR', '<cmd>lua vim.lsp.stop_client(vim.lsp.get_clients({bufnr=0})); vim.schedule(vim.cmd.edit)<cr>', options)
-
-map('n', '<space>dw', "<cmd>lua require('diaglist').open_all_diagnostics()<cr>", options)
-map('n', '<space>do', "<cmd>lua require('diaglist').open_buffer_diagnostics()<cr>", options)
 
 -- ===================== Lsp KeyBindings ==================================
 
@@ -44,8 +40,8 @@ map("n", "<A-d>", "<cmd>lua Snacks.terminal()<CR>", options)
 map('n', '<leader>li', '<cmd>lua vim.lsp.buf.implementation()<CR>', options)
 -- Goto type definition
 map('n', '<leader>ly', '<cmd>lua vim.lsp.buf.type_definition()<CR>', options)
--- Format Code according to file specific formatter
-map('n', '<leader>lf', '<cmd>lua vim.lsp.buf.format({ async = true })<CR>', options)
+-- Format Code: conform (external formatters) with LSP formatting as fallback
+map('n', '<leader>lf', '<cmd>lua require("conform").format({ async = true, lsp_format = "fallback" })<CR>', options)
 -- Shows diagnostics for current buffer
 map('n', '<leader>ds', '<cmd>Trouble diagnostics toggle filter.buf=0<CR>', options)
 -- Shows workspace diagnostics
@@ -120,51 +116,22 @@ map("n", "be", "<cmd>BufferLineSortByExtension<cr>", { noremap = true, silent = 
 map("n", "bd", "<cmd>BufferLineSortByDirectory<cr>", { noremap = true, silent = true })
 
 ------------------------------------------------------------------------
---                           Nvim-Dap--
-------------------------------------------------------------------------
-
-map("n", "<F5>", "<cmd>lua require 'dap'.continue()<cr>", { noremap = true, silent = true })
-map("n", "<F10>", "<cmd>lua require 'dap'.step_over()<cr>", { noremap = true, silent = true })
-map("n", "<F11>", "<cmd>lua require 'dap'.step_into()()<cr>", { noremap = true, silent = true })
-map("n", "<F12>", "<cmd>lua require 'dap'.step_out()()<cr>", { noremap = true, silent = true })
-map("n", "<leader>bb", "<cmd>lua require 'dap'.toggle_breakpoint()<cr>",
-    { noremap = true, silent = true })
-map("n", "<leader>B", ":lua require'dap'.repl.open()<CR>", { noremap = true, silent = true })
-
-map("n", "<leader>dr",
-    "<cmd>lua require 'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<cr>",
-    { noremap = true, silent = true })
-
-------------------------------------------------------------------------
---                           Nvim Tree--
+--                        File Explorer (snacks)                      --
 ------------------------------------------------------------------------
 
 map("n", "<C-n>", "<cmd>lua Snacks.explorer()<CR>", { noremap = true, silent = true })
+
 ------------------------------------------------------------------------
 --                                Git                                 --
 ------------------------------------------------------------------------
-
-map("n", "<leader>ga", "<cmd>Git add %:p<CR>", { noremap = true, silent = true })
-map("n", "<leader>gs", "<cmd>Git<CR>", { noremap = true, silent = true })
-map("n", "<leader>gc", "<cmd>Git commit -v -q<CR>", { noremap = true, silent = true })
-map("n", "<leader>gt", "<cmd>Git commit -v -q %:p<CR>", { noremap = true, silent = true })
-map("n", "<leader>gd", "<cmd>Gdiff<CR>", { noremap = true, silent = true })
-map("n", "<leader>ge", "<cmd>Gedit<CR>", { noremap = true, silent = true })
-map("n", "<leader>gr", "<cmd>Gread<CR>", { noremap = true, silent = true })
-map("n", "<leader>gw", "<cmd>Gwrite<CR>", { noremap = true, silent = true })
-map("n", "<leader>gl", "<cmd>silent! Glog<CR>:bot copen<CR>", { noremap = true, silent = true })
-map("n", "<leader>gp", "<cmd>Ggrep<Space>", { noremap = true, silent = true })
-map("n", "<leader>gb", "<cmd>Gmove<Space>", { noremap = true, silent = true })
-map("n", "<leader>go", "<cmd>Git branch<Space>", { noremap = true, silent = true })
-map("n", "<leader>gps", "<cmd>Git checkout<Space>", { noremap = true, silent = true })
-map("n", "<leader>gpu", "<cmd>Dispatch! git push<CR>", { noremap = true, silent = true })
-map("n", "<leader>gpl", "<cmd>Dispatch! git pull<CR>", { noremap = true, silent = true })
+-- Git is handled by Neogit (<leader>gg, defined in plugins.lua). The old
+-- vim-fugitive/vim-dispatch keymaps were removed -- neither plugin is
+-- installed, so :Git/:Gdiff/:Dispatch! etc. were dead.
 
 -----------------------------------------------------------------------
---                           Miscellinious
+--                           Miscellaneous
 ------------------------------------------------------------------------
 
-map("n", "<leader>bg", '<cmd>ToggleBlameLine<CR>', { noremap = true, silent = true })
 map("n", "<leader><CR>", ':noh<CR>', { noremap = true, silent = true })
 map("n", ";", ':', { noremap = true, silent = true })
 

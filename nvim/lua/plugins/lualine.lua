@@ -39,6 +39,7 @@ local config = {
         -- Disable sections and component separators
         component_separators = '',
         section_separators = '',
+        globalstatus = true, -- one statusline for the whole screen (laststatus=3), not per-window
         theme = {
             -- We are going to use lualine_c an lualine_x as left and
             -- right section. Both are highlighted by c theme .  So we
