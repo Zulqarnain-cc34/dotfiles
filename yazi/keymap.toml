@@ -96,18 +96,6 @@ keymap = [
   { on = ["g", "v"], run = "plugin toggle-pane min-preview", desc = "Show or hide the preview pane" },
   { on = ["g", "V"], run = "plugin toggle-pane max-preview", desc = "Maximize or restore the preview pane" },
   { on = ["g", "r"], run = "plugin toggle-pane reset", desc = "Reset all panes to configured ratio" },
-
-  # ============ DIRECTORY PREVIEW (eza-preview plugin) ============
-  # e,g is already "convert image(s) to PDF", so the plugin's own
-  # suggested e,g,i / e,g,s would be unreachable -- using e,I / e,G
-  # instead to avoid the collision rather than moving an existing bind.
-  { on = ["e", "t"], run = "plugin eza-preview", desc = "Toggle tree/list directory preview" },
-  { on = ["e", "-"], run = "plugin eza-preview inc-level", desc = "Increment tree preview depth" },
-  { on = ["e", "_"], run = "plugin eza-preview dec-level", desc = "Decrement tree preview depth" },
-  { on = ["e", "$"], run = "plugin eza-preview toggle-follow-symlinks", desc = "Toggle symlink-following in tree preview" },
-  { on = ["e", "*"], run = "plugin eza-preview toggle-hidden", desc = "Toggle hidden files in directory preview" },
-  { on = ["e", "I"], run = "plugin eza-preview toggle-git-ignore", desc = "Toggle .gitignore filtering in directory preview" },
-  { on = ["e", "G"], run = "plugin eza-preview toggle-git-status", desc = "Toggle git status in directory preview" },
 ]
 
 prepend_keymap = [
