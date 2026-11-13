@@ -104,10 +104,3 @@ Two flavors (`catppuccin-mocha`, `tokyonight-storm`) are pinned but not activate
 - `tr/tc/tg` - Trash restore/clear/go to trash
 
 > Archive (`az/at/ag/ab/au`), audio-only play (`ap`), trash (`dt`/`tr/tc/tg`), and permissions (`cke/cku`) use the same keys and behavior in [lf](../lf/README.md) and [ranger](../ranger/README.md).
-
-## Troubleshooting
-
-- **UI freezes or stops updating mid-session** — a plugin hook is throwing. Run with `YAZI_LOG=debug` and check `~/.local/state/yazi/yazi.log`; a broken redraw hook (e.g. a plugin calling a removed/renamed API) fails silently in the UI but logs a Lua runtime error on every redraw.
-- **`q`/`w` not cd-ing your shell on exit** — that behavior isn't yazi's; it comes from the `yazi()` wrapper function in `.zshrc`, which reads the `--cwd-file` yazi writes and `cd`s afterward. If you're not using that shell function (or using a different shell), quitting just quits.
-- **`zg`/`zf` doing nothing** — these call the native `search --via=rg`/`--via=fd` action, which needs `rg`/`fd` installed and on `$PATH`. There's no plugin to install; if the binaries are missing, the search silently does nothing.
-- **A plugin listed in `package.toml` isn't doing anything** — check the [Plugins](#plugins) table first; `eza-preview` and `vcs-files` are installed but intentionally not wired up, and `mime-preview` is installed but disabled because it breaks the UI on this yazi version.
