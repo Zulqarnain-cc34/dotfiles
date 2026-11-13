@@ -7,7 +7,7 @@
   <img src="https://img.shields.io/badge/neovim-0.11%2B-57A143?style=flat-square&labelColor=1a1b26" alt="neovim 0.11+">
   <img src="https://img.shields.io/badge/license-Apache--2.0-7aa2f7?style=flat-square&labelColor=1a1b26" alt="license">
   <br><br>
-  <img src="../screenshots/dashboard.png" width="82%" alt="Neovim dashboard">
+  <img src="../assets/neovim_demo.png" width="85%" alt="Neovim — full IDE: LSP annotations, Treesitter highlighting, Trouble symbols/diagnostics">
 </div>
 
 > Built on **[Neovim](https://neovim.io)** — thanks to the Neovim contributors. ❤️
@@ -20,6 +20,11 @@ Nothing here is a starter framework — it's a hand-rolled config, kept close to
   <img src="../assets/bufferline_demo.png" width="92%" alt="bufferline — buffer tabs"><br>
   <img src="../assets/lualine_demo.png" width="92%" alt="lualine — statusline"><br>
   <sub><em>bufferline (buffer tabs) on top · lualine statusline below</em></sub>
+</div>
+
+<div align="center">
+  <img src="../assets/neovim_dashboard_demo.png" width="72%" alt="snacks dashboard — startup screen"><br>
+  <sub><em>snacks dashboard on startup</em></sub>
 </div>
 
 ## Requirements
@@ -65,6 +70,11 @@ Plugin catalogue: [plugins.md](plugins.md).
 ## 🔌 Plugins
 
 The full set, grouped by job, lives in **[plugins.md](plugins.md)** — snacks.nvim for the UI hub (picker / explorer / notifier / terminal / dashboard), blink.cmp for completion, conform + nvim-lint for formatting/linting, nvim-treesitter (`main`), neogit/diffview for Git, trouble for diagnostics, and the usual UI/theme/markdown supporting cast.
+
+<div align="center">
+  <img src="../assets/neovim_lazy_demo.png" width="88%" alt=":Lazy — 36 plugins, 22 loaded at startup, 14 lazy-loaded"><br>
+  <sub><em><code>:Lazy</code> — 36 plugins, most lazy-loaded (≈140 ms startup)</em></sub>
+</div>
 
 ## Notable keybindings
 
