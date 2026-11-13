@@ -5,6 +5,13 @@ All notable changes to this dotfiles repo are documented here.
 Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).  
 Versions are dated milestones, not semver releases (this is a personal config repo).
 
+## [2026-11-13] — Yazi README finalized (branch: `modernize-2026`)
+
+### Added
+- Real screenshot (`assets/yazi_shot.png`) and corrected feature/keybinding descriptions caught by a manual review (`q`/`w` cd-on-quit behavior traced to the `.zshrc` wrapper, `eg` is an image→PDF conversion not a preview, `yd` copies a directory path not a "dirname"), plus previously-undocumented bindings (pagination, `Q`, `<C-c>`, `<C-z>`, `y.`).
+
+This closes out the yazi documentation work — README is considered complete as of this entry.
+
 ## [2026-11-12] — Yazi deep audit: deprecations, search, plugin wiring (branch: `modernize-2026`)
 
 ### Fixed

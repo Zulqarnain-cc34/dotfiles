@@ -7,11 +7,22 @@
   <img src="https://img.shields.io/badge/license-MIT-7aa2f7?style=flat-square&labelColor=1a1b26" alt="license">
 </div>
 
-<!-- Screenshot slot: add assets/yazi-shot.png, then uncomment → <div align="center"><img src="../assets/yazi-shot.png" width="80%"></div> -->
-
 > Built on **[Yazi](https://yazi-rs.github.io)** by sxyazi. ❤️
 
-A fast, async terminal file manager with inline previews (images, video, PDFs, archives) via kitty's graphics protocol. Plugins are managed with yazi's own `ya` package manager, pinned in [`package.toml`](package.toml) — see [`packages.md`](packages.md) for the install log and what each one is wired to.
+<div align="center">
+  <img src="../assets/yazi_shot.png" width="90%" alt="Yazi in use">
+</div>
+
+A fast, async terminal file manager with inline previews (images, video, PDFs, archives) via kitty's graphics protocol. Under the hood it's async and multi-threaded top to bottom: listing a directory, decoding a thumbnail, and hashing a file for its cache all happen off the main thread, so a folder with ten thousand files feels exactly as instant as one with ten. That speed is the whole reason it replaced lf/ranger as the daily driver here.
+
+**A few of the things that make it worth switching to:**
+
+- 🚀 **Fully async I/O** — nothing blocks the UI, work is spread across threads
+- 🖼️ **Inline previews everywhere** — images, video, PDFs, archives, code, even directories, rendered through the kitty graphics protocol (chosen here over Überzug++/Chafa — this terminal supports it natively, no FIFO/escape-code workaround needed)
+- 🔌 **Real plugin system** — UI, previewers, fetchers, and spotters are just Lua; see the [Plugins](#plugins) table below for what's active here
+- 📦 **Built-in package manager** (`ya`) — one command to install, pin, or upgrade a plugin or flavor
+- 🧰 **Native `ripgrep`/`fd` integration** — `zg`/`zf` here use the built-in `search --via=` action directly, not a plugin, so there's nothing extra to install
+- 🔄 **Bulk rename, smart archive extraction, multi-tab** — the stuff you reach for daily, not buried behind config
 
 ### Plugins
 
@@ -23,8 +34,7 @@ A fast, async terminal file manager with inline previews (images, video, PDFs, a
 | `jump-to-char` | `f<char>` | Jump to next file starting with a letter |
 | `toggle-pane` | `gp/gP` `gc/gC` `gv/gV` `gr` | Show/hide/maximize parent, current, preview panes |
 | `full-border` | — | Rounded pane borders |
-| `piper` | — | Pipes `eza` into the directory preview |
-| `eza-preview` | — | Installed, inactive (never registered as a previewer) |
+| `piper` | — | Runs `eza -TL=1` as the directory preview (shallow list) |
 | `vcs-files`, `starship` | — | Installed, unused |
 | `mime-preview` | — | Installed, **disabled** — breaks the UI on 26.9.1 (calls a removed API) |
 
@@ -37,10 +47,15 @@ Two flavors (`catppuccin-mocha`, `tokyonight-storm`) are pinned but not activate
 - `l/h` - Open/go back (smart enter for open)
 - `gg/G` or `<Home>/<End>` - Go to top/bottom
 - `gf` - Follow hovered symlink
+- `<C-u>/<C-d>` or `<S-PageUp>/<S-PageDown>` - Move cursor up/down half a page
+- `<C-b>/<C-f>` or `<PageUp>/<PageDown>` - Move cursor up/down a full page
 
 ### Selection
 - `<Space>` - Toggle select and move down
-- `q or w` - cd into current dir in yazi and close yazi
+- `q` or `w` - Quit and cd the shell into the current directory (via `.zshrc`'s `yazi` wrapper reading the cwd-file; `w` is currently a duplicate of `q`)
+- `Q` - Quit without writing the cwd-file (shell stays where it was)
+- `<C-c>` - Close current tab, or quit
+- `<C-z>` - Suspend
 - `u` - Clear selections and unyank
 
 ### Search / Sort / View
@@ -59,7 +74,7 @@ Two flavors (`catppuccin-mocha`, `tokyonight-storm`) are pinned but not activate
 - `dd` - Cut files
 - `p` - Paste
 - `P` - Paste (force overwrite)
-- `yp/yd/yn` - Copy path/dirname/filename
+- `yp/yd/yn/y.` - Copy path/directory path/filename/filename without extension
 
 ### Create/Rename
 - `md` - Create directory
@@ -78,11 +93,18 @@ Two flavors (`catppuccin-mocha`, `tokyonight-storm`) are pinned but not activate
 ### Utilities
 - `;/:` - Shell command (interactive/block)
 - `ee` - Open with editor
-- `ei/eg/ep/eP` - EXIF/PDF/nsxiv preview
+- `ei` - Show EXIF metadata
+- `eg` - Convert selected image(s) to PDF
+- `ep/eP` - Preview images in directory / open hovered image with nsxiv
+- `et` - Toggle tree/list directory preview
+- `e-/e_` - Increment/decrement tree preview depth
+- `e$` - Toggle symlink-following in tree preview
+- `e*` - Toggle hidden files in directory preview
+- `eI/eG` - Toggle `.gitignore` filtering / git status in directory preview
 - `ap` - Play hovered file as audio only (no video)
 - `bg` - Set hovered image as desktop wallpaper
 - `cke/cku` - Make selected file(s) executable / non-executable
 - `cm` - Chmod on selected files (interactive)
 - `tr/tc/tg` - Trash restore/clear/go to trash
 
-> Archive (`az/at/ag/ab/au`), audio-only play (`ap`), trash (`dt`/`tr/tc/tg`), and permissions (`cke/cku`) use the same keys and behavior in [lf](../lf/README.md) and [ranger](../ranger/README.md).
+> Archive (`az/at/ag/ab/au`), audio-only play (`ap`), trash (`dt`/`tr/tc/tg`), and permissions (`cke/cku`) use the same keys and behavior in [lf](../lf/README.md).

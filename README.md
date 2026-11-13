@@ -133,7 +133,7 @@ A complete map of the repo. Deep docs live in each component's own README — li
 | :--- | :--- | :--- |
 | [`yazi`](yazi/) | **Primary** — fast Rust TUI file manager | [README](yazi/README.md) |
 | [`lf`](lf/) | Legacy terminal file manager | [README](lf/README.md) |
-| [`ranger`](ranger/) | Legacy terminal file manager | [README](ranger/README.md) |
+| [`ranger`](ranger/) | Legacy terminal file manager | — |
 
 ### 🎵 Media
 
@@ -297,7 +297,7 @@ dotfiles/
 ├── kitty/  alacritty/                     # Terminals
 ├── zsh/  .aliases/  starship.toml         # Shell, aliases, prompt
 ├── nvim/                                  # Neovim (lazy.nvim + native LSP)
-├── yazi/  lf/  ranger/                    # File managers (yazi primary)
+├── yazi/  lf/                             # File managers (yazi primary)
 ├── mpv/  mpd/  ncmpcpp/  newsboat/        # Media & feeds
 ├── qutebrowser/  firefox/  .w3m/  ytfzf/  # Web
 ├── mutt/  .mutt/  zathura/                # Mail & docs
