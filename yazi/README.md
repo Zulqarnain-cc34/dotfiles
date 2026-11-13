@@ -7,11 +7,31 @@
   <img src="https://img.shields.io/badge/license-MIT-7aa2f7?style=flat-square&labelColor=1a1b26" alt="license">
 </div>
 
-<!-- Screenshot slot: add assets/yazi-shot.png, then uncomment → <div align="center"><img src="../assets/yazi-shot.png" width="80%"></div> -->
-
 > Built on **[Yazi](https://yazi-rs.github.io)** by sxyazi. ❤️
 
-A fast, async terminal file manager with inline previews (images, video, PDFs, archives) via kitty's graphics protocol. Plugins are managed with yazi's own `ya` package manager, pinned in [`package.toml`](package.toml) — see [`packages.md`](packages.md) for the install log and what each one is wired to.
+"Yazi" means *duck* in Chinese — a joke at its own expense, since there's nothing slow or waddling about it. Under the hood it's async and multi-threaded top to bottom: listing a directory, decoding a thumbnail, and hashing a file for its cache all happen off the main thread, so a folder with ten thousand files feels exactly as instant as one with ten. That speed is the whole reason it replaced lf/ranger as the daily driver here.
+
+<table>
+<tr>
+<td width="50%" valign="top">
+
+**A few of the things that make it worth switching to:**
+
+- 🚀 **Fully async I/O** — nothing blocks the UI, work is spread across threads
+- 🖼️ **Inline previews everywhere** — images, video, PDFs, archives, code, even directories, rendered through the kitty graphics protocol (Überzug++/Chafa as fallback)
+- 🔌 **Real plugin system** — UI, previewers, fetchers, and spotters are just Lua; see the [Plugins](#plugins) table below for what's active here
+- 📦 **Built-in package manager** (`ya`) — one command to install, pin, or upgrade a plugin or flavor
+- 🧰 **Native `ripgrep`/`fd` integration** — `zg`/`zf` in this config search file contents and names without a plugin
+- 🔄 **Bulk rename, smart archive extraction, multi-tab** — the stuff you reach for daily, not buried behind config
+
+</td>
+<td width="50%" valign="top">
+
+<video src="../assets/yazi_demo.mp4" controls width="100%"></video>
+
+</td>
+</tr>
+</table>
 
 ### Plugins
 
