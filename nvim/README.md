@@ -1,89 +1,127 @@
 <div align="center">
   <img src="../assets/neovim.svg" width="72" alt="Neovim logo"><br><br>
   <h1>Neovim</h1>
-  <p><em>A full IDE that still boots in ~140&nbsp;ms.</em></p>
+  <p><em>A full IDE, lazy-loaded to stay quick.</em></p>
   <a href="https://github.com/neovim/neovim"><img src="https://img.shields.io/badge/upstream-neovim%2Fneovim-57A143?style=flat-square&logo=github&logoColor=white" alt="upstream"></a>
   <a href="https://github.com/neovim/neovim/stargazers"><img src="https://img.shields.io/github/stars/neovim/neovim?style=flat-square&color=ffce63&labelColor=1a1b26" alt="stars"></a>
+  <img src="https://img.shields.io/badge/neovim-0.11%2B-57A143?style=flat-square&labelColor=1a1b26" alt="neovim 0.11+">
   <img src="https://img.shields.io/badge/license-Apache--2.0-7aa2f7?style=flat-square&labelColor=1a1b26" alt="license">
   <br><br>
-  <img src="../screenshots/dashboard.png" width="82%" alt="Neovim dashboard">
+  <img src="../assets/neovim_dashboard_demo.png" width="80%" alt="Neovim — snacks dashboard on startup">
 </div>
 
 > Built on **[Neovim](https://neovim.io)** — thanks to the Neovim contributors. ❤️
 
-The full plugin set that makes this an IDE, grouped by job:
+A full IDE on **Neovim 0.12**, managed by **[lazy.nvim](https://github.com/folke/lazy.nvim)** and built on modern-native foundations — the built-in LSP client (`vim.lsp.config`/`vim.lsp.enable`), Tree-sitter's `main` branch, and [blink.cmp](https://github.com/saghen/blink.cmp) completion. [snacks.nvim](https://github.com/folke/snacks.nvim) provides the picker, file explorer, notifier, terminal and dashboard in one place. Colorscheme is **onedark**; leader key is `m`.
+
+Nothing here is a starter framework — it's a hand-rolled config, kept close to Neovim's native APIs so it stays maintainable without rebuilds.
+
+## Gallery
+
+<table align="center">
+  <tr>
+    <td align="center" width="50%"><img src="../assets/neovim_completion_popup_demo.png" width="100%" alt="completion popup"><br><sub><em>Completion — blink.cmp (docs · ghost text · signature)</em></sub></td>
+    <td align="center" width="50%"><img src="../assets/neovim_file_explorer_demo.png" width="100%" alt="snacks file explorer"><br><sub><em>File explorer — snacks</em></sub></td>
+  </tr>
+  <tr>
+    <td align="center" width="50%"><img src="../assets/neovim_picker_demo.png" width="100%" alt="snacks picker"><br><sub><em>Picker — snacks (live grep)</em></sub></td>
+    <td align="center" width="50%"><img src="../assets/neovim_which_key_demo.png" width="100%" alt="which-key menu"><br><sub><em>which-key — the leader menu</em></sub></td>
+  </tr>
+</table>
+
+<br>
+
+<div align="center">
+  <img src="../assets/neovim_bufferline_demo.png" width="80%" alt="bufferline — buffer tabs"><br>
+  <sub><em>bufferline — buffer tabs</em></sub>
+</div>
+
+<br>
+
+<div align="center">
+  <img src="../assets/neovim_lualine_demo.png" width="80%" alt="lualine — statusline"><br>
+  <sub><em>lualine — statusline</em></sub>
+</div>
+
+## Requirements
+
+**Neovim ≥ 0.11**, `git`, a C compiler + **[tree-sitter CLI](https://github.com/tree-sitter/tree-sitter)**, a **Nerd Font**, and **`ripgrep`** + **`fd`**. Per-language LSP / formatter / linter tools go on `PATH` (no mason) — see **[Language support](#language-support)**.
+
+## Structure
+
+```
+init.lua            → require("init")
+lsp/                native 0.11+ per-server configs: lsp/<server>.lua returns a
+                    table Neovim auto-merges over nvim-lspconfig's default.
+                    Only servers that need overrides have a file here.
+lua/
+  init.lua          load order: plugins → general → settings → mappings → config → autocommands
+  plugins.lua       lazy.nvim plugin specs
+  general.lua       vim options
+  settings.lua      globals + colorscheme
+  mappings.lua      keybindings (leader = m)
+  config.lua        one vim.lsp.enable({...}) list (+ jsonls deferred to first json file)
+  autocommands.lua  autocmds (F9 file-runners, cursor restore, …)
+  plugins/          plugin configs (lualine, bufferline, conform, lint, …)
+  colors/           local palette used by the devicons overrides
+```
+
+Plugin catalogue: [plugins.md](plugins.md).
+
+## Key subsystems
+
+- **LSP** — native client, no framework wrapper. Overrides live in top-level `lsp/<server>.lua` (Neovim 0.11+ auto-discovery); servers are turned on with one `vim.lsp.enable({...})` and must be on `PATH`. `jsonls` is enabled lazily on the first json file (with [schemastore](https://github.com/b0o/schemastore.nvim) schemas) to keep startup fast.
+- **Completion** — [blink.cmp](https://github.com/saghen/blink.cmp) (lsp / path / snippets / buffer) + [friendly-snippets](https://github.com/rafamadriz/friendly-snippets).
+- **Formatting** — [conform.nvim](https://github.com/stevearc/conform.nvim), manual via `m lf` (LSP fallback). Wired for `shfmt` (`-i 4`), `prettier`, and `stylua`/`isort`/`black`/`gofumpt` once installed.
+- **Linting** — [nvim-lint](https://github.com/mfussenegger/nvim-lint) on read/write/insert-leave. `markdownlint` active; others activate when installed.
+- **Treesitter** — [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) **`main` branch**: parsers compile via the `tree-sitter` CLI; highlighting starts per-filetype. Run `:TSUpdate` after install.
+
+## Language support
+
+All tooling lives on `PATH` (no mason) — install the ones for the languages you use. LSP via `vim.lsp.enable`, formatting via conform (`m lf`), linting via nvim-lint (on save/read).
+
+| Language | LSP | Formatter | Linter |
+|----------|-----|-----------|--------|
+| Lua | `lua_ls` | `stylua` | — |
+| Python | `pyrefly` | `isort` + `black` | `flake8` |
+| Shell | `bashls` | `shfmt` | `shellcheck` |
+| C / C++ | `clangd` | `clang-format` ¹ | — |
+| JS / TS | `ts_ls` | `prettier` | `eslint` ² |
+| HTML / CSS | `html` | `prettier` | — |
+| JSON | `jsonls` | `prettier` | — |
+| YAML | — | `prettier` | — |
+| Markdown | — | `prettier` | `markdownlint` |
+| Go | — ³ | `gofumpt` | — |
+| GraphQL | `graphql` | `prettier` | — |
+| SQL | `sqls` | — | — |
+| Dockerfile | `dockerls` | — | — |
+| Vimscript | `vimls` | — | — |
+
+> ¹ C/C++ format on `m lf` comes from the `JbzClangFormat` ftplugin (Google style, indent 4). &nbsp; ² eslint needs a project config (`eslint.config.js`). &nbsp; ³ `gopls` config is stashed in `lsp/gopls.lua` — add `"gopls"` to the `vim.lsp.enable` list to turn it on.
 
 ## 🔌 Plugins
 
-## Core & LSP
+The full set, grouped by job, lives in **[plugins.md](plugins.md)** — snacks.nvim for the UI hub (picker / explorer / notifier / terminal / dashboard), blink.cmp for completion, conform + nvim-lint for formatting/linting, nvim-treesitter (`main`), neogit/diffview for Git, trouble for diagnostics, and the usual UI/theme/markdown supporting cast.
 
-- [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)
-- [schemastore.nvim](https://github.com/b0o/schemastore.nvim)
-- [neodev.nvim](https://github.com/folke/neodev.nvim)
-- [lspsaga.nvim](https://github.com/nvimdev/lspsaga.nvim)
-- [lspkind-nvim](https://github.com/onsails/lspkind-nvim)
+<div align="center">
+  <img src="../assets/neovim_lazy_demo.png" width="88%" alt=":Lazy — 36 plugins, most lazy-loaded"><br>
+  <sub><em><code>:Lazy</code> — 36 plugins, most lazy-loaded (≈140 ms startup)</em></sub>
+</div>
 
-## UI & Visual
+## Notable keybindings
 
-- [noice.nvim](https://github.com/folke/noice.nvim)
-- [nui.nvim](https://github.com/MunifTanjim/nui.nvim)
-- [nvim-notify](https://github.com/rcarriga/nvim-notify)
-- [lualine.nvim](https://github.com/hoob3rt/lualine.nvim)
-- [bufferline.nvim](https://github.com/akinsho/bufferline.nvim)
-- [which-key.nvim](https://github.com/folke/which-key.nvim)
-- [nvim-web-devicons](https://github.com/kyazdani42/nvim-web-devicons)
-- [nvim-scrollbar](https://github.com/petertriho/nvim-scrollbar)
-- [hlslens](https://github.com/kevinhwang91/nvim-hlslens)
-- [nvim-colorizer.lua](https://github.com/catgoose/nvim-colorizer.lua)
+Leader = `m`. The `m l…` family is LSP, `m f…` is the snacks picker, `m x…` is Trouble.
 
-## Themes & Colors
-
-- [gruvbox.nvim](https://github.com/ellisonleao/gruvbox.nvim)
-- [tokyonight.nvim](https://github.com/folke/tokyonight.nvim)
-- [onedark.nvim](https://github.com/navarasu/onedark.nvim)
-- [rainbow-delimiters.nvim](https://github.com/HiPhish/rainbow-delimiters.nvim)
-
-## Treesitter & Parsing
-
-- [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
-- [nvim-ts-autotag](https://github.com/windwp/nvim-ts-autotag)
-
-## Completion & Snippets
-
-- [blink.cmp](https://github.com/saghen/blink.cmp)
-
-## Utilities & Editing
-
-- [oil.nvim](https://github.com/stevearc/oil.nvim)
-- [mini.icons](https://github.com/nvim-mini/mini.icons)
-- [nvim-autopairs](https://github.com/windwp/nvim-autopairs)
-- [Comment.nvim](https://github.com/numToStr/Comment.nvim)
-
-## Git & Development
-
-- [neogit](https://github.com/NeogitOrg/neogit)
-- [diffview.nvim](https://github.com/sindrets/diffview.nvim)
-- [fzf-lua](https://github.com/ibhagwan/fzf-lua)
-
-## Writing & Documentation
-
-- [todo-comments.nvim](https://github.com/folke/todo-comments.nvim)
-- [vimwiki](https://github.com/vimwiki/vimwiki)
-
-## Session & Persistence
-
-- [persistence.nvim](https://github.com/folke/persistence.nvim)
-- [styler.nvim](https://github.com/folke/styler.nvim)
-- [remote-nvim.nvim](https://github.com/amitds1997/remote-nvim.nvim)
-
-## Enhanced Features
-
-- [snacks.nvim](https://github.com/folke/snacks.nvim)
-- [trouble.nvim](https://github.com/folke/trouble.nvim)
-- [diaglist.nvim](https://github.com/onsails/diaglist.nvim)
-- [structlog.nvim](https://github.com/Tastyep/structlog.nvim)
-
-## Utilities
-
-- [plenary.nvim](https://github.com/nvim-lua/plenary.nvim)
-- [vim-startuptime](https://github.com/dstein64/vim-startuptime)
+| Key | Action |
+|-----|--------|
+| `m ld` / `m lD` | go to definition / declaration |
+| `m li` / `m ly` | implementation / type definition |
+| `m la` / `m le` | code action / rename |
+| `m lf` | format (conform, LSP fallback) |
+| `m ll` / `m ln` / `m lp` | diagnostics float / next / prev |
+| `Ctrl-s` | find files (picker) |
+| `m fg` / `m fb` / `m fl` | grep / buffers / recent |
+| `m fh` / `m fm` / `m fr` | help / marks / registers |
+| `m xx` / `m xr` | diagnostics / LSP references (Trouble) |
+| `F9` | run current file (python / c / cpp / node / bash / ts) |
+| `Alt-d` | toggle terminal (snacks) |

@@ -19,22 +19,10 @@ local g = vim.g
 -- Change the "hint" color to the "orange" color, and make the "error" color bright red
 -- g.tokyonight_colors = {hint = "orange", error = "#ff0000"}
 --
-g.doge_doc_standard_python = 'numpy'
-g.doge_mapping = "<Leader>q"
-
-g.gitblame_enabled = 0
-
--- UltiSnips vars removed: no UltiSnips plugin is installed (blink.cmp uses friendly-snippets).
-g.user_emmet_leader_key = '<C-Z>'
--- g.user_emmet_install_global = 0
---
 cmd("colorscheme onedark")
 ------------------------------------------------------------------------
 --                              WikiList                              --
 ------------------------------------------------------------------------
-
--- Using Markdown Sytax in favor of wikilist Syntax
-g.vimwiki_list = { { path = '~/.config/nvim/tempdir/vimwiki/', syntax = 'markdown', ext = '.md' } }
 
 ------------------------------------------------------------------------
 --                          Dev Icons Colors                          --
