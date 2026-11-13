@@ -50,6 +50,11 @@ The full plugin set that makes this an IDE, grouped by job:
 
 - [blink.cmp](https://github.com/saghen/blink.cmp)
 
+## Formatting & Linting
+
+- [conform.nvim](https://github.com/stevearc/conform.nvim)
+- [nvim-lint](https://github.com/mfussenegger/nvim-lint)
+
 ## Utilities & Editing
 
 - [oil.nvim](https://github.com/stevearc/oil.nvim)
