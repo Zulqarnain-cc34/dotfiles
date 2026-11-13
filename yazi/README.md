@@ -34,8 +34,8 @@ A fast, async terminal file manager with inline previews (images, video, PDFs, a
 | `jump-to-char` | `f<char>` | Jump to next file starting with a letter |
 | `toggle-pane` | `gp/gP` `gc/gC` `gv/gV` `gr` | Show/hide/maximize parent, current, preview panes |
 | `full-border` | — | Rounded pane borders |
-| `eza-preview` | `et` `e-/e_` `e$` `e*` `eI` `eG` | Directory preview: toggle tree/list, depth, follow-symlinks, hidden files, `.gitignore` filtering, git status |
-| `piper`, `vcs-files`, `starship` | — | Installed, unused |
+| `piper` | — | Runs `eza -TL=1` as the directory preview (shallow list) |
+| `vcs-files`, `starship` | — | Installed, unused |
 | `mime-preview` | — | Installed, **disabled** — breaks the UI on 26.9.1 (calls a removed API) |
 
 Two flavors (`catppuccin-mocha`, `tokyonight-storm`) are pinned but not activated; no `theme.toml` means the default colorscheme is in use.
