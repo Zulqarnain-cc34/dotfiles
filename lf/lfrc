@@ -260,15 +260,6 @@ cmd bulk-rename ${{
 #     fi
 # }}
 
-######################################
-##############   AutoJump   ##########
-######################################
-#
-
-cmd aj %lf -remote "send $id cd '$(autojump $1)'"
-map aj push :aj<space>
-
-
 # Unmap the default binding
 map r
 # Rename the file with a completely different name
