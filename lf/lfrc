@@ -376,7 +376,6 @@ cmd on-cd &{{
 }}
 map Sf select-files
 map Sd select-dirs
-map zb push :z-jump<space>-b<space>
 
 map d
 map dt trash
@@ -432,11 +431,14 @@ map au unarchive
 map ap $mpv --no-video "$f"
 
 
-map Vna ${{
+# Not under V -- that's lf's stock key for entering Visual mode, and it
+# fires immediately on its own rather than waiting for a longer chord, so
+# anything bound as V-prefixed would never actually be reachable.
+map xn ${{
     ffmpeg -i "$f" -an -c copy "no_audio_$(basename $f)"
 }}
 
-map Vaa ${{
+map xa ${{
     ffmpeg -i "$f" -vn -c copy "audio_$(basename $f)"
 }}
 
