@@ -31,4 +31,4 @@ Default lf movement still applies; these are the notable custom maps:
 | `ef` `el` | fzf jump / fzf locate |
 | `ei` `ee` `eP` | exif info / nvim tabs / nsxiv |
 
-> Archive, `ap`, trash, and `cke/cku` use the same keys and behavior in [yazi](../yazi/README.md); `au` shares yazi's `smart-extract.sh`.
+> `au` shares yazi's `smart-extract.sh`.
