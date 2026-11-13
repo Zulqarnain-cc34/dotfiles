@@ -98,6 +98,16 @@ cmd chmod %{{
   lf -remote 'send reload'
 }}
 
+cmd chmod_exec ${{
+  chmod +x $fx
+  lf -remote 'send reload'
+}}
+
+cmd chmod_unexec ${{
+  chmod -x $fx
+  lf -remote 'send reload'
+}}
+
 
 
 cmd setwallpaper %cp "$f" ~/.config/wall.png && xwallpaper --stretch "$f"
@@ -425,8 +435,8 @@ map c
 map ch chmod
 map cr stripspace
 map cd push :cd<space>
-map cke %chmod +x $fx
-map cku %chmod -x $fx
+map cke chmod_exec
+map cku chmod_unexec
 
 map u
 map uv unselect
