@@ -39,7 +39,10 @@ image() {
 			# /dev/tty would otherwise get job-control-stopped (not hung).
 			# timeout itself resets signal dispositions before its own exec,
 			# so the trap has to be set after it, not before.
-			timeout 5 sh -c 'trap "" TTOU; exec kitty +kitten icat --transfer-mode=memory --stdin=no --use-window-size="$1" --place="$2" "$3" > /dev/tty' \
+			# --align=left: icat centers the image within the --place box by
+			# default, which leaves a gap between the pane's left border and a
+			# portrait image. Left-align it so it sits flush against the border.
+			timeout 5 sh -c 'trap "" TTOU; exec kitty +kitten icat --transfer-mode=memory --stdin=no --align=left --use-window-size="$1" --place="$2" "$3" > /dev/tty' \
 				sh "${cur_cols},${cur_lines},${win_pw},${win_ph}" "$(($2-1))x$(($3-1))@${4}x${5}" "$1"
 			exit 1
 			;;
