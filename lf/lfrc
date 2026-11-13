@@ -227,7 +227,6 @@ cmd stripspace ${{
 cmd image_directory ${{
     nohup nsxiv -t ./* &> /dev/null &
 }}
-cmd share $curl -F"file=@$fx" https://0x0.st | xclip -selection clip
 
 cmd config-edit ${{
     $EDITOR "$HOME/.config/lf/lfrc"
@@ -444,12 +443,10 @@ map ed mpv_dvd
 map ec vimdiff_files
 map ei show_info_exif
 map ee $nvim -p $fx
-#map es $sudo $EDITOR "$f"
 map em send_mail
 map eg image2pdf
 map ep image_directory
 map eP %nsxiv $f
-map es share
 
 
 map az zip

@@ -29,6 +29,6 @@ Default lf movement still applies; these are the notable custom maps:
 | `cke` / `cku` | make selected file(s) executable / non-executable |
 | `tr` / `tc` / `tg` | trash restore / clear / go to trash |
 | `ef` `el` | fzf jump / fzf locate |
-| `ei` `ee` `eP` `es` | exif info / nvim tabs / nsxiv / share (0x0.st) |
+| `ei` `ee` `eP` | exif info / nvim tabs / nsxiv |
 
 > Archive, `ap`, trash, and `cke/cku` use the same keys and behavior in [yazi](../yazi/README.md); `au` shares yazi's `smart-extract.sh`.
