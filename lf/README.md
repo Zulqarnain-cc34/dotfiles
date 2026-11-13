@@ -8,28 +8,50 @@
 
 > Built on **[lf](https://github.com/gokcehan/lf)** by Gökçehan Kara. ❤️
 
+<div align="center">
+  <img src="../assets/lf_demo.png" width="90%" alt="lf in use">
+</div>
+
 A fast terminal file manager, kept around here as the legacy/secondary option — [Yazi](../yazi/README.md) is the primary one for daily work, and lf stays for compatibility and the odd script that still reaches for it. Everything is driven from [`lfrc`](lfrc): settings, custom commands, and keybinds.
 
 Previews come from the `preview` and `cleaner` scripts, with `drawbox`, `icons`, and `ignorecase` turned on and `zsh` as the shell.
 
 ### Keybindings
 
-Default lf movement still applies; these are the notable custom maps:
+Default lf movement still applies; these are the notable custom maps, split by what they operate on.
+
+#### File operations (rename, create, trash, copy/paste, permissions, archive)
 
 | Key | Action |
 |-----|--------|
-| `ra` / `rb` / `rc` | rename / bulk-rename / rename to new name |
+| `ra` / `rb` / `rc` | rename (built-in, pre-filled, cursor before extension) / bulk-rename (edit a list of names in `$EDITOR`) / rename with a completely different name (base name cleared, extension kept) |
+| `md` `mf` | mkdir / mkfile |
 | `dt` / `dd` / `dD` / `<delete>` | trash / cut / delete / trash |
-| `yy` `yp` `yd` `yn` `y.` | copy / yank path / dir / name / name-no-ext |
-| `yip` `yij` `yit` `yik` | copy image png / jpg / text / send to phone (KDE Connect) |
-| `md` `mf` `mi` | mkdir / mkfile / mount iso |
+| `tr` / `tc` / `tg` | trash restore / clear / go to trash |
+| `yy` `yLd` `yp` `yd` `yn` `y.` | copy / copy to `~/Downloads` / yank path / dir / name / name-no-ext |
+| `P` | paste as symlink/hardlink (two-stage: stage with `yy`-equivalent, then `P` to link) |
+| `uv` / `uy` | clear the file selection / clear the copy-cut clipboard (these are different things in lf) |
+| `ch` / `cr` / `cd` | chmod (interactive, prompts for mode bits) / strip spaces from filename / `cd` prompt |
+| `cke` / `cku` | make selected file(s) executable / non-executable |
 | `au` | unarchive — smart: no wrapper if already single-rooted |
 | `az` `at` `ag` `ab` | zip / tar / tar.gz / tar.bz2 (no leading path, auto-renames on collision) |
-| `ap` | play hovered file as audio only (no video) |
-| `bg` / `bs` | set wallpaper / select wallpaper |
-| `cke` / `cku` | make selected file(s) executable / non-executable |
-| `tr` / `tc` / `tg` | trash restore / clear / go to trash |
-| `ef` `el` `Z` `zz` | fzf jump / fzf locate / zoxide jump |
-| `ei` `ee` `eP` `es` | exif info / nvim tabs / nsxiv / share (0x0.st) |
+| `du` | show a folder size breakdown (`du --max-depth=1`) |
 
-> Archive, `ap`, trash, and `cke/cku` use the same keys and behavior in [yazi](../yazi/README.md) and [ranger](../ranger/README.md); `au` shares yazi's `smart-extract.sh`.
+#### Navigation, sorting, search & previews
+
+| Key | Action |
+|-----|--------|
+| `Sf` / `Sd` | select all visible files / select all visible directories |
+| `sa` `sc` `se` `sn` `ss` `st` | sort by atime / ctime / extension / name (natural) / size / mtime, each reversed |
+| `sb` | sort by btime (creation time), reversed, and show it in the info column — lf stock default, not set in `lfrc` |
+| `zA` / `zc` | show atime / ctime in the linemode info column |
+| `o` | open with (prompts for a command) |
+| `.` | toggle hidden files |
+| `ef` `el` | fzf jump / fzf locate |
+| `ei` `ee` `eP` | exif info / nvim tabs / nsxiv |
+| `eg` `ep` | convert image(s) to PDF (no prompts, same pattern as yazi's `eg`) / browse this folder's images in nsxiv (view only, no wallpaper action) |
+| `ap` | play hovered file as audio only (no video) |
+| `xn` / `xa` | strip audio from video / extract audio from video (ffmpeg) |
+| `bg` / `bs` | set wallpaper directly / browse this folder's images in nsxiv and pick one — navigate, then press **`Q`** (capital) on the thumbnail you want, not Enter or double-click |
+
+> `au` shares yazi's `smart-extract.sh`.
