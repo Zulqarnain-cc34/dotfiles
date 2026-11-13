@@ -121,14 +121,6 @@ return require('lazy').setup({
         },
     },
     {
-        "onsails/diaglist.nvim",
-        config = function()
-            require("plugins.diaglist")
-        end
-    },
-    { "Tastyep/structlog.nvim" },
-
-    {
         "navarasu/onedark.nvim",
         priority = 1000,
         config = function()
