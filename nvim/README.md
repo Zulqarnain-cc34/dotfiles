@@ -4,6 +4,7 @@
   <p><em>A full IDE, lazy-loaded to stay quick.</em></p>
   <a href="https://github.com/neovim/neovim"><img src="https://img.shields.io/badge/upstream-neovim%2Fneovim-57A143?style=flat-square&logo=github&logoColor=white" alt="upstream"></a>
   <a href="https://github.com/neovim/neovim/stargazers"><img src="https://img.shields.io/github/stars/neovim/neovim?style=flat-square&color=ffce63&labelColor=1a1b26" alt="stars"></a>
+  <img src="https://img.shields.io/badge/neovim-0.11%2B-57A143?style=flat-square&labelColor=1a1b26" alt="neovim 0.11+">
   <img src="https://img.shields.io/badge/license-Apache--2.0-7aa2f7?style=flat-square&labelColor=1a1b26" alt="license">
   <br><br>
   <img src="../screenshots/dashboard.png" width="82%" alt="Neovim dashboard">
@@ -11,17 +12,45 @@
 
 > Built on **[Neovim](https://neovim.io)** — thanks to the Neovim contributors. ❤️
 
-A full IDE on **Neovim 0.12**, managed by **[lazy.nvim](https://github.com/folke/lazy.nvim)** and built on modern-native foundations: the built-in LSP client (`vim.lsp.config`/`vim.lsp.enable`), Tree-sitter's `main` branch, and [blink.cmp](https://github.com/saghen/blink.cmp) completion. [snacks.nvim](https://github.com/folke/snacks.nvim) provides the picker, file explorer, notifier, terminal and dashboard in one place. The colorscheme is **onedark**; the leader key is `m`.
+A full IDE on **Neovim 0.12**, managed by **[lazy.nvim](https://github.com/folke/lazy.nvim)** and built on modern-native foundations — the built-in LSP client (`vim.lsp.config`/`vim.lsp.enable`), Tree-sitter's `main` branch, and [blink.cmp](https://github.com/saghen/blink.cmp) completion. [snacks.nvim](https://github.com/folke/snacks.nvim) provides the picker, file explorer, notifier, terminal and dashboard in one place. Colorscheme is **onedark**; leader key is `m`.
 
-Config lives under [`lua/`](lua): `init.lua` loads `plugins → general → settings → mappings → config → autocommands`, with LSP servers in `lua/lsp/` and plugin configs in `lua/plugins/`.
+Nothing here is a starter framework — it's a hand-rolled config, kept close to Neovim's native APIs so it stays maintainable without rebuilds.
+
+## Requirements
+
+| Need | For |
+|------|-----|
+| **Neovim ≥ 0.11** (0.12 recommended) | native `vim.lsp.config`/`enable`, Tree-sitter `main` |
+| **git**, a **C compiler**, **[tree-sitter CLI](https://github.com/tree-sitter/tree-sitter)** | plugin install + compiling Tree-sitter parsers (`pacman -S tree-sitter-cli`) |
+| A **Nerd Font** (FiraCode Nerd Font here) | icons in the UI, statusline, picker |
+| **ripgrep** + **fd** | the snacks picker (files / live grep) |
+| **LSP servers** on `PATH` (no mason) | `lua_ls`, `pyrefly`, `bashls`, `clangd`, `ts_ls`, `html`, `graphql`, `sqls`, `dockerls`, `vimls`, `jsonls` |
+| **Formatters / linters** (optional) | `prettier`, `shfmt`, `markdownlint` wired now; `stylua`/`isort`/`black`/`gofumpt`/`shellcheck`/`eslint`/`flake8` activate when installed |
+
+## Structure
+
+```
+init.lua            → require("init")
+lua/
+  init.lua          load order: plugins → general → settings → mappings → config → autocommands
+  plugins.lua       lazy.nvim plugin specs
+  general.lua       vim options
+  settings.lua      globals + colorscheme
+  mappings.lua      keybindings (leader = m)
+  config.lua        LSP server activation
+  autocommands.lua  autocmds (F9 file-runners, cursor restore, …)
+  lsp/              17 per-server configs (vim.lsp.config + vim.lsp.enable)
+  plugins/          9 plugin configs (lualine, bufferline, conform, lint, …)
+  colors/           local palette used by the devicons overrides
+```
 
 ## Key subsystems
 
-- **LSP** — native client, no framework wrapper. Servers are configured per-file in `lua/lsp/*` via `vim.lsp.config[...]` + `vim.lsp.enable(...)` and are expected on `PATH` (no mason): `lua_ls`, `pyrefly`, `bashls`, `clangd`, `ts_ls`, `html`, `graphql`, `sqls`, `dockerls`, `vimls`, and `jsonls` (loaded lazily on the first json file, with [schemastore](https://github.com/b0o/schemastore.nvim) schemas).
-- **Completion** — [blink.cmp](https://github.com/saghen/blink.cmp) (lsp / path / snippets / buffer), with [friendly-snippets](https://github.com/rafamadriz/friendly-snippets).
-- **Formatting** — [conform.nvim](https://github.com/stevearc/conform.nvim), manual via `m lf` (falls back to LSP formatting). Wired for `shfmt`, `prettier`, and `stylua`/`isort`/`black`/`gofumpt` once those are installed.
-- **Linting** — [nvim-lint](https://github.com/mfussenegger/nvim-lint) on read/write/insert-leave. `markdownlint` is active; `shellcheck`/`flake8`/`eslint` activate when installed.
-- **Treesitter** — [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) **`main` branch**: parsers are compiled via the `tree-sitter` CLI (`pacman -S tree-sitter-cli`) and highlighting starts per-filetype. Run `:TSUpdate` after install.
+- **LSP** — native client, no framework wrapper. Servers are configured per-file in `lua/lsp/*` and must be on `PATH`. `jsonls` loads lazily on the first json file (with [schemastore](https://github.com/b0o/schemastore.nvim) schemas) to keep startup fast.
+- **Completion** — [blink.cmp](https://github.com/saghen/blink.cmp) (lsp / path / snippets / buffer) + [friendly-snippets](https://github.com/rafamadriz/friendly-snippets).
+- **Formatting** — [conform.nvim](https://github.com/stevearc/conform.nvim), manual via `m lf` (LSP fallback). Wired for `shfmt` (`-i 4`), `prettier`, and `stylua`/`isort`/`black`/`gofumpt` once installed.
+- **Linting** — [nvim-lint](https://github.com/mfussenegger/nvim-lint) on read/write/insert-leave. `markdownlint` active; others activate when installed.
+- **Treesitter** — [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) **`main` branch**: parsers compile via the `tree-sitter` CLI; highlighting starts per-filetype. Run `:TSUpdate` after install.
 
 ## 🔌 Plugins
 
@@ -47,7 +76,7 @@ Config lives under [`lua/`](lua): `init.lua` loads `plugins → general → sett
 
 ## Notable keybindings
 
-Leader = `m`. The `m l…` family is LSP, `m f…` is the snacks picker, `m x…`/`m d…` is Trouble.
+Leader = `m`. The `m l…` family is LSP, `m f…` is the snacks picker, `m x…` is Trouble.
 
 | Key | Action |
 |-----|--------|
@@ -60,4 +89,5 @@ Leader = `m`. The `m l…` family is LSP, `m f…` is the snacks picker, `m x…
 | `m fg` / `m fb` / `m fl` | grep / buffers / recent |
 | `m fh` / `m fm` / `m fr` | help / marks / registers |
 | `m xx` / `m xr` | diagnostics / LSP references (Trouble) |
+| `F9` | run current file (python / c / cpp / node / bash / ts) |
 | `Alt-d` | toggle terminal (snacks) |
