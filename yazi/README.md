@@ -34,9 +34,8 @@ A fast, async terminal file manager with inline previews (images, video, PDFs, a
 | `jump-to-char` | `f<char>` | Jump to next file starting with a letter |
 | `toggle-pane` | `gp/gP` `gc/gC` `gv/gV` `gr` | Show/hide/maximize parent, current, preview panes |
 | `full-border` | — | Rounded pane borders |
-| `piper` | — | Pipes `eza` into the directory preview |
-| `eza-preview` | — | Installed, inactive (never registered as a previewer) |
-| `vcs-files`, `starship` | — | Installed, unused |
+| `eza-preview` | `et` `e-/e_` `e$` `e*` `eI` `eG` | Directory preview: toggle tree/list, depth, follow-symlinks, hidden files, `.gitignore` filtering, git status |
+| `piper`, `vcs-files`, `starship` | — | Installed, unused |
 | `mime-preview` | — | Installed, **disabled** — breaks the UI on 26.9.1 (calls a removed API) |
 
 Two flavors (`catppuccin-mocha`, `tokyonight-storm`) are pinned but not activated; no `theme.toml` means the default colorscheme is in use.
@@ -97,6 +96,11 @@ Two flavors (`catppuccin-mocha`, `tokyonight-storm`) are pinned but not activate
 - `ei` - Show EXIF metadata
 - `eg` - Convert selected image(s) to PDF
 - `ep/eP` - Preview images in directory / open hovered image with nsxiv
+- `et` - Toggle tree/list directory preview
+- `e-/e_` - Increment/decrement tree preview depth
+- `e$` - Toggle symlink-following in tree preview
+- `e*` - Toggle hidden files in directory preview
+- `eI/eG` - Toggle `.gitignore` filtering / git status in directory preview
 - `ap` - Play hovered file as audio only (no video)
 - `bg` - Set hovered image as desktop wallpaper
 - `cke/cku` - Make selected file(s) executable / non-executable
