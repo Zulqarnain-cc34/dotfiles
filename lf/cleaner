@@ -1,11 +1,11 @@
 #!/bin/sh
 case "$TERM" in
-	# Ignore SIGTTOU/SIGTTIN *inside* the timeout'd subshell -- lf runs this
-	# script in a background process group, and icat's terminal read/write
-	# would otherwise get job-control-stopped (not hung) touching /dev/tty.
-	# timeout itself resets signal dispositions before exec, so the trap has
-	# to be set after it, not before.
-	*kitty*) timeout 1 sh -c 'trap "" TTOU TTIN; exec kitty +kitten icat --clear --stdin=no < /dev/tty > /dev/tty 2>&1' ;;
+	# --clear doesn't need --place, so it never needs to read anything back
+	# from the terminal (unlike image()'s --use-window-size case) -- only
+	# writing to /dev/tty, so only SIGTTOU needs ignoring here, and there's
+	# no read-side EOF risk to worry about. Ignore it *inside* the timeout'd
+	# subshell since timeout resets signal dispositions before its own exec.
+	*kitty*) timeout 1 sh -c 'trap "" TTOU; exec kitty +kitten icat --clear --stdin=no > /dev/tty 2>&1' ;;
 esac
 if [ -n "$FIFO_UEBERZUG" ]; then
 	printf '{"action": "remove", "identifier": "PREVIEW"}\n' > "$FIFO_UEBERZUG"

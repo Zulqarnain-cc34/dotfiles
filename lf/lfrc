@@ -487,7 +487,15 @@ map . set hidden!
 map "'"
 map '"'
 map f
-%{{
+
+# Both of these were previously two separate bare `%{{ }}` blocks at the
+# top level of this file, which is not valid lf startup syntax -- it's
+# silently never executed (confirmed live: neither ever ran). The actual
+# documented startup hook is the `on-init` special command name, executed
+# once after lf connects to its server. Merged into one definition since
+# two separate `cmd on-init` blocks would silently clobber each other,
+# same class of bug already fixed once in this file for on-cd.
+cmd on-init ${{
     w=$(tput cols)
     if [ $w -le 80 ]; then
         lf -remote "send $id set ratios 1:2"
@@ -496,4 +504,20 @@ map f
     else
         lf -remote "send $id set ratios 1:2:3:5"
     fi
+
+    # Cache the terminal's pixel-per-cell ratio once at startup, while lf
+    # is still the foreground process (safe to query the terminal here).
+    # The previewer runs backgrounded and can't safely read a response
+    # back from the terminal -- see lf/preview's image() for how this
+    # cache is used to avoid that read entirely via `icat --use-window-size`.
+    case "$TERM" in
+        *kitty*)
+            px="$(kitty +kitten icat --print-window-size 2>/dev/null)"
+            if [ -n "$px" ]; then
+                mkdir -p "$HOME/.cache/lf"
+                printf '%s %s %s\n' "$(tput cols)" "$(tput lines)" "$px" \
+                    > "$HOME/.cache/lf/kitty_cellpx"
+            fi
+            ;;
+    esac
 }}
