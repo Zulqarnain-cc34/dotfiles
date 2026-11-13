@@ -47,14 +47,18 @@ return require('lazy').setup({
     },
     {
         "ellisonleao/gruvbox.nvim",
-        priority = 1000,
+        lazy = true, -- only styler uses it (markdown); lazy.nvim loads it on :colorscheme
         config = true,
     },
     -- oil + mini.icons removed: snacks.explorer is the file explorer now.
     {
         "catgoose/nvim-colorizer.lua",
         event = "BufReadPre",
-        opts = { -- set to setup table
+        opts = {
+            user_default_options = {
+                css = true,      -- enable names, hex, rgb, hsl, oklch, css vars in CSS/SCSS
+                tailwind = true, -- highlight tailwind class colors
+            },
         },
     },
     {
@@ -91,15 +95,9 @@ return require('lazy').setup({
             require("plugins.nvim-web-devicons")
         end
     },
-    -- {
-    --     'kevinhwang91/nvim-hlslens',
-    --     config = function()
-    --         require("plugins.hlslens")
-    --     end
-    -- },
     {
         "folke/tokyonight.nvim",
-        lazy = false,
+        lazy = true,  -- not the active scheme (onedark is); lazy.nvim loads it on :colorscheme if ever used
         priority = 1000,
         opts = {},
     },
@@ -126,22 +124,6 @@ return require('lazy').setup({
             cursor_color = "#d3cdc3",
         },
     },
-    {
-        "onsails/diaglist.nvim",
-        config = function()
-            require("plugins.diaglist")
-        end
-    },
-    { "Tastyep/structlog.nvim" },
-
-    -- ================== LSP, Autocomplete and Treesitter =====================
-    -- {
-    --     'onsails/lspkind-nvim',
-    --     event = "BufRead",
-    --     config = function()
-    --         require("plugins.lspkind")
-    --     end
-    -- },
     {
         "navarasu/onedark.nvim",
         priority = 1000,
@@ -176,7 +158,7 @@ return require('lazy').setup({
     },
 
     {
-        'hoob3rt/lualine.nvim',
+        'nvim-lualine/lualine.nvim', -- hoob3rt/ is the old org (redirects); current home
         config = function()
             require('plugins.lualine')
         end
@@ -214,23 +196,41 @@ return require('lazy').setup({
     },
     {
         "nvim-treesitter/nvim-treesitter",
+        branch = "main", -- the rewrite; the old master-style opts below are gone
         build = ":TSUpdate",
         lazy = false,
-        opts = {
-            ensure_installed = {
-                "lua", "python", "bash", "go", "html", "css", "javascript", "json", "c", "cpp",
-                "markdown",
-                "scss", "yaml", "typescript", "vim", "dart", "fish", "java", "dockerfile"
-            },
+        config = function()
+            require("nvim-treesitter").setup()
 
-            auto_install = true,
-            highlight = {
-                enable = true,
-            },
-            indent = {
-                enable = false,
-            },
-        },
+            -- main branch: parsers are installed via the install API, not
+            -- `ensure_installed` in setup() (which is silently ignored now).
+            -- The main branch COMPILES parsers with the `tree-sitter` CLI, so
+            -- guard on it -- without the CLI, install() would error on every
+            -- startup. Bundled parsers (lua/c/markdown/vim/vimdoc) still work.
+            if vim.fn.executable("tree-sitter") == 1 then
+                require("nvim-treesitter").install({
+                    "lua", "python", "bash", "go", "html", "css", "javascript", "json", "c", "cpp",
+                    "markdown", "markdown_inline", "scss", "yaml", "typescript", "tsx", "vim", "vimdoc",
+                    "dart", "fish", "java", "dockerfile",
+                })
+            else
+                vim.schedule(function()
+                    vim.notify("nvim-treesitter: `tree-sitter` CLI not found -- run `sudo pacman -S tree-sitter-cli`, then :TSUpdate", vim.log.levels.WARN)
+                end)
+            end
+
+            -- main branch: highlighting is started per buffer via FileType,
+            -- not `highlight = { enable = true }`. Generic form covers every
+            -- filetype that has a parser available. (indent left off, as before.)
+            vim.api.nvim_create_autocmd("FileType", {
+                callback = function(args)
+                    local lang = vim.treesitter.language.get_lang(vim.bo[args.buf].filetype)
+                    if lang and vim.treesitter.language.add(lang) then
+                        vim.treesitter.start(args.buf)
+                    end
+                end,
+            })
+        end,
     },
 
     -- Colors,blanklines and Tags
@@ -244,6 +244,23 @@ return require('lazy').setup({
 
     { "windwp/nvim-ts-autotag", event = "InsertEnter" },
 
+    -- Formatting + linting (replaces the old, disabled efm-langserver setup)
+    {
+        "stevearc/conform.nvim",
+        event = { "BufReadPre", "BufNewFile" },
+        cmd = "ConformInfo",
+        config = function()
+            require("plugins.conform")
+        end,
+    },
+    {
+        "mfussenegger/nvim-lint",
+        event = { "BufReadPost", "BufNewFile" },
+        config = function()
+            require("plugins.lint")
+        end,
+    },
+
     {
         'saghen/blink.cmp',
         dependencies = { 'rafamadriz/friendly-snippets' },
@@ -255,7 +272,16 @@ return require('lazy').setup({
             appearance = {
                 nerd_font_variant = 'mono'
             },
-            completion = { documentation = { auto_show = false } },
+            completion = {
+                -- auto-show docs for the selected item (with a small delay so it isn't noisy)
+                documentation = { auto_show = true, auto_show_delay_ms = 500 },
+                -- inline preview of the selected completion as you type
+                ghost_text = { enabled = true },
+                -- treesitter-highlight the completion menu labels
+                menu = { draw = { treesitter = { 'lsp' } } },
+            },
+            -- signature help popup while typing function arguments
+            signature = { enabled = true },
             sources = {
                 default = { 'lsp', 'path', 'snippets', 'buffer' },
             },
