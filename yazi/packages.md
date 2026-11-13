@@ -34,10 +34,10 @@ ya pkg add yazi-rs/plugins:toggle-pane  # wired: g,p/P g,c/C g,v/V g,r
 ## Previews
 
 ```bash
-ya pkg add ahkohd/eza-preview        # installed, setup() called, but NOT actually
-                                      # registered as a previewer -- piper (below)
-                                      # handles directory previews directly instead
-ya pkg add yazi-rs/plugins:piper     # wired: yazi.toml prepend_previewers (eza dir preview)
+ya pkg add ahkohd/eza-preview        # wired: yazi.toml prepend_previewers (dir preview),
+                                      # keymap et/e-/e_/e$/e*/eI/eG for its toggles
+ya pkg add yazi-rs/plugins:piper     # installed, unused -- eza-preview (above) took over
+                                      # the directory-preview slot it used to hold
 ya pkg add DreamMaoMao/mime-preview  # installed, setup() DISABLED in init.lua --
                                       # calls the removed/renamed ya.mgr_emit API,
                                       # throws on every redraw and breaks the UI on 26.9.1
