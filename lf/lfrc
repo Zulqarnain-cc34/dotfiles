@@ -252,7 +252,12 @@ cmd bulk-rename ${{
     old="$(mktemp)"
     new="$(mktemp)"
     if [ -n "$fs" ]; then
-        fs="$(basename $fs)"
+        # basename only ever takes one path (+ an optional strip-suffix as
+        # arg 2) -- `basename $fs` with an unquoted multi-file $fs silently
+        # treats the 2nd selected file as a suffix and drops the rest, so
+        # a 2+ file selection collapsed to just the first file's basename.
+        set -- $fs
+        fs="$(for p in "$@"; do basename "$p"; done)"
     else
         fs="$(ls)"
     fi
