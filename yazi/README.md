@@ -9,7 +9,7 @@
 
 > Built on **[Yazi](https://yazi-rs.github.io)** by sxyazi. ❤️
 
-A fast, async terminal file manager with inline previews (images, video, PDFs, archives) via kitty's graphics protocol.
+A fast, async terminal file manager with inline previews (images, video, PDFs, archives) via kitty's graphics protocol. Under the hood it's async and multi-threaded top to bottom: listing a directory, decoding a thumbnail, and hashing a file for its cache all happen off the main thread, so a folder with ten thousand files feels exactly as instant as one with ten. That speed is the whole reason it replaced lf/ranger as the daily driver here.
 
 <table>
 <tr>
