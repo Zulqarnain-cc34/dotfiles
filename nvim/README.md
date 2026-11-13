@@ -42,8 +42,7 @@ Nothing here is a starter framework — it's a hand-rolled config, kept close to
 | **git**, a **C compiler**, **[tree-sitter CLI](https://github.com/tree-sitter/tree-sitter)** | plugin install + compiling Tree-sitter parsers (`pacman -S tree-sitter-cli`) |
 | A **Nerd Font** (FiraCode Nerd Font here) | icons in the UI, statusline, picker |
 | **ripgrep** + **fd** | the snacks picker (files / live grep) |
-| **LSP servers** on `PATH` (no mason) | `lua_ls`, `pyrefly`, `bashls`, `clangd`, `ts_ls`, `html`, `graphql`, `sqls`, `dockerls`, `vimls`, `jsonls` |
-| **Formatters / linters** (optional) | `prettier`, `shfmt`, `markdownlint` wired now; `stylua`/`isort`/`black`/`gofumpt`/`shellcheck`/`eslint`/`flake8` activate when installed |
+| **Per-language tools** on `PATH` (no mason) | LSP servers, formatters, linters — see **[Language support](#language-support)** below |
 
 ## Structure
 
@@ -73,6 +72,29 @@ Plugin catalogue: [plugins.md](plugins.md).
 - **Formatting** — [conform.nvim](https://github.com/stevearc/conform.nvim), manual via `m lf` (LSP fallback). Wired for `shfmt` (`-i 4`), `prettier`, and `stylua`/`isort`/`black`/`gofumpt` once installed.
 - **Linting** — [nvim-lint](https://github.com/mfussenegger/nvim-lint) on read/write/insert-leave. `markdownlint` active; others activate when installed.
 - **Treesitter** — [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) **`main` branch**: parsers compile via the `tree-sitter` CLI; highlighting starts per-filetype. Run `:TSUpdate` after install.
+
+## Language support
+
+All tooling lives on `PATH` (no mason) — install the ones for the languages you use. LSP via `vim.lsp.enable`, formatting via conform (`m lf`), linting via nvim-lint (on save/read).
+
+| Language | LSP | Formatter | Linter |
+|----------|-----|-----------|--------|
+| Lua | `lua_ls` | `stylua` | — |
+| Python | `pyrefly` | `isort` + `black` | `flake8` |
+| Shell | `bashls` | `shfmt` | `shellcheck` |
+| C / C++ | `clangd` | `clang-format` ¹ | — |
+| JS / TS | `ts_ls` | `prettier` | `eslint` ² |
+| HTML / CSS | `html` | `prettier` | — |
+| JSON | `jsonls` | `prettier` | — |
+| YAML | — | `prettier` | — |
+| Markdown | — | `prettier` | `markdownlint` |
+| Go | — ³ | `gofumpt` | — |
+| GraphQL | `graphql` | `prettier` | — |
+| SQL | `sqls` | — | — |
+| Dockerfile | `dockerls` | — | — |
+| Vimscript | `vimls` | — | — |
+
+> ¹ C/C++ format on `m lf` comes from the `JbzClangFormat` ftplugin (Google style, indent 4). &nbsp; ² eslint needs a project config (`eslint.config.js`). &nbsp; ³ `gopls` config is stashed in `lsp/gopls.lua` — add `"gopls"` to the `vim.lsp.enable` list to turn it on.
 
 ## 🔌 Plugins
 
