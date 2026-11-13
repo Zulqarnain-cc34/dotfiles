@@ -44,8 +44,8 @@ map("n", "<A-d>", "<cmd>lua Snacks.terminal()<CR>", options)
 map('n', '<leader>li', '<cmd>lua vim.lsp.buf.implementation()<CR>', options)
 -- Goto type definition
 map('n', '<leader>ly', '<cmd>lua vim.lsp.buf.type_definition()<CR>', options)
--- Format Code according to file specific formatter
-map('n', '<leader>lf', '<cmd>lua vim.lsp.buf.format({ async = true })<CR>', options)
+-- Format Code: conform (external formatters) with LSP formatting as fallback
+map('n', '<leader>lf', '<cmd>lua require("conform").format({ async = true, lsp_format = "fallback" })<CR>', options)
 -- Shows diagnostics for current buffer
 map('n', '<leader>ds', '<cmd>Trouble diagnostics toggle filter.buf=0<CR>', options)
 -- Shows workspace diagnostics

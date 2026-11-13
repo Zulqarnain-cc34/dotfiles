@@ -262,6 +262,23 @@ return require('lazy').setup({
 
     { "windwp/nvim-ts-autotag", event = "InsertEnter" },
 
+    -- Formatting + linting (replaces the old, disabled efm-langserver setup)
+    {
+        "stevearc/conform.nvim",
+        event = { "BufReadPre", "BufNewFile" },
+        cmd = "ConformInfo",
+        config = function()
+            require("plugins.conform")
+        end,
+    },
+    {
+        "mfussenegger/nvim-lint",
+        event = { "BufReadPost", "BufNewFile" },
+        config = function()
+            require("plugins.lint")
+        end,
+    },
+
     {
         'saghen/blink.cmp',
         dependencies = { 'rafamadriz/friendly-snippets' },
