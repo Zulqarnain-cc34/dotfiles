@@ -1,10 +1,6 @@
+-- cmd/filetypes come from nvim-lspconfig's shipped ts_ls default (which also
+-- prefers a project-local node_modules/.bin binary) -- we only override on_attach.
 vim.lsp.config['ts_ls'] = {
-
-    cmd = { 'typescript-language-server', '--stdio' },
-    filetypes = {
-        "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact",
-        "typescript.tsx"
-    },
     on_attach = function(client, bufnr)
         client.server_capabilities.documentFormattingProvider = false
         client.server_capabilities.documentRangeFormattingProvider = false
