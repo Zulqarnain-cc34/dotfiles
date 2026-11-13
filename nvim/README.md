@@ -16,6 +16,12 @@ A full IDE on **Neovim 0.12**, managed by **[lazy.nvim](https://github.com/folke
 
 Nothing here is a starter framework — it's a hand-rolled config, kept close to Neovim's native APIs so it stays maintainable without rebuilds.
 
+<div align="center">
+  <img src="../assets/bufferline_demo.png" width="92%" alt="bufferline — buffer tabs"><br>
+  <img src="../assets/lualine_demo.png" width="92%" alt="lualine — statusline"><br>
+  <sub><em>bufferline (buffer tabs) on top · lualine statusline below</em></sub>
+</div>
+
 ## Requirements
 
 | Need | For |
