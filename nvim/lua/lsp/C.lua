@@ -7,7 +7,6 @@ vim.lsp.config['clangd'] = {
      "--clang-tidy",
      "--clang-tidy-checks=*",
      "--all-scopes-completion",
-     "--cross-file-rename",
      "--completion-style=detailed",
      "--header-insertion-decorators",
      "--header-insertion=iwyu",

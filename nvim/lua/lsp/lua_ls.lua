@@ -1,10 +1,6 @@
--- local luadev = require("lua-dev").setup()
-
--- https://github.com/sumneko/lua-language-server/wiki/Build-and-Run-(Standalone)
-USER = vim.fn.expand('$USER')
-
--- require'lspconfig'.sumneko_lua.setup(luadev)
-
+-- Note: lazydev.nvim already wires lua_ls's workspace library + the `vim`
+-- global for Neovim config editing, so the workspace/runtime bits below are
+-- belt-and-suspenders. Kept for editing Lua outside the config too.
 vim.lsp.config['lua_ls'] = {
     settings = {
         Lua = {
