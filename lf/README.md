@@ -51,9 +51,7 @@ Default lf movement still applies; these are the notable custom maps, split by w
 | `ei` `ee` `eP` | exif info / nvim tabs / nsxiv |
 | `eg` `ep` | convert image(s) to PDF (no prompts, same pattern as yazi's `eg`) / browse this folder's images in nsxiv (view only, no wallpaper action) |
 | `ap` | play hovered file as audio only (no video) |
-| `Vna` / `Vaa` | strip audio from video / extract audio from video (ffmpeg) |
+| `xn` / `xa` | strip audio from video / extract audio from video (ffmpeg) |
 | `bg` / `bs` | set wallpaper directly / browse this folder's images in nsxiv and pick one — navigate, then press **`Q`** (capital) on the thumbnail you want, not Enter or double-click |
 
 > `au` shares yazi's `smart-extract.sh`.
->
-> **Known broken, not yet fixed**: `zb` (zoxide jump variant) calls `z-jump`, a command that's never actually defined anywhere in this config (same root cause as the `Z`/`zz` bindings that were removed outright).
