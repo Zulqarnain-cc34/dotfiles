@@ -9,15 +9,19 @@
 
 > Built on **[Yazi](https://yazi-rs.github.io)** by sxyazi. ❤️
 
+<div align="center">
+  <img src="../assets/yazi_shot.png" width="90%" alt="Yazi in use">
+</div>
+
 A fast, async terminal file manager with inline previews (images, video, PDFs, archives) via kitty's graphics protocol. Under the hood it's async and multi-threaded top to bottom: listing a directory, decoding a thumbnail, and hashing a file for its cache all happen off the main thread, so a folder with ten thousand files feels exactly as instant as one with ten. That speed is the whole reason it replaced lf/ranger as the daily driver here.
 
 **A few of the things that make it worth switching to:**
 
 - 🚀 **Fully async I/O** — nothing blocks the UI, work is spread across threads
-- 🖼️ **Inline previews everywhere** — images, video, PDFs, archives, code, even directories, rendered through the kitty graphics protocol (Überzug++/Chafa as fallback)
+- 🖼️ **Inline previews everywhere** — images, video, PDFs, archives, code, even directories, rendered through the kitty graphics protocol (chosen here over Überzug++/Chafa — this terminal supports it natively, no FIFO/escape-code workaround needed)
 - 🔌 **Real plugin system** — UI, previewers, fetchers, and spotters are just Lua; see the [Plugins](#plugins) table below for what's active here
 - 📦 **Built-in package manager** (`ya`) — one command to install, pin, or upgrade a plugin or flavor
-- 🧰 **Native `ripgrep`/`fd` integration** — `zg`/`zf` in this config search file contents and names without a plugin
+- 🧰 **Native `ripgrep`/`fd` integration** — `zg`/`zf` here use the built-in `search --via=` action directly, not a plugin, so there's nothing extra to install
 - 🔄 **Bulk rename, smart archive extraction, multi-tab** — the stuff you reach for daily, not buried behind config
 
 ### Plugins
@@ -100,3 +104,10 @@ Two flavors (`catppuccin-mocha`, `tokyonight-storm`) are pinned but not activate
 - `tr/tc/tg` - Trash restore/clear/go to trash
 
 > Archive (`az/at/ag/ab/au`), audio-only play (`ap`), trash (`dt`/`tr/tc/tg`), and permissions (`cke/cku`) use the same keys and behavior in [lf](../lf/README.md) and [ranger](../ranger/README.md).
+
+## Troubleshooting
+
+- **UI freezes or stops updating mid-session** — a plugin hook is throwing. Run with `YAZI_LOG=debug` and check `~/.local/state/yazi/yazi.log`; a broken redraw hook (e.g. a plugin calling a removed/renamed API) fails silently in the UI but logs a Lua runtime error on every redraw.
+- **`q`/`w` not cd-ing your shell on exit** — that behavior isn't yazi's; it comes from the `yazi()` wrapper function in `.zshrc`, which reads the `--cwd-file` yazi writes and `cd`s afterward. If you're not using that shell function (or using a different shell), quitting just quits.
+- **`zg`/`zf` doing nothing** — these call the native `search --via=rg`/`--via=fd` action, which needs `rg`/`fd` installed and on `$PATH`. There's no plugin to install; if the binaries are missing, the search silently does nothing.
+- **A plugin listed in `package.toml` isn't doing anything** — check the [Plugins](#plugins) table first; `eza-preview` and `vcs-files` are installed but intentionally not wired up, and `mime-preview` is installed but disabled because it breaks the UI on this yazi version.
