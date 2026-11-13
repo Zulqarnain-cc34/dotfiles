@@ -499,3 +499,14 @@ cmd on-init ${{
             ;;
     esac
 }}
+
+# Clear any lingering kitty image on quit -- the previewer draws images
+# directly to the terminal, out of band from lf's own rendering, so without
+# this the last preview stays painted on the screen after lf exits. Use the
+# raw delete-all escape rather than `icat --clear` (which queries the
+# terminal and can hang), matching lf/preview and lf/cleaner.
+cmd on-quit ${{
+    case "$TERM" in
+        *kitty*) printf '\033_Ga=d,d=A\033\\' >/dev/tty 2>/dev/null ;;
+    esac
+}}
