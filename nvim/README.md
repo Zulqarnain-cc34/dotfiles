@@ -1,7 +1,7 @@
 <div align="center">
   <img src="../assets/neovim.svg" width="72" alt="Neovim logo"><br><br>
   <h1>Neovim</h1>
-  <p><em>A full IDE that still boots in ~140&nbsp;ms.</em></p>
+  <p><em>A full IDE, lazy-loaded to stay quick.</em></p>
   <a href="https://github.com/neovim/neovim"><img src="https://img.shields.io/badge/upstream-neovim%2Fneovim-57A143?style=flat-square&logo=github&logoColor=white" alt="upstream"></a>
   <a href="https://github.com/neovim/neovim/stargazers"><img src="https://img.shields.io/github/stars/neovim/neovim?style=flat-square&color=ffce63&labelColor=1a1b26" alt="stars"></a>
   <img src="https://img.shields.io/badge/license-Apache--2.0-7aa2f7?style=flat-square&labelColor=1a1b26" alt="license">
@@ -19,9 +19,7 @@ The full plugin set that makes this an IDE, grouped by job:
 
 - [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)
 - [schemastore.nvim](https://github.com/b0o/schemastore.nvim)
-- [neodev.nvim](https://github.com/folke/neodev.nvim)
-- [lspsaga.nvim](https://github.com/nvimdev/lspsaga.nvim)
-- [lspkind-nvim](https://github.com/onsails/lspkind-nvim)
+- [lazydev.nvim](https://github.com/folke/lazydev.nvim)
 
 ## UI & Visual
 
@@ -33,8 +31,8 @@ The full plugin set that makes this an IDE, grouped by job:
 - [which-key.nvim](https://github.com/folke/which-key.nvim)
 - [nvim-web-devicons](https://github.com/kyazdani42/nvim-web-devicons)
 - [nvim-scrollbar](https://github.com/petertriho/nvim-scrollbar)
-- [hlslens](https://github.com/kevinhwang91/nvim-hlslens)
 - [nvim-colorizer.lua](https://github.com/catgoose/nvim-colorizer.lua)
+- [smear-cursor.nvim](https://github.com/sphamba/smear-cursor.nvim)
 
 ## Themes & Colors
 
@@ -56,19 +54,20 @@ The full plugin set that makes this an IDE, grouped by job:
 
 - [oil.nvim](https://github.com/stevearc/oil.nvim)
 - [mini.icons](https://github.com/nvim-mini/mini.icons)
-- [nvim-autopairs](https://github.com/windwp/nvim-autopairs)
-- [Comment.nvim](https://github.com/numToStr/Comment.nvim)
+- [smart-paste.nvim](https://github.com/nemanjamalesija/smart-paste.nvim)
 
 ## Git & Development
 
 - [neogit](https://github.com/NeogitOrg/neogit)
 - [diffview.nvim](https://github.com/sindrets/diffview.nvim)
 - [fzf-lua](https://github.com/ibhagwan/fzf-lua)
+- [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)
 
 ## Writing & Documentation
 
 - [todo-comments.nvim](https://github.com/folke/todo-comments.nvim)
-- [vimwiki](https://github.com/vimwiki/vimwiki)
+- [markview.nvim](https://github.com/OXY2DEV/markview.nvim)
+- [markdown-preview.nvim](https://github.com/iamcco/markdown-preview.nvim)
 
 ## Session & Persistence
 
