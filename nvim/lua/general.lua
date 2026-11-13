@@ -9,10 +9,14 @@
 -- =========================================================================
 
 -- ================== Aliases ========================
+-- All three point at vim.o so every option is set as a GLOBAL default --
+-- using vim.bo/vim.wo here would only touch the first buffer/window at
+-- startup, so new buffers fell back to Vim defaults (e.g. shiftwidth 8,
+-- not 4). vim.o sets the global value that new buffers/windows inherit.
 -- local g = vim.g
 local o = vim.o
-local b = vim.bo
-local w = vim.wo
+local b = vim.o
+local w = vim.o
 local cmd = vim.cmd
 
 -- ============== Commands =====================
