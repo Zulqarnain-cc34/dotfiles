@@ -18,11 +18,6 @@ Nothing here is a starter framework — it's a hand-rolled config, kept close to
 
 ## Gallery
 
-<div align="center">
-  <img src="../assets/neovim_demo.png" width="90%" alt="Full IDE — LSP annotations, Treesitter highlighting, Trouble symbols & diagnostics"><br>
-  <sub><em>Editing with LSP annotations, Treesitter highlighting, and Trouble (symbols · diagnostics)</em></sub>
-</div>
-
 <table align="center">
   <tr>
     <td align="center" width="50%"><img src="../assets/neovim_completion_popup_demo.png" width="100%" alt="completion popup"><br><sub><em>Completion — blink.cmp (docs · ghost text · signature)</em></sub></td>
@@ -37,20 +32,20 @@ Nothing here is a starter framework — it's a hand-rolled config, kept close to
 <br>
 
 <div align="center">
-  <img src="../assets/bufferline_demo.png" width="80%" alt="bufferline — buffer tabs"><br>
+  <img src="../assets/neovim_bufferline_demo.png" width="80%" alt="bufferline — buffer tabs"><br>
   <sub><em>bufferline — buffer tabs</em></sub>
 </div>
 
 <br>
 
 <div align="center">
-  <img src="../assets/lualine_demo.png" width="80%" alt="lualine — statusline"><br>
+  <img src="../assets/neovim_lualine_demo.png" width="80%" alt="lualine — statusline"><br>
   <sub><em>lualine — statusline</em></sub>
 </div>
 
 ## Requirements
 
-**Neovim ≥ 0.11** (0.12 recommended), plus `git`, a C compiler, and the **[tree-sitter CLI](https://github.com/tree-sitter/tree-sitter)** for compiling parsers. A **Nerd Font** for the icons, and **`ripgrep`** + **`fd`** for the picker. Per-language LSP / formatter / linter tools go on `PATH` (no mason) — see **[Language support](#language-support)**.
+**Neovim ≥ 0.11**, `git`, a C compiler + **[tree-sitter CLI](https://github.com/tree-sitter/tree-sitter)**, a **Nerd Font**, and **`ripgrep`** + **`fd`**. Per-language LSP / formatter / linter tools go on `PATH` (no mason) — see **[Language support](#language-support)**.
 
 ## Structure
 
