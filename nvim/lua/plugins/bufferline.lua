@@ -1,5 +1,7 @@
 require("bufferline").setup {
     options = {
+        separator_style = "slant",                            -- slanted tab separators
+        hover = { enabled = true, delay = 200, reveal = { 'close' } }, -- hover a tab to reveal its close button
         indicator = { style = 'icon', icon = '▎' },
         buffer_close_icon = '',
         modified_icon = '●',
