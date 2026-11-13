@@ -1,11 +1,9 @@
-vim.lsp.config['gopls'] = {
-    cmd = { "gopls", "serve" },
-    filetypes = { "go", "gomod" },
+-- Native lsp/ config (stashed: add "gopls" to the enable list in config.lua
+-- once you work in Go).
+return {
     settings = {
         gopls = {
-            analyses = {
-                unusedparams = true,
-            },
+            analyses = { unusedparams = true },
             staticcheck = true,
             linksInHover = false,
             codelenses = {
@@ -20,5 +18,3 @@ vim.lsp.config['gopls'] = {
         },
     },
 }
-
-vim.lsp.enable('gopls')

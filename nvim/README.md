@@ -31,16 +31,17 @@ Nothing here is a starter framework — it's a hand-rolled config, kept close to
 
 ```
 init.lua            → require("init")
+lsp/                native 0.11+ per-server configs: lsp/<server>.lua returns a
+                    table Neovim auto-merges over nvim-lspconfig's default.
+                    Only servers that need overrides have a file here.
 lua/
   init.lua          load order: plugins → general → settings → mappings → config → autocommands
   plugins.lua       lazy.nvim plugin specs
   general.lua       vim options
   settings.lua      globals + colorscheme
   mappings.lua      keybindings (leader = m)
-  config.lua        LSP activation: require customized servers + enable the rest
+  config.lua        one vim.lsp.enable({...}) list (+ jsonls deferred to first json file)
   autocommands.lua  autocmds (F9 file-runners, cursor restore, …)
-  lsp/              per-server modules -- only for servers needing custom settings;
-                    plain servers are enabled directly in config.lua via nvim-lspconfig defaults
   plugins/          plugin configs (lualine, bufferline, conform, lint, …)
   colors/           local palette used by the devicons overrides
 ```
@@ -49,7 +50,7 @@ Plugin catalogue: [plugins.md](plugins.md).
 
 ## Key subsystems
 
-- **LSP** — native client, no framework wrapper. Servers are configured per-file in `lua/lsp/*` and must be on `PATH`. `jsonls` loads lazily on the first json file (with [schemastore](https://github.com/b0o/schemastore.nvim) schemas) to keep startup fast.
+- **LSP** — native client, no framework wrapper. Overrides live in top-level `lsp/<server>.lua` (Neovim 0.11+ auto-discovery); servers are turned on with one `vim.lsp.enable({...})` and must be on `PATH`. `jsonls` is enabled lazily on the first json file (with [schemastore](https://github.com/b0o/schemastore.nvim) schemas) to keep startup fast.
 - **Completion** — [blink.cmp](https://github.com/saghen/blink.cmp) (lsp / path / snippets / buffer) + [friendly-snippets](https://github.com/rafamadriz/friendly-snippets).
 - **Formatting** — [conform.nvim](https://github.com/stevearc/conform.nvim), manual via `m lf` (LSP fallback). Wired for `shfmt` (`-i 4`), `prettier`, and `stylua`/`isort`/`black`/`gofumpt` once installed.
 - **Linting** — [nvim-lint](https://github.com/mfussenegger/nvim-lint) on read/write/insert-leave. `markdownlint` active; others activate when installed.
