@@ -36,13 +36,7 @@ Nothing here is a starter framework — it's a hand-rolled config, kept close to
 
 ## Requirements
 
-| Need | For |
-|------|-----|
-| **Neovim ≥ 0.11** (0.12 recommended) | native `vim.lsp.config`/`enable`, Tree-sitter `main` |
-| **git**, a **C compiler**, **[tree-sitter CLI](https://github.com/tree-sitter/tree-sitter)** | plugin install + compiling Tree-sitter parsers (`pacman -S tree-sitter-cli`) |
-| A **Nerd Font** (FiraCode Nerd Font here) | icons in the UI, statusline, picker |
-| **ripgrep** + **fd** | the snacks picker (files / live grep) |
-| **Per-language tools** on `PATH` (no mason) | LSP servers, formatters, linters — see **[Language support](#language-support)** below |
+**Neovim ≥ 0.11** (0.12 recommended), plus `git`, a C compiler, and the **[tree-sitter CLI](https://github.com/tree-sitter/tree-sitter)** for compiling parsers. A **Nerd Font** for the icons, and **`ripgrep`** + **`fd`** for the picker. Per-language LSP / formatter / linter tools go on `PATH` (no mason) — see **[Language support](#language-support)**.
 
 ## Structure
 
