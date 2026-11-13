@@ -49,9 +49,8 @@ Two flavors (`catppuccin-mocha`, `tokyonight-storm`) are pinned but not activate
 
 ### Selection
 - `<Space>` - Toggle select and move down
-- `q` - Quit
-- `Q` - Quit without writing the cwd-file
-- `w` - Quit and cd into current directory
+- `q` or `w` - Quit and cd the shell into the current directory (via `.zshrc`'s `yazi` wrapper reading the cwd-file; `w` is currently a duplicate of `q`)
+- `Q` - Quit without writing the cwd-file (shell stays where it was)
 - `<C-c>` - Close current tab, or quit
 - `<C-z>` - Suspend
 - `u` - Clear selections and unyank
