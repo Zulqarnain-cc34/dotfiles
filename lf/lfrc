@@ -430,9 +430,8 @@ map cd push :cd<space>
 map cke chmod_exec
 map cku chmod_unexec
 
-map u
-map uv unselect
-map uy clear
+cmd unselect-clear :unselect; clear
+map u unselect-clear
 
 map bg setwallpaper
 map bs selectwallpaper
