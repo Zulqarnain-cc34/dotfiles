@@ -7,7 +7,9 @@
   <img src="https://img.shields.io/badge/license-GPL--3.0-7aa2f7?style=flat-square&labelColor=1a1b26" alt="license">
 </div>
 
-<!-- Screenshot slot: add assets/kitty-shot.png, then uncomment → <div align="center"><img src="../assets/kitty-shot.png" width="80%"></div> -->
+<div align="center">
+  <img src="../assets/kitty_demo.png" width="80%" alt="kitty running yazi, Tokyo Night storm with background transparency">
+</div>
 
 > Built on **[kitty](https://sw.kovidgoyal.net/kitty/)** by Kovid Goyal. ❤️
 
