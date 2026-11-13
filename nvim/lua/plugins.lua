@@ -47,7 +47,7 @@ return require('lazy').setup({
     },
     {
         "ellisonleao/gruvbox.nvim",
-        priority = 1000,
+        lazy = true, -- only styler uses it (markdown); lazy.nvim loads it on :colorscheme
         config = true,
     },
     -- oil + mini.icons removed: snacks.explorer is the file explorer now.

@@ -13,7 +13,13 @@ require('lsp/tsserver') -- a warning need to see and fix someday _____
 require('lsp/graphql')  -- Not Working
 require('lsp/html')
 require('lsp/docker')
-require('lsp/json')
+-- json LSP pulls in the full schemastore catalog (~22ms). Defer it until a
+-- json file is actually opened; vim.lsp.enable then attaches to that buffer.
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = { "json", "jsonc" },
+    once = true,
+    callback = function() require('lsp/json') end,
+})
 -- require('lsp/gopls')
 -- require('lsp/emmet')
 require('lsp/vim')
