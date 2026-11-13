@@ -53,21 +53,6 @@ cmd folder_size !{{
 cmd copy_down ${{
     cp $fx "$HOME/Downloads/"
     }}
-cmd copy_image_png ${{
-    xclip -sel clip -t image/png $f
-    }}
-cmd copy_image_jpg ${{
-    xclip -sel clip -t image/jpg $f
-    }}
-cmd copy_text ${{
-    xclip -sel clip -t text/plain $f
-    }}
-cmd send_to_phone ${{
-    # NOTE: Assumes single KDE Connect device. For multiple devices, select manually:
-    # kdeconnect-cli --list-devices
-    kdeconnect-cli -d $(kdeconnect-cli -a --id-only) --share $fx
-    }}
-
 #cmd yank-dirname $dirname -- "$f" | head -c-1 | xclip -i -selection clipboard
 #cmd yank-path $printf '%s' "$fx" | xclip -i -selection clipboard
 #cmd yank-basename $basename -a -- $fx | head -c-1 | xclip -i -selection clipboard
@@ -98,8 +83,6 @@ cmd mkfile %{{
 }}
 
 
-cmd mount_iso %iso_mount_unmount.sh "$f"
-
 cmd chmod %{{
   printf "Mode Bits: "
   read ans
@@ -112,6 +95,16 @@ cmd chmod %{{
   done
   IFS=$SAVEIFS
 
+  lf -remote 'send reload'
+}}
+
+cmd chmod_exec ${{
+  chmod +x $fx
+  lf -remote 'send reload'
+}}
+
+cmd chmod_unexec ${{
+  chmod -x $fx
   lf -remote 'send reload'
 }}
 
@@ -143,8 +136,6 @@ cmd fzf_locate ${{
 
 
 cmd show_info_exif ${{exiftool "$f" | less}}
-cmd vimdiff_files ${{nvim -d $fx}}
-cmd mpv_dvd %{{mpv dvd:// --dvd-device="$f" &>/dev/null &}}
 
 # Archive bindings
 cmd unarchive ${{
@@ -152,35 +143,55 @@ cmd unarchive ${{
 }}
 
 cmd zip %{{
-  cd "$(dirname "$f")" || exit 1
-  name="$(basename "$f")"
+  set -- $fx
+  last="$1"; for p in "$@"; do last="$p"; done
+  dir="$(dirname "$last")"
+  name="$(basename "$last")"
+  cd "$dir" || exit 1
   out="$name.zip"; i=1
   while [ -e "$out" ]; do out="$name-$i.zip"; i=$((i+1)); done
-  zip -r "$out" "$name"
+  names=()
+  for p in "$@"; do names+=("$(basename "$p")"); done
+  zip -r "$out" "${names[@]}"
 }}
 
 cmd tar %{{
-  cd "$(dirname "$f")" || exit 1
-  name="$(basename "$f")"
+  set -- $fx
+  last="$1"; for p in "$@"; do last="$p"; done
+  dir="$(dirname "$last")"
+  name="$(basename "$last")"
+  cd "$dir" || exit 1
   out="$name.tar"; i=1
   while [ -e "$out" ]; do out="$name-$i.tar"; i=$((i+1)); done
-  tar cvf "$out" "$name"
+  names=()
+  for p in "$@"; do names+=("$(basename "$p")"); done
+  tar cvf "$out" "${names[@]}"
 }}
 
 cmd targz %{{
-  cd "$(dirname "$f")" || exit 1
-  name="$(basename "$f")"
+  set -- $fx
+  last="$1"; for p in "$@"; do last="$p"; done
+  dir="$(dirname "$last")"
+  name="$(basename "$last")"
+  cd "$dir" || exit 1
   out="$name.tar.gz"; i=1
   while [ -e "$out" ]; do out="$name-$i.tar.gz"; i=$((i+1)); done
-  tar cvzf "$out" "$name"
+  names=()
+  for p in "$@"; do names+=("$(basename "$p")"); done
+  tar cvzf "$out" "${names[@]}"
 }}
 
 cmd tarbz2 %{{
-  cd "$(dirname "$f")" || exit 1
-  name="$(basename "$f")"
+  set -- $fx
+  last="$1"; for p in "$@"; do last="$p"; done
+  dir="$(dirname "$last")"
+  name="$(basename "$last")"
+  cd "$dir" || exit 1
   out="$name.tar.bz2"; i=1
   while [ -e "$out" ]; do out="$name-$i.tar.bz2"; i=$((i+1)); done
-  tar cjvf "$out" "$name"
+  names=()
+  for p in "$@"; do names+=("$(basename "$p")"); done
+  tar cjvf "$out" "${names[@]}"
 }}
 
 cmd clear_trash %trash-empty
@@ -193,27 +204,8 @@ cmd open_with %{{
     "$@" $fx
 }}
 
-cmd send_mail ${{
-    $EDITOR /tmp/mail
-    printf "To:"
-    read to
-    printf "Subject:"
-    read subject
-    if [[ -z "$fs" ]];then
-        neomutt -s "$subject" -- $to </tmp/mail
-    else
-        neomutt -a $fs -s "$subject" -- $to </tmp/mail
-    fi
-}}
-
 cmd image2pdf ${{
-    printf "Quality:"
-    read quality
-    printf "Rotate Angle:"
-    read rotate
-    printf "File Name:"
-    read filename
-    convert -size 810x1080 -rotate $rotate $fx -resize 810x1080 -extent 810x1080 -background white -compose Copy -gravity center -quality $quality "${filename}.pdf"
+    magick $fx "${f%.*}.pdf" 2>/dev/null
 }}
 
 cmd stripspace ${{
@@ -224,7 +216,6 @@ cmd stripspace ${{
 cmd image_directory ${{
     nohup nsxiv -t ./* &> /dev/null &
 }}
-cmd share $curl -F"file=@$fx" https://0x0.st | xclip -selection clip
 
 cmd config-edit ${{
     $EDITOR "$HOME/.config/lf/lfrc"
@@ -234,7 +225,12 @@ cmd bulk-rename ${{
     old="$(mktemp)"
     new="$(mktemp)"
     if [ -n "$fs" ]; then
-        fs="$(basename $fs)"
+        # basename only ever takes one path (+ an optional strip-suffix as
+        # arg 2) -- `basename $fs` with an unquoted multi-file $fs silently
+        # treats the 2nd selected file as a suffix and drops the rest, so
+        # a 2+ file selection collapsed to just the first file's basename.
+        set -- $fs
+        fs="$(for p in "$@"; do basename "$p"; done)"
     else
         fs="$(ls)"
     fi
@@ -262,22 +258,29 @@ cmd bulk-rename ${{
 #     fi
 # }}
 
-######################################
-##############   AutoJump   ##########
-######################################
-#
-
-cmd aj %lf -remote "send $id cd '$(autojump $1)'"
-map aj push :aj<space>
-
-
 # Unmap the default binding
 map r
-# Rename the file with a completely different name
-map rc push :rename<space>
 
 map ra rename
-map rb bulk-rename 
+map rb bulk-rename
+
+# Rename with a completely different name. `rename` is modal-only --
+# invoking it via `push :rename<space>...` (the original approach here)
+# silently discards whatever text follows it on the command line and
+# reopens a fresh pre-filled prompt instead, no matter what's typed.
+# The only thing that reliably triggers the *real*, working modal is a
+# direct dispatch, same as how `ra` above is bound directly to `rename`
+# rather than routed through the command line. `lf -remote send rename`
+# does that same direct dispatch programmatically, then a Ctrl-U clears
+# the pre-filled base name (cursor sits right before the extension, same
+# place `ra` leaves it), leaving the extension intact and the cursor
+# ready for a fresh name -- confirmed live, both the dispatch and the
+# submitted rename actually work this way, unlike the old version.
+cmd rename_new_name ${{
+    lf -remote "send $id rename"
+    lf -remote "send $id push <c-u>"
+}}
+map rc rename_new_name
 
 # Edit the current filename
 # map ra ${{
@@ -288,25 +291,6 @@ map rb bulk-rename
 # 	filename="${filename// /<space>}"
 # 	lf -remote "send $id push :rename<space>$filename"
 # }}
-# # Edit filename before the extension
-map re ${{
-	# get 'basename' of the selection
-	filename="${f##*/}"
-	# quote it so we won't deal with quotes in the lf -remote command
-	filename="$(printf '%q' "$filename")"
-	filename="${filename// /<space>}"
-	lf -remote "send $id push :rename<space>$filename<a-b><c-b>"
-}}
-# Edit filename but place cursor at start
-map ri ${{
-	# get 'basename' of the selection
-	filename="${f##*/}"
-	# quote it so we won't deal with quotes in the lf -remote command
-	filename="$(printf '%q' "$filename")"
-	filename="${filename// /<space>}"
-	lf -remote "send $id push :rename<space>$filename<c-a><a-f><c-f>"
-}}
-
 cmd link %{{
     set -- $(cat ~/.local/share/lf/files)
     mode="$1"
@@ -326,14 +310,6 @@ cmd link %{{
 }}
 map P :link
 
-
-cmd newfold ${{
-    set -f
-    read newd
-    mkdir -- "$newd"
-    mv -- $fx "$newd"
-}}
-map eD newfold
 
 cmd select-files ${{
     { echo "$fs"; find -L "$(pwd)" -mindepth 1 -maxdepth 1 -type f; } |
@@ -400,9 +376,6 @@ cmd on-cd &{{
 }}
 map Sf select-files
 map Sd select-dirs
-map Z push :z-jump<space>-I<space>
-map zb push :z-jump<space>-b<space>
-map zz push :z-jump<space>
 
 map d
 map dt trash
@@ -415,10 +388,6 @@ map <delete> trash
 map y
 map yy copy
 map yLd copy_down
-map yip copy_image_png
-map yij copy_image_jpg
-map yit copy_text
-map yik send_to_phone
 map yp yank_path
 map yd yank_dir
 map yn yank_name
@@ -428,14 +397,13 @@ map y. yank_name_without_extension
 map m
 map md push :mkdir<space>
 map mf push :mkfile<space>
-map mi mount_iso
 
 map c
 map ch chmod
 map cr stripspace
 map cd push :cd<space>
-map cke %chmod +x $fx
-map cku %chmod -x $fx
+map cke chmod_exec
+map cku chmod_unexec
 
 map u
 map uv unselect
@@ -448,16 +416,11 @@ map bs selectwallpaper
 map e
 map ef fzf_jump
 map el fzf_locate
-map ed mpv_dvd
-map ec vimdiff_files
 map ei show_info_exif
 map ee $nvim -p $fx
-#map es $sudo $EDITOR "$f"
-map em send_mail
 map eg image2pdf
 map ep image_directory
 map eP %nsxiv $f
-map es share
 
 
 map az zip
@@ -468,11 +431,14 @@ map au unarchive
 map ap $mpv --no-video "$f"
 
 
-map Vna ${{
+# Not under V -- that's lf's stock key for entering Visual mode, and it
+# fires immediately on its own rather than waiting for a longer chord, so
+# anything bound as V-prefixed would never actually be reachable.
+map xn ${{
     ffmpeg -i "$f" -an -c copy "no_audio_$(basename $f)"
 }}
 
-map Vaa ${{
+map xa ${{
     ffmpeg -i "$f" -vn -c copy "audio_$(basename $f)"
 }}
 
@@ -499,7 +465,15 @@ map . set hidden!
 map "'"
 map '"'
 map f
-%{{
+
+# Both of these were previously two separate bare `%{{ }}` blocks at the
+# top level of this file, which is not valid lf startup syntax -- it's
+# silently never executed (confirmed live: neither ever ran). The actual
+# documented startup hook is the `on-init` special command name, executed
+# once after lf connects to its server. Merged into one definition since
+# two separate `cmd on-init` blocks would silently clobber each other,
+# same class of bug already fixed once in this file for on-cd.
+cmd on-init ${{
     w=$(tput cols)
     if [ $w -le 80 ]; then
         lf -remote "send $id set ratios 1:2"
@@ -508,4 +482,31 @@ map f
     else
         lf -remote "send $id set ratios 1:2:3:5"
     fi
+
+    # Cache the terminal's pixel-per-cell ratio once at startup, while lf
+    # is still the foreground process (safe to query the terminal here).
+    # The previewer runs backgrounded and can't safely read a response
+    # back from the terminal -- see lf/preview's image() for how this
+    # cache is used to avoid that read entirely via `icat --use-window-size`.
+    case "$TERM" in
+        *kitty*)
+            px="$(kitty +kitten icat --print-window-size 2>/dev/null)"
+            if [ -n "$px" ]; then
+                mkdir -p "$HOME/.cache/lf"
+                printf '%s %s %s\n' "$(tput cols)" "$(tput lines)" "$px" \
+                    > "$HOME/.cache/lf/kitty_cellpx"
+            fi
+            ;;
+    esac
+}}
+
+# Clear any lingering kitty image on quit -- the previewer draws images
+# directly to the terminal, out of band from lf's own rendering, so without
+# this the last preview stays painted on the screen after lf exits. Use the
+# raw delete-all escape rather than `icat --clear` (which queries the
+# terminal and can hang), matching lf/preview and lf/cleaner.
+cmd on-quit ${{
+    case "$TERM" in
+        *kitty*) printf '\033_Ga=d,d=A\033\\' >/dev/tty 2>/dev/null ;;
+    esac
 }}

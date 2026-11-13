@@ -2,14 +2,48 @@
 
 image() {
 	case "$TERM" in
-		# Ignore SIGTTOU/SIGTTIN *inside* the timeout'd subshell -- lf runs
-		# this script in a background process group, and icat's terminal
-		# read/write would otherwise get job-control-stopped (not hung)
-		# touching /dev/tty. timeout itself resets signal dispositions
-		# before exec, so the trap has to be set after it, not before.
 		*kitty*)
-			timeout 5 sh -c 'trap "" TTOU TTIN; exec kitty +kitten icat --transfer-mode=memory --stdin=no --place="$1" "$2" < /dev/tty > /dev/tty' \
-				sh "$(($2-1))x$(($3-1))@${4}x${5}" "$1"
+			# Draw the image directly to the terminal with kitty's icat.
+			#
+			# Two things make this fiddly under lf:
+			#
+			# 1. icat needs the window's pixel size to map --place (given in
+			#    cells) to pixels. Querying the terminal for it means *reading*
+			#    a response over /dev/tty, and lf runs this previewer in a
+			#    background process group -- a backgrounded read trips SIGTTIN
+			#    ("Failed doing I/O with terminal: EOF"). So we pass
+			#    --use-window-size instead: lfrc's on-init hook caches the
+			#    pixel-per-cell ratio once at startup (while lf is foreground,
+			#    so that one query is safe) and we scale it by the current cell
+			#    count here.
+			#
+			# 2. The current cell count must come from `stty size </dev/tty`,
+			#    NOT `tput cols`/`tput lines`. lf pipes this script's stdout, so
+			#    tput can't see the terminal and silently returns 80x24 -- which
+			#    puts --place outside the window so nothing renders. stty reads
+			#    the winsize via ioctl on the tty itself (not a read(), so no
+			#    SIGTTIN), and stays correct even with stdout piped and across a
+			#    terminal resize.
+			cache="$HOME/.cache/lf/kitty_cellpx"
+			[ -f "$cache" ] || return
+			read -r ref_cols ref_lines ref_px < "$cache"
+			ref_pw="${ref_px%x*}"
+			ref_ph="${ref_px#*x}"
+			size=$(stty size </dev/tty 2>/dev/null)
+			cur_lines=${size% *}
+			cur_cols=${size#* }
+			[ -n "$cur_cols" ] && [ -n "$cur_lines" ] || { cur_cols=$ref_cols; cur_lines=$ref_lines; }
+			win_pw=$(awk -v c="$cur_cols" -v rc="$ref_cols" -v rp="$ref_pw" 'BEGIN { printf "%d", c * rp / rc }')
+			win_ph=$(awk -v l="$cur_lines" -v rl="$ref_lines" -v rp="$ref_ph" 'BEGIN { printf "%d", l * rp / rl }')
+			# Ignore SIGTTOU *inside* the timeout'd subshell -- the write to
+			# /dev/tty would otherwise get job-control-stopped (not hung).
+			# timeout itself resets signal dispositions before its own exec,
+			# so the trap has to be set after it, not before.
+			# --align=left: icat centers the image within the --place box by
+			# default, which leaves a gap between the pane's left border and a
+			# portrait image. Left-align it so it sits flush against the border.
+			timeout 5 sh -c 'trap "" TTOU; exec kitty +kitten icat --transfer-mode=memory --stdin=no --align=left --use-window-size="$1" --place="$2" "$3" > /dev/tty' \
+				sh "${cur_cols},${cur_lines},${win_pw},${win_ph}" "$(($2-1))x$(($3-1))@${4}x${5}" "$1"
 			exit 1
 			;;
 	esac
@@ -17,9 +51,21 @@ image() {
 		printf '{"action": "add", "identifier": "PREVIEW", "x": "%s", "y": "%s", "width": "%s", "height": "%s", "scaler": "contain", "path": "%s"}\n' "$4" "$5" "$(($2-1))" "$(($3-1))" "$1" > "$FIFO_UEBERZUG"
 		exit 1
 	else
-		chafa "$1" -s "$4x"
+		chafa "$1" -s "$(($2-1))x$(($3-1))"
 	fi
 }
+
+# Clear the previous image before drawing this preview. The cleaner also
+# clears on leave (that's what handles moving onto a directory, which never
+# calls this previewer), but doing it here too is cheap defense-in-depth so
+# an image can never stack on top of another. Use the raw kitty delete-all
+# escape, NOT `icat --clear`: icat queries the terminal (a /dev/tty read)
+# and, run backgrounded by lf, gets SIGTTIN-stopped and hangs the preview.
+# A direct write has no read-back. (SIGTTOU is trapped so the backgrounded
+# write to /dev/tty isn't job-control-stopped.)
+case "$TERM" in
+	*kitty*) ( trap "" TTOU; printf '\033_Ga=d,d=A\033\\' > /dev/tty 2>/dev/null ) ;;
+esac
 
 batorcat() {
 	file="$1"

@@ -61,6 +61,10 @@ nvim/tempdir
 
 .gitconfig
 
+# Python bytecode cache (ranger colorschemes, bash_scripts/scripts/*.py)
+__pycache__/
+*.pyc
+
 # Misc
 .dotfiles_backup/
 
