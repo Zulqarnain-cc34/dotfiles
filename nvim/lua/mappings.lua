@@ -25,9 +25,6 @@ map('n', '<leader>lT', '<cmd>lua vim.lsp.stop_client(vim.lsp.get_clients({bufnr=
 -- Restarts LSP clients for current buffer
 map('n', '<leader>lR', '<cmd>lua vim.lsp.stop_client(vim.lsp.get_clients({bufnr=0})); vim.schedule(vim.cmd.edit)<cr>', options)
 
-map('n', '<space>dw', "<cmd>lua require('diaglist').open_all_diagnostics()<cr>", options)
-map('n', '<space>do', "<cmd>lua require('diaglist').open_buffer_diagnostics()<cr>", options)
-
 -- ===================== Lsp KeyBindings ==================================
 
 --  Highlights and Goto Declarations of function

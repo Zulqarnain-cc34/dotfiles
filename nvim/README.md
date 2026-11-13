@@ -68,11 +68,11 @@ lua/
 
 **Editing & Markdown** — [smart-paste.nvim](https://github.com/nemanjamalesija/smart-paste.nvim), [markview.nvim](https://github.com/OXY2DEV/markview.nvim), [markdown-preview.nvim](https://github.com/iamcco/markdown-preview.nvim), [todo-comments.nvim](https://github.com/folke/todo-comments.nvim)
 
-**Diagnostics** — [trouble.nvim](https://github.com/folke/trouble.nvim), [diaglist.nvim](https://github.com/onsails/diaglist.nvim)
+**Diagnostics** — [trouble.nvim](https://github.com/folke/trouble.nvim)
 
 **Session & Remote** — [persistence.nvim](https://github.com/folke/persistence.nvim), [remote-nvim.nvim](https://github.com/amitds1997/remote-nvim.nvim) (uses [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim))
 
-**Utilities** — [plenary.nvim](https://github.com/nvim-lua/plenary.nvim), [nui.nvim](https://github.com/MunifTanjim/nui.nvim), [structlog.nvim](https://github.com/Tastyep/structlog.nvim), [vim-startuptime](https://github.com/dstein64/vim-startuptime)
+**Utilities** — [plenary.nvim](https://github.com/nvim-lua/plenary.nvim), [nui.nvim](https://github.com/MunifTanjim/nui.nvim), [vim-startuptime](https://github.com/dstein64/vim-startuptime)
 
 ## Notable keybindings
 
