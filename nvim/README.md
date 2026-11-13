@@ -23,15 +23,29 @@ Nothing here is a starter framework — it's a hand-rolled config, kept close to
   <sub><em>Editing with LSP annotations, Treesitter highlighting, and Trouble (symbols · diagnostics)</em></sub>
 </div>
 
-<div align="center">
-  <img src="../assets/bufferline_demo.png" width="92%" alt="bufferline — buffer tabs"><br>
-  <img src="../assets/lualine_demo.png" width="92%" alt="lualine — statusline"><br>
-  <sub><em>bufferline (buffer tabs) · lualine statusline</em></sub>
-</div>
+<table align="center">
+  <tr>
+    <td align="center" width="50%"><img src="../assets/neovim_completion_popup_demo.png" width="100%" alt="completion popup"><br><sub><em>Completion — blink.cmp (docs · ghost text · signature)</em></sub></td>
+    <td align="center" width="50%"><img src="../assets/neovim_which_key_demo.png" width="100%" alt="which-key menu"><br><sub><em>which-key — the leader menu</em></sub></td>
+  </tr>
+  <tr>
+    <td align="center" width="50%"><img src="../assets/neovim_picker_demo.png" width="100%" alt="snacks picker"><br><sub><em>Picker — snacks (live grep)</em></sub></td>
+    <td align="center" width="50%"><img src="../assets/neovim_file_explorer_demo.png" width="100%" alt="snacks file explorer"><br><sub><em>File explorer — snacks</em></sub></td>
+  </tr>
+</table>
+
+<br>
 
 <div align="center">
-  <img src="../assets/neovim_lazy_demo.png" width="88%" alt=":Lazy — 36 plugins, most lazy-loaded"><br>
-  <sub><em><code>:Lazy</code> — 36 plugins, most lazy-loaded (≈140 ms startup)</em></sub>
+  <img src="../assets/bufferline_demo.png" width="80%" alt="bufferline — buffer tabs"><br>
+  <sub><em>bufferline — buffer tabs</em></sub>
+</div>
+
+<br>
+
+<div align="center">
+  <img src="../assets/lualine_demo.png" width="80%" alt="lualine — statusline"><br>
+  <sub><em>lualine — statusline</em></sub>
 </div>
 
 ## Requirements
@@ -93,6 +107,11 @@ All tooling lives on `PATH` (no mason) — install the ones for the languages yo
 ## 🔌 Plugins
 
 The full set, grouped by job, lives in **[plugins.md](plugins.md)** — snacks.nvim for the UI hub (picker / explorer / notifier / terminal / dashboard), blink.cmp for completion, conform + nvim-lint for formatting/linting, nvim-treesitter (`main`), neogit/diffview for Git, trouble for diagnostics, and the usual UI/theme/markdown supporting cast.
+
+<div align="center">
+  <img src="../assets/neovim_lazy_demo.png" width="88%" alt=":Lazy — 36 plugins, most lazy-loaded"><br>
+  <sub><em><code>:Lazy</code> — 36 plugins, most lazy-loaded (≈140 ms startup)</em></sub>
+</div>
 
 ## Notable keybindings
 
