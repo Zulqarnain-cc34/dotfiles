@@ -32,4 +32,4 @@ Default lf movement still applies; these are the notable custom maps:
 | `ef` `el` `Z` `zz` | fzf jump / fzf locate / zoxide jump |
 | `ei` `ee` `eP` `es` | exif info / nvim tabs / nsxiv / share (0x0.st) |
 
-> Archive, `ap`, trash, and `cke/cku` use the same keys and behavior in [yazi](../yazi/README.md) and [ranger](../ranger/README.md); `au` shares yazi's `smart-extract.sh`.
+> Archive, `ap`, trash, and `cke/cku` use the same keys and behavior in [yazi](../yazi/README.md); `au` shares yazi's `smart-extract.sh`.
