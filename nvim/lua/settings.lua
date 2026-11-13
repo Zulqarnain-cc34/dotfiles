@@ -33,9 +33,6 @@ cmd("colorscheme onedark")
 --                              WikiList                              --
 ------------------------------------------------------------------------
 
--- Using Markdown Sytax in favor of wikilist Syntax
-g.vimwiki_list = { { path = '~/.config/nvim/tempdir/vimwiki/', syntax = 'markdown', ext = '.md' } }
-
 ------------------------------------------------------------------------
 --                          Dev Icons Colors                          --
 ------------------------------------------------------------------------

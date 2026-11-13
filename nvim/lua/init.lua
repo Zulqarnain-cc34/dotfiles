@@ -1,4 +1,3 @@
---require('disabled')
 require('plugins')
 require('general')
 require('settings')
