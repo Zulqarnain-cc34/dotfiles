@@ -68,17 +68,11 @@ for f in "$@"; do
     base=$(basename "$base")
 
     case "$f" in
-        # Single-file compressors: no archive structure, just decompress in place.
-        *.gz) gzip -dc "$f" >"$dir/$base" ;;
-        *.bz2) bzip2 -dc "$f" >"$dir/$base" ;;
-        *.Z) uncompress -c "$f" >"$dir/$base" ;;
-        # .deb has no single-root convention -- always wrap.
-        *.deb)
-            dest=$(unique_dest "$dir/$base")
-            mkdir -p "$dest"
-            (cd "$dest" && ar x "$f")
-            ;;
-        *)
+        # Real archives first, and explicitly, even though some of their
+        # extensions (.tar.gz, .tar.bz2) would otherwise also match the
+        # single-file-compressor patterns below (*.gz, *.bz2) -- case
+        # matches top-to-bottom, first pattern wins, so order matters here.
+        *.tar.bz2 | *.tar.gz | *.tar.xz | *.tar.zst | *.tgz | *.tar | *.zip | *.rar | *.7z)
             if is_single_rooted "$f"; then
                 target="$dir"
             else
@@ -89,10 +83,20 @@ for f in "$@"; do
                 *.tar.bz2 | *.tar.gz | *.tar.xz | *.tar.zst | *.tgz | *.tar)
                     tar xf "$f" -C "$target"
                     ;;
-                *.zip) unzip -q "$f" -d "$target" ;;
+                *.zip) unzip -o -q "$f" -d "$target" ;;
                 *.rar) unrar x -y "$f" "$target/" ;;
                 *.7z) 7z x "$f" -o"$target" -y ;;
             esac
+            ;;
+        # Single-file compressors: no archive structure, just decompress in place.
+        *.gz) gzip -dc "$f" >"$dir/$base" ;;
+        *.bz2) bzip2 -dc "$f" >"$dir/$base" ;;
+        *.Z) uncompress -c "$f" >"$dir/$base" ;;
+        # .deb has no single-root convention -- always wrap.
+        *.deb)
+            dest=$(unique_dest "$dir/$base")
+            mkdir -p "$dest"
+            (cd "$dest" && ar x "$f")
             ;;
     esac
 done

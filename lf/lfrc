@@ -150,35 +150,55 @@ cmd unarchive ${{
 }}
 
 cmd zip %{{
-  cd "$(dirname "$f")" || exit 1
-  name="$(basename "$f")"
+  set -- $fx
+  last="$1"; for p in "$@"; do last="$p"; done
+  dir="$(dirname "$last")"
+  name="$(basename "$last")"
+  cd "$dir" || exit 1
   out="$name.zip"; i=1
   while [ -e "$out" ]; do out="$name-$i.zip"; i=$((i+1)); done
-  zip -r "$out" "$name"
+  names=()
+  for p in "$@"; do names+=("$(basename "$p")"); done
+  zip -r "$out" "${names[@]}"
 }}
 
 cmd tar %{{
-  cd "$(dirname "$f")" || exit 1
-  name="$(basename "$f")"
+  set -- $fx
+  last="$1"; for p in "$@"; do last="$p"; done
+  dir="$(dirname "$last")"
+  name="$(basename "$last")"
+  cd "$dir" || exit 1
   out="$name.tar"; i=1
   while [ -e "$out" ]; do out="$name-$i.tar"; i=$((i+1)); done
-  tar cvf "$out" "$name"
+  names=()
+  for p in "$@"; do names+=("$(basename "$p")"); done
+  tar cvf "$out" "${names[@]}"
 }}
 
 cmd targz %{{
-  cd "$(dirname "$f")" || exit 1
-  name="$(basename "$f")"
+  set -- $fx
+  last="$1"; for p in "$@"; do last="$p"; done
+  dir="$(dirname "$last")"
+  name="$(basename "$last")"
+  cd "$dir" || exit 1
   out="$name.tar.gz"; i=1
   while [ -e "$out" ]; do out="$name-$i.tar.gz"; i=$((i+1)); done
-  tar cvzf "$out" "$name"
+  names=()
+  for p in "$@"; do names+=("$(basename "$p")"); done
+  tar cvzf "$out" "${names[@]}"
 }}
 
 cmd tarbz2 %{{
-  cd "$(dirname "$f")" || exit 1
-  name="$(basename "$f")"
+  set -- $fx
+  last="$1"; for p in "$@"; do last="$p"; done
+  dir="$(dirname "$last")"
+  name="$(basename "$last")"
+  cd "$dir" || exit 1
   out="$name.tar.bz2"; i=1
   while [ -e "$out" ]; do out="$name-$i.tar.bz2"; i=$((i+1)); done
-  tar cjvf "$out" "$name"
+  names=()
+  for p in "$@"; do names+=("$(basename "$p")"); done
+  tar cjvf "$out" "${names[@]}"
 }}
 
 cmd clear_trash %trash-empty
