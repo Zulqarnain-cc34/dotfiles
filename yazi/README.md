@@ -107,4 +107,4 @@ Two flavors (`catppuccin-mocha`, `tokyonight-storm`) are pinned but not activate
 - `cm` - Chmod on selected files (interactive)
 - `tr/tc/tg` - Trash restore/clear/go to trash
 
-> Archive (`az/at/ag/ab/au`), audio-only play (`ap`), trash (`dt`/`tr/tc/tg`), and permissions (`cke/cku`) use the same keys and behavior in [lf](../lf/README.md) and [ranger](../ranger/README.md).
+> Archive (`az/at/ag/ab/au`), audio-only play (`ap`), trash (`dt`/`tr/tc/tg`), and permissions (`cke/cku`) use the same keys and behavior in [lf](../lf/README.md).
