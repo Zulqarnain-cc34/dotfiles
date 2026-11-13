@@ -91,12 +91,6 @@ return require('lazy').setup({
             require("plugins.nvim-web-devicons")
         end
     },
-    -- {
-    --     'kevinhwang91/nvim-hlslens',
-    --     config = function()
-    --         require("plugins.hlslens")
-    --     end
-    -- },
     {
         "folke/tokyonight.nvim",
         lazy = true,  -- not the active scheme (onedark is); lazy.nvim loads it on :colorscheme if ever used
@@ -134,14 +128,6 @@ return require('lazy').setup({
     },
     { "Tastyep/structlog.nvim" },
 
-    -- ================== LSP, Autocomplete and Treesitter =====================
-    -- {
-    --     'onsails/lspkind-nvim',
-    --     event = "BufRead",
-    --     config = function()
-    --         require("plugins.lspkind")
-    --     end
-    -- },
     {
         "navarasu/onedark.nvim",
         priority = 1000,
