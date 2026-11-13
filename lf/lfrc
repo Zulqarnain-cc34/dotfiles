@@ -335,14 +335,6 @@ cmd link %{{
 map P :link
 
 
-cmd newfold ${{
-    set -f
-    read newd
-    mkdir -- "$newd"
-    mv -- $fx "$newd"
-}}
-map eD newfold
-
 cmd select-files ${{
     { echo "$fs"; find -L "$(pwd)" -mindepth 1 -maxdepth 1 -type f; } |
         if [ "$lf_hidden" = "false" ]; then
