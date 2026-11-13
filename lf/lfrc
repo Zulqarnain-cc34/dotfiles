@@ -136,8 +136,6 @@ cmd fzf_locate ${{
 
 
 cmd show_info_exif ${{exiftool "$f" | less}}
-cmd vimdiff_files ${{nvim -d $fx}}
-cmd mpv_dvd %{{mpv dvd:// --dvd-device="$f" &>/dev/null &}}
 
 # Archive bindings
 cmd unarchive ${{
@@ -206,27 +204,8 @@ cmd open_with %{{
     "$@" $fx
 }}
 
-cmd send_mail ${{
-    $EDITOR /tmp/mail
-    printf "To:"
-    read to
-    printf "Subject:"
-    read subject
-    if [[ -z "$fs" ]];then
-        neomutt -s "$subject" -- $to </tmp/mail
-    else
-        neomutt -a $fs -s "$subject" -- $to </tmp/mail
-    fi
-}}
-
 cmd image2pdf ${{
-    printf "Quality:"
-    read quality
-    printf "Rotate Angle:"
-    read rotate
-    printf "File Name:"
-    read filename
-    convert -size 810x1080 -rotate $rotate $fx -resize 810x1080 -extent 810x1080 -background white -compose Copy -gravity center -quality $quality "${filename}.pdf"
+    magick $fx "${f%.*}.pdf" 2>/dev/null
 }}
 
 cmd stripspace ${{
@@ -281,11 +260,27 @@ cmd bulk-rename ${{
 
 # Unmap the default binding
 map r
-# Rename the file with a completely different name
-map rc push :rename<space>
 
 map ra rename
-map rb bulk-rename 
+map rb bulk-rename
+
+# Rename with a completely different name. `rename` is modal-only --
+# invoking it via `push :rename<space>...` (the original approach here)
+# silently discards whatever text follows it on the command line and
+# reopens a fresh pre-filled prompt instead, no matter what's typed.
+# The only thing that reliably triggers the *real*, working modal is a
+# direct dispatch, same as how `ra` above is bound directly to `rename`
+# rather than routed through the command line. `lf -remote send rename`
+# does that same direct dispatch programmatically, then a Ctrl-U clears
+# the pre-filled base name (cursor sits right before the extension, same
+# place `ra` leaves it), leaving the extension intact and the cursor
+# ready for a fresh name -- confirmed live, both the dispatch and the
+# submitted rename actually work this way, unlike the old version.
+cmd rename_new_name ${{
+    lf -remote "send $id rename"
+    lf -remote "send $id push <c-u>"
+}}
+map rc rename_new_name
 
 # Edit the current filename
 # map ra ${{
@@ -296,25 +291,6 @@ map rb bulk-rename
 # 	filename="${filename// /<space>}"
 # 	lf -remote "send $id push :rename<space>$filename"
 # }}
-# # Edit filename before the extension
-map re ${{
-	# get 'basename' of the selection
-	filename="${f##*/}"
-	# quote it so we won't deal with quotes in the lf -remote command
-	filename="$(printf '%q' "$filename")"
-	filename="${filename// /<space>}"
-	lf -remote "send $id push :rename<space>$filename<a-b><c-b>"
-}}
-# Edit filename but place cursor at start
-map ri ${{
-	# get 'basename' of the selection
-	filename="${f##*/}"
-	# quote it so we won't deal with quotes in the lf -remote command
-	filename="$(printf '%q' "$filename")"
-	filename="${filename// /<space>}"
-	lf -remote "send $id push :rename<space>$filename<c-a><a-f><c-f>"
-}}
-
 cmd link %{{
     set -- $(cat ~/.local/share/lf/files)
     mode="$1"
@@ -430,8 +406,9 @@ map cd push :cd<space>
 map cke chmod_exec
 map cku chmod_unexec
 
-cmd unselect-clear :unselect; clear
-map u unselect-clear
+map u
+map uv unselect
+map uy clear
 
 map bg setwallpaper
 map bs selectwallpaper
@@ -440,11 +417,8 @@ map bs selectwallpaper
 map e
 map ef fzf_jump
 map el fzf_locate
-map ed mpv_dvd
-map ec vimdiff_files
 map ei show_info_exif
 map ee $nvim -p $fx
-map em send_mail
 map eg image2pdf
 map ep image_directory
 map eP %nsxiv $f

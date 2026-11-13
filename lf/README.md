@@ -26,7 +26,7 @@ Default lf movement still applies; these are the notable custom maps, split by w
 | `tr` / `tc` / `tg` | trash restore / clear / go to trash |
 | `yy` `yLd` `yp` `yd` `yn` `y.` | copy / copy to `~/Downloads` / yank path / dir / name / name-no-ext |
 | `P` | paste as symlink/hardlink (two-stage: stage with `yy`-equivalent, then `P` to link) |
-| `u` | clear the file selection and the copy/cut clipboard (both, in one press) |
+| `uv` / `uy` | clear the file selection / clear the copy-cut clipboard (these are different things in lf) |
 | `ch` / `cr` / `cd` | chmod (interactive, prompts for mode bits) / strip spaces from filename / `cd` prompt |
 | `cke` / `cku` | make selected file(s) executable / non-executable |
 | `au` | unarchive — smart: no wrapper if already single-rooted |
