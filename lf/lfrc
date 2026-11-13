@@ -98,8 +98,6 @@ cmd mkfile %{{
 }}
 
 
-cmd mount_iso %iso_mount_unmount.sh "$f"
-
 cmd chmod %{{
   printf "Mode Bits: "
   read ans
@@ -428,7 +426,6 @@ map y. yank_name_without_extension
 map m
 map md push :mkdir<space>
 map mf push :mkfile<space>
-map mi mount_iso
 
 map c
 map ch chmod

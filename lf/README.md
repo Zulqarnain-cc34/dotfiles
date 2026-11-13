@@ -22,7 +22,7 @@ Default lf movement still applies; these are the notable custom maps:
 | `dt` / `dd` / `dD` / `<delete>` | trash / cut / delete / trash |
 | `yy` `yp` `yd` `yn` `y.` | copy / yank path / dir / name / name-no-ext |
 | `yip` `yij` `yit` `yik` | copy image png / jpg / text / send to phone (KDE Connect) |
-| `md` `mf` `mi` | mkdir / mkfile / mount iso |
+| `md` `mf` | mkdir / mkfile |
 | `au` | unarchive — smart: no wrapper if already single-rooted |
 | `az` `at` `ag` `ab` | zip / tar / tar.gz / tar.bz2 (no leading path, auto-renames on collision) |
 | `ap` | play hovered file as audio only (no video) |
