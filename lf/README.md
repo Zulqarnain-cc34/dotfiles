@@ -20,7 +20,7 @@ Default lf movement still applies; these are the notable custom maps, split by w
 
 | Key | Action |
 |-----|--------|
-| `ra` / `rb` | rename (built-in, pre-filled, cursor before extension) / bulk-rename (edit a list of names in `$EDITOR`) |
+| `ra` / `rb` / `rc` | rename (built-in, pre-filled, cursor before extension) / bulk-rename (edit a list of names in `$EDITOR`) / rename with a completely different name (base name cleared, extension kept) |
 | `md` `mf` | mkdir / mkfile |
 | `dt` / `dd` / `dD` / `<delete>` | trash / cut / delete / trash |
 | `tr` / `tc` / `tg` | trash restore / clear / go to trash |
@@ -39,16 +39,17 @@ Default lf movement still applies; these are the notable custom maps, split by w
 |-----|--------|
 | `Sf` / `Sd` | select all visible files / select all visible directories |
 | `sa` `sc` `se` `sn` `ss` `st` | sort by atime / ctime / extension / name (natural) / size / mtime, each reversed |
+| `sb` | sort by btime (creation time), reversed, and show it in the info column — lf stock default, not set in `lfrc` |
 | `zA` / `zc` | show atime / ctime in the linemode info column |
 | `o` | open with (prompts for a command) |
 | `.` | toggle hidden files |
 | `ef` `el` | fzf jump / fzf locate |
 | `ei` `ee` `eP` | exif info / nvim tabs / nsxiv |
-| `ed` `ec` `em` `eg` `ep` | play as DVD (mpv) / vimdiff selected files / compose mail with selection attached / convert image(s) to PDF / browse this folder's images in nsxiv (view only, no wallpaper action) |
+| `eg` `ep` | convert image(s) to PDF (no prompts, same pattern as yazi's `eg`) / browse this folder's images in nsxiv (view only, no wallpaper action) |
 | `ap` | play hovered file as audio only (no video) |
 | `Vna` / `Vaa` | strip audio from video / extract audio from video (ffmpeg) |
 | `bg` / `bs` | set wallpaper directly / browse this folder's images in nsxiv and pick one — navigate, then press **`Q`** (capital) on the thumbnail you want, not Enter or double-click |
 
 > `au` shares yazi's `smart-extract.sh`.
 >
-> **Known broken, not yet fixed**: `rc` (rename with a completely different name, empty prompt) and `re`/`ri` (rename with cursor pre-positioned before the extension / at the start) are all defined in `lfrc` but don't work — all three invoke rename via `push :rename<space>...`, and lf's `rename` is modal-only: invoked that way, it discards whatever text was submitted on the command line and reopens a fresh prompt pre-filled with the file's current name instead. Only `ra` (a *direct* key binding to the `rename` action, not routed through the command line) actually works. `zb` (zoxide jump variant) is also broken, for an unrelated reason — it calls `z-jump`, a command that's never actually defined anywhere in this config (same root cause as the `Z`/`zz` bindings that were removed outright).
+> **Known broken, not yet fixed**: `zb` (zoxide jump variant) calls `z-jump`, a command that's never actually defined anywhere in this config (same root cause as the `Z`/`zz` bindings that were removed outright).
