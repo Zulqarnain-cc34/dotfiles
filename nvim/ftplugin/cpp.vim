@@ -1,13 +1,3 @@
-
- "Highlights the trailing spaces with dark red
-" highlight ExtraWhitespace ctermbg=red guibg=red
-" match ExtraWhitespace /\s\+$/
-" au BufWinEnter * match ExtraWhitespace /\s\+$/
-" au InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
-" au InsertLeave * match ExtraWhitespace /\s\+$/
-" au BufWinLeave * call clearmatches()
-
-
 "Removes the space after a semicolon
 nnoremap <F8> :let _s=@/<Bar>:%s/;\s\+$/;/e<Bar>:let @/=_s<Bar><CR>
 "Remove all trailing whitespace by pressing F5
