@@ -1,7 +1,7 @@
 <div align="center">
   <img src="../assets/kitty.svg" width="72" alt="kitty logo"><br><br>
   <h1>kitty</h1>
-  <p><em>The primary terminal — GPU-accelerated, fast, endlessly scriptable.</em></p>
+  <p><em>The primary terminal emulator — GPU-accelerated, fast, endlessly scriptable.</em></p>
   <a href="https://github.com/kovidgoyal/kitty"><img src="https://img.shields.io/badge/upstream-kovidgoyal%2Fkitty-c678dd?style=flat-square&logo=github&logoColor=white" alt="upstream"></a>
   <a href="https://github.com/kovidgoyal/kitty/stargazers"><img src="https://img.shields.io/github/stars/kovidgoyal/kitty?style=flat-square&color=ffce63&labelColor=1a1b26" alt="stars"></a>
   <img src="https://img.shields.io/badge/license-GPL--3.0-7aa2f7?style=flat-square&labelColor=1a1b26" alt="license">
@@ -21,6 +21,7 @@ A GPU-accelerated terminal emulator, and the primary terminal in this setup — 
 - `FiraCode Nerd Font`, with the bold and italic faces derived automatically (`bold_font auto`, `italic_font auto`, `bold_italic_font auto`).
 - `background_opacity 0.90`, so a little of the desktop shows through.
 - Tab bar uses the `fade` style.
+- URLs are highlighted green (`url_color`) on mouse-over.
 
 ### Font size per session
 
