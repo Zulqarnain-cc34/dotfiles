@@ -21,11 +21,11 @@ Nothing here is a starter framework — it's a hand-rolled config, kept close to
 <table align="center">
   <tr>
     <td align="center" width="50%"><img src="../assets/neovim_completion_popup_demo.png" width="100%" alt="completion popup"><br><sub><em>Completion — blink.cmp (docs · ghost text · signature)</em></sub></td>
-    <td align="center" width="50%"><img src="../assets/neovim_which_key_demo.png" width="100%" alt="which-key menu"><br><sub><em>which-key — the leader menu</em></sub></td>
+    <td align="center" width="50%"><img src="../assets/neovim_file_explorer_demo.png" width="100%" alt="snacks file explorer"><br><sub><em>File explorer — snacks</em></sub></td>
   </tr>
   <tr>
     <td align="center" width="50%"><img src="../assets/neovim_picker_demo.png" width="100%" alt="snacks picker"><br><sub><em>Picker — snacks (live grep)</em></sub></td>
-    <td align="center" width="50%"><img src="../assets/neovim_file_explorer_demo.png" width="100%" alt="snacks file explorer"><br><sub><em>File explorer — snacks</em></sub></td>
+    <td align="center" width="50%"><img src="../assets/neovim_which_key_demo.png" width="100%" alt="which-key menu"><br><sub><em>which-key — the leader menu</em></sub></td>
   </tr>
 </table>
 
