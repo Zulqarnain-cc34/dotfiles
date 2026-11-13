@@ -54,7 +54,11 @@ return require('lazy').setup({
     {
         "catgoose/nvim-colorizer.lua",
         event = "BufReadPre",
-        opts = { -- set to setup table
+        opts = {
+            user_default_options = {
+                css = true,      -- enable names, hex, rgb, hsl, oklch, css vars in CSS/SCSS
+                tailwind = true, -- highlight tailwind class colors
+            },
         },
     },
     {
@@ -268,7 +272,16 @@ return require('lazy').setup({
             appearance = {
                 nerd_font_variant = 'mono'
             },
-            completion = { documentation = { auto_show = false } },
+            completion = {
+                -- auto-show docs for the selected item (with a small delay so it isn't noisy)
+                documentation = { auto_show = true, auto_show_delay_ms = 500 },
+                -- inline preview of the selected completion as you type
+                ghost_text = { enabled = true },
+                -- treesitter-highlight the completion menu labels
+                menu = { draw = { treesitter = { 'lsp' } } },
+            },
+            -- signature help popup while typing function arguments
+            signature = { enabled = true },
             sources = {
                 default = { 'lsp', 'path', 'snippets', 'buffer' },
             },
