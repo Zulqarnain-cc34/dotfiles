@@ -16,8 +16,6 @@ require('lsp/html')
 require('lsp/docker')
 require('lsp/json')
 -- require('lsp/gopls')
---
--- require('lsp/efm')
 -- require('lsp/emmet')
 require('lsp/vim')
 -- require('lsp/lsp')
