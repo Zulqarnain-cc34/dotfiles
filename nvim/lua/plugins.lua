@@ -214,23 +214,41 @@ return require('lazy').setup({
     },
     {
         "nvim-treesitter/nvim-treesitter",
+        branch = "main", -- the rewrite; the old master-style opts below are gone
         build = ":TSUpdate",
         lazy = false,
-        opts = {
-            ensure_installed = {
-                "lua", "python", "bash", "go", "html", "css", "javascript", "json", "c", "cpp",
-                "markdown",
-                "scss", "yaml", "typescript", "vim", "dart", "fish", "java", "dockerfile"
-            },
+        config = function()
+            require("nvim-treesitter").setup()
 
-            auto_install = true,
-            highlight = {
-                enable = true,
-            },
-            indent = {
-                enable = false,
-            },
-        },
+            -- main branch: parsers are installed via the install API, not
+            -- `ensure_installed` in setup() (which is silently ignored now).
+            -- The main branch COMPILES parsers with the `tree-sitter` CLI, so
+            -- guard on it -- without the CLI, install() would error on every
+            -- startup. Bundled parsers (lua/c/markdown/vim/vimdoc) still work.
+            if vim.fn.executable("tree-sitter") == 1 then
+                require("nvim-treesitter").install({
+                    "lua", "python", "bash", "go", "html", "css", "javascript", "json", "c", "cpp",
+                    "markdown", "markdown_inline", "scss", "yaml", "typescript", "tsx", "vim", "vimdoc",
+                    "dart", "fish", "java", "dockerfile",
+                })
+            else
+                vim.schedule(function()
+                    vim.notify("nvim-treesitter: `tree-sitter` CLI not found -- run `sudo pacman -S tree-sitter-cli`, then :TSUpdate", vim.log.levels.WARN)
+                end)
+            end
+
+            -- main branch: highlighting is started per buffer via FileType,
+            -- not `highlight = { enable = true }`. Generic form covers every
+            -- filetype that has a parser available. (indent left off, as before.)
+            vim.api.nvim_create_autocmd("FileType", {
+                callback = function(args)
+                    local lang = vim.treesitter.language.get_lang(vim.bo[args.buf].filetype)
+                    if lang and vim.treesitter.language.add(lang) then
+                        vim.treesitter.start(args.buf)
+                    end
+                end,
+            })
+        end,
     },
 
     -- Colors,blanklines and Tags
