@@ -11,10 +11,6 @@
 
 A fast, async terminal file manager with inline previews (images, video, PDFs, archives) via kitty's graphics protocol. Under the hood it's async and multi-threaded top to bottom: listing a directory, decoding a thumbnail, and hashing a file for its cache all happen off the main thread, so a folder with ten thousand files feels exactly as instant as one with ten. That speed is the whole reason it replaced lf/ranger as the daily driver here.
 
-<table>
-<tr>
-<td width="50%" valign="top">
-
 **A few of the things that make it worth switching to:**
 
 - 🚀 **Fully async I/O** — nothing blocks the UI, work is spread across threads
@@ -24,14 +20,9 @@ A fast, async terminal file manager with inline previews (images, video, PDFs, a
 - 🧰 **Native `ripgrep`/`fd` integration** — `zg`/`zf` in this config search file contents and names without a plugin
 - 🔄 **Bulk rename, smart archive extraction, multi-tab** — the stuff you reach for daily, not buried behind config
 
-</td>
-<td width="50%" valign="top">
-
-<video src="../assets/yazi_demo.mp4" controls width="100%"></video>
-
-</td>
-</tr>
-</table>
+<div align="center">
+  <video src="../assets/yazi_demo.mp4" controls width="720"></video>
+</div>
 
 ### Plugins
 
