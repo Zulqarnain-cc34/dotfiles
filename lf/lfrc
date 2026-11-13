@@ -53,21 +53,6 @@ cmd folder_size !{{
 cmd copy_down ${{
     cp $fx "$HOME/Downloads/"
     }}
-cmd copy_image_png ${{
-    xclip -sel clip -t image/png $f
-    }}
-cmd copy_image_jpg ${{
-    xclip -sel clip -t image/jpg $f
-    }}
-cmd copy_text ${{
-    xclip -sel clip -t text/plain $f
-    }}
-cmd send_to_phone ${{
-    # NOTE: Assumes single KDE Connect device. For multiple devices, select manually:
-    # kdeconnect-cli --list-devices
-    kdeconnect-cli -d $(kdeconnect-cli -a --id-only) --share $fx
-    }}
-
 #cmd yank-dirname $dirname -- "$f" | head -c-1 | xclip -i -selection clipboard
 #cmd yank-path $printf '%s' "$fx" | xclip -i -selection clipboard
 #cmd yank-basename $basename -a -- $fx | head -c-1 | xclip -i -selection clipboard
@@ -414,9 +399,7 @@ cmd on-cd &{{
 }}
 map Sf select-files
 map Sd select-dirs
-map Z push :z-jump<space>-I<space>
 map zb push :z-jump<space>-b<space>
-map zz push :z-jump<space>
 
 map d
 map dt trash
@@ -429,10 +412,6 @@ map <delete> trash
 map y
 map yy copy
 map yLd copy_down
-map yip copy_image_png
-map yij copy_image_jpg
-map yit copy_text
-map yik send_to_phone
 map yp yank_path
 map yd yank_dir
 map yn yank_name
