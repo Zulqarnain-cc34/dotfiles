@@ -14,26 +14,30 @@ Previews come from the `preview` and `cleaner` scripts, with `drawbox`, `icons`,
 
 ### Keybindings
 
-Default lf movement still applies; these are the notable custom maps:
+Default lf movement still applies; these are the notable custom maps, split by what they operate on.
+
+#### File operations (rename, create, trash, copy/paste, permissions, archive)
 
 | Key | Action |
 |-----|--------|
 | `ra` / `rb` | rename (built-in, pre-filled, cursor before extension) / bulk-rename (edit a list of names in `$EDITOR`) |
-| `P` | paste as symlink/hardlink (two-stage: stage with `yy`-equivalent, then `P` to link) |
-| `Sf` / `Sd` | select all visible files / select all visible directories |
-| `dt` / `dd` / `dD` / `<delete>` | trash / cut / delete / trash |
-| `du` | show a folder size breakdown (`du --max-depth=1`) |
-| `yy` `yLd` `yp` `yd` `yn` `y.` | copy / copy to `~/Downloads` / yank path / dir / name / name-no-ext |
-| `uv` / `uy` | clear the file selection / clear the copy-cut clipboard (these are different things in lf) |
 | `md` `mf` | mkdir / mkfile |
+| `dt` / `dd` / `dD` / `<delete>` | trash / cut / delete / trash |
+| `tr` / `tc` / `tg` | trash restore / clear / go to trash |
+| `yy` `yLd` `yp` `yd` `yn` `y.` | copy / copy to `~/Downloads` / yank path / dir / name / name-no-ext |
+| `P` | paste as symlink/hardlink (two-stage: stage with `yy`-equivalent, then `P` to link) |
+| `u` | clear the file selection and the copy/cut clipboard (both, in one press) |
 | `ch` / `cr` / `cd` | chmod (interactive, prompts for mode bits) / strip spaces from filename / `cd` prompt |
 | `cke` / `cku` | make selected file(s) executable / non-executable |
 | `au` | unarchive — smart: no wrapper if already single-rooted |
 | `az` `at` `ag` `ab` | zip / tar / tar.gz / tar.bz2 (no leading path, auto-renames on collision) |
-| `ap` | play hovered file as audio only (no video) |
-| `Vna` / `Vaa` | strip audio from video / extract audio from video (ffmpeg) |
-| `bg` / `bs` | set wallpaper directly / browse this folder's images in nsxiv and pick one — navigate, then press **`Q`** (capital) on the thumbnail you want, not Enter or double-click |
-| `tr` / `tc` / `tg` | trash restore / clear / go to trash |
+| `du` | show a folder size breakdown (`du --max-depth=1`) |
+
+#### Navigation, sorting, search & previews
+
+| Key | Action |
+|-----|--------|
+| `Sf` / `Sd` | select all visible files / select all visible directories |
 | `sa` `sc` `se` `sn` `ss` `st` | sort by atime / ctime / extension / name (natural) / size / mtime, each reversed |
 | `zA` / `zc` | show atime / ctime in the linemode info column |
 | `o` | open with (prompts for a command) |
@@ -41,6 +45,9 @@ Default lf movement still applies; these are the notable custom maps:
 | `ef` `el` | fzf jump / fzf locate |
 | `ei` `ee` `eP` | exif info / nvim tabs / nsxiv |
 | `ed` `ec` `em` `eg` `ep` | play as DVD (mpv) / vimdiff selected files / compose mail with selection attached / convert image(s) to PDF / browse this folder's images in nsxiv (view only, no wallpaper action) |
+| `ap` | play hovered file as audio only (no video) |
+| `Vna` / `Vaa` | strip audio from video / extract audio from video (ffmpeg) |
+| `bg` / `bs` | set wallpaper directly / browse this folder's images in nsxiv and pick one — navigate, then press **`Q`** (capital) on the thumbnail you want, not Enter or double-click |
 
 > `au` shares yazi's `smart-extract.sh`.
 >
