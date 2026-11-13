@@ -20,7 +20,6 @@ Default lf movement still applies; these are the notable custom maps:
 |-----|--------|
 | `ra` / `rb` | rename (built-in, pre-filled, cursor before extension) / bulk-rename (edit a list of names in `$EDITOR`) |
 | `P` | paste as symlink/hardlink (two-stage: stage with `yy`-equivalent, then `P` to link) |
-| `eD` | move selected file(s) into a new folder (prompts for the folder name) |
 | `Sf` / `Sd` | select all visible files / select all visible directories |
 | `dt` / `dd` / `dD` / `<delete>` | trash / cut / delete / trash |
 | `du` | show a folder size breakdown (`du --max-depth=1`) |
