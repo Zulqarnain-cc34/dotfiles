@@ -2,14 +2,38 @@
 
 image() {
 	case "$TERM" in
-		# Ignore SIGTTOU/SIGTTIN *inside* the timeout'd subshell -- lf runs
-		# this script in a background process group, and icat's terminal
-		# read/write would otherwise get job-control-stopped (not hung)
-		# touching /dev/tty. timeout itself resets signal dispositions
-		# before exec, so the trap has to be set after it, not before.
 		*kitty*)
-			timeout 5 sh -c 'trap "" TTOU TTIN; exec kitty +kitten icat --transfer-mode=memory --stdin=no --place="$1" "$2" < /dev/tty > /dev/tty' \
-				sh "$(($2-1))x$(($3-1))@${4}x${5}" "$1"
+			# icat normally queries the terminal for its pixel size to scale
+			# --place correctly, which means *reading* a response back over
+			# /dev/tty. lf runs this script backgrounded, and a backgrounded
+			# process that's ignoring SIGTTIN (needed below so the *write*
+			# side doesn't get job-control-stopped) gets an immediate I/O
+			# error instead of blocking when it tries to read the terminal --
+			# that's the "Failed doing I/O with terminal: EOF" error.
+			#
+			# --use-window-size sidesteps the read entirely by supplying the
+			# window's pixel size directly. lfrc caches the pixel-per-cell
+			# ratio once at startup (while lf is still foreground, so that
+			# one query is safe); here we recompute the *current* total
+			# window pixel size from that stable ratio times the terminal's
+			# live cell count (tput, a plain ioctl -- not a protocol
+			# round-trip, safe even backgrounded), so it stays correct
+			# across a terminal resize without ever reading anything back.
+			cache="$HOME/.cache/lf/kitty_cellpx"
+			[ -f "$cache" ] || return
+			read -r ref_cols ref_lines ref_px < "$cache"
+			ref_pw="${ref_px%x*}"
+			ref_ph="${ref_px#*x}"
+			cur_cols=$(tput cols)
+			cur_lines=$(tput lines)
+			win_pw=$(awk -v c="$cur_cols" -v rc="$ref_cols" -v rp="$ref_pw" 'BEGIN { printf "%d", c * rp / rc }')
+			win_ph=$(awk -v l="$cur_lines" -v rl="$ref_lines" -v rp="$ref_ph" 'BEGIN { printf "%d", l * rp / rl }')
+			# Ignore SIGTTOU *inside* the timeout'd subshell -- the write to
+			# /dev/tty would otherwise get job-control-stopped (not hung).
+			# timeout itself resets signal dispositions before its own exec,
+			# so the trap has to be set after it, not before.
+			timeout 5 sh -c 'trap "" TTOU; exec kitty +kitten icat --transfer-mode=memory --stdin=no --use-window-size="$1" --place="$2" "$3" > /dev/tty' \
+				sh "${cur_cols},${cur_lines},${win_pw},${win_ph}" "$(($2-1))x$(($3-1))@${4}x${5}" "$1"
 			exit 1
 			;;
 	esac
@@ -17,7 +41,7 @@ image() {
 		printf '{"action": "add", "identifier": "PREVIEW", "x": "%s", "y": "%s", "width": "%s", "height": "%s", "scaler": "contain", "path": "%s"}\n' "$4" "$5" "$(($2-1))" "$(($3-1))" "$1" > "$FIFO_UEBERZUG"
 		exit 1
 	else
-		chafa "$1" -s "$4x"
+		chafa "$1" -s "$(($2-1))x$(($3-1))"
 	fi
 }
 
