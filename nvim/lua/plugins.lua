@@ -154,7 +154,7 @@ return require('lazy').setup({
     },
 
     {
-        'hoob3rt/lualine.nvim',
+        'nvim-lualine/lualine.nvim', -- hoob3rt/ is the old org (redirects); current home
         config = function()
             require('plugins.lualine')
         end
