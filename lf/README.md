@@ -8,6 +8,10 @@
 
 > Built on **[lf](https://github.com/gokcehan/lf)** by Gökçehan Kara. ❤️
 
+<div align="center">
+  <img src="../assets/lf_demo.png" width="90%" alt="lf in use">
+</div>
+
 A fast terminal file manager, kept around here as the legacy/secondary option — [Yazi](../yazi/README.md) is the primary one for daily work, and lf stays for compatibility and the odd script that still reaches for it. Everything is driven from [`lfrc`](lfrc): settings, custom commands, and keybinds.
 
 Previews come from the `preview` and `cleaner` scripts, with `drawbox`, `icons`, and `ignorecase` turned on and `zsh` as the shell.
