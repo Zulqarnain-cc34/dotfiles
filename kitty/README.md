@@ -33,12 +33,6 @@ A GPU-accelerated terminal emulator, and the primary terminal in this setup — 
 
 The script detects bspwm (via `pgrep` and the session environment) and is invoked from [`bspwm/bspwmrc`](../bspwm/bspwmrc) and [`niri/autostart.sh`](../niri/autostart.sh).
 
-### Behavior
-
-- `shell /usr/bin/zsh` — opens straight into Zsh.
-- `shell_integration disabled`.
-- `confirm_os_window_close 0` — closing a window never prompts.
-
 ### Keybindings
 
 Rides kitty's built-in defaults; the only custom map:
