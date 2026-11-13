@@ -44,10 +44,16 @@ Two flavors (`catppuccin-mocha`, `tokyonight-storm`) are pinned but not activate
 - `l/h` - Open/go back (smart enter for open)
 - `gg/G` or `<Home>/<End>` - Go to top/bottom
 - `gf` - Follow hovered symlink
+- `<C-u>/<C-d>` or `<S-PageUp>/<S-PageDown>` - Move cursor up/down half a page
+- `<C-b>/<C-f>` or `<PageUp>/<PageDown>` - Move cursor up/down a full page
 
 ### Selection
 - `<Space>` - Toggle select and move down
-- `q or w` - cd into current dir in yazi and close yazi
+- `q` - Quit
+- `Q` - Quit without writing the cwd-file
+- `w` - Quit and cd into current directory
+- `<C-c>` - Close current tab, or quit
+- `<C-z>` - Suspend
 - `u` - Clear selections and unyank
 
 ### Search / Sort / View
@@ -66,7 +72,7 @@ Two flavors (`catppuccin-mocha`, `tokyonight-storm`) are pinned but not activate
 - `dd` - Cut files
 - `p` - Paste
 - `P` - Paste (force overwrite)
-- `yp/yd/yn` - Copy path/dirname/filename
+- `yp/yd/yn/y.` - Copy path/directory path/filename/filename without extension
 
 ### Create/Rename
 - `md` - Create directory
@@ -85,7 +91,9 @@ Two flavors (`catppuccin-mocha`, `tokyonight-storm`) are pinned but not activate
 ### Utilities
 - `;/:` - Shell command (interactive/block)
 - `ee` - Open with editor
-- `ei/eg/ep/eP` - EXIF/PDF/nsxiv preview
+- `ei` - Show EXIF metadata
+- `eg` - Convert selected image(s) to PDF
+- `ep/eP` - Preview images in directory / open hovered image with nsxiv
 - `ap` - Play hovered file as audio only (no video)
 - `bg` - Set hovered image as desktop wallpaper
 - `cke/cku` - Make selected file(s) executable / non-executable
