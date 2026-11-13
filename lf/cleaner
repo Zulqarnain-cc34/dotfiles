@@ -1,11 +1,14 @@
 #!/bin/sh
+# Clear the kitty image when leaving a file. lf calls this cleaner on leave,
+# *before* the next file's previewer, so there's no race with a fresh draw --
+# and it's the only thing that fires when moving onto a directory (which lf
+# previews natively, never calling our previewer). Use the raw delete-all
+# escape, NOT `icat --clear`: icat queries the terminal for size/support (a
+# /dev/tty read) and, run backgrounded by lf, gets SIGTTIN-stopped and hangs.
+# A direct write has no read-back. SIGTTOU is trapped so the backgrounded
+# write to /dev/tty isn't job-control-stopped.
 case "$TERM" in
-	# --clear doesn't need --place, so it never needs to read anything back
-	# from the terminal (unlike image()'s --use-window-size case) -- only
-	# writing to /dev/tty, so only SIGTTOU needs ignoring here, and there's
-	# no read-side EOF risk to worry about. Ignore it *inside* the timeout'd
-	# subshell since timeout resets signal dispositions before its own exec.
-	*kitty*) timeout 1 sh -c 'trap "" TTOU; exec kitty +kitten icat --clear --stdin=no > /dev/tty 2>&1' ;;
+	*kitty*) ( trap "" TTOU; printf '\033_Ga=d,d=A\033\\' > /dev/tty 2>/dev/null ) ;;
 esac
 if [ -n "$FIFO_UEBERZUG" ]; then
 	printf '{"action": "remove", "identifier": "PREVIEW"}\n' > "$FIFO_UEBERZUG"

@@ -3,29 +3,36 @@
 image() {
 	case "$TERM" in
 		*kitty*)
-			# icat normally queries the terminal for its pixel size to scale
-			# --place correctly, which means *reading* a response back over
-			# /dev/tty. lf runs this script backgrounded, and a backgrounded
-			# process that's ignoring SIGTTIN (needed below so the *write*
-			# side doesn't get job-control-stopped) gets an immediate I/O
-			# error instead of blocking when it tries to read the terminal --
-			# that's the "Failed doing I/O with terminal: EOF" error.
+			# Draw the image directly to the terminal with kitty's icat.
 			#
-			# --use-window-size sidesteps the read entirely by supplying the
-			# window's pixel size directly. lfrc caches the pixel-per-cell
-			# ratio once at startup (while lf is still foreground, so that
-			# one query is safe); here we recompute the *current* total
-			# window pixel size from that stable ratio times the terminal's
-			# live cell count (tput, a plain ioctl -- not a protocol
-			# round-trip, safe even backgrounded), so it stays correct
-			# across a terminal resize without ever reading anything back.
+			# Two things make this fiddly under lf:
+			#
+			# 1. icat needs the window's pixel size to map --place (given in
+			#    cells) to pixels. Querying the terminal for it means *reading*
+			#    a response over /dev/tty, and lf runs this previewer in a
+			#    background process group -- a backgrounded read trips SIGTTIN
+			#    ("Failed doing I/O with terminal: EOF"). So we pass
+			#    --use-window-size instead: lfrc's on-init hook caches the
+			#    pixel-per-cell ratio once at startup (while lf is foreground,
+			#    so that one query is safe) and we scale it by the current cell
+			#    count here.
+			#
+			# 2. The current cell count must come from `stty size </dev/tty`,
+			#    NOT `tput cols`/`tput lines`. lf pipes this script's stdout, so
+			#    tput can't see the terminal and silently returns 80x24 -- which
+			#    puts --place outside the window so nothing renders. stty reads
+			#    the winsize via ioctl on the tty itself (not a read(), so no
+			#    SIGTTIN), and stays correct even with stdout piped and across a
+			#    terminal resize.
 			cache="$HOME/.cache/lf/kitty_cellpx"
 			[ -f "$cache" ] || return
 			read -r ref_cols ref_lines ref_px < "$cache"
 			ref_pw="${ref_px%x*}"
 			ref_ph="${ref_px#*x}"
-			cur_cols=$(tput cols)
-			cur_lines=$(tput lines)
+			size=$(stty size </dev/tty 2>/dev/null)
+			cur_lines=${size% *}
+			cur_cols=${size#* }
+			[ -n "$cur_cols" ] && [ -n "$cur_lines" ] || { cur_cols=$ref_cols; cur_lines=$ref_lines; }
 			win_pw=$(awk -v c="$cur_cols" -v rc="$ref_cols" -v rp="$ref_pw" 'BEGIN { printf "%d", c * rp / rc }')
 			win_ph=$(awk -v l="$cur_lines" -v rl="$ref_lines" -v rp="$ref_ph" 'BEGIN { printf "%d", l * rp / rl }')
 			# Ignore SIGTTOU *inside* the timeout'd subshell -- the write to
@@ -44,6 +51,18 @@ image() {
 		chafa "$1" -s "$(($2-1))x$(($3-1))"
 	fi
 }
+
+# Clear the previous image before drawing this preview. The cleaner also
+# clears on leave (that's what handles moving onto a directory, which never
+# calls this previewer), but doing it here too is cheap defense-in-depth so
+# an image can never stack on top of another. Use the raw kitty delete-all
+# escape, NOT `icat --clear`: icat queries the terminal (a /dev/tty read)
+# and, run backgrounded by lf, gets SIGTTIN-stopped and hangs the preview.
+# A direct write has no read-back. (SIGTTOU is trapped so the backgrounded
+# write to /dev/tty isn't job-control-stopped.)
+case "$TERM" in
+	*kitty*) ( trap "" TTOU; printf '\033_Ga=d,d=A\033\\' > /dev/tty 2>/dev/null ) ;;
+esac
 
 batorcat() {
 	file="$1"
