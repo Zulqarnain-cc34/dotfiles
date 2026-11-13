@@ -133,6 +133,7 @@ A complete map of the repo. Deep docs live in each component's own README — li
 | :--- | :--- | :--- |
 | [`yazi`](yazi/) | **Primary** — fast Rust TUI file manager | [README](yazi/README.md) |
 | [`lf`](lf/) | Legacy terminal file manager | [README](lf/README.md) |
+| [`ranger`](ranger/) | Legacy terminal file manager | — |
 
 ### 🎵 Media
 
