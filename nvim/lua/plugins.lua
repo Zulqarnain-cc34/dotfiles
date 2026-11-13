@@ -99,7 +99,7 @@ return require('lazy').setup({
     -- },
     {
         "folke/tokyonight.nvim",
-        lazy = false,
+        lazy = true,  -- not the active scheme (onedark is); lazy.nvim loads it on :colorscheme if ever used
         priority = 1000,
         opts = {},
     },
