@@ -5,6 +5,21 @@ All notable changes to this dotfiles repo are documented here.
 Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).  
 Versions are dated milestones, not semver releases (this is a personal config repo).
 
+## [2026-11-14] — Neovim modernization, doc reviews, README credits (branch: `modernize-2026`, merged to `main`)
+
+### Changed
+- **Neovim** brought fully up to date (nvim 0.12), reviewed file by file: native 0.11+ LSP (`lsp/<server>.lua` overrides + one `vim.lsp.enable`, schemastore `jsonls` deferred to the first JSON file), Tree-sitter `main` branch (parsers compile via the tree-sitter CLI), conform.nvim + nvim-lint replacing the dead efm setup, blink.cmp (Rust fuzzy, ghost text, signature help), which-key/trouble v3.
+- **`nvim/README.md`** rewritten: snacks dashboard hero, 2×2 gallery, per-language LSP/formatter/linter matrix, refreshed deep-dive; plugin catalogue split to `plugins.md`.
+- **Main README Credits** reworked into a single okivim-style avatar grid (every tool + shell/tmux/yazi plugin + Neovim plugin author) after a full repo attribution audit (rofi/polybar by adi1090x, nord dircolors, qutebrowser themes, ueberzug, vendored scripts); all 80+ links verified live. Compact license footer.
+- **kitty** and **zsh** README reviews — documented real behavior, dropped stale claims, added demo screenshots.
+
+### Fixed
+- Last deprecated nvim API removed: `vim.diagnostic.goto_next/goto_prev` → `vim.diagnostic.jump`.
+- Option-scope cruft cleared; disabled unused perl/ruby providers, added the `regex` parser. Startup ~147 ms, no errors or deprecation warnings.
+
+### Removed
+- Stale main-README sections: Experimental Wayland and Neovim Deep-Dive (the deep-dive now lives in `nvim/README.md`).
+
 ## [2026-11-13] — Yazi README finalized (branch: `modernize-2026`)
 
 ### Added
