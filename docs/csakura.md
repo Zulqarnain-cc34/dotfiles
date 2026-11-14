@@ -115,5 +115,16 @@ copy of upstream csakura v3.0.0 (`patch -p1 < anykey.patch`).
 - **If it ever looks broken** (e.g. a bare error instead of a tree), it's almost
   always a terminal with no proper `TERM` set — real kitty/alacritty are fine.
 - **It needs its own build.** The `-k`/`-C` behaviour only exists in the version
-  shipped here; a plain `csakura` from the AUR won't drift or close on any key.
-  (The config notices this and quietly falls back to the basic behaviour.)
+  shipped here, which lives in `bash_scripts` (first on your `PATH`). If a plain
+  `csakura` from the AUR ever shadowed it, the any-key-close and drift would stop
+  working — so keep this build ahead on `PATH`.
+- **Opened a terminal before setup finished?** A shell only reads the config once
+  at startup, so a terminal open from *before* this was added won't have it. Run
+  `exec zsh` (or just open a fresh terminal) and it'll pick everything up.
+
+## Removing it
+
+To take it out entirely: delete the `Idle sakura screensaver` block at the bottom
+of [`zsh/.zshrc`](../zsh/.zshrc), remove `bash_scripts/csakura` (and the
+`csakura.src/` folder if you don't want the source), and optionally clear the tiny
+state file `~/.cache/csakura-palette`. New shells will then start with no tree.

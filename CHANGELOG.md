@@ -11,7 +11,7 @@ Versions are dated milestones, not semver releases (this is a personal config re
 - **csakura cherry-blossom screensaver**, auto-launched when the zsh prompt goes idle.
   - Binary committed at `bash_scripts/csakura` (x86-64 Linux, links `libncursesw.so.6`); patched source + `anykey.patch` + rebuild steps in `bash_scripts/csakura.src/`.
   - Patched upstream v3.0.0 with two flags (diff in `csakura.src/anykey.patch`): `-k` (any key quits, not just `q`/`Esc`) so it dismisses like a proper screensaver, and `-C N` (every N s, regrow into the next tree form + palette).
-  - `zsh/.zshrc` arms it via `TMOUT=20` + `TRAPALRM`: blooms after 20s idle at an **empty** prompt (never mid-typing, never over a running command), any key dismisses, reblooms on the next idle. Probes for `-k` and falls back to a stock `q`/`Esc` build if present.
+  - `zsh/.zshrc` arms it via `TMOUT=20` + `TRAPALRM`: blooms after 20s idle at an **empty** prompt (never mid-typing, never over a running command), any key dismisses, reblooms on the next idle. The `-k -C 45` flags are hard-wired (our build is always first on `PATH`), so any-key-close can't be silently dropped.
   - Each bloom starts on the next of the 15 palettes (sakura → rose → … → ink → wrap), persisted in `~/.cache/csakura-palette` so the cycle advances across terminals and reboots; while open it drifts form+palette every 45s (`-C 45`).
   - Full writeup incl. edge cases: [docs/csakura.md](docs/csakura.md).
 
