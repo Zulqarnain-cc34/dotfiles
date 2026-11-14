@@ -14,7 +14,6 @@
     <a href="https://github.com/Zulqarnain-cc34/dotfiles/stargazers"><img src="https://img.shields.io/github/stars/Zulqarnain-cc34/dotfiles?style=for-the-badge&logo=starship&color=ffce63&logoColor=black&labelColor=1a1b26" alt="Stars"></a>
     <a href="https://github.com/Zulqarnain-cc34/dotfiles/network/members"><img src="https://img.shields.io/github/forks/Zulqarnain-cc34/dotfiles?style=for-the-badge&logo=git&color=9ece6a&logoColor=black&labelColor=1a1b26" alt="Forks"></a>
     <a href="LICENSE"><img src="https://img.shields.io/github/license/Zulqarnain-cc34/dotfiles?style=for-the-badge&color=7aa2f7&logoColor=black&labelColor=1a1b26" alt="License"></a>
-    <a href="https://github.com/Zulqarnain-cc34/dotfiles/actions/workflows/secrets.yml"><img src="https://img.shields.io/github/actions/workflow/status/Zulqarnain-cc34/dotfiles/secrets.yml?style=for-the-badge&label=secrets%20scan&labelColor=1a1b26" alt="Secrets scan"></a>
     <img src="https://img.shields.io/badge/Arch-Linux-1793d1?style=for-the-badge&logo=arch-linux&logoColor=white&labelColor=1a1b26" alt="Arch">
     <img src="https://img.shields.io/badge/Maintained-yes-9ece6a?style=for-the-badge&labelColor=1a1b26" alt="Maintained">
   </p>
