@@ -56,11 +56,10 @@ The guiding principles:
 <table>
   <tr>
     <td align="center" width="50%"><img src="screenshots/neovim-1.png" width="100%"><br><b>Neovim as an IDE</b></td>
-    <td align="center" width="50%"><img src="screenshots/Telescope.png" width="100%"><br><b>Fuzzy finding</b></td>
+    <td align="center" width="50%"><img src="assets/yazi_shot.png" width="100%"><br><b>Yazi file manager</b></td>
   </tr>
   <tr>
-    <td align="center" width="50%"><img src="screenshots/dashboard.png" width="100%"><br><b>Dashboard</b></td>
-    <td align="center" width="50%"><img src="screenshots/lsp.png" width="100%"><br><b>LSP &amp; code actions</b></td>
+    <td align="center" colspan="2"><img src="assets/fastfetch_demo.png" width="80%"><br><b>Kitty + Fastfetch</b></td>
   </tr>
   <tr>
     <td align="center" colspan="2"><img src="screenshots/polybar.png" width="60%"><br><b>Polybar</b></td>
