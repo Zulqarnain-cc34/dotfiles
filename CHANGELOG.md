@@ -5,6 +5,26 @@ All notable changes to this dotfiles repo are documented here.
 Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).  
 Versions are dated milestones, not semver releases (this is a personal config repo).
 
+## [2026-11-14] — Per-tool modernization pass + image-preview fix (branch: `modernize-2026`)
+
+### Fixed
+- **yazi/lf image previews in alacritty** (was green garbage, then shifted/wrong-window). Three stacked causes: (1) alacritty has no native graphics protocol — installed `ueberzugpp`; (2) kitty's `KITTY_WINDOW_ID`/`WINDOWID` leaked into alacritty when spawned from kitty, so yazi sent the kitty graphics protocol and ueberzugpp drew over the wrong window — `.zshrc` now strips those vars when `$TERM` isn't `xterm-kitty`; (3) `alacritty` spawned as a child of kitty confused ueberzugpp's window detection — added an `alacritty()` zsh wrapper that `setsid -f` detaches it. Launching via rofi/sxhkd was always fine.
+- **Config deprecations across the stack** (each validated live against the installed version, not guessed):
+  - **sxhkd** — `shift+ctrl+{Left,Right}` move-to-desktop focused the wrong direction (hardcoded `next`); sxhkd reload now `SIGUSR1` not kill+restart; dropped dead reboot/shutdown keys (`prompt` never existed).
+  - **bspwm** — autostart daemons `pgrep`-guarded so `bspc wm -r` reloads don't spawn duplicates; removed the obsolete `mplayer2` rule.
+  - **picom** (v13) — migrated `opacity-rule`/`wintypes` to the unified `rules` block, dropped `mark-wmwin-focused`/`mark-ovredir-focused` (old-style rule opts), added open/close/resize animations. Zero warnings.
+  - **polybar** (3.7) — `tray-*` → `internal/tray` module, dropped `spacing`/`throttle-*`, `content`→`format`, `icon-repeatone`→`icon-single`. Zero warnings.
+  - **dunst** (1.13) — removed the deprecated `[shortcuts]` section and invalid `notification_height`/`startup_notification`/`verbosity` keys.
+  - **ncmpcpp** (0.10) — `visualizer_fifo_path` → `visualizer_data_source`, deduped repeated options.
+  - **mpv** (0.41) — `total_playtime` data file moved out of `scripts/` (mpv tried to load it as a script); gitignored the runtime data.
+
+### Removed
+- **Unused template files**: polybar's entire `statusbar/` dir + unused modules/scripts (kept only what `[bar/main]` uses); rofi's orphaned `powermenu/` (36 files); ncmpcpp `config1`.
+- Consolidated `screenshots/` into `assets/` (moved the 4 used images, dropped 6 unused, fixed every path, removed the dir).
+
+### Verified clean (no change needed)
+- **alacritty** (0.17) already fully migrated (`alacritty migrate --dry-run` = no key changes).
+
 ## [2026-11-14] — Neovim modernization, doc reviews, README credits (branch: `modernize-2026`, merged to `main`)
 
 ### Changed
