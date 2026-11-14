@@ -181,15 +181,12 @@ function yazi() {
 # out to disable.
 if command -v csakura >/dev/null 2>&1; then
     TMOUT=20
-    # Our build adds -k (any key quits). Probe once; fall back to a stock
-    # build's q/Esc-only behaviour if -k isn't supported.
-    if csakura -kv >/dev/null 2>&1; then
-        _csakura_base=(csakura -k -C 45)     # -k: any key quits; -C 45: drift palette every 45s
-    else
-        _csakura_base=(csakura)             # stock build: q/Esc only, no drift
-    fi
-    # Every bloom uses the next palette, marching through all of them in turn
-    # (persisted in a cache file so the cycle advances across terminals too).
+    # This repo ships a patched csakura with -k (any key quits) and -C (drift),
+    # and bash_scripts is first on PATH, so this is always our build. Hard-wire
+    # both flags so -k can never be silently dropped (any key must close it).
+    _csakura_base=(csakura -k -C 45)         # -k: any key quits; -C 45: drift every 45s
+    # Every bloom starts on the next palette, marching through all of them in
+    # turn (persisted in a cache file so the cycle advances across terminals).
     _csakura_palettes=(sakura rose blush magenta peach coral sunset gold
                        lavender violet sky mint matcha white ink)
     TRAPALRM() {
