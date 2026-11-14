@@ -6,24 +6,5 @@
 --                |___/
 -- ===================================
 local cmd = vim.cmd
-local g = vim.g
 
-------------------------------------------------------------------------
---                               Theme                                --
-------------------------------------------------------------------------
-
--- g.tokyonight_enable_italic = 1
---.onedark_style = 'deep'
--- g.tokyonight_sidebars = {"qf", "vista_kind", "terminal", "pack"}
--- g.mkdp_auto_start = 1
--- Change the "hint" color to the "orange" color, and make the "error" color bright red
--- g.tokyonight_colors = {hint = "orange", error = "#ff0000"}
---
 cmd("colorscheme onedark")
-------------------------------------------------------------------------
---                              WikiList                              --
-------------------------------------------------------------------------
-
-------------------------------------------------------------------------
---                          Dev Icons Colors                          --
-------------------------------------------------------------------------
