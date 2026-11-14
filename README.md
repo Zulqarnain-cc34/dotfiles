@@ -14,6 +14,7 @@
     <a href="LICENSE"><img src="https://img.shields.io/github/license/Zulqarnain-cc34/dotfiles?style=for-the-badge&color=7aa2f7&logoColor=black&labelColor=1a1b26" alt="License"></a>
     <img src="https://img.shields.io/badge/Arch-Linux-1793d1?style=for-the-badge&logo=arch-linux&logoColor=white&labelColor=1a1b26" alt="Arch">
     <img src="https://img.shields.io/badge/Maintained-yes-9ece6a?style=for-the-badge&labelColor=1a1b26" alt="Maintained">
+    <img src="https://img.shields.io/badge/full%20review-Nov%202026-c678dd?style=for-the-badge&labelColor=1a1b26" alt="Last full review">
   </p>
 
   <img src="assets/desktop-4.png" alt="Desktop" width="92%" style="border-radius:12px;">
@@ -45,6 +46,8 @@ The guiding principles:
 - **Reproducible** — a single `setup.sh` symlinks everything, package manifests pin the toolset, and a `validate.sh` keeps the repo honest (no leaked paths, no dead tools, no secrets).
 
 > **Primary session is BSPWM (X11).**
+
+> **Last full review: November 2026.** The whole repo gets a complete top-to-bottom pass every so often — first at initial setup, then periodically as the tools evolve — rather than daily churn. A recent review date means every config here is current and deprecation-free for its installed version.
 
 ---
 
