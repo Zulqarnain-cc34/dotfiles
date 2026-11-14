@@ -414,8 +414,6 @@ community whose rices sparked half the ideas here. Huge thanks to all of them.
 
 </div>
 
----
-
 <div align="center">
 <sub>© 2021 Muhammad Zulqarnain. <a href="LICENSE">MIT License</a>. &nbsp; <a href="#top">🔝</a></sub>
 </div>
