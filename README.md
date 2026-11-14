@@ -30,11 +30,9 @@
 - [Gallery](#-gallery)
 - [The Stack](#-the-stack)
 - [What's Inside](#-whats-inside)
-- [Neovim Deep-Dive](#-neovim-deep-dive)
 - [Installation](#-installation)
 - [Keybindings](#-keybindings)
 - [Repository Structure](#-repository-structure)
-- [Experimental Wayland Session](#-experimental-wayland-session)
 - [Credits](#-credits)
 
 ---
@@ -49,7 +47,7 @@ The guiding principles:
 - **Keyboard-first** — a tiling WM, fuzzy everything, and TUI apps for mail, music, RSS, files, and browsing.
 - **Reproducible** — a single `setup.sh` symlinks everything, package manifests pin the toolset, and a `validate.sh` keeps the repo honest (no leaked paths, no dead tools, no secrets).
 
-> **Primary session is BSPWM (X11).** An experimental niri/Wayland session is also included — see [below](#-experimental-wayland-session).
+> **Primary session is BSPWM (X11).**
 
 ---
 
@@ -126,7 +124,7 @@ A complete map of the repo. Deep docs live in each component's own README — li
 
 | Component | Description | Docs |
 | :--- | :--- | :--- |
-| [`nvim`](nvim/) | Neovim as a full IDE — see the [deep-dive](#-neovim-deep-dive) | [README](nvim/README.md) |
+| [`nvim`](nvim/) | Neovim as a full IDE | [README](nvim/README.md) |
 
 ### 🗄️ File Managers
 
@@ -167,23 +165,6 @@ A complete map of the repo. Deep docs live in each component's own README — li
 | [`packages`](packages/) | Pacman / AUR / pip / npm / go manifests | — |
 | [`Kvantum`](Kvantum/) | Qt theming engine | — |
 | [`urlscan`](urlscan/) / [`urlview`](urlview/) | Extract & open URLs from text | — |
-
----
-
-## ✨ Neovim Deep-Dive
-
-Not just an editor — a personalised development environment that still boots in ~140 ms.
-
-- **🧩 Plugin manager** — [`lazy.nvim`](https://github.com/folke/lazy.nvim), everything lazy-loaded
-- **🎯 Native LSP** — Neovim 0.11+ `vim.lsp.config` / `vim.lsp.enable` for Python, Lua, C/C++, TypeScript/JS, Bash, HTML, JSON, Docker, SQL, GraphQL, Vim
-- **⚡ Completion** — [`blink.cmp`](https://github.com/saghen/blink.cmp) with a Rust fuzzy matcher + friendly-snippets
-- **🌳 Treesitter** — syntax, indentation, folding, rainbow delimiters, auto-tags
-- **🍿 [snacks.nvim](https://github.com/folke/snacks.nvim)** — one coherent UI for the picker, file explorer, notifications, dashboard, indent guides, and more
-- **🔭 Fuzzy everything** — files, grep, buffers, help, marks, registers via `snacks.picker`
-- **🔀 Git** — Neogit + Diffview
-- **🩺 Diagnostics** — Trouble, inline code actions, format-on-demand
-
-See [`nvim/README.md`](nvim/README.md) for the full plugin list and layout.
 
 ---
 
@@ -307,16 +288,6 @@ dotfiles/
 ├── setup.sh                               # Symlink deploy
 └── CHANGELOG.md                           # Notable repo changes
 ```
-
----
-
-## 🌊 Experimental Wayland Session
-
-A work-in-progress **niri** (scrollable-tiling Wayland) session lives alongside the main stack:
-
-- [`niri/`](niri/) — compositor config ([README](niri/README.md)) · [`waybar/`](waybar/) ([README](waybar/README.md)) · [`gammastep/`](gammastep/) (night colour) · [`fish/`](fish/)
-
-It is **not** the primary session — **BSPWM/X11 is the daily driver** — and these pieces are kept for tinkering. Install its extra packages from [`packages/niri-wayland.txt`](packages/niri-wayland.txt) if you want to try it.
 
 ---
 
