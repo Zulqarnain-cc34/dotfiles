@@ -23,6 +23,6 @@ Deployed by `setup.sh` as **`~/bin/bash_scripts`** (on `PATH` via `.profile` / `
 
 | Path | What |
 |------|------|
-| `csakura` | Cherry-blossom terminal screensaver, auto-launched when the zsh prompt goes idle. Patched build (adds `-k`, any-key-quit). Source + rebuild steps in [`csakura.src/`](csakura.src/); full writeup in [docs/csakura.md](../docs/csakura.md). |
+| `csakura` | Symlink that keeps the cherry-blossom screensaver on `PATH`. The real binary, source and writeup now live in [`../csakura/`](../csakura/). |
 
 See also [scripts/host/README.md](../scripts/host/README.md) for the short index.

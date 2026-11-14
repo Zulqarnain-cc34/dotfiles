@@ -121,7 +121,7 @@ A complete map of the repo. Deep docs live in each component's own README — li
 | [`tmux`](.tmux.conf) | Terminal multiplexer | — |
 | [`vivid`](vivid/) | `LS_COLORS` generator (cached) | — |
 | [`fastfetch`](fastfetch/) | System info fetch | [README](fastfetch/README.md) |
-| `csakura` | Cherry-blossom screensaver that blooms when the prompt goes idle | [docs](docs/csakura.md) |
+| [`csakura`](csakura/) | Cherry-blossom screensaver that blooms when the prompt goes idle | [README](csakura/README.md) |
 
 ### ✍️ Editor
 
