@@ -5,6 +5,41 @@ All notable changes to this dotfiles repo are documented here.
 Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).  
 Versions are dated milestones, not semver releases (this is a personal config repo).
 
+## [2026-11-14] — Per-tool modernization pass + image-preview fix (branch: `modernize-2026`)
+
+### Fixed
+- **yazi/lf image previews in alacritty** (was green garbage, then shifted/wrong-window). Three stacked causes: (1) alacritty has no native graphics protocol — installed `ueberzugpp`; (2) kitty's `KITTY_WINDOW_ID`/`WINDOWID` leaked into alacritty when spawned from kitty, so yazi sent the kitty graphics protocol and ueberzugpp drew over the wrong window — `.zshrc` now strips those vars when `$TERM` isn't `xterm-kitty`; (3) `alacritty` spawned as a child of kitty confused ueberzugpp's window detection — added an `alacritty()` zsh wrapper that `setsid -f` detaches it. Launching via rofi/sxhkd was always fine.
+- **Config deprecations across the stack** (each validated live against the installed version, not guessed):
+  - **sxhkd** — `shift+ctrl+{Left,Right}` move-to-desktop focused the wrong direction (hardcoded `next`); sxhkd reload now `SIGUSR1` not kill+restart; dropped dead reboot/shutdown keys (`prompt` never existed).
+  - **bspwm** — autostart daemons `pgrep`-guarded so `bspc wm -r` reloads don't spawn duplicates; removed the obsolete `mplayer2` rule.
+  - **picom** (v13) — migrated `opacity-rule`/`wintypes` to the unified `rules` block, dropped `mark-wmwin-focused`/`mark-ovredir-focused` (old-style rule opts), added open/close/resize animations. Zero warnings.
+  - **polybar** (3.7) — `tray-*` → `internal/tray` module, dropped `spacing`/`throttle-*`, `content`→`format`, `icon-repeatone`→`icon-single`. Zero warnings.
+  - **dunst** (1.13) — removed the deprecated `[shortcuts]` section and invalid `notification_height`/`startup_notification`/`verbosity` keys.
+  - **ncmpcpp** (0.10) — `visualizer_fifo_path` → `visualizer_data_source`, deduped repeated options.
+  - **mpv** (0.41) — `total_playtime` data file moved out of `scripts/` (mpv tried to load it as a script); gitignored the runtime data.
+
+### Removed
+- **Unused template files**: polybar's entire `statusbar/` dir + unused modules/scripts (kept only what `[bar/main]` uses); rofi's orphaned `powermenu/` (36 files); ncmpcpp `config1`.
+- Consolidated `screenshots/` into `assets/` (moved the 4 used images, dropped 6 unused, fixed every path, removed the dir).
+
+### Verified clean (no change needed)
+- **alacritty** (0.17) already fully migrated (`alacritty migrate --dry-run` = no key changes).
+
+## [2026-11-14] — Neovim modernization, doc reviews, README credits (branch: `modernize-2026`, merged to `main`)
+
+### Changed
+- **Neovim** brought fully up to date (nvim 0.12), reviewed file by file: native 0.11+ LSP (`lsp/<server>.lua` overrides + one `vim.lsp.enable`, schemastore `jsonls` deferred to the first JSON file), Tree-sitter `main` branch (parsers compile via the tree-sitter CLI), conform.nvim + nvim-lint replacing the dead efm setup, blink.cmp (Rust fuzzy, ghost text, signature help), which-key/trouble v3.
+- **`nvim/README.md`** rewritten: snacks dashboard hero, 2×2 gallery, per-language LSP/formatter/linter matrix, refreshed deep-dive; plugin catalogue split to `plugins.md`.
+- **Main README Credits** reworked into a single okivim-style avatar grid (every tool + shell/tmux/yazi plugin + Neovim plugin author) after a full repo attribution audit (rofi/polybar by adi1090x, nord dircolors, qutebrowser themes, ueberzug, vendored scripts); all 80+ links verified live. Compact license footer.
+- **kitty** and **zsh** README reviews — documented real behavior, dropped stale claims, added demo screenshots.
+
+### Fixed
+- Last deprecated nvim API removed: `vim.diagnostic.goto_next/goto_prev` → `vim.diagnostic.jump`.
+- Option-scope cruft cleared; disabled unused perl/ruby providers, added the `regex` parser. Startup ~147 ms, no errors or deprecation warnings.
+
+### Removed
+- Stale main-README sections: Experimental Wayland and Neovim Deep-Dive (the deep-dive now lives in `nvim/README.md`).
+
 ## [2026-11-13] — Yazi README finalized (branch: `modernize-2026`)
 
 ### Added
@@ -59,7 +94,7 @@ Verified live via `ranger` in `tmux`: `az`/`at`/`ag`/`ab` create correctly (no l
 
 ### Removed
 - `gkm`/`gkz` (mount/unmount a paired KDE Connect device) — same reasoning as yazi's `m,k` and lf's `mk`: not meaningful to verify outside a specific paired device.
-- `gkg`/`gku`/`gks` (rclone mount/unmount/sync to a hardcoded `mygoogledrive`/`assignmentRepo` remote) — same reasoning as lf's dropped SSHFS/OneDrive bindings: tied to the author's own cloud accounts.
+- `gkg`/`gku`/`gks` (rclone mount/unmount/sync to a hardcoded personal rclone remote) — same reasoning as lf's dropped SSHFS/OneDrive bindings: tied to the author's own cloud accounts.
 
 Verified live via `ranger` run inside `tmux` (text-based `capture-pane`, not X11 screenshots — this session's live GUI testing had already leaked real desktop content twice through window-ID-based screenshot capture, so ranger was deliberately tested through a fully isolated virtual terminal instead).
 
@@ -141,10 +176,10 @@ Verified by driving the real `yazi` binary end-to-end (real keystrokes, real scr
 - Neovim latent bug: packer-era `requires=`/`after=` keys that lazy.nvim silently ignored → proper `dependencies`
 - Neovim keybinds repointed from Telescope/Oil to snacks (would have errored on keypress)
 - yazi: invalid commands (`find_next`, `atime/ctime` sorts, `show-info`), `%s`→`$@` openers, and an invalid multi-line inline table (TOML)
-- dunst: removed foreign `/home/leon/.nix-profile` dmenu path + dead gnome icon paths
+- dunst: removed a foreign `/home/<user>/.nix-profile` dmenu path + dead gnome icon paths
 - sxhkd: workspace bind `{1-8}`→`{1-9}` (desktop 九 was unreachable); removed shadowed duplicate `super+space`
 - Transmission: RPC bound to `127.0.0.1` (was `0.0.0.0`); `$USER`/`$HOME` literal paths → absolute (exempted in `validate.sh`)
-- Hardcoded foreign usernames (`/home/precision`, `/home/wasif`) → `$HOME`
+- Hardcoded foreign usernames (`/home/<user>`) → `$HOME`
 
 ### Removed
 - Neovim dead code: `config/*.vimrc` tree, `UltiSnips/` (no loader), 10 orphaned `plugins/*.lua` (~2,500 lines)

@@ -33,7 +33,7 @@ background = "#292C3E"
 foreground = "#EBEBEB"
 
 [font]
-size = 7  # Readable size (was 7, which was too small)
+size = 7
 
 [font.bold]
 family = "JetBrains Mono"

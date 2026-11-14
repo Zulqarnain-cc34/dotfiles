@@ -1,7 +1,7 @@
 key_binding = 'F12'
 -- save probed files for future reference -- ${fname} \t ${duration}
 save_probed = true
-saved_probed_filename = '~/.config/mpv/scripts/total_playtime.list'
+saved_probed_filename = '~/.config/mpv/total_playtime.list'
 
 -----------------------------------
 

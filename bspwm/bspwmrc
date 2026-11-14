@@ -57,18 +57,22 @@ bspc rule -a mpv state=fullscreen
 bspc rule -a Zathura state=tiled
 bspc rule -a Gimp desktop='^8' state=floating follow=on
 bspc rule -a Chromium desktop='^2'
-bspc rule -a mplayer2 state=floating
 bspc rule -a Kupfer.py focus=on
 bspc rule -a Screenkey manage=off
 
-command -v conky >/dev/null && conky -q -c ~/.config/conky/conky1/conkyrc1 &
-picom &
-sxhkd &
-dunst &
-command -v redshift >/dev/null && redshift -c "$HOME/.config/redshift/redshift.conf" &
-[ -x "$HOME/bin/bash_scripts/random-wallpaper.sh" ] && "$HOME/bin/bash_scripts/random-wallpaper.sh" &
-xset r rate 300 50 &
-xmodmap "$HOME/.Xmodmap" &
-clipmenud &
+# Start a daemon only if it isn't already running, so re-running bspwmrc
+# (super+alt+r -> `bspc wm -r`) doesn't spawn a second copy of each.
+run() { pgrep -x "$1" >/dev/null || "$@" & }
 
+command -v conky >/dev/null && run conky -q -c "$HOME/.config/conky/conky1/conkyrc1"
+run picom
+run sxhkd
+run dunst
+command -v redshift >/dev/null && run redshift -c "$HOME/.config/redshift/redshift.conf"
+run clipmenud
+
+# One-shot setup (harmless to re-run on reload)
+xset r rate 300 50
+xmodmap "$HOME/.Xmodmap" &
+[ -x "$HOME/bin/bash_scripts/random-wallpaper.sh" ] && "$HOME/bin/bash_scripts/random-wallpaper.sh" &
 [ -x "$HOME/.config/polybar/launch.sh" ] && "$HOME/.config/polybar/launch.sh" &

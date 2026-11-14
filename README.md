@@ -1,7 +1,5 @@
-<a id="top"></a>
-
 <div align="center">
-  <img src="screenshots/logo.png" alt="Logo" width="130" height="130">
+  <img src="assets/logo.png" alt="Logo" width="130" height="130">
 
   <h1>Dotfiles</h1>
 
@@ -14,12 +12,11 @@
     <a href="https://github.com/Zulqarnain-cc34/dotfiles/stargazers"><img src="https://img.shields.io/github/stars/Zulqarnain-cc34/dotfiles?style=for-the-badge&logo=starship&color=ffce63&logoColor=black&labelColor=1a1b26" alt="Stars"></a>
     <a href="https://github.com/Zulqarnain-cc34/dotfiles/network/members"><img src="https://img.shields.io/github/forks/Zulqarnain-cc34/dotfiles?style=for-the-badge&logo=git&color=9ece6a&logoColor=black&labelColor=1a1b26" alt="Forks"></a>
     <a href="LICENSE"><img src="https://img.shields.io/github/license/Zulqarnain-cc34/dotfiles?style=for-the-badge&color=7aa2f7&logoColor=black&labelColor=1a1b26" alt="License"></a>
-    <a href="https://github.com/Zulqarnain-cc34/dotfiles/actions/workflows/secrets.yml"><img src="https://img.shields.io/github/actions/workflow/status/Zulqarnain-cc34/dotfiles/secrets.yml?style=for-the-badge&label=secrets%20scan&labelColor=1a1b26" alt="Secrets scan"></a>
     <img src="https://img.shields.io/badge/Arch-Linux-1793d1?style=for-the-badge&logo=arch-linux&logoColor=white&labelColor=1a1b26" alt="Arch">
     <img src="https://img.shields.io/badge/Maintained-yes-9ece6a?style=for-the-badge&labelColor=1a1b26" alt="Maintained">
   </p>
 
-  <img src="screenshots/desktop-4.png" alt="Desktop" width="92%" style="border-radius:12px;">
+  <img src="assets/desktop-4.png" alt="Desktop" width="92%" style="border-radius:12px;">
 </div>
 
 ---
@@ -56,15 +53,15 @@ The guiding principles:
 <div align="center">
 <table>
   <tr>
-    <td align="center" width="50%"><img src="screenshots/neovim-1.png" width="100%"><br><b>Neovim as an IDE</b></td>
-    <td align="center" width="50%"><img src="screenshots/Telescope.png" width="100%"><br><b>Fuzzy finding</b></td>
+    <td align="center" width="50%"><img src="assets/neovim-1.png" width="100%"><br><b>Neovim as an IDE</b></td>
+    <td align="center" width="50%"><img src="assets/yazi_shot.png" width="100%"><br><b>Yazi file manager</b></td>
   </tr>
   <tr>
-    <td align="center" width="50%"><img src="screenshots/dashboard.png" width="100%"><br><b>Dashboard</b></td>
-    <td align="center" width="50%"><img src="screenshots/lsp.png" width="100%"><br><b>LSP &amp; code actions</b></td>
+    <td align="center" width="50%"><img src="assets/terminal_demo.png" width="100%"><br><b>Kitty terminal</b></td>
+    <td align="center" width="50%"><img src="assets/fastfetch_demo.png" width="100%"><br><b>Fastfetch</b></td>
   </tr>
   <tr>
-    <td align="center" colspan="2"><img src="screenshots/polybar.png" width="60%"><br><b>Polybar</b></td>
+    <td align="center" colspan="2"><img src="assets/polybar_demo.png" width="60%"><br><b>Polybar</b></td>
   </tr>
 </table>
 </div>
@@ -389,5 +386,5 @@ community whose rices sparked half the ideas here. Huge thanks to all of them.
 </div>
 
 <div align="center">
-<sub>© 2021 Muhammad Zulqarnain. <a href="LICENSE">MIT License</a>. &nbsp; <a href="#top">🔝</a></sub>
+<sub>© 2021 Muhammad Zulqarnain. <a href="LICENSE">MIT License</a>.</sub>
 </div>

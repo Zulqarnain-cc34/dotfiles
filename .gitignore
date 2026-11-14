@@ -79,3 +79,7 @@ rofi/launchers/ribbon/styles/colors.rasi
 # mpv runtime watch-time log (generated, machine-specific paths)
 mpv/scripts/total_playtime.list
 _preview.html
+
+# mpv total_playtime runtime data (watched-file history, not config)
+mpv/total_playtime.list
+mpv/scripts/total_playtime.list
