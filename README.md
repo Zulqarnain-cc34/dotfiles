@@ -14,6 +14,7 @@
     <a href="LICENSE"><img src="https://img.shields.io/github/license/Zulqarnain-cc34/dotfiles?style=for-the-badge&color=7aa2f7&logoColor=black&labelColor=1a1b26" alt="License"></a>
     <img src="https://img.shields.io/badge/Arch-Linux-1793d1?style=for-the-badge&logo=arch-linux&logoColor=white&labelColor=1a1b26" alt="Arch">
     <img src="https://img.shields.io/badge/Maintained-yes-9ece6a?style=for-the-badge&labelColor=1a1b26" alt="Maintained">
+    <img src="https://img.shields.io/badge/full%20review-Nov%202026-c678dd?style=for-the-badge&labelColor=1a1b26" alt="Last full review">
   </p>
 
   <img src="assets/desktop-4.png" alt="Desktop" width="92%" style="border-radius:12px;">
