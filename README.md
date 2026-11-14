@@ -334,8 +334,7 @@ None of this is mine to take credit for. It's the work of the people who build a
 maintain the tools these configs sit on top of, plus the **r/unixporn** and dotfiles
 community whose rices sparked half the ideas here. Huge thanks to all of them.
 
-<!-- ===== Tools & projects ===== -->
-<a href="https://github.com/neovim" title="Neovim"><img src="https://github.com/neovim.png" width="56" alt="Neovim"/></a>
+<a href="https://github.com/neovim" title="Neovim"><img src="https://github.com/neovim.png" width="56" alt="Neovim"/></a> <!-- group: Tools & projects -->
 <a href="https://github.com/kovidgoyal" title="kitty"><img src="https://github.com/kovidgoyal.png" width="56" alt="kitty"/></a>
 <a href="https://github.com/sxyazi" title="yazi"><img src="https://github.com/sxyazi.png" width="56" alt="yazi"/></a>
 <a href="https://github.com/gokcehan" title="lf"><img src="https://github.com/gokcehan.png" width="56" alt="lf"/></a>
@@ -375,20 +374,17 @@ community whose rices sparked half the ideas here. Huge thanks to all of them.
 <a href="https://github.com/charmbracelet" title="glow (markdown preview)"><img src="https://github.com/charmbracelet.png" width="56" alt="glow"/></a>
 <a href="https://github.com/andreafrancia" title="trash-cli"><img src="https://github.com/andreafrancia.png" width="56" alt="trash-cli"/></a>
 <a href="https://github.com/wting" title="autojump"><img src="https://github.com/wting.png" width="56" alt="autojump"/></a>
-<!-- ===== Shell, prompt & tmux plugins ===== -->
-<a href="https://github.com/zsh-users" title="zsh-autosuggestions · zsh-syntax-highlighting"><img src="https://github.com/zsh-users.png" width="56" alt="zsh-users"/></a>
+<a href="https://github.com/zsh-users" title="zsh-autosuggestions · zsh-syntax-highlighting"><img src="https://github.com/zsh-users.png" width="56" alt="zsh-users"/></a> <!-- group: Shell, prompt & tmux plugins -->
 <a href="https://github.com/jorgebucaran" title="fisher (fish plugin manager)"><img src="https://github.com/jorgebucaran.png" width="56" alt="fisher"/></a>
 <a href="https://github.com/rafaelrinaldi" title="pure (fish prompt)"><img src="https://github.com/rafaelrinaldi.png" width="56" alt="pure prompt"/></a>
 <a href="https://github.com/jethrokuan" title="fzf.fish"><img src="https://github.com/jethrokuan.png" width="56" alt="fzf.fish"/></a>
 <a href="https://github.com/oh-my-fish" title="plugin-foreign-env"><img src="https://github.com/oh-my-fish.png" width="56" alt="oh-my-fish"/></a>
 <a href="https://github.com/tmux-plugins" title="tpm · sensible · battery · cpu · urlview · yank · copycat"><img src="https://github.com/tmux-plugins.png" width="56" alt="tmux-plugins"/></a>
-<!-- ===== Yazi plugins & flavors ===== -->
-<a href="https://github.com/yazi-rs" title="full-border · git · chmod · jump-to-char · toggle-pane · smart-enter · piper · vcs-files · catppuccin flavor"><img src="https://github.com/yazi-rs.png" width="56" alt="yazi-rs"/></a>
+<a href="https://github.com/yazi-rs" title="full-border · git · chmod · jump-to-char · toggle-pane · smart-enter · piper · vcs-files · catppuccin flavor"><img src="https://github.com/yazi-rs.png" width="56" alt="yazi-rs"/></a> <!-- group: Yazi plugins & flavors -->
 <a href="https://github.com/Rolv-Apneseth" title="starship (yazi plugin)"><img src="https://github.com/Rolv-Apneseth.png" width="56" alt="Rolv-Apneseth"/></a>
 <a href="https://github.com/DreamMaoMao" title="mime-preview (yazi plugin)"><img src="https://github.com/DreamMaoMao.png" width="56" alt="DreamMaoMao"/></a>
 <a href="https://github.com/kalidyasin" title="tokyonight-storm (yazi flavor)"><img src="https://github.com/kalidyasin.png" width="56" alt="kalidyasin"/></a>
-<!-- ===== Neovim plugin authors ===== -->
-<a href="https://github.com/folke" title="snacks · lazy · which-key · trouble · todo-comments · persistence · styler · lazydev · tokyonight"><img src="https://github.com/folke.png" width="56" alt="folke"/></a>
+<a href="https://github.com/folke" title="snacks · lazy · which-key · trouble · todo-comments · persistence · styler · lazydev · tokyonight"><img src="https://github.com/folke.png" width="56" alt="folke"/></a> <!-- group: Neovim plugin authors -->
 <a href="https://github.com/saghen" title="blink.cmp"><img src="https://github.com/saghen.png" width="56" alt="blink.cmp"/></a>
 <a href="https://github.com/stevearc" title="conform.nvim"><img src="https://github.com/stevearc.png" width="56" alt="conform.nvim"/></a>
 <a href="https://github.com/mfussenegger" title="nvim-lint"><img src="https://github.com/mfussenegger.png" width="56" alt="nvim-lint"/></a>
