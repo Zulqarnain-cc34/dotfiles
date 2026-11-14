@@ -1,3 +1,5 @@
+<a id="top"></a>
+
 <div align="center">
   <img src="screenshots/logo.png" alt="Logo" width="130" height="130">
 
@@ -28,13 +30,10 @@
 - [Gallery](#-gallery)
 - [The Stack](#-the-stack)
 - [What's Inside](#-whats-inside)
-- [Neovim Deep-Dive](#-neovim-deep-dive)
 - [Installation](#-installation)
 - [Keybindings](#-keybindings)
 - [Repository Structure](#-repository-structure)
-- [Experimental Wayland Session](#-experimental-wayland-session)
 - [Credits](#-credits)
-- [License](#-license)
 
 ---
 
@@ -48,7 +47,7 @@ The guiding principles:
 - **Keyboard-first** — a tiling WM, fuzzy everything, and TUI apps for mail, music, RSS, files, and browsing.
 - **Reproducible** — a single `setup.sh` symlinks everything, package manifests pin the toolset, and a `validate.sh` keeps the repo honest (no leaked paths, no dead tools, no secrets).
 
-> **Primary session is BSPWM (X11).** An experimental niri/Wayland session is also included — see [below](#-experimental-wayland-session).
+> **Primary session is BSPWM (X11).**
 
 ---
 
@@ -125,7 +124,7 @@ A complete map of the repo. Deep docs live in each component's own README — li
 
 | Component | Description | Docs |
 | :--- | :--- | :--- |
-| [`nvim`](nvim/) | Neovim as a full IDE — see the [deep-dive](#-neovim-deep-dive) | [README](nvim/README.md) |
+| [`nvim`](nvim/) | Neovim as a full IDE | [README](nvim/README.md) |
 
 ### 🗄️ File Managers
 
@@ -166,23 +165,6 @@ A complete map of the repo. Deep docs live in each component's own README — li
 | [`packages`](packages/) | Pacman / AUR / pip / npm / go manifests | — |
 | [`Kvantum`](Kvantum/) | Qt theming engine | — |
 | [`urlscan`](urlscan/) / [`urlview`](urlview/) | Extract & open URLs from text | — |
-
----
-
-## ✨ Neovim Deep-Dive
-
-Not just an editor — a personalised development environment that still boots in ~140 ms.
-
-- **🧩 Plugin manager** — [`lazy.nvim`](https://github.com/folke/lazy.nvim), everything lazy-loaded
-- **🎯 Native LSP** — Neovim 0.11+ `vim.lsp.config` / `vim.lsp.enable` for Python, Lua, C/C++, TypeScript/JS, Bash, HTML, JSON, Docker, SQL, GraphQL, Vim
-- **⚡ Completion** — [`blink.cmp`](https://github.com/saghen/blink.cmp) with a Rust fuzzy matcher + friendly-snippets
-- **🌳 Treesitter** — syntax, indentation, folding, rainbow delimiters, auto-tags
-- **🍿 [snacks.nvim](https://github.com/folke/snacks.nvim)** — one coherent UI for the picker, file explorer, notifications, dashboard, indent guides, and more
-- **🔭 Fuzzy everything** — files, grep, buffers, help, marks, registers via `snacks.picker`
-- **🔀 Git** — Neogit + Diffview
-- **🩺 Diagnostics** — Trouble, inline code actions, format-on-demand
-
-See [`nvim/README.md`](nvim/README.md) for the full plugin list and layout.
 
 ---
 
@@ -309,32 +291,103 @@ dotfiles/
 
 ---
 
-## 🌊 Experimental Wayland Session
+<div align="center">
 
-A work-in-progress **niri** (scrollable-tiling Wayland) session lives alongside the main stack:
+## ❤️ Credits
 
-- [`niri/`](niri/) — compositor config ([README](niri/README.md)) · [`waybar/`](waybar/) ([README](waybar/README.md)) · [`gammastep/`](gammastep/) (night colour) · [`fish/`](fish/)
+None of this is mine to take credit for. It's the work of the people who build and
+maintain the tools these configs sit on top of, plus the **r/unixporn** and dotfiles
+community whose rices sparked half the ideas here. Huge thanks to all of them.
 
-It is **not** the primary session — **BSPWM/X11 is the daily driver** — and these pieces are kept for tinkering. Install its extra packages from [`packages/niri-wayland.txt`](packages/niri-wayland.txt) if you want to try it.
+<a href="https://github.com/neovim" title="Neovim"><img src="https://github.com/neovim.png" width="56" alt="Neovim"/></a> <!-- group: Tools & projects -->
+<a href="https://github.com/kovidgoyal" title="kitty"><img src="https://github.com/kovidgoyal.png" width="56" alt="kitty"/></a>
+<a href="https://github.com/sxyazi" title="yazi"><img src="https://github.com/sxyazi.png" width="56" alt="yazi"/></a>
+<a href="https://github.com/gokcehan" title="lf"><img src="https://github.com/gokcehan.png" width="56" alt="lf"/></a>
+<a href="https://github.com/baskerville" title="bspwm / sxhkd"><img src="https://github.com/baskerville.png" width="56" alt="bspwm / sxhkd"/></a>
+<a href="https://github.com/polybar" title="Polybar"><img src="https://github.com/polybar.png" width="56" alt="Polybar"/></a>
+<a href="https://github.com/yshui" title="picom"><img src="https://github.com/yshui.png" width="56" alt="picom"/></a>
+<a href="https://github.com/dunst-project" title="dunst"><img src="https://github.com/dunst-project.png" width="56" alt="dunst"/></a>
+<a href="https://github.com/davatorium" title="rofi"><img src="https://github.com/davatorium.png" width="56" alt="rofi"/></a>
+<a href="https://github.com/alacritty" title="Alacritty"><img src="https://github.com/alacritty.png" width="56" alt="Alacritty"/></a>
+<a href="https://github.com/mpv-player" title="mpv"><img src="https://github.com/mpv-player.png" width="56" alt="mpv"/></a>
+<a href="https://github.com/MusicPlayerDaemon" title="MPD"><img src="https://github.com/MusicPlayerDaemon.png" width="56" alt="MPD"/></a>
+<a href="https://github.com/newsboat" title="Newsboat"><img src="https://github.com/newsboat.png" width="56" alt="Newsboat"/></a>
+<a href="https://github.com/neomutt" title="NeoMutt"><img src="https://github.com/neomutt.png" width="56" alt="NeoMutt"/></a>
+<a href="https://github.com/pwmt" title="zathura"><img src="https://github.com/pwmt.png" width="56" alt="zathura"/></a>
+<a href="https://github.com/qutebrowser" title="qutebrowser"><img src="https://github.com/qutebrowser.png" width="56" alt="qutebrowser"/></a>
+<a href="https://github.com/jonls" title="redshift"><img src="https://github.com/jonls.png" width="56" alt="redshift"/></a>
+<a href="https://github.com/YaLTeR" title="niri"><img src="https://github.com/YaLTeR.png" width="56" alt="niri"/></a>
+<a href="https://github.com/Alexays" title="Waybar"><img src="https://github.com/Alexays.png" width="56" alt="Waybar"/></a>
+<a href="https://github.com/fish-shell" title="fish"><img src="https://github.com/fish-shell.png" width="56" alt="fish"/></a>
+<a href="https://github.com/sharkdp" title="vivid / fd / bat"><img src="https://github.com/sharkdp.png" width="56" alt="vivid / fd / bat"/></a>
+<a href="https://github.com/pystardust" title="ytfzf"><img src="https://github.com/pystardust.png" width="56" alt="ytfzf"/></a>
+<a href="https://github.com/transmission" title="Transmission"><img src="https://github.com/transmission.png" width="56" alt="Transmission"/></a>
+<a href="https://github.com/EliverLara" title="firefox-sweet-theme"><img src="https://github.com/EliverLara.png" width="56" alt="firefox-sweet-theme"/></a>
+<a href="https://github.com/starship" title="Starship prompt"><img src="https://github.com/starship.png" width="56" alt="Starship"/></a>
+<a href="https://github.com/junegunn" title="fzf"><img src="https://github.com/junegunn.png" width="56" alt="fzf"/></a>
+<a href="https://github.com/eza-community" title="eza"><img src="https://github.com/eza-community.png" width="56" alt="eza"/></a>
+<a href="https://github.com/tmux" title="tmux"><img src="https://github.com/tmux.png" width="56" alt="tmux"/></a>
+<a href="https://github.com/fastfetch-cli" title="Fastfetch"><img src="https://github.com/fastfetch-cli.png" width="56" alt="Fastfetch"/></a>
+<a href="https://github.com/brndnmtthws" title="Conky"><img src="https://github.com/brndnmtthws.png" width="56" alt="Conky"/></a>
+<a href="https://github.com/arybczak" title="ncmpcpp"><img src="https://github.com/arybczak.png" width="56" alt="ncmpcpp"/></a>
+<a href="https://github.com/ranger" title="ranger"><img src="https://github.com/ranger.png" width="56" alt="ranger"/></a>
+<a href="https://github.com/tsujan" title="Kvantum"><img src="https://github.com/tsujan.png" width="56" alt="Kvantum"/></a>
+<a href="https://github.com/tats" title="w3m"><img src="https://github.com/tats.png" width="56" alt="w3m"/></a>
+<a href="https://github.com/firecat53" title="urlscan"><img src="https://github.com/firecat53.png" width="56" alt="urlscan"/></a>
+<a href="https://github.com/sigpipe" title="urlview"><img src="https://github.com/sigpipe.png" width="56" alt="urlview"/></a>
+<a href="https://github.com/hpjansson" title="chafa (image preview)"><img src="https://github.com/hpjansson.png" width="56" alt="chafa"/></a>
+<a href="https://github.com/charmbracelet" title="glow (markdown preview)"><img src="https://github.com/charmbracelet.png" width="56" alt="glow"/></a>
+<a href="https://github.com/andreafrancia" title="trash-cli"><img src="https://github.com/andreafrancia.png" width="56" alt="trash-cli"/></a>
+<a href="https://github.com/wting" title="autojump"><img src="https://github.com/wting.png" width="56" alt="autojump"/></a>
+<a href="https://github.com/zsh-users" title="zsh-autosuggestions · zsh-syntax-highlighting"><img src="https://github.com/zsh-users.png" width="56" alt="zsh-users"/></a> <!-- group: Shell, prompt & tmux plugins -->
+<a href="https://github.com/jorgebucaran" title="fisher (fish plugin manager)"><img src="https://github.com/jorgebucaran.png" width="56" alt="fisher"/></a>
+<a href="https://github.com/rafaelrinaldi" title="pure (fish prompt)"><img src="https://github.com/rafaelrinaldi.png" width="56" alt="pure prompt"/></a>
+<a href="https://github.com/jethrokuan" title="fzf.fish"><img src="https://github.com/jethrokuan.png" width="56" alt="fzf.fish"/></a>
+<a href="https://github.com/oh-my-fish" title="plugin-foreign-env"><img src="https://github.com/oh-my-fish.png" width="56" alt="oh-my-fish"/></a>
+<a href="https://github.com/tmux-plugins" title="tpm · sensible · battery · cpu · urlview · yank · copycat"><img src="https://github.com/tmux-plugins.png" width="56" alt="tmux-plugins"/></a>
+<a href="https://github.com/yazi-rs" title="full-border · git · chmod · jump-to-char · toggle-pane · smart-enter · piper · vcs-files · catppuccin flavor"><img src="https://github.com/yazi-rs.png" width="56" alt="yazi-rs"/></a> <!-- group: Yazi plugins & flavors -->
+<a href="https://github.com/Rolv-Apneseth" title="starship (yazi plugin)"><img src="https://github.com/Rolv-Apneseth.png" width="56" alt="Rolv-Apneseth"/></a>
+<a href="https://github.com/DreamMaoMao" title="mime-preview (yazi plugin)"><img src="https://github.com/DreamMaoMao.png" width="56" alt="DreamMaoMao"/></a>
+<a href="https://github.com/kalidyasin" title="tokyonight-storm (yazi flavor)"><img src="https://github.com/kalidyasin.png" width="56" alt="kalidyasin"/></a>
+<a href="https://github.com/folke" title="snacks · lazy · which-key · trouble · todo-comments · persistence · styler · lazydev · tokyonight"><img src="https://github.com/folke.png" width="56" alt="folke"/></a> <!-- group: Neovim plugin authors -->
+<a href="https://github.com/saghen" title="blink.cmp"><img src="https://github.com/saghen.png" width="56" alt="blink.cmp"/></a>
+<a href="https://github.com/stevearc" title="conform.nvim"><img src="https://github.com/stevearc.png" width="56" alt="conform.nvim"/></a>
+<a href="https://github.com/mfussenegger" title="nvim-lint"><img src="https://github.com/mfussenegger.png" width="56" alt="nvim-lint"/></a>
+<a href="https://github.com/nvim-treesitter" title="nvim-treesitter"><img src="https://github.com/nvim-treesitter.png" width="56" alt="nvim-treesitter"/></a>
+<a href="https://github.com/nvim-lua" title="plenary.nvim"><img src="https://github.com/nvim-lua.png" width="56" alt="plenary.nvim"/></a>
+<a href="https://github.com/nvim-telescope" title="telescope.nvim"><img src="https://github.com/nvim-telescope.png" width="56" alt="telescope.nvim"/></a>
+<a href="https://github.com/nvim-tree" title="nvim-web-devicons"><img src="https://github.com/nvim-tree.png" width="56" alt="nvim-web-devicons"/></a>
+<a href="https://github.com/nvim-lualine" title="lualine.nvim"><img src="https://github.com/nvim-lualine.png" width="56" alt="lualine.nvim"/></a>
+<a href="https://github.com/NeogitOrg" title="neogit"><img src="https://github.com/NeogitOrg.png" width="56" alt="neogit"/></a>
+<a href="https://github.com/sindrets" title="diffview.nvim"><img src="https://github.com/sindrets.png" width="56" alt="diffview.nvim"/></a>
+<a href="https://github.com/akinsho" title="bufferline.nvim"><img src="https://github.com/akinsho.png" width="56" alt="bufferline.nvim"/></a>
+<a href="https://github.com/catgoose" title="nvim-colorizer.lua"><img src="https://github.com/catgoose.png" width="56" alt="nvim-colorizer.lua"/></a>
+<a href="https://github.com/petertriho" title="nvim-scrollbar"><img src="https://github.com/petertriho.png" width="56" alt="nvim-scrollbar"/></a>
+<a href="https://github.com/ellisonleao" title="gruvbox.nvim"><img src="https://github.com/ellisonleao.png" width="56" alt="gruvbox.nvim"/></a>
+<a href="https://github.com/navarasu" title="onedark.nvim"><img src="https://github.com/navarasu.png" width="56" alt="onedark.nvim"/></a>
+<a href="https://github.com/sphamba" title="smear-cursor.nvim"><img src="https://github.com/sphamba.png" width="56" alt="smear-cursor.nvim"/></a>
+<a href="https://github.com/HiPhish" title="rainbow-delimiters.nvim"><img src="https://github.com/HiPhish.png" width="56" alt="rainbow-delimiters.nvim"/></a>
+<a href="https://github.com/windwp" title="nvim-ts-autotag"><img src="https://github.com/windwp.png" width="56" alt="nvim-ts-autotag"/></a>
+<a href="https://github.com/OXY2DEV" title="markview.nvim"><img src="https://github.com/OXY2DEV.png" width="56" alt="markview.nvim"/></a>
+<a href="https://github.com/iamcco" title="markdown-preview.nvim"><img src="https://github.com/iamcco.png" width="56" alt="markdown-preview.nvim"/></a>
+<a href="https://github.com/dstein64" title="vim-startuptime"><img src="https://github.com/dstein64.png" width="56" alt="vim-startuptime"/></a>
+<a href="https://github.com/rafamadriz" title="friendly-snippets"><img src="https://github.com/rafamadriz.png" width="56" alt="friendly-snippets"/></a>
+<a href="https://github.com/MunifTanjim" title="nui.nvim"><img src="https://github.com/MunifTanjim.png" width="56" alt="nui.nvim"/></a>
+<a href="https://github.com/amitds1997" title="remote-nvim.nvim"><img src="https://github.com/amitds1997.png" width="56" alt="remote-nvim.nvim"/></a>
+<a href="https://github.com/nemanjamalesija" title="smart-paste.nvim"><img src="https://github.com/nemanjamalesija.png" width="56" alt="smart-paste.nvim"/></a>
+<a href="https://github.com/b0o" title="schemastore.nvim"><img src="https://github.com/b0o.png" width="56" alt="schemastore.nvim"/></a>
+<a href="https://github.com/alphapapa" title="qutebrowser site themes (solarized-everything-css)"><img src="https://github.com/alphapapa.png" width="56" alt="alphapapa"/></a> <!-- group: Borrowed scripts & themes -->
+<a href="https://github.com/seebye" title="ueberzug (image preview backend)"><img src="https://github.com/seebye.png" width="56" alt="seebye"/></a>
+<a href="https://github.com/gotbletu" title="shell scripts (urlportal, redshift-toggle)"><img src="https://github.com/gotbletu.png" width="56" alt="gotbletu"/></a>
+<a href="https://github.com/chubin" title="cheat.sh (cht.sh)"><img src="https://github.com/chubin.png" width="56" alt="chubin"/></a>
+<a href="https://github.com/livibetter" title="pipesX.sh colorscript"><img src="https://github.com/livibetter.png" width="56" alt="livibetter"/></a>
+<a href="https://github.com/rossy" title="mpv repl.lua (powers sub-search)"><img src="https://github.com/rossy.png" width="56" alt="rossy"/></a>
+<a href="https://github.com/adi1090x" title="Aditya Shakya — rofi applets/launchers/powermenu + polybar config"><img src="https://github.com/adi1090x.png" width="56" alt="adi1090x"/></a>
+<a href="https://github.com/arcticicestudio" title=".dir_colors (Nord dircolors)"><img src="https://github.com/arcticicestudio.png" width="56" alt="arcticicestudio"/></a>
+<a href="https://github.com/Andr3as07" title="polybar sb-tasks script"><img src="https://github.com/Andr3as07.png" width="56" alt="Andr3as07"/></a>
 
----
-
-## 🙏 Credits
-
-- The countless **r/unixporn** and dotfiles authors whose rices sparked ideas
-- [`lazy.nvim`](https://github.com/folke/lazy.nvim), [`snacks.nvim`](https://github.com/folke/snacks.nvim), [`blink.cmp`](https://github.com/saghen/blink.cmp) and the wider Neovim plugin community
-- [firefox-sweet-theme](https://github.com/EliverLara/firefox-sweet-theme) by EliverLara
-- Every tool documented above — maintained by people far more patient than me
-
----
-
-## 📜 License
-
-Released under the [MIT License](LICENSE) — © 2021 Muhammad Zulqarnain. Use anything you like; attribution appreciated but not required.
-
----
+</div>
 
 <div align="center">
-  <p>If this was useful or you just like the look, consider leaving a ⭐.</p>
-  <p>Made with ❤️ on Arch by <a href="https://github.com/Zulqarnain-cc34">Zulqarnain</a></p>
+<sub>© 2021 Muhammad Zulqarnain. <a href="LICENSE">MIT License</a>. &nbsp; <a href="#top">🔝</a></sub>
 </div>

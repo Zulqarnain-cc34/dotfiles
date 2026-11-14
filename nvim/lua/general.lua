@@ -87,4 +87,11 @@ o.tabstop = 4        -- insert tabs on the start of a line according to shiftwid
 
 o.timeoutlen = 500   -- timeout before which key shows its keybindings prompt
 
+-- ============== Providers ==========================
+-- Disable the perl/ruby remote-plugin providers: nothing here uses them, so
+-- this silences their checkhealth warnings and skips the startup probe.
+-- (python3 and node providers stay on -- node powers markdown-preview.)
+vim.g.loaded_perl_provider = 0
+vim.g.loaded_ruby_provider = 0
+
 -- vim.g.my_theme = "tokyonight"

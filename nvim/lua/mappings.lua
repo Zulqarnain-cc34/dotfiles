@@ -64,9 +64,9 @@ map('n', '<leader>lq', '<cmd>Trouble qflist<cr>', options)
 -- Shows diagnostics for current line
 map('n', '<leader>ll', '<cmd>lua vim.diagnostic.open_float()<CR>', options)
 -- Jump to next diagnostic
-map('n', '<leader>ln', '<cmd>lua vim.diagnostic.goto_next()<CR>', options)
+map('n', '<leader>ln', '<cmd>lua vim.diagnostic.jump({ count = 1, float = true })<CR>', options)
 -- Jump to previous diagnostic
-map('n', '<leader>lp', '<cmd>lua vim.diagnostic.goto_prev()<CR>', options)
+map('n', '<leader>lp', '<cmd>lua vim.diagnostic.jump({ count = -1, float = true })<CR>', options)
 -- Shows diagnostics under cursor
 map('n', '<leader>lb', '<cmd>lua vim.diagnostic.open_float()<CR>', options)
 
