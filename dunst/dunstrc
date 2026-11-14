@@ -13,7 +13,6 @@
     indicate_hidden = yes
     shrink = no
     transparency = 0
-    notification_height = 0
     separator_height = 2
     padding = 20
     horizontal_padding = 20
@@ -95,8 +94,6 @@
     always_run_script = true
     title = Dunst
     class = Dunst
-    startup_notification = false
-    verbosity = mesg
     corner_radius = 0
     ignore_dbusclose = false
 
@@ -124,12 +121,6 @@
     # using the resolution and physical size. This might be useful in setups
     # where there are multiple screens with very different dpi values.
     per_monitor_dpi = false
-
-[shortcuts]
-    close = ctrl+space
-    close_all = ctrl+shift+space
-    context = ctrl+shift+period
-
 
 [urgency_low]
 timeout = 2
