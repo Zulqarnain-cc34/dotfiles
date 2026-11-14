@@ -411,6 +411,9 @@ community whose rices sparked half the ideas here. Huge thanks to all of them.
 <a href="https://github.com/chubin" title="cheat.sh (cht.sh)"><img src="https://github.com/chubin.png" width="56" alt="chubin"/></a>
 <a href="https://github.com/livibetter" title="pipesX.sh colorscript"><img src="https://github.com/livibetter.png" width="56" alt="livibetter"/></a>
 <a href="https://github.com/rossy" title="mpv repl.lua (powers sub-search)"><img src="https://github.com/rossy.png" width="56" alt="rossy"/></a>
+<a href="https://github.com/adi1090x" title="Aditya Shakya — rofi applets/launchers/powermenu + polybar config"><img src="https://github.com/adi1090x.png" width="56" alt="adi1090x"/></a>
+<a href="https://github.com/arcticicestudio" title=".dir_colors (Nord dircolors)"><img src="https://github.com/arcticicestudio.png" width="56" alt="arcticicestudio"/></a>
+<a href="https://github.com/Andr3as07" title="polybar sb-tasks script"><img src="https://github.com/Andr3as07.png" width="56" alt="Andr3as07"/></a>
 
 </div>
 
