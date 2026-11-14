@@ -68,13 +68,20 @@ lua/
 
 Plugin catalogue: [plugins.md](plugins.md).
 
-## Key subsystems
+## ✨ Deep-Dive
 
-- **LSP** — native client, no framework wrapper. Overrides live in top-level `lsp/<server>.lua` (Neovim 0.11+ auto-discovery); servers are turned on with one `vim.lsp.enable({...})` and must be on `PATH`. `jsonls` is enabled lazily on the first json file (with [schemastore](https://github.com/b0o/schemastore.nvim) schemas) to keep startup fast.
-- **Completion** — [blink.cmp](https://github.com/saghen/blink.cmp) (lsp / path / snippets / buffer) + [friendly-snippets](https://github.com/rafamadriz/friendly-snippets).
-- **Formatting** — [conform.nvim](https://github.com/stevearc/conform.nvim), manual via `m lf` (LSP fallback). Wired for `shfmt` (`-i 4`), `prettier`, and `stylua`/`isort`/`black`/`gofumpt` once installed.
-- **Linting** — [nvim-lint](https://github.com/mfussenegger/nvim-lint) on read/write/insert-leave. `markdownlint` active; others activate when installed.
-- **Treesitter** — [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) **`main` branch**: parsers compile via the `tree-sitter` CLI; highlighting starts per-filetype. Run `:TSUpdate` after install.
+Not just an editor — a personalised development environment that still boots in ~140 ms.
+
+- **🧩 Plugin manager** — [lazy.nvim](https://github.com/folke/lazy.nvim), everything lazy-loaded
+- **🎯 Native LSP** — Neovim 0.11+ `vim.lsp.config` / `vim.lsp.enable`, one `lsp/<server>.lua` per override, for Lua, Python, C/C++, TypeScript/JS, Bash, HTML, JSON, Docker, SQL, GraphQL, Vim ([schemastore](https://github.com/b0o/schemastore.nvim)-backed `jsonls` is deferred to the first JSON file)
+- **⚡ Completion** — [blink.cmp](https://github.com/saghen/blink.cmp): Rust fuzzy matcher, ghost text, signature help + [friendly-snippets](https://github.com/rafamadriz/friendly-snippets)
+- **🎨 Formatting** — [conform.nvim](https://github.com/stevearc/conform.nvim) on `m lf`: `shfmt`, `prettier`, `stylua`, `isort`, `black`, `gofumpt`
+- **🧹 Linting** — [nvim-lint](https://github.com/mfussenegger/nvim-lint) on save/read: `markdownlint`, `shellcheck`, `flake8`, `eslint` (each runs only when its binary is on `PATH`)
+- **🌳 Treesitter** — [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) `main` branch, parsers compiled via the `tree-sitter` CLI: highlighting, folding, [rainbow delimiters](https://github.com/HiPhish/rainbow-delimiters.nvim), [auto-tags](https://github.com/windwp/nvim-ts-autotag)
+- **🍿 [snacks.nvim](https://github.com/folke/snacks.nvim)** — one coherent UI: picker, file explorer, notifier, dashboard, indent guides, terminal
+- **🔭 Fuzzy everything** — files, grep, buffers, help, marks, registers via `snacks.picker` (`Ctrl-s`, `m f…`)
+- **🔀 Git** — [Neogit](https://github.com/NeogitOrg/neogit) + [Diffview](https://github.com/sindrets/diffview.nvim) (`m gg`)
+- **🩺 Diagnostics** — [Trouble](https://github.com/folke/trouble.nvim) (`m x…`), inline code actions, format-on-demand
 
 ## Language support
 
