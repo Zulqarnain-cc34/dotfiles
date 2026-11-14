@@ -171,3 +171,37 @@ function yazi() {
     fi
     rm -f "$tmp"
 }
+
+# Idle sakura screensaver.
+# After $TMOUT seconds sitting idle at an empty prompt, bloom a cherry tree
+# (csakura); press ANY key to dismiss it and drop back to the prompt. It
+# reblooms after the next idle stretch. The empty-BUFFER guard means it only
+# fires at a clean prompt, so it never interrupts a command you're typing or
+# one that's running. Change 20 to taste; set TMOUT=0 or comment this block
+# out to disable.
+if command -v csakura >/dev/null 2>&1; then
+    TMOUT=20
+    # Our build adds -k (any key quits). Probe once; fall back to a stock
+    # build's q/Esc-only behaviour if -k isn't supported.
+    if csakura -kv >/dev/null 2>&1; then
+        _csakura_base=(csakura -k -C 45)     # -k: any key quits; -C 45: drift palette every 45s
+    else
+        _csakura_base=(csakura)             # stock build: q/Esc only, no drift
+    fi
+    # Every bloom uses the next palette, marching through all of them in turn
+    # (persisted in a cache file so the cycle advances across terminals too).
+    _csakura_palettes=(sakura rose blush magenta peach coral sunset gold
+                       lavender violet sky mint matcha white ink)
+    TRAPALRM() {
+        [[ -z "$BUFFER" ]] || return            # never pop up mid-typing
+        local statef=${XDG_CACHE_HOME:-$HOME/.cache}/csakura-palette
+        local i=0
+        [[ -r $statef ]] && i=$(<$statef)
+        [[ $i == <-> ]] || i=0                  # guard against a garbled file
+        local n=$#_csakura_palettes
+        local pal=$_csakura_palettes[$(( i % n + 1 ))]
+        print -r -- $(( (i + 1) % n )) >| $statef 2>/dev/null
+        $_csakura_base -c $pal
+        zle && zle reset-prompt
+    }
+fi
