@@ -10,7 +10,7 @@
 
 The Simple X hotkey daemon — a small program that listens for key combos and fires off commands. Here it owns every global keybinding in the BSPWM session, from window management to app launchers, so all the muscle memory lives in one place.
 
-It's started as `sxhkd &` from `bspwm/bspwmrc` and can be reloaded in place with `super + shift + x`, so edits take effect without restarting the session. Bindings cover the full set of `bspc` window-manager actions — focus, move, resize, preselect, and the nine workspaces — alongside launchers and screenshots. The default terminal is `$TERMINAL` (kitty) and the app launcher is the rofi "ribbon".
+It's started from `bspwm/bspwmrc` (only if not already running, so a `bspc wm -r` reload never doubles it) and can be reloaded in place with `super + shift + x`, which sends it `SIGUSR1` so edits apply without restarting the session. Bindings cover the full set of `bspc` window-manager actions — focus, move, resize, preselect, and the nine workspaces — alongside launchers and screenshots. The default terminal is `$TERMINAL` (kitty) and the app launcher is the rofi "ribbon".
 
 ### Keybindings
 
@@ -19,7 +19,6 @@ The whole map, as bound in [`sxhkdrc`](sxhkdrc):
 | Keys | Action |
 |------|--------|
 | `super + alt + q` / `super + alt + r` | Quit / restart bspwm |
-| `super + shift + r` / `super + shift + s` | Reboot / shutdown (with prompt) |
 | `super + q` / `super + shift + q` | Close / kill focused window |
 | `super + d` | Toggle floating/tiled |
 | `super + f` | Cycle desktop layout (monocle) |
@@ -29,7 +28,8 @@ The whole map, as bound in [`sxhkdrc`](sxhkdrc):
 | `alt + {Tab,grave}` | Last node / last desktop |
 | `super + ctrl + {h,j,k,l}` | Preselect direction |
 | `super + ctrl + {1-9}` | Preselect split ratio |
-| `super + ctrl + space` | Cancel preselection |
+| `super + ctrl + space` | Cancel preselection (focused node) |
+| `super + ctrl + shift + space` | Cancel preselection (whole desktop) |
 | `super + alt + {h,j,k,l}` | Expand window side |
 | `super + alt + shift + {h,j,k,l}` | Contract window side |
 | `super + {Left,Down,Up,Right}` | Move floating window |
@@ -38,6 +38,7 @@ The whole map, as bound in [`sxhkdrc`](sxhkdrc):
 | `super + t` / `super + r` / `super + y` / `super + o` / `super + w` | Terminal / tuir / ytfzf / htop / firefox |
 | `super + m` | neomutt (email) |
 | `alt + n` | newsboat (RSS) |
+| `shift + alt + t` | Notify running torrents |
 | `super + v` | clipmenu (rofi) |
 | `super + p` | polybar powermenu |
 | `alt + l` | Lock screen (slock) |
