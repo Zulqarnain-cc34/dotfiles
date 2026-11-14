@@ -47,8 +47,6 @@ The guiding principles:
 
 > **Primary session is BSPWM (X11).**
 
-> **Last full review: November 2026.** The whole repo gets a complete top-to-bottom pass every so often — first at initial setup, then periodically as the tools evolve — rather than daily churn. A recent review date means every config here is current and deprecation-free for its installed version.
-
 ---
 
 ## 📸 Gallery
