@@ -19,4 +19,10 @@ Deployed by `setup.sh` as **`~/bin/bash_scripts`** (on `PATH` via `.profile` / `
 | `personal/*` | legacy paths in some scripts |
 | `scripts/wallpaper.sh` | `lf/lfrc`, `vivid/keymap.toml` |
 
+## Bundled binaries
+
+| Path | What |
+|------|------|
+| `csakura` | Cherry-blossom terminal screensaver, auto-launched when the zsh prompt goes idle. Patched build (adds `-k`, any-key-quit). Source + rebuild steps in [`csakura.src/`](csakura.src/); full writeup in [docs/csakura.md](../docs/csakura.md). |
+
 See also [scripts/host/README.md](../scripts/host/README.md) for the short index.
