@@ -36,7 +36,6 @@
 - [Repository Structure](#-repository-structure)
 - [Experimental Wayland Session](#-experimental-wayland-session)
 - [Credits](#-credits)
-- [License](#-license)
 
 ---
 
@@ -423,9 +422,5 @@ community whose rices sparked half the ideas here. Huge thanks to all of them.
 ---
 
 <div align="center">
-
-## 📜 License
-
-[MIT License](LICENSE) · © 2021 Muhammad Zulqarnain. Use anything you like; attribution appreciated but not required. &nbsp; <a href="#top">🔝</a>
-
+<sub>© 2021 Muhammad Zulqarnain. <a href="LICENSE">MIT License</a>. &nbsp; <a href="#top">🔝</a></sub>
 </div>
