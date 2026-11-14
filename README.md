@@ -59,7 +59,7 @@ The guiding principles:
     <td align="center" width="50%"><img src="assets/yazi_shot.png" width="100%"><br><b>Yazi file manager</b></td>
   </tr>
   <tr>
-    <td align="center" colspan="2"><img src="assets/fastfetch_demo.png" width="80%"><br><b>Kitty + Fastfetch</b></td>
+    <td align="center" colspan="2"><img src="assets/terminal_demo.png" width="80%"><br><b>Kitty terminal</b></td>
   </tr>
   <tr>
     <td align="center" colspan="2"><img src="screenshots/polybar.png" width="60%"><br><b>Polybar</b></td>
