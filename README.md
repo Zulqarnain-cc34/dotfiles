@@ -62,8 +62,8 @@ The guiding principles:
     <td align="center" width="50%"><img src="assets/fastfetch_demo.png" width="100%"><br><b>Fastfetch</b></td>
   </tr>
   <tr>
-    <td align="center" width="50%"><img src="assets/sakura_1_demo.png" width="100%"><br><b>Sakura · blooms after 20s idle</b></td>
-    <td align="center" width="50%"><img src="assets/csakura_demo.png" width="100%"><br><b>Sakura · drifts every 45s</b></td>
+    <td align="center" width="50%"><img src="assets/csakura_demo.png" width="100%"><br><b>Sakura · blooms after 20s idle</b></td>
+    <td align="center" width="50%"><img src="assets/sakura_1_demo.png" width="100%"><br><b>Sakura · drifts every 45s</b></td>
   </tr>
   <tr>
     <td align="center" colspan="2"><img src="assets/polybar_demo.png" width="60%"><br><b>Polybar</b></td>
