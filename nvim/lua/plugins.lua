@@ -211,7 +211,7 @@ return require('lazy').setup({
                 require("nvim-treesitter").install({
                     "lua", "python", "bash", "go", "html", "css", "javascript", "json", "c", "cpp",
                     "markdown", "markdown_inline", "scss", "yaml", "typescript", "tsx", "vim", "vimdoc",
-                    "dart", "fish", "java", "dockerfile",
+                    "dart", "fish", "java", "dockerfile", "regex",
                 })
             else
                 vim.schedule(function()
