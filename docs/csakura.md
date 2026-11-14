@@ -8,7 +8,7 @@
   <img src="https://img.shields.io/badge/license-MIT-7aa2f7?style=flat-square&labelColor=1a1b26" alt="license MIT">
   <br><br>
 
-  <img src="../assets/csakura_demo.png" width="80%" alt="Sakura — a detail-mode cherry tree with the wallpaper showing through the canopy">
+  <img src="../assets/sakura_demo.png" width="80%" alt="Sakura — a detail-mode cherry tree with the wallpaper showing through the canopy">
 </div>
 
 > Built on **[csakura](https://github.com/realstrawhat/csakura)** by realstrawhat — a lovely little tree for the terminal. ❤️
