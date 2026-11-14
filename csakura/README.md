@@ -57,54 +57,9 @@ ink — and the tree shapes are `yoshino` (upright), `bush` (full), and `shidare
 
 | Thing | Path |
 |------|------|
-| The program itself | [`bash_scripts/csakura`](../bash_scripts/csakura) |
-| Its source code, if you ever want to rebuild it | [`bash_scripts/csakura.src/`](../bash_scripts/csakura.src/) |
+| The program itself | [`csakura/csakura`](csakura) (symlinked onto `PATH` via `bash_scripts/`) |
+| Its source code, if you ever want to rebuild it | [`csakura/csakura.src/`](csakura.src/) |
 | The bit that makes it auto-start when idle | bottom of [`zsh/.zshrc`](../zsh/.zshrc) |
-
----
-
-## Under the hood
-
-*You don't need any of this to use it — it's here for the curious, or for future-me.*
-
-**How it auto-starts.** There's no background program watching you. It's a built-in
-zsh feature: `TMOUT` tells zsh "nudge me after N idle seconds," and a `TRAPALRM`
-function says what to do with that nudge — here, run the tree. Because zsh only
-counts idle time at the prompt, it never interrupts a running command, and a quick
-`[[ -z "$BUFFER" ]]` check means it won't pop up while you're mid-way through
-typing something.
-
-**Two small changes to the program.** Stock csakura only quits on `q`/`Esc` and
-never changes on its own, so this repo ships a tiny patch
-([`csakura.src/anykey.patch`](../bash_scripts/csakura.src/anykey.patch)) adding two
-switches:
-
-- `-k` — **any key quits.** What makes it behave like a real screensaver. (With
-  this on, even the normal shortcut keys just close it, so there's nothing to get
-  in the way.)
-- `-C 45` — **drift every 45 seconds.** The reason the tree and colours keep
-  changing while it's open. This has to live inside the program, because while the
-  tree is on screen it owns the terminal and the shell can't reach in to change it.
-
-**Remembering the colour.** The "next colour each time" is kept in a little file at
-`~/.cache/csakura-palette` (just a number), so the cycle keeps moving forward even
-across different windows and reboots. Delete that file and it starts from pink
-again.
-
-## Rebuilding it
-
-The ready-to-run program is a Linux x86-64 build. On your own machines it just
-works. If you ever need it on different hardware (an ARM board, say) or you tweak
-the source, rebuild it — you'll need a C compiler and the `ncurses` package:
-
-```bash
-cd ~/etc/linuxConfig/dotfiles_v2/bash_scripts/csakura.src
-make
-cp csakura ../csakura
-```
-
-`anykey.patch` is the exact set of local changes, and applies cleanly to a fresh
-copy of upstream csakura v3.0.0 (`patch -p1 < anykey.patch`).
 
 ## Good to know
 
@@ -115,16 +70,6 @@ copy of upstream csakura v3.0.0 (`patch -p1 < anykey.patch`).
 - **If it ever looks broken** (e.g. a bare error instead of a tree), it's almost
   always a terminal with no proper `TERM` set — real kitty/alacritty are fine.
 - **It needs its own build.** The `-k`/`-C` behaviour only exists in the version
-  shipped here, which lives in `bash_scripts` (first on your `PATH`). If a plain
-  `csakura` from the AUR ever shadowed it, the any-key-close and drift would stop
-  working — so keep this build ahead on `PATH`.
-- **Opened a terminal before setup finished?** A shell only reads the config once
-  at startup, so a terminal open from *before* this was added won't have it. Run
-  `exec zsh` (or just open a fresh terminal) and it'll pick everything up.
-
-## Removing it
-
-To take it out entirely: delete the `Idle sakura screensaver` block at the bottom
-of [`zsh/.zshrc`](../zsh/.zshrc), remove `bash_scripts/csakura` (and the
-`csakura.src/` folder if you don't want the source), and optionally clear the tiny
-state file `~/.cache/csakura-palette`. New shells will then start with no tree.
+  shipped here, which lives in `csakura/` and is put on your `PATH` by a symlink in
+  `bash_scripts/` (first on `PATH`). If a plain `csakura` from the AUR ever shadowed
+  it, the any-key-close and drift would stop working — so keep this build ahead on `PATH`.
