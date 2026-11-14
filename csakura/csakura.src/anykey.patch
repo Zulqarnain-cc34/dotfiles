@@ -1,0 +1,82 @@
+diff --git a/src/csakura.c b/src/csakura.c
+index 7ea4ae0..8868958 100644
+--- a/src/csakura.c
++++ b/src/csakura.c
+@@ -123,6 +123,8 @@ static double opt_wind    = 1.0;
+ static bool   opt_ascii   = false;
+ static bool   opt_flat    = false;   /* keep the terminal background visible */
+ static bool   opt_detail  = false;   /* half-block pixel tree, see gen_tree_hd */
++static bool   opt_anykey   = false;  /* -k: any key quits (idle-screensaver dismiss) */
++static int    opt_cycle    = 0;      /* -C N: auto-advance palette every N seconds (0 = off) */
+ /*
+  * Canopy shadow override. HAZE_PALETTE keeps the shade the palette ships,
+  * -1 leaves the shadow unpainted so a transparent terminal shows through it,
+@@ -1705,6 +1707,10 @@ static void usage(FILE *out)
+         "  -a        ASCII glyphs only (no unicode blossoms)\n"
+         "  -t        flat mode: never paint cell backgrounds, so a\n"
+         "            transparent terminal shows through the canopy\n"
++        "  -k        any key quits (not just q/Esc); for use as an\n"
++        "            idle screensaver that dismisses on any keypress\n"
++        "  -C N      every N seconds, grow a fresh tree in the next\n"
++        "            form and the next palette (0 = off)\n"
+         "  -H COLOR  canopy shadow colour, 0-255, or none to leave the\n"
+         "            shadow unpainted (default: the palette's own shade)\n"
+         "  -h        show this help\n"
+@@ -1735,7 +1741,7 @@ static void usage(FILE *out)
+ int main(int argc, char **argv)
+ {
+     int opt;
+-    while ((opt = getopt(argc, argv, "f:p:w:c:s:adH:thv")) != -1) {
++    while ((opt = getopt(argc, argv, "f:p:w:c:s:adH:kC:thv")) != -1) {
+         switch (opt) {
+         case 'f':
+             opt_fps = atoi(optarg);
+@@ -1795,6 +1801,13 @@ int main(int argc, char **argv)
+         case 't':
+             opt_flat = true;
+             break;
++        case 'k':
++            opt_anykey = true;
++            break;
++        case 'C':
++            opt_cycle = atoi(optarg);
++            if (opt_cycle < 0) opt_cycle = 0;
++            break;
+         case 'v':
+             printf("csakura %s\n", VERSION);
+             return 0;
+@@ -1826,10 +1839,16 @@ int main(int argc, char **argv)
+     resize_grid();
+     regrow(true);
+ 
++    time_t last_cycle = time(NULL);
++
+     while (running) {
+         int ch = getch();
+         if (ch == 'q' || ch == 'Q' || ch == 27)
+             break;
++        /* -k: dismiss on any real keypress (ERR = no key this poll; a window
++         * resize is not a keypress, so keep blooming and just re-layout). */
++        if (opt_anykey && ch != ERR && ch != KEY_RESIZE)
++            break;
+         switch (ch) {
+         case 'r': case 'R':
+             regrow(false);
+@@ -1886,6 +1905,17 @@ int main(int argc, char **argv)
+             break;
+         }
+ 
++        /* -C N: every N seconds, advance to the next palette AND the next
++         * tree form (yoshino -> bush -> shidare -> ...), then regrow so both
++         * the colours and the silhouette cycle. */
++        if (opt_cycle > 0 && difftime(time(NULL), last_cycle) >= opt_cycle) {
++            opt_palette = (opt_palette + 1) % NPALETTES;
++            opt_style   = (opt_style + 1) % NFORMS;
++            apply_palette();
++            regrow(false);
++            last_cycle = time(NULL);
++        }
++
+         update_petals(1.0 / opt_fps);
+         draw();
+         napms(1000 / opt_fps);

@@ -19,4 +19,10 @@ Deployed by `setup.sh` as **`~/bin/bash_scripts`** (on `PATH` via `.profile` / `
 | `personal/*` | legacy paths in some scripts |
 | `scripts/wallpaper.sh` | `lf/lfrc`, `vivid/keymap.toml` |
 
+## Bundled binaries
+
+| Path | What |
+|------|------|
+| `csakura` | Symlink that keeps the cherry-blossom screensaver on `PATH`. The real binary, source and writeup now live in [`../csakura/`](../csakura/). |
+
 See also [scripts/host/README.md](../scripts/host/README.md) for the short index.
