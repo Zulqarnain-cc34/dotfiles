@@ -21,4 +21,4 @@ The bar sits at the top at height 35, hooks into bspwm for WM-restack and IPC, a
 - **center:** `mpd date`
 - **right:** `uptime cpu_bar memory_bar filesystem_bar volume backlight powermenu systray`
 
-Rather than one giant file, the config is split across includes — `colors.ini` for the palette, `bars.ini` for the progress-bar modules, `modules.ini` and `user_modules.ini` for everything else. Only the modules the bar actually uses are kept (the unused adi1090x template modules and their `statusbar/` scripts were removed). One nice touch: the network modules use `interface-type = wireless`, so they auto-detect the wireless device instead of hardcoding `wlan0` or `wlp3s0`. The config is clean on polybar 3.7 — no deprecation warnings.
+Rather than one giant file, the config is split across includes — `colors.ini` for the palette, `bars.ini` for the progress-bar modules, `modules.ini` and `user_modules.ini` for everything else. One nice touch: the network modules use `interface-type = wireless`, so they auto-detect the wireless device instead of hardcoding `wlan0` or `wlp3s0`.
