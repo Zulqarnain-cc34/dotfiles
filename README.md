@@ -353,6 +353,38 @@ community whose rices sparked half the ideas here. Huge thanks to all of them.
 <a href="https://github.com/pystardust" title="ytfzf"><img src="https://github.com/pystardust.png" width="56" alt="ytfzf"/></a>
 <a href="https://github.com/transmission" title="Transmission"><img src="https://github.com/transmission.png" width="56" alt="Transmission"/></a>
 <a href="https://github.com/EliverLara" title="firefox-sweet-theme"><img src="https://github.com/EliverLara.png" width="56" alt="firefox-sweet-theme"/></a>
+<a href="https://github.com/starship" title="Starship prompt"><img src="https://github.com/starship.png" width="56" alt="Starship"/></a>
+<a href="https://github.com/junegunn" title="fzf"><img src="https://github.com/junegunn.png" width="56" alt="fzf"/></a>
+<a href="https://github.com/eza-community" title="eza"><img src="https://github.com/eza-community.png" width="56" alt="eza"/></a>
+<a href="https://github.com/tmux" title="tmux"><img src="https://github.com/tmux.png" width="56" alt="tmux"/></a>
+<a href="https://github.com/fastfetch-cli" title="Fastfetch"><img src="https://github.com/fastfetch-cli.png" width="56" alt="Fastfetch"/></a>
+<a href="https://github.com/brndnmtthws" title="Conky"><img src="https://github.com/brndnmtthws.png" width="56" alt="Conky"/></a>
+<a href="https://github.com/arybczak" title="ncmpcpp"><img src="https://github.com/arybczak.png" width="56" alt="ncmpcpp"/></a>
+<a href="https://github.com/ranger" title="ranger"><img src="https://github.com/ranger.png" width="56" alt="ranger"/></a>
+<a href="https://github.com/tsujan" title="Kvantum"><img src="https://github.com/tsujan.png" width="56" alt="Kvantum"/></a>
+<a href="https://github.com/tats" title="w3m"><img src="https://github.com/tats.png" width="56" alt="w3m"/></a>
+<a href="https://github.com/firecat53" title="urlscan"><img src="https://github.com/firecat53.png" width="56" alt="urlscan"/></a>
+<a href="https://github.com/sigpipe" title="urlview"><img src="https://github.com/sigpipe.png" width="56" alt="urlview"/></a>
+<a href="https://github.com/hpjansson" title="chafa (image preview)"><img src="https://github.com/hpjansson.png" width="56" alt="chafa"/></a>
+<a href="https://github.com/charmbracelet" title="glow (markdown preview)"><img src="https://github.com/charmbracelet.png" width="56" alt="glow"/></a>
+<a href="https://github.com/andreafrancia" title="trash-cli"><img src="https://github.com/andreafrancia.png" width="56" alt="trash-cli"/></a>
+<a href="https://github.com/wting" title="autojump"><img src="https://github.com/wting.png" width="56" alt="autojump"/></a>
+
+### Shell, prompt & tmux plugins
+
+<a href="https://github.com/zsh-users" title="zsh-autosuggestions · zsh-syntax-highlighting"><img src="https://github.com/zsh-users.png" width="56" alt="zsh-users"/></a>
+<a href="https://github.com/jorgebucaran" title="fisher (fish plugin manager)"><img src="https://github.com/jorgebucaran.png" width="56" alt="fisher"/></a>
+<a href="https://github.com/rafaelrinaldi" title="pure (fish prompt)"><img src="https://github.com/rafaelrinaldi.png" width="56" alt="pure prompt"/></a>
+<a href="https://github.com/jethrokuan" title="fzf.fish"><img src="https://github.com/jethrokuan.png" width="56" alt="fzf.fish"/></a>
+<a href="https://github.com/oh-my-fish" title="plugin-foreign-env"><img src="https://github.com/oh-my-fish.png" width="56" alt="oh-my-fish"/></a>
+<a href="https://github.com/tmux-plugins" title="tpm · sensible · battery · cpu · urlview · yank · copycat"><img src="https://github.com/tmux-plugins.png" width="56" alt="tmux-plugins"/></a>
+
+### Yazi plugins & flavors
+
+<a href="https://github.com/yazi-rs" title="full-border · git · chmod · jump-to-char · toggle-pane · smart-enter · piper · vcs-files · catppuccin flavor"><img src="https://github.com/yazi-rs.png" width="56" alt="yazi-rs"/></a>
+<a href="https://github.com/Rolv-Apneseth" title="starship (yazi plugin)"><img src="https://github.com/Rolv-Apneseth.png" width="56" alt="Rolv-Apneseth"/></a>
+<a href="https://github.com/DreamMaoMao" title="mime-preview (yazi plugin)"><img src="https://github.com/DreamMaoMao.png" width="56" alt="DreamMaoMao"/></a>
+<a href="https://github.com/kalidyasin" title="tokyonight-storm (yazi flavor)"><img src="https://github.com/kalidyasin.png" width="56" alt="kalidyasin"/></a>
 
 ### Neovim plugin authors
 
@@ -383,6 +415,12 @@ community whose rices sparked half the ideas here. Huge thanks to all of them.
 <a href="https://github.com/amitds1997" title="remote-nvim.nvim"><img src="https://github.com/amitds1997.png" width="56" alt="remote-nvim.nvim"/></a>
 <a href="https://github.com/nemanjamalesija" title="smart-paste.nvim"><img src="https://github.com/nemanjamalesija.png" width="56" alt="smart-paste.nvim"/></a>
 <a href="https://github.com/b0o" title="schemastore.nvim"><img src="https://github.com/b0o.png" width="56" alt="schemastore.nvim"/></a>
+
+<sub>And the tools that live off GitHub, no less appreciated:
+<a href="https://gitlab.com/chinstrap/gammastep">gammastep</a>,
+<a href="https://gitlab.com/surfraw/Surfraw">surfraw</a>,
+<a href="https://sr.ht/~exec64/imv/">imv</a>, and
+<a href="https://exiftool.org/">exiftool</a>.</sub>
 
 </div>
 
