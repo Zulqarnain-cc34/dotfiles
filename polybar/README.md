@@ -11,14 +11,14 @@
 
 > Built on **[Polybar](https://polybar.github.io)** by the Polybar contributors. ❤️
 
-> **Forking?** The audio sink names, Bluetooth MAC, `interface`, `BAT0`, and `intel_backlight` values across these `.ini` files are my hardware — swap them for yours.
+> **Forking?** The `interface`, `BAT0`, and `intel_backlight` values across these `.ini` files are my hardware — swap them for yours.
 
 A fast, configurable status bar for X11 — here it's a single top bar named `main`, launched alongside the BSPWM session and stretched across the full width of the screen.
 
-The bar sits at the top at height 35, hooks into bspwm for WM-restack and IPC, and parks a system tray on the right. The modules are laid out in three groups:
+The bar sits at the top at height 35, hooks into bspwm for WM-restack and IPC, and parks a system tray on the right (the 3.7 `internal/tray` module, not the deprecated bar-level `tray-*` settings). The modules are laid out in three groups:
 
 - **left:** `launcher mod bspwm networkspeedup networkspeeddown battery`
 - **center:** `mpd date`
-- **right:** `uptime cpu_bar memory_bar filesystem_bar volume backlight powermenu`
+- **right:** `uptime cpu_bar memory_bar filesystem_bar volume backlight powermenu systray`
 
-Rather than one giant file, the config is split across includes — `colors.ini` for the palette, `bars.ini` for the progress-bar modules, `modules.ini` and `user_modules.ini` for everything else. One nice touch: the network modules use `interface-type = wireless`, so they auto-detect the wireless device instead of hardcoding `wlan0` or `wlp3s0`.
+Rather than one giant file, the config is split across includes — `colors.ini` for the palette, `bars.ini` for the progress-bar modules, `modules.ini` and `user_modules.ini` for everything else. Only the modules the bar actually uses are kept (the unused adi1090x template modules and their `statusbar/` scripts were removed). One nice touch: the network modules use `interface-type = wireless`, so they auto-detect the wireless device instead of hardcoding `wlan0` or `wlp3s0`. The config is clean on polybar 3.7 — no deprecation warnings.
