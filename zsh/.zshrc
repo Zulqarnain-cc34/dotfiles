@@ -1,5 +1,14 @@
 [[ $- != *i* ]] && return
 
+# Strip inherited kitty env vars when this shell isn't actually kitty. Launching
+# a non-kitty terminal (e.g. alacritty) from inside kitty leaks KITTY_WINDOW_ID
+# etc., which makes yazi/lf send the kitty graphics protocol to a terminal that
+# can't render it -- garbled image previews. Clear them so they fall back to
+# ueberzugpp/chafa instead.
+if [[ "$TERM" != xterm-kitty && -n "$KITTY_WINDOW_ID" ]]; then
+    unset KITTY_WINDOW_ID KITTY_PID KITTY_PUBLIC_KEY KITTY_INSTALLATION_DIR KITTY_LISTEN_ON
+fi
+
 export HISTSIZE=50000
 
 export SAVEHIST=$HISTSIZE
