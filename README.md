@@ -321,11 +321,6 @@ It is **not** the primary session — **BSPWM/X11 is the daily driver** — and 
 ---
 
 <div align="center">
-  <p>If this was useful or you just like the look, consider leaving a ⭐.</p>
-  <p>Made with ❤️ on Arch by <a href="https://github.com/Zulqarnain-cc34">Zulqarnain</a></p>
-</div>
-
-<div align="center">
 
 ## ❤️ Credits
 
@@ -423,4 +418,7 @@ community whose rices sparked half the ideas here. Huge thanks to all of them.
 
 <div align="center">
 <sub>© 2021 Muhammad Zulqarnain. <a href="LICENSE">MIT License</a>. &nbsp; <a href="#top">🔝</a></sub>
+
+  <p>If this was useful or you just like the look, consider leaving a ⭐.</p>
+  <p>Made with ❤️ on Arch by <a href="https://github.com/Zulqarnain-cc34">Zulqarnain</a></p>
 </div>
