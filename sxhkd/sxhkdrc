@@ -9,15 +9,7 @@ super + alt + {q,r}
 
 # Toggle floating
 super + d
-    if [ -z "$(bspc query -N -n focused.floating)" ]; then \
-        bspc node focused -t floating; \
-    else \
-        bspc node focused -t tiled; \
-    fi
-
-# Shutdown and Reboot
-super + shift + {r, s}
-  prompt {"Are you sure you would like to reboot?" "sudo reboot", "Are you sure you would like to shutdown" "sudo shutdown"}
+	bspc node -t '~floating'
 
 # close and kill
 super + {_,shift + }q
@@ -68,9 +60,9 @@ super + ctrl + shift + space
 #                             MOVE/RESIZE                             #
 #######################################################################
 
-# move focused window to the next workspace and then switch to that workspace
+# move focused window to the prev/next workspace and follow it there
 shift + ctrl + {Left,Right}
-    id=$(bspc query --nodes --node); bspc node --to-desktop {prev,next}; bspc desktop --focus next; bspc node --focus ${id}
+	id=$(bspc query --nodes --node); bspc node --to-desktop {prev,next}; bspc desktop --focus {prev,next}; bspc node --focus "${id}"
 
 # expand a window by moving one of its side outward
 super + alt + {h,j,k,l}
@@ -91,9 +83,9 @@ super + v
 #                           SYSTEM CONTROLS                           #
 #######################################################################
 
-# Restart hotkey damon
+# Reload sxhkd config live (SIGUSR1 -- no restart needed)
 super + shift + x
-  killandnotify "sxhkd" "Config reloaded" && sxhkd &
+	pkill -USR1 -x sxhkd && notify-send "sxhkd" "Config reloaded"
 
 # Lock the screen
 alt + l

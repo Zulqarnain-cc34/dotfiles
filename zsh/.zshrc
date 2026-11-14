@@ -1,5 +1,22 @@
 [[ $- != *i* ]] && return
 
+# Strip inherited kitty env vars when this shell isn't actually kitty. Launching
+# a non-kitty terminal (e.g. alacritty) from inside kitty leaks KITTY_WINDOW_ID
+# (makes yazi/lf send the kitty graphics protocol -> garbled previews) and a
+# stale WINDOWID pointing at kitty's still-open X11 window (makes ueberzugpp draw
+# image previews over the wrong window -> shifted previews). Clearing both lets
+# previews use ueberzugpp and auto-detect the real terminal window.
+if [[ "$TERM" != xterm-kitty && -n "$KITTY_WINDOW_ID" ]]; then
+    unset KITTY_WINDOW_ID KITTY_PID KITTY_PUBLIC_KEY KITTY_INSTALLATION_DIR KITTY_LISTEN_ON WINDOWID
+fi
+
+# Launch alacritty detached from the calling terminal. Typing `alacritty` inside
+# another terminal (e.g. kitty) makes it a child process, so ueberzugpp walks the
+# process tree and draws yazi/lf image previews over the PARENT terminal's window.
+# setsid reparents it to init so previews land in the alacritty window itself.
+# (setsid execs the binary, not this function -- no recursion.)
+alacritty() { setsid -f alacritty "$@" >/dev/null 2>&1 }
+
 export HISTSIZE=50000
 
 export SAVEHIST=$HISTSIZE
