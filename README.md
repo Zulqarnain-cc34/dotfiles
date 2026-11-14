@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="screenshots/logo.png" alt="Logo" width="130" height="130">
+  <img src="assets/logo.png" alt="Logo" width="130" height="130">
 
   <h1>Dotfiles</h1>
 
@@ -16,7 +16,7 @@
     <img src="https://img.shields.io/badge/Maintained-yes-9ece6a?style=for-the-badge&labelColor=1a1b26" alt="Maintained">
   </p>
 
-  <img src="screenshots/desktop-4.png" alt="Desktop" width="92%" style="border-radius:12px;">
+  <img src="assets/desktop-4.png" alt="Desktop" width="92%" style="border-radius:12px;">
 </div>
 
 ---
@@ -53,7 +53,7 @@ The guiding principles:
 <div align="center">
 <table>
   <tr>
-    <td align="center" width="50%"><img src="screenshots/neovim-1.png" width="100%"><br><b>Neovim as an IDE</b></td>
+    <td align="center" width="50%"><img src="assets/neovim-1.png" width="100%"><br><b>Neovim as an IDE</b></td>
     <td align="center" width="50%"><img src="assets/yazi_shot.png" width="100%"><br><b>Yazi file manager</b></td>
   </tr>
   <tr>
@@ -61,7 +61,7 @@ The guiding principles:
     <td align="center" width="50%"><img src="assets/fastfetch_demo.png" width="100%"><br><b>Fastfetch</b></td>
   </tr>
   <tr>
-    <td align="center" colspan="2"><img src="screenshots/polybar.png" width="60%"><br><b>Polybar</b></td>
+    <td align="center" colspan="2"><img src="assets/polybar_demo.png" width="60%"><br><b>Polybar</b></td>
   </tr>
 </table>
 </div>

@@ -5,7 +5,7 @@
   <a href="https://github.com/baskerville/bspwm/stargazers"><img src="https://img.shields.io/github/stars/baskerville/bspwm?style=flat-square&color=ffce63&labelColor=1a1b26" alt="stars"></a>
   <img src="https://img.shields.io/badge/license-BSD--2--Clause-7aa2f7?style=flat-square&labelColor=1a1b26" alt="license">
   <br><br>
-  <img src="../screenshots/desktop-4.png" width="82%" alt="BSPWM desktop">
+  <img src="../assets/desktop-4.png" width="82%" alt="BSPWM desktop">
 </div>
 
 > Powered by **[bspwm](https://github.com/baskerville/bspwm)** by Bastien Dejean (baskerville). ❤️

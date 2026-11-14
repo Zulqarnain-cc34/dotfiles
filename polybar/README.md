@@ -6,7 +6,7 @@
   <a href="https://github.com/polybar/polybar/stargazers"><img src="https://img.shields.io/github/stars/polybar/polybar?style=flat-square&color=ffce63&labelColor=1a1b26" alt="stars"></a>
   <img src="https://img.shields.io/badge/license-MIT-7aa2f7?style=flat-square&labelColor=1a1b26" alt="license">
   <br><br>
-  <img src="../screenshots/polybar.png" width="82%" alt="Polybar">
+  <img src="../assets/polybar_demo.png" width="82%" alt="Polybar">
 </div>
 
 > Built on **[Polybar](https://polybar.github.io)** by the Polybar contributors. ❤️
