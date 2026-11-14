@@ -405,12 +405,12 @@ community whose rices sparked half the ideas here. Huge thanks to all of them.
 <a href="https://github.com/amitds1997" title="remote-nvim.nvim"><img src="https://github.com/amitds1997.png" width="56" alt="remote-nvim.nvim"/></a>
 <a href="https://github.com/nemanjamalesija" title="smart-paste.nvim"><img src="https://github.com/nemanjamalesija.png" width="56" alt="smart-paste.nvim"/></a>
 <a href="https://github.com/b0o" title="schemastore.nvim"><img src="https://github.com/b0o.png" width="56" alt="schemastore.nvim"/></a>
-
-<sub>And the tools that live off GitHub, no less appreciated:
-<a href="https://gitlab.com/chinstrap/gammastep">gammastep</a>,
-<a href="https://gitlab.com/surfraw/Surfraw">surfraw</a>,
-<a href="https://sr.ht/~exec64/imv/">imv</a>, and
-<a href="https://exiftool.org/">exiftool</a>.</sub>
+<a href="https://github.com/alphapapa" title="qutebrowser site themes (solarized-everything-css)"><img src="https://github.com/alphapapa.png" width="56" alt="alphapapa"/></a> <!-- group: Borrowed scripts & themes -->
+<a href="https://github.com/seebye" title="ueberzug (image preview backend)"><img src="https://github.com/seebye.png" width="56" alt="seebye"/></a>
+<a href="https://github.com/gotbletu" title="shell scripts (urlportal, redshift-toggle)"><img src="https://github.com/gotbletu.png" width="56" alt="gotbletu"/></a>
+<a href="https://github.com/chubin" title="cheat.sh (cht.sh)"><img src="https://github.com/chubin.png" width="56" alt="chubin"/></a>
+<a href="https://github.com/livibetter" title="pipesX.sh colorscript"><img src="https://github.com/livibetter.png" width="56" alt="livibetter"/></a>
+<a href="https://github.com/rossy" title="mpv repl.lua (powers sub-search)"><img src="https://github.com/rossy.png" width="56" alt="rossy"/></a>
 
 </div>
 
