@@ -74,7 +74,7 @@ Verified live via `ranger` in `tmux`: `az`/`at`/`ag`/`ab` create correctly (no l
 
 ### Removed
 - `gkm`/`gkz` (mount/unmount a paired KDE Connect device) — same reasoning as yazi's `m,k` and lf's `mk`: not meaningful to verify outside a specific paired device.
-- `gkg`/`gku`/`gks` (rclone mount/unmount/sync to a hardcoded `mygoogledrive`/`assignmentRepo` remote) — same reasoning as lf's dropped SSHFS/OneDrive bindings: tied to the author's own cloud accounts.
+- `gkg`/`gku`/`gks` (rclone mount/unmount/sync to a hardcoded personal rclone remote) — same reasoning as lf's dropped SSHFS/OneDrive bindings: tied to the author's own cloud accounts.
 
 Verified live via `ranger` run inside `tmux` (text-based `capture-pane`, not X11 screenshots — this session's live GUI testing had already leaked real desktop content twice through window-ID-based screenshot capture, so ranger was deliberately tested through a fully isolated virtual terminal instead).
 
@@ -156,10 +156,10 @@ Verified by driving the real `yazi` binary end-to-end (real keystrokes, real scr
 - Neovim latent bug: packer-era `requires=`/`after=` keys that lazy.nvim silently ignored → proper `dependencies`
 - Neovim keybinds repointed from Telescope/Oil to snacks (would have errored on keypress)
 - yazi: invalid commands (`find_next`, `atime/ctime` sorts, `show-info`), `%s`→`$@` openers, and an invalid multi-line inline table (TOML)
-- dunst: removed foreign `/home/leon/.nix-profile` dmenu path + dead gnome icon paths
+- dunst: removed a foreign `/home/<user>/.nix-profile` dmenu path + dead gnome icon paths
 - sxhkd: workspace bind `{1-8}`→`{1-9}` (desktop 九 was unreachable); removed shadowed duplicate `super+space`
 - Transmission: RPC bound to `127.0.0.1` (was `0.0.0.0`); `$USER`/`$HOME` literal paths → absolute (exempted in `validate.sh`)
-- Hardcoded foreign usernames (`/home/precision`, `/home/wasif`) → `$HOME`
+- Hardcoded foreign usernames (`/home/<user>`) → `$HOME`
 
 ### Removed
 - Neovim dead code: `config/*.vimrc` tree, `UltiSnips/` (no loader), 10 orphaned `plugins/*.lua` (~2,500 lines)
