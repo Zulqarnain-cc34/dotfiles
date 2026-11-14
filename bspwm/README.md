@@ -16,7 +16,7 @@ One monitor, nine desktops labelled with CJK numerals (`一 二 三 四 五 六 
 
 ### Keybindings
 
-Hotkeys live in **[sxhkd](../sxhkd)**, launched as `sxhkd &` from `bspwmrc`.
+Hotkeys live in **[sxhkd](../sxhkd)**, started from `bspwmrc` (daemons are `pgrep`-guarded, so a `bspc wm -r` reload never spawns duplicates).
 
 ### Setup
 
