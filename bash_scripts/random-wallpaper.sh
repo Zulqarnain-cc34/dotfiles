@@ -185,7 +185,14 @@ BACKEND=$(detect_backend)
 pidfile=$(lock_file)
 
 exec 200>"$pidfile"
-flock -n 200 || another_instance
+if ! flock -n 200; then
+    # Lock is held. Killing bspwm can orphan a previous cycler (it survives as an
+    # init child), so on the next login this would just bail and no wallpaper gets
+    # set. Instead, take over: kill the stale holder, then wait for the lock.
+    old=$(cat "$pidfile" 2>/dev/null)
+    [[ "$old" =~ ^[0-9]+$ && "$old" != "$$" ]] && kill "$old" 2>/dev/null
+    flock -w 3 200 || another_instance
+fi
 echo "$$" >&200
 
 dir="${1:-$(find_wall_dir || { echo "No wallpaper directory found" >&2; exit 1; })}"
