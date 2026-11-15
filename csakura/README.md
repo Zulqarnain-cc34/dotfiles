@@ -57,8 +57,8 @@ ink — and the tree shapes are `yoshino` (upright), `bush` (full), and `shidare
 
 | Thing | Path |
 |------|------|
-| The program itself | [`csakura/csakura`](csakura) (symlinked onto `PATH` via `bash_scripts/`) |
-| Its source code, if you ever want to rebuild it | [`csakura/csakura.src/`](csakura.src/) |
+| The program | `csakura/csakura` — built from source on setup (not committed), symlinked onto `PATH` via `bash_scripts/` |
+| Its source + build | [`csakura/csakura.src/`](csakura.src/) (patched source + Makefile); [`build.sh`](build.sh) compiles it |
 | The bit that makes it auto-start when idle | bottom of [`zsh/.zshrc`](../zsh/.zshrc) |
 
 ## Good to know
@@ -69,7 +69,8 @@ ink — and the tree shapes are `yoshino` (upright), `bush` (full), and `shidare
   at all while you're working), so it won't spin up the fan.
 - **If it ever looks broken** (e.g. a bare error instead of a tree), it's almost
   always a terminal with no proper `TERM` set — real kitty/alacritty are fine.
-- **It needs its own build.** The `-k`/`-C` behaviour only exists in the version
-  shipped here, which lives in `csakura/` and is put on your `PATH` by a symlink in
-  `bash_scripts/` (first on `PATH`). If a plain `csakura` from the AUR ever shadowed
-  it, the any-key-close and drift would stop working — so keep this build ahead on `PATH`.
+- **It's built from source on setup.** The binary isn't committed (the repo stays
+  binary-free); `setup.sh` runs `csakura/build.sh` to compile the vendored source into
+  `csakura/csakura`, which a `bash_scripts/` symlink puts first on your `PATH`. The
+  `-k`/`-C` behaviour only exists in this build, so if a plain `csakura` from the AUR
+  ever shadowed it, the any-key-close and drift would stop — keep this one ahead on `PATH`.

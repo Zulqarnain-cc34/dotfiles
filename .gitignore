@@ -83,3 +83,7 @@ _preview.html
 # mpv total_playtime runtime data (watched-file history, not config)
 mpv/total_playtime.list
 mpv/scripts/total_playtime.list
+
+# csakura: compiled binary is built on setup (scripts/validate.sh keeps the repo binary-free)
+csakura/csakura
+csakura/csakura.src/csakura
