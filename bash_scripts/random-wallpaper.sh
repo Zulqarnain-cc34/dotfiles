@@ -184,12 +184,17 @@ fi
 BACKEND=$(detect_backend)
 pidfile=$(lock_file)
 
+# Read any existing holder's PID BEFORE opening fd 200 -- the `>` redirect
+# truncates the file, so reading it afterwards always comes back empty (that was
+# the bug that made kill+relogin fail: the PID to kill was already wiped).
+old=$(cat "$pidfile" 2>/dev/null)
+
 exec 200>"$pidfile"
 if ! flock -n 200; then
-    # Lock is held. Killing bspwm can orphan a previous cycler (it survives as an
-    # init child), so on the next login this would just bail and no wallpaper gets
-    # set. Instead, take over: kill the stale holder, then wait for the lock.
-    old=$(cat "$pidfile" 2>/dev/null)
+    # The lock is held, which means a previous cycler is still alive holding it
+    # (killing bspwm orphans it as an init child). Take over: kill that holder, then
+    # wait for the lock it releases. A dead holder would have released the lock
+    # already, so reaching here means `old` is a live, valid PID.
     [[ "$old" =~ ^[0-9]+$ && "$old" != "$$" ]] && kill "$old" 2>/dev/null
     flock -w 3 200 || another_instance
 fi
