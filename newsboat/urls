@@ -74,6 +74,14 @@ https://www.linuxjournal.com/node/feed "~Linux-SubReddit: linuxjournal" "Linux-S
 # disabled outright. Likely a flood of other Reddit-RSS refugees hitting the
 # same free instances since the shutdown, not a wrong-instance problem.
 #
+# Also tried self-hosting a private redlib instance (Docker, zero shared
+# traffic) -- Reddit's backend returned 403 Forbidden immediately, confirmed
+# in the container's own logs. Points at Reddit blocking this category of
+# backend access as policy, not public-instance congestion. Tested from a
+# sandboxed environment's network, not the user's home IP -- user is
+# independently re-verifying this conclusion themselves before treating it
+# as final.
+#
 # Commented out below rather than left broken. To retry later, check
 # https://github.com/redlib-org/redlib-instances/blob/main/instances.md for
 # an instance that's actually passing /r/<sub>/.rss unchallenged first.
