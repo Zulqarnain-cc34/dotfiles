@@ -1,118 +1,133 @@
 {
     "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
     "logo": {
-    	"source": "${HOME}/.config/fastfetch/images/arch.png",
-    	"type": "kitty-direct",
-    	"height": 18,
-    	"padding": {
-    		"top": 2
-    	}
+        "source": "${HOME}/.config/fastfetch/images/arch.png",
+        "type": "kitty-direct",
+        "height": 18,
+        "padding": {
+            "top": 2
+        }
     },
     "display": {
         "separator": " "
     },
     "modules": [
-	{
+        {
             "type": "custom",
             "format": "\u001b[90m  \u001b[31m  \u001b[32m  \u001b[33m  \u001b[34m  \u001b[35m  \u001b[36m  \u001b[37m"
         },
-	"break",
-	{
+        "break",
+        {
             "type": "title",
             "keyWidth": 10
         },
         "break",
         {
             "type": "custom",
-            "format": "\u001b[90m─ \u001b[1;33msystem\u001b[0m"
+            "format": "\u001b[90m╭─ \u001b[1;33msystem\u001b[0m"
         },
         {
             "type": "os",
-            "key": " ",
-            "keyColor": "33"
+            "key": "│  OS",
+            "keyColor": "33",
+            "keyWidth": 16
         },
         {
             "type": "kernel",
-            "key": " ",
-            "keyColor": "33"
+            "key": "│  Kernel",
+            "keyColor": "33",
+            "keyWidth": 16
         },
         {
             "type": "uptime",
-            "key": " ",
-            "keyColor": "33"
+            "key": "│  Uptime",
+            "keyColor": "33",
+            "keyWidth": 16
         },
         {
             "type": "command",
-            "key": "󱦟 ",
+            "key": "│ 󱦟 Age",
             "keyColor": "33",
-            "text": "birth_install=$(stat -c %W /); current=$(date +%s); time_progression=$((current - birth_install)); days_difference=$((time_progression / 86400)); echo $days_difference days"
+            "text": "birth_install=$(stat -c %W /); current=$(date +%s); time_progression=$((current - birth_install)); days_difference=$((time_progression / 86400)); echo $days_difference days",
+            "keyWidth": 16
         },
         {
             "type": "packages",
             "format": "{pacman} (pacman)",
-            "key": " ",
-            "keyColor": "33"
+            "key": "│  Packages",
+            "keyColor": "33",
+            "keyWidth": 16
         },
         {
             "type": "shell",
-            "key": " ",
-            "keyColor": "33"
+            "key": "│  Shell",
+            "keyColor": "33",
+            "keyWidth": 16
         },
         {
             "type": "custom",
-            "format": "\u001b[90m─ \u001b[1;33mdesktop\u001b[0m"
+            "format": "\u001b[90m╭─ \u001b[1;33mdesktop\u001b[0m"
         },
         {
             "type": "wm",
-            "key": " ",
-            "keyColor": "33"
+            "key": "│  WM",
+            "keyColor": "33",
+            "keyWidth": 16
         },
         {
             "type": "terminal",
-            "key": " ",
-            "keyColor": "33"
+            "key": "│  Terminal",
+            "keyColor": "33",
+            "keyWidth": 16
         },
         {
             "type": "display",
-            "key": " ",
-            "keyColor": "33"
+            "key": "│  Display",
+            "keyColor": "33",
+            "keyWidth": 16
         },
         {
             "type": "custom",
-            "format": "\u001b[90m─ \u001b[1;33mhardware\u001b[0m"
+            "format": "\u001b[90m╭─ \u001b[1;33mhardware\u001b[0m"
         },
         {
             "type": "cpu",
             "format": "{1}",
-            "key": " ",
-            "keyColor": "33"
+            "key": "│  CPU",
+            "keyColor": "33",
+            "keyWidth": 16
         },
         {
             "type": "gpu",
             "format": "{2}",
-            "key": " ",
-            "keyColor": "33"
+            "key": "│  GPU",
+            "keyColor": "33",
+            "keyWidth": 16
         },
         {
             "type": "gpu",
             "format": "{3}",
-            "key": " ",
-            "keyColor": "33"
+            "key": "│  GPU",
+            "keyColor": "33",
+            "keyWidth": 16
         },
         {
-             "type": "memory",
-            "key": "󰍛 ",
-            "keyColor": "33"
+            "type": "memory",
+            "key": "│ 󰍛 Memory",
+            "keyColor": "33",
+            "keyWidth": 16
         },
         {
-             "type": "swap",
-            "key": "󰾴 ",
-            "keyColor": "33"
+            "type": "swap",
+            "key": "│ 󰾴 Swap",
+            "keyColor": "33",
+            "keyWidth": 16
         },
         {
             "type": "disk",
-            "key": " ",
-            "keyColor": "33"
+            "key": "│  Disk",
+            "keyColor": "33",
+            "keyWidth": 16
         },
         "break",
         {
