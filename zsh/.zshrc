@@ -202,3 +202,33 @@ if command -v csakura >/dev/null 2>&1; then
         zle && zle reset-prompt
     }
 fi
+
+# Per-project `gh` account: default everywhere is Zulqarnain-cc34 (this repo's
+# owner); inside project-penny it's precise456. Switching is local to gh's own
+# hosts.yml (no network call), but still guarded by a cached var so a no-op `cd`
+# within the same project doesn't shell out to `gh` on every prompt.
+if command -v gh >/dev/null 2>&1; then
+    typeset -g _GH_PROFILE_DEFAULT=Zulqarnain-cc34
+    typeset -g _GH_PROFILE_PENNY=precise456
+    typeset -g _GH_PENNY_DIR="$HOME/program_files/Projects/project_ongoing/project_penny"
+    typeset -g _gh_active_profile=""
+
+    _gh_profile_for_pwd() {
+        case "$PWD" in
+            "$_GH_PENNY_DIR"|"$_GH_PENNY_DIR"/*) echo "$_GH_PROFILE_PENNY" ;;
+            *) echo "$_GH_PROFILE_DEFAULT" ;;
+        esac
+    }
+
+    _gh_autoswitch() {
+        local want="$(_gh_profile_for_pwd)"
+        [[ "$want" == "$_gh_active_profile" ]] && return
+        if gh auth switch --user "$want" >/dev/null 2>&1; then
+            _gh_active_profile="$want"
+        fi
+    }
+
+    autoload -Uz add-zsh-hook
+    add-zsh-hook chpwd _gh_autoswitch
+    _gh_autoswitch   # set it correctly for the shell's starting directory too
+fi
