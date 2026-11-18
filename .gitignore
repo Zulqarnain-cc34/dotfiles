@@ -87,3 +87,8 @@ mpv/scripts/total_playtime.list
 # csakura: compiled binary is built on setup (scripts/validate.sh keeps the repo binary-free)
 csakura/csakura
 csakura/csakura.src/csakura
+
+# GitHub CLI: hosts.yml holds live OAuth tokens in plaintext. It is never linked
+# into this repo (~/.config/gh is a real, untracked directory), but ignore it
+# defensively in case it's ever copied in by mistake.
+gh/hosts.yml
