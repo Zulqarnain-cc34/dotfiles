@@ -190,6 +190,24 @@ if command -v csakura >/dev/null 2>&1; then
     # turn (persisted in a cache file so the cycle advances across terminals).
     _csakura_palettes=(sakura rose blush magenta peach coral sunset gold
                        lavender violet sky mint matcha white ink)
+    # Safety net: csakura disables its own raw mouse-tracking escapes on exit,
+    # but the mouse movement that dismissed it can still have a trailing
+    # report or two in flight when it does. Clear mouse mode and drop any
+    # stray bytes so a leftover report can never echo as literal garbage at
+    # the prompt. Registered as a precmd hook (runs before every prompt is
+    # drawn) rather than only inside TRAPALRM, so it also protects a manual
+    # `csakura -k ...` run typed directly at the prompt, not just the
+    # automatic idle-trigger path -- csakura's own exit and the shell's next
+    # prompt draw are two different invocation paths, and only one of them
+    # used to be covered.
+    _csakura_clear_mouse() {
+        print -n '\033[?1003l\033[?1006l'
+        local _junk
+        while read -t 0.01 -k 1 -u 0 _junk 2>/dev/null; do :; done
+    }
+    autoload -Uz add-zsh-hook
+    add-zsh-hook precmd _csakura_clear_mouse
+
     TRAPALRM() {
         [[ -z "$BUFFER" ]] || return            # never pop up mid-typing
         local statef=${XDG_CACHE_HOME:-$HOME/.cache}/csakura-palette
@@ -200,14 +218,7 @@ if command -v csakura >/dev/null 2>&1; then
         local pal=$_csakura_palettes[$(( i % n + 1 ))]
         print -r -- $(( (i + 1) % n )) >| $statef 2>/dev/null
         $_csakura_base -c $pal
-        # Safety net: csakura disables its own raw mouse-tracking escapes on
-        # exit, but the mouse movement that dismissed it can still have a
-        # trailing report or two in flight when it does. Clear mouse mode and
-        # drop any stray bytes here too, so a leftover report can never echo
-        # as literal garbage at the prompt, regardless of how csakura exited.
-        print -n '\033[?1003l\033[?1006l'
-        local _junk
-        while read -t 0.01 -k 1 -u 0 _junk 2>/dev/null; do :; done
+        _csakura_clear_mouse
         zle && zle reset-prompt
     }
 fi
