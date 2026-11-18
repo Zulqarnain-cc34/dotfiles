@@ -187,7 +187,7 @@ pidfile=$(lock_file)
 # Read any existing holder's PID BEFORE opening fd 200 -- the `>` redirect
 # truncates the file, so reading it afterwards always comes back empty (that was
 # the bug that made kill+relogin fail: the PID to kill was already wiped).
-old=$(cat "$pidfile" 2>/dev/null)
+old=$(cat "$pidfile" 2>/dev/null || true)   # || true: lock file is absent on a fresh boot; set -e must not bail here
 
 exec 200>"$pidfile"
 if ! flock -n 200; then
