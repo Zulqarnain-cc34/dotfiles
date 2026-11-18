@@ -11,7 +11,7 @@
 
 A fast system-info fetch for the terminal — the little logo-and-specs banner that greets you on shell start. This config is tuned for Arch with a custom module layout and a choice of ASCII or image logos.
 
-![Preview](preview.png)
+![Preview](preview_v2.png)
 
 ### What's here
 
