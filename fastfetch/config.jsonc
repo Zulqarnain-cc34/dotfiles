@@ -125,7 +125,7 @@
         },
         {
             "type": "disk",
-            "key": "\u001b[97m│\u001b[35m 󰃊 Disk",
+            "key": "\u001b[97m│\u001b[35m  Disk",
             "keyColor": "35",
             "keyWidth": 16
         },
