@@ -58,6 +58,8 @@ One entry per day, a few plain bullets on the main thing(s) done. The detailed r
 
 ## [2026-05-15]
 
+*This changelog starts here — the earliest entry on record.*
+
 - Started tracking a few more config files (newsboat, transmission, inputrc, twitch notifier) and added project documentation.
 
 ## Notes
