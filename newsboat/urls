@@ -62,26 +62,29 @@ https://www.linuxjournal.com/node/feed "~Linux-SubReddit: linuxjournal" "Linux-S
 # Reddit killed its own .rss feeds on 2026-11-13 ("a common surface for
 # large-scale scraping and automated abuse") with no replacement for ordinary
 # reading access -- confirmed via reddit.com itself returning 404 on every
-# subreddit .rss path, and via Reddit's own shutdown announcement. The 10
-# r/* feeds below now point at the public redlib instance redlib.freedit.eu
-# instead (same /r/<sub>/.rss path convention as old reddit).
+# subreddit .rss path, and via Reddit's own shutdown announcement.
 #
-# UNVERIFIED / likely fragile: every public redlib/RSS-Bridge instance tested
-# while writing this (9 redlib + 2 RSS-Bridge) was blocked by a Cloudflare
-# bot-challenge, had RSS disabled outright, or was rate-limited -- almost
-# certainly from a flood of other Reddit-RSS refugees hitting the same free
-# instances since the shutdown. This one is a best-effort pick from the
-# official list, not a confirmed-working one. If it 404s/stalls on reload,
-# swap the hostname for another instance from:
-#   https://github.com/redlib-org/redlib-instances/blob/main/instances.md
-https://redlib.freedit.eu/r/linux/.rss "~Linux-Subreddit: linux" "Linux-subreddit"
-https://redlib.freedit.eu/r/commandline/.rss "~Linux-Subreddit: commandline" "Linux-subreddit"
+# Tried routing the 10 r/* feeds below through a public redlib/RSS-Bridge
+# instance instead (same /r/<sub>/.rss path). Confirmed NOT viable: tested
+# ~15 public instances (redlib.freedit.eu, catsarch, r4fo, cow.rip, nadeko,
+# privadency, thepixora, hbubli, utilibre, reallyaweso.me, miningtcup.me, +
+# RSS-Bridge x2, reddit.nerdvpn.de, zanity) -- every one was blocked by a
+# Cloudflare bot-challenge newsboat can't pass (no JS engine), served an
+# anti-scraper tarpit, required a browser-solved captcha, or had RSS
+# disabled outright. Likely a flood of other Reddit-RSS refugees hitting the
+# same free instances since the shutdown, not a wrong-instance problem.
+#
+# Commented out below rather than left broken. To retry later, check
+# https://github.com/redlib-org/redlib-instances/blob/main/instances.md for
+# an instance that's actually passing /r/<sub>/.rss unchallenged first.
+# https://redlib.freedit.eu/r/linux/.rss "~Linux-Subreddit: linux" "Linux-subreddit"
+# https://redlib.freedit.eu/r/commandline/.rss "~Linux-Subreddit: commandline" "Linux-subreddit"
 https://terminaltrove.com/new.xml   "~Linux-Subreddit: cli-tools" "Linux-subreddit"
-https://redlib.freedit.eu/r/linuxmasterrace/.rss "~Linux-Subreddit: LinuxMasterRace" "Linux-subreddit"
-https://redlib.freedit.eu/r/unixporn/.rss "~Linux-Subreddit: unixporn" "Linux-subreddit"
-https://redlib.freedit.eu/r/UsabilityPorn/.rss "~Linux-Subreddit: UsabilityPorn" "Linux-subreddit"
-https://redlib.freedit.eu/r/zsh/.rss "~Linux-Subreddit: zsh" "Linux-subreddit"
-https://redlib.freedit.eu/r/neovim/.rss "~Linux-Subreddit: neovim" "Linux-subreddit"
-https://redlib.freedit.eu/r/bash/.rss "~Linux-Subreddit: bash" "Linux-subreddit"
-https://redlib.freedit.eu/r/vim/.rss "~Linux-Subreddit: vim" "Linux-subreddit"
-https://redlib.freedit.eu/r/opensource/.rss "~Linux-Subreddit: opensource" "Linux-subreddit"
+# https://redlib.freedit.eu/r/linuxmasterrace/.rss "~Linux-Subreddit: LinuxMasterRace" "Linux-subreddit"
+# https://redlib.freedit.eu/r/unixporn/.rss "~Linux-Subreddit: unixporn" "Linux-subreddit"
+# https://redlib.freedit.eu/r/UsabilityPorn/.rss "~Linux-Subreddit: UsabilityPorn" "Linux-subreddit"
+# https://redlib.freedit.eu/r/zsh/.rss "~Linux-Subreddit: zsh" "Linux-subreddit"
+# https://redlib.freedit.eu/r/neovim/.rss "~Linux-Subreddit: neovim" "Linux-subreddit"
+# https://redlib.freedit.eu/r/bash/.rss "~Linux-Subreddit: bash" "Linux-subreddit"
+# https://redlib.freedit.eu/r/vim/.rss "~Linux-Subreddit: vim" "Linux-subreddit"
+# https://redlib.freedit.eu/r/opensource/.rss "~Linux-Subreddit: opensource" "Linux-subreddit"
