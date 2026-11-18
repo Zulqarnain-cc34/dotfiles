@@ -177,10 +177,10 @@ function yazi() {
 # (csakura); press ANY key to dismiss it and drop back to the prompt. It
 # reblooms after the next idle stretch. The empty-BUFFER guard means it only
 # fires at a clean prompt, so it never interrupts a command you're typing or
-# one that's running. Change 20 to taste; set TMOUT=0 or comment this block
+# one that's running. Change 60 to taste; set TMOUT=0 or comment this block
 # out to disable.
 if command -v csakura >/dev/null 2>&1; then
-    TMOUT=20
+    TMOUT=60
     # This repo ships a patched csakura with -k (any key quits) and -C (drift),
     # and bash_scripts is first on PATH, so this is always our build. Hard-wire
     # both flags so -k can never be silently dropped (any key must close it).
