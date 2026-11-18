@@ -5,6 +5,24 @@ All notable changes to this dotfiles repo are documented here.
 Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).  
 Versions are dated milestones, not semver releases (this is a personal config repo).
 
+## [2026-11-18] — fastfetch redesign, SauceCodePro font, gh multi-account (branch: `develop`, PRs #13–#15 merged to `main`)
+
+### Added
+- **fastfetch panel redesign**: modules grouped into labeled `system` / `desktop` / `hardware` sections inside a bordered box (white left border/curve, gray section rules, gray bottom close), one accent color per section (system yellow, desktop cyan, hardware magenta) with gold icon+label pairs, every original per-module icon restored plus a new square-floppy disk glyph.
+- **SauceCodePro Nerd Font** installed via `fonts/install.sh` (fetch-on-setup from the official Nerd Fonts release, no font binaries committed) and wired into `setup.sh`; `kitty.conf` now uses it. Fixes the icons that the old FiraCode Nerd Font couldn't render (Age/Memory/Swap, in the Nerd Font SPUA range).
+- **kitty**: `ctrl+shift+r` reloads `kitty.conf` in place (font, colors, etc.) without restarting the session.
+- **Packages module** splits native repo vs. AUR: `N (pacman), M (yay)` via `pacman -Qn`/`-Qm`, served from `fastfetch/scripts/pkgcount.sh` — a cache invalidated by the pacman local-db mtime, so a stale count can't linger and normal renders stay instant.
+- **GitHub CLI multi-account**: `Zulqarnain-cc34` is the default `gh` identity everywhere; a zsh `chpwd` hook (`zsh/.zshrc`) auto-switches to `precise456` inside `project_penny` (and any subdirectory) and reverts on `cd` out, guarded so it only shells out to `gh auth switch` on an actual change.
+- **Branch workflow**: `modernize-2026` renamed to **`develop`**, the standing integration branch. New work now goes `feat/<name>` (off `develop`) → merge into `develop` → delete the branch; `develop` periodically PRs into `main`.
+
+### Fixed
+- **fastfetch slow two-pass render**: the first package-split attempt ran two ~0.3s `pacman` sync-db queries at render time, stalling the draw into two visible passes. Replaced with the mtime-cached helper above (~0.02s full render).
+- **`alias gh='cd ~'`** in `.aliases/aliases` was shadowing the GitHub CLI — removed.
+- **Stale GitHub image cache**: `assets/fastfetch_demo.png`/`fastfetch/preview.png` kept serving the old picture after being replaced in place; renamed to `*_v2.png` so the README points at a URL GitHub's cache had never seen.
+
+### Removed
+- `fastfetch/scripts/render-demo.py`, a one-off dev helper (needs Pillow) used to regenerate the demo image. The image is committed; the script stays in git history if a regen is ever needed.
+
 ## [2026-11-14] — csakura idle screensaver
 
 ### Added
