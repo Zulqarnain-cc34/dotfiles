@@ -2,8 +2,8 @@
 
 All notable changes to this dotfiles repo are documented here.
 
-Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).  
-Versions are dated milestones, not semver releases (this is a personal config repo).
+A simpler, more human variant of [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), without its Added/Changed/Fixed categories or semver versions — this is a personal config repo with one contributor, so that ceremony doesn't pull its weight here.
+One entry per day, a few plain bullets on the main thing(s) done. The detailed record (what changed, why, how it was verified) lives in the git commit messages — see `git log` when you need that.
 
 ## [2026-11-18] — Today's session, in short
 
