@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
-# Render the live fastfetch output to a PNG demo image (assets/fastfetch_demo.png
-# and fastfetch/preview.png). This renders the real ANSI output with the kitty
+# Render the live fastfetch output to a PNG demo image (assets/fastfetch_demo_v2.png
+# and fastfetch/preview_v2.png). This renders the real ANSI output with the kitty
 # tokyonight palette and the SauceCodePro Nerd Font -- it does NOT screenshot any
 # window. Dev tool; needs Pillow. Run it from the repo root after config changes:
 #   python3 fastfetch/scripts/render-demo.py
@@ -80,5 +80,5 @@ for r, cells in enumerate(grid):
         if chx != " ":
             draw.text((x0+col*cw, pad+r*lh), chx, font=(fB if bold else fR), fill=color)
 
-for out in (f"{REPO}/assets/fastfetch_demo.png", f"{REPO}/fastfetch/preview.png"):
+for out in (f"{REPO}/assets/fastfetch_demo_v2.png", f"{REPO}/fastfetch/preview_v2.png"):
     img.save(out); print(f"wrote {out}  {img.size}")

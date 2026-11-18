@@ -59,7 +59,7 @@ The guiding principles:
   </tr>
   <tr>
     <td align="center" width="50%"><img src="assets/terminal_demo.png" width="100%"><br><b>Kitty terminal</b></td>
-    <td align="center" width="50%"><img src="assets/fastfetch_demo.png" width="100%"><br><b>Fastfetch</b></td>
+    <td align="center" width="50%"><img src="assets/fastfetch_demo_v2.png" width="100%"><br><b>Fastfetch</b></td>
   </tr>
   <tr>
     <td align="center" width="50%"><img src="assets/sakura_demo.png" width="100%"><br><b>Sakura · blooms after 20s idle</b></td>
