@@ -181,10 +181,11 @@ function yazi() {
 # out to disable.
 if command -v csakura >/dev/null 2>&1; then
     TMOUT=60
-    # This repo ships a patched csakura with -k (any key quits) and -C (drift),
-    # and bash_scripts is first on PATH, so this is always our build. Hard-wire
-    # both flags so -k can never be silently dropped (any key must close it).
-    _csakura_base=(csakura -k -C 45)         # -k: any key quits; -C 45: drift every 45s
+    # This repo ships a patched csakura with -k (any key OR mouse movement
+    # quits) and -C (drift), and bash_scripts is first on PATH, so this is
+    # always our build. Hard-wire both flags so -k can never be silently
+    # dropped (any key or mouse movement must close it).
+    _csakura_base=(csakura -k -C 45)         # -k: any key/mouse move quits; -C 45: drift every 45s
     # Every bloom starts on the next palette, marching through all of them in
     # turn (persisted in a cache file so the cycle advances across terminals).
     _csakura_palettes=(sakura rose blush magenta peach coral sunset gold
