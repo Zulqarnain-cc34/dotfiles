@@ -136,6 +136,11 @@ link_dir .w3m                 "$HOME/.w3m"
 link_dir .aliases             "$HOME/.aliases"
 [[ "$DRYRUN" -eq 0 && "$CHECK" -eq 0 ]] && mkdir -p "$HOME/bin"
 link_dir bash_scripts         "$HOME/bin/bash_scripts"
+# csakura screensaver binary is built from source, not committed (the repo keeps no
+# binaries). Build it now so the bash_scripts/csakura symlink resolves.
+if [[ "$DRYRUN" -eq 0 && "$CHECK" -eq 0 && -x "$ROOT/csakura/build.sh" ]]; then
+    "$ROOT/csakura/build.sh" || echo "  skip: csakura build failed (needs base-devel: cc + make + ncurses)"
+fi
 link_dir ranger               "$HOME/.config/ranger"
 link_dir mutt                 "$HOME/.config/mutt"
 link_dir Kvantum              "$HOME/.config/Kvantum"

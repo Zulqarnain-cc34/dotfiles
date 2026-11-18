@@ -292,6 +292,10 @@ dotfiles/
 └── CHANGELOG.md                           # Notable repo changes
 ```
 
+<div align="center">
+  <strong>If you like this configuration, please give it a ⭐ star!</strong>
+</div>
+
 ---
 
 <div align="center">
