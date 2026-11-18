@@ -28,19 +28,19 @@
         },
         {
             "type": "os",
-            "key": "\u001b[97m│\u001b[33m  OS",
+            "key": "\u001b[97m│\u001b[33m  OS",
             "keyColor": "33",
             "keyWidth": 16
         },
         {
             "type": "kernel",
-            "key": "\u001b[97m│\u001b[33m  Kernel",
+            "key": "\u001b[97m│\u001b[33m  Kernel",
             "keyColor": "33",
             "keyWidth": 16
         },
         {
             "type": "uptime",
-            "key": "\u001b[97m│\u001b[33m  Uptime",
+            "key": "\u001b[97m│\u001b[33m  Uptime",
             "keyColor": "33",
             "keyWidth": 16
         },
@@ -54,13 +54,13 @@
         {
             "type": "packages",
             "format": "{pacman} (pacman)",
-            "key": "\u001b[97m│\u001b[33m  Packages",
+            "key": "\u001b[97m│\u001b[33m  Packages",
             "keyColor": "33",
             "keyWidth": 16
         },
         {
             "type": "shell",
-            "key": "\u001b[97m│\u001b[33m  Shell",
+            "key": "\u001b[97m│\u001b[33m  Shell",
             "keyColor": "33",
             "keyWidth": 16
         },
@@ -70,19 +70,19 @@
         },
         {
             "type": "wm",
-            "key": "\u001b[97m│\u001b[36m  WM",
+            "key": "\u001b[97m│\u001b[36m  WM",
             "keyColor": "36",
             "keyWidth": 16
         },
         {
             "type": "terminal",
-            "key": "\u001b[97m│\u001b[36m  Terminal",
+            "key": "\u001b[97m│\u001b[36m  Terminal",
             "keyColor": "36",
             "keyWidth": 16
         },
         {
             "type": "display",
-            "key": "\u001b[97m│\u001b[36m  Display",
+            "key": "\u001b[97m│\u001b[36m  Display",
             "keyColor": "36",
             "keyWidth": 16
         },
@@ -93,21 +93,21 @@
         {
             "type": "cpu",
             "format": "{1}",
-            "key": "\u001b[97m│\u001b[35m  CPU",
+            "key": "\u001b[97m│\u001b[35m  CPU",
             "keyColor": "35",
             "keyWidth": 16
         },
         {
             "type": "gpu",
             "format": "{2}",
-            "key": "\u001b[97m│\u001b[35m  GPU",
+            "key": "\u001b[97m│\u001b[35m  GPU",
             "keyColor": "35",
             "keyWidth": 16
         },
         {
             "type": "gpu",
             "format": "{3}",
-            "key": "\u001b[97m│\u001b[35m  GPU",
+            "key": "\u001b[97m│\u001b[35m  GPU",
             "keyColor": "35",
             "keyWidth": 16
         },
@@ -125,7 +125,7 @@
         },
         {
             "type": "disk",
-            "key": "\u001b[97m│\u001b[35m  Disk",
+            "key": "\u001b[97m│\u001b[35m  Disk",
             "keyColor": "35",
             "keyWidth": 16
         },

@@ -167,6 +167,11 @@ if [[ "$DRYRUN" -eq 1 || "$CHECK" -eq 1 ]]; then
 elif [[ -x "$ROOT/kitty/scripts/link-font-size.sh" ]]; then
     "$ROOT/kitty/scripts/link-font-size.sh"
 fi
+# kitty (and fastfetch's nerd-font icons) need SauceCodePro Nerd Font. It is not
+# committed (no binaries in the repo), so fetch it now if it is missing.
+if [[ "$DRYRUN" -eq 0 && "$CHECK" -eq 0 && -x "$ROOT/fonts/install.sh" ]]; then
+    "$ROOT/fonts/install.sh" || echo "  skip: font install failed (needs curl + unzip + fontconfig)"
+fi
 link_dir yazi                 "$HOME/.config/yazi"
 link_dir fastfetch            "$HOME/.config/fastfetch"
 link_dir niri                 "$HOME/.config/niri"
