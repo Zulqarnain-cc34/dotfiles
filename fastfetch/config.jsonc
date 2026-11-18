@@ -14,7 +14,7 @@
     "modules": [
         {
             "type": "custom",
-            "format": "\u001b[90m  \u001b[31m  \u001b[32m  \u001b[33m  \u001b[34m  \u001b[35m  \u001b[36m  \u001b[37m"
+            "format": "\u001b[90m  \u001b[31m  \u001b[32m  \u001b[33m  \u001b[34m  \u001b[32m  \u001b[34m  \u001b[37m"
         },
         "break",
         {
@@ -66,67 +66,67 @@
         },
         {
             "type": "custom",
-            "format": "\u001b[97m╭─ \u001b[36mdesktop\u001b[90m ───────────────────────────────────────────────\u001b[0m"
+            "format": "\u001b[97m╭─ \u001b[34mdesktop\u001b[90m ───────────────────────────────────────────────\u001b[0m"
         },
         {
             "type": "wm",
-            "key": "\u001b[97m│\u001b[36m  WM",
-            "keyColor": "36",
+            "key": "\u001b[97m│\u001b[34m  WM",
+            "keyColor": "34",
             "keyWidth": 16
         },
         {
             "type": "terminal",
-            "key": "\u001b[97m│\u001b[36m  Terminal",
-            "keyColor": "36",
+            "key": "\u001b[97m│\u001b[34m  Terminal",
+            "keyColor": "34",
             "keyWidth": 16
         },
         {
             "type": "display",
-            "key": "\u001b[97m│\u001b[36m  Display",
-            "keyColor": "36",
+            "key": "\u001b[97m│\u001b[34m  Display",
+            "keyColor": "34",
             "keyWidth": 16
         },
         {
             "type": "custom",
-            "format": "\u001b[97m╭─ \u001b[35mhardware\u001b[90m ──────────────────────────────────────────────\u001b[0m"
+            "format": "\u001b[97m╭─ \u001b[32mhardware\u001b[90m ──────────────────────────────────────────────\u001b[0m"
         },
         {
             "type": "cpu",
             "format": "{1}",
-            "key": "\u001b[97m│\u001b[35m  CPU",
-            "keyColor": "35",
+            "key": "\u001b[97m│\u001b[32m  CPU",
+            "keyColor": "32",
             "keyWidth": 16
         },
         {
             "type": "gpu",
             "format": "{2}",
-            "key": "\u001b[97m│\u001b[35m  GPU",
-            "keyColor": "35",
+            "key": "\u001b[97m│\u001b[32m  GPU",
+            "keyColor": "32",
             "keyWidth": 16
         },
         {
             "type": "gpu",
             "format": "{3}",
-            "key": "\u001b[97m│\u001b[35m  GPU",
-            "keyColor": "35",
+            "key": "\u001b[97m│\u001b[32m  GPU",
+            "keyColor": "32",
             "keyWidth": 16
         },
         {
             "type": "memory",
-            "key": "\u001b[97m│\u001b[35m 󰍛 Memory",
-            "keyColor": "35",
+            "key": "\u001b[97m│\u001b[32m 󰍛 Memory",
+            "keyColor": "32",
             "keyWidth": 16
         },
         {
             "type": "swap",
-            "key": "\u001b[97m│\u001b[35m 󰾴 Swap",
-            "keyColor": "35",
+            "key": "\u001b[97m│\u001b[32m 󰾴 Swap",
+            "keyColor": "32",
             "keyWidth": 16
         },
         {
             "type": "disk",
-            "key": "\u001b[97m│\u001b[35m  Disk",
-            "keyColor": "35",
+            "key": "\u001b[97m│\u001b[32m  Disk",
+            "keyColor": "32",
             "keyWidth": 16
         },
         {
@@ -136,7 +136,7 @@
         "break",
         {
             "type": "custom",
-            "format": "\u001b[90m  \u001b[31m  \u001b[32m  \u001b[33m  \u001b[34m  \u001b[35m  \u001b[36m  \u001b[37m"
+            "format": "\u001b[90m  \u001b[31m  \u001b[32m  \u001b[33m  \u001b[34m  \u001b[32m  \u001b[34m  \u001b[37m"
         },
         "break",
         "break"
