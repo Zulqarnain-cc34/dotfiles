@@ -16,3 +16,14 @@ A fast system-info fetch for the terminal — the little logo-and-specs banner t
 ### What's here
 
 The layout lives in [`config.jsonc`](config.jsonc) — which modules appear (OS, kernel, uptime, packages, WM, terminal, and so on), their order, and the colours. Logos come in two flavours: text art under [`ascii/`](ascii/) (`arch`, `cat`, `rose`, `triangle`) and raster images under [`images/`](images/) and [`pngs/`](pngs/). Point the `logo` block in `config.jsonc` at whichever one you're in the mood for.
+
+### Color themes
+
+Two section-color themes, same layout (box border, icons, labels) — only the `system`/`desktop`/`hardware` accent colors differ.
+
+| File | system | desktop | hardware |
+| --- | --- | --- | --- |
+| [`config.jsonc`](config.jsonc) (default) | yellow | blue | green |
+| [`config-classic.jsonc`](config-classic.jsonc) | yellow | cyan | magenta |
+
+Switch for one run with `fastfetch -c ~/.config/fastfetch/config-classic.jsonc`.
