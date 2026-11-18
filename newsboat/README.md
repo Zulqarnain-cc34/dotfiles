@@ -24,3 +24,12 @@ Macros run off the prefix key `i` — press `i`, then the macro letter:
 | `i`,`o` | open in terminal `w3m` (`$TERMINAL`) |
 | `i`,`i` | download the image with `wget` and view it in `feh` |
 | `i`,`y` | copy the URL to the clipboard with `xclip` |
+| `i`,`d` | download the video with `yt-dlp` to `~/Videos/videos/` |
+
+### Bookmarking
+
+`Ctrl+B` bookmarks the selected article via [`bash_scripts/newsboat/dangerzone/bookmark.sh`](../bash_scripts/newsboat/dangerzone/bookmark.sh), which appends `date, url, title, description, feed` to `~/.newsboat/bookmarks.txt` and fires a desktop notification.
+
+### Notifications
+
+New-article notifications go through [`nb-notify`](nb-notify) (libnotify), wired up via `notify-program`/`notify-format` in `config`.

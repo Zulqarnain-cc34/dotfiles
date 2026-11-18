@@ -9,7 +9,10 @@ unbind-key RIGHT
 unbind-key LEFT
 
 browser "${HOME}/bin/bash_scripts/urlportal.sh"
-feed-sort-order views
+# "views" was never a valid feed-sort-order value (newsboat silently ignored it,
+# leaving feeds unsorted); unreadarticlecount-desc actually surfaces feeds with
+# unread content first.
+feed-sort-order unreadarticlecount-desc
 
 
 # Feed settings
@@ -24,7 +27,7 @@ mark-as-read-on-hover yes
 notify-beep yes
 auto-reload                 yes
 reload-time                 150
-notify-program              "nb-notify"
+notify-program              "~/.newsboat/nb-notify"
 notify-format               "New articles: %d\nTotal unread: %n article(s), %f feed(s)"
 download-retries 4
 download-timeout 120
@@ -60,6 +63,10 @@ macro r set browser "tuir -l %u" ; open-in-browser ; set browser "${HOME}/bin/ba
 
 # Media Player (mpv)
 macro p set browser "mpv %u &> /dev/null &" ; open-in-browser ; set browser "${HOME}/bin/bash_scripts/urlportal.sh"
+
+# Download the video for offline viewing (yt-dlp), same output dir as
+# bash_scripts/scripts/youtube-dl_copy.sh
+macro d set browser "$TERMINAL -e yt-dlp -o '${HOME}/Videos/videos/%(title)s.%(ext)s' %u" ; open-in-browser ; set browser "${HOME}/bin/bash_scripts/urlportal.sh"
 
 # YouTube comments/Search via Pipe-Viewer
 macro c set browser "pipe-viewer --comments=\"%u\"" ; open-in-browser ; set browser "${HOME}/bin/bash_scripts/urlportal.sh"

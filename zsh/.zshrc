@@ -181,10 +181,11 @@ function yazi() {
 # out to disable.
 if command -v csakura >/dev/null 2>&1; then
     TMOUT=60
-    # This repo ships a patched csakura with -k (any key quits) and -C (drift),
-    # and bash_scripts is first on PATH, so this is always our build. Hard-wire
-    # both flags so -k can never be silently dropped (any key must close it).
-    _csakura_base=(csakura -k -C 45)         # -k: any key quits; -C 45: drift every 45s
+    # This repo ships a patched csakura with -k (any key OR mouse movement
+    # quits) and -C (drift), and bash_scripts is first on PATH, so this is
+    # always our build. Hard-wire both flags so -k can never be silently
+    # dropped (any key or mouse movement must close it).
+    _csakura_base=(csakura -k -C 45)         # -k: any key/mouse move quits; -C 45: drift every 45s
     # Every bloom starts on the next palette, marching through all of them in
     # turn (persisted in a cache file so the cycle advances across terminals).
     _csakura_palettes=(sakura rose blush magenta peach coral sunset gold
@@ -199,6 +200,14 @@ if command -v csakura >/dev/null 2>&1; then
         local pal=$_csakura_palettes[$(( i % n + 1 ))]
         print -r -- $(( (i + 1) % n )) >| $statef 2>/dev/null
         $_csakura_base -c $pal
+        # Safety net: csakura disables its own raw mouse-tracking escapes on
+        # exit, but the mouse movement that dismissed it can still have a
+        # trailing report or two in flight when it does. Clear mouse mode and
+        # drop any stray bytes here too, so a leftover report can never echo
+        # as literal garbage at the prompt, regardless of how csakura exited.
+        print -n '\033[?1003l\033[?1006l'
+        local _junk
+        while read -t 0.01 -k 1 -u 0 _junk 2>/dev/null; do :; done
         zle && zle reset-prompt
     }
 fi
