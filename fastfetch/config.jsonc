@@ -14,7 +14,7 @@
     "modules": [
 	{
             "type": "custom",
-            "format": "\u001b[90m  \u001b[31m  \u001b[32m  \u001b[33m  \u001b[34m  \u001b[35m  \u001b[36m  \u001b[37m"
+            "format": "\u001b[90m  \u001b[31m  \u001b[32m  \u001b[33m  \u001b[34m  \u001b[35m  \u001b[36m  \u001b[37m"
         },
 	"break",
 	{
@@ -23,57 +23,80 @@
         },
         "break",
         {
+            "type": "custom",
+            "format": "\u001b[90m─ \u001b[1;33msystem\u001b[0m"
+        },
+        {
             "type": "os",
-            "key": " ",
+            "key": " ",
             "keyColor": "33"
         },
         {
             "type": "kernel",
-            "key": " ",
+            "key": " ",
             "keyColor": "33"
+        },
+        {
+            "type": "uptime",
+            "key": " ",
+            "keyColor": "33"
+        },
+        {
+            "type": "command",
+            "key": "󱦟 ",
+            "keyColor": "33",
+            "text": "birth_install=$(stat -c %W /); current=$(date +%s); time_progression=$((current - birth_install)); days_difference=$((time_progression / 86400)); echo $days_difference days"
         },
         {
             "type": "packages",
             "format": "{pacman} (pacman)",
-            "key": " ",
+            "key": " ",
             "keyColor": "33"
         },
         {
             "type": "shell",
-            "key": " ",
+            "key": " ",
+            "keyColor": "33"
+        },
+        {
+            "type": "custom",
+            "format": "\u001b[90m─ \u001b[1;33mdesktop\u001b[0m"
+        },
+        {
+            "type": "wm",
+            "key": " ",
             "keyColor": "33"
         },
         {
             "type": "terminal",
-            "key": " ",
-            "keyColor": "33" 
-        },
-        {
-            "type": "wm",
-            "key": " ",
-            "keyColor": "33" 
+            "key": " ",
+            "keyColor": "33"
         },
         {
             "type": "display",
-            "key": " ",
+            "key": " ",
             "keyColor": "33"
+        },
+        {
+            "type": "custom",
+            "format": "\u001b[90m─ \u001b[1;33mhardware\u001b[0m"
         },
         {
             "type": "cpu",
             "format": "{1}",
-            "key": " ",
+            "key": " ",
             "keyColor": "33"
         },
         {
             "type": "gpu",
             "format": "{2}",
-            "key": " ",
+            "key": " ",
             "keyColor": "33"
         },
         {
             "type": "gpu",
             "format": "{3}",
-            "key": " ",
+            "key": " ",
             "keyColor": "33"
         },
         {
@@ -88,24 +111,13 @@
         },
         {
             "type": "disk",
-            "key": " ",
+            "key": " ",
             "keyColor": "33"
-        },
-        {
-            "type": "uptime",
-            "key": " ",
-            "keyColor": "33" 
-        },
-        {
-            "type": "command",
-            "key": "󱦟 ",
-            "keyColor": "33",
-            "text": "birth_install=$(stat -c %W /); current=$(date +%s); time_progression=$((current - birth_install)); days_difference=$((time_progression / 86400)); echo $days_difference days"
         },
         "break",
         {
             "type": "custom",
-            "format": "\u001b[90m  \u001b[31m  \u001b[32m  \u001b[33m  \u001b[34m  \u001b[35m  \u001b[36m  \u001b[37m"
+            "format": "\u001b[90m  \u001b[31m  \u001b[32m  \u001b[33m  \u001b[34m  \u001b[35m  \u001b[36m  \u001b[37m"
         },
         "break",
         "break"
