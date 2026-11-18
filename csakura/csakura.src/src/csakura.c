@@ -12,6 +12,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <termios.h>
 #include <time.h>
 #include <unistd.h>
 
@@ -123,7 +124,7 @@ static double opt_wind    = 1.0;
 static bool   opt_ascii   = false;
 static bool   opt_flat    = false;   /* keep the terminal background visible */
 static bool   opt_detail  = false;   /* half-block pixel tree, see gen_tree_hd */
-static bool   opt_anykey   = false;  /* -k: any key quits (idle-screensaver dismiss) */
+static bool   opt_anykey   = false;  /* -k: any key or mouse movement quits (idle-screensaver dismiss) */
 static int    opt_cycle    = 0;      /* -C N: auto-advance palette every N seconds (0 = off) */
 /*
  * Canopy shadow override. HAZE_PALETTE keeps the shade the palette ships,
@@ -1707,8 +1708,8 @@ static void usage(FILE *out)
         "  -a        ASCII glyphs only (no unicode blossoms)\n"
         "  -t        flat mode: never paint cell backgrounds, so a\n"
         "            transparent terminal shows through the canopy\n"
-        "  -k        any key quits (not just q/Esc); for use as an\n"
-        "            idle screensaver that dismisses on any keypress\n"
+        "  -k        any key or mouse movement quits (not just q/Esc); for\n"
+        "            use as an idle screensaver that dismisses on any input\n"
         "  -C N      every N seconds, grow a fresh tree in the next\n"
         "            form and the next palette (0 = off)\n"
         "  -H COLOR  canopy shadow colour, 0-255, or none to leave the\n"
@@ -1833,6 +1834,23 @@ int main(int argc, char **argv)
     keypad(stdscr, TRUE);
     nodelay(stdscr, TRUE);
 
+    /* -k: also dismiss on mouse movement, not just a keypress (the same
+     * idle-screensaver behaviour desktop environments use: wiggle the mouse
+     * to dismiss). mousemask's REPORT_MOUSE_POSITION alone doesn't reliably
+     * request "any-event" tracking on every terminal, so force it with the
+     * raw xterm escapes too: 1003 = any-event (motion with no button held),
+     * 1006 = SGR extended coordinates so ncurses can decode positions past
+     * column/row 223. Only enabled with -k: a plain run (not used as a
+     * screensaver) shouldn't hijack mouse reporting from whatever the user
+     * returns to afterwards.
+     */
+    if (opt_anykey) {
+        mousemask(ALL_MOUSE_EVENTS | REPORT_MOUSE_POSITION, NULL);
+        mouseinterval(0);
+        fputs("\033[?1003h\033[?1006h", stdout);
+        fflush(stdout);
+    }
+
     if (has_colors())
         init_colors();
 
@@ -1845,8 +1863,11 @@ int main(int argc, char **argv)
         int ch = getch();
         if (ch == 'q' || ch == 'Q' || ch == 27)
             break;
-        /* -k: dismiss on any real keypress (ERR = no key this poll; a window
-         * resize is not a keypress, so keep blooming and just re-layout). */
+        /* -k: dismiss on any real keypress OR mouse movement (KEY_MOUSE is
+         * just another getch() value once mouse tracking is on, so it falls
+         * right through this same check -- no separate case needed). ERR =
+         * no input this poll; a window resize is neither, so keep blooming
+         * and just re-layout. */
         if (opt_anykey && ch != ERR && ch != KEY_RESIZE)
             break;
         switch (ch) {
@@ -1919,6 +1940,25 @@ int main(int argc, char **argv)
         update_petals(1.0 / opt_fps);
         draw();
         napms(1000 / opt_fps);
+    }
+
+    /* Undo the raw mouse-tracking escapes from startup -- leaving them on
+     * would make every mouse movement after we exit inject escape garbage
+     * into the shell (or whatever program the terminal returns to). */
+    if (opt_anykey) {
+        mousemask(0, NULL);
+        fputs("\033[?1003l\033[?1006l", stdout);
+        fflush(stdout);
+        /* The mouse movement that just dismissed us is still in flight: the
+         * terminal keeps emitting motion reports for it for a few more ms
+         * after we've already sent the disable sequence above, and those
+         * trailing reports land on whatever reads the terminal next (the
+         * shell) instead of us -- it has no mouse-protocol parser, so it
+         * just echoes the raw bytes as literal text. Drain both ncurses'
+         * own input queue and the kernel tty buffer so none of that leaks
+         * through before we hand the terminal back. */
+        flushinp();
+        tcflush(STDIN_FILENO, TCIFLUSH);
     }
 
     endwin();

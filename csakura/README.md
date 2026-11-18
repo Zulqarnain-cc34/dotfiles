@@ -15,20 +15,24 @@
 
 This is a screensaver for your terminal. Leave the prompt sitting there for a few
 seconds and a cherry-blossom tree grows in, petals drifting down on a little
-breeze. Touch any key and it's gone, right back to where you were. That's the
-whole idea — something pretty to come back to, that never gets in your way.
+breeze. Touch any key, or just move the mouse over the terminal, and it's gone,
+right back to where you were — the same idle-dismiss behaviour a desktop
+screensaver uses. That's the whole idea — something pretty to come back to,
+that never gets in your way.
 
 ## What happens, step by step
 
-- **You stop typing.** After **20 seconds** of an empty, idle prompt, the tree
+- **You stop typing.** After **60 seconds** of an empty, idle prompt, the tree
   blooms on its own.
 - **It keeps you company.** While it's up, every **45 seconds** it grows a fresh
   tree in a new shape (upright, bushy, or weeping) and a new colour — so it slowly
   drifts through all of them instead of sitting still.
 - **Each time starts on a new colour.** First bloom is pink (sakura), the next is
   rose, then blush… marching through all 15 colours and looping back around.
-- **Any key brings you back.** Press anything — a letter, space, an arrow — and it
-  vanishes instantly. That key just closes it; it isn't typed into your prompt.
+- **Any key, or just the mouse, brings you back.** Press anything — a letter,
+  space, an arrow — or move the mouse over the terminal window, and it vanishes
+  instantly. That input just closes it; a key isn't typed into your prompt and
+  a mouse move isn't clicked anywhere.
 
 It only ever shows up at an **empty prompt**. If you're halfway through typing a
 command, or something's actually running, it leaves you alone.
@@ -40,7 +44,7 @@ really only two dials:
 
 | You want to… | Change this |
 |---|---|
-| Bloom sooner / later | `TMOUT=20` — seconds of idle before it appears |
+| Bloom sooner / later | `TMOUT=60` — seconds of idle before it appears |
 | Drift faster / slower | `-C 45` — seconds between each new tree while it's up |
 | Freeze on one tree | `-C 0` (or remove it) |
 | Turn it off for now | `TMOUT=0` in the current shell |
@@ -73,4 +77,4 @@ ink — and the tree shapes are `yoshino` (upright), `bush` (full), and `shidare
   binary-free); `setup.sh` runs `csakura/build.sh` to compile the vendored source into
   `csakura/csakura`, which a `bash_scripts/` symlink puts first on your `PATH`. The
   `-k`/`-C` behaviour only exists in this build, so if a plain `csakura` from the AUR
-  ever shadowed it, the any-key-close and drift would stop — keep this one ahead on `PATH`.
+  ever shadowed it, the any-key/mouse-close and drift would stop — keep this one ahead on `PATH`.
