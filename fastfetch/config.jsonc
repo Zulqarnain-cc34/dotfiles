@@ -56,7 +56,7 @@
             "key": "\u001b[97m│\u001b[33m  Packages",
             "keyColor": "33",
             "keyWidth": 16,
-            "text": "echo \"$(pacman -Qnq | wc -l) (pacman), $(pacman -Qmq | wc -l) (yay)\""
+            "text": "bash \"$HOME/.config/fastfetch/scripts/pkgcount.sh\""
         },
         {
             "type": "shell",
