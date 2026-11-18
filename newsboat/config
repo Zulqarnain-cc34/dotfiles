@@ -64,6 +64,10 @@ macro r set browser "tuir -l %u" ; open-in-browser ; set browser "${HOME}/bin/ba
 # Media Player (mpv)
 macro p set browser "mpv %u &> /dev/null &" ; open-in-browser ; set browser "${HOME}/bin/bash_scripts/urlportal.sh"
 
+# Download the video for offline viewing (yt-dlp), same output dir as
+# bash_scripts/scripts/youtube-dl_copy.sh
+macro d set browser "$TERMINAL -e yt-dlp -o '${HOME}/Videos/videos/%(title)s.%(ext)s' %u" ; open-in-browser ; set browser "${HOME}/bin/bash_scripts/urlportal.sh"
+
 # YouTube comments/Search via Pipe-Viewer
 macro c set browser "pipe-viewer --comments=\"%u\"" ; open-in-browser ; set browser "${HOME}/bin/bash_scripts/urlportal.sh"
 macro s set browser "pipe-viewer" ; open-in-browser ; set browser "${HOME}/bin/bash_scripts/urlportal.sh"
