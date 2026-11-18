@@ -12,7 +12,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <termios.h>
 #include <time.h>
 #include <unistd.h>
 
@@ -1863,19 +1862,6 @@ int main(int argc, char **argv)
         int ch = getch();
         if (ch == 'q' || ch == 'Q' || ch == 27)
             break;
-        if (ch == KEY_MOUSE) {
-            /* Consume the mouse event through ncurses' own API right here,
-             * rather than leaving it to drain implicitly at exit. Without
-             * this, ncurses can be left believing a mouse event is still
-             * "pending" internally, which on some terminals holds up the
-             * NEXT raw escape byte from reaching getch() as a recognized
-             * KEY_MOUSE at all -- it would just fall through as individual
-             * unrecognized bytes instead. Clearing it immediately, at the
-             * exact point the event is executed, keeps ncurses' mouse state
-             * machine clean regardless of terminal. */
-            MEVENT ev;
-            getmouse(&ev);
-        }
         /* -k: dismiss on any real keypress OR mouse movement (KEY_MOUSE is
          * just another getch() value once mouse tracking is on, so it falls
          * right through this same check -- no separate case needed). ERR =
@@ -1957,21 +1943,14 @@ int main(int argc, char **argv)
 
     /* Undo the raw mouse-tracking escapes from startup -- leaving them on
      * would make every mouse movement after we exit inject escape garbage
-     * into the shell (or whatever program the terminal returns to). */
+     * into the shell (or whatever program the terminal returns to). Also
+     * clear the line: the mouse movement that just dismissed us can still
+     * have a trailing report in flight, and if any of it lands anyway, this
+     * wipes it from view instead of leaving it sitting on the new prompt
+     * line. Output-only -- doesn't touch input handling at all. */
     if (opt_anykey) {
-        mousemask(0, NULL);
-        fputs("\033[?1003l\033[?1006l", stdout);
+        fputs("\033[?1003l\033[?1006l\033[2K\r", stdout);
         fflush(stdout);
-        /* The mouse movement that just dismissed us is still in flight: the
-         * terminal keeps emitting motion reports for it for a few more ms
-         * after we've already sent the disable sequence above, and those
-         * trailing reports land on whatever reads the terminal next (the
-         * shell) instead of us -- it has no mouse-protocol parser, so it
-         * just echoes the raw bytes as literal text. Drain both ncurses'
-         * own input queue and the kernel tty buffer so none of that leaks
-         * through before we hand the terminal back. */
-        flushinp();
-        tcflush(STDIN_FILENO, TCIFLUSH);
     }
 
     endwin();
