@@ -32,30 +32,30 @@
 # "query:All Unread Articles (31-60 days old):unread = \"yes\" and age between 31:60"
 # "query:All Unread Articles (61-90 days old):unread = \"yes\" and age between 61:90"
 
------------------------------
-----------Sports-------------
------------------------------
+# -----------------------------
+# ----------Sports-------------
+# -----------------------------
 https://github.com/trimstray/the-book-of-secret-knowledge/commits/master.atom "~Github: The book of secret knowledge" "Github"
 
 
------------------------------
----------programming---------
------------------------------
+# -----------------------------
+# ---------programming---------
+# -----------------------------
 
 https://thecrazyprogrammer.com/feed "Programming: General" "Programming"
 https://medium.com/feed/better-programming "Programming: General" "Programming"
 
--------------------------
--------YOUTUBE-----------
--------------------------
+# -------------------------
+# -------YOUTUBE-----------
+# -------------------------
 
 https://www.youtube.com/feeds/videos.xml?channel_id=UCXuqSBlHAE6Xw-yeJA0Tunw "~YOUTUBE: Linus Tech Tips" "Youtube"
 https://www.youtube.com/feeds/videos.xml?channel_id=UC8butISFwT-Wl7EV0hUK0BQ "~YOUTUBE: FreeCodeCamp" "Youtube"
 https://www.youtube.com/feeds/videos.xml?channel_id=UCbfYPyITQ-7l4upoX8nvctg "~YOUTUBE: The Two Minute Papers" "Youtube"
 
------------------------------
------------Linux-------------
------------------------------
+# -----------------------------
+# -----------Linux-------------
+# -----------------------------
 
 https://www.linuxjournal.com/node/feed "~Linux-SubReddit: linuxjournal" "Linux-Subreddit"
 https://www.reddit.com/r/linux/.rss "~Linux-Subreddit: linux" "Linux-subreddit"
