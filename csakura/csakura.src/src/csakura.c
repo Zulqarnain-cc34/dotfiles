@@ -12,7 +12,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <termios.h>
 #include <time.h>
 #include <unistd.h>
 
@@ -1944,21 +1943,14 @@ int main(int argc, char **argv)
 
     /* Undo the raw mouse-tracking escapes from startup -- leaving them on
      * would make every mouse movement after we exit inject escape garbage
-     * into the shell (or whatever program the terminal returns to). */
+     * into the shell (or whatever program the terminal returns to). Also
+     * clear the line: the mouse movement that just dismissed us can still
+     * have a trailing report in flight, and if any of it lands anyway, this
+     * wipes it from view instead of leaving it sitting on the new prompt
+     * line. Output-only -- doesn't touch input handling at all. */
     if (opt_anykey) {
-        mousemask(0, NULL);
-        fputs("\033[?1003l\033[?1006l", stdout);
+        fputs("\033[?1003l\033[?1006l\033[2K\r", stdout);
         fflush(stdout);
-        /* The mouse movement that just dismissed us is still in flight: the
-         * terminal keeps emitting motion reports for it for a few more ms
-         * after we've already sent the disable sequence above, and those
-         * trailing reports land on whatever reads the terminal next (the
-         * shell) instead of us -- it has no mouse-protocol parser, so it
-         * just echoes the raw bytes as literal text. Drain both ncurses'
-         * own input queue and the kernel tty buffer so none of that leaks
-         * through before we hand the terminal back. */
-        flushinp();
-        tcflush(STDIN_FILENO, TCIFLUSH);
     }
 
     endwin();
