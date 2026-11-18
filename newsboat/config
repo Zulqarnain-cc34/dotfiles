@@ -9,7 +9,10 @@ unbind-key RIGHT
 unbind-key LEFT
 
 browser "${HOME}/bin/bash_scripts/urlportal.sh"
-feed-sort-order views
+# "views" was never a valid feed-sort-order value (newsboat silently ignored it,
+# leaving feeds unsorted); unreadarticlecount-desc actually surfaces feeds with
+# unread content first.
+feed-sort-order unreadarticlecount-desc
 
 
 # Feed settings
@@ -24,7 +27,7 @@ mark-as-read-on-hover yes
 notify-beep yes
 auto-reload                 yes
 reload-time                 150
-notify-program              "nb-notify"
+notify-program              "~/.newsboat/nb-notify"
 notify-format               "New articles: %d\nTotal unread: %n article(s), %f feed(s)"
 download-retries 4
 download-timeout 120
