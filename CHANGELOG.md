@@ -54,8 +54,7 @@ One entry per day, a few plain bullets on the main thing(s) done. The detailed r
 
 - Added niri as an optional second, Wayland session next to bspwm — with waybar as its status bar and gammastep for night color.
 - Per-workspace random wallpapers that switch automatically via niri's own IPC.
-- Fixed real bugs along the way: wallpapers not switching on workspace change, duplicate wallpaper daemons, waybar label/icon styling issues, a battery module reporting over 100%, and Firefox appearing zoomed in under niri's display scaling.
-- Also added the repo's early security/setup infrastructure: `scripts/bootstrap-secrets.sh`, `scripts/validate.sh`, secrets scanning, and `docs/`.
+- Laid the foundation for the repo's security practices: secret bootstrapping, config validation, and secrets scanning.
 
 ## [2026-05-15]
 
