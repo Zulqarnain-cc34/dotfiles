@@ -24,29 +24,29 @@
         "break",
         {
             "type": "custom",
-            "format": "\u001b[90m╭─ \u001b[1;33msystem\u001b[90m ────────────────────────────────────────────────\u001b[0m"
+            "format": "\u001b[97m╭─ \u001b[1;33msystem\u001b[90m ────────────────────────────────────────────────\u001b[0m"
         },
         {
             "type": "os",
-            "key": "\u001b[90m│\u001b[33m  OS",
+            "key": "\u001b[97m│\u001b[33m  OS",
             "keyColor": "33",
             "keyWidth": 16
         },
         {
             "type": "kernel",
-            "key": "\u001b[90m│\u001b[33m  Kernel",
+            "key": "\u001b[97m│\u001b[33m  Kernel",
             "keyColor": "33",
             "keyWidth": 16
         },
         {
             "type": "uptime",
-            "key": "\u001b[90m│\u001b[33m  Uptime",
+            "key": "\u001b[97m│\u001b[33m  Uptime",
             "keyColor": "33",
             "keyWidth": 16
         },
         {
             "type": "command",
-            "key": "\u001b[90m│\u001b[33m 󱦟 Age",
+            "key": "\u001b[97m│\u001b[33m 󱦟 Age",
             "keyColor": "33",
             "text": "birth_install=$(stat -c %W /); current=$(date +%s); time_progression=$((current - birth_install)); days_difference=$((time_progression / 86400)); echo $days_difference days",
             "keyWidth": 16
@@ -54,84 +54,84 @@
         {
             "type": "packages",
             "format": "{pacman} (pacman)",
-            "key": "\u001b[90m│\u001b[33m  Packages",
+            "key": "\u001b[97m│\u001b[33m  Packages",
             "keyColor": "33",
             "keyWidth": 16
         },
         {
             "type": "shell",
-            "key": "\u001b[90m│\u001b[33m  Shell",
+            "key": "\u001b[97m│\u001b[33m  Shell",
             "keyColor": "33",
             "keyWidth": 16
         },
         {
             "type": "custom",
-            "format": "\u001b[90m╭─ \u001b[1;33mdesktop\u001b[90m ───────────────────────────────────────────────\u001b[0m"
+            "format": "\u001b[97m╭─ \u001b[1;33mdesktop\u001b[90m ───────────────────────────────────────────────\u001b[0m"
         },
         {
             "type": "wm",
-            "key": "\u001b[90m│\u001b[33m  WM",
+            "key": "\u001b[97m│\u001b[33m  WM",
             "keyColor": "33",
             "keyWidth": 16
         },
         {
             "type": "terminal",
-            "key": "\u001b[90m│\u001b[33m  Terminal",
+            "key": "\u001b[97m│\u001b[33m  Terminal",
             "keyColor": "33",
             "keyWidth": 16
         },
         {
             "type": "display",
-            "key": "\u001b[90m│\u001b[33m  Display",
+            "key": "\u001b[97m│\u001b[33m  Display",
             "keyColor": "33",
             "keyWidth": 16
         },
         {
             "type": "custom",
-            "format": "\u001b[90m╭─ \u001b[1;33mhardware\u001b[90m ──────────────────────────────────────────────\u001b[0m"
+            "format": "\u001b[97m╭─ \u001b[1;33mhardware\u001b[90m ──────────────────────────────────────────────\u001b[0m"
         },
         {
             "type": "cpu",
             "format": "{1}",
-            "key": "\u001b[90m│\u001b[33m  CPU",
+            "key": "\u001b[97m│\u001b[33m  CPU",
             "keyColor": "33",
             "keyWidth": 16
         },
         {
             "type": "gpu",
             "format": "{2}",
-            "key": "\u001b[90m│\u001b[33m  GPU",
+            "key": "\u001b[97m│\u001b[33m  GPU",
             "keyColor": "33",
             "keyWidth": 16
         },
         {
             "type": "gpu",
             "format": "{3}",
-            "key": "\u001b[90m│\u001b[33m  GPU",
+            "key": "\u001b[97m│\u001b[33m  GPU",
             "keyColor": "33",
             "keyWidth": 16
         },
         {
             "type": "memory",
-            "key": "\u001b[90m│\u001b[33m 󰍛 Memory",
+            "key": "\u001b[97m│\u001b[33m 󰍛 Memory",
             "keyColor": "33",
             "keyWidth": 16
         },
         {
             "type": "swap",
-            "key": "\u001b[90m│\u001b[33m 󰾴 Swap",
+            "key": "\u001b[97m│\u001b[33m 󰾴 Swap",
             "keyColor": "33",
             "keyWidth": 16
         },
         {
             "type": "disk",
-            "key": "\u001b[90m│\u001b[33m  Disk",
+            "key": "\u001b[97m│\u001b[33m  Disk",
             "keyColor": "33",
             "keyWidth": 16
         },
         {
             "type": "custom",
-            "format": "\u001b[90m╰─────────────────────────────────────────────────────────\u001b[0m"
+            "format": "\u001b[97m╰\u001b[90m─────────────────────────────────────────────────────────\u001b[0m"
         },
         "break",
         {
