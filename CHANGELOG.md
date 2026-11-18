@@ -5,6 +5,13 @@ All notable changes to this dotfiles repo are documented here.
 Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).  
 Versions are dated milestones, not semver releases (this is a personal config repo).
 
+## [2026-11-18] — Today's session, in short
+
+- Gave **fastfetch** a brand new look — sections, colors, icons, a proper font, and a working package count.
+- Did a full **newsboat** audit and fixed what was broken (notifications, bookmarking, a few dead feeds).
+- Added a **csakura** feature: the screensaver now dismisses on mouse movement too, not just a keypress.
+- Set up a proper **GitHub workflow**: `develop`/`main` branches, and automatic account switching between profiles.
+
 ## [2026-11-18] — fastfetch redesign, SauceCodePro font, gh multi-account (branch: `develop`, PRs #13–#15 merged to `main`)
 
 ### Added
