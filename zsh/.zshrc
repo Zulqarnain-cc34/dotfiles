@@ -200,6 +200,14 @@ if command -v csakura >/dev/null 2>&1; then
         local pal=$_csakura_palettes[$(( i % n + 1 ))]
         print -r -- $(( (i + 1) % n )) >| $statef 2>/dev/null
         $_csakura_base -c $pal
+        # Safety net: csakura disables its own raw mouse-tracking escapes on
+        # exit, but the mouse movement that dismissed it can still have a
+        # trailing report or two in flight when it does. Clear mouse mode and
+        # drop any stray bytes here too, so a leftover report can never echo
+        # as literal garbage at the prompt, regardless of how csakura exited.
+        print -n '\033[?1003l\033[?1006l'
+        local _junk
+        while read -t 0.01 -k 1 -u 0 _junk 2>/dev/null; do :; done
         zle && zle reset-prompt
     }
 fi
