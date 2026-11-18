@@ -1863,6 +1863,19 @@ int main(int argc, char **argv)
         int ch = getch();
         if (ch == 'q' || ch == 'Q' || ch == 27)
             break;
+        if (ch == KEY_MOUSE) {
+            /* Consume the mouse event through ncurses' own API right here,
+             * rather than leaving it to drain implicitly at exit. Without
+             * this, ncurses can be left believing a mouse event is still
+             * "pending" internally, which on some terminals holds up the
+             * NEXT raw escape byte from reaching getch() as a recognized
+             * KEY_MOUSE at all -- it would just fall through as individual
+             * unrecognized bytes instead. Clearing it immediately, at the
+             * exact point the event is executed, keeps ncurses' mouse state
+             * machine clean regardless of terminal. */
+            MEVENT ev;
+            getmouse(&ev);
+        }
         /* -k: dismiss on any real keypress OR mouse movement (KEY_MOUSE is
          * just another getch() value once mouse tracking is on, so it falls
          * right through this same check -- no separate case needed). ERR =
