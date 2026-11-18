@@ -21,7 +21,6 @@ alias trr='trash-restore'
 alias trm='trash-rm'
 # navigation
 alias b='cd -'
-alias gh='cd ~'
 alias gv.='cd ~/Videos'
 alias gC.='cd ~/etc/Coding'
 alias gb.='cd ~/bin'
