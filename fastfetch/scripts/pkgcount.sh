@@ -1,25 +1,48 @@
 #!/usr/bin/env bash
 # Print installed package counts as "N (pacman), M (yay)" for fastfetch.
 #
-# Splitting native (pacman -Qn) from foreign/AUR (pacman -Qm) needs a sync-db
-# comparison (~0.35s) -- too slow to ever block a render on. So always print
-# whatever is cached immediately, even if it's one pacman transaction stale,
-# and refresh the cache in the background for next time. Only the very first
-# run ever (no cache file at all) has to compute synchronously once.
+# pacman -Qm (foreign/AUR) is slow (~0.37s): it cross-references every
+# installed package against every synced repo database, from scratch, on
+# every call. The set of repo-known package names only actually changes on a
+# real sync (pacman -Sy/-Syu) though -- far less often than individual
+# installs -- so cache that list too, keyed to the sync db's own mtime. Once
+# it exists, the foreign count becomes a local comparison (pacman -Qq + comm
+# against the cached names), no more slow pacman -Qm calls at all, even for
+# the background refresh below.
 cache="${XDG_CACHE_HOME:-$HOME/.cache}/fastfetch-pkgcount"
-db=/var/lib/pacman/local
+names_cache="${XDG_CACHE_HOME:-$HOME/.cache}/fastfetch-pkgcount-reponames"
+local_db=/var/lib/pacman/local
+sync_db=/var/lib/pacman/sync
 
-compute_and_cache() {
-    local total aur
-    total=$(pacman -Qq 2>/dev/null | wc -l)
-    aur=$(pacman -Qmq 2>/dev/null | wc -l)
+refresh_repo_names() {
+    pacman -Slq 2>/dev/null | sort -u >| "$names_cache"
+}
+
+# Only safe to call once names_cache is confirmed fresh.
+compute_fast() {
+    local installed total aur
+    installed=$(pacman -Qq 2>/dev/null | sort -u)
+    total=$(wc -l <<< "$installed")
+    aur=$(comm -23 <(printf '%s\n' "$installed") "$names_cache" | wc -l)
     printf '%s (pacman), %s (yay)' "$(( total - aur ))" "$aur" >| "$cache"
 }
 
 if [[ -s "$cache" ]]; then
     cat "$cache"
-    [[ "$db" -nt "$cache" ]] && (compute_and_cache &) 2>/dev/null
+    if [[ "$local_db" -nt "$cache" ]]; then
+        (
+            [[ -s "$names_cache" && ! "$sync_db" -nt "$names_cache" ]] || refresh_repo_names
+            compute_fast
+        ) &
+    fi
 else
-    compute_and_cache
+    # Bootstrap: need a synchronous answer right now. Plain pacman -Qm
+    # (~0.37s) is faster than building the repo-names list from scratch
+    # (~2.4s) would be, so use it once and build the fast-path cache in the
+    # background for every call after this one.
+    total=$(pacman -Qq 2>/dev/null | wc -l)
+    aur=$(pacman -Qmq 2>/dev/null | wc -l)
+    printf '%s (pacman), %s (yay)' "$(( total - aur ))" "$aur" >| "$cache"
     cat "$cache"
+    ( [[ -s "$names_cache" ]] || refresh_repo_names ) &
 fi
