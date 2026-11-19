@@ -10,5 +10,10 @@ feed_title="$4"
 bookmarks="$HOME/.newsboat/bookmarks.txt"
 printf '%s\t%s\t%s\t%s\t%s\n' "$(date '+%Y-%m-%d %H:%M')" "$url" "$title" "$description" "$feed_title" >> "$bookmarks"
 
-notify-send "🔖 Bookmarked" "${title:-$url}" --icon=bookmark-new 2>/dev/null
+(
+    choice=$(dunstify -w -t 15000 -A "default,Open link" --icon=bookmark-new \
+        "🔖 Bookmarked" "${title:-$url}" 2>/dev/null)
+    [ "$choice" = "default" ] && xdg-open "$url" 2>/dev/null
+) &
+disown
 echo "Bookmarked: ${title:-$url}"

@@ -1,5 +1,10 @@
-#!/bin/sh
+#!/bin/bash
 # Sends a notification when a torrent is completed in transmission
 # Signals an update to the bar torrent module
 
-notify-send "Transmission-daemon" "$TR_TORRENT_NAME has completely downloaded" 
+(
+    choice=$(dunstify -w -t 15000 -A "default,Open folder" \
+        "Transmission-daemon" "$TR_TORRENT_NAME has completely downloaded")
+    [ "$choice" = "default" ] && $TERMINAL -e yazi "$TR_TORRENT_DIR"
+) &
+disown
