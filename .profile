@@ -72,8 +72,10 @@ if [ -d "$HOME/bin/binaries" ]; then
     PATH="$PATH:$HOME/bin/binaries"
 fi
 
+# Prepend, not append: see the matching note in zsh/.zshenv -- csakura's -k
+# safety guarantee depends on this build always winning on PATH.
 if [ -d "$HOME/bin/bash_scripts" ]; then
-    PATH="$PATH:$HOME/bin/bash_scripts"
+    PATH="$HOME/bin/bash_scripts:$PATH"
 fi
 
 if [ -d "$NPM_PACKAGES/bin" ]; then
