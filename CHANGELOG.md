@@ -3,9 +3,10 @@
 Notable changes to this repo, one entry per day — a simpler, human variant of [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), no categories or semver.
 The detailed record lives in the git commit messages — see `git log` when you need that.
 
-## [2026-11-19] — dunst theming overhaul
+## [2026-11-19] — dunst theming overhaul, polybar volume/brightness OSD
 
 - Gave **dunst** a real visual overhaul, fixing a few long-standing bugs along the way and landing a personalized theme verified against real dotfiles.
+- Added volume and brightness **OSD notifications** (media keys and polybar scroll/click), and fixed a stale permission bug that had silently broken polybar's own brightness control.
 
 ## [2026-11-18] — fastfetch theming, newsboat audit, csakura mouse dismiss, gh workflow
 
