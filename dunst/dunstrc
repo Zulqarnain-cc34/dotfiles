@@ -15,12 +15,14 @@
     indicate_hidden = yes
     transparency = 0
     separator_height = 2
-    padding = 20
-    horizontal_padding = 20
+    padding = 16
+    horizontal_padding = 16
     # frame_width = 0 disables the frame outright, which made the per-urgency
     # frame_color below invisible no matter what it was set to.
     frame_width = 2
-    frame_color = "#aaaaaa"
+    # Palette matches the live kitty config (Tokyo Night Storm) -- the one
+    # palette actually seen all day, and already dunst's font source.
+    frame_color = "#414868"
     gap_size = 4
     separator_color = frame
     sort = yes
@@ -87,7 +89,7 @@
     # gnome-icon-theme was dropped from Arch; use dunst's recursive lookup (1.9+)
     # against an installed theme instead of hardcoded 16x16 gnome paths.
     enable_recursive_icon_lookup = true
-    icon_theme = "Adwaita, hicolor"
+    icon_theme = "Papirus-Dark, Adwaita, hicolor"
     icon_corners = all
 
     sticky_history = yes
@@ -131,16 +133,16 @@
 
 [urgency_low]
 timeout = 2
-background = "#131313"
-foreground = "#d6dbe5"
-frame_color = "#4a9e3a"
+background = "#24283b"
+foreground = "#c0caf5"
+frame_color = "#73daca"
 [urgency_normal]
 timeout = 5
-background = "#131313"
-foreground = "#d6dbe5"
-frame_color = "#2a84d2"
+background = "#24283b"
+foreground = "#c0caf5"
+frame_color = "#7aa2f7"
 [urgency_critical]
 timeout = 0
-background = "#131313"
-foreground = "#d6dbe5"
-frame_color = "#f81118"
+background = "#24283b"
+foreground = "#c0caf5"
+frame_color = "#f7768e"
