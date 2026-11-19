@@ -20,9 +20,8 @@
     # frame_width = 0 disables the frame outright, which made the per-urgency
     # frame_color below invisible no matter what it was set to.
     frame_width = 2
-    # Palette matches the live kitty config (Tokyo Night Storm) -- the one
-    # palette actually seen all day, and already dunst's font source.
-    frame_color = "#414868"
+    # Palette matches polybar/colors.ini (Atom One Dark).
+    frame_color = "#3F5360"
     gap_size = 4
     separator_color = frame
     sort = yes
@@ -133,16 +132,16 @@
 
 [urgency_low]
 timeout = 2
-background = "#24283b"
-foreground = "#c0caf5"
-frame_color = "#73daca"
+background = "#282C34"
+foreground = "#ABB2BF"
+frame_color = "#98C379"
 [urgency_normal]
 timeout = 5
-background = "#24283b"
-foreground = "#c0caf5"
-frame_color = "#7aa2f7"
+background = "#282C34"
+foreground = "#ABB2BF"
+frame_color = "#61AFEF"
 [urgency_critical]
 timeout = 0
-background = "#24283b"
-foreground = "#c0caf5"
-frame_color = "#f7768e"
+background = "#282C34"
+foreground = "#ABB2BF"
+frame_color = "#e06c75"
