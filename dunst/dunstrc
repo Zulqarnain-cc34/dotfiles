@@ -24,7 +24,7 @@
 
     ### Text ###
 
-    font = "Terminus (TTF) 12"
+    font = "SauceCodePro Nerd Font 11"
     line_height = 0
 
     # Possible values are:
@@ -84,6 +84,7 @@
     # against an installed theme instead of hardcoded 16x16 gnome paths.
     enable_recursive_icon_lookup = true
     icon_theme = "Adwaita, hicolor"
+    icon_corners = all
 
     sticky_history = yes
     history_length = 20
@@ -94,7 +95,9 @@
     always_run_script = true
     title = Dunst
     class = Dunst
-    corner_radius = 0
+    corner_radius = 10
+    corners = all
+    progress_bar_corners = all
     ignore_dbusclose = false
 
     ### mouse
@@ -126,7 +129,7 @@
 timeout = 2
 background = "#131313"
 foreground = "#d6dbe5"
-frame_color = "#2a84d2"
+frame_color = "#4a9e3a"
 [urgency_normal]
 timeout = 5
 background = "#131313"
