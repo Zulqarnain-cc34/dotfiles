@@ -27,7 +27,7 @@ The detailed record lives in the git commit messages — see `git log` when you 
 
 - Updated **Neovim**'s plugin lockfile, refreshed the **polybar** demo image, and cleaned up a few unused aliases.
 
-## [2026-11-14] — csakura screensaver, README credits, desktop-stack modernization
+## [2026-11-14] — csakura screensaver, README credits, desktop-stack modernization, alacritty/kitty fixes
 
 - Added the **csakura** cherry-blossom screensaver as a brand new feature.
 - Reworked the main **README**'s credits into a proper avatar grid after a full attribution audit.
@@ -56,13 +56,13 @@ The detailed record lives in the git commit messages — see `git log` when you 
 
 - Fixed broken shell and file-manager tools, cleaned up the **X11** stack, modernized **Neovim**, and added install docs/infrastructure.
 
-## [2026-05-23] — Niri (Wayland) session added alongside bspwm
+## [2026-05-23] — Niri (Wayland) session added, security hardening foundations
 
 - Added **niri** as an optional second, Wayland session next to **bspwm** — with **waybar** as its status bar and **gammastep** for night color.
 - Per-workspace random wallpapers that switch automatically via **niri**'s own IPC.
 - Laid the foundation for the repo's security practices: secret bootstrapping, config validation, and secrets scanning.
 
-## [2026-05-15]
+## [2026-05-15] — Config tracking expanded, project docs added
 
 *This changelog starts here — the earliest entry on record.*
 
