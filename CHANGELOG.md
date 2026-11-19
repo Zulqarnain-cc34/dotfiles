@@ -5,8 +5,10 @@ The detailed record lives in the git commit messages — see `git log` when you 
 
 ## [2026-11-19] — dunst theming overhaul, polybar OSD
 
-- Gave **dunst** a real visual overhaul, fixing a few long-standing bugs along the way, landing a personalized theme verified against real dotfiles, and adding OSD-style volume/brightness notifications.
-- Rewired **polybar**'s volume and brightness modules to trigger those notifications on scroll/click, and fixed a stale permission bug that had silently broken its own brightness control.
+- Gave **dunst** a real visual overhaul: a personalized theme, OSD notifications, a do-not-disturb toggle, and clickable action buttons.
+- Rewired **polybar**'s volume and brightness controls to work with the new OSD, fixing a stale permission bug along the way.
+- Rewrote **CLAUDE.md** for clarity, tightening the wording throughout.
+- Fixed **fastfetch**'s package-count render blocking.
 
 ## [2026-11-18] — fastfetch theming, newsboat audit, csakura mouse dismiss, gh workflow
 
