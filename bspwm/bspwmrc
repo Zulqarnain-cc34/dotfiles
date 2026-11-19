@@ -79,6 +79,10 @@ xmodmap "$HOME/.Xmodmap" &
 # known cause elsewhere is a suspend/resume cycle resetting it). Watch for
 # that and reassert it on wake, instead of only setting it once at login.
 pgrep -f "xset-repeat-watch.sh" >/dev/null || "$HOME/bin/bash_scripts/xset-repeat-watch.sh" &
+# The slowdown has also been reported happening randomly, unrelated to
+# suspend/resume -- log every real change with a timestamp so the next
+# occurrence has actual evidence instead of another guess.
+pgrep -f "xset-repeat-logger.sh" >/dev/null || "$HOME/bin/bash_scripts/xset-repeat-logger.sh" &
 [ -x "$HOME/bin/bash_scripts/random-wallpaper.sh" ] && "$HOME/bin/bash_scripts/random-wallpaper.sh" &
 [ -x "$HOME/.config/polybar/launch.sh" ] && "$HOME/.config/polybar/launch.sh" &
 # Warm fastfetch's package-count cache now, so the first terminal of the
