@@ -7,7 +7,7 @@ The detailed record lives in the git commit messages — see `git log` when you 
 
 - Gave **dunst** a real visual overhaul: a personalized theme, OSD notifications, a do-not-disturb toggle, and clickable action buttons.
 - Rewired **polybar**'s volume and brightness controls to work with the new OSD, fixing a stale permission bug along the way.
-- Tightened **CLAUDE.md** to under half its original length.
+- Rewrote **CLAUDE.md** for clarity.
 
 ## [2026-11-18] — fastfetch theming, newsboat audit, csakura mouse dismiss, gh workflow
 
