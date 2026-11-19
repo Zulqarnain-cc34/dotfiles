@@ -17,7 +17,7 @@ The detailed record lives in the git commit messages — see `git log` when you 
 
 ## [2026-11-16] — csakura build-on-setup, small reliability fixes
 
-- Made csakura build itself from source during setup instead of shipping a committed binary.
+- Made **csakura** build itself from source during setup instead of shipping a committed binary.
 - A batch of small reliability fixes: csakura's idle timeout, lf's preview columns, fastfetch's package count, and more robust polybar/wallpaper restarts.
 
 ## [2026-11-15] — Light maintenance
