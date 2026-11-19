@@ -217,7 +217,18 @@ if command -v csakura >/dev/null 2>&1; then
         local n=$#_csakura_palettes
         local pal=$_csakura_palettes[$(( i % n + 1 ))]
         print -r -- $(( (i + 1) % n )) >| $statef 2>/dev/null
+        # Pause dunst while the screensaver is up so a notification can't pop
+        # over it; restore whatever pause level was active before (so a manual
+        # DND the user had already set isn't clobbered back to unpaused).
+        local _prior_pause_level
+        if command -v dunstctl >/dev/null 2>&1; then
+            _prior_pause_level=$(dunstctl get-pause-level 2>/dev/null)
+            dunstctl set-pause-level 99 2>/dev/null
+        fi
         $_csakura_base -c $pal
+        if command -v dunstctl >/dev/null 2>&1; then
+            dunstctl set-pause-level "${_prior_pause_level:-0}" 2>/dev/null
+        fi
         _csakura_clear_mouse
         zle && zle reset-prompt
     }
