@@ -22,7 +22,7 @@ The detailed record lives in the git commit messages — see `git log` when you 
 
 ## [2026-11-15] — Light maintenance
 
-- Updated Neovim's plugin lockfile, refreshed the polybar demo image, and cleaned up a few unused aliases.
+- Updated **Neovim**'s plugin lockfile, refreshed the **polybar** demo image, and cleaned up a few unused aliases.
 
 ## [2026-11-14] — csakura screensaver, README credits, desktop-stack modernization
 
