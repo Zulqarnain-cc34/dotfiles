@@ -5,7 +5,7 @@ The detailed record lives in the git commit messages — see `git log` when you 
 
 ## [2026-11-18] — Today's session, in short
 
-- Gave **fastfetch** a brand new look — sections, colors, icons, a proper font, and a working package count.
+- Gave **fastfetch** a brand new look — sections, colors, icons, a proper font, a working package count, and a second color theme.
 - Did a full **newsboat** audit and fixed what was broken (notifications, bookmarking, a few dead feeds).
 - Added a **csakura** feature: the screensaver now dismisses on mouse movement too, not just a keypress.
 - Set up a proper **GitHub workflow**: `develop`/`main` branches, and automatic account switching between profiles.
