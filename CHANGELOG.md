@@ -51,19 +51,19 @@ The detailed record lives in the git commit messages — see `git log` when you 
 
 ## [2026-11-09] — First modernization push
 
-- Fixed broken shell and file-manager tools, cleaned up the X11 stack, modernized Neovim, and added install docs/infrastructure.
+- Fixed broken shell and file-manager tools, cleaned up the **X11** stack, modernized **Neovim**, and added install docs/infrastructure.
 
 ## [2026-05-23] — Niri (Wayland) session added alongside bspwm
 
-- Added niri as an optional second, Wayland session next to bspwm — with waybar as its status bar and gammastep for night color.
-- Per-workspace random wallpapers that switch automatically via niri's own IPC.
+- Added **niri** as an optional second, Wayland session next to **bspwm** — with **waybar** as its status bar and **gammastep** for night color.
+- Per-workspace random wallpapers that switch automatically via **niri**'s own IPC.
 - Laid the foundation for the repo's security practices: secret bootstrapping, config validation, and secrets scanning.
 
 ## [2026-05-15]
 
 *This changelog starts here — the earliest entry on record.*
 
-- Started tracking a few more config files (newsboat, transmission, inputrc, twitch notifier) and added project documentation.
+- Started tracking a few more config files (**newsboat**, **transmission**, **inputrc**, **twitch notifier**) and added project documentation.
 
 ## Notes
 
