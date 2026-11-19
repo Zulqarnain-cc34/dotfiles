@@ -25,11 +25,7 @@ case "${2:-b}" in
         ;;
 esac
 
-[ -z "$channel" ] && channel=$(twitchnotifier -c $user -n | perl \
-    -MHTML::Entities -pe 'encode_entities($_);' | rofi \
-    -theme-str '#window { width: 1000; }' -dmenu -markup-rows -i \
-    -p "" | grep -Po '^.+?(?=\:)')
-[ -z "$channel" ] && exit
+[ -z "$channel" ] && echo "You should set a channel in ~/.config/rofi-twitch/settings." && exit
 
 [[ -z $player ]] && player=mpv
 

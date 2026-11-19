@@ -3,6 +3,10 @@
 Notable changes to this repo, one entry per day — a simpler, human variant of [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), no categories or semver.
 The detailed record lives in the git commit messages — see `git log` when you need that.
 
+## [2026-11-19] — dunst theming overhaul
+
+- Gave **dunst** a real visual overhaul, fixing a few long-standing bugs along the way and landing a personalized theme verified against real dotfiles.
+
 ## [2026-11-18] — fastfetch theming, newsboat audit, csakura mouse dismiss, gh workflow
 
 - Gave **fastfetch** a brand new look — sections, colors, icons, a proper font, a working package count, and a second color theme.
