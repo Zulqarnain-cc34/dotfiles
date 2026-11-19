@@ -33,8 +33,8 @@ The detailed record lives in the git commit messages — see `git log` when you 
 
 ## [2026-11-13] — yazi/lf docs finished, full Neovim modernization
 
-- Finished the yazi and lf documentation, with more real bugs found and fixed along the way (archive handling, bulk rename, dead keybindings).
-- Did a full Neovim modernization: native LSP, Tree-sitter on the main branch, a cleaned-up plugin list, and a rewritten README.
+- Finished the **yazi** and **lf** documentation, with more real bugs found and fixed along the way (archive handling, bulk rename, dead keybindings).
+- Did a full **Neovim** modernization: native LSP, Tree-sitter on the main branch, a cleaned-up plugin list, and a rewritten README.
 
 ## [2026-11-12] — Security hardening, deep yazi/lf/ranger audit
 
