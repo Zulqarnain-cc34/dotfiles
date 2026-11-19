@@ -26,10 +26,10 @@ The detailed record lives in the git commit messages — see `git log` when you 
 
 ## [2026-11-14] — csakura screensaver, README credits, desktop-stack modernization
 
-- Added the csakura cherry-blossom screensaver as a brand new feature.
-- Reworked the main README's credits into a proper avatar grid after a full attribution audit.
-- Modernized bspwm, sxhkd, picom, polybar, dunst, and rofi — fixed deprecated config options and cleared out dead files across the board.
-- Fixed image-preview bugs in alacritty and kitty.
+- Added the **csakura** cherry-blossom screensaver as a brand new feature.
+- Reworked the main **README**'s credits into a proper avatar grid after a full attribution audit.
+- Modernized **bspwm**, **sxhkd**, **picom**, **polybar**, **dunst**, and **rofi** — fixed deprecated config options and cleared out dead files across the board.
+- Fixed image-preview bugs in **alacritty** and **kitty**.
 
 ## [2026-11-13] — yazi/lf docs finished, full Neovim modernization
 
