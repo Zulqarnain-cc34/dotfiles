@@ -21,7 +21,7 @@ status() {
         icon=$ICON_HIGH
         (( vol < 60 )) && icon=$ICON_MED
         (( vol < 30 )) && icon=$ICON_LOW
-        printf '%%{F#%s}%s%%{F-} %s%%%%\n' "$BLUE" "$icon" "$vol"
+        printf '%%{F#%s}%s%%{F-} %s%%\n' "$BLUE" "$icon" "$vol"
     fi
 }
 
