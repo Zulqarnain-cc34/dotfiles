@@ -7,12 +7,12 @@
     # `geometry` was removed in dunst 1.7; split into width/height/origin/offset.
     # Old "500x5-30+50" = width 500, anchored top-right, 30x50 offset.
     width = 500
-    # shrink = no below means the old fixed height=300 maps to a fixed (300, 300) range.
-    height = (300, 300)
+    # height is a (min, max) range in this dunst version; 300 is just the cap,
+    # notifications shrink to fit their actual content.
+    height = (0, 300)
     origin = "top-right"
     offset = (30, 50)
     indicate_hidden = yes
-    shrink = no
     transparency = 0
     separator_height = 2
     padding = 20
