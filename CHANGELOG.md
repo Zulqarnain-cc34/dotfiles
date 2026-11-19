@@ -9,6 +9,7 @@ The detailed record lives in the git commit messages — see `git log` when you 
 - Rewired **polybar**'s volume and brightness controls to work with the new OSD, fixing a stale permission bug along the way.
 - Rewrote **CLAUDE.md** for clarity, tightening the wording throughout.
 - Fixed **fastfetch**'s package-count render blocking.
+- Added a **bspwm** watch for the keyboard repeat rate randomly slowing down, with a logger to catch the next occurrence.
 
 ## [2026-11-18] — fastfetch theming, newsboat audit, csakura mouse dismiss, gh workflow
 
