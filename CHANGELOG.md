@@ -3,7 +3,7 @@
 Notable changes to this repo, one entry per day — a simpler, human variant of [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), no categories or semver.
 The detailed record lives in the git commit messages — see `git log` when you need that.
 
-## [2026-11-19] — dunst theming overhaul, polybar OSD
+## [2026-11-19] — dunst theming overhaul, polybar OSD, fastfetch and bspwm fixes
 
 - Gave **dunst** a real visual overhaul: a personalized theme, OSD notifications, a do-not-disturb toggle, and clickable action buttons.
 - Rewired **polybar**'s volume and brightness controls to work with the new OSD, fixing a stale permission bug along the way.
