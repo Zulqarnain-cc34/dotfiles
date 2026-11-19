@@ -116,9 +116,13 @@
     # * close_all: Close all notifications.
     # These values can be strung together for each mouse event, and
     # will be executed in sequence.
-    mouse_left_click = close_current
-    mouse_middle_click = do_action, close_current
-    mouse_right_click = close_all
+    # left-click fires the action if there's exactly one (no-ops and just
+    # closes for the vast majority of notifications that have none); right
+    # click dismisses just this one; the old "close everything" power move
+    # moves to middle-click, which goes unused otherwise.
+    mouse_left_click = do_action, close_current
+    mouse_middle_click = close_all
+    mouse_right_click = close_current
 
 # Experimental features that may or may not work correctly. Do not expect them
 # to have a consistent behaviour across releases.
