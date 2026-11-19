@@ -78,7 +78,11 @@ esac
 
 case ":$PATH:" in
   *":$HOME/bin/bash_scripts:"*) ;;
-  *) [ -d "$HOME/bin/bash_scripts" ] && PATH="$PATH:$HOME/bin/bash_scripts" ;;
+  # Prepend, not append: csakura's -k (any key/mouse quits) safety guarantee
+  # depends on our patched build in bash_scripts/ always winning over a
+  # same-named binary elsewhere on PATH (e.g. an AUR csakura in /usr/bin).
+  # Appending put it after /usr/bin, which never actually guaranteed that.
+  *) [ -d "$HOME/bin/bash_scripts" ] && PATH="$HOME/bin/bash_scripts:$PATH" ;;
 esac
 
 export GOPATH="$HOME/go"
