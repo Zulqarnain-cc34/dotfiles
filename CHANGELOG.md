@@ -39,7 +39,7 @@ The detailed record lives in the git commit messages — see `git log` when you 
 ## [2026-11-12] — Security hardening, deep yazi/lf/ranger audit
 
 - Hardened repo security: stopped tracking a secret, removed a committed binary, and locked down the setup script.
-- Did a deep audit of yazi, lf, and ranger — fixed real bugs in archive handling and keybindings, switched image previews to kitty, and wired up several plugins.
+- Did a deep audit of **yazi**, **lf**, and **ranger** — fixed real bugs in archive handling and keybindings, switched image previews to **kitty**, and wired up several plugins.
 
 ## [2026-11-11] — Documentation overhaul
 
