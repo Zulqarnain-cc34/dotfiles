@@ -99,6 +99,10 @@ alt + l
 shift + alt + t
     notifytorrents
 
+# Toggle do-not-disturb (dunst)
+super + shift + n
+    $HOME/bin/bash_scripts/dunst-dnd-toggle.sh
+
 super + {t,r,y,o,w}
     {$TERMINAL,$TERMINAL -e tuir,$HOME/bin/bash_scripts/ytfzf -D,$TERMINAL -e htop, firefox}
 
@@ -122,3 +126,19 @@ Print
 
 shift + Print
     mkdir -p "$HOME/Pictures/screenshots" && maim -s -u "$HOME/Pictures/screenshots/$(date +%Y%m%d-%H%M%S).png"
+
+# Volume / brightness OSD (media keys)
+XF86AudioRaiseVolume
+    $HOME/bin/bash_scripts/volume-osd.sh up
+
+XF86AudioLowerVolume
+    $HOME/bin/bash_scripts/volume-osd.sh down
+
+XF86AudioMute
+    $HOME/bin/bash_scripts/volume-osd.sh mute
+
+XF86MonBrightnessUp
+    $HOME/bin/bash_scripts/brightness-osd.sh up
+
+XF86MonBrightnessDown
+    $HOME/bin/bash_scripts/brightness-osd.sh down
