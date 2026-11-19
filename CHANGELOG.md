@@ -11,7 +11,7 @@ The detailed record lives in the git commit messages — see `git log` when you 
 - Fixed **fastfetch**'s package-count render blocking.
 - Added a **bspwm** keyboard repeat-rate watchdog to monitor a bug.
 
-## [2026-11-18] — fastfetch theme, newsboat audit, csakura fix, gh workflow
+## [2026-11-18] — fastfetch theme, newsboat audit
 
 - Gave **fastfetch** a brand new look — sections, colors, icons, a proper font, a working package count, and a second color theme.
 - Did a full **newsboat** audit and fixed what was broken (notifications, bookmarking, a few dead feeds).
@@ -27,7 +27,7 @@ The detailed record lives in the git commit messages — see `git log` when you 
 
 - Updated **Neovim**'s plugin lockfile, refreshed the **polybar** demo image, and cleaned up a few unused aliases.
 
-## [2026-11-14] — csakura screensaver, README credits, desktop-stack modernization
+## [2026-11-14] — csakura screensaver, desktop-stack modernization
 
 - Added the **csakura** cherry-blossom screensaver as a brand new feature.
 - Reworked the main **README**'s credits into a proper avatar grid after a full attribution audit.
