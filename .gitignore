@@ -39,6 +39,7 @@ mpv/watch_later
 
 # Newsboat
 newsboat/cache.db
+newsboat/bookmarks.txt
 
 .w3m/cookie
 .w3m/history
