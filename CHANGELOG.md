@@ -3,7 +3,7 @@
 Notable changes to this repo, one entry per day — a simpler, human variant of [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), no categories or semver.
 The detailed record lives in the git commit messages — see `git log` when you need that.
 
-## [2026-11-19] — dunst theming overhaul, polybar volume/brightness OSD
+## [2026-11-19] — dunst theming overhaul, polybar OSD
 
 - Gave **dunst** a real visual overhaul, fixing a few long-standing bugs along the way, landing a personalized theme verified against real dotfiles, and adding OSD-style volume/brightness notifications.
 - Rewired **polybar**'s volume and brightness modules to trigger those notifications on scroll/click, and fixed a stale permission bug that had silently broken its own brightness control.
