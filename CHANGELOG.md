@@ -47,7 +47,7 @@ The detailed record lives in the git commit messages — see `git log` when you 
 
 ## [2026-11-10] — Neovim keybinding update
 
-- Small Neovim keybinding fix.
+- Small **Neovim** keybinding fix.
 
 ## [2026-11-09] — First modernization push
 
