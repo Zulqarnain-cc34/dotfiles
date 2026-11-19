@@ -2,25 +2,24 @@
 # Print installed package counts as "N (pacman), M (yay)" for fastfetch.
 #
 # Splitting native (pacman -Qn) from foreign/AUR (pacman -Qm) needs a sync-db
-# comparison (~0.3s), too slow to run on every render. So cache the result and
-# only recompute when it is STALE -- i.e. when the pacman local db changed since
-# the cache was written (a package was installed, removed, or upgraded). Normal
-# renders just cat the cache (instant); the one recompute lands right after a
-# pacman transaction, which is exactly when the count actually changed.
+# comparison (~0.35s) -- too slow to ever block a render on. So always print
+# whatever is cached immediately, even if it's one pacman transaction stale,
+# and refresh the cache in the background for next time. Only the very first
+# run ever (no cache file at all) has to compute synchronously once.
 cache="${XDG_CACHE_HOME:-$HOME/.cache}/fastfetch-pkgcount"
 db=/var/lib/pacman/local
 
-compute() {
+compute_and_cache() {
     local total aur
     total=$(pacman -Qq 2>/dev/null | wc -l)
     aur=$(pacman -Qmq 2>/dev/null | wc -l)
-    printf '%s (pacman), %s (yay)' "$(( total - aur ))" "$aur"
+    printf '%s (pacman), %s (yay)' "$(( total - aur ))" "$aur" >| "$cache"
 }
 
-# Serve the cache only while it is fresh: it must be non-empty AND the pacman db
-# must not be newer than it. Otherwise the cache is stale -> recompute + rewrite.
-if [[ -s "$cache" && ! "$db" -nt "$cache" ]]; then
+if [[ -s "$cache" ]]; then
     cat "$cache"
+    [[ "$db" -nt "$cache" ]] && (compute_and_cache &) 2>/dev/null
 else
-    compute | tee "$cache"
+    compute_and_cache
+    cat "$cache"
 fi
