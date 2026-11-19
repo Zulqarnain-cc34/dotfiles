@@ -145,3 +145,23 @@ timeout = 0
 background = "#282C34"
 foreground = "#ABB2BF"
 frame_color = "#e06c75"
+
+# Rules: see dunstrc(5) RULES. Messages are matched by appname/summary/body/
+# category/desktop_entry/etc, and can override format/urgency/timeout/scripts.
+
+# The do-not-disturb toggle's own confirmation ("DND: ON"/"OFF") needs to show
+# even while paused, or turning DND on would look like the keybind did nothing.
+[dnd_toggle_confirm]
+appname = "dunst"
+override_pause_level = 100
+
+# Background download/torrent notifications shouldn't interrupt -- route them
+# low-urgency and skip the popup, but keep them in history.
+# notifytorrents calls plain `notify-send` (appname is generically
+# "notify-send" for every script that does that), so match on its summary
+# ("Torrents") instead -- matching appname here would silence everything.
+[silent_downloads]
+appname = "notify-send"
+summary = "Torrents"
+urgency = low
+skip_display = true

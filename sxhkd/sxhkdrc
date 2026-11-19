@@ -99,6 +99,10 @@ alt + l
 shift + alt + t
     notifytorrents
 
+# Toggle do-not-disturb (dunst)
+super + shift + n
+    $HOME/bin/bash_scripts/dunst-dnd-toggle.sh
+
 super + {t,r,y,o,w}
     {$TERMINAL,$TERMINAL -e tuir,$HOME/bin/bash_scripts/ytfzf -D,$TERMINAL -e htop, firefox}
 
