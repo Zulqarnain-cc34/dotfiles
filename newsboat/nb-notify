@@ -2,5 +2,10 @@
 # A script for displaying newsboat notifications via libnotify
 
 NBINFO=$1
-notify-send "Newsboat - Feeds updated" "$NBINFO" --icon=internet-news-reader
+(
+    choice=$(dunstify -w -t 15000 -A "default,Open newsboat" --icon=internet-news-reader \
+        "Newsboat - Feeds updated" "$NBINFO")
+    [ "$choice" = "default" ] && $TERMINAL -e newsboat
+) &
+disown
 
