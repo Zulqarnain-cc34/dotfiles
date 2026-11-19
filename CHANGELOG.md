@@ -43,7 +43,7 @@ The detailed record lives in the git commit messages — see `git log` when you 
 
 ## [2026-11-11] — Documentation overhaul
 
-- Wrote proper READMEs for almost every tool in the repo, with logos and hero headers.
+- Wrote proper **README**s for almost every tool in the repo, with logos and hero headers.
 
 ## [2026-11-10] — Neovim keybinding update
 
