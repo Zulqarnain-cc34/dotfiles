@@ -93,7 +93,3 @@ csakura/csakura.src/csakura
 # into this repo (~/.config/gh is a real, untracked directory), but ignore it
 # defensively in case it's ever copied in by mistake.
 gh/hosts.yml
-
-# Claude Code working rules for this repo: local-only, not published to the
-# public GitHub repo, but still loads automatically in every session.
-CLAUDE.md
