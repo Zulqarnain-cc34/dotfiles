@@ -17,9 +17,12 @@
     separator_height = 2
     padding = 20
     horizontal_padding = 20
-    frame_width = 0
+    # frame_width = 0 disables the frame outright, which made the per-urgency
+    # frame_color below invisible no matter what it was set to.
+    frame_width = 2
     frame_color = "#aaaaaa"
-    separator_color = "#ebdbb2"
+    gap_size = 4
+    separator_color = frame
     sort = yes
     idle_threshold = 120
 
