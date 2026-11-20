@@ -109,6 +109,66 @@ link_path() {
 link_dir()  { link_path "$ROOT/$1" "$2"; }
 link_file() { link_path "$ROOT/$1" "$2"; }
 
+# Same as link_path, but for the handful of targets outside $HOME (e.g.
+# /etc/sddm.conf) that need root to create/replace. Only the actual
+# create/remove calls use sudo -- the read-only checks above (-e, -L,
+# readlink) don't need it, and --dry-run/--check never touch sudo at all.
+link_path_sudo() {
+    local src=$1 dest=$2
+    if [[ -L "$src" ]] && [[ ! -e "$src" ]]; then
+        echo "  ERROR: broken symlink in repo: $src (restore real file, e.g. git show HEAD~1:zsh/.zshrc)" >&2
+        return 1
+    fi
+    if [[ ! -e "$src" ]]; then
+        echo "  skip (missing in repo): $src"
+        return 0
+    fi
+
+    local already_linked=0
+    [[ -L "$dest" && "$(readlink "$dest")" == "$src" ]] && already_linked=1
+
+    if [[ "$CHECK" -eq 1 ]]; then
+        if [[ "$already_linked" -eq 1 ]]; then
+            echo "  ok: $dest"
+        elif [[ -e "$dest" || -L "$dest" ]]; then
+            echo "  drift: $dest exists but is not linked to $src"
+        else
+            echo "  missing: $dest"
+        fi
+        return 0
+    fi
+
+    if [[ "$already_linked" -eq 1 ]]; then
+        [[ "$DRYRUN" -eq 1 ]] && echo "  ok (already linked): $dest"
+        return 0
+    fi
+
+    if [[ -e "$dest" || -L "$dest" ]]; then
+        if [[ "$FORCE" -eq 1 ]]; then
+            if [[ "$DRYRUN" -eq 1 ]]; then
+                echo "  would back up + replace (sudo): $dest"
+                return 0
+            fi
+            backup_target "$dest"
+            sudo rm -rf "$dest"
+        else
+            echo "  skip (exists): $dest"
+            return 0
+        fi
+    fi
+
+    if [[ "$DRYRUN" -eq 1 ]]; then
+        echo "  would link (sudo): $dest -> $src"
+        return 0
+    fi
+
+    sudo mkdir -p "$(dirname "$dest")"
+    sudo ln -sfn "$src" "$dest"
+    echo "  linked (sudo): $dest -> $src"
+}
+
+link_file_sudo() { link_path_sudo "$ROOT/$1" "$2"; }
+
 echo "==> Repository: $ROOT"
 [[ "$DRYRUN" -eq 1 ]] && echo "==> --dry-run: nothing below will be created, backed up, or removed"
 [[ "$CHECK" -eq 1 ]] && echo "==> --check: reporting status only; nothing will be touched"
@@ -201,6 +261,9 @@ fi
 
 # zsh/.zshrc is included via link_dir zsh -> ~/.config/zsh (must be a real file in repo,
 # not a symlink — link_file here would create a self-referential zsh/.zshrc)
+
+echo "==> System files (root required)"
+link_file_sudo sddm/sddm.conf "/etc/sddm.conf"
 
 if [[ "$DRYRUN" -eq 1 ]]; then
     echo "==> Dry run complete — nothing was changed"
