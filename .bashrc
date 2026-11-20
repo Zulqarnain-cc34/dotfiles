@@ -37,7 +37,7 @@ fi
 
 # Generate LS_COLORS with vivid if available (matches zsh behavior)
 if command -v vivid >/dev/null 2>&1; then
-    export LS_COLORS="$(vivid generate one-dark)"
+    export LS_COLORS="$(vivid generate one-dark-modified)"
 fi
 
 # test -r ~/.dir_colors && eval $(dircolors ~/.dir_colors)

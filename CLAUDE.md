@@ -17,7 +17,7 @@ These are standing rules for this dotfiles repo, set by the user across sessions
 - Commit messages: short, natural, human. No em dashes, no AI-sounding language. **Never add** a "Generated with Claude Code" / "Co-Authored-By Claude" footer — in commits or PRs.
 - `CHANGELOG.md`: one dated heading per day, not per commit/PR/branch. A few short, high-level bullets, no `Added/Fixed/Removed` subsections, no file paths, no "verified via X" detail — that belongs in commit messages.
 - **Never use a relative-time heading** like "Today's session, in short" — write a real, specific heading from the start.
-- **Genuinely** small fixes don't get their own bullet (a restored dropped alias, a one-line tweak) — only substantial things earn one.
+- **Genuinely** small fixes don't get their own bullet (a restored dropped alias, a one-line tweak) — only substantial things earn one. If a whole day has nothing but one small fix, skip the day entirely rather than giving it its own heading.
 - **One module = one bullet, even for a big feature** — fold it into that day's existing bullet as a 2-5 word noun phrase, never explaining how/why (no mechanism, config keys, file names). One-breath test: if you can't read it in one breath, cut it. Right: "...a do-not-disturb toggle, and clickable action buttons." Wrong: "...with mouse bindings reworked so a normal click does that instead of middle-click."
 - Bold every software/tool/module name (`**dunst**`, `**polybar**`, `**Neovim**`, `**README**`). Don't bold generic nouns ("setup script", "idle timeout" stay unbolded).
 - **Heading = the day's 1-2 biggest topics only**, short noun phrases, comma-separated — not every bullet, not chronological; smaller ones are fine left out since the bullets cover them. Keep phrases tight (shorter wins; drop filler like "overhaul"/"hardening"). Right: "fastfetch theme, newsboat audit" (from a 4-bullet day). Wrong: cramming in all 4, or padding with words that add nothing.
@@ -34,6 +34,7 @@ These are standing rules for this dotfiles repo, set by the user across sessions
 - csakura's patched source carries a matching `.patch` file (`csakura/csakura.src/*.patch`) documenting the upstream diff — historical only, not applied at build. When `csakura/csakura.src/src/csakura.c` changes, regenerate it via `git diff <pre-feature-commit>^ -- csakura/csakura.src/src/csakura.c`.
 - Gitignore anything that could plausibly hold secrets, even untracked/unlinked (e.g. `gh/hosts.yml`).
 - Prepend `bash_scripts/` onto `PATH` in `zsh/.zshenv` + `.profile`, never append — csakura's `-k` safety depends on this build winning over anything else named the same. Don't trust `echo $PATH` here (polluted inherited entries); verify with `env -i HOME="$HOME" TERM=xterm zsh -c '...'`.
+- Dotfiles should only contain dotfiles — never vendor large third-party theme/asset bundles (SDDM themes, GTK themes, wallpapers) into this repo, even forked ones. Those live in a separate local-only `local/` directory next to this repo. Only the small selector config that picks one (e.g. `sddm/sddm.conf`'s `Current=`) belongs here, same split already used for Kvantum in `.gitignore`.
 
 ## Machine environment
 
