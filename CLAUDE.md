@@ -34,6 +34,7 @@ These are standing rules for this dotfiles repo, set by the user across sessions
 - csakura's patched source carries a matching `.patch` file (`csakura/csakura.src/*.patch`) documenting the upstream diff — historical only, not applied at build. When `csakura/csakura.src/src/csakura.c` changes, regenerate it via `git diff <pre-feature-commit>^ -- csakura/csakura.src/src/csakura.c`.
 - Gitignore anything that could plausibly hold secrets, even untracked/unlinked (e.g. `gh/hosts.yml`).
 - Prepend `bash_scripts/` onto `PATH` in `zsh/.zshenv` + `.profile`, never append — csakura's `-k` safety depends on this build winning over anything else named the same. Don't trust `echo $PATH` here (polluted inherited entries); verify with `env -i HOME="$HOME" TERM=xterm zsh -c '...'`.
+- Dotfiles should only contain dotfiles — never vendor large third-party theme/asset bundles (SDDM themes, GTK themes, wallpapers) into this repo, even forked ones. Those live in a separate local-only `local/` directory next to this repo. Only the small selector config that picks one (e.g. `sddm/sddm.conf`'s `Current=`) belongs here, same split already used for Kvantum in `.gitignore`.
 
 ## Machine environment
 
