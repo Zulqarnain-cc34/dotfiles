@@ -7,6 +7,7 @@ The detailed record lives in the git commit messages — see `git log` when you 
 
 - Stopped **dunst** from silently pausing notifications during the **csakura** idle screensaver.
 - Added **sddm** theme tracking and activated the sugar-candy theme.
+- Gave **setup.sh** sudo-aware linking for system files outside `$HOME`.
 - Small fixes: **bspwm**/**redshift** cleanup, **clipmenud** dedup, **vivid** theme.
 
 ## [2026-11-19] — dunst theming, polybar OSD, fastfetch/bspwm fixes
