@@ -3,6 +3,14 @@
 Notable changes to this repo, one entry per day — a simpler, human variant of [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), no categories or semver.
 The detailed record lives in the git commit messages — see `git log` when you need that.
 
+## [2026-11-20] — sddm theme, bspwm/dunst fixes
+
+- Stopped **dunst** from silently pausing notifications during the **csakura** idle screensaver.
+- Fixed a stale-lock bug in the **random-wallpaper** cycler that could block it after killing **bspwm**.
+- Cleaned up **bspwm** and **redshift** config errors, including a broken **clipmenud** dedup check.
+- Added **sddm** theme tracking and activated the sugar-candy theme.
+- Fixed **vivid** to actually use the customized color theme in **zsh** and **bash**.
+
 ## [2026-11-19] — dunst theming, polybar OSD, fastfetch/bspwm fixes
 
 - Gave **dunst** a real visual overhaul: a personalized theme, OSD notifications, a do-not-disturb toggle, and clickable action buttons.
