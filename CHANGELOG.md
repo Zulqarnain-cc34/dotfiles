@@ -9,6 +9,7 @@ The detailed record lives in the git commit messages — see `git log` when you 
 - Added **sddm** theme tracking and activated the sugar-candy theme.
 - Gave **setup.sh** sudo-aware linking for system files outside `$HOME`.
 - Small fixes: **bspwm**/**redshift** cleanup, **clipmenud** dedup, **vivid** theme.
+- Expanded **fonts** install coverage and added a **packages** v3 snapshot plus a snapshot script.
 
 ## [2026-11-19] — dunst theming, polybar OSD, fastfetch/bspwm fixes
 
