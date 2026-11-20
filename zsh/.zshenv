@@ -51,9 +51,9 @@ export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!.git"'
 # Cache vivid's LS_COLORS instead of regenerating on every shell start.
 # .zshenv is sourced for non-interactive shells too, so this matters for startup time.
 if command -v vivid >/dev/null 2>&1; then
-    _vivid_cache="${XDG_CACHE_HOME:-$HOME/.cache}/vivid-one-dark.lscolors"
+    _vivid_cache="${XDG_CACHE_HOME:-$HOME/.cache}/vivid-one-dark-modified.lscolors"
     if [ ! -s "$_vivid_cache" ] || [ "$(command -v vivid)" -nt "$_vivid_cache" ]; then
-        vivid generate one-dark > "$_vivid_cache" 2>/dev/null
+        vivid generate one-dark-modified > "$_vivid_cache" 2>/dev/null
     fi
     export LS_COLORS="$(cat "$_vivid_cache" 2>/dev/null)"
     unset _vivid_cache
