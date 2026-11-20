@@ -15,8 +15,8 @@
 theme="ribbon_left"
 
 dir="$HOME/.config/rofi/launchers/ribbon"
-styles=($(ls -p --hide="colors.rasi" $dir/styles))
-color="${styles[$(( $RANDOM % 8 ))]}"
+styles=($(ls -p --hide="colors.rasi" --hide="colors.rasi.example" $dir/styles))
+color="${styles[$(( RANDOM % ${#styles[@]} ))]}"
 
 # comment this line to disable random colors
 colors="$dir/styles/colors.rasi"
