@@ -3,6 +3,13 @@
 Notable changes to this repo, one entry per day — a simpler, human variant of [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), no categories or semver.
 The detailed record lives in the git commit messages — see `git log` when you need that.
 
+## [2026-11-20] — sddm theme, dunst fix
+
+- Stopped **dunst** from silently pausing notifications during the **csakura** idle screensaver.
+- Added **sddm** theme tracking and activated the sugar-candy theme.
+- Gave **setup.sh** sudo-aware linking for system files outside `$HOME`.
+- Small fixes: **bspwm**/**redshift** cleanup, **clipmenud** dedup, **vivid** theme.
+
 ## [2026-11-19] — dunst theming, polybar OSD, fastfetch/bspwm fixes
 
 - Gave **dunst** a real visual overhaul: a personalized theme, OSD notifications, a do-not-disturb toggle, and clickable action buttons.
@@ -47,10 +54,6 @@ The detailed record lives in the git commit messages — see `git log` when you 
 ## [2026-11-11] — Documentation overhaul
 
 - Wrote proper **README**s for almost every tool in the repo, with logos and hero headers.
-
-## [2026-11-10] — Neovim keybinding update
-
-- Small **Neovim** keybinding fix.
 
 ## [2026-11-09] — First modernization push
 

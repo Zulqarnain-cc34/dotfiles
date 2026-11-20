@@ -108,6 +108,7 @@ A complete map of the repo. Deep docs live in each component's own README — li
 | [`rofi`](rofi/) | App launcher, window switcher, power menu | [README](rofi/README.md) |
 | [`conky`](conky/) | Desktop system widget | [README](conky/README.md) |
 | [`redshift`](redshift/) | Night-time colour temperature | [README](redshift/README.md) |
+| [`sddm`](sddm/) | Login/display manager theme selection | — |
 
 ### 💻 Terminal & Shell
 
