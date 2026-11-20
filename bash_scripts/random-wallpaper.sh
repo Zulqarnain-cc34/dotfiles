@@ -213,5 +213,9 @@ while true; do
     if [[ -n "$wall" ]]; then
         set_wallpaper "$wall" || echo "wallpaper failed: $wall" >&2
     fi
-    sleep "$time"
+    # Close fd 200 for this child specifically -- otherwise it inherits the
+    # lock fd, and if the parent dies mid-sleep (e.g. `kill bspwm`), the sleep
+    # process survives as an orphan still holding the lock open for up to
+    # $time seconds, even though the actual cycler is long gone.
+    sleep "$time" 200>&-
 done
