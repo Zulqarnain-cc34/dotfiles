@@ -114,11 +114,19 @@ done
 echo "==> No hardcoded /home/alpha in tracked config files"
 # transmission-daemon/ is exempt: transmission's settings.json cannot expand
 # $HOME/$USER, so download-dir/incomplete-dir must be absolute literal paths.
-HARDCODED_EXCLUDE='^(README\.md|CHANGELOG\.md|scripts/validate\.sh|\.github/|docs/|transmission-daemon/)'
-if git ls-files | grep -Ev "$HARDCODED_EXCLUDE" | xargs grep -l '/home/alpha' 2>/dev/null | grep -q .; then
+# sddm/ is exempt too: sddm runs as root before login and parses its config
+# as plain INI (no variable expansion), so ThemeDir must be a literal path.
+HARDCODED_EXCLUDE='^(README\.md|CHANGELOG\.md|scripts/validate\.sh|\.github/|docs/|transmission-daemon/|sddm/)'
+# Captured into a variable rather than piping straight into `grep -q .` --
+# grep -q exits on its first match and SIGPIPEs whatever's upstream, which
+# under `set -o pipefail` makes this whole check silently report "OK" even
+# when a hardcoded path genuinely was found (same pitfall already worked
+# around in fonts/install.sh).
+hardcoded_hits="$(git ls-files | grep -Ev "$HARDCODED_EXCLUDE" | xargs grep -l '/home/alpha' 2>/dev/null || true)"
+if [[ -n "$hardcoded_hits" ]]; then
     while IFS= read -r f; do
         fail "hardcoded path: $f"
-    done < <(git ls-files | grep -Ev "$HARDCODED_EXCLUDE" | xargs grep -l '/home/alpha' 2>/dev/null || true)
+    done <<< "$hardcoded_hits"
 else
     ok "no /home/alpha in tracked configs"
 fi
