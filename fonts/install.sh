@@ -4,7 +4,10 @@
 # binaries; see scripts/validate.sh), so they are fetched from the official
 # Nerd Fonts release on setup. setup.sh calls this, and you can also run it
 # by hand. Each family only installs when missing; pass -f to force a
-# reinstall of all of them.
+# reinstall of all of them. Note -f only clears each family's own dest dir --
+# if fc-list already finds the family via unrelated leftover files elsewhere
+# in ~/.local/share/fonts, it's still treated as "already installed" and
+# skipped.
 #
 # No `set -e`: one family failing (network blip, upstream rename) must not
 # stop the others from installing. Every failure path is handled explicitly
