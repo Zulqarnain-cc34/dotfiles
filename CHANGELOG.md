@@ -48,10 +48,6 @@ The detailed record lives in the git commit messages — see `git log` when you 
 
 - Wrote proper **README**s for almost every tool in the repo, with logos and hero headers.
 
-## [2026-11-10] — Neovim keybinding update
-
-- Small **Neovim** keybinding fix.
-
 ## [2026-11-09] — First modernization push
 
 - Fixed broken shell and file-manager tools, cleaned up the **X11** stack, modernized **Neovim**, and added install docs/infrastructure.
