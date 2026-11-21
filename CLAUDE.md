@@ -4,6 +4,8 @@ These are standing rules for this dotfiles repo, set by the user across sessions
 
 ## Git workflow
 
+*Rules below took effect 2026-11-21, replacing an older `develop`-based Git Flow setup and ad-hoc module-prefix commits — see `CHANGELOG.md`'s 2026-11-21 entry.*
+
 - **GitHub Flow (one branch, PR-only), not Git Flow (`develop`/`release` branches)** — `main` is the only long-lived branch. No `develop`/integration branch.
 - **Every change gets a branch off `main`, a PR, and a squash-merge back into `main` — no exceptions for small changes.** A one-word changelog fix is just a one-line-diff PR that merges in seconds, not a reason to skip the branch/PR.
 - **Flow**: `git checkout -b <type>/<name>` off `main` → commit → push → open a PR → squash-merge (`gh pr merge --squash`). `<type>` is whichever Conventional Commits type the change is (`feat/<name>`, `fix/<name>`, `chore/<name>`, `docs/<name>`, etc. — same list as the commit-prefix rule below). Branch deletion is automatic (repo setting) — no manual cleanup step needed.
