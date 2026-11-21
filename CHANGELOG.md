@@ -3,10 +3,11 @@
 Notable changes to this repo, one entry per day — a simpler, human variant of [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), no categories or semver.
 The detailed record lives in the git commit messages — see `git log` when you need that.
 
-## [2026-11-21] — niri/waybar/gammastep/fish removed
+## [2026-11-21] — niri/waybar/gammastep/fish removed, xset rate fix
 
 - Removed **niri**, **waybar**, **gammastep**, and **fish** entirely — dormant, unmaintained components whose bugs had gone unnoticed for lack of real use.
 - Fixed a dead lock binding in **polybar**'s powermenu and removed a stale duplicate script with the same bug.
+- Fixed the **xset** keyboard repeat-rate bug for real — event-driven self-heal, still logging in case it happens again.
 
 ## [2026-11-20] — sddm theme, dunst fix
 
