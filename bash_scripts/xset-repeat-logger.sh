@@ -1,40 +1,34 @@
 #!/bin/bash
-# Logs every change to X's keyboard auto-repeat delay/rate with a timestamp,
-# and actively restores it. Root cause (confirmed by correlating a logged
-# occurrence against /var/log/Xorg.0.log's timestamps) is a udev-level
-# keyboard device re-enumeration -- "config/udev: removing device ...
-# keyboard" immediately followed by "Adding input device ... keyboard" --
-# which makes libinput reinitialize the device to X11's own built-in
-# default (660 25). This is NOT a suspend/resume event, so the rate can
-# drift at any time, unattended -- this loop is what actually catches it
-# and fixes it within one poll interval instead of waiting for a manual
-# `xset r rate` or the next bspwmrc reload.
+# Restores X's keyboard auto-repeat rate the instant it drifts, and logs
+# every real occurrence with a timestamp.
 #
-# Never log/fix on a false change (a transient `xset q` failure must not
-# look like a real rate change), and carry enough context in each real
-# entry (how long the session had been up) that the evidence is still
-# useful without needing to remember what you were doing at the time.
-RATE="300 50"   # must match `xset r rate 300 50` in bspwm/bspwmrc
+# Root cause (confirmed by correlating a logged occurrence's timestamp
+# against both /var/log/Xorg.0.log and `journalctl`): a `systemctl
+# daemon-reload` -- commonly triggered by a pacman post-install hook --
+# cascades into systemd-logind re-watching every input device, which
+# Xorg/libinput sees as the keyboard being removed and re-added, resetting
+# the rate to X11's own built-in default (660 25). Not suspend/resume, and
+# not something to prevent at the source -- daemon-reload is normal,
+# necessary system behavior.
+#
+# Event-driven on purpose, not polled: the exact trigger is a udev "add"
+# event on the input subsystem, so this subscribes to that directly via
+# `udevadm monitor` instead of checking on a timer. Reacts immediately,
+# with no polling overhead and no window where the rate is wrong.
+# Delay/rate kept as separate values, not one "300 50" string -- passing
+# that to `xset r rate` unquoted relies on word-splitting, which bash does
+# but isn't something to depend on here.
+RATE_DELAY=300
+RATE_REPEAT=50
+RATE="$RATE_DELAY $RATE_REPEAT"   # must match `xset r rate 300 50` in bspwm/bspwmrc
 log="${XDG_CACHE_HOME:-$HOME/.cache}/xset-repeat-rate.log"
-last=""
-while true; do
+
+udevadm monitor --udev --subsystem-match=input 2>/dev/null |
+awk '$1 == "UDEV" && $3 == "add"' |
+while read -r _; do
     current=$(xset q 2>/dev/null | awk '/auto repeat delay:/ { print $4, $7 }')
-    if [[ -n "$current" ]]; then
-        if [[ "$current" != "$last" && -n "$last" ]]; then
-            uptime_str=$(awk '{printf "%dh%dm", $1/3600, ($1%3600)/60}' /proc/uptime)
-            if [[ "$current" != "$RATE" ]]; then
-                xset r rate $RATE
-                echo "$(date '+%Y-%m-%d %H:%M:%S') changed: was [$last] now [$current] -- restored to [$RATE] (session uptime: $uptime_str)" >> "$log"
-                current="$RATE"
-            else
-                echo "$(date '+%Y-%m-%d %H:%M:%S') changed: was [$last] now [$current] (session uptime: $uptime_str)" >> "$log"
-            fi
-        fi
-        last="$current"
-    fi
-    # current empty -> xset q failed this poll (transient X hiccup); skip
-    # the comparison entirely rather than treat it as a real change, and
-    # don't overwrite $last so the next good poll compares against the
-    # real last-known value.
-    sleep 3
+    [[ -n "$current" && "$current" != "$RATE" ]] || continue
+    xset r rate "$RATE_DELAY" "$RATE_REPEAT"
+    uptime_str=$(awk '{printf "%dh%dm", $1/3600, ($1%3600)/60}' /proc/uptime)
+    echo "$(date '+%Y-%m-%d %H:%M:%S') changed: was [$current] -- restored to [$RATE] (session uptime: $uptime_str)" >> "$log"
 done
