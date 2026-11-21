@@ -22,7 +22,7 @@ chmod +x setup.sh scripts/*.sh
 ./scripts/install-deps.sh
 ```
 
-Installs everything in [`packages/minimal.txt`](../packages/minimal.txt) via `pacman`. Hand-pick from that file instead if you don't want the full set. Trying niri/Wayland too? Its extra packages are listed separately in [`packages/niri-wayland.txt`](../packages/niri-wayland.txt) — niri is a secondary session here, not the daily driver.
+Installs everything in [`packages/minimal.txt`](../packages/minimal.txt) via `pacman`. Hand-pick from that file instead if you don't want the full set.
 
 ## 3. Bootstrap secrets
 

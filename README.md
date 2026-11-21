@@ -324,9 +324,6 @@ community whose rices sparked half the ideas here. Huge thanks to all of them.
 <a href="https://github.com/pwmt" title="zathura"><img src="https://github.com/pwmt.png" width="56" alt="zathura"/></a>
 <a href="https://github.com/qutebrowser" title="qutebrowser"><img src="https://github.com/qutebrowser.png" width="56" alt="qutebrowser"/></a>
 <a href="https://github.com/jonls" title="redshift"><img src="https://github.com/jonls.png" width="56" alt="redshift"/></a>
-<a href="https://github.com/YaLTeR" title="niri"><img src="https://github.com/YaLTeR.png" width="56" alt="niri"/></a>
-<a href="https://github.com/Alexays" title="Waybar"><img src="https://github.com/Alexays.png" width="56" alt="Waybar"/></a>
-<a href="https://github.com/fish-shell" title="fish"><img src="https://github.com/fish-shell.png" width="56" alt="fish"/></a>
 <a href="https://github.com/sharkdp" title="vivid / fd / bat"><img src="https://github.com/sharkdp.png" width="56" alt="vivid / fd / bat"/></a>
 <a href="https://github.com/pystardust" title="ytfzf"><img src="https://github.com/pystardust.png" width="56" alt="ytfzf"/></a>
 <a href="https://github.com/transmission" title="Transmission"><img src="https://github.com/transmission.png" width="56" alt="Transmission"/></a>
@@ -349,10 +346,6 @@ community whose rices sparked half the ideas here. Huge thanks to all of them.
 <a href="https://github.com/wting" title="autojump"><img src="https://github.com/wting.png" width="56" alt="autojump"/></a>
 <a href="https://github.com/realstrawhat" title="csakura (sakura terminal screensaver)"><img src="https://github.com/realstrawhat.png" width="56" alt="csakura"/></a>
 <a href="https://github.com/zsh-users" title="zsh-autosuggestions · zsh-syntax-highlighting"><img src="https://github.com/zsh-users.png" width="56" alt="zsh-users"/></a> <!-- group: Shell, prompt & tmux plugins -->
-<a href="https://github.com/jorgebucaran" title="fisher (fish plugin manager)"><img src="https://github.com/jorgebucaran.png" width="56" alt="fisher"/></a>
-<a href="https://github.com/rafaelrinaldi" title="pure (fish prompt)"><img src="https://github.com/rafaelrinaldi.png" width="56" alt="pure prompt"/></a>
-<a href="https://github.com/jethrokuan" title="fzf.fish"><img src="https://github.com/jethrokuan.png" width="56" alt="fzf.fish"/></a>
-<a href="https://github.com/oh-my-fish" title="plugin-foreign-env"><img src="https://github.com/oh-my-fish.png" width="56" alt="oh-my-fish"/></a>
 <a href="https://github.com/tmux-plugins" title="tpm · sensible · battery · cpu · urlview · yank · copycat"><img src="https://github.com/tmux-plugins.png" width="56" alt="tmux-plugins"/></a>
 <a href="https://github.com/yazi-rs" title="full-border · git · chmod · jump-to-char · toggle-pane · smart-enter · piper · vcs-files · catppuccin flavor"><img src="https://github.com/yazi-rs.png" width="56" alt="yazi-rs"/></a> <!-- group: Yazi plugins & flavors -->
 <a href="https://github.com/Rolv-Apneseth" title="starship (yazi plugin)"><img src="https://github.com/Rolv-Apneseth.png" width="56" alt="Rolv-Apneseth"/></a>

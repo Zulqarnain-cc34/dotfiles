@@ -183,7 +183,6 @@ fi
 
 echo "==> Directories -> ~/.config and \$HOME"
 link_dir redshift              "$HOME/.config/redshift"
-link_dir gammastep             "$HOME/.config/gammastep"
 link_dir polybar              "$HOME/.config/polybar"
 link_dir newsboat             "$HOME/.newsboat"
 link_dir transmission-daemon  "$HOME/.config/transmission-daemon"
@@ -219,7 +218,6 @@ link_dir zathura              "$HOME/.config/zathura"
 link_dir mpd                  "$HOME/.config/mpd"
 link_dir ncmpcpp              "$HOME/.config/ncmpcpp"
 link_dir vivid                "$HOME/.config/vivid"
-link_dir fish                 "$HOME/.config/fish"
 link_dir imv                  "$HOME/.config/imv"
 link_dir kitty                "$HOME/.config/kitty"
 if [[ "$DRYRUN" -eq 1 || "$CHECK" -eq 1 ]]; then
@@ -234,8 +232,6 @@ if [[ "$DRYRUN" -eq 0 && "$CHECK" -eq 0 && -x "$ROOT/fonts/install.sh" ]]; then
 fi
 link_dir yazi                 "$HOME/.config/yazi"
 link_dir fastfetch            "$HOME/.config/fastfetch"
-link_dir niri                 "$HOME/.config/niri"
-link_dir waybar               "$HOME/.config/waybar"
 
 echo "==> Files"
 link_file mimeapps.list       "$HOME/.config/mimeapps.list"

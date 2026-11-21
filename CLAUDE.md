@@ -39,7 +39,7 @@ These are standing rules for this dotfiles repo, set by the user across sessions
 ## Machine environment
 
 - Audio: PulseAudio, not PipeWire. No Bluetooth audio.
-- Daily desktop: bspwm/X11. `niri/`/`waybar/`/`gammastep/` are dormant, optional Wayland components.
+- Daily desktop: bspwm/X11 only — no Wayland components in this repo.
 - TUI/ncurses tools fail outright with no `TERM` set — export `TERM=xterm-256color` before any tmux-based TUI test.
 - Never insert a raw ESC byte (`0x1b`) into **fastfetch**'s `config.jsonc` — go through Python (`json.load`/`json.dump(..., ensure_ascii=False)`) for ANSI colors.
 
