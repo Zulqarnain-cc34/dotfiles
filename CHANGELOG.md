@@ -9,6 +9,7 @@ The detailed record lives in the git commit messages — see `git log` when you 
 - Fixed a dead lock binding in **polybar**'s powermenu and removed a stale duplicate script with the same bug.
 - Fixed the **xset** keyboard repeat-rate bug for real — event-driven self-heal, still logging in case it happens again.
 - Researched and rewrote **CLAUDE.md**'s Git rules — GitHub Flow, PR scope, squash-merging, **Conventional Commits**, and comment conventions.
+- Fixed a typo'd directory name in **qutebrowser** that silently disabled its Greasemonkey scripts.
 
 ## [2026-11-20] — sddm theme, dunst fix
 
