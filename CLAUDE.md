@@ -9,7 +9,7 @@ These are standing rules for this dotfiles repo, set by the user across sessions
 - **Do this autonomously** — authorized to run `git`/`gh` (branch/PR/merge/delete) without asking each time. Decide reasonable, reversible choices yourself; only ask when something's destructive, hard to reverse, or genuinely ambiguous about intent.
 - Remote is `ssh`, not `origin`. Push with `git push ssh <branch>`; upstreams are `ssh/<branch>`. Compare against `ssh/main`/`ssh/develop`, not potentially stale local refs.
 - `main` protection: PR required (0 mandatory approvals — no second collaborator exists on this repo), passing `validate` + `gitleaks`, no force-push/deletion, enforced on admins. `develop` is intentionally unprotected so `feat/*` merges stay fast.
-- Write PR titles and descriptions yourself, always — a specific, feature-oriented title; body bullets grouped by component. No "Summary" heading, no testing section.
+- Write PR titles and descriptions yourself, always — a specific, feature-oriented title; body bullets grouped by component. No "Summary" heading, no testing section. **PR descriptions follow the same voice as `CHANGELOG.md`** (bold tool names, plain language, no mechanism/internals) — commit messages are where the full technical detail (root cause, what was tried, why) belongs.
 - GitHub CLI: the repo owner's account is the default `gh` identity everywhere; a zsh `chpwd` hook in `zsh/.zshrc` switches to a different one inside `project_penny` (reverts on `cd` out) — see `zsh/.zshrc` for real names, never hardcode them elsewhere.
 
 ## Commits and changelog
