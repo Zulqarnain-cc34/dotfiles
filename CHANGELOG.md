@@ -6,6 +6,7 @@ The detailed record lives in the git commit messages — see `git log` when you 
 ## [2026-11-21] — niri/waybar/gammastep/fish removed
 
 - Removed **niri**, **waybar**, **gammastep**, and **fish** entirely — dormant, unmaintained components whose bugs had gone unnoticed for lack of real use.
+- Fixed a dead lock binding in **polybar**'s powermenu and removed a stale duplicate script with the same bug.
 
 ## [2026-11-20] — sddm theme, dunst fix
 
