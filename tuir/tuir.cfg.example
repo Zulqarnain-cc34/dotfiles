@@ -1,0 +1,22 @@
+; Terminal UI for Reddit configuration — https://gitlab.com/ajak/tuir
+;
+; Copy this to tuir.cfg (scripts/bootstrap-secrets.sh does this for you)
+; and fill in your own OAuth app credentials below. tuir's bundled
+; default app key gets rejected by Reddit's API (403), so a real app
+; registered at https://www.reddit.com/prefs/apps (type: "installed app")
+; is required.
+
+[tuir]
+subreddit = front
+persistent = True
+autologin = True
+
+################
+# OAuth Settings
+################
+; From your own app at https://www.reddit.com/prefs/apps
+oauth_client_id = YOUR_CLIENT_ID
+oauth_client_secret = YOUR_CLIENT_SECRET
+oauth_redirect_uri = http://127.0.0.1:65000/
+oauth_redirect_port = 65000
+oauth_scope = edit,history,identity,mysubreddits,privatemessages,read,report,save,submit,subscribe,vote

@@ -23,3 +23,11 @@ if [[ ! -f "$TRANSMISSION" && -f "$TRANSMISSION_EXAMPLE" ]]; then
     echo "  bootstrap: created transmission-daemon/settings.json from example"
     echo "    -> set a real rpc-password before starting transmission-daemon (it hashes it on first launch)"
 fi
+
+TUIR="$ROOT/tuir/tuir.cfg"
+TUIR_EXAMPLE="$ROOT/tuir/tuir.cfg.example"
+if [[ ! -f "$TUIR" && -f "$TUIR_EXAMPLE" ]]; then
+    cp "$TUIR_EXAMPLE" "$TUIR"
+    echo "  bootstrap: created tuir/tuir.cfg from example"
+    echo "    -> set oauth_client_id/oauth_client_secret from https://www.reddit.com/prefs/apps"
+fi
