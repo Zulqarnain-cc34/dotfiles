@@ -59,6 +59,9 @@ transmission-daemon/settings.json
 surfraw/bookmarks
 nvim/tempdir
 
+# Contains real Reddit OAuth app credentials once filled in; templated from tuir.cfg.example.
+tuir/tuir.cfg
+
 .gitconfig
 
 # Python bytecode cache (ranger colorschemes, bash_scripts/scripts/*.py)

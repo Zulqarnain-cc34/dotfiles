@@ -13,8 +13,9 @@ Do not commit:
 - `.w3m/history`
 - `polybar/gmail/`
 - `transmission-daemon/settings.json` (the real file — it carries an `rpc-password` hash once generated; only `settings.json.example` is tracked)
+- `tuir/tuir.cfg` (the real file — carries a Reddit OAuth client ID/secret once filled in; only `tuir.cfg.example` is tracked)
 
-Use `scripts/bootstrap-secrets.sh` to initialize machine-specific secrets. It copies `.example` templates into their real, gitignored paths — currently `.gitconfig`, the rofi ribbon colour theme, and `transmission-daemon/settings.json`.
+Use `scripts/bootstrap-secrets.sh` to initialize machine-specific secrets. It copies `.example` templates into their real, gitignored paths — currently `.gitconfig`, the rofi ribbon colour theme, `transmission-daemon/settings.json`, and `tuir/tuir.cfg`.
 
 ## Gitleaks
 
