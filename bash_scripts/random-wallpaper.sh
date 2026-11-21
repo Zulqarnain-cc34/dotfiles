@@ -152,35 +152,6 @@ set_wallpaper() {
     fi
 }
 
-# One-shot helpers for niri per-workspace wallpapers (no flock, no loop).
-if [[ "${1:-}" == "--pick" ]]; then
-    dir=$(find_wall_dir || { echo "No wallpaper directory found" >&2; exit 1; })
-    exclude=""
-    shift
-    while [[ $# -gt 0 ]]; do
-        case "$1" in
-            --exclude)
-                [[ -n "${2:-}" ]] || { echo "usage: $0 --pick [--exclude PATH]" >&2; exit 1; }
-                exclude=$2
-                shift 2
-                ;;
-            *)
-                echo "usage: $0 --pick [--exclude PATH]" >&2
-                exit 1
-                ;;
-        esac
-    done
-    pick_wallpaper "$dir" "$exclude"
-    exit 0
-fi
-
-if [[ "${1:-}" == "--set" && -n "${2:-}" ]]; then
-    BACKEND=wayland
-    [[ -f "$2" ]] || { echo "Missing wallpaper: $2" >&2; exit 1; }
-    set_wallpaper "$2"
-    exit $?
-fi
-
 BACKEND=$(detect_backend)
 pidfile=$(lock_file)
 

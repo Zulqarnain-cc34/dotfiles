@@ -30,9 +30,9 @@ A GPU-accelerated terminal emulator, and the primary terminal in this setup — 
 | Session | `font_size` | Snippet |
 |---------|-------------|---------|
 | bspwm | 13 | [`font_size-bspwm.conf`](font_size-bspwm.conf) |
-| anything else (niri, …) | 11 | [`font_size-default.conf`](font_size-default.conf) |
+| anything else | 11 | [`font_size-default.conf`](font_size-default.conf) |
 
-The script detects bspwm (via `pgrep` and the session environment) and is invoked from [`bspwm/bspwmrc`](../bspwm/bspwmrc) and [`niri/autostart.sh`](../niri/autostart.sh).
+The script detects bspwm (via `pgrep` and the session environment) and is invoked from [`bspwm/bspwmrc`](../bspwm/bspwmrc).
 
 ### Keybindings
 

@@ -1,6 +1,6 @@
 /* user.js
  * https://github.com/rafaelmardojai/firefox-gnome-theme/
- * dotfiles_v2: force 100% zoom (niri 1.25x scale was reading as >100%)
+ * dotfiles_v2: force 100% zoom (a fractional display scale was reading as >100%)
  */
 
 // Enable customChrome.css
