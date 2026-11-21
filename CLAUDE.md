@@ -6,7 +6,7 @@ These are standing rules for this dotfiles repo, set by the user across sessions
 
 - **GitHub Flow (one branch, PR-only), not Git Flow (`develop`/`release` branches)** — `main` is the only long-lived branch. No `develop`/integration branch.
 - **Every change gets a branch off `main`, a PR, and a squash-merge back into `main` — no exceptions for small changes.** A one-word changelog fix is just a one-line-diff PR that merges in seconds, not a reason to skip the branch/PR.
-- Flow: `git checkout -b feat/<name>` (or `fix/<name>`) off `main` → commit → push → open a PR → squash-merge (`gh pr merge --squash`). Branch deletion is automatic (repo setting) — no manual cleanup step needed.
+- **Flow**: `git checkout -b feat/<name>` (or `fix/<name>`) off `main` → commit → push → open a PR → squash-merge (`gh pr merge --squash`). Branch deletion is automatic (repo setting) — no manual cleanup step needed.
 - **Repo is configured to only allow squash-merge** (merge commits and rebase-merge are disabled at the repo level) — one clean commit per PR on `main`, every time, enforced by GitHub itself rather than relying on remembering the right flag.
 - **Write the squashed commit's message deliberately** (`gh pr merge --squash --subject ... --body ...`) — don't accept GitHub's auto-concatenated default. For a branch with a real multi-step story (built a fix, found the exact trigger, upgraded the approach), the default would flatten that narrative; a message written on purpose doesn't.
 - **Commits within a branch should be atomic** — one logical change each, and each one should leave the repo working. If a commit message needs "and," that's the signal to split it into two.
