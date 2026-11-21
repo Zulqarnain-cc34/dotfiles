@@ -10,6 +10,7 @@ These are standing rules for this dotfiles repo, set by the user across sessions
 - Remote is `ssh`, not `origin`. Push with `git push ssh <branch>`; upstreams are `ssh/<branch>`. Compare against `ssh/main`/`ssh/develop`, not potentially stale local refs.
 - `main` protection: PR required (0 mandatory approvals — no second collaborator exists on this repo), passing `validate` + `gitleaks`, no force-push/deletion, enforced on admins. `develop` is intentionally unprotected so `feat/*` merges stay fast.
 - Write PR titles and descriptions yourself, always — a specific, feature-oriented title; body bullets grouped by component. No "Summary" heading, no testing section. **PR descriptions follow the same voice as `CHANGELOG.md`** (bold tool names, plain language, no mechanism/internals) — commit messages are where the full technical detail (root cause, what was tried, why) belongs.
+- **When new commits land on a branch with an already-open PR, update that PR's title and description to match** — don't leave it describing only what it covered when first opened.
 - GitHub CLI: the repo owner's account is the default `gh` identity everywhere; a zsh `chpwd` hook in `zsh/.zshrc` switches to a different one inside `project_penny` (reverts on `cd` out) — see `zsh/.zshrc` for real names, never hardcode them elsewhere.
 
 ## Commits and changelog
