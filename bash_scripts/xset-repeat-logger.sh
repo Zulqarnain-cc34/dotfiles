@@ -18,13 +18,19 @@
 # Delay/rate kept as separate values, not one "300 50" string -- passing
 # that to `xset r rate` unquoted relies on word-splitting, which bash does
 # but isn't something to depend on here.
+#
+# `stdbuf -oL` on both pipeline stages: confirmed by reproduction that
+# without it, udevadm/awk fully block-buffer stdout once it isn't a tty,
+# so a single sparse "add" match can sit stuck in the buffer indefinitely
+# (it never fills) and never reach the `while read` loop below -- a real
+# occurrence happened and went completely unlogged because of this.
 RATE_DELAY=300
 RATE_REPEAT=50
 RATE="$RATE_DELAY $RATE_REPEAT"   # must match `xset r rate 300 50` in bspwm/bspwmrc
 log="${XDG_CACHE_HOME:-$HOME/.cache}/xset-repeat-rate.log"
 
-udevadm monitor --udev --subsystem-match=input 2>/dev/null |
-awk '$1 == "UDEV" && $3 == "add"' |
+stdbuf -oL udevadm monitor --udev --subsystem-match=input 2>/dev/null |
+stdbuf -oL awk '$1 == "UDEV" && $3 == "add"' |
 while read -r _; do
     current=$(xset q 2>/dev/null | awk '/auto repeat delay:/ { print $4, $7 }')
     [[ -n "$current" && "$current" != "$RATE" ]] || continue
