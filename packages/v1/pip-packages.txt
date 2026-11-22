@@ -171,7 +171,6 @@ toml                     0.10.2
 tomli                    2.0.0
 tornado                  6.1
 trash-cli                0.21.10.24
-tuir                     1.29.0
 typed-ast                1.5.2
 typing-extensions        4.0.1
 ueberzug                 18.1.9

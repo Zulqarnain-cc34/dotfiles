@@ -245,7 +245,6 @@ Leader key in Neovim is **`m`**. The complete maps live in [`sxhkd/sxhkdrc`](sxh
 | `Super + W` | Firefox |
 | `Super + M` | E-mail (Neomutt) |
 | `Alt + N` | RSS (Newsboat) |
-| `Super + R` | Reddit (tuir) |
 | `Super + Y` | YouTube (ytfzf) |
 | `Super + O` | Process monitor (htop) |
 
