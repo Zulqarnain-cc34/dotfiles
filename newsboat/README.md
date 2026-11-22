@@ -17,7 +17,6 @@ Macros run off the prefix key `i` — press `i`, then the macro letter:
 
 | Macro | Action |
 | --- | --- |
-| `i`,`r` | open the Reddit thread in `tuir` |
 | `i`,`p` | play the link in `mpv` |
 | `i`,`c` | YouTube comments via `pipe-viewer --comments` |
 | `i`,`s` | launch `pipe-viewer` (search) |

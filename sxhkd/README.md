@@ -35,7 +35,7 @@ The whole map, as bound in [`sxhkdrc`](sxhkdrc):
 | `super + {Left,Down,Up,Right}` | Move floating window |
 | `shift + ctrl + {Left,Right}` | Move window to prev/next desktop and follow |
 | `super + space` | rofi ribbon launcher |
-| `super + t` / `super + r` / `super + y` / `super + o` / `super + w` | Terminal / tuir / ytfzf / htop / firefox |
+| `super + t` / `super + y` / `super + o` / `super + w` | Terminal / ytfzf / htop / firefox |
 | `super + m` | neomutt (email) |
 | `alt + n` | newsboat (RSS) |
 | `shift + alt + t` | Notify running torrents |
