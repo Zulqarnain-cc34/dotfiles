@@ -195,6 +195,9 @@ link_dir .w3m                 "$HOME/.w3m"
 link_dir .aliases             "$HOME/.aliases"
 [[ "$DRYRUN" -eq 0 && "$CHECK" -eq 0 ]] && mkdir -p "$HOME/bin"
 link_dir bash_scripts         "$HOME/bin/bash_scripts"
+# BOOKDIR ($HOME/Documents/Books, set in .profile/zsh/.zshenv) must exist for
+# rofi/launchers/rofi-books to work -- it just cd's into it with no fallback.
+[[ "$DRYRUN" -eq 0 && "$CHECK" -eq 0 ]] && mkdir -p "$HOME/Documents/Books"
 # csakura screensaver binary is built from source, not committed (the repo keeps no
 # binaries). Build it now so the bash_scripts/csakura symlink resolves.
 if [[ "$DRYRUN" -eq 0 && "$CHECK" -eq 0 && -x "$ROOT/csakura/build.sh" ]]; then
