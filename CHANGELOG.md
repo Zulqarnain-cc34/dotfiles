@@ -3,6 +3,13 @@
 Notable changes to this repo, one entry per day — a simpler, human variant of [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), no categories or semver.
 The detailed record lives in the git commit messages — see `git log` when you need that.
 
+## [2026-11-23] — bash_scripts reorg, script-by-script audit
+
+- Reorganized **bash_scripts/** into categories, removed over a dozen dead or duplicate scripts, and added a syntax sweep to **validate.sh**.
+- Started a script-by-script audit of the newly-organized scripts, finding and fixing real bugs in **rofi-books**, **smart-extract.sh**, **lfmount**, **copy.sh**, **aliasmanager.sh**, and **urlportal.sh**.
+- Simplified **random-wallpaper.sh**, dropping unused Wayland support and fixing a repeat-wallpaper bug.
+- Added a reusable **CLAUDE.md** template for new solo projects.
+
 ## [2026-11-21] — Niri setup removal, Git workflow rules
 
 - Removed **niri**, **waybar**, **gammastep**, and **fish** entirely — dormant, unmaintained components whose bugs had gone unnoticed for lack of real use.
