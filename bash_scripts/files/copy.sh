@@ -172,6 +172,14 @@ parse_args() {
 validate_paths() {
     [[ -d "$SOURCE_FOLDER" ]] || die "Source folder does not exist: $SOURCE_FOLDER"
 
+    local src_name
+    src_name=$(basename "$SOURCE_FOLDER")
+    DEST_DIR="$TARGET_LOCATION/$src_name"
+
+    # --dry-run means "list work items without copying" -- it must not
+    # create anything either, so skip every filesystem write below.
+    (( DRY_RUN )) && return 0
+
     if [[ ! -d "$TARGET_LOCATION" ]]; then
         info "Creating target directory: $TARGET_LOCATION"
         mkdir -p "$TARGET_LOCATION" || die "Cannot create: $TARGET_LOCATION"
@@ -179,9 +187,6 @@ validate_paths() {
 
     [[ -w "$TARGET_LOCATION" ]] || die "No write permission: $TARGET_LOCATION"
 
-    local src_name
-    src_name=$(basename "$SOURCE_FOLDER")
-    DEST_DIR="$TARGET_LOCATION/$src_name"
     mkdir -p "$DEST_DIR" || die "Cannot create: $DEST_DIR"
 }
 
@@ -194,12 +199,16 @@ build_queue() {
     local src_root="$1" dst_root="$2"
     local rel src dst size
 
+    # -type l alongside -type f: rsync_opts already carries -a (which
+    # preserves symlinks as symlinks via -l), but find's own -type f never
+    # matched them, so every symlink in the source tree was silently
+    # dropped from the copy with no warning.
     while IFS= read -r -d '' src; do
         rel="${src#"$src_root"/}"
         dst="$dst_root/$rel"
         size=$(stat -c '%s' "$src" 2>/dev/null || echo 0)
         QUEUE+=("${rel}|${src}|${dst}|${size}")
-    done < <(find "$src_root" -type f -print0)
+    done < <(find "$src_root" \( -type f -o -type l \) -print0)
 
     # Preserve empty directories
     while IFS= read -r -d '' src; do
