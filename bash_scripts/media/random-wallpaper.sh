@@ -174,15 +174,17 @@ echo "$$" >&200
 dir="${1:-$(find_wall_dir || { echo "No wallpaper directory found" >&2; exit 1; })}"
 time="${2:-1000}"
 
+last=""
 while true; do
     if [[ "$BACKEND" == wayland ]] && ! wayland_display_alive; then
         echo "Wayland display ${WAYLAND_DISPLAY:-?} gone, exiting" >&2
         exit 0
     fi
 
-    wall=$(pick_wallpaper "$dir")
+    wall=$(pick_wallpaper "$dir" "$last")
     if [[ -n "$wall" ]]; then
         set_wallpaper "$wall" || echo "wallpaper failed: $wall" >&2
+        last="$wall"
     fi
     # Close fd 200 for this child specifically -- otherwise it inherits the
     # lock fd, and if the parent dies mid-sleep (e.g. `kill bspwm`), the sleep
