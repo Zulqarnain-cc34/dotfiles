@@ -12,7 +12,7 @@ Personal utility scripts for this setup, organized by category below. `setup.sh`
 | [`torrents/`](torrents/) | `notifytorrents`, `tordone`, `torque`, `transadd`, `transclr` |
 | [`files/`](files/) | `copy.sh`, `smart-extract.sh`, `lfmount`, `pdf-thumbnail.sh` |
 | [`web/`](web/) | `urlportal.sh` |
-| [`launchers/`](launchers/) | `aliasmanager.sh`, `killandnotify`, `rofi-bangs` (symlink into `rofi/launchers/`) |
+| [`launchers/`](launchers/) | `aliasmanager.sh`, `rofi-bangs` (symlink into `rofi/launchers/`) |
 | [`colorscripts/`](colorscripts/) | Loose, multi-author terminal color-art collection (not on `PATH`) |
 | `csakura` | Symlink keeping the cherry-blossom screensaver on `PATH`. The real binary, source and writeup live in [`../csakura/`](../csakura/). |
 
