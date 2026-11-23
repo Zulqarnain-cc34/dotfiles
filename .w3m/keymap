@@ -462,7 +462,7 @@ keymap	,       MARK_WORD
 keymap  ]       EXTERN
 ############################ Display target using an external browser (EXTERN_LINK)
 # open url under cursor (default: Esc+Shift+M); e.g 2+Esc+Shift+M
-keymap  e       EXTERN_LINK ~/.scripts/ninjutsu/urlportal
+# (bound further down, see the real urlportal.sh path)
 
 ############################ Show all URLs referenced (LIST)
 keymap  gl      LIST
