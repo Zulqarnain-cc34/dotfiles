@@ -58,7 +58,7 @@ COMMANDS["locate"]="$HOME/.config/rofi/launchers/rofi-locate"
 LABELS["locate"]=""
 
 # Watch your best twitch Streamers
-COMMANDS["twitch"]="$HOME/.config/rofi/launchers/rofi-twitch"
+COMMANDS["twitch"]="$HOME/bin/bash_scripts/rofi-twitch"
 LABELS["twitch"]=""
 
 # text snippets
