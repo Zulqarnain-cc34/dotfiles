@@ -16,25 +16,21 @@
 #        \__,_|_|  |_| .__/ \___/|_|   \__\__,_|_|
 #                    |_|
 #       DESC: custom way to handle url (similar idea to xdg-open, mailcap)
-#             works with just about all programs (e.g w3m, rtv, newsboat, urlview ...etc)
+#             works with just about all programs (e.g w3m, newsboat, urlview ...etc)
 #       DEMO: https://www.youtube.com/watch?v=2jyfrmBYzVQ
-#       install: lynx yt-dlp task-spooler newsboat rtv w3m mpv urlview tmux feh plowshare streamlink curl coreutils
+#       install: lynx yt-dlp task-spooler newsboat w3m mpv urlview tmux feh plowshare streamlink curl coreutils
 # newsboat:
 #     vim ~/.newsboat/config
-#        browser ~/.scripts/urlportal.sh
-
-# rtv:
-#     vim ~/.bashrc
-#         export RTV_BROWSER=~/.scripts/urlportal.sh
+#        browser ~/bin/bash_scripts/web/urlportal.sh
 
 # w3m:
 #     vim ~/.w3m/keymap
 #         open url under cursor (default: Esc+Shift+M); e.g 2+Esc+Shift+M
-#         keymap  e       EXTERN_LINK ~/.scripts/urlportal.sh
+#         keymap  e       EXTERN_LINK ~/bin/bash_scripts/web/urlportal.sh
 
 # urlview:
 #     vim ~/.urlview
-#         COMMAND ~/.scripts/urlportal.sh
+#         COMMAND ~/bin/bash_scripts/web/urlportal.sh
 
 # references:
 # cirrusuk http://arza.us/paste/piper
