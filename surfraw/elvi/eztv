@@ -27,7 +27,7 @@ w3_parse_args "$@"
 
 # Any variables in the url should have values now
 if test -z "$w3_args"; then
-	w3_browse_url "https://https://eztv.re"
+	w3_browse_url "https://eztv.re"
 	exit
 fi
 
