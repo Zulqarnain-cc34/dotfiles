@@ -14,8 +14,17 @@ list_entries() {
         *.tar.bz2 | *.tar.gz | *.tar.xz | *.tar.zst | *.tgz | *.tar) tar tf "$1" 2>/dev/null ;;
         *.rar) unrar lb "$1" 2>/dev/null ;;
         *.7z)
-            7z l -slt "$1" 2>/dev/null |
-                awk '/^----------$/{f=1;next} f && /^Path = /{sub(/^Path = /,""); print}'
+            # -slt lists a directory's own entry as a bare path with no
+            # trailing slash (unlike tar/zip) -- indistinguishable from a
+            # loose root-level file to is_single_rooted(), which wrapped
+            # every single-rooted .7z in a redundant folder. Attributes=D
+            # marks a directory; append "/" so it matches tar/zip's convention.
+            7z l -slt "$1" 2>/dev/null | awk '
+                /^----------$/ { f=1; next }
+                f && /^Path = / { path=$0; sub(/^Path = /, "", path); next }
+                f && /^Attributes = D/ { print path "/"; path=""; next }
+                f && /^Attributes = / { print path; path=""; next }
+            '
             ;;
     esac
 }
