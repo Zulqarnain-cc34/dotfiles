@@ -43,7 +43,7 @@ COMMANDS["music"]="$HOME/.config/rofi/launchers/rofi-audio"
 LABELS["music"]=""
 
 # Watch Youtube Videos
-COMMANDS["youtube"]='$HOME/bin/bash_scripts/ytfzf -D'
+COMMANDS["youtube"]='$HOME/bin/bash_scripts/media/ytfzf -D'
 LABELS["youtube"]=""
 
 COMMANDS["Books"]="$HOME/.config/rofi/launchers/rofi-books"

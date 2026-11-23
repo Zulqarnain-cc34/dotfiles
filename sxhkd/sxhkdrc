@@ -104,7 +104,7 @@ super + shift + n
     $HOME/bin/bash_scripts/dunst-dnd-toggle.sh
 
 super + {t,y,o,w}
-    {$TERMINAL,$HOME/bin/bash_scripts/ytfzf -D,$TERMINAL -e htop, firefox}
+    {$TERMINAL,$HOME/bin/bash_scripts/media/ytfzf -D,$TERMINAL -e htop, firefox}
 
 # super + space was defined twice; sxhkd honours only the last, so the dead
 # rofi-bangs binding is removed. Launcher is the rofi ribbon.
