@@ -5,7 +5,7 @@ The detailed record lives in the git commit messages — see `git log` when you 
 
 ## [2026-11-23] — bash_scripts reorg, CLAUDE.md template
 
-- Reorganized **bash_scripts/** into categories, removed over a dozen dead or duplicate scripts, and added a syntax sweep to **validate.sh**.
+- Reorganized **bash_scripts/** into categories, removed over a dozen dead or duplicate scripts, added a syntax sweep to **validate.sh**, and fully audited every script in **files/**, **media/**, **launchers/**, and **web/**.
 - Added a reusable **CLAUDE.md** template for new solo projects.
 
 ## [2026-11-21] — Niri setup removal, Git workflow rules
