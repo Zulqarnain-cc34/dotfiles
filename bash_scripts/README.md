@@ -28,6 +28,7 @@ What each script does and what it's good for.
 | `files/pdf-thumbnail.sh` | Renders a PDF thumbnail | first-page render, rofi preview |
 | `media/random-wallpaper.sh` | Random wallpaper cycler | no-repeat picks, X11 only |
 | `launchers/aliasmanager.sh` | Picks an alias and runs it | `fzf` picker, runs in current shell |
+| `web/urlportal.sh` | Routes a URL to the right opener | type-based dispatch, DuckDuckGo redirect decoding |
 
 ## Note
 

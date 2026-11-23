@@ -64,10 +64,15 @@ fi
 # Normalize DuckDuckGo redirect links to the real URL
 case "$1" in
   *duckduckgo.com/l/*)
-    # Extract the embedded http(s) URL
-    urlint="$(sed -E 's/.*(https?.*)/\1/' <<<"$1")"
-    # URL-decode it via Python
-    url="$(python3 -c "import urllib.parse as ul;print(ul.unquote_plus('$urlint'))")"
+    # Parse the uddg query param specifically -- a plain regex grab from the
+    # first embedded "http" to the end of the string also swallowed any
+    # trailing params DDG appends after it (e.g. &rut=...), producing a
+    # decoded URL with that tracking param glued onto the end.
+    url="$(python3 -c "
+import sys, urllib.parse as ul
+qs = ul.urlsplit(sys.argv[1]).query
+print(ul.parse_qs(qs).get('uddg', [sys.argv[1]])[0])
+" "$1")"
     ;;
   *)
     url="$1"
