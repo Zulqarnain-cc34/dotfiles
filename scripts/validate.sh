@@ -57,10 +57,6 @@ for f in bash_scripts/web/urlportal.sh bash_scripts/media/random-wallpaper.sh ba
         fail "missing $f"
     fi
 done
-for f in bash_scripts/newsboat/dangerzone/bookmark.sh; do
-    [[ -f "$f" ]] && ok "newsboat bookmark.sh" || warn "optional missing: $f (NEWSBOAT_BOOKMARKS)"
-done
-
 echo "==> Polybar scripts (active bar modules)"
 if [[ -f polybar/config.ini ]]; then
     active_mods=""
