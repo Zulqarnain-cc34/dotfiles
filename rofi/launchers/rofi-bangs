@@ -25,7 +25,7 @@ LABELS["exec"]=""
 COMMANDS["apps"]="$HOME/.config/rofi/launchers/ribbon/launcher.sh"
 LABELS["apps"]="Applications"
 
-COMMANDS["password"]="$HOME/.config/rofi/launchers/rofi-keepassXC -d $HOME/Documents/passwords/Passwords.kdbx"
+COMMANDS["password"]="$HOME/.config/rofi/launchers/rofi-keepassXC -d $HOME/Documents/personal/others/Passwords.kdbx"
 LABELS["password"]=""
 
 COMMANDS["keys"]="rofi -show keys"
@@ -93,7 +93,6 @@ ICONS["locate"]="drill-search"
 ICONS["snippet"]="text-x-generic"
 ICONS["multisnippet"]="accessories-text-editor"
 ICONS["websearch"]="internet-web-browser"
-ICONS["manga"]="mangareader"
 ICONS["theme"]="preferences-desktop-theme"
 # ICONS["clipboard"]="org.kde.plasma.clipboard"
 
