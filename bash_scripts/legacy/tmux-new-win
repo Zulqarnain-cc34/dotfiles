@@ -1,3 +1,0 @@
-#!/bin/dash 
-
-tmux new-window -n "$@" && tmux send-keys "$@" 'Enter'

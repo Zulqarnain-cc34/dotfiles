@@ -60,8 +60,7 @@ macro i set browser "wget -O /tmp/newsboat.img %u && feh /tmp/newsboat.img &> /d
 # Media Player (mpv)
 macro p set browser "mpv %u &> /dev/null &" ; open-in-browser ; set browser "${HOME}/bin/bash_scripts/web/urlportal.sh"
 
-# Download the video for offline viewing (yt-dlp), same output dir as
-# bash_scripts/legacy/youtube-dl_copy.sh
+# Download the video for offline viewing (yt-dlp)
 macro d set browser "$TERMINAL -e yt-dlp -o '${HOME}/Videos/videos/%(title)s.%(ext)s' %u" ; open-in-browser ; set browser "${HOME}/bin/bash_scripts/web/urlportal.sh"
 
 # YouTube comments/Search via Pipe-Viewer
