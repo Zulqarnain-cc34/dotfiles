@@ -36,7 +36,6 @@ export IMAGES_DIR="$HOME/Pictures/Pictures/"
 export VIDEOS_DIR="$HOME/Videos/videos/"
 export BOOKDIR="$HOME/Documents/Books/"
 export ALIASDIR="$HOME/.aliases/aliases"
-export RTV_BROWSER="$HOME/bin/bash_scripts/urlportal.sh"
 
 export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
     --layout=reverse
@@ -84,6 +83,18 @@ case ":$PATH:" in
   # Appending put it after /usr/bin, which never actually guaranteed that.
   *) [ -d "$HOME/bin/bash_scripts" ] && PATH="$HOME/bin/bash_scripts:$PATH" ;;
 esac
+
+# bash_scripts/ category subdirectories -- appended, not prepended; unlike
+# the csakura case above, none of these need to shadow a same-named system
+# binary. legacy/ and colorscripts/ are deliberately excluded: neither is
+# meant for direct bare-name invocation.
+for _bsdir in media system network torrents files web launchers misc; do
+  case ":$PATH:" in
+    *":$HOME/bin/bash_scripts/$_bsdir:"*) ;;
+    *) [ -d "$HOME/bin/bash_scripts/$_bsdir" ] && PATH="$PATH:$HOME/bin/bash_scripts/$_bsdir" ;;
+  esac
+done
+unset _bsdir
 
 export GOPATH="$HOME/go"
 export GOBIN="$GOPATH/bin"

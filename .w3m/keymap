@@ -790,7 +790,7 @@ keymap  XO      COMMAND       "SHELL ~/.w3m/cgi-bin/fzf_settings_toggle.cgi"
 keymap  XX      COMMAND       "SHELL ~/.w3m/cgi-bin/queue2ariadaemon.cgi"
 
 #open url under cursor (default: Esc+Shift+M); e.g 2+Esc+Shift+M
- keymap  e       EXTERN_LINK ~/bin/urlportal.sh
+ keymap  e       EXTERN_LINK ~/bin/bash_scripts/web/urlportal.sh
 
 
 

@@ -12,17 +12,17 @@ Full index: [bash_scripts/README.md](../../bash_scripts/README.md).
 
 | Script | Used by |
 |--------|---------|
-| `urlportal.sh` | `.profile`, `newsboat/config` |
-| `random-wallpaper.sh` | `bspwm/bspwmrc` autostart |
-| `ytfzf` | `sxhkd` (`super+y`), `rofi/launchers/rofi-bangs` |
-| `notifytorrents` | `sxhkd` (`shift+alt+t`) |
-| `killandnotify` | `sxhkd` (config reload notify) |
+| `web/urlportal.sh` | `.profile`, `newsboat/config` |
+| `media/random-wallpaper.sh` | `bspwm/bspwmrc` autostart |
+| `media/ytfzf` | `sxhkd` (`super+y`), `rofi/launchers/rofi-bangs` |
+| `torrents/notifytorrents` | `sxhkd` (`shift+alt+t`) |
+| `launchers/killandnotify` | `sxhkd` (config reload notify) |
 
 ## Optional
 
 | Path | Used by |
 |------|---------|
-| `scripts/wallpaper.sh` | `lf/lfrc`, `vivid/keymap.toml` |
-| `scripts/calcurse-mutt.sh` | `.mutt/mailcap` (commented) |
+| `legacy/wallpaper.sh` | `lf/lfrc`, `vivid/keymap.toml` |
+| `legacy/calcurse-mutt.sh` | `.mutt/mailcap` (commented) |
 
 Legacy minimal stubs (if not using the full `bash_scripts/` tree): [stubs/](stubs/).

@@ -7,7 +7,6 @@ export BROWSER="firefox"
 export TERMINAL="kitty"
 export EDITOR="nvim"
 export DOTFILES_BSPWM_PROFILE="${DOTFILES_BSPWM_PROFILE:-desktop}"
-export RTV_BROWSER="$HOME/bin/bash_scripts/urlportal.sh"
 # export TERM="alacritty"
 
 # export PATH="$PATH:/usr/local/opt/coreutils/libexec/gnubin"
@@ -77,6 +76,17 @@ fi
 if [ -d "$HOME/bin/bash_scripts" ]; then
     PATH="$HOME/bin/bash_scripts:$PATH"
 fi
+
+# bash_scripts/ category subdirectories -- appended, not prepended; unlike
+# the csakura case above, none of these need to shadow a same-named system
+# binary. legacy/ and colorscripts/ are deliberately excluded: neither is
+# meant for direct bare-name invocation.
+for _bsdir in media system network torrents files web launchers misc; do
+    if [ -d "$HOME/bin/bash_scripts/$_bsdir" ]; then
+        PATH="$PATH:$HOME/bin/bash_scripts/$_bsdir"
+    fi
+done
+unset _bsdir
 
 if [ -d "$NPM_PACKAGES/bin" ]; then
     PATH="$NPM_PACKAGES/bin:$PATH"

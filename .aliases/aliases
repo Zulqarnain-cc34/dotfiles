@@ -150,7 +150,7 @@ alias surfraw='surfraw -browser=$BROWSER'
 alias cfg-mimelists="$EDITOR $HOME/.config/mimeapps.list"
 alias cfg-rnconf="$EDITOR  $HOME/.config/ranger/rc.conf"
 alias cfg-rifleconf="$EDITOR  $HOME/.config/ranger/rifle.conf"
-alias cfg-urlportal="$EDITOR $HOME/bin/urlportal.sh"
+alias cfg-urlportal="$EDITOR $HOME/bin/bash_scripts/web/urlportal.sh"
 alias cfg-muttrc="$EDITOR $HOME/.mutt/muttrc"
 alias cfg-starship="$EDITOR $HOME/.config/starship.toml"
 alias cfg-zshrc="$EDITOR $HOME/.config/zsh/.zshrc"
