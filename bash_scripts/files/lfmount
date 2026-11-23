@@ -3,11 +3,15 @@
 
 # Get the target volume
 target_vol=$(lsblk | fzf --reverse | sed 's/^[^[:alnum:]]*//' | cut -d' ' -f1)
+if [[ -z "$target_vol" ]]; then
+	echo "No volume selected, exiting"
+	exit 1
+fi
 # Is it encrypted or something?
 if [[ $(lsblk -o NAME,FSTYPE | sed 's/^[^[:alnum:]]*//' | grep "$target_vol" | awk '{print $2}') == "crypto_LUKS" ]]; then
 	echo "Volume is encrypted"
 	udisksctl unlock -b /dev/"$target_vol"
-	list_mount
+	lsblk -o NAME,MOUNTPOINT
 	exit 0
 fi
 # Is it internal?
@@ -24,7 +28,7 @@ if [[ -e /dev/"$target_vol" ]]; then
 elif [[ -e /dev/mapper/"$target_vol" ]]; then
 	target_vol="/dev/mapper/$target_vol"
 else
-	echo "Something vent wrong, no such volume?"
+	echo "Something went wrong, no such volume?"
 fi
 
 if $removable; then
@@ -37,9 +41,11 @@ else
 	read mountpoint
 	
 	while ! [[ -d "$mountpoint" ]]; do
-		sudo mkdir -p "$mountpoint" ||\
-		echo "$mountpoint is not a possible mountpoint.
-Input new mountpoint:" && read mountpoint
+		if ! sudo mkdir -p "$mountpoint"; then
+			echo "$mountpoint is not a possible mountpoint.
+Input new mountpoint:"
+			read -r mountpoint
+		fi
 	done
 	sudo mount "$target_vol" "$mountpoint" && \
 	echo "Mounted $target_vol to $mountpoint
