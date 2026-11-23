@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+msg_file="$1"
+
+# A real trailer is its own line, starting (after an optional emoji prefix)
+# with the trailer phrase -- not just "claude" and the phrase co-occurring
+# anywhere, which also matches prose that *describes* this rule (as the
+# first version of this hook did, on its own introducing commit).
+while IFS= read -r line; do
+    trimmed="$(sed -E 's/^[^a-zA-Z]*//' <<< "$line")"
+    if [[ "$trimmed" =~ ^[Cc]o-[Aa]uthored-[Bb]y:.*[Cc]laude ]] || [[ "$trimmed" =~ ^[Gg]enerated[[:space:]]+with.*[Cc]laude ]]; then
+        echo "commit-msg: AI-attribution footer detected -- CLAUDE.md says never add one" >&2
+        echo "  (line: $line)" >&2
+        exit 1
+    fi
+done < "$msg_file"
