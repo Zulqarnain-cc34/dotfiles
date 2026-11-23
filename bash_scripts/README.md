@@ -18,7 +18,7 @@ Personal utility scripts for this setup, organized by category below. `setup.sh`
 
 ## Scripts
 
-What each script does, filled in one at a time as it's live-tested.
+What each script does and what it's good for.
 
 | Script | What it does | Features |
 |--------|---------------|----------|
