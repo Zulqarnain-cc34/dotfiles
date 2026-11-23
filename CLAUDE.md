@@ -21,6 +21,7 @@ These are standing rules for this dotfiles repo, set by the user across sessions
 - **Do this autonomously** — create branches, commit, push, and open the PR without asking each time; opening a PR is just the normal next step once a branch's work is done. **Merging is the one step that always needs the user's explicit go-ahead, every time, not just the first** — never merge a PR just because it was opened or because checks passed.
 - **`main` protection**: PR required (0 mandatory approvals — no second collaborator exists on this repo), passing `validate` + `gitleaks`, no force-push/deletion, enforced on admins — nobody, including the repo owner, can push straight to `main`. "Require branches to be up to date before merging" is deliberately off: at this repo's scale, the friction of resyncing every sibling PR each time one merges outweighs the risk it guards against, which running `validate.sh` locally before each merge already covers.
 - **Write every PR's title and description yourself, always** — a specific, feature-oriented title; body bullets grouped by component. No "Summary" heading, no testing section. **PR descriptions follow the same voice as `CHANGELOG.md`** (bold tool names, plain language, no mechanism/internals).
+- **If a change closes a GitHub issue, put `Closes #N` in the PR description, never in individual commit messages** — on squash-merge, GitHub only honors a closing keyword from the PR body; commit-level ones get discarded along with the rest of the branch's history.
 
 ## Changelog
 
