@@ -1,6 +1,6 @@
-# Host scripts (`bash_scripts/`)
+# Host scripts
 
-Deployed by `setup.sh` as **`~/bin/bash_scripts`**. The top-level directory itself, plus each category subdirectory below, is on `PATH` (via `.profile` / `zsh/.zshenv`) — so every script here is callable by its bare name from a shell, not just by full path.
+Personal utility scripts for this setup, organized by category below. `setup.sh` deploys this directory as **`~/bin/bash_scripts`**.
 
 ## Categories
 
@@ -16,23 +16,17 @@ Deployed by `setup.sh` as **`~/bin/bash_scripts`**. The top-level directory itse
 | [`colorscripts/`](colorscripts/) | Loose, multi-author terminal color-art collection (not on `PATH`) |
 | `csakura` | Symlink keeping the cherry-blossom screensaver on `PATH`. The real binary, source and writeup live in [`../csakura/`](../csakura/). |
 
-## Session-critical (must exist)
+## Scripts
 
-| Path | Used by |
-|------|---------|
-| `web/urlportal.sh` | `.profile`, `newsboat/config` |
-| `media/random-wallpaper.sh` | `bspwm/bspwmrc` |
-| `media/ytfzf` | `sxhkd`, `rofi/launchers/rofi-bangs` |
-| `torrents/notifytorrents` | `sxhkd` (`shift+alt+t`) |
-| `launchers/killandnotify` | `sxhkd` (reload notification) |
+What each script does and what it's good for.
 
-## Optional / paths you may add locally
-
-| Path | Used by |
-|------|---------|
-| `personal/*` | legacy paths in some scripts |
-
-See also [scripts/host/README.md](../scripts/host/README.md) for the short index.
+| Script | What it does | Features |
+|--------|---------------|----------|
+| `files/copy.sh` | Parallel `rsync` copy | worker pool, progress bar, dry-run, resumable |
+| `files/smart-extract.sh` | Extracts an archive | single-root detection, collision-safe, multi-format |
+| `files/lfmount` | Mounts/unlocks a block device | `fzf` picker, LUKS unlock, default mountpoint |
+| `files/pdf-thumbnail.sh` | Renders a PDF thumbnail | first-page render, rofi preview |
+| `media/random-wallpaper.sh` | Random wallpaper cycler | no-repeat picks, X11 only |
 
 ## Note
 
