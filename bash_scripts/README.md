@@ -20,13 +20,13 @@ Personal utility scripts for this setup, organized by category below. `setup.sh`
 
 Scripts that have been through a full live-test pass (part of an ongoing script-by-script audit), with what each one does and where it's wired.
 
-| Script | What it does | Used by |
-|--------|---------------|---------|
-| `files/copy.sh` | Parallel `rsync` copy with a worker pool, progress bar, and dry-run | run by bare name |
-| `files/smart-extract.sh` | Extracts an archive directly if it's already single-rooted, otherwise wraps it in a new folder | `lf`, `yazi`, `ranger` (`au`) |
-| `files/lfmount` | Interactive block-device mount/unlock helper (`fzf` + `lsblk` + `udisksctl`) | run by bare name |
-| `files/pdf-thumbnail.sh` | Renders a PDF's first page as a thumbnail via `pdftoppm` | `rofi/launchers/rofi-books` |
-| `media/random-wallpaper.sh` | Random wallpaper cycler for X11, skips repeating the last pick | `bspwm/bspwmrc` |
+| Script | What it does | Features | Used by |
+|--------|---------------|----------|---------|
+| `files/copy.sh` | Parallel `rsync` copy | worker pool, progress bar, dry-run, resumable | run by bare name |
+| `files/smart-extract.sh` | Extracts an archive | single-root detection, collision-safe, multi-format | `lf`, `yazi`, `ranger` (`au`) |
+| `files/lfmount` | Mounts/unlocks a block device | `fzf` picker, LUKS unlock, default mountpoint | run by bare name |
+| `files/pdf-thumbnail.sh` | Renders a PDF thumbnail | first-page render, rofi preview | `rofi/launchers/rofi-books` |
+| `media/random-wallpaper.sh` | Random wallpaper cycler | no-repeat picks, X11 only | `bspwm/bspwmrc` |
 
 ## Session-critical (must exist)
 
