@@ -16,9 +16,9 @@ Personal utility scripts for this setup, organized by category below. `setup.sh`
 | [`colorscripts/`](colorscripts/) | Loose, multi-author terminal color-art collection (not on `PATH`) |
 | `csakura` | Symlink keeping the cherry-blossom screensaver on `PATH`. The real binary, source and writeup live in [`../csakura/`](../csakura/). |
 
-## Script Reference
+## Scripts
 
-A running reference for scripts that have been live-tested one at a time as part of an ongoing audit, with what each one does.
+What each script does, filled in one at a time as it's live-tested.
 
 | Script | What it does | Features |
 |--------|---------------|----------|
