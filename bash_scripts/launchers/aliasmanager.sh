@@ -1,5 +1,14 @@
 #!/usr/bin/env bash
 
+# FS="=" splits an alias's value at every "=" inside it too (e.g.
+# alias lf='YAZI_FILE_ONE=file yazi'), so the value is rejoined from
+# every field after the first instead of just printing $2 unchanged.
 cat "$ALIASDIR" | grep -e 'alias.*=' -e '=.*alias' | cut -d " " -f2- \
-    | awk 'BEGIN {FS="="} {for(i=2;i<=NF;i++){gsub("\"","",$2);gsub("\047","",$2);printf ("%-40s %s \n",$1,$2) ;}}' \
+    | awk 'BEGIN {FS="="} {
+        val = $2
+        for (i = 3; i <= NF; i++) val = val "=" $i
+        gsub(/"/, "", val)
+        gsub(/\x27/, "", val)
+        printf ("%-40s %s \n", $1, val)
+    }' \
     | fzf --border rounded | cut -d " " -f2- | ${SHELL}
