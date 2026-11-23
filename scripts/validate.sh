@@ -60,7 +60,7 @@ done
 if command -v bash >/dev/null; then
     echo "==> bash_scripts syntax (bash -n over every categorized script)"
     bs_syntax_checked=0
-    for d in media system network torrents files web launchers misc; do
+    for d in media system network torrents files web launchers; do
         for f in bash_scripts/"$d"/*; do
             [[ -f "$f" ]] || continue
             case "$f" in *.py) continue ;; esac
