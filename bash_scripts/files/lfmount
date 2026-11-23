@@ -3,6 +3,10 @@
 
 # Get the target volume
 target_vol=$(lsblk | fzf --reverse | sed 's/^[^[:alnum:]]*//' | cut -d' ' -f1)
+if [[ -z "$target_vol" ]]; then
+	echo "No volume selected, exiting"
+	exit 1
+fi
 # Is it encrypted or something?
 if [[ $(lsblk -o NAME,FSTYPE | sed 's/^[^[:alnum:]]*//' | grep "$target_vol" | awk '{print $2}') == "crypto_LUKS" ]]; then
 	echo "Volume is encrypted"
