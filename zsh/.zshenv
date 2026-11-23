@@ -84,6 +84,18 @@ case ":$PATH:" in
   *) [ -d "$HOME/bin/bash_scripts" ] && PATH="$HOME/bin/bash_scripts:$PATH" ;;
 esac
 
+# bash_scripts/ category subdirectories -- appended, not prepended; unlike
+# the csakura case above, none of these need to shadow a same-named system
+# binary. legacy/ and colorscripts/ are deliberately excluded: neither is
+# meant for direct bare-name invocation.
+for _bsdir in media system network torrents files web launchers misc; do
+  case ":$PATH:" in
+    *":$HOME/bin/bash_scripts/$_bsdir:"*) ;;
+    *) [ -d "$HOME/bin/bash_scripts/$_bsdir" ] && PATH="$PATH:$HOME/bin/bash_scripts/$_bsdir" ;;
+  esac
+done
+unset _bsdir
+
 export GOPATH="$HOME/go"
 export GOBIN="$GOPATH/bin"
 case ":$PATH:" in
