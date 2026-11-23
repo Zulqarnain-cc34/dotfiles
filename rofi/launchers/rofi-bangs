@@ -57,10 +57,6 @@ LABELS["Global"]=""
 COMMANDS["locate"]="$HOME/.config/rofi/launchers/rofi-locate"
 LABELS["locate"]=""
 
-# Watch your best twitch Streamers
-COMMANDS["twitch"]="$HOME/.config/rofi/launchers/rofi-twitch"
-LABELS["twitch"]=""
-
 # text snippets
 COMMANDS["snippet"]="$HOME/.config/rofi/launchers/rofi-snippet"
 LABELS["snippet"]=""
@@ -94,7 +90,6 @@ ICONS["youtube"]="youtube"
 ICONS["Books"]="gnome-books"
 ICONS["Global"]="system-search"
 ICONS["locate"]="drill-search"
-ICONS["twitch"]="com.vinszent.GnomeTwitch"
 ICONS["snippet"]="text-x-generic"
 ICONS["multisnippet"]="accessories-text-editor"
 ICONS["websearch"]="internet-web-browser"
