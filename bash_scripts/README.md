@@ -28,24 +28,6 @@ A running reference for scripts that have been live-tested one at a time as part
 | `files/pdf-thumbnail.sh` | Renders a PDF thumbnail | first-page render, rofi preview |
 | `media/random-wallpaper.sh` | Random wallpaper cycler | no-repeat picks, X11 only |
 
-## Session-critical (must exist)
-
-| Path | Used by |
-|------|---------|
-| `web/urlportal.sh` | `.profile`, `newsboat/config` |
-| `media/random-wallpaper.sh` | `bspwm/bspwmrc` |
-| `media/ytfzf` | `sxhkd`, `rofi/launchers/rofi-bangs` |
-| `torrents/notifytorrents` | `sxhkd` (`shift+alt+t`) |
-| `launchers/killandnotify` | `sxhkd` (reload notification) |
-
-## Optional / paths you may add locally
-
-| Path | Used by |
-|------|---------|
-| `personal/*` | legacy paths in some scripts |
-
-See also [scripts/host/README.md](../scripts/host/README.md) for the short index.
-
 ## Note
 
 Most of these scripts are not originally mine. I've collected them from various sources over time and made some changes to fit my setup. I don't remember all the original authors, but I've credited a few in the main README.
