@@ -25,7 +25,6 @@ export GDK_DPI_SCALE=0.8
 
 # Aliases
 export WGETRC="$HOME/.wgetrc"
-export NEWSBOAT_BOOKMARKS="$HOME/bin/bash_scripts/newsboat/dangerzone/bookmark.sh"
 export MUSIC="$HOME/Videos/Audios/*"
 export CONFIG_BACKUP="$HOME/etc/linuxConfig/dotfiles_v2/"
 export IMAGES_DIR="$HOME/Pictures/Pictures/"

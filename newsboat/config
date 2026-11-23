@@ -39,7 +39,6 @@ cleanup-on-quit yes
 datetime-format "%b %d %Y" # date example: Mar 01 2017
 
 # -- Bookmarks ---------------------------------------------------------
-bookmark-cmd $NEWSBOAT_BOOKMARKS
 bookmark-interactive yes
 bookmark-autopilot no
 
