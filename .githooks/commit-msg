@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+msg_file="$1"
+subject="$(head -1 "$msg_file")"
+pattern='^(feat|fix|chore|docs|refactor|style|test|build): .+'
+
+if ! [[ "$subject" =~ $pattern ]]; then
+    echo "commit-msg: subject must start with a Conventional Commits prefix" >&2
+    echo "  (feat:/fix:/chore:/docs:/refactor:/style:/test:/build:), got:" >&2
+    echo "  $subject" >&2
+    exit 1
+fi
