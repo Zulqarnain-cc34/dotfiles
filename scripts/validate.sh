@@ -57,6 +57,24 @@ for f in bash_scripts/web/urlportal.sh bash_scripts/media/random-wallpaper.sh ba
         fail "missing $f"
     fi
 done
+if command -v bash >/dev/null; then
+    echo "==> bash_scripts syntax (bash -n over every categorized script)"
+    bs_syntax_checked=0
+    for d in media system network torrents files web launchers misc; do
+        for f in bash_scripts/"$d"/*; do
+            [[ -f "$f" ]] || continue
+            case "$f" in *.py) continue ;; esac
+            bs_syntax_checked=$((bs_syntax_checked + 1))
+            if ! syntax_err=$(bash -n "$f" 2>&1); then
+                fail "syntax error in $f: $syntax_err"
+            fi
+        done
+    done
+    [[ $bs_syntax_checked -gt 0 ]] && ok "syntax-checked $bs_syntax_checked bash_scripts files"
+else
+    warn "bash not found, skipping bash_scripts syntax sweep"
+fi
+
 echo "==> Polybar scripts (active bar modules)"
 if [[ -f polybar/config.ini ]]; then
     active_mods=""
