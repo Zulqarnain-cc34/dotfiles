@@ -101,7 +101,7 @@ shift + alt + t
 
 # Toggle do-not-disturb (dunst)
 super + shift + n
-    $HOME/bin/bash_scripts/dunst-dnd-toggle.sh
+    $HOME/bin/bash_scripts/system/dunst-dnd-toggle.sh
 
 super + {t,y,o,w}
     {$TERMINAL,$HOME/bin/bash_scripts/media/ytfzf -D,$TERMINAL -e htop, firefox}
@@ -129,16 +129,16 @@ shift + Print
 
 # Volume / brightness OSD (media keys)
 XF86AudioRaiseVolume
-    $HOME/bin/bash_scripts/volume-osd.sh up
+    $HOME/bin/bash_scripts/system/volume-osd.sh up
 
 XF86AudioLowerVolume
-    $HOME/bin/bash_scripts/volume-osd.sh down
+    $HOME/bin/bash_scripts/system/volume-osd.sh down
 
 XF86AudioMute
-    $HOME/bin/bash_scripts/volume-osd.sh mute
+    $HOME/bin/bash_scripts/system/volume-osd.sh mute
 
 XF86MonBrightnessUp
-    $HOME/bin/bash_scripts/brightness-osd.sh up
+    $HOME/bin/bash_scripts/system/brightness-osd.sh up
 
 XF86MonBrightnessDown
-    $HOME/bin/bash_scripts/brightness-osd.sh down
+    $HOME/bin/bash_scripts/system/brightness-osd.sh down
