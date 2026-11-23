@@ -13,7 +13,6 @@ Deployed by `setup.sh` as **`~/bin/bash_scripts`**. The top-level directory itse
 | [`files/`](files/) | `copy.sh`, `smart-extract.sh`, `convertjpgtopdf.sh`, `lfmount`, `bookmanager.sh` |
 | [`web/`](web/) | `urlportal.sh` |
 | [`launchers/`](launchers/) | `aliasmanager.sh`, `killandnotify`, `rofi-bangs` (symlink into `rofi/launchers/`) |
-| [`misc/`](misc/) | `ascii.sh`, `anki_get.sh`, `statcode`, `sketch.sh`, `kubinstall.sh` |
 | [`colorscripts/`](colorscripts/) | Loose, multi-author terminal color-art collection (not on `PATH`) |
 | `csakura` | Symlink keeping the cherry-blossom screensaver on `PATH`. The real binary, source and writeup live in [`../csakura/`](../csakura/). |
 
