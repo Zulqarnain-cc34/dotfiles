@@ -10,7 +10,7 @@ Deployed by `setup.sh` as **`~/bin/bash_scripts`**. The top-level directory itse
 | [`system/`](system/) | OSDs, toggles, daemons — volume/brightness OSD and status, `dunst-dnd-toggle.sh`, `xset-repeat-logger.sh`, `redshift_toggle.sh`, `low_bat_notifier.sh`, `conky-start.sh`, `pulsedevices`, `pulsevolctrl` |
 | [`network/`](network/) | `postconnect`, `predisconnect` |
 | [`torrents/`](torrents/) | `notifytorrents`, `tordone`, `torque`, `transadd`, `transclr` |
-| [`files/`](files/) | `copy.sh`, `smart-extract.sh`, `convertjpgtopdf.sh`, `lfmount`, `bookmanager.sh` |
+| [`files/`](files/) | `copy.sh`, `smart-extract.sh`, `lfmount`, `bookmanager.sh` |
 | [`web/`](web/) | `urlportal.sh` |
 | [`launchers/`](launchers/) | `aliasmanager.sh`, `killandnotify`, `rofi-bangs` (symlink into `rofi/launchers/`) |
 | [`misc/`](misc/) | `ascii.sh`, `anki_get.sh`, `statcode`, `sketch.sh`, `kubinstall.sh` |
