@@ -3,7 +3,7 @@
 #ls -d $BOOKDIR/* | fzf -m --delimiter / --with-nth -1 | xargs -P10 -n 1 -I {} okular "{}"
 
 function rofi-options() {
-    rofi -no-lazy-grab -kb-row-select "Tab" -kb-row-tab "Control+space" -dmenu -i -p "Books"
+    rofi -no-lazy-grab -kb-row-select "Tab" -kb-element-next "" -kb-row-tab "Control+space" -dmenu -i -p "Books"
 }
 
 function check_dir() {
@@ -21,7 +21,7 @@ function check_dir() {
 }
 
 cd "$BOOKDIR" || exit
-selection=$(ls -a | rofi -no-lazy-grab -kb-row-select "Tab" -kb-row-tab "Control+space" -dmenu -i -p "Books")
+selection=$(ls -a | rofi -no-lazy-grab -kb-row-select "Tab" -kb-element-next "" -kb-row-tab "Control+space" -dmenu -i -p "Books")
 i=$((i + 1))
 if [[ -d $selection ]]; then
     check_dir "$selection"
