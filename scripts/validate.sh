@@ -50,7 +50,7 @@ fi
 
 echo "==> bash_scripts (~/bin/bash_scripts)"
 for f in bash_scripts/web/urlportal.sh bash_scripts/media/random-wallpaper.sh bash_scripts/media/ytfzf \
-         bash_scripts/torrents/notifytorrents bash_scripts/launchers/killandnotify; do
+         bash_scripts/torrents/notifytorrents; do
     if [[ -f "$f" ]]; then
         [[ -x "$f" ]] && ok "$(basename "$f") executable" || warn "$(basename "$f") not executable (chmod +x)"
     else

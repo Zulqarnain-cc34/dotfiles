@@ -16,6 +16,5 @@ Full index: [bash_scripts/README.md](../../bash_scripts/README.md).
 | `media/random-wallpaper.sh` | `bspwm/bspwmrc` autostart |
 | `media/ytfzf` | `sxhkd` (`super+y`), `rofi/launchers/rofi-bangs` |
 | `torrents/notifytorrents` | `sxhkd` (`shift+alt+t`) |
-| `launchers/killandnotify` | `sxhkd` (config reload notify) |
 
 Minimal stubs (if not using the full `bash_scripts/` tree): [stubs/](stubs/).
