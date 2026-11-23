@@ -8,7 +8,7 @@ unbind-key ,
 unbind-key RIGHT
 unbind-key LEFT
 
-browser "${HOME}/bin/bash_scripts/urlportal.sh"
+browser "${HOME}/bin/bash_scripts/web/urlportal.sh"
 # "views" was never a valid feed-sort-order value (newsboat silently ignored it,
 # leaving feeds unsorted); unreadarticlecount-desc actually surfaces feeds with
 # unread content first.
@@ -53,24 +53,24 @@ bookmark-autopilot no
 bind-key i macro-prefix
 
 # Open in terminal w3m (uses $TERMINAL from environment)
-macro o set browser "$TERMINAL w3m %u" ; open-in-browser ; set browser "${HOME}/bin/bash_scripts/urlportal.sh"
+macro o set browser "$TERMINAL w3m %u" ; open-in-browser ; set browser "${HOME}/bin/bash_scripts/web/urlportal.sh"
 
 # Download and view image
-macro i set browser "wget -O /tmp/newsboat.img %u && feh /tmp/newsboat.img &> /dev/null &" ; open-in-browser ; set browser "${HOME}/bin/bash_scripts/urlportal.sh"
+macro i set browser "wget -O /tmp/newsboat.img %u && feh /tmp/newsboat.img &> /dev/null &" ; open-in-browser ; set browser "${HOME}/bin/bash_scripts/web/urlportal.sh"
 
 # Media Player (mpv)
-macro p set browser "mpv %u &> /dev/null &" ; open-in-browser ; set browser "${HOME}/bin/bash_scripts/urlportal.sh"
+macro p set browser "mpv %u &> /dev/null &" ; open-in-browser ; set browser "${HOME}/bin/bash_scripts/web/urlportal.sh"
 
 # Download the video for offline viewing (yt-dlp), same output dir as
 # bash_scripts/scripts/youtube-dl_copy.sh
-macro d set browser "$TERMINAL -e yt-dlp -o '${HOME}/Videos/videos/%(title)s.%(ext)s' %u" ; open-in-browser ; set browser "${HOME}/bin/bash_scripts/urlportal.sh"
+macro d set browser "$TERMINAL -e yt-dlp -o '${HOME}/Videos/videos/%(title)s.%(ext)s' %u" ; open-in-browser ; set browser "${HOME}/bin/bash_scripts/web/urlportal.sh"
 
 # YouTube comments/Search via Pipe-Viewer
-macro c set browser "pipe-viewer --comments=\"%u\"" ; open-in-browser ; set browser "${HOME}/bin/bash_scripts/urlportal.sh"
-macro s set browser "pipe-viewer" ; open-in-browser ; set browser "${HOME}/bin/bash_scripts/urlportal.sh"
+macro c set browser "pipe-viewer --comments=\"%u\"" ; open-in-browser ; set browser "${HOME}/bin/bash_scripts/web/urlportal.sh"
+macro s set browser "pipe-viewer" ; open-in-browser ; set browser "${HOME}/bin/bash_scripts/web/urlportal.sh"
 
 # Copy URL to clipboard
-macro y set browser "echo -n %u | xclip -selection clipboard" ; open-in-browser ; set browser "${HOME}/bin/bash_scripts/urlportal.sh"
+macro y set browser "echo -n %u | xclip -selection clipboard" ; open-in-browser ; set browser "${HOME}/bin/bash_scripts/web/urlportal.sh"
 
 # bind keys
 bind-key h quit

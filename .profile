@@ -7,7 +7,6 @@ export BROWSER="firefox"
 export TERMINAL="kitty"
 export EDITOR="nvim"
 export DOTFILES_BSPWM_PROFILE="${DOTFILES_BSPWM_PROFILE:-desktop}"
-export RTV_BROWSER="$HOME/bin/bash_scripts/urlportal.sh"
 # export TERM="alacritty"
 
 # export PATH="$PATH:/usr/local/opt/coreutils/libexec/gnubin"

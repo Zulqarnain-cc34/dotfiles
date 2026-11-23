@@ -36,7 +36,6 @@ export IMAGES_DIR="$HOME/Pictures/Pictures/"
 export VIDEOS_DIR="$HOME/Videos/videos/"
 export BOOKDIR="$HOME/Documents/Books/"
 export ALIASDIR="$HOME/.aliases/aliases"
-export RTV_BROWSER="$HOME/bin/bash_scripts/urlportal.sh"
 
 export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
     --layout=reverse

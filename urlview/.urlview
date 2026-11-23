@@ -1,1 +1,1 @@
-COMMAND ~/bin/urlportal.sh
+COMMAND ~/bin/bash_scripts/web/urlportal.sh
