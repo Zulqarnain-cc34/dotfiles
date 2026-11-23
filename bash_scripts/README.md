@@ -1,4 +1,4 @@
-# Host scripts (`bash_scripts/`)
+# Host scripts
 
 Personal utility scripts for this setup, organized by category below. `setup.sh` deploys this directory as **`~/bin/bash_scripts`**.
 
@@ -16,17 +16,17 @@ Personal utility scripts for this setup, organized by category below. `setup.sh`
 | [`colorscripts/`](colorscripts/) | Loose, multi-author terminal color-art collection (not on `PATH`) |
 | `csakura` | Symlink keeping the cherry-blossom screensaver on `PATH`. The real binary, source and writeup live in [`../csakura/`](../csakura/). |
 
-## Reviewed
+## Script Reference
 
-Scripts that have been through a full live-test pass (part of an ongoing script-by-script audit), with what each one does and where it's wired.
+A running reference for scripts that have been live-tested one at a time as part of an ongoing audit, with what each one does.
 
-| Script | What it does | Features | Used by |
-|--------|---------------|----------|---------|
-| `files/copy.sh` | Parallel `rsync` copy | worker pool, progress bar, dry-run, resumable | run by bare name |
-| `files/smart-extract.sh` | Extracts an archive | single-root detection, collision-safe, multi-format | `lf`, `yazi`, `ranger` (`au`) |
-| `files/lfmount` | Mounts/unlocks a block device | `fzf` picker, LUKS unlock, default mountpoint | run by bare name |
-| `files/pdf-thumbnail.sh` | Renders a PDF thumbnail | first-page render, rofi preview | `rofi/launchers/rofi-books` |
-| `media/random-wallpaper.sh` | Random wallpaper cycler | no-repeat picks, X11 only | `bspwm/bspwmrc` |
+| Script | What it does | Features |
+|--------|---------------|----------|
+| `files/copy.sh` | Parallel `rsync` copy | worker pool, progress bar, dry-run, resumable |
+| `files/smart-extract.sh` | Extracts an archive | single-root detection, collision-safe, multi-format |
+| `files/lfmount` | Mounts/unlocks a block device | `fzf` picker, LUKS unlock, default mountpoint |
+| `files/pdf-thumbnail.sh` | Renders a PDF thumbnail | first-page render, rofi preview |
+| `media/random-wallpaper.sh` | Random wallpaper cycler | no-repeat picks, X11 only |
 
 ## Session-critical (must exist)
 
