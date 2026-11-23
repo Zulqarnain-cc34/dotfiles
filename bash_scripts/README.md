@@ -1,6 +1,6 @@
 # Host scripts (`bash_scripts/`)
 
-Personal utility scripts for this setup, organized by category below. `setup.sh` deploys this directory as **`~/bin/bash_scripts`**, and both it and each category subdirectory sit on `PATH` (via `.profile` / `zsh/.zshenv`), so any script here runs by its bare name from a shell.
+Personal utility scripts for this setup, organized by category below. `setup.sh` deploys this directory as **`~/bin/bash_scripts`**.
 
 ## Categories
 
