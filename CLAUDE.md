@@ -25,6 +25,7 @@ These are standing rules for this dotfiles repo, set by the user across sessions
 ## Changelog
 
 - `CHANGELOG.md`: one dated heading per day, not per commit/PR/branch. A few short, high-level bullets, no `Added/Fixed/Removed` subsections, no file paths, no "verified via X" detail — that belongs in commit messages.
+- **Decide whether a PR needs a `CHANGELOG.md` entry (and roughly what it'd say) when opening the PR, not later** — the day's entry then gets assembled from bullets that already know their own shape, instead of re-litigating "was this substantial enough" after the fact for a pile of already-merged PRs.
 - **Never use a relative-time heading** like "Today's session, in short" — write a real, specific heading from the start.
 - **Genuinely** small fixes don't get their own bullet (a restored dropped alias, a one-line tweak) — only substantial things earn one. If a whole day has nothing but one small fix, skip the day entirely rather than giving it its own heading.
 - **One module = one bullet, even for a big feature** — fold it into that day's existing bullet as a 2-5 word noun phrase, never explaining how/why (no mechanism, config keys, file names). One-breath test: if you can't read it in one breath, cut it. Right: "...a do-not-disturb toggle, and clickable action buttons." Wrong: "...with mouse bindings reworked so a normal click does that instead of middle-click."
