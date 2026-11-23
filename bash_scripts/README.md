@@ -1,29 +1,40 @@
 # Host scripts (`bash_scripts/`)
 
-Deployed by `setup.sh` as **`~/bin/bash_scripts`** (on `PATH` via `.profile` / `zsh/.zshenv`).
+Deployed by `setup.sh` as **`~/bin/bash_scripts`**. The top-level directory itself, plus each category subdirectory below, is on `PATH` (via `.profile` / `zsh/.zshenv`) — so every script here is callable by its bare name from a shell, not just by full path.
+
+## Categories
+
+| Directory | What's in it |
+|-----------|---------------|
+| [`media/`](media/) | Video, audio, wallpapers — `ani-cli`, `ytfzf`, `ytmp3`, `cg-wall`, `random-cg`, `random-wallpaper.sh` |
+| [`system/`](system/) | OSDs, toggles, daemons — volume/brightness OSD and status, `dunst-dnd-toggle.sh`, `xset-repeat-logger.sh`, `redshift_toggle.sh`, `low_bat_notifier.sh`, `conky-start.sh`, `pulsedevices`, `pulsevolctrl` |
+| [`network/`](network/) | `postconnect`, `predisconnect` |
+| [`torrents/`](torrents/) | `notifytorrents`, `tordone`, `torque`, `transadd`, `transclr` |
+| [`files/`](files/) | `copy.sh`, `smart-extract.sh`, `convertjpgtopdf.sh`, `lfmount`, `bookmanager.sh` |
+| [`web/`](web/) | `urlportal.sh` |
+| [`launchers/`](launchers/) | `aliasmanager.sh`, `killandnotify`, `rofi-bangs` (symlink into `rofi/launchers/`) |
+| [`misc/`](misc/) | `ascii.sh`, `anki_get.sh`, `statcode`, `sketch.sh`, `kubinstall.sh` |
+| [`colorscripts/`](colorscripts/) | Loose, multi-author terminal color-art collection (not on `PATH`) |
+| [`legacy/`](legacy/) | Uncurated grab-bag collected from various sources over the years — mostly unreferenced anywhere else in this repo, kept for manual reference, not on `PATH`. Triage individually over time rather than all at once. |
+| `newsboat/` | `newsboat`-specific helper scripts |
+| `csakura` | Symlink keeping the cherry-blossom screensaver on `PATH`. The real binary, source and writeup live in [`../csakura/`](../csakura/). |
 
 ## Session-critical (must exist)
 
 | Path | Used by |
 |------|---------|
-| `urlportal.sh` | `.profile`, `newsboat/config` |
-| `random-wallpaper.sh` | `bspwm/bspwmrc` |
-| `ytfzf` | `sxhkd`, `rofi/launchers/rofi-bangs` |
-| `notifytorrents` | `sxhkd` (`shift+alt+t`) |
-| `killandnotify` | `sxhkd` (reload notification) |
+| `web/urlportal.sh` | `.profile`, `newsboat/config` |
+| `media/random-wallpaper.sh` | `bspwm/bspwmrc` |
+| `media/ytfzf` | `sxhkd`, `rofi/launchers/rofi-bangs` |
+| `torrents/notifytorrents` | `sxhkd` (`shift+alt+t`) |
+| `launchers/killandnotify` | `sxhkd` (reload notification) |
 
 ## Optional / paths you may add locally
 
 | Path | Used by |
 |------|---------|
 | `personal/*` | legacy paths in some scripts |
-| `scripts/wallpaper.sh` | `lf/lfrc`, `vivid/keymap.toml` |
-
-## Bundled binaries
-
-| Path | What |
-|------|------|
-| `csakura` | Symlink that keeps the cherry-blossom screensaver on `PATH`. The real binary, source and writeup now live in [`../csakura/`](../csakura/). |
+| `legacy/wallpaper.sh` | `lf/lfrc`, `vivid/keymap.toml` |
 
 See also [scripts/host/README.md](../scripts/host/README.md) for the short index.
 
