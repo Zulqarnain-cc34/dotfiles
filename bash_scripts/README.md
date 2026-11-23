@@ -15,7 +15,6 @@ Deployed by `setup.sh` as **`~/bin/bash_scripts`**. The top-level directory itse
 | [`launchers/`](launchers/) | `aliasmanager.sh`, `killandnotify`, `rofi-bangs` (symlink into `rofi/launchers/`) |
 | [`misc/`](misc/) | `ascii.sh`, `anki_get.sh`, `statcode`, `sketch.sh`, `kubinstall.sh` |
 | [`colorscripts/`](colorscripts/) | Loose, multi-author terminal color-art collection (not on `PATH`) |
-| [`legacy/`](legacy/) | Uncurated grab-bag collected from various sources over the years — mostly unreferenced anywhere else in this repo, kept for manual reference, not on `PATH`. Triage individually over time rather than all at once. |
 | `csakura` | Symlink keeping the cherry-blossom screensaver on `PATH`. The real binary, source and writeup live in [`../csakura/`](../csakura/). |
 
 ## Session-critical (must exist)
@@ -33,7 +32,6 @@ Deployed by `setup.sh` as **`~/bin/bash_scripts`**. The top-level directory itse
 | Path | Used by |
 |------|---------|
 | `personal/*` | legacy paths in some scripts |
-| `legacy/wallpaper.sh` | `lf/lfrc`, `vivid/keymap.toml` |
 
 See also [scripts/host/README.md](../scripts/host/README.md) for the short index.
 

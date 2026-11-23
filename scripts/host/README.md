@@ -18,11 +18,4 @@ Full index: [bash_scripts/README.md](../../bash_scripts/README.md).
 | `torrents/notifytorrents` | `sxhkd` (`shift+alt+t`) |
 | `launchers/killandnotify` | `sxhkd` (config reload notify) |
 
-## Optional
-
-| Path | Used by |
-|------|---------|
-| `legacy/wallpaper.sh` | `lf/lfrc`, `vivid/keymap.toml` |
-| `legacy/calcurse-mutt.sh` | `.mutt/mailcap` (commented) |
-
-Legacy minimal stubs (if not using the full `bash_scripts/` tree): [stubs/](stubs/).
+Minimal stubs (if not using the full `bash_scripts/` tree): [stubs/](stubs/).

@@ -78,8 +78,8 @@ fi
 
 # bash_scripts/ category subdirectories -- appended, not prepended; unlike
 # the csakura case above, none of these need to shadow a same-named system
-# binary. legacy/ and colorscripts/ are deliberately excluded: neither is
-# meant for direct bare-name invocation.
+# binary. colorscripts/ is deliberately excluded: not meant for direct
+# bare-name invocation.
 for _bsdir in media system network torrents files web launchers misc; do
     if [ -d "$HOME/bin/bash_scripts/$_bsdir" ]; then
         PATH="$PATH:$HOME/bin/bash_scripts/$_bsdir"
