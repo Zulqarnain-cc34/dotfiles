@@ -6,7 +6,7 @@ Deployed by `setup.sh` as **`~/bin/bash_scripts`**. The top-level directory itse
 
 | Directory | What's in it |
 |-----------|---------------|
-| [`media/`](media/) | Video, audio, wallpapers — `ani-cli`, `ytfzf`, `ytmp3`, `cg-wall`, `random-cg`, `random-wallpaper.sh` |
+| [`media/`](media/) | Video, audio, wallpapers — `ytfzf`, `ytmp3`, `random-wallpaper.sh` |
 | [`system/`](system/) | OSDs, toggles, daemons — volume/brightness OSD and status, `dunst-dnd-toggle.sh`, `xset-repeat-logger.sh`, `redshift_toggle.sh`, `low_bat_notifier.sh`, `conky-start.sh`, `pulsedevices`, `pulsevolctrl` |
 | [`network/`](network/) | `postconnect`, `predisconnect` |
 | [`torrents/`](torrents/) | `notifytorrents`, `tordone`, `torque`, `transadd`, `transclr` |
