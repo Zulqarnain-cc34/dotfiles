@@ -36,10 +36,22 @@ if $removable; then
 	echo "Press Return to continue"
 	read 
 else
-	echo "Input mountpoint:"
+	# Default to /mnt/<device-name>, skipping any candidate that's already
+	# a live mountpoint (findmnt -- avoids reusing something else's mount)
+	# or a non-empty directory (would hide whatever's already in it).
+	vol_name=$(basename "$target_vol")
+	default_mp="/mnt/$vol_name"
+	mountpoint="$default_mp"
+	i=1
+	while [[ -e "$mountpoint" ]] && { findmnt -rno TARGET "$mountpoint" >/dev/null 2>&1 || [[ -n "$(ls -A "$mountpoint" 2>/dev/null)" ]]; }; do
+		mountpoint="$default_mp-$i"
+		i=$((i + 1))
+	done
 
-	read mountpoint
-	
+	echo "Input mountpoint [$mountpoint]:"
+	read -r input
+	[[ -n "$input" ]] && mountpoint="$input"
+
 	while ! [[ -d "$mountpoint" ]]; do
 		if ! sudo mkdir -p "$mountpoint"; then
 			echo "$mountpoint is not a possible mountpoint.
