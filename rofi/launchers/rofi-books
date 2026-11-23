@@ -2,14 +2,31 @@
 
 #ls -d $BOOKDIR/* | fzf -m --delimiter / --with-nth -1 | xargs -P10 -n 1 -I {} okular "{}"
 
+THUMB_CMD="$HOME/bin/bash_scripts/files/pdf-thumbnail.sh"
+
+# Annotates each .pdf entry with rofi's thumbnail:// icon directive (see
+# rofi-thumbnails(5)) so -preview-cmd renders its first page. Everything
+# else passes through plain -- -show-icons still gives those its normal
+# icon-theme lookup.
+list_entries() {
+    local name
+    while IFS= read -r name; do
+        case "$name" in
+            *.pdf | *.PDF) printf '%s\0icon\x1fthumbnail://%s/%s\n' "$name" "$PWD" "$name" ;;
+            *) printf '%s\n' "$name" ;;
+        esac
+    done < <(ls -A)
+}
+
 function rofi-options() {
-    rofi -no-lazy-grab -kb-row-select "Tab" -kb-element-next "" -kb-row-tab "Control+space" -dmenu -i -p "Books"
+    list_entries | rofi -no-lazy-grab -kb-row-select "Tab" -kb-element-next "" -kb-row-tab "Control+space" \
+        -show-icons -preview-cmd "$THUMB_CMD \"{input}\" \"{output}\" \"{size}\"" -dmenu -i -p "Books"
 }
 
 function check_dir() {
     if [[ $1 ]]; then
         cd "$1" || exit
-        selection=$(ls -a | rofi-options)
+        selection=$(rofi-options)
         if [[ -d $selection ]]; then
             check_dir "$selection"
         elif [[ -f $selection ]]; then
@@ -21,7 +38,7 @@ function check_dir() {
 }
 
 cd "$BOOKDIR" || exit
-selection=$(ls -a | rofi -no-lazy-grab -kb-row-select "Tab" -kb-element-next "" -kb-row-tab "Control+space" -dmenu -i -p "Books")
+selection=$(rofi-options)
 i=$((i + 1))
 if [[ -d $selection ]]; then
     check_dir "$selection"
