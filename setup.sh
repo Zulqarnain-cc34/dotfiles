@@ -169,6 +169,63 @@ link_path_sudo() {
 
 link_file_sudo() { link_path_sudo "$ROOT/$1" "$2"; }
 
+# Root-owned copy instead of a symlink, for targets that must be owned by
+# root and run as root (NetworkManager dispatcher scripts). Symlinking a
+# repo file there would leave it user-writable -- and anything that can
+# write a script NetworkManager runs as root has root, no password needed.
+# The cost: editing the repo copy needs a re-run of ./setup.sh to land.
+install_file_sudo() {
+    local src="$ROOT/$1" dest=$2
+    if [[ ! -f "$src" ]]; then
+        echo "  skip (missing in repo): $src"
+        return 0
+    fi
+
+    local in_sync=0
+    [[ -f "$dest" && ! -L "$dest" ]] && cmp -s "$src" "$dest" \
+        && [[ "$(stat -c '%U %a' "$dest")" == "root 755" ]] && in_sync=1
+
+    if [[ "$CHECK" -eq 1 ]]; then
+        if [[ "$in_sync" -eq 1 ]]; then
+            echo "  ok: $dest"
+        elif [[ -e "$dest" || -L "$dest" ]]; then
+            echo "  drift: $dest differs from $src (content, owner, or mode)"
+        else
+            echo "  missing: $dest"
+        fi
+        return 0
+    fi
+
+    if [[ "$in_sync" -eq 1 ]]; then
+        [[ "$DRYRUN" -eq 1 ]] && echo "  ok (already installed): $dest"
+        return 0
+    fi
+
+    # A stale root-owned regular file is just an older copy of ours -- update
+    # it. Anything else there (a symlink, a non-root file) wasn't put there
+    # by this function, so it needs --force like link_path_sudo.
+    if [[ -L "$dest" ]] || { [[ -e "$dest" ]] && [[ "$(stat -c '%U' "$dest")" != "root" ]]; }; then
+        if [[ "$FORCE" -ne 1 ]]; then
+            echo "  skip (exists, not a copy this script installed): $dest"
+            return 0
+        fi
+        if [[ "$DRYRUN" -eq 1 ]]; then
+            echo "  would back up + replace (sudo): $dest"
+            return 0
+        fi
+        backup_target "$dest"
+        sudo rm -rf "$dest"
+    fi
+
+    if [[ "$DRYRUN" -eq 1 ]]; then
+        echo "  would install root-owned copy (sudo): $dest <- $src"
+        return 0
+    fi
+
+    sudo install -D -o root -g root -m 755 "$src" "$dest"
+    echo "  installed root-owned copy (sudo): $dest <- $src"
+}
+
 echo "==> Repository: $ROOT"
 [[ "$DRYRUN" -eq 1 ]] && echo "==> --dry-run: nothing below will be created, backed up, or removed"
 [[ "$CHECK" -eq 1 ]] && echo "==> --check: reporting status only; nothing will be touched"
@@ -263,8 +320,8 @@ fi
 
 echo "==> System files (root required)"
 link_file_sudo sddm/sddm.conf "/etc/sddm.conf"
-link_file_sudo bash_scripts/network/postconnect "/etc/NetworkManager/dispatcher.d/postconnect"
-link_file_sudo bash_scripts/network/predisconnect "/etc/NetworkManager/dispatcher.d/pre-down.d/predisconnect"
+install_file_sudo bash_scripts/network/postconnect "/etc/NetworkManager/dispatcher.d/postconnect"
+install_file_sudo bash_scripts/network/predisconnect "/etc/NetworkManager/dispatcher.d/pre-down.d/predisconnect"
 
 if [[ "$DRYRUN" -eq 1 ]]; then
     echo "==> Dry run complete — nothing was changed"

@@ -1,8 +1,10 @@
 #!/bin/bash
-# NetworkManager dispatcher script (symlinked into
-# /etc/NetworkManager/dispatcher.d/ by setup.sh) -- that directory fires on
-# every interface state change, not just connect, so $2 must be checked
-# here rather than relying on which directory the script lives in.
+# NetworkManager dispatcher script. setup.sh installs a root-owned copy at
+# /etc/NetworkManager/dispatcher.d/postconnect (not a symlink -- NM runs
+# these as root), so edits here need a ./setup.sh re-run to take effect.
+#
+# That directory fires on every interface state change, not just connect,
+# so $2 must be checked here. "up" fires on every real activation.
 [[ "$2" == "up" ]] || exit 0
 
 systemctl start transmission-daemon

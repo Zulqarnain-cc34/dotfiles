@@ -1,5 +1,10 @@
 #!/bin/bash
-# NetworkManager dispatcher script (symlinked into
-# /etc/NetworkManager/dispatcher.d/pre-down.d/ by setup.sh) -- that
-# directory only ever fires on pre-down, so no action check needed here.
+# NetworkManager dispatcher script. setup.sh installs a root-owned copy at
+# /etc/NetworkManager/dispatcher.d/pre-down.d/predisconnect (not a symlink
+# -- NM runs these as root), so edits here need a ./setup.sh re-run.
+#
+# pre-down only fires on a graceful disconnect (nmcli/GUI disconnect, NM
+# cleanly switching networks) -- per NetworkManager-dispatcher(8), never on
+# a forced one like signal loss or a pulled cable. transmission-daemon is
+# left running in that case; it just idles until the network comes back.
 systemctl stop transmission-daemon
