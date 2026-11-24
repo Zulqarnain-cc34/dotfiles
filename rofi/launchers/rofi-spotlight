@@ -6,7 +6,10 @@ PREV_LOC_FILE="${TMP_DIR}rofi_fb_prevloc"
 CURRENT_FILE="${TMP_DIR}rofi_fb_current_file"
 
 MY_PATH="$(realpath "$0" | xargs dirname)"
-HIST_FILE="${MY_PATH}/history.txt"
+# Search history is personal runtime data. Next to the script it landed
+# inside the dotfiles repo (realpath resolves the ~/.config symlink), where
+# it showed up as a change and could get committed.
+HIST_FILE="${XDG_CACHE_HOME:-$HOME/.cache}/rofi-spotlight/history.txt"
 
 OPENER=xdg-open
 TERM_EMU=urxtv
@@ -85,6 +88,7 @@ ALL_OPTIONS=("$(printf '%s\n' "${COMBINED_OPTIONS[@]}" | sort -u)")
 [ ! -d "${TMP_DIR}" ] && mkdir -p "${TMP_DIR}";
 
 # Create hist file if it doesn't exist
+mkdir -p "$(dirname "${HIST_FILE}")"
 [ ! -f "${HIST_FILE}" ] && touch "${HIST_FILE}"
 
 # Help message
