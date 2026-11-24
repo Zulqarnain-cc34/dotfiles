@@ -53,7 +53,7 @@
     "rpc-whitelist-enabled": true,
     "scrape-paused-torrents-enabled": true,
     "script-torrent-done-enabled": true,
-    "script-torrent-done-filename": "/home/alpha/.local/share/transmission/tordone",
+    "script-torrent-done-filename": "/home/alpha/bin/bash_scripts/torrents/tordone",
     "seed-queue-enabled": false,
     "seed-queue-size": 10,
     "speed-limit-down": 600,
