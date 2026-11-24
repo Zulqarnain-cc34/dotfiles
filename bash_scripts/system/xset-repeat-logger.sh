@@ -68,8 +68,13 @@ log="$CACHE_DIR/xset-repeat-rate.log"
 raw_log_dir="$CACHE_DIR/xset-repeat-raw-udev"
 diag_dir="$CACHE_DIR/xset-repeat-diag"
 mkdir -p "$raw_log_dir" "$diag_dir"
-RAW_LOG_RETENTION_DAYS=14   # per-day files pruned by age, not a volume cap -- predictable
-                            # retention regardless of how chatty udev is some weeks
+RAW_LOG_RETENTION_DAYS=14   # per-day files pruned by age -- predictable retention
+                            # regardless of how chatty udev is some weeks
+RAW_LOG_PER_DAY_MAX_LINES=3000   # also cap each day's own file -- age-based rotation
+                                  # bounds how many files pile up, not how big any single
+                                  # one gets; an unusually chatty day (heavy USB/DPMS/
+                                  # battery-event activity) could otherwise still produce
+                                  # a file too large to read back in full when debugging
 DIAG_CONTEXT_LINES=50       # recent raw-log lines (all subsystems) included in each snapshot
 GRACE_SECONDS=0.5           # pause before snapshotting, so a burst of near-simultaneous
                             # events lands in the same diagnostic snapshot, not just the first
@@ -89,6 +94,9 @@ while IFS= read -r raw_line; do
     fi
     today_raw_log="$raw_log_dir/$today.log"
     echo "$(date '+%Y-%m-%d %H:%M:%S.%3N') $raw_line" >> "$today_raw_log"
+    if (( $(wc -l < "$today_raw_log") > RAW_LOG_PER_DAY_MAX_LINES )); then
+        tail -n "$RAW_LOG_PER_DAY_MAX_LINES" "$today_raw_log" > "$today_raw_log.tmp" && mv "$today_raw_log.tmp" "$today_raw_log"
+    fi
 
     read -r tag _ action _ <<< "$raw_line"
     [[ "$tag" == "UDEV" && "$action" == "add" && "$raw_line" == *"(input)" ]] || continue
@@ -110,8 +118,8 @@ while IFS= read -r raw_line; do
         echo "--- last $DIAG_CONTEXT_LINES raw udev events (all subsystems), including the grace window after detection ---"
         tail -n "$DIAG_CONTEXT_LINES" "$today_raw_log" 2>/dev/null
         echo
-        echo "--- journalctl, last 60s ---"
-        journalctl --since "60 seconds ago" --no-pager 2>/dev/null
+        echo "--- journalctl, last 60s (capped at 200 lines) ---"
+        journalctl --since "60 seconds ago" --no-pager 2>/dev/null | tail -200
         echo
         echo "--- pacman.log, last 20 lines ---"
         tail -20 /var/log/pacman.log 2>/dev/null
