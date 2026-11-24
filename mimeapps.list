@@ -117,6 +117,7 @@ x-scheme-handler/claude-cli=claude-code-url-handler.desktop
 x-scheme-handler/postman=Postman.desktop
 x-scheme-handler/claude=claude-desktop.desktop
 x-scheme-handler/kdeconnect=org.kde.kdeconnect.handler.desktop
+x-scheme-handler/slack=slack.desktop
 
 [Removed Associations]
 application/vnd.sqlite3=nvim.desktop;
