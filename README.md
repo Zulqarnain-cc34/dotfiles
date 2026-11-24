@@ -206,7 +206,7 @@ git config core.hooksPath .githooks
 nvim +Lazy sync +qa
 ```
 
-`setup.sh` flags: `--backup` (copy existing targets to `~/.dotfiles_backup/<timestamp>/` first), `--force` (replace existing targets), `--dry-run` (print what would happen, touch nothing), `--check` (report per-target drift, touch nothing), `--help`.
+`setup.sh` flags: `--backup` (copy existing targets to `~/.dotfiles_backup/<timestamp>/` first), `--force` (replace existing targets), `--dry-run` (print what would happen, touch nothing), `--check` (report per-target drift, touch nothing), `--allow-root` (run as root anyway, only to set up root's own home on purpose), `--help`. Run it as yourself, not with `sudo`: it asks for your password only for the few system files that need it.
 
 Full notes: [`docs/INSTALL.md`](docs/INSTALL.md) · Secrets handling: [`docs/secrets.md`](docs/secrets.md) · Minimal package set: [`packages/minimal.txt`](packages/minimal.txt)
 
