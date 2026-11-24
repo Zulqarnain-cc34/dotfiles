@@ -3,6 +3,10 @@
 Notable changes to this repo, one entry per day — a simpler, human variant of [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), no categories or semver.
 The detailed record lives in the git commit messages — see `git log` when you need that.
 
+## [2026-11-24] — xset repeat-rate diagnostics
+
+- The **xset** keyboard repeat-rate fix from 2026-11-21 wasn't the full story — recurred with no log entry and no reproducible single trigger. Added raw event logging and a per-occurrence diagnostic snapshot to actually catch it next time.
+
 ## [2026-11-23] — bash_scripts reorg, CLAUDE.md template
 
 - Reorganized **bash_scripts/** into categories, removed over a dozen dead or duplicate scripts, added a syntax sweep to **validate.sh**, and fully audited every script in **files/**, **media/**, **launchers/**, and **web/**.
@@ -12,7 +16,7 @@ The detailed record lives in the git commit messages — see `git log` when you 
 
 - Removed **niri**, **waybar**, **gammastep**, and **fish** entirely — dormant, unmaintained components whose bugs had gone unnoticed for lack of real use.
 - Fixed a dead lock binding in **polybar**'s powermenu and removed a stale duplicate script with the same bug.
-- Fixed the **xset** keyboard repeat-rate bug for real — event-driven self-heal, still logging in case it happens again.
+- Fixed the **xset** keyboard repeat-rate bug for real — event-driven self-heal, still logging in case it happens again. *(Update: it recurred — see 2026-11-24.)*
 - Researched and rewrote **CLAUDE.md**'s Git rules — GitHub Flow, PR scope, squash-merging, **Conventional Commits**, and comment conventions.
 - Fixed a typo'd directory name in **qutebrowser** that silently disabled its Greasemonkey scripts.
 
