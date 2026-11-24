@@ -49,6 +49,12 @@ ncmpcpp/error.log
 
 transmission-daemon/dht.dat
 transmission-daemon/stats.json
+# Runtime state the daemon writes on every run, plus your actual torrents.
+transmission-daemon/bandwidth-groups.json
+transmission-daemon/queue.json
+transmission-daemon/lock
+transmission-daemon/resume/
+transmission-daemon/torrents/
 # Downloaded at runtime via settings.json's blocklist-url; never commit the data itself.
 transmission-daemon/blocklists/*.p2p
 transmission-daemon/blocklists/*.p2p.bin
