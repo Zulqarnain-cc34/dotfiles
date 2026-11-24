@@ -37,12 +37,12 @@
 # completely unlogged because of this.
 #
 # Every raw UDEV line -- not just "add" events, and not just ones that
-# end up causing a drift -- also gets appended to a capped rolling log,
-# separate from the fix log below. If a future occurrence isn't caught by
-# the "add" filter at all (apparently what happened on 2026-11-24, a real
-# drift with zero matching log entry), this raw log is the only record of
-# what udev actually broadcast in that window, so the real trigger can
-# finally be identified instead of replayed guess by guess.
+# end up causing a drift -- also gets appended to a per-day rolling log
+# (pruned after $RAW_LOG_RETENTION_DAYS), separate from the fix log below.
+# If a future occurrence isn't caught by the "add" filter at all
+# (apparently what happened on 2026-11-24, a real drift with zero
+# matching log entry), this raw log is the only record of what udev
+# actually broadcast in that window.
 #
 # Monitors every subsystem, not just input (`--subsystem-match=input`
 # dropped from the invocation below) -- the "systemd-logind re-watching
@@ -52,23 +52,43 @@
 # below still only reacts to an input-subsystem add, since that's the
 # one behavior actually confirmed to work; the broader net is purely
 # for the raw log and diagnostic snapshot's sake.
+#
+# A matched line only ever means "this coincided with the drift check" --
+# not proven causation, since the real trigger could be a slightly
+# earlier or later event (possibly on another subsystem entirely, or
+# part of the same burst). The short grace pause before snapshotting, and
+# pulling the surrounding raw-log window rather than just the one matched
+# line, are both there so the diagnostic snapshot gives real context to
+# reason from instead of asserting a single answer that might be wrong.
 RATE_DELAY=300
 RATE_REPEAT=50
 RATE="$RATE_DELAY $RATE_REPEAT"   # must match `xset r rate 300 50` in bspwm/bspwmrc
 CACHE_DIR="${XDG_CACHE_HOME:-$HOME/.cache}"
 log="$CACHE_DIR/xset-repeat-rate.log"
-raw_log="$CACHE_DIR/xset-repeat-raw-udev.log"
+raw_log_dir="$CACHE_DIR/xset-repeat-raw-udev"
 diag_dir="$CACHE_DIR/xset-repeat-diag"
-mkdir -p "$diag_dir"
-RAW_LOG_MAX_LINES=20000   # higher than before: now covers every subsystem, not just input
-DIAG_CONTEXT_LINES=50     # recent raw-log lines (all subsystems) included in each snapshot
+mkdir -p "$raw_log_dir" "$diag_dir"
+RAW_LOG_RETENTION_DAYS=14   # per-day files pruned by age, not a volume cap -- predictable
+                            # retention regardless of how chatty udev is some weeks
+DIAG_CONTEXT_LINES=50       # recent raw-log lines (all subsystems) included in each snapshot
+GRACE_SECONDS=0.5           # pause before snapshotting, so a burst of near-simultaneous
+                            # events lands in the same diagnostic snapshot, not just the first
+
+prune_raw_logs() {
+    find "$raw_log_dir" -maxdepth 1 -name '*.log' -mtime "+$RAW_LOG_RETENTION_DAYS" -delete 2>/dev/null
+}
+
+last_pruned_date=""
 
 stdbuf -oL udevadm monitor --udev 2>/dev/null |
 while IFS= read -r raw_line; do
-    echo "$(date '+%Y-%m-%d %H:%M:%S.%3N') $raw_line" >> "$raw_log"
-    if (( $(wc -l < "$raw_log") > RAW_LOG_MAX_LINES )); then
-        tail -n "$RAW_LOG_MAX_LINES" "$raw_log" > "$raw_log.tmp" && mv "$raw_log.tmp" "$raw_log"
+    today=$(date '+%Y-%m-%d')
+    if [[ "$today" != "$last_pruned_date" ]]; then
+        prune_raw_logs
+        last_pruned_date="$today"
     fi
+    today_raw_log="$raw_log_dir/$today.log"
+    echo "$(date '+%Y-%m-%d %H:%M:%S.%3N') $raw_line" >> "$today_raw_log"
 
     read -r tag _ action _ <<< "$raw_line"
     [[ "$tag" == "UDEV" && "$action" == "add" && "$raw_line" == *"(input)" ]] || continue
@@ -76,20 +96,22 @@ while IFS= read -r raw_line; do
     current=$(xset q 2>/dev/null | awk '/auto repeat delay:/ { print $4, $7 }')
     [[ -n "$current" && "$current" != "$RATE" ]] || continue
 
+    sleep "$GRACE_SECONDS"
+
     ts=$(date '+%Y-%m-%d_%H-%M-%S')
     diag_file="$diag_dir/$ts.log"
     {
         echo "=== drift detected at $(date '+%Y-%m-%d %H:%M:%S') ==="
         echo "was: [$current]  restoring to: [$RATE]"
         echo
-        echo "--- triggering udev line ---"
+        echo "--- matched udev line (coincided with the drift check -- not necessarily the real cause, see context below) ---"
         echo "$raw_line"
         echo
-        echo "--- last $DIAG_CONTEXT_LINES raw udev events (all subsystems) leading up to this ---"
-        tail -n "$DIAG_CONTEXT_LINES" "$raw_log" 2>/dev/null
+        echo "--- last $DIAG_CONTEXT_LINES raw udev events (all subsystems), including the grace window after detection ---"
+        tail -n "$DIAG_CONTEXT_LINES" "$today_raw_log" 2>/dev/null
         echo
-        echo "--- journalctl, last 15s ---"
-        journalctl --since "15 seconds ago" --no-pager 2>/dev/null
+        echo "--- journalctl, last 60s ---"
+        journalctl --since "60 seconds ago" --no-pager 2>/dev/null
         echo
         echo "--- pacman.log, last 20 lines ---"
         tail -20 /var/log/pacman.log 2>/dev/null
