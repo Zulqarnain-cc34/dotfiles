@@ -28,9 +28,15 @@ What each script does and what it's good for.
 | `files/pdf-thumbnail.sh` | Renders a PDF thumbnail | first-page render, rofi preview |
 | `media/random-wallpaper.sh` | Random wallpaper cycler | no-repeat picks, X11 only |
 | `launchers/aliasmanager.sh` | Picks an alias and runs it | `fzf` picker, runs in current shell |
-| `network/postconnect` | Starts `transmission-daemon` | NetworkManager dispatcher hook |
-| `network/predisconnect` | Stops `transmission-daemon` | NetworkManager dispatcher hook |
+| `network/postconnect` | Starts `transmission-daemon` | NetworkManager dispatcher hook, every connect |
+| `network/predisconnect` | Stops `transmission-daemon` | NetworkManager dispatcher hook, graceful disconnects only |
 | `web/urlportal.sh` | Routes a URL to the right opener | type-based dispatch, DuckDuckGo redirect decoding |
+
+### `network/` scripts are copies, not symlinks
+
+NetworkManager runs dispatcher scripts as root, so `setup.sh` installs a root-owned copy of each into `/etc/NetworkManager/dispatcher.d/`. **After editing either one here, re-run `./setup.sh`** or the change won't take effect.
+
+Don't switch these to symlinks, and don't replace them with a root wrapper that calls the script in this repo. Both leave a file your user can edit running as root, so any program running as you could use it to get root.
 
 ## Note
 
