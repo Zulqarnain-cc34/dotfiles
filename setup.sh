@@ -263,6 +263,8 @@ fi
 
 echo "==> System files (root required)"
 link_file_sudo sddm/sddm.conf "/etc/sddm.conf"
+link_file_sudo bash_scripts/network/postconnect "/etc/NetworkManager/dispatcher.d/postconnect"
+link_file_sudo bash_scripts/network/predisconnect "/etc/NetworkManager/dispatcher.d/pre-down.d/predisconnect"
 
 if [[ "$DRYRUN" -eq 1 ]]; then
     echo "==> Dry run complete — nothing was changed"

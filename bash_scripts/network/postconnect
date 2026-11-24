@@ -1,3 +1,8 @@
 #!/bin/bash
+# NetworkManager dispatcher script (symlinked into
+# /etc/NetworkManager/dispatcher.d/ by setup.sh) -- that directory fires on
+# every interface state change, not just connect, so $2 must be checked
+# here rather than relying on which directory the script lives in.
+[[ "$2" == "up" ]] || exit 0
 
-systemctl start transmission
+systemctl start transmission-daemon

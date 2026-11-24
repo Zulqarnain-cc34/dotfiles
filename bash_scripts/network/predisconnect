@@ -1,3 +1,5 @@
 #!/bin/bash
-
-systemctl stop transmission
+# NetworkManager dispatcher script (symlinked into
+# /etc/NetworkManager/dispatcher.d/pre-down.d/ by setup.sh) -- that
+# directory only ever fires on pre-down, so no action check needed here.
+systemctl stop transmission-daemon
