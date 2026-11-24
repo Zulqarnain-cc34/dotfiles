@@ -1,10 +1,15 @@
 #!/bin/bash
-# Sends a notification when a torrent is completed in transmission
-# Signals an update to the bar torrent module
+# Run by transmission-daemon when a torrent finishes (settings.json's
+# script-torrent-done-filename). Sends a notification with an "Open
+# folder" action that opens the download in yazi.
+#
+# Backgrounded and disowned so transmission isn't kept waiting while the
+# notification sits on screen. $TERMINAL falls back to kitty, since the
+# daemon only has it if whatever started the daemon did.
 
 (
     choice=$(dunstify -w -t 15000 -A "default,Open folder" \
         "Transmission-daemon" "$TR_TORRENT_NAME has completely downloaded")
-    [ "$choice" = "default" ] && $TERMINAL -e yazi "$TR_TORRENT_DIR"
+    [ "$choice" = "default" ] && "${TERMINAL:-kitty}" -e yazi "$TR_TORRENT_DIR"
 ) &
 disown
