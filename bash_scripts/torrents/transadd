@@ -1,7 +1,26 @@
 #!/bin/sh
-# Mime map script for adding a magnet link to transmission, and starts the daemon if it's not running
-# Sends a notification when a torrent is added to transmission
+# Adds a magnet link or .torrent to your own transmission-daemon, starting
+# it first if it isn't running, and sends a notification either way.
+# urlportal.sh routes magnet links here (newsboat, w3m, urlview).
 
-pgrep -x transmission-daemon > /dev/null || transmission-daemon
+# The kernel cuts process names to 15 characters, so a running
+# transmission-daemon shows up as "transmission-da" -- matching the full
+# name never succeeds. -u keeps it to your own instance, not the system
+# transmission-daemon.service, which runs as its own user.
+if ! pgrep -u "$(id -u)" -x transmission-da >/dev/null; then
+    transmission-daemon
+    # The daemon forks before its RPC port is up, so an immediate --add
+    # can lose the race. Wait up to ~5s for it to answer.
+    i=0
+    while ! transmission-remote -l >/dev/null 2>&1 && [ "$i" -lt 25 ]; do
+        sleep 0.2
+        i=$((i + 1))
+    done
+fi
 
-transmission-remote --add "$@" && notify-send "Transmission-daemon" "Torrent added."
+if transmission-remote --add "$@" >/dev/null 2>&1; then
+    notify-send "Transmission-daemon" "Torrent added."
+else
+    notify-send -u critical "Transmission-daemon" "Couldn't add the torrent."
+    exit 1
+fi
