@@ -12,6 +12,18 @@
 # Firefox: not symlinked — see docs/firefox.md
 set -euo pipefail
 
+# Run this as yourself, never as root -- it elevates internally with sudo
+# only for the specific lines that actually need it (link_file_sudo).
+# Running the whole script with `sudo ./setup.sh` instead changes $HOME to
+# /root for everything, silently symlinking the entire dotfiles tree into
+# root's home instead of yours.
+if [[ "${EUID:-$(id -u)}" -eq 0 ]]; then
+    echo "Don't run this as root (sudo ./setup.sh) -- it changes \$HOME to /root" >&2
+    echo "for the whole script, not just the parts that need sudo. Run it as" >&2
+    echo "yourself instead: ./setup.sh" >&2
+    exit 1
+fi
+
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 BACKUP=0
 FORCE=0
