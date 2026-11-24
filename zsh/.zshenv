@@ -87,7 +87,7 @@ esac
 # the csakura case above, none of these need to shadow a same-named system
 # binary. colorscripts/ is deliberately excluded: not meant for direct
 # bare-name invocation.
-for _bsdir in media system network torrents files web launchers; do
+for _bsdir in media system torrents files web launchers; do
   case ":$PATH:" in
     *":$HOME/bin/bash_scripts/$_bsdir:"*) ;;
     *) [ -d "$HOME/bin/bash_scripts/$_bsdir" ] && PATH="$PATH:$HOME/bin/bash_scripts/$_bsdir" ;;

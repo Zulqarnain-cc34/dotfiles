@@ -8,7 +8,6 @@ Personal utility scripts for this setup, organized by category below. `setup.sh`
 |-----------|---------------|
 | [`media/`](media/) | Video, audio, wallpapers — `ytfzf`, `ytmp3`, `random-wallpaper.sh` |
 | [`system/`](system/) | OSDs, toggles, daemons — volume/brightness OSD and status, `dunst-dnd-toggle.sh`, `xset-repeat-logger.sh`, `redshift_toggle.sh`, `low_bat_notifier.sh`, `conky-start.sh`, `pulsedevices`, `pulsevolctrl` |
-| [`network/`](network/) | `postconnect`, `predisconnect` |
 | [`torrents/`](torrents/) | `notifytorrents`, `tordone`, `torque`, `transadd`, `transclr` |
 | [`files/`](files/) | `copy.sh`, `smart-extract.sh`, `lfmount`, `pdf-thumbnail.sh` |
 | [`web/`](web/) | `urlportal.sh` |
