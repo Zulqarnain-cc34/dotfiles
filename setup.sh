@@ -8,42 +8,34 @@
 #   ./setup.sh --backup --force
 #   ./setup.sh --dry-run    Show what would happen; touch nothing
 #   ./setup.sh --check      Report drift (ok / missing / wrong) for every target; touch nothing
+#   ./setup.sh --allow-root Run as root anyway (only to set up root's own home on purpose)
 #
 # Firefox: not symlinked — see docs/firefox.md
 set -euo pipefail
-
-# Run this as yourself, never as root -- it elevates internally with sudo
-# only for the specific lines that actually need it (link_file_sudo).
-# Running the whole script with `sudo ./setup.sh` instead changes $HOME to
-# /root for everything, silently symlinking the entire dotfiles tree into
-# root's home instead of yours.
-if [[ "${EUID:-$(id -u)}" -eq 0 ]]; then
-    echo "Don't run this as root (sudo ./setup.sh) -- it changes \$HOME to /root" >&2
-    echo "for the whole script, not just the parts that need sudo. Run it as" >&2
-    echo "yourself instead: ./setup.sh" >&2
-    exit 1
-fi
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 BACKUP=0
 FORCE=0
 DRYRUN=0
 CHECK=0
+ALLOW_ROOT=0
 
 for arg in "$@"; do
     case "$arg" in
-        --backup)  BACKUP=1 ;;
-        --force)   FORCE=1 ;;
-        --dry-run) DRYRUN=1 ;;
-        --check)   CHECK=1 ;;
+        --backup)     BACKUP=1 ;;
+        --force)      FORCE=1 ;;
+        --dry-run)    DRYRUN=1 ;;
+        --check)      CHECK=1 ;;
+        --allow-root) ALLOW_ROOT=1 ;;
         -h|--help)
             cat <<'EOF'
-Usage: ./setup.sh [--backup] [--force] [--dry-run] [--check]
+Usage: ./setup.sh [--backup] [--force] [--dry-run] [--check] [--allow-root]
 
-  --backup   Copy existing targets to ~/.dotfiles_backup/<timestamp>/ first
-  --force    Remove and replace existing targets (use with care)
-  --dry-run  Print what would happen; create, back up, or remove nothing
-  --check    Report per-target status (ok / drift / missing); touch nothing
+  --backup      Copy existing targets to ~/.dotfiles_backup/<timestamp>/ first
+  --force       Remove and replace existing targets (use with care)
+  --dry-run     Print what would happen; create, back up, or remove nothing
+  --check       Report per-target status (ok / drift / missing); touch nothing
+  --allow-root  Run as root anyway -- only to set up root's own home on purpose
 
 After setup:
   git config core.hooksPath .githooks
@@ -54,6 +46,20 @@ EOF
         *) echo "Unknown option: $arg (try --help)" >&2; exit 1 ;;
     esac
 done
+
+# Run this as yourself, never as root -- it elevates internally with sudo
+# only for the specific lines that actually need it (link_file_sudo).
+# Running the whole script with `sudo ./setup.sh` instead changes $HOME to
+# /root for everything, silently symlinking the entire dotfiles tree into
+# root's home instead of yours. --allow-root exists only for setting up
+# root's own home deliberately.
+if [[ "${EUID:-$(id -u)}" -eq 0 && "$ALLOW_ROOT" -ne 1 ]]; then
+    echo "Don't run this as root (sudo ./setup.sh) -- it changes \$HOME to /root" >&2
+    echo "for the whole script, not just the parts that need sudo. Run it as" >&2
+    echo "yourself instead: ./setup.sh" >&2
+    echo "(To set up root's own home on purpose: --allow-root)" >&2
+    exit 1
+fi
 
 backup_target() {
     local dest=$1
