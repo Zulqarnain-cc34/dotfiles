@@ -45,8 +45,9 @@ DEFAULT="firefox"
 # Short videos / animated clips handler
 VIDEO_CLIP="mpv"
 
-# Torrent client CLI
-TORRENTCLI="transmission-remote --add"
+# Torrent handler -- transadd starts transmission-daemon first if needed,
+# which a bare `transmission-remote --add` doesn't
+TORRENTCLI="$HOME/bin/bash_scripts/torrents/transadd"
 
 # Enable case-insensitive matching in case patterns
 shopt -s nocasematch
