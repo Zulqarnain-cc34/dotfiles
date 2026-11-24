@@ -3,9 +3,12 @@
 Notable changes to this repo, one entry per day — a simpler, human variant of [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), no categories or semver.
 The detailed record lives in the git commit messages — see `git log` when you need that.
 
-## [2026-11-24] — xset repeat-rate diagnostics
+## [2026-11-24] — xset diagnostics, network scripts removal
 
 - The **xset** keyboard repeat-rate bug came back — added real diagnostic logging to nail it for good.
+- Removed the broken **network/** scripts from **bash_scripts/**.
+- Stopped **setup.sh** from running as root by accident.
+- Added two **CLAUDE.md** Git rules: issue linking and verify-before-close.
 
 ## [2026-11-23] — bash_scripts reorg, CLAUDE.md template
 
