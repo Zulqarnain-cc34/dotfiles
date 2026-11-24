@@ -43,6 +43,15 @@
 # drift with zero matching log entry), this raw log is the only record of
 # what udev actually broadcast in that window, so the real trigger can
 # finally be identified instead of replayed guess by guess.
+#
+# Monitors every subsystem, not just input (`--subsystem-match=input`
+# dropped from the invocation below) -- the "systemd-logind re-watching
+# input devices" theory is itself unconfirmed, so a future occurrence
+# caused by some other subsystem's event would otherwise leave the raw
+# log just as empty as the fix log was on 2026-11-24. The fix logic
+# below still only reacts to an input-subsystem add, since that's the
+# one behavior actually confirmed to work; the broader net is purely
+# for the raw log and diagnostic snapshot's sake.
 RATE_DELAY=300
 RATE_REPEAT=50
 RATE="$RATE_DELAY $RATE_REPEAT"   # must match `xset r rate 300 50` in bspwm/bspwmrc
@@ -51,9 +60,10 @@ log="$CACHE_DIR/xset-repeat-rate.log"
 raw_log="$CACHE_DIR/xset-repeat-raw-udev.log"
 diag_dir="$CACHE_DIR/xset-repeat-diag"
 mkdir -p "$diag_dir"
-RAW_LOG_MAX_LINES=2000
+RAW_LOG_MAX_LINES=20000   # higher than before: now covers every subsystem, not just input
+DIAG_CONTEXT_LINES=50     # recent raw-log lines (all subsystems) included in each snapshot
 
-stdbuf -oL udevadm monitor --udev --subsystem-match=input 2>/dev/null |
+stdbuf -oL udevadm monitor --udev 2>/dev/null |
 while IFS= read -r raw_line; do
     echo "$(date '+%Y-%m-%d %H:%M:%S.%3N') $raw_line" >> "$raw_log"
     if (( $(wc -l < "$raw_log") > RAW_LOG_MAX_LINES )); then
@@ -61,7 +71,7 @@ while IFS= read -r raw_line; do
     fi
 
     read -r tag _ action _ <<< "$raw_line"
-    [[ "$tag" == "UDEV" && "$action" == "add" ]] || continue
+    [[ "$tag" == "UDEV" && "$action" == "add" && "$raw_line" == *"(input)" ]] || continue
 
     current=$(xset q 2>/dev/null | awk '/auto repeat delay:/ { print $4, $7 }')
     [[ -n "$current" && "$current" != "$RATE" ]] || continue
@@ -74,6 +84,9 @@ while IFS= read -r raw_line; do
         echo
         echo "--- triggering udev line ---"
         echo "$raw_line"
+        echo
+        echo "--- last $DIAG_CONTEXT_LINES raw udev events (all subsystems) leading up to this ---"
+        tail -n "$DIAG_CONTEXT_LINES" "$raw_log" 2>/dev/null
         echo
         echo "--- journalctl, last 15s ---"
         journalctl --since "15 seconds ago" --no-pager 2>/dev/null

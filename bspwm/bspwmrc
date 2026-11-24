@@ -76,11 +76,12 @@ pgrep -f clipmenud >/dev/null || clipmenud &
 
 # One-shot setup (harmless to re-run on reload)
 xset r rate 300 50
-# xset's repeat rate drifts mid-session (confirmed root cause: a udev-level
-# keyboard device re-enumeration reinitializes it to X11's own default, not
-# a suspend/resume event). This watches for that udev event directly and
-# restores the rate the instant it happens, logging each real occurrence.
-pgrep -f "xset-repeat-logger.sh" >/dev/null || "$HOME/bin/bash_scripts/system/xset-repeat-logger.sh" &
+# xset's repeat rate drifts mid-session (root cause not fully confirmed --
+# see xset-repeat-logger.sh's own header). This watches for the known udev
+# trigger directly and restores the rate the instant it happens, logging
+# each real occurrence. Launched via its supervisor, not directly, so a
+# crashed watcher gets relaunched instead of silently staying dead.
+pgrep -f "xset-repeat-logger-supervisor.sh" >/dev/null || "$HOME/bin/bash_scripts/system/xset-repeat-logger-supervisor.sh" &
 [ -x "$HOME/bin/bash_scripts/media/random-wallpaper.sh" ] && "$HOME/bin/bash_scripts/media/random-wallpaper.sh" &
 [ -x "$HOME/.config/polybar/launch.sh" ] && "$HOME/.config/polybar/launch.sh" &
 # Warm fastfetch's package-count cache now, so the first terminal of the
