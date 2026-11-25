@@ -1,4 +1,13 @@
 #!/bin/sh
 # A super hacky script to display the torrents in transmission in a notification
+
+# Name is the last column and may itself contain spaces, and ETA/Status can
+# each be more than one word (e.g. "6 min", "Downloading") -- splitting the
+# whole line on whitespace and grabbing fields by fixed index shifts Name
+# out of place and leaks the extra words into the output. Locate Name by its
+# header offset instead and take everything from there to end of line.
 torrents="$(transmission-remote -l | sed '/Sum/d')"
-notify-send "Torrents" "$(echo "$torrents" | sed '1d' | awk '{printf $2 " " $3 " " $4 " "}{for(i = 10; i < 30; i++) printf $i" "}{print ""}' | awk '{$1=$1};1')"
+notify-send -a notifytorrents "Torrents" "$(echo "$torrents" | awk '
+    NR == 1 { name_at = index($0, "Name"); next }
+    { printf "%s %s %s %s\n", $2, $3, $4, substr($0, name_at) }
+')"
