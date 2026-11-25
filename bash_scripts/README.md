@@ -30,6 +30,7 @@ What each script does and what it's good for.
 | `web/urlportal.sh` | Routes a URL to the right opener | type-based dispatch, DuckDuckGo redirect decoding |
 | `torrents/transadd` | Adds a magnet link or `.torrent` to your own transmission-daemon | starts the daemon if it's not running, lock-protected against adding several at once, notify-send feedback |
 | `torrents/tordone` | Runs when a torrent finishes downloading | dunst notification with an "Open folder" action into `yazi` |
+| `torrents/notifytorrents` | Shows your current torrents in a notification | handles no-daemon and no-torrents cases, robust to variable-width columns |
 
 ## Note
 
