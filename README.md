@@ -179,7 +179,7 @@ A complete map of the repo. Deep docs live in each component's own README — li
 ### Prerequisites
 
 - **Arch Linux** (or an Arch-based distro)
-- A **Nerd Font** — the config uses `ttf-jetbrains-mono-nerd` and `ttf-iosevka-nerd`
+- A **Nerd Font** — the config uses **SauceCodePro Nerd Font**, installed automatically by `fonts/install.sh` (run by `setup.sh`)
 - `git`, `base-devel`, and an AUR helper (`yay`) for a few packages
 
 ### Quick start
