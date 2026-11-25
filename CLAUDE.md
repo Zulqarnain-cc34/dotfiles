@@ -12,7 +12,8 @@ These are standing rules for this dotfiles repo, set by the user across sessions
 - **Flow**: `git checkout -b <type>/<name>` off `main` → commit → push → open a PR → `gh pr merge --squash --delete-branch --subject "..." --body "..."` (or the `/merge-pr` skill, which does this and the sync below in one step when the user explicitly runs it). Always write the subject/body yourself — never accept GitHub's auto-concatenated default; a branch with a real multi-step story deserves a message that keeps it, not one that flattens it.
 - **After every merge, immediately sync local `main`**: `git checkout main && git pull origin main`, right away, not batched for later. `--delete-branch` already removed both the remote and local branch; `fetch.prune` is set globally so any stale remote-tracking ref still cleans itself up on the next `fetch`/`pull` too.
 - **Commits within a branch should be atomic** — one logical change each, and each one should leave the repo working. If a commit message needs "and," that's the signal to split it into two.
-- **Commit text after the prefix stays short, natural, human** — no em dashes, no AI-sounding language, reads like a person wrote it. **Never add** a "Generated with Claude Code" / "Co-Authored-By Claude" footer — in commits or PRs (a regular commit is blocked outright by `.githooks/commit-msg`; a squash-merge body goes through the GitHub API instead, so that one still has to be done by hand).
+- **Commit text after the prefix stays short, natural, human** — no em dashes, no AI-sounding language, reads like a person wrote it.
+- **Never add AI attribution** — no "Generated with Claude Code", "Co-Authored-By Claude", or any other AI-related marker, in commits, PRs, code, comments, or docs.
 - **A finished PR gets merged promptly, not left open.** A PR still genuinely being worked on isn't "finished" yet — staying open while real iteration happens is normal. This is about not letting a *finished* PR's scope grow while it sits idle, not a cap on how many PRs can be open, and not a shortcut around the merge-approval rule below. A flaky or unconfirmed bug fix counts as still being worked on too — code merging isn't the same claim as the bug being gone, so that PR stays open until a real recurrence actually confirms it, not just once the fix looks reasonable.
 - **Independent tasks get independent PRs, opened in parallel — this is normal, not an exception**, even solo with no second reviewer. Branch off `main` for each separate task; don't queue unrelated work behind whatever PR happens to be open, and don't fold new unrelated work into an already-open PR's scope either.
 - **When a sibling PR merges and leaves an open branch conflicting or stale against `main`**, rebase it: `git fetch origin main` → `git rebase origin/main` → resolve conflicts keeping the correct final content → re-run `scripts/validate.sh` → `git push --force-with-lease`. Safe here because these are private, unreviewed branches with no second collaborator — rebasing only becomes risky once something else might be building on the same commits.
@@ -52,6 +53,23 @@ These are standing rules for this dotfiles repo, set by the user across sessions
 - Daily desktop: bspwm/X11 only — no Wayland components in this repo.
 - TUI/ncurses tools fail outright with no `TERM` set — export `TERM=xterm-256color` before any tmux-based TUI test.
 - Never insert a raw ESC byte (`0x1b`) into **fastfetch**'s `config.jsonc` — go through Python (`json.load`/`json.dump(..., ensure_ascii=False)`) for ANSI colors.
+
+## Code quality
+
+- No redundant or obvious comments — code should read as self-documenting. A comment earns its place only when it explains a non-obvious *why* (a workaround, a hidden constraint), not what the code already says.
+- No TODO comments without a tracked issue reference.
+- No debug output, commented-out code, or dead code left in a commit.
+- Follow the existing patterns in whatever file or script is being touched, rather than introducing a new style alongside it.
+- Prefer explicit, readable code over a clever one-liner.
+- Don't over-engineer — no abstraction, flag, or config knob for a hypothetical future need.
+- **Never add a systemd service/unit to make something run.** Use the target program's own hook/plugin mechanism first (a udev rule, a shell hook, the app's own config). If it genuinely has none, say so and ask before reaching for a process supervisor.
+
+## Workflow
+
+- Read the relevant file(s) before proposing or making a change — don't work from memory or assumption.
+- Plan a complex or architectural change before touching anything — think it through, don't start editing mid-thought.
+- Verify every change — run `scripts/validate.sh` (and shellcheck on any touched script) before considering it done.
+- Stop and ask when a requirement is genuinely unclear, rather than guessing and building the wrong thing.
 
 ## Verification discipline
 
