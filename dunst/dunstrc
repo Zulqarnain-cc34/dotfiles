@@ -158,14 +158,3 @@ frame_color = "#e06c75"
 [dnd_toggle_confirm]
 appname = "dunst"
 override_pause_level = 100
-
-# Background download/torrent notifications shouldn't interrupt -- route them
-# low-urgency and skip the popup, but keep them in history.
-# notifytorrents calls plain `notify-send` (appname is generically
-# "notify-send" for every script that does that), so match on its summary
-# ("Torrents") instead -- matching appname here would silence everything.
-[silent_downloads]
-appname = "notify-send"
-summary = "Torrents"
-urgency = low
-skip_display = true
