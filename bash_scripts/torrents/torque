@@ -20,7 +20,7 @@ get_torrents() {
     t=("${t[@]//[0-9] [a-z][a-z][a-z]?/.}")
     t=("${t[@]//Up & Down/Active}")
     t=("${t[@]//Downloading/Active}")
-    t=("${t[@]//     None/0 MB}")
+    t=("${t[@]//None/0 MB}")
 
     for((i=${k:=0};i<(j=j>${#t[@]}?${#t[@]}:j);i++));{ t_print "${t[i]/n\/a/0}";}
     status "[s]tart [p]ause [r]emove [o]pen [j/k] [q]uit scroll ($j/${#t[@]})"$'\e[H'
@@ -28,6 +28,9 @@ get_torrents() {
 
 t_print() {
     IFS=" %" read -r num perc have unit _ up down _ stat name <<< "$1"
+    # bash arithmetic is integer-only; a torrent not yet at a whole-number
+    # percent (e.g. freshly added, 0.00%) crashed the block below.
+    perc=${perc/.*}
 
     ((size=perc!=0?${have/.*}*100/perc:0,c=perc==100?33271340:31000000))
 
