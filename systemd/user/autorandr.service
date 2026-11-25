@@ -1,0 +1,6 @@
+[Unit]
+Description=autorandr execution hook (user session)
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/autorandr --change --default default

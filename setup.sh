@@ -265,6 +265,7 @@ link_file .profile            "$HOME/.profile"
 link_file .zprofile           "$HOME/.zprofile"
 link_file .inputrc            "$HOME/.inputrc"
 link_file picom.conf          "$HOME/.config/picom.conf"
+link_file systemd/user/autorandr.service "$HOME/.config/systemd/user/autorandr.service"
 link_file .xprofile           "$HOME/.xprofile"
 link_file .dir_colors         "$HOME/.dir_colors"
 link_file .wgetrc             "$HOME/.wgetrc"
@@ -281,6 +282,7 @@ fi
 
 echo "==> System files (root required)"
 link_file_sudo sddm/sddm.conf "/etc/sddm.conf"
+link_file_sudo systemd/40-monitor-hotplug.rules "/etc/udev/rules.d/40-monitor-hotplug.rules"
 
 if [[ "$DRYRUN" -eq 1 ]]; then
     echo "==> Dry run complete — nothing was changed"

@@ -1,0 +1,7 @@
+# Overrides the autorandr package's own rule of the same name
+# (/usr/lib/udev/rules.d/40-monitor-hotplug.rules), which starts a *system*
+# autorandr.service with no DISPLAY/XAUTHORITY -- it can never reach the X
+# server (confirmed: "Can't open display :0" on every run). This targets the
+# user-session unit (systemd/user/autorandr.service) instead, which inherits
+# the real session's DISPLAY/XAUTHORITY.
+ACTION=="change", SUBSYSTEM=="drm", RUN+="/usr/bin/systemctl --user --machine=precision@.host start autorandr.service"
