@@ -1,7 +1,7 @@
 #!/bin/sh
 # A super hacky script to display the torrents in transmission in a notification
 
-if ! raw="$(transmission-remote -l 2>&1)"; then
+if ! raw="$(transmission-remote -l 2>/dev/null)"; then
     notify-send -a notifytorrents -u critical "Torrents" "Couldn't reach transmission-daemon."
     exit 1
 fi
@@ -11,9 +11,16 @@ fi
 # whole line on whitespace and grabbing fields by fixed index shifts Name
 # out of place and leaks the extra words into the output. Locate Name by its
 # header offset instead and take everything from there to end of line.
+#
+# Have is normally "<number> <unit>" (two fields) but prints as the single
+# word "None" for a torrent with no data yet -- fall back to one field in
+# that case, or the word after it (really the start of ETA) leaks in too.
 list="$(echo "$raw" | sed '/Sum:/d' | awk '
     NR == 1 { name_at = index($0, "Name"); next }
-    { printf "%s %s %s %s\n", $2, $3, $4, substr($0, name_at) }
+    {
+        have = ($3 == "None") ? $3 : $3 " " $4
+        printf "%s %s %s\n", $2, have, substr($0, name_at)
+    }
 ')"
 
 if [ -z "$list" ]; then
