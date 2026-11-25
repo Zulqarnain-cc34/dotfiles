@@ -344,6 +344,7 @@ community whose rices sparked half the ideas here. Huge thanks to all of them.
 <a href="https://github.com/andreafrancia" title="trash-cli"><img src="https://github.com/andreafrancia.png" width="56" alt="trash-cli"/></a>
 <a href="https://github.com/wting" title="autojump"><img src="https://github.com/wting.png" width="56" alt="autojump"/></a>
 <a href="https://github.com/realstrawhat" title="csakura (sakura terminal screensaver)"><img src="https://github.com/realstrawhat.png" width="56" alt="csakura"/></a>
+<a href="https://github.com/Darkkal44" title="qylock (forest, winter SDDM themes)"><img src="https://github.com/Darkkal44.png" width="56" alt="qylock"/></a>
 <a href="https://github.com/zsh-users" title="zsh-autosuggestions · zsh-syntax-highlighting"><img src="https://github.com/zsh-users.png" width="56" alt="zsh-users"/></a> <!-- group: Shell, prompt & tmux plugins -->
 <a href="https://github.com/tmux-plugins" title="tpm · sensible · battery · cpu · urlview · yank · copycat"><img src="https://github.com/tmux-plugins.png" width="56" alt="tmux-plugins"/></a>
 <a href="https://github.com/yazi-rs" title="full-border · git · chmod · jump-to-char · toggle-pane · smart-enter · piper · vcs-files · catppuccin flavor"><img src="https://github.com/yazi-rs.png" width="56" alt="yazi-rs"/></a> <!-- group: Yazi plugins & flavors -->
