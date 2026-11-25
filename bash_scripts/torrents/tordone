@@ -8,8 +8,13 @@
 # daemon only has it if whatever started the daemon did.
 
 (
+    # dunst renders this body as pango markup, so a torrent name with a
+    # literal "&"/"<"/">" would otherwise be parsed as markup -- an
+    # unrecognized tag like "<foo>" fails to parse at all. Escape before
+    # it ever reaches dunstify.
+    name=$(printf '%s' "$TR_TORRENT_NAME" | sed 's/&/\&amp;/g; s/</\&lt;/g; s/>/\&gt;/g')
     choice=$(dunstify -w -t 15000 -A "default,Open folder" \
-        "Transmission-daemon" "$TR_TORRENT_NAME has completely downloaded")
+        "Transmission-daemon" "$name has completely downloaded")
     [ "$choice" = "default" ] && "${TERMINAL:-kitty}" -e yazi "$TR_TORRENT_DIR"
 ) &
 disown
