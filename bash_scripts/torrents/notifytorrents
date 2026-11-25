@@ -15,13 +15,17 @@ fi
 # Have is normally "<number> <unit>" (two fields) but prints as the single
 # word "None" for a torrent with no data yet -- fall back to one field in
 # that case, or the word after it (really the start of ETA) leaks in too.
+# dunst renders this body as pango markup, so a torrent name with a literal
+# "&"/"<"/">" (nothing stops anyone distributing a torrent from picking one)
+# would otherwise be parsed as markup -- an unrecognized tag like "<foo>"
+# fails to parse at all. Escape before it ever reaches notify-send.
 list="$(echo "$raw" | sed '/Sum:/d' | awk '
     NR == 1 { name_at = index($0, "Name"); next }
     {
         have = ($3 == "None") ? $3 : $3 " " $4
         printf "%s %s %s\n", $2, have, substr($0, name_at)
     }
-')"
+' | sed 's/&/\&amp;/g; s/</\&lt;/g; s/>/\&gt;/g')"
 
 if [ -z "$list" ]; then
     notify-send -a notifytorrents "Torrents" "No torrents."
