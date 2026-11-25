@@ -6,3 +6,8 @@
 for id in $(bspc query -D -d '.!occupied'); do
     [ "$(bspc query -D -d "$id" --names)" = Desktop ] && bspc desktop "$id" -r
 done
+
+# That new monitor also starts with no top padding, so windows tile right over
+# the bar. Polybar only reserves its space when it starts on a monitor, so
+# restart it against the one we have now.
+"${XDG_CONFIG_HOME:-$HOME/.config}/polybar/launch.sh"
