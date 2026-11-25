@@ -1,13 +1,23 @@
 #!/bin/sh
 # A super hacky script to display the torrents in transmission in a notification
 
+if ! raw="$(transmission-remote -l 2>&1)"; then
+    notify-send -a notifytorrents -u critical "Torrents" "Couldn't reach transmission-daemon."
+    exit 1
+fi
+
 # Name is the last column and may itself contain spaces, and ETA/Status can
 # each be more than one word (e.g. "6 min", "Downloading") -- splitting the
 # whole line on whitespace and grabbing fields by fixed index shifts Name
 # out of place and leaks the extra words into the output. Locate Name by its
 # header offset instead and take everything from there to end of line.
-torrents="$(transmission-remote -l | sed '/Sum/d')"
-notify-send -a notifytorrents "Torrents" "$(echo "$torrents" | awk '
+list="$(echo "$raw" | sed '/Sum:/d' | awk '
     NR == 1 { name_at = index($0, "Name"); next }
     { printf "%s %s %s %s\n", $2, $3, $4, substr($0, name_at) }
 ')"
+
+if [ -z "$list" ]; then
+    notify-send -a notifytorrents "Torrents" "No torrents."
+else
+    notify-send -a notifytorrents "Torrents" "$list"
+fi
