@@ -28,6 +28,8 @@ What each script does and what it's good for.
 | `media/random-wallpaper.sh` | Random wallpaper cycler | no-repeat picks, X11 only |
 | `launchers/aliasmanager.sh` | Picks an alias and runs it | `fzf` picker, runs in current shell |
 | `web/urlportal.sh` | Routes a URL to the right opener | type-based dispatch, DuckDuckGo redirect decoding |
+| `torrents/transadd` | Adds a magnet link or `.torrent` to your own transmission-daemon | starts the daemon if it's not running, lock-protected against adding several at once, notify-send feedback |
+| `torrents/tordone` | Runs when a torrent finishes downloading | dunst notification with an "Open folder" action into `yazi` |
 
 ## Note
 
