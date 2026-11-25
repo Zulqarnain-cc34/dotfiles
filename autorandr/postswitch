@@ -1,0 +1,8 @@
+#!/bin/sh
+# Run by autorandr after every profile switch. Plugging a monitor in or out
+# makes bspwm add a fresh, empty "Desktop" to the monitor it just picked up;
+# with the mirrored layout bspwm merges both screens into one and the named
+# desktops carry over, so that extra one is always a leftover.
+for id in $(bspc query -D -d '.!occupied'); do
+    [ "$(bspc query -D -d "$id" --names)" = Desktop ] && bspc desktop "$id" -r
+done
