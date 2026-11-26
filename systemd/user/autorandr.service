@@ -1,0 +1,9 @@
+[Unit]
+Description=autorandr execution hook (user session)
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/autorandr --change --default default
+# The postswitch hook restarts polybar; the default control-group kill mode
+# would take it down the moment this oneshot finishes.
+KillMode=process
