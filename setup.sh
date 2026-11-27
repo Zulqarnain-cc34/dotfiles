@@ -284,6 +284,7 @@ fi
 echo "==> System files (root required)"
 link_file_sudo sddm/sddm.conf "/etc/sddm.conf"
 link_file_sudo systemd/40-monitor-hotplug.rules "/etc/udev/rules.d/40-monitor-hotplug.rules"
+link_file_sudo xorg/10-keyboard-repeat.conf "/etc/X11/xorg.conf.d/10-keyboard-repeat.conf"
 
 if [[ "$DRYRUN" -eq 1 ]]; then
     echo "==> Dry run complete — nothing was changed"
