@@ -3,6 +3,10 @@
 Notable changes to this repo, one entry per day — a simpler, human variant of [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), no categories or semver.
 The detailed record lives in the git commit messages — see `git log` when you need that.
 
+## [2026-11-27] — xset repeat-rate fix
+
+- Found and fixed the **xset** keyboard repeat-rate bug for real: system upgrades were resetting it, so **Xorg** now holds the rate itself and the old watcher is gone.
+
 ## [2026-11-24] — xset diagnostics, network scripts removal
 
 - The **xset** keyboard repeat-rate bug came back — added real diagnostic logging to nail it for good.
