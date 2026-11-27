@@ -30,23 +30,9 @@ fail() { echo "  FAIL: $*"; errors=$((errors + 1)); }
 SECRET_PATH_RE='(client_secrets\.json|credentials\.json|\.mutt/accounts/|^\.w3m/cookie$|^\.w3m/history$|polybar/gmail/|^transmission-daemon/settings\.json$)'
 
 echo "==> Required repo scripts and docs"
-for f in scripts/bootstrap-secrets.sh scripts/validate.sh scripts/install-deps.sh docs/secrets.md docs/INSTALL.md scripts/host/README.md redshift/redshift.conf .aliases/aliases .aliases/functions; do
+for f in scripts/bootstrap-secrets.sh scripts/validate.sh docs/secrets.md docs/INSTALL.md scripts/host/README.md redshift/redshift.conf .aliases/aliases .aliases/functions; do
     [[ -f "$f" ]] && ok "$f" || fail "missing $f"
 done
-
-echo "==> packages/minimal.txt"
-if [[ -f packages/minimal.txt ]]; then
-    if grep -qx 'exa' packages/minimal.txt 2>/dev/null; then
-        fail "packages/minimal.txt lists exa (use eza)"
-    else
-        ok "no exa in minimal.txt"
-    fi
-    for pkg in eza yazi fastfetch slock clipmenu; do
-        grep -qx "$pkg" packages/minimal.txt 2>/dev/null && ok "minimal: $pkg" || fail "minimal.txt missing $pkg"
-    done
-else
-    fail "missing packages/minimal.txt"
-fi
 
 echo "==> bash_scripts (~/bin/bash_scripts)"
 for f in bash_scripts/web/urlportal.sh bash_scripts/media/random-wallpaper.sh bash_scripts/media/ytfzf \

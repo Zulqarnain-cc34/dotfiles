@@ -4,7 +4,7 @@ Full walkthrough. For the condensed version see the main [README](../README.md#-
 
 ## Prerequisites
 
-- **Arch Linux** (or an Arch-based distro) — `install-deps.sh` shells out to `pacman`
+- **Arch Linux** (or an Arch-based distro)
 - A **Nerd Font** — the config expects `ttf-jetbrains-mono-nerd` and `ttf-iosevka-nerd`
 - `git`, `base-devel`, and an AUR helper (`yay`) for a few packages
 
@@ -18,11 +18,7 @@ chmod +x setup.sh scripts/*.sh
 
 ## 2. Install packages
 
-```bash
-./scripts/install-deps.sh
-```
-
-Installs everything in [`packages/minimal.txt`](../packages/minimal.txt) via `pacman`. Hand-pick from that file instead if you don't want the full set.
+Pick what you need from the newest snapshot under [`packages/`](../packages/) (`vN/`): `pacman-packages.txt` lists repo packages, `yay-packages.txt` the AUR ones. Install them with `pacman` and `yay`.
 
 ## 3. Bootstrap secrets
 

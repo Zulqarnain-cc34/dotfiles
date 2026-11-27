@@ -192,9 +192,6 @@ cd ~/etc/linuxConfig/dotfiles_v2
 # Make the helpers executable
 chmod +x setup.sh scripts/*.sh
 
-# Install the core package set (or hand-pick from packages/minimal.txt)
-./scripts/install-deps.sh
-
 # Symlink configs into ~/.config and $HOME (backs up existing targets first)
 ./setup.sh --backup
 
@@ -208,7 +205,7 @@ nvim +Lazy sync +qa
 
 `setup.sh` flags: `--backup` (copy existing targets to `~/.dotfiles_backup/<timestamp>/` first), `--force` (replace existing targets), `--dry-run` (print what would happen, touch nothing), `--check` (report per-target drift, touch nothing), `--allow-root` (run as root anyway, only to set up root's own home on purpose), `--help`. Run it as yourself, not with `sudo`: it asks for your password only for the few system files that need it.
 
-Full notes: [`docs/INSTALL.md`](docs/INSTALL.md) · Secrets handling: [`docs/secrets.md`](docs/secrets.md) · Minimal package set: [`packages/minimal.txt`](packages/minimal.txt)
+Full notes: [`docs/INSTALL.md`](docs/INSTALL.md) · Secrets handling: [`docs/secrets.md`](docs/secrets.md) · Package snapshots: [`packages/`](packages/)
 
 ---
 
