@@ -293,5 +293,5 @@ elif [[ "$CHECK" -eq 1 ]]; then
 else
     echo "==> Done"
     echo "  Firefox: see docs/firefox.md (not managed by setup.sh)"
-    echo "  Optional: ./scripts/install-deps.sh  |  git config core.hooksPath .githooks"
+    echo "  Optional: git config core.hooksPath .githooks"
 fi
